@@ -1,17 +1,17 @@
-import { BLOG } from '@/blog.config'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import React from 'react'
+import { BLOG } from "@/blog.config";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React from "react";
 
-const BlogPostCard = ({ post, className }) => {
-  const router = useRouter()
-  const currentSelected = router.asPath.split('?')[0] === '/' + post.slug
+const AllRecordsPostCard = ({ post, className }) => {
+  const router = useRouter();
+  const currentSelected = router.asPath.split("?")[0] === "/" + post.slug;
   // console.log('post::', post)
   return (
     <div
       key={post.id}
       className={`${className} py-1 cursor-pointer px-2 hover:bg-neutral-100 rounded-md dark:hover:bg-neutral-500  ${
-        currentSelected ? 'bg-yellow-50 text-yellow-500' : ''
+        currentSelected ? "bg-yellow-50 text-yellow-500" : ""
       }`}
     >
       <div className="flex flex-col w-full select-none">
@@ -25,7 +25,7 @@ const BlogPostCard = ({ post, className }) => {
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default BlogPostCard
+export default AllRecordsPostCard;

@@ -1,27 +1,19 @@
-import React from "react";
 /* eslint-disable no-unused-vars */
-import { siteConfig } from "@/lib/config";
-import Image from "next/image";
-import Link from "next/link";
-import CONFIG from "../config";
 import LazyImage from "@/components/LazyImage";
-import { EngineeringRecordsCardInfo } from "./EngineeringRecordsCardInfo";
+import Link from "next/link";
+import { SideprojectRecordsCardInfo } from "./SideprojectRecordsCardInfo";
 
-export default function EngineeringRecordsItem({
+export default function SideprojectRecordsItem({
   pIndex,
   pId,
   pTitle,
   pPosts,
 }) {
-  // console.log('pPosts', pPosts)
   const showPreview = false;
-  // const showPageCover = pPosts?.pageCoverThumbnail && !showPreview
+
   const showPageCover = pPosts?.pageCoverThumbnail;
   return (
     <div key={pIndex} className="w-full">
-      {/* <div id={pId} className=" pb-4 text-2xl dark:text-neutral-300">
-        {pTitle}
-      </div> */}
       <div className="hover:scale-110 transition-all duration-150">
         <div
           key={pId}
@@ -31,12 +23,12 @@ export default function EngineeringRecordsItem({
           data-aos-once="false"
           data-aos-anchor-placement="top-bottom"
           id="blog-post-card"
-          className={`group w-full flex justify-between md:flex-row flex-col-reverse ${
+          className={`group md:h-56 w-full flex justify-between md:flex-row flex-col-reverse ${
             pIndex % 2 === 1 ? "md:flex-row-reverse" : ""
           }overflow-hidden border dark:border-black rounded-xl bg-white dark:bg-neutral-100`}
         >
           {/* Text content */}
-          <EngineeringRecordsCardInfo
+          <SideprojectRecordsCardInfo
             index={pIndex}
             post={pPosts}
             showPageCover={showPageCover}
@@ -51,14 +43,8 @@ export default function EngineeringRecordsItem({
                 <LazyImage
                   priority={pIndex === 1}
                   src={pPosts?.pageCoverThumbnail}
-                  className="h-full w-full object-cover object-center group-hover:scale-110 duration-500"
-                />
-                {/* <Image
-                  src={pPosts?.pageCoverThumbnail}
-                  width={400}
-                  height={400}
                   className="h-56 w-full object-cover object-center group-hover:scale-110 duration-500"
-                /> */}
+                />
               </div>
             </Link>
           )}

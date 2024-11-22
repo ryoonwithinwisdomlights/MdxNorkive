@@ -1,5 +1,5 @@
-import { BLOG } from '@/blog.config'
-import Link from 'next/link'
+import { BLOG } from "@/blog.config";
+import Link from "next/link";
 
 /**
  * Archive grouping
@@ -7,7 +7,7 @@ import Link from 'next/link'
  * @param {*} param0
  * @returns
  */
-export default function BlogArchiveItem({ archiveTitle, archivePosts }) {
+export default function AllRecordsArchiveItem({ archiveTitle, archivePosts }) {
   // console.log('archivePosts=========:', archivePosts)
   return (
     <div key={archiveTitle}>
@@ -18,7 +18,7 @@ export default function BlogArchiveItem({ archiveTitle, archivePosts }) {
         {archiveTitle}
       </div>
       <ul>
-        {archivePosts[archiveTitle]?.map(post => (
+        {archivePosts[archiveTitle]?.map((post) => (
           <li
             key={post.id}
             className="border-l-4 border-amber-400/40  hover:border-amber-300 flex flex-row p-2 text-xs md:text-base items-center text-justify  hover:scale-x-105  dark:hover:border-amber-400 dark:border-amber-400/30 transform duration-500"
@@ -27,7 +27,7 @@ export default function BlogArchiveItem({ archiveTitle, archivePosts }) {
             <div id={post?.publishDay}>
               <span className="text-amber-400/60 dark:hover:text-amber-300">
                 {post.date?.start_date}
-              </span>{' '}
+              </span>{" "}
               <span
                 key={post.id}
                 className="pl-2 pr-3 text-xs text-justify lh "
@@ -39,11 +39,11 @@ export default function BlogArchiveItem({ archiveTitle, archivePosts }) {
                 href={`${BLOG.SUB_PATH}/${post.slug}`}
                 className="dark:text-neutral-400 hover:text-amber-400  dark:hover:text-amber-200 overflow-x-hidden hover:underline cursor-pointer text-neutral-600"
               >
-                {post.title}{' '}
+                {post.title}{" "}
                 <span className="text-xs">
                   {/* &nbsp;{post.password !== '' && '🔐'} */}
                   &nbsp;
-                  {post.password !== '' && (
+                  {post.password !== "" && (
                     <i className="fa-solid fa-lock">&nbsp;비공개</i>
                   )}
                 </span>
@@ -53,5 +53,5 @@ export default function BlogArchiveItem({ archiveTitle, archivePosts }) {
         ))}
       </ul>
     </div>
-  )
+  );
 }

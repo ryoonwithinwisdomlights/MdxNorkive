@@ -1,7 +1,7 @@
 {
   "name": "yeollam",
   "version": "1.0",
-  "homepage": "https://github.com:ryoon-with-wisdomtrees/yeollam.git",
+  "homepage": "https://github.com:ryoonwithinwisdomlights/yeollam.git",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -44,6 +44,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "feed": "^4.2.2",
     "js-md5": "^0.7.3",
+    "katex": "^0.16.11",
     "localStorage": "^1.0.4",
     "lodash.throttle": "^4.1.1",
     "lucide": "^0.294.0",
@@ -60,6 +61,7 @@
     "react-cookies": "^0.1.1",
     "react-dom": "^18.2.0",
     "react-facebook": "^8.1.4",
+    "react-katex": "^3.0.1",
     "react-notion-x": "6.16.0",
     "react-responsive-carousel": "^3.2.23",
     "react-share": "^4.4.1",
@@ -72,6 +74,7 @@
     "typescript": "^5.6.3"
   },
   "devDependencies": {
+    "@types/katex": "^0.16.7",
     "@types/node": "^22.9.1",
     "@types/react": "^18.3.12",
     "@waline/client": "^2.5.1",

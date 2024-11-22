@@ -1,4 +1,4 @@
-import { BLOG } from '@/blog.config'
+import { BLOG } from "@/blog.config";
 
 /**
  * Third-party code statistics script
@@ -25,13 +25,13 @@ const CommonScript = () => {
                     gtag('config', '${BLOG.ANALYTICS_GOOGLE_ID}', {
                       page_path: window.location.pathname,
                     });
-                  `
+                  `,
             }}
           />
         </>
       )}
     </>
-  )
-}
+  );
+};
 
-export default CommonScript
+export default CommonScript;

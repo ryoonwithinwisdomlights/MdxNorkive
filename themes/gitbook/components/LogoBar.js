@@ -1,7 +1,7 @@
-import { BLOG } from '@/blog.config'
-import LazyImage from '@/components/LazyImage'
-import { useGitBookGlobal } from '@/themes/gitbook'
-import Link from 'next/link'
+import { BLOG } from "@/blog.config";
+import LazyImage from "@/components/LazyImage";
+import { useGitBookGlobal } from "@/themes/gitbook";
+import Link from "next/link";
 
 /**
  * Logo area
@@ -9,12 +9,12 @@ import Link from 'next/link'
  * @returns
  */
 export default function LogoBar(props) {
-  const { siteInfo } = props
-  const { pageNavVisible, changePageNavVisible } = useGitBookGlobal()
+  const { siteInfo } = props;
+  const { pageNavVisible, changePageNavVisible } = useGitBookGlobal();
 
   const togglePageNavVisible = () => {
-    changePageNavVisible(!pageNavVisible)
-  }
+    changePageNavVisible(!pageNavVisible);
+  };
   return (
     <div id="top-wrapper" className="w-full flex items-center">
       <div
@@ -23,7 +23,7 @@ export default function LogoBar(props) {
       >
         <i
           className={`fa-solid ${
-            pageNavVisible ? 'fa-align-justify' : 'fa-indent'
+            pageNavVisible ? "fa-align-justify" : "fa-indent"
           }`}
         ></i>
       </div>
@@ -41,5 +41,5 @@ export default function LogoBar(props) {
         {siteInfo?.title}
       </Link>
     </div>
-  )
+  );
 }

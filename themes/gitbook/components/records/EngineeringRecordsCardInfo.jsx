@@ -1,7 +1,7 @@
 import React from "react";
 import NotionPage from "@/components/NotionPage";
 import Link from "next/link";
-import TagItemMini from "./TagItemMini";
+import TagItemMini from "../TagItemMini";
 import { siteConfig } from "@/lib/config";
 import { formatDateFmt } from "@/lib/formatDate";
 

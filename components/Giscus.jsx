@@ -1,6 +1,6 @@
-import { BLOG } from '@/blog.config'
-import { useGlobal } from '@/lib/global'
-import Giscus from '@giscus/react'
+import { BLOG } from "@/blog.config";
+import { useGlobal } from "@/lib/global";
+import Giscus from "@giscus/react";
 
 /**
  * Giscus Reviews @see https://giscus.app/ko
@@ -10,8 +10,8 @@ import Giscus from '@giscus/react'
  */
 
 const GiscusComponent = () => {
-  const { isDarkMode } = useGlobal()
-  const theme = isDarkMode ? 'dark' : 'light'
+  const { isDarkMode } = useGlobal();
+  const theme = isDarkMode ? "dark" : "light";
 
   return (
     <Giscus
@@ -28,7 +28,7 @@ const GiscusComponent = () => {
       loading={BLOG.COMMENT_GISCUS_LOADING}
       crossorigin={BLOG.COMMENT_GISCUS_CROSSORIGIN}
     />
-  )
-}
+  );
+};
 
-export default GiscusComponent
+export default GiscusComponent;

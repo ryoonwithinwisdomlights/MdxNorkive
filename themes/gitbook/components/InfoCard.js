@@ -1,23 +1,23 @@
 /* eslint-disable no-unused-vars */
-import { BLOG } from '@/blog.config'
-import LazyImage from '@/components/LazyImage'
-import Router from 'next/router'
-import React from 'react'
-import SocialButton from './SocialButton'
+import { BLOG } from "@/blog.config";
+import LazyImage from "@/components/LazyImage";
+import Router from "next/router";
+import React from "react";
+import SocialButton from "./SocialButton";
 
-const InfoCard = props => {
-  const { siteInfo } = props
+const InfoCard = (props) => {
+  const { siteInfo } = props;
   return (
     <div id="info-card" className="py-4">
       <div className="items-center justify-center flex flex-col">
         <div
           className="hover:scale-105 transform duration-200 cursor-pointer flex justify-center"
           onClick={() => {
-            Router.push('/ryoon')
+            Router.push("/ryoon");
           }}
         >
           <LazyImage
-            src={'/images/24.06.Ryoon.png'}
+            src={"/images/24.06.Ryoon.png"}
             className="rounded-full dark:border dark:border-neutral-300"
             width={120}
             alt={BLOG.AUTHOR}
@@ -37,7 +37,7 @@ const InfoCard = props => {
         <SocialButton />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default InfoCard
+export default InfoCard;

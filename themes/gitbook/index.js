@@ -24,32 +24,36 @@ import Announcement from "./components/Announcement";
 import ArticleAround from "./components/ArticleAround";
 import ArticleInfo from "./components/ArticleInfo";
 import { ArticleLock } from "./components/ArticleLock";
-import BlogArchiveItem from "./components/BlogArchiveItem";
-import BlogPostListPage from "./components/BlogPostListPage";
+
 import Catalog from "./components/Catalog";
 import CategoryItem from "./components/CategoryItem";
 import FloatTocButton from "./components/FloatTocButton";
 import Footer from "./components/Footer";
-import GuestBookItem from "./components/GuestBookItem";
+
 import InfoCard from "./components/InfoCard";
-import InspirationItem from "./components/InspirationItem";
+
 import JumpToBackButton from "./components/JumpToBackButton";
 import JumpToTopButton from "./components/JumpToTopButton";
-import NavPostList from "./components/NavPostList";
+import NavPostList from "./components/records/NavPostList";
 import PageNavDrawer from "./components/PageNavDrawer";
 
 import SearchInput from "./components/SearchInput";
-import SideprojectItem from "./components/SideprojectItem";
+
 import TagItemMini from "./components/TagItemMini";
 
-import GeneralRecordsitem from "./components/GeneralRecordsitem";
-import WritingRecordsItem from "./components/WritingRecordsItem";
-import EngineeringRecordsitem from "./components/EngineeringRecordsItem";
+import AllRecordsArchiveItem from "./components/records/AllRecordsArchiveItem";
+import AllRecordsPostListPage from "./components/records/AllRecordsPostListPage";
+
+import GeneralRecordsitem from "./components/records/GeneralRecordsitem";
+import WritingRecordsItem from "./components/records/WritingRecordsItem";
+import EngineeringRecordsitem from "./components/records/EngineeringRecordsItem";
+import SideprojectRecordsItem from "./components/records/SideprojectRecordsItem";
+import GuestBookItem from "./components/records/GuestBookItem";
 
 import TocDrawer from "./components/TocDrawer";
 import TopNavBar from "./components/TopNavBar";
 import CONFIG from "./config";
-import { Style } from "./style";
+import Style from "./Style";
 // Theme global variables
 const ThemeGlobalGitbook = createContext();
 export const useGitBookGlobal = () => useContext(ThemeGlobalGitbook);
@@ -71,7 +75,6 @@ const LayoutBase = (props) => {
     meta,
   } = props;
   const { onLoading } = useGlobal();
-  const router = useRouter();
   const [tocVisible, changeTocVisible] = useState(false);
   const [pageNavVisible, changePageNavVisible] = useState(false);
 
@@ -135,11 +138,6 @@ const LayoutBase = (props) => {
             id="center-wrapper"
             className="flex flex-col w-full relative z-10 pt-14 min-h-screen"
           >
-            {/* <div className="w-full justify-center mx-auto  border-b border-neutral-200 ">
-              <div className="w-full max-w-3xl justify-center mx-auto">
-                <RyoonAnnouncement {...props} />
-              </div>
-            </div> */}
             <div className="flex flex-col justify-between w-full relative z-10  ">
               <div
                 id="container-inner"
@@ -262,7 +260,7 @@ const LayoutPostList = (props) => {
   return (
     <LayoutBase {...props}>
       <div className="mt-10">
-        <BlogPostListPage {...props} />
+        <AllRecordsPostListPage {...props} />
       </div>
     </LayoutBase>
   );
@@ -451,7 +449,7 @@ const LayoutArchive = (props) => {
 
           <div className="w-full flex flex-col gap-10 bg-opacity-30 rounded-lg md:pl-10 dark:bg-black dark:bg-opacity-70 bg-white">
             {Object.keys(archivePosts)?.map((archiveTitle) => (
-              <BlogArchiveItem
+              <AllRecordsArchiveItem
                 key={archiveTitle}
                 archiveTitle={archiveTitle}
                 archivePosts={archivePosts}
@@ -698,7 +696,7 @@ const LayoutSideproject = (props) => {
               // console.log('item', item)
               // console.log(portfolioPosts[item.to])
               return (
-                <SideprojectItem
+                <SideprojectRecordsItem
                   key={index}
                   pIndex={index}
                   pId={item.id}

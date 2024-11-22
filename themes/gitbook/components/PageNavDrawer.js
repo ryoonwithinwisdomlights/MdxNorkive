@@ -1,5 +1,5 @@
-import { useGitBookGlobal } from '@/themes/gitbook'
-import NavPostList from './NavPostList'
+import { useGitBookGlobal } from "@/themes/gitbook";
+import NavPostList from "./records/NavPostList";
 
 /**
  * Floating drawer in-page navigation
@@ -8,13 +8,13 @@ import NavPostList from './NavPostList'
  * @returns {JSX.Element}
  * @constructor
  */
-const PageNavDrawer = props => {
-  const { pageNavVisible, changePageNavVisible } = useGitBookGlobal()
-  const { filteredNavPages } = props
+const PageNavDrawer = (props) => {
+  const { pageNavVisible, changePageNavVisible } = useGitBookGlobal();
+  const { filteredNavPages } = props;
 
   const switchVisible = () => {
-    changePageNavVisible(!pageNavVisible)
-  }
+    changePageNavVisible(!pageNavVisible);
+  };
 
   return (
     <>
@@ -26,9 +26,9 @@ const PageNavDrawer = props => {
         <div
           className={
             (pageNavVisible
-              ? 'animate__slideInLeft '
-              : '-ml-80 animate__slideOutLeft') +
-            ' overflow-y-hidden shadow-card w-72 duration-200 fixed left-1 top-16 rounded py-2 bg-white dark:bg-neutral-600'
+              ? "animate__slideInLeft "
+              : "-ml-80 animate__slideOutLeft") +
+            " overflow-y-hidden shadow-card w-72 duration-200 fixed left-1 top-16 rounded py-2 bg-white dark:bg-neutral-600"
           }
         >
           <div className="dark:text-neutral-200 text-neutral-600 h-96 overflow-y-scroll p-3">
@@ -41,12 +41,12 @@ const PageNavDrawer = props => {
       <div
         id="left-drawer-background"
         className={
-          (pageNavVisible ? 'block' : 'hidden') +
-          ' fixed top-0 left-0 z-30 w-full h-full'
+          (pageNavVisible ? "block" : "hidden") +
+          " fixed top-0 left-0 z-30 w-full h-full"
         }
         onClick={switchVisible}
       />
     </>
-  )
-}
-export default PageNavDrawer
+  );
+};
+export default PageNavDrawer;

@@ -2,7 +2,7 @@
  * Placeholder for asynchronous file loading
  * @returns
  */
-const Loading = props => {
+const Loading = (props) => {
   return (
     <div
       id="loading-container"
@@ -10,11 +10,11 @@ const Loading = props => {
     >
       <div id="loading-wrapper">
         <div className="loading">
-          {' '}
+          {" "}
           <i className="fas fa-spinner animate-spin text-3xl " />
         </div>
       </div>
     </div>
-  )
-}
-export default Loading
+  );
+};
+export default Loading;

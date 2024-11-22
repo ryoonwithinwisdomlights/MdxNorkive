@@ -1,12 +1,12 @@
 // eslint-disable-next-line @next/next/no-document-import-in-page
-import Document, { Html, Head, Main, NextScript } from 'next/document'
-import { BLOG } from '@/blog.config'
-import CommonScript from '@/components/CommonScript'
+import Document, { Html, Head, Main, NextScript } from "next/document";
+import { BLOG } from "@/blog.config";
+import CommonScript from "@/components/CommonScript";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
-    const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps }
+    const initialProps = await Document.getInitialProps(ctx);
+    return { ...initialProps };
   }
 
   render() {
@@ -34,8 +34,8 @@ class MyDocument extends Document {
           )}
 
           {BLOG.FONT_URL?.map((fontUrl, index) => {
-            if (fontUrl.endsWith('.css')) {
-              return <link key={index} rel="stylesheet" href={fontUrl} />
+            if (fontUrl.endsWith(".css")) {
+              return <link key={index} rel="stylesheet" href={fontUrl} />;
             } else {
               return (
                 <link
@@ -45,7 +45,7 @@ class MyDocument extends Document {
                   as="font"
                   type="font/woff2"
                 />
-              )
+              );
             }
           })}
         </Head>
@@ -55,8 +55,8 @@ class MyDocument extends Document {
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
 
-export default MyDocument
+export default MyDocument;

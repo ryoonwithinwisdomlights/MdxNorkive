@@ -1,7 +1,7 @@
-import { BLOG } from '@/blog.config'
-import BlogPostCard from './BlogPostCard'
-import NavPostListEmpty from './NavPostListEmpty'
-import PaginationSimple from './PaginationSimple'
+import { BLOG } from "@/blog.config";
+import AllRecordsPostCard from "./AllRecordsPostCard";
+import NavPostListEmpty from "./NavPostListEmpty";
+import PaginationSimple from "../PaginationSimple";
 /**
  * Article list pagination table
  * @param page current page
@@ -10,15 +10,15 @@ import PaginationSimple from './PaginationSimple'
  * @returns {JSX.Element}
  * @constructor
  */
-const BlogPostListPage = ({ page = 1, posts = [], postCount }) => {
-  const totalPage = Math.ceil(postCount / BLOG.POSTS_PER_PAGE)
+const AllRecordsPostListPage = ({ page = 1, posts = [], postCount }) => {
+  const totalPage = Math.ceil(postCount / BLOG.POSTS_PER_PAGE);
 
   if (!posts || posts.length === 0) {
-    return <NavPostListEmpty />
+    return <NavPostListEmpty />;
   }
   const historGoBack = () => {
-    window.history.back()
-  }
+    window.history.back();
+  };
   return (
     <div className="w-full justify-center gap-2">
       <div
@@ -29,8 +29,8 @@ const BlogPostListPage = ({ page = 1, posts = [], postCount }) => {
       </div>
       <div id="posts-wrapper">
         {/* Article list */}
-        {posts?.map(post => (
-          <BlogPostCard key={post.id} post={post} />
+        {posts?.map((post) => (
+          <AllRecordsPostCard key={post.id} post={post} />
         ))}
       </div>
 
@@ -44,7 +44,7 @@ const BlogPostListPage = ({ page = 1, posts = [], postCount }) => {
       </div> */}
       <PaginationSimple page={page} totalPage={totalPage} />
     </div>
-  )
-}
+  );
+};
 
-export default BlogPostListPage
+export default AllRecordsPostListPage;

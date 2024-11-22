@@ -1,35 +1,35 @@
 /* eslint-disable multiline-ternary */
-import { BLOG } from '@/blog.config'
-import { useEffect, useState } from 'react'
-import { useGlobal } from '@/lib/global'
+import { BLOG } from "@/blog.config";
+import { useEffect, useState } from "react";
+import { useGlobal } from "@/lib/global";
 
 /**
  *
  * @returns Debug panel
  */
 const DebugPanel = () => {
-  const [show, setShow] = useState(false)
-  const { locale } = useGlobal()
-  const [siteConfig, updateSiteConfig] = useState({})
+  const [show, setShow] = useState(false);
+  const { locale } = useGlobal();
+  const [siteConfig, updateSiteConfig] = useState({});
 
   useEffect(() => {
-    updateSiteConfig(Object.assign({}, BLOG))
+    updateSiteConfig(Object.assign({}, BLOG));
     // updateThemeConfig(Object.assign({}, ThemeMap[BLOG.THEME].THEME_CONFIG))
-  }, [])
+  }, []);
 
   function toggleShow() {
-    setShow(!show)
+    setShow(!show);
   }
   function filterResult(text) {
     switch (text) {
-      case 'true':
-        return <span className="text-green-500">true</span>
-      case 'false':
-        return <span className="text-red-500">false</span>
-      case '':
-        return '-'
+      case "true":
+        return <span className="text-green-500">true</span>;
+      case "false":
+        return <span className="text-red-500">false</span>;
+      case "":
+        return "-";
     }
-    return text
+    return text;
   }
 
   return (
@@ -37,9 +37,9 @@ const DebugPanel = () => {
       {/* debug button */}
       <div>
         <div
-          style={{ writingMode: 'vertical-lr' }}
+          style={{ writingMode: "vertical-lr" }}
           className={`bg-black text-xs text-white shadow-2xl p-1.5 rounded-l-xl cursor-pointer ${
-            show ? 'right-96' : 'right-0'
+            show ? "right-96" : "right-0"
           } fixed bottom-72 duration-200 z-50`}
           onClick={toggleShow}
         >
@@ -54,7 +54,7 @@ const DebugPanel = () => {
       {/* Debugging side pull drawers */}
       <div
         className={` ${
-          show ? 'shadow-card w-96 right-0 ' : '-right-96 invisible w-0'
+          show ? "shadow-card w-96 right-0 " : "-right-96 invisible w-0"
         } overflow-y-scroll h-full p-5 bg-white fixed bottom-0 z-50 duration-200`}
       >
         <div className="flex justify-between space-x-1 my-5">
@@ -86,13 +86,13 @@ const DebugPanel = () => {
           </div>
           <div className="text-xs">
             {siteConfig &&
-              Object.keys(siteConfig).map(k => (
+              Object.keys(siteConfig).map((k) => (
                 <div key={k} className="justify-between flex py-1">
                   <span className="bg-blue-500 p-0.5 rounded text-white mr-2">
                     {k}
                   </span>
                   <span className="whitespace-nowrap">
-                    {filterResult(siteConfig[k] + '')}
+                    {filterResult(siteConfig[k] + "")}
                   </span>
                 </div>
               ))}
@@ -100,6 +100,6 @@ const DebugPanel = () => {
         </div>
       </div>
     </>
-  )
-}
-export default DebugPanel
+  );
+};
+export default DebugPanel;

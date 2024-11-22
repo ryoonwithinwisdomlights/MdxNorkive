@@ -1,6 +1,6 @@
-import BlogPostCard from './BlogPostCard'
-import React, { useState } from 'react'
-import Collapse from '@/components/Collapse'
+import AllRecordsPostCard from "./AllRecordsPostCard.jsx";
+import React, { useState } from "react";
+import Collapse from "@/components/Collapse";
 
 /**
  * navigation list
@@ -9,14 +9,14 @@ import Collapse from '@/components/Collapse'
  * @returns {JSX.Element}
  * @constructor
  */
-const NavPostItem = props => {
-  const { group } = props
-  const [isOpen, changeIsOpen] = useState(false)
+const NavPostItem = (props) => {
+  const { group } = props;
+  const [isOpen, changeIsOpen] = useState(false);
   // const [isOpen, changeIsOpen] = useState(group?.selected)
   // 언제나 접어져있는 상태로 유지
   const toggleOpenSubMenu = () => {
-    changeIsOpen(!isOpen)
-  }
+    changeIsOpen(!isOpen);
+  };
 
   if (group?.category) {
     return (
@@ -30,31 +30,31 @@ const NavPostItem = props => {
           <div className="inline-flex items-center select-none pointer-events-none ">
             <i
               className={`px-2 fas fa-chevron-left transition-all duration-200 ${
-                isOpen ? '-rotate-90' : ''
+                isOpen ? "-rotate-90" : ""
               }`}
             ></i>
           </div>
         </div>
         <Collapse isOpen={isOpen} onHeightChange={props.onHeightChange}>
-          {group?.items?.map(post => (
+          {group?.items?.map((post) => (
             <div key={post.id} className="ml-3 border-l">
-              <BlogPostCard className="text-sm ml-3" post={post} />
+              <AllRecordsPostCard className="text-sm ml-3" post={post} />
             </div>
           ))}
         </Collapse>
       </>
-    )
+    );
   } else {
     return (
       <>
-        {group?.items?.map(post => (
+        {group?.items?.map((post) => (
           <div key={post.id}>
-            <BlogPostCard className="text-sm py-2" post={post} />
+            <AllRecordsPostCard className="text-sm py-2" post={post} />
           </div>
         ))}
       </>
-    )
+    );
   }
-}
+};
 
-export default NavPostItem
+export default NavPostItem;

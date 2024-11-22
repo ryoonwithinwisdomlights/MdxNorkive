@@ -1,34 +1,34 @@
-import NotionPage from '@/components/NotionPage'
-import Link from 'next/link'
-import TagItemMini from './TagItemMini'
-import { siteConfig } from '@/lib/config'
-import { formatDateFmt } from '@/lib/formatDate'
+import NotionPage from "@/components/NotionPage";
+import Link from "next/link";
+import TagItemMini from "../TagItemMini";
+import { siteConfig } from "@/lib/config";
+import { formatDateFmt } from "@/lib/formatDate";
 
 /**
  * Portfolio list text content
  * @param {*} param0
  * @returns
  */
-export const SideprojectCardInfo = ({
+export const SideprojectRecordsCardInfo = ({
   post,
   showPreview,
   showPageCover,
-  showSummary
+  showSummary,
 }) => {
   return (
     <div
       className={`flex flex-col justify-between lg:p-6 p-4  ${
         showPageCover && !showPreview
-          ? 'md:w-7/12 w-full md:max-h-60'
-          : 'w-full'
+          ? "md:w-7/12 w-full md:max-h-60"
+          : "w-full"
       }`}
     >
       <div>
         <Link
-          href={`${siteConfig('SUB_PATH', '')}/${post.slug}`}
+          href={`${siteConfig("SUB_PATH", "")}/${post.slug}`}
           passHref
           className={`line-clamp-2 replace cursor-pointer text-2xl ${
-            showPreview ? 'text-center' : ''
+            showPreview ? "text-center" : ""
           } leading-tight font-normal text-neutral-600  hover:text-red-400`}
         >
           <span className="menu-link ">{post.title}</span>
@@ -38,7 +38,7 @@ export const SideprojectCardInfo = ({
         {post?.category && (
           <div
             className={`flex mt-2 items-center ${
-              showPreview ? 'justify-center' : 'justify-start'
+              showPreview ? "justify-center" : "justify-start"
             } flex-wrap dark:text-neutral-500 text-neutral-400 `}
           >
             <Link
@@ -50,8 +50,8 @@ export const SideprojectCardInfo = ({
               {post.category}
             </Link>
             <span className="text-xs">
-              &nbsp;&nbsp;&nbsp;{' '}
-              {post.password !== '' && (
+              &nbsp;&nbsp;&nbsp;{" "}
+              {post.password !== "" && (
                 <i className="fa-solid fa-lock">&nbsp;비공개</i>
               )}
             </span>
@@ -86,7 +86,7 @@ export const SideprojectCardInfo = ({
         <div className="text-neutral-400 justify-between flex">
           {/* date */}
           <Link
-            href={`/archive#${formatDateFmt(post?.publishDate, 'yyyy-MM')}`}
+            href={`/archive#${formatDateFmt(post?.publishDate, "yyyy-MM")}`}
             passHref
             className="font-light menu-link cursor-pointer text-sm leading-4 mr-3"
           >
@@ -96,8 +96,8 @@ export const SideprojectCardInfo = ({
 
           <div className="md:flex-nowrap flex-wrap md:justify-start inline-block">
             <div>
-              {' '}
-              {post.tagItems?.map(tag => (
+              {" "}
+              {post.tagItems?.map((tag) => (
                 <TagItemMini key={tag.name} tag={tag} />
               ))}
             </div>
@@ -105,5 +105,5 @@ export const SideprojectCardInfo = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

@@ -1,51 +1,51 @@
-import Collapse from '@/components/Collapse'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
+import Collapse from "@/components/Collapse";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
 /**
  * Collapse menu
  * @param {*} param0
  * @returns
  */
-export const MenuItemCollapse = props => {
-  const { link } = props
-  const [show, changeShow] = useState(false)
-  const hasSubMenu = link?.subMenus?.length > 0
+export const MenuItemCollapse = (props) => {
+  const { link } = props;
+  const [show, changeShow] = useState(false);
+  const hasSubMenu = link?.subMenus?.length > 0;
 
-  const [isOpen, changeIsOpen] = useState(false)
+  const [isOpen, changeIsOpen] = useState(false);
 
-  const router = useRouter()
+  const router = useRouter();
 
   if (!link || !link.show) {
-    return null
+    return null;
   }
 
-  const selected = router.pathname === link.to || router.asPath === link.to
+  const selected = router.pathname === link.to || router.asPath === link.to;
 
   const toggleShow = () => {
-    changeShow(!show)
-  }
+    changeShow(!show);
+  };
 
   const toggleOpenSubMenu = () => {
-    changeIsOpen(!isOpen)
-  }
+    changeIsOpen(!isOpen);
+  };
 
   return (
     <>
       <div
         className={
           (selected
-            ? 'bg-yellow-500 text-white hover:text-white'
-            : 'hover:text-yellow-500') +
-          ' px-7 w-full text-left duration-200 dark:bg-neutral-700 dark:border-black'
+            ? "bg-yellow-500 text-white hover:text-white"
+            : "hover:text-yellow-500") +
+          " px-7 w-full text-left duration-200 dark:bg-neutral-700 dark:border-black"
         }
         onClick={toggleShow}
       >
         {!hasSubMenu && (
           <Link
             href={link?.to}
-            target={link?.to?.indexOf('http') === 0 ? '_blank' : '_self'}
+            target={link?.to?.indexOf("http") === 0 ? "_blank" : "_self"}
             className="py-2 w-full my-auto items-center justify-between flex  "
           >
             <div>
@@ -67,7 +67,7 @@ export const MenuItemCollapse = props => {
             <div className="inline-flex items-center ">
               <i
                 className={`px-2 fas fa-chevron-right transition-all duration-200 ${
-                  isOpen ? 'rotate-90' : ''
+                  isOpen ? "rotate-90" : ""
                 }`}
               ></i>
             </div>
@@ -88,7 +88,7 @@ export const MenuItemCollapse = props => {
               >
                 <Link
                   href={sLink.to}
-                  target={link?.to?.indexOf('http') === 0 ? '_blank' : '_self'}
+                  target={link?.to?.indexOf("http") === 0 ? "_blank" : "_self"}
                 >
                   <div>
                     <div
@@ -98,10 +98,10 @@ export const MenuItemCollapse = props => {
                   </div>
                 </Link>
               </div>
-            )
+            );
           })}
         </Collapse>
       )}
     </>
-  )
-}
+  );
+};

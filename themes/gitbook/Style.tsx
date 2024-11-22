@@ -12,7 +12,7 @@ const Style = () => {
         background-color: black;
       }
     `}</style>
-  )
-}
+  );
+};
 
-export { Style }
+export default Style;

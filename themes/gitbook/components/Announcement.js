@@ -1,7 +1,7 @@
 // import { useGlobal } from '@/lib/global'
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 
-const NotionPage = dynamic(() => import('@/components/NotionPage'))
+const NotionPage = dynamic(() => import("@/components/NotionPage"));
 // 공지사항전용
 const Announcement = ({ notice, className }) => {
   //   const { locale } = useGlobal()
@@ -23,9 +23,9 @@ const Announcement = ({ notice, className }) => {
           )}
         </section>
       </div>
-    )
+    );
   } else {
-    return <></>
+    return <></>;
   }
-}
-export default Announcement
+};
+export default Announcement;
