@@ -398,7 +398,7 @@ const LayoutArchive = (props) => {
             경계를 오가며 정직하게 기록되는{" "}
           </div>
           <div className="w-4/5 font-extrabold  break-words text-stone-700  overflow  text-3xl dark:text-neutral-100 underline decoration-amber-400/30 hover:decoration-amber-300">
-            Ryoon.With.Wisdomtrees Logs
+            YEOLLAMSIL
             <span className="text-amber-400 "> .</span>{" "}
           </div>
         </div>

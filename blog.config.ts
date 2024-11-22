@@ -14,7 +14,7 @@ export const BLOG = {
     "Achieves, builds solidarity, and develops together.",
 
   CUSTOM_MENU: process.env.NEXT_PUBLIC_CUSTOM_MENU || true,
-  AUTHOR: process.env.NEXT_PUBLIC_AUTHOR || "Ryoon.With.Wisdomtrees",
+  AUTHOR: process.env.NEXT_PUBLIC_AUTHOR || "ryoonwithinwisdomlights",
   BIO:
     process.env.NEXT_PUBLIC_BIO ||
     "A Software Engineer who likes to Giveaway to the World with Joy, Love and Lights.",
