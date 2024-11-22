@@ -2,7 +2,7 @@
 import { useGlobal } from "@/lib/global";
 import { saveDarkModeToCookies } from "@/themes/theme";
 import { useImperativeHandle } from "react";
-import { CloudMoon, CloudSun } from "./Icon";
+import { CloudMoon, CloudSun } from "@/lib/Icon";
 
 /**
  * dark mode button
