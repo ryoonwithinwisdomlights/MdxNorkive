@@ -1,17 +1,22 @@
-import React from 'react'
+import React from "react";
 /* eslint-disable no-unused-vars */
-import { siteConfig } from '@/lib/config'
-import Image from 'next/image'
-import Link from 'next/link'
-import CONFIG from '../config'
-import LazyImage from '@/components/LazyImage'
-import { AGiveAwayLogCardInfo } from './AGiveAwayLogCardInfo'
+import { siteConfig } from "@/lib/config";
+import Image from "next/image";
+import Link from "next/link";
+import CONFIG from "../config";
+import LazyImage from "@/components/LazyImage";
+import { EngineeringRecordsCardInfo } from "./EngineeringRecordsCardInfo";
 
-export default function AGiveAwayLogItem({ pIndex, pId, pTitle, pPosts }) {
+export default function EngineeringRecordsItem({
+  pIndex,
+  pId,
+  pTitle,
+  pPosts,
+}) {
   // console.log('pPosts', pPosts)
-  const showPreview = false
+  const showPreview = false;
   // const showPageCover = pPosts?.pageCoverThumbnail && !showPreview
-  const showPageCover = pPosts?.pageCoverThumbnail
+  const showPageCover = pPosts?.pageCoverThumbnail;
   return (
     <div key={pIndex} className="w-full">
       {/* <div id={pId} className=" pb-4 text-2xl dark:text-neutral-300">
@@ -27,11 +32,11 @@ export default function AGiveAwayLogItem({ pIndex, pId, pTitle, pPosts }) {
           data-aos-anchor-placement="top-bottom"
           id="blog-post-card"
           className={`group w-full flex justify-between md:flex-row flex-col-reverse ${
-            pIndex % 2 === 1 ? 'md:flex-row-reverse' : ''
+            pIndex % 2 === 1 ? "md:flex-row-reverse" : ""
           }overflow-hidden border dark:border-black rounded-xl bg-white dark:bg-neutral-100`}
         >
           {/* Text content */}
-          <AGiveAwayLogCardInfo
+          <EngineeringRecordsCardInfo
             index={pIndex}
             post={pPosts}
             showPageCover={showPageCover}
@@ -60,5 +65,5 @@ export default function AGiveAwayLogItem({ pIndex, pId, pTitle, pPosts }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
