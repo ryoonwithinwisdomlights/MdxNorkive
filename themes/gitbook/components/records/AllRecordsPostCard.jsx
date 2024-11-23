@@ -6,7 +6,7 @@ import React from "react";
 const AllRecordsPostCard = ({ post, className }) => {
   const router = useRouter();
   const currentSelected = router.asPath.split("?")[0] === "/" + post.slug;
-  // console.log('post::', post)
+  // console.log("AllRecordsPostCard::", currentSelected);
   return (
     <div
       key={post.id}

@@ -1,5 +1,5 @@
-import { useGitBookGlobal } from '@/themes/gitbook'
-import Catalog from './Catalog'
+import { useGitBookGlobal } from "@/themes/gitbook";
+import Catalog from "./Catalog";
 
 /**
  * Floating drawer catalog
@@ -9,10 +9,10 @@ import Catalog from './Catalog'
  * @constructor
  */
 const TocDrawer = ({ post, cRef }) => {
-  const { tocVisible, changeTocVisible } = useGitBookGlobal()
+  const { tocVisible, changeTocVisible } = useGitBookGlobal();
   const switchVisible = () => {
-    changeTocVisible(!tocVisible)
-  }
+    changeTocVisible(!tocVisible);
+  };
   return (
     <>
       <div
@@ -23,9 +23,9 @@ const TocDrawer = ({ post, cRef }) => {
         <div
           className={
             (tocVisible
-              ? 'animate__slideInRight '
-              : ' -mr-72 animate__slideOutRight') +
-            ' overflow-y-hidden shadow-card w-60 duration-200 fixed right-1 bottom-16 rounded py-2 bg-white dark:bg-neutral-700'
+              ? "animate__slideInRight "
+              : " -mr-72 animate__slideOutRight") +
+            " overflow-y-hidden shadow-card w-60 duration-200 fixed right-1 bottom-16 rounded py-2 bg-white dark:bg-neutral-700"
           }
         >
           {post && (
@@ -41,12 +41,12 @@ const TocDrawer = ({ post, cRef }) => {
       <div
         id="right-drawer-background"
         className={
-          (tocVisible ? 'block' : 'hidden') +
-          ' fixed top-0 left-0 z-30 w-full h-full'
+          (tocVisible ? "block" : "hidden") +
+          " fixed top-0 left-0 z-30 w-full h-full"
         }
         onClick={switchVisible}
       />
     </>
-  )
-}
-export default TocDrawer
+  );
+};
+export default TocDrawer;

@@ -1,9 +1,9 @@
-import React from 'react'
-import CategoryItem from './CategoryItem'
+import React from "react";
+import CategoryItem from "./CategoryItem";
 
 const CategoryGroup = ({ currentCategory, categoryOptions }) => {
   if (!categoryOptions) {
-    return <></>
+    return <></>;
   }
   return (
     <div id="category-list" className="pt-4">
@@ -12,8 +12,8 @@ const CategoryGroup = ({ currentCategory, categoryOptions }) => {
         Classification
       </div>
       <div className="flex flex-wrap">
-        {categoryOptions?.map(category => {
-          const selected = currentCategory === category.name
+        {categoryOptions?.map((category) => {
+          const selected = currentCategory === category.name;
           return (
             <CategoryItem
               key={category.name}
@@ -21,11 +21,11 @@ const CategoryGroup = ({ currentCategory, categoryOptions }) => {
               category={category.name}
               categoryCount={category.count}
             />
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CategoryGroup
+export default CategoryGroup;

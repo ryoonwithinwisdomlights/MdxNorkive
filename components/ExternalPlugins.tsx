@@ -14,10 +14,6 @@ import dynamic from "next/dynamic";
 //   { ssr: false }
 // )
 
-// const AosAnimation = dynamic(() => import('@/components/AOSAnimation'), {
-//   ssr: false
-// })
-// const Ackee = dynamic(() => import('@/components/Ackee'), { ssr: false })
 const Gtag = dynamic(() => import("@/components/Gtag"), { ssr: false });
 const Busuanzi = dynamic(() => import("@/components/Busuanzi"), { ssr: false });
 const GoogleAdsense = dynamic(() => import("@/components/GoogleAdsense"), {
@@ -49,7 +45,6 @@ const ExternalPlugin = (props: any) => {
         <DisableCopy />
       )}
       <VConsole />
-      {/* <AosAnimation /> */}
     </>
   );
 };

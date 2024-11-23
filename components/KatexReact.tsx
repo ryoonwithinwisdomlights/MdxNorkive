@@ -12,7 +12,7 @@ interface TeXProps {
   [key: string]: any; // 추가적인 prop 허용
 }
 
-interface stateInterface {
+interface StateProps {
   innerHtml?: string;
   errorElement?: ReactNode;
 }
@@ -27,12 +27,12 @@ const TeX: React.FC<TeXProps> = ({
   as: asComponent = "span", // 기본값 설정,
   ...props
 }) => {
-  //   const Component = asComponent || (block ? 'div' : 'span')
-  const Component = asComponent; // JSX에서 사용할 컴포넌트 지정
+  const Component = asComponent || (block ? "div" : "span");
+  // const Component = asComponent; // JSX에서 사용할 컴포넌트 지정
   const content = children ?? math;
-  //   const [state, setState] = React.useState<stateInterface>({ innerHtml: '' })
+
   // const [state, setState] = useState<{ innerHtml: string; errorElement?: ReactNode }>({ innerHtml: "" });
-  const [state, setState] = useState<stateInterface>({ innerHtml: "" });
+  const [state, setState] = useState<StateProps>({ innerHtml: "" });
 
   useEffect(() => {
     try {

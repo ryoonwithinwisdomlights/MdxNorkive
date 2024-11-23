@@ -23,6 +23,16 @@ export const MenuBarMobile = (props) => {
       show: CONFIG.MENU_WRITING,
     },
     {
+      name: locale.NAV.GENERAL,
+      to: "/general-records",
+      show: CONFIG.MENU_GENERAL,
+    },
+    {
+      name: locale.NAV.ENGINEERING,
+      to: "/engineering-records",
+      show: CONFIG.MENU_ENGINEERING,
+    },
+    {
       name: locale.NAV.SIDEPROJECT,
       to: "/sideproject",
       show: CONFIG.MENU_SIDEPROJECT,

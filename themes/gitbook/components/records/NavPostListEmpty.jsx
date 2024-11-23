@@ -10,6 +10,6 @@ const NavPostListEmpty = ({ currentSearch }) => {
         포스트를 찾을 수 없습니다. {currentSearch && <div>{currentSearch}</div>}
       </p>
     </div>
-  )
-}
-export default NavPostListEmpty
+  );
+};
+export default NavPostListEmpty;

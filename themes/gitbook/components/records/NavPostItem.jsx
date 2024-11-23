@@ -14,13 +14,14 @@ const NavPostItem = (props) => {
   const [isOpen, changeIsOpen] = useState(false);
   // const [isOpen, changeIsOpen] = useState(group?.selected)
   // 언제나 접어져있는 상태로 유지
+  console.log("group::", group);
   const toggleOpenSubMenu = () => {
     changeIsOpen(!isOpen);
   };
 
   if (group?.category) {
     return (
-      <>
+      <div>
         <div
           onClick={toggleOpenSubMenu}
           className="select-none flex justify-between text-sm font-sans cursor-pointer p-2 hover:bg-neutral-100 rounded-md dark:hover:bg-neutral-600"
@@ -30,7 +31,7 @@ const NavPostItem = (props) => {
           <div className="inline-flex items-center select-none pointer-events-none ">
             <i
               className={`px-2 fas fa-chevron-left transition-all duration-200 ${
-                isOpen ? "-rotate-90" : ""
+                isOpen ? "rotate-90" : ""
               }`}
             ></i>
           </div>
@@ -42,17 +43,17 @@ const NavPostItem = (props) => {
             </div>
           ))}
         </Collapse>
-      </>
+      </div>
     );
   } else {
     return (
-      <>
+      <div>
         {group?.items?.map((post) => (
           <div key={post.id}>
             <AllRecordsPostCard className="text-sm py-2" post={post} />
           </div>
         ))}
-      </>
+      </div>
     );
   }
 };

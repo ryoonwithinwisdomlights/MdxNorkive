@@ -40,17 +40,24 @@ export default function TopNavBar(props) {
       to: "/archive",
       show: CONFIG.MENU_ARCHIVE,
     },
-    // {
-    //   icon: 'fas fa-search',
-    //   name: locale.NAV.SEARCH,
-    //   to: '/search',
-    //   show: CONFIG.MENU_SEARCH
-    // },
+
     {
       icon: "fa-solid fa-book",
       name: locale.NAV.WRITING,
-      to: "/writing",
+      to: "/writing-records",
       show: CONFIG.MENU_WRITING,
+    },
+    {
+      icon: "fa-solid fa-folder-closed",
+      name: locale.NAV.GENERAL,
+      to: "/general-records",
+      show: CONFIG.MENU_GENERAL,
+    },
+    {
+      icon: "fa-solid fa-folder-closed",
+      name: locale.NAV.ENGINEERING,
+      to: "/engineering-records",
+      show: CONFIG.MENU_ENGINEERING,
     },
     {
       icon: "fa-solid fa-hand-sparkles",
@@ -58,6 +65,12 @@ export default function TopNavBar(props) {
       to: "/sideproject",
       show: CONFIG.MENU_SIDEPROJECT,
     },
+    // {
+    //   icon: 'fas fa-search',
+    //   name: locale.NAV.SEARCH,
+    //   to: '/search',
+    //   show: CONFIG.MENU_SEARCH
+    // },
   ];
 
   let links = defaultLinks.concat(customNav);

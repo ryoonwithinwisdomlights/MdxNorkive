@@ -11,12 +11,7 @@ import NotionPage from "@/components/NotionPage";
 import ShareBar from "@/components/ShareBar";
 import { useGlobal } from "@/lib/global";
 import { isBrowser } from "@/lib/utils";
-import Jadu from "@/public/images/general/jadu.jpeg";
-import Latte from "@/public/images/general/latte.jpeg";
-import Leeseula from "@/public/images/general/leeseula.jpeg";
-import Nogiveup from "@/public/images/general/nogiveup.png";
 import { Transition } from "@headlessui/react";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -25,7 +20,7 @@ import ArticleAround from "./components/ArticleAround";
 import ArticleInfo from "./components/ArticleInfo";
 import { ArticleLock } from "./components/ArticleLock";
 
-import Catalog from "./components/Catalog";
+// import Catalog from "./components/Catalog";
 import CategoryItem from "./components/CategoryItem";
 import FloatTocButton from "./components/FloatTocButton";
 import Footer from "./components/Footer";
@@ -34,8 +29,8 @@ import InfoCard from "./components/InfoCard";
 
 import JumpToBackButton from "./components/JumpToBackButton";
 import JumpToTopButton from "./components/JumpToTopButton";
-import NavPostList from "./components/records/NavPostList";
 import PageNavDrawer from "./components/PageNavDrawer";
+import NavPostList from "./components/records/NavPostList";
 
 import SearchInput from "./components/SearchInput";
 
@@ -44,13 +39,13 @@ import TagItemMini from "./components/TagItemMini";
 import AllRecordsArchiveItem from "./components/records/AllRecordsArchiveItem";
 import AllRecordsPostListPage from "./components/records/AllRecordsPostListPage";
 
-import GeneralRecordsitem from "./components/records/GeneralRecordsitem";
-import WritingRecordsItem from "./components/records/WritingRecordsItem";
 import EngineeringRecordsitem from "./components/records/EngineeringRecordsItem";
-import SideprojectRecordsItem from "./components/records/SideprojectRecordsItem";
+import GeneralRecordsitem from "./components/records/GeneralRecordsitem";
 import GuestBookItem from "./components/records/GuestBookItem";
+import SideprojectRecordsItem from "./components/records/SideprojectRecordsItem";
+import WritingRecordsItem from "./components/records/WritingRecordsItem";
 
-import TocDrawer from "./components/TocDrawer";
+// import TocDrawer from "./components/TocDrawer";
 import TopNavBar from "./components/TopNavBar";
 import CONFIG from "./config";
 import Style from "./Style";
@@ -185,7 +180,7 @@ const LayoutBase = (props) => {
               <ArticleInfo post={props?.post ? props?.post : props.notice} />
 
               <div className="py-4 justify-center">
-                <Catalog {...props} />
+                {/* <Catalog {...props} /> */}
                 {slotRight}
 
                 <InfoCard {...props} />
@@ -361,7 +356,7 @@ const LayoutSlug = (props) => {
             </section>
           )}
 
-          <TocDrawer {...props} />
+          {/* <TocDrawer {...props} /> */}
         </div>
       )}
     </LayoutBase>
@@ -554,8 +549,8 @@ const LayoutGeneralRecords = (props) => {
         </div>
         <div className="flex flex-row">
           <div className="w-1/2 !md:mr-20 h-full">
-            <div className="w-full flex flex-row float-left  gap-4 mb-4 ">
-              {/* https://nextjs.org/docs/pages/building-your-application/optimizing/images */}
+            {/* <div className="w-full flex flex-row float-left  gap-4 mb-4 ">
+ 
               <Image
                 src={Nogiveup}
                 alt="Nogiveup"
@@ -568,7 +563,7 @@ const LayoutGeneralRecords = (props) => {
               />
             </div>
             <div className="w-full flex flex-row float-right gap-4 mb-4 ">
-              {/* https://nextjs.org/docs/pages/building-your-application/optimizing/images */}
+
 
               <Image
                 src={Jadu}
@@ -580,7 +575,7 @@ const LayoutGeneralRecords = (props) => {
                 alt="Latte"
                 className="rounded-lg duration-500  hover:scale-110  "
               />
-            </div>
+            </div> */}
           </div>
           <div className="w-full flex flex-col gap-10 bg-opacity-30 p-10 rounded-lg dark:bg-black dark:bg-opacity-70 bg-white">
             {Object.keys(generalPosts)?.map((archiveTitle) => {
@@ -830,6 +825,8 @@ export {
   Layout404,
   LayoutArchive,
   LayoutCategoryIndex,
+  LayoutEngineeringRecords,
+  LayoutGeneralRecords,
   LayoutGuestBook,
   LayoutIndex,
   LayoutPostList,
@@ -838,7 +835,5 @@ export {
   LayoutSlug,
   LayoutTagIndex,
   LayoutWritingRecords,
-  LayoutEngineeringRecords,
-  LayoutGeneralRecords,
   CONFIG as THEME_CONFIG,
 };

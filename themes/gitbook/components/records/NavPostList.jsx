@@ -1,7 +1,7 @@
 import NavPostListEmpty from "./NavPostListEmpty";
 import { useRouter } from "next/router";
 import NavPostItem from "./NavPostItem";
-import CONFIG from "./../../config";
+import CONFIG from "../../config";
 
 /**
  * Blog list scrolling paging

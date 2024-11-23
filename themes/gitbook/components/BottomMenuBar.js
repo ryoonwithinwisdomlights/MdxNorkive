@@ -1,18 +1,18 @@
-import { useGitBookGlobal } from '@/themes/gitbook'
-import React from 'react'
-import JumpToTopButton from './JumpToTopButton'
+import { useGitBookGlobal } from "@/themes/gitbook";
+import React from "react";
+import JumpToTopButton from "./JumpToTopButton";
 
 export default function BottomMenuBar({ post, className }) {
-  const { pageNavVisible, changePageNavVisible } = useGitBookGlobal()
+  const { pageNavVisible, changePageNavVisible } = useGitBookGlobal();
 
   const togglePageNavVisible = () => {
-    changePageNavVisible(!pageNavVisible)
-  }
+    changePageNavVisible(!pageNavVisible);
+  };
 
   return (
     <div
       className={
-        'sticky z-10 bottom-0 w-full h-12 bg-white dark:bg-neutral-700 ' +
+        "sticky z-10 bottom-0 w-full h-12 bg-white dark:bg-neutral-700 " +
         className
       }
     >
@@ -28,5 +28,5 @@ export default function BottomMenuBar({ post, className }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
