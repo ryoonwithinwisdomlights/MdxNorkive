@@ -1,7 +1,7 @@
 import AllRecordsPostCard from "./AllRecordsPostCard.jsx";
 import React, { useState } from "react";
-import Collapse from "@/components/Collapse";
-
+// import Collapse from "@/components/Collapse";
+import Collapse from "../Collapse.jsx";
 /**
  * navigation list
  * @param posts
