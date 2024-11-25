@@ -8,7 +8,7 @@ import "@/styles/utility-patterns.css";
 
 // core styles shared by all of react-notion-x (required)
 import { BLOG } from "@/blog.config";
-import { AdSlot } from "@/components/GoogleAdsense";
+// import { AdSlot } from "@/components/GoogleAdsense";
 import { GlobalContextProvider } from "@/lib/providers/globalProvider";
 import { ThemeGitbookProvider } from "@/lib/providers/themeGitbookProvider";
 import "@/styles/notion.css"; //  Override some styles
@@ -139,8 +139,6 @@ export default function RootLayout({
                       id="container-inner"
                       className="w-full px-7 max-w-3xl justify-center mx-auto"
                     >
-                      {/* {slotTop} */}
-
                       <CustomedTransiton>{children}</CustomedTransiton>
 
                       {/* Google ads */}
@@ -153,7 +151,6 @@ export default function RootLayout({
 
                     {/* bottom */}
                     <div className="md:hidden mb:16">
-                      {/* <Footer {...props} /> */}
                       <Footer />
                     </div>
                   </div>
@@ -167,13 +164,9 @@ export default function RootLayout({
                   }
                 >
                   <div className="py-14 px-6 sticky top-0">
-                    {/* <ArticleInfo
-                      post={props?.post ? props?.post : props.notice}
-                    /> */}
                     <ArticleInfo />
                     <div className="py-4 justify-center">
                       {/* <Catalog {...props} /> */}
-                      {/* {slotRight} */}
 
                       <InfoCard />
 
