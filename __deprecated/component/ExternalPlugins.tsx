@@ -14,7 +14,7 @@ import dynamic from "next/dynamic";
 //   { ssr: false }
 // )
 
-const Gtag = dynamic(() => import("@/components/Gtag"), { ssr: false });
+// const Gtag = dynamic(() => import("@/components/Gtag"), { ssr: false });
 const Busuanzi = dynamic(() => import("@/components/Busuanzi"), { ssr: false });
 const GoogleAdsense = dynamic(() => import("@/components/GoogleAdsense"), {
   ssr: false,
@@ -32,7 +32,7 @@ const DisableCopy = dynamic(() => import("@/components/DisableCopy"), {
 const ExternalPlugin = (props: any) => {
   return (
     <>
-      {BLOG.ANALYTICS_GOOGLE_ID && <Gtag />}
+      {/* {BLOG.ANALYTICS_GOOGLE_ID && <Gtag />} */}
       {/* {BLOG.ANALYTICS_VERCEL && <Analytics />} */}
       {typeof BLOG.ANALYTICS_BUSUANZI_ENABLE === "string" &&
         JSON.parse(BLOG.ANALYTICS_BUSUANZI_ENABLE) && <Busuanzi />}

@@ -10,7 +10,7 @@ import { BLOG } from "@/blog.config";
 import Collapse from "@/components/Collapse";
 import { MenuBarMobile } from "./MenuBarMobile";
 import LogoBar from "./LogoBar";
-import DarkModeButton from "@/components/typescript/DarkModeButton";
+import DarkModeButton from "@/components/DarkModeButton";
 import { MenuItemDrop } from "./MenuItemDrop";
 
 const TopNavBar = () => {
