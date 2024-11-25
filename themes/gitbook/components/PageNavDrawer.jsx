@@ -1,4 +1,4 @@
-import { useGitBookGlobal } from "@/themes/gitbook";
+import { useGitBookGlobal } from "@/themes/gitbook/index.js";
 import NavPostList from "./records/NavPostList";
 
 /**

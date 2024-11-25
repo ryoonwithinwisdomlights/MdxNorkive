@@ -49,6 +49,7 @@ import WritingRecordsItem from "./components/records/WritingRecordsItem";
 import TopNavBar from "./components/TopNavBar";
 import CONFIG from "./config";
 import Style from "./Style";
+import BottomMenuBar from "./components/BottomMenuBar";
 // Theme global variables
 const ThemeGlobalGitbook = createContext();
 export const useGitBookGlobal = () => useContext(ThemeGlobalGitbook);
@@ -206,7 +207,7 @@ const LayoutBase = (props) => {
         <PageNavDrawer {...props} filteredNavPages={filteredNavPages} />
 
         {/* 모바일 하단 탐색 메뉴 */}
-        {/* <BottomMenuBar {...props} className='block md:hidden' /> */}
+        <BottomMenuBar {...props} className="block md:hidden" />
       </div>
     </ThemeGlobalGitbook.Provider>
   );

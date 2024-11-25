@@ -27,7 +27,7 @@ const AllRecordsPostListPage = ({ page = 1, posts = [], postCount }) => {
       >
         ← 뒤로가기
       </div>
-      <div id="allrecords-wrapper">
+      <div id="posts-wrapper">
         {/* Article list */}
         {posts?.map((post) => (
           <AllRecordsPostCard key={post.id} post={post} />

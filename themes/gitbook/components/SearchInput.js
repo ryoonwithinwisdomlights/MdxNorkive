@@ -1,30 +1,30 @@
 /* eslint-disable no-unused-vars */
-import { useImperativeHandle, useRef, useState } from 'react'
-import { deepClone } from '@/lib/utils'
-import { useGitBookGlobal } from '@/themes/gitbook'
-let lock = false
+import { deepClone } from "@/lib/utils";
+import { useGitBookGlobal } from "@/themes/gitbook";
+import { useImperativeHandle, useRef, useState } from "react";
+let lock = false;
 
 const SearchInput = ({ currentSearch, cRef, className }) => {
-  const searchInputRef = useRef()
+  const searchInputRef = useRef();
   const { setFilteredNavPages, allNavPages, allNavPagesForGitBook } =
-    useGitBookGlobal()
+    useGitBookGlobal();
 
   useImperativeHandle(cRef, () => {
     return {
       focus: () => {
-        searchInputRef?.current?.focus()
-      }
-    }
-  })
+        searchInputRef?.current?.focus();
+      },
+    };
+  });
 
   const handleSearch = () => {
-    let keyword = searchInputRef.current.value
+    let keyword = searchInputRef.current.value;
     if (keyword) {
-      keyword = keyword.trim()
+      keyword = keyword.trim();
     } else {
-      setFilteredNavPages(allNavPagesForGitBook)
+      setFilteredNavPages(allNavPagesForGitBook);
     }
-    const filterAllNavPages = deepClone(allNavPagesForGitBook)
+    const filterAllNavPages = deepClone(allNavPagesForGitBook);
     // for (const filterGroup of filterAllNavPages) {
     //   for (let i = filterGroup.items.length - 1; i >= 0; i--) {
     //     const post = filterGroup.items[i]
@@ -40,65 +40,65 @@ const SearchInput = ({ currentSearch, cRef, className }) => {
     //   }
     // }
     for (let i = filterAllNavPages.length - 1; i >= 0; i--) {
-      const post = filterAllNavPages[i]
-      const articleInfo = post.title + ''
-      const hit = articleInfo.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+      const post = filterAllNavPages[i];
+      const articleInfo = post.title + "";
+      const hit = articleInfo.toLowerCase().indexOf(keyword.toLowerCase()) > -1;
       if (!hit) {
         // delete
-        filterAllNavPages.splice(i, 1)
+        filterAllNavPages.splice(i, 1);
       }
     }
 
     // Updated
-    setFilteredNavPages(filterAllNavPages)
-  }
+    setFilteredNavPages(filterAllNavPages);
+  };
 
   /**
    *
 Enter key
    * @param {*} e
    */
-  const handleKeyUp = e => {
+  const handleKeyUp = (e) => {
     if (e.keyCode === 13) {
       // 回车
-      handleSearch(searchInputRef.current.value)
+      handleSearch(searchInputRef.current.value);
     } else if (e.keyCode === 27) {
       // ESC
-      cleanSearch()
+      cleanSearch();
     }
-  }
+  };
 
   /**
    * Clean search
    */
   const cleanSearch = () => {
-    searchInputRef.current.value = ''
-    handleSearch()
-  }
+    searchInputRef.current.value = "";
+    handleSearch();
+  };
 
-  const [showClean, setShowClean] = useState(false)
-  const updateSearchKey = val => {
+  const [showClean, setShowClean] = useState(false);
+  const updateSearchKey = (val) => {
     if (lock) {
-      return
+      return;
     }
-    searchInputRef.current.value = val
+    searchInputRef.current.value = val;
 
     if (val) {
-      setShowClean(true)
+      setShowClean(true);
     } else {
-      setShowClean(false)
+      setShowClean(false);
     }
-  }
+  };
   function lockSearchInput() {
-    lock = true
+    lock = true;
   }
 
   function unLockSearchInput() {
-    lock = false
+    lock = false;
   }
 
   return (
-    <div className={'flex w-full border-neutral-400'}>
+    <div className={"flex w-full border-neutral-400"}>
       <input
         ref={searchInputRef}
         type="text"
@@ -107,7 +107,7 @@ Enter key
         onCompositionStart={lockSearchInput}
         onCompositionUpdate={lockSearchInput}
         onCompositionEnd={unLockSearchInput}
-        onChange={e => updateSearchKey(e.target.value)}
+        onChange={(e) => updateSearchKey(e.target.value)}
         defaultValue={currentSearch}
       />
 
@@ -117,7 +117,7 @@ Enter key
       >
         <i
           className={
-            'hover:text-neutral-400 transform duration-200 text-neutral-200  dark:hover:text-neutral-400 cursor-pointer fas fa-search'
+            "hover:text-neutral-400 transform duration-200 text-neutral-200  dark:hover:text-neutral-400 cursor-pointer fas fa-search"
           }
         />
       </div>
@@ -131,7 +131,7 @@ Enter key
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default SearchInput
+export default SearchInput;

@@ -11,8 +11,8 @@ import Collapse from "../Collapse.jsx";
  */
 const NavPostItem = (props) => {
   const { group } = props;
-  const [isOpen, changeIsOpen] = useState(false);
-  // const [isOpen, changeIsOpen] = useState(group?.selected)
+  // const [isOpen, changeIsOpen] = useState(false);
+  const [isOpen, changeIsOpen] = useState(group?.selected);
   // 언제나 접어져있는 상태로 유지
   console.log("group::", group);
   const toggleOpenSubMenu = () => {
