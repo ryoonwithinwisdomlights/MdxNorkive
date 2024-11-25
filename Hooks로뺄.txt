@@ -1,0 +1,6 @@
+filteredNavPages
+  const { className, customNav, customMenu } = props;
+  siteInfo
+  <ArticleInfo post={props?.post ? props?.post : props.notice} />
+  { notice, className }
+    const { filteredNavPages } = props;

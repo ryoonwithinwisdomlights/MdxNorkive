@@ -5,11 +5,10 @@ import { getPostBlocks } from "@/lib/notion";
 import { generateRss } from "@/lib/rss";
 import { generateRobotsTxt } from "@/lib/robots.txt";
 
-export default async function loadGlobalNotionData() {
-  const from = "index";
+export default async function loadGlobalNotionData(from: string = "index") {
+  // const from = "index";
   const props = await getGlobalData({ from });
 
-  const { siteInfo } = props;
   props.posts = props.allPages?.filter(
     (page) =>
       page.type !== "CONFIG" &&
@@ -20,13 +19,6 @@ export default async function loadGlobalNotionData() {
       page.status === "Published"
   );
 
-  const meta = {
-    title: `${siteInfo?.title} | ${siteInfo?.description}`,
-    description: siteInfo?.description,
-    image: siteInfo?.pageCover,
-    slug: "",
-    type: "website",
-  };
   // Handle pagination
   if (BLOG.POST_LIST_STYLE === "scroll") {
     // The scrolling list returns all data to the front end by default
@@ -60,11 +52,5 @@ export default async function loadGlobalNotionData() {
 
   delete props.allPages;
 
-  return {
-    props: {
-      meta,
-      ...props,
-    },
-    revalidate: parseInt(BLOG.NEXT_REVALIDATE_SECOND.toString()),
-  };
+  return props;
 }

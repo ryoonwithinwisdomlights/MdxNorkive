@@ -1,16 +1,17 @@
 "use client";
 import React, { useState, ReactNode } from "react";
 import { createContext, useContext, Dispatch, SetStateAction } from "react";
+import { useGlobal } from "./globalProvider";
 
 interface GitBookGlobalContext {
   tocVisible: boolean;
   changeTocVisible: Dispatch<SetStateAction<boolean>>;
   pageNavVisible: boolean;
   changePageNavVisible: Dispatch<SetStateAction<boolean>>;
-  filteredNavPages: any[];
-  allNavPages: any[]; // Replace `any` with the actual type of navigation pages
-  allNavPagesForGitBook: any[]; // Replace `any` with the actual type if known
-  setFilteredNavPages: Dispatch<SetStateAction<any[]>>; // Replace `any[]` with the specific type of navigation pages if known
+  // filteredNavPages: any[];
+  // allNavPages: any[]; // Replace `any` with the actual type of navigation pages
+  // allNavPagesForGitBook: any[]; // Replace `any` with the actual type if known
+  // setFilteredNavPages: Dispatch<SetStateAction<any[]>>; // Replace `any[]` with the specific type of navigation pages if known
 }
 
 // Create the context with an initial value of undefined
@@ -29,13 +30,22 @@ interface Props {
  * @constructor
  */
 
-export const ThemeGitbookProvider: React.FC<Props> = ({ children }) => {
+export const ThemeGitbookProvider: React.FC<{
+  children: ReactNode;
+}> = ({ children }) => {
   const [tocVisible, setTocVisible] = useState<boolean>(false);
   const [pageNavVisible, setPageNavVisible] = useState<boolean>(false);
 
-  const [allNavPages, setAllNavPages] = useState<any[]>([]); // Replace `any[]` with actual type
-  const [allNavPagesForGitBook, setAllNavPagesForGitBook] = useState<any[]>([]); // Replace `any[]` with actual type
-  const [filteredNavPages, setFilteredNavPages] = useState<any[]>([]); // Replace `any[]` with actual type
+  // const [allNavPages, setAllNavPages] = useState<any[]>([]); // Replace `any[]` with actual type
+  // const [allNavPagesForGitBook, setAllNavPagesForGitBook] = useState<any[]>([]); // Replace `any[]` with actual type
+  //const [filteredNavPages, setFilteredNavPages] = useState<any[]>([]); // Replace `any[]` with actual type
+
+  const {
+    allNavPages,
+    filteredNavPages,
+    setFilteredNavPages,
+    allNavPagesForGitBook,
+  } = useGlobal();
 
   const changeTocVisible = (visible: boolean) => setTocVisible(visible);
   const changePageNavVisible = (visible: boolean) => setPageNavVisible(visible);
@@ -45,10 +55,10 @@ export const ThemeGitbookProvider: React.FC<Props> = ({ children }) => {
     changeTocVisible,
     pageNavVisible,
     changePageNavVisible,
-    allNavPages,
-    allNavPagesForGitBook,
-    filteredNavPages,
-    setFilteredNavPages,
+    // allNavPages,
+    // allNavPagesForGitBook,
+    // filteredNavPages,
+    // setFilteredNavPages,
   };
 
   return (

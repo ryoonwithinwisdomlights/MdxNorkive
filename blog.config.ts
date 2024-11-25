@@ -7,7 +7,7 @@ export const BLOG = {
   LANG: process.env.NEXT_PUBLIC_LANG || "kr-KR", // e.g ,'en-US'  see /lib/lang.js for more.
   APPEARANCE: process.env.NEXT_PUBLIC_APPEARANCE || "light",
   APPEARANCE_DARK_TIME: process.env.NEXT_PUBLIC_APPEARANCE_DARK_TIME || [18, 6], // 야간 모드 시작 시간, 시간에 따라 야간 모드 자동 전환을 비활성화하려면 false입니다.
-  // SINCE:  // e.g if leave this empty, current year will be used.
+  SINCE: 2024, // e.g if leave this empty, current year will be used.
 
   GREETING_WORDS:
     process.env.NEXT_PUBLIC_GREETING_WORDS ||

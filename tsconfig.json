@@ -1,52 +1,64 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@/components/*": [
-        "components/*"
-      ],
-      "@/theme/*": [
-        "theme/*"
-      ],
-      "@/data/*": [
-        "data/*"
-      ],
-      "@/lib/*": [
-        "lib/*"
-      ],
-      "@/styles/*": [
-        "styles/*"
-      ]
-    },
+    // "target": "es5",
+    "target": "esnext",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
+    // "baseUrl": ".",
+    // "paths": {
+    //   "@/*": [
+    //     "./*"
+    //   ],
+    //   "@/components/*": [
+    //     "components/*"
+    //   ],
+    //   "@/theme/*": [
+    //     "theme/*"
+    //   ],
+    //   "@/data/*": [
+    //     "data/*"
+    //   ],
+    //   "@/lib/*": [
+    //     "lib/*"
+    //   ],
+    //   "@/styles/*": [
+    //     "styles/*"
+    //   ]
+    // },
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "noImplicitAny": false,      
+    "noImplicitAny": false,
     "incremental": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true
   },
   "include": [
-    "new-types.d.ts",
     "next-env.d.ts",
-    ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "lib/prisma.schema"
   ],
   "exclude": [
     "node_modules"

@@ -1,28 +1,55 @@
-import { generateLocaleDict, initLocale } from "@/lib/lang";
-import { createContext, useContext, useEffect, useState } from "react";
-import { useRouter } from "next/router";
+"use client";
+import loadGlobalNotionData from "@/app/api/load-globalNotionData";
 import { BLOG } from "@/blog.config";
-import { THEMES, initDarkMode } from "@/themes/theme";
-import NProgress from "nprogress";
+import { generateLocaleDict, initLocale } from "@/lib/lang";
 import { getQueryVariable, isBrowser } from "@/lib/utils";
+import { initDarkMode, THEMES } from "@/themes/theme";
+import { useRouter } from "next/router";
+import NProgress from "nprogress";
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
-interface Gb {
+type siteInfo = {
+  title: any;
+  description: any;
+  pageCover: any;
+  icon: any;
+};
+
+interface globalValueInferface {
   onLoading: boolean;
-  setOnLoading: any;
-  locale: string;
-  updateLocale: any;
+  setOnLoading: Dispatch<SetStateAction<boolean>>;
+  locale: any;
+  updateLocale: Dispatch<SetStateAction<string>>;
   isDarkMode: boolean;
-  updateDarkMode: any;
+  updateDarkMode: Dispatch<SetStateAction<boolean>>;
   theme: string;
-  setTheme: any;
-  switchTheme: any;
-  siteInfo: string;
+  setTheme: Dispatch<SetStateAction<string>>;
+  switchTheme: () => any;
+  siteInfo: siteInfo;
   categoryOptions: [];
   subTypeOptions: [];
   tagOptions: [];
+  filteredNavPages: any[];
+  setFilteredNavPages: Dispatch<SetStateAction<[]>>;
+  allNavPagesForGitBook: any[];
+  className: string;
+  customNav: [];
+  customMenu: [];
+  allNavPages: [];
+  showTocButton: boolean;
+  notice: any;
+  post: any;
 }
 
-type globalState = Gb;
+type globalState = globalValueInferface;
 const GlobalContext = createContext<globalState>(undefined);
 
 /**
@@ -31,15 +58,42 @@ const GlobalContext = createContext<globalState>(undefined);
  * @returns {JSX.Element}
  * @constructor
  */
-export function GlobalContextProvider(props: any) {
-  const { children, siteInfo, categoryOptions, subTypeOptions, tagOptions } =
-    props;
+export async function GlobalContextProvider({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const from = "index";
+  // const props = await getGlobalData({ from });
+  const tempProps = await loadGlobalNotionData("index");
+  const {
+    siteInfo,
+    categoryOptions,
+    allNavPagesForGitBook,
+    subTypeOptions,
+    tagOptions,
+    className,
+    customNav,
+    customMenu,
+    post,
+    notice,
+    allNavPages,
+  } = tempProps;
   const router = useRouter();
   const [lang, updateLang] = useState(BLOG.LANG); // default language
   const [locale, updateLocale] = useState(generateLocaleDict(BLOG.LANG)); // default language
   const [theme, setTheme] = useState(BLOG.THEME); // Default blog theme
   const [isDarkMode, updateDarkMode] = useState(BLOG.APPEARANCE === "dark"); // Default dark mode
   const [onLoading, setOnLoading] = useState(false); // Fetch article data
+  const [filteredNavPages, setFilteredNavPages] = useState(
+    allNavPagesForGitBook
+  );
+
+  const showTocButton = post?.toc?.length > 1;
+
+  useEffect(() => {
+    setFilteredNavPages(allNavPagesForGitBook);
+  }, [post]);
 
   useEffect(() => {
     initLocale(lang, locale, updateLang, updateLocale);
@@ -84,6 +138,7 @@ export function GlobalContextProvider(props: any) {
     return newTheme;
   }
 
+  // const ff = switchTheme;
   return (
     <GlobalContext.Provider
       value={{
@@ -93,6 +148,7 @@ export function GlobalContextProvider(props: any) {
         updateLocale,
         isDarkMode,
         updateDarkMode,
+        notice,
         theme,
         setTheme,
         switchTheme,
@@ -100,6 +156,15 @@ export function GlobalContextProvider(props: any) {
         categoryOptions,
         subTypeOptions,
         tagOptions,
+        filteredNavPages,
+        setFilteredNavPages,
+        allNavPagesForGitBook,
+        className,
+        customNav,
+        customMenu,
+        allNavPages,
+        showTocButton,
+        post,
       }}
     >
       {children}

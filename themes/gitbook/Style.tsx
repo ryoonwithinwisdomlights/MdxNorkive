@@ -1,3 +1,4 @@
+"use client";
 /* eslint-disable react/no-unknown-property */
 /**
  * The style here only takes effect on the current theme
