@@ -85,16 +85,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
   // Cycle page generation
-  allPages?.forEach((post) => {
-    const slugWithoutLeadingSlash = post?.slug?.startsWith("/")
-      ? post?.slug?.slice(1)
-      : post.slug;
-    urls.push({
-      url: `${BLOG.LINK}/${slugWithoutLeadingSlash}`,
-      lastModified: new Date(post?.publishDay),
-      changeFrequency: dailyVariable,
-      priority: 1,
+  allPages
+    ?.filter((p) => p.status === BLOG.NOTION_PROPERTY_NAME.status_publish)
+    .forEach((post) => {
+      const slugWithoutLeadingSlash = post?.slug?.startsWith("/")
+        ? post?.slug?.slice(1)
+        : post.slug;
+      urls.push({
+        url: `${BLOG.LINK}/${slugWithoutLeadingSlash}`,
+        lastModified: new Date(post?.publishDay),
+        changeFrequency: dailyVariable,
+        priority: 1,
+      });
     });
-  });
+
   return urls;
 }
