@@ -1,24 +1,29 @@
 "use client";
 /* eslint-disable multiline-ternary */
 
-import { useRef, useState } from "react";
-import CONFIG from "@/components/gitbook-config";
 import { BLOG } from "@/blog.config";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import CONFIG from "@/components/gitbook-config";
 import Collapse from "@/components/shared/Collapse";
-import { MenuBarMobile } from "./MenuBarMobile";
-import LogoBar from "./LogoBar";
 import DarkModeButton from "@/components/shared/DarkModeButton";
-import { MenuItemDrop } from "./MenuItemDrop";
 import { useGlobal } from "@/lib/providers/globalProvider";
-import { CustomNav } from "@/lib/providers/provider";
+import { CustomNavList } from "@/lib/providers/provider";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faEllipsisVertical, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRef, useState } from "react";
+import LogoBar from "./LogoBar";
+import { MenuBarMobile } from "./MenuBarMobile";
+import { MenuItemDrop } from "./MenuItemDrop";
+
+// 사전에 사용할 아이콘 추가
+library.add(faEllipsisVertical, faTimes);
+
 const TopNavBar = () => {
   const { customNav, customMenu, locale } = useGlobal({ from: "index" });
   const [isOpen, changeShow] = useState(false);
   const collapseRef = useRef<any>(null);
 
-  const defaultLinks: CustomNav[] = [
+  const defaultLinks: CustomNavList[] = [
     {
       icon: "fa-solid fa-wand-magic-sparkles",
       name: locale.COMMON.CATEGORY,
@@ -79,6 +84,7 @@ const TopNavBar = () => {
   if (BLOG.CUSTOM_MENU) {
     links = customMenu;
   }
+
   return (
     <div id="top-nav" className={"fixed top-0 w-full z-40 "}>
       {/* Mobile collapsible menu */}
@@ -111,11 +117,11 @@ const TopNavBar = () => {
             onClick={toggleMenuOpen}
             className="cursor-pointer text-lg hover:scale-110 duration-150"
           >
-            {isOpen
-              ? // <FontAwesomeIcon icon={["fas", "times"]} />
-                "ytoi"
-              : // <FontAwesomeIcon icon={["fas", "ellipsis-vertical"]} />
-                "ss"}
+            {isOpen ? (
+              <FontAwesomeIcon icon={faTimes} />
+            ) : (
+              <FontAwesomeIcon icon={faEllipsisVertical} />
+            )}
           </div>
         </div>
 
