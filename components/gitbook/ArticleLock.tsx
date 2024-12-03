@@ -1,6 +1,12 @@
 "use client";
 import { useGlobal } from "@/lib/providers/globalProvider";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faKey } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useRef, useState } from "react";
+
+// 사전에 사용할 아이콘 추가
+library.add(faKey);
 
 /**
  * Encrypted article verification component
@@ -71,9 +77,12 @@ export const ArticleLock = (props) => {
                 onClick={submitPassword}
                 className="px-3 whitespace-nowrap cursor-pointer text-center items-center justify-center py-2 dark:bg-yellow-500 bg-yellow-400 hover:bg-yellow-300 text-white rounded-r duration-300"
               >
-                <i className={"duration-200 cursor-pointer fas fa-key"}>
-                  {/* &nbsp;{locale.COMMON.SUBMIT} */}
-                </i>
+                <FontAwesomeIcon
+                  className="duration-200 cursor-pointer "
+                  icon={faKey}
+                />
+                {/* <i className={"duration-200 cursor-pointer fas fa-key"}> */}
+                &nbsp;{locale.COMMON.SUBMIT}
                 &nbsp; 입력완료
               </div>
             </div>
@@ -110,9 +119,11 @@ export const ArticleLock = (props) => {
                 onClick={submitPassword}
                 className="px-3 whitespace-nowrap cursor-pointer text-center items-center justify-center py-2 dark:bg-yellow-500 bg-yellow-400 hover:bg-yellow-300 text-white rounded-r duration-300"
               >
-                <i className={"duration-200 cursor-pointer fas fa-key"}>
-                  {/* &nbsp;{locale.COMMON.SUBMIT} */}
-                </i>
+                <FontAwesomeIcon
+                  className="duration-200 cursor-pointer "
+                  icon={faKey}
+                />
+                &nbsp;{locale.COMMON.SUBMIT}
                 &nbsp; 입력완료
               </div>
             </div>

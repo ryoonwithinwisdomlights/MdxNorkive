@@ -1,7 +1,11 @@
 "use client";
 import { useGitBookGlobal } from "@/lib/providers/themeGitbookProvider";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faBook } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import JumpToTopButton from "./JumpToTopButton";
-
+// 사전에 사용할 아이콘 추가
+library.add(faBook);
 /**
  * BottomMenuBarion
  * @param className
@@ -28,7 +32,7 @@ const BottomMenuBar = () => {
           onClick={togglePageNavVisible}
           className="flex w-full items-center justify-center cursor-pointer"
         >
-          <i className="fa-solid fa-book"></i>
+          <FontAwesomeIcon icon={faBook} />
         </div>
         <div className="flex w-full items-center justify-center cursor-pointer">
           <JumpToTopButton />

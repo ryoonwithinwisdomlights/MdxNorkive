@@ -1,3 +1,11 @@
+"use client";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBullhorn, faSpinner } from "@fortawesome/free-solid-svg-icons";
+
+// 사전에 사용할 아이콘 추가
+library.add(faSpinner);
+
 /**
  * Placeholder for asynchronous file loading
  * @returns
@@ -10,8 +18,7 @@ const Loading = (props) => {
     >
       <div id="loading-wrapper">
         <div className="loading">
-          {" "}
-          <i className="fas fa-spinner animate-spin text-3xl " />
+          <FontAwesomeIcon className="animate-spin text-3xl" icon={faSpinner} />
         </div>
       </div>
     </div>

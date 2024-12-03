@@ -24,6 +24,11 @@ import {
   WorkplaceShareButton,
 } from "react-share";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// 사전에 사용할 아이콘 추가
+library.add(faLink);
 /**
  * @author https://github.com/txs
  * @param {*} param0
@@ -159,7 +164,7 @@ const ShareButtons = ({ shareUrl, title, body, image }) => {
               className="cursor-pointer bg-yellow-500 text-white rounded-full mx-1"
             >
               <div alt={locale.COMMON.URL_COPIED} onClick={copyUrl}>
-                <i className="fas fa-link w-8" />
+                <FontAwesomeIcon className="w-8" icon={faLink} />
               </div>
             </button>
           );

@@ -1,7 +1,8 @@
 "use client";
+import { parseIcon } from "@/lib/utils/utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
 export const MenuItemPCNormal = (props) => {
   const { link } = props;
 
@@ -10,7 +11,7 @@ export const MenuItemPCNormal = (props) => {
   if (!link || !link.show) {
     return null;
   }
-
+  const icon = parseIcon(link.icon);
   return (
     <Link
       key={`${link.id}-${link.to}`}
@@ -24,7 +25,7 @@ export const MenuItemPCNormal = (props) => {
       }
     >
       <div className="items-center justify-center flex ">
-        <i className={link.icon} />
+        {icon && <FontAwesomeIcon icon={icon} />}
         <div className="ml-2 whitespace-nowrap">{link.name}</div>
       </div>
       {link.slot}

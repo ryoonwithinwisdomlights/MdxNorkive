@@ -3,6 +3,13 @@
 import { useGlobal } from "@/lib/providers/globalProvider";
 import { deepClone } from "@/lib/utils/utils";
 import { useImperativeHandle, useRef, useState } from "react";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
+
+// 사전에 사용할 아이콘 추가
+library.add(faSearch, faTimes);
+
 let lock = false;
 
 const SearchInput = ({ currentSearch, cRef, className }) => {
@@ -113,18 +120,17 @@ Enter key
         className="flex -ml-8 cursor-pointer float-right items-center justify-center py-2"
         onClick={handleSearch}
       >
-        <i
-          className={
-            "hover:text-neutral-400 transform duration-200 text-neutral-200  dark:hover:text-neutral-400 cursor-pointer fas fa-search"
-          }
+        <FontAwesomeIcon
+          className="hover:text-neutral-400 transform duration-200 text-neutral-200  dark:hover:text-neutral-400 cursor-pointer "
+          icon={faSearch}
         />
       </div>
 
       {showClean && (
         <div className="-ml-14 cursor-pointer float-right items-end px-4   justify-center py-4">
-          <i
-            className="fas fa-times hover:text-neutral-400 items-center justify-center transform duration-200 text-neutral-200 cursor-pointer py-2  dark:hover:text-neutral-300"
-            onClick={cleanSearch}
+          <FontAwesomeIcon
+            className=" hover:text-neutral-400 items-center justify-center transform duration-200 text-neutral-200 cursor-pointer py-2  dark:hover:text-neutral-300"
+            icon={faTimes}
           />
         </div>
       )}

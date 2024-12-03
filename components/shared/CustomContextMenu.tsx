@@ -7,7 +7,36 @@ import { useGlobal } from "@/lib/providers/globalProvider";
 import { saveDarkModeToCookies } from "@/lib/utils/theme";
 import { BLOG } from "@/blog.config";
 import useWindowSize from "@/hooks/useWindowSize";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBullhorn,
+  faRotateRight,
+  faArrowUp,
+  faArrowLeft,
+  faArrowRight,
+  faPodcast,
+  faSquareMinus,
+  faTag,
+  faArrowUpRightFromSquare,
+  faCloudSun,
+  faCloudMoon,
+} from "@fortawesome/free-solid-svg-icons";
 
+// 사전에 사용할 아이콘 추가
+library.add(
+  faBullhorn,
+  faRotateRight,
+  faArrowUp,
+  faArrowLeft,
+  faArrowRight,
+  faPodcast,
+  faSquareMinus,
+  faTag,
+  faArrowUpRightFromSquare,
+  faCloudSun,
+  faCloudMoon
+);
 /**
  * Customize right-click menu
  * @param {*} props
@@ -133,22 +162,42 @@ export default function CustomContextMenu(props: any) {
       <div className="rounded-xl w-52 dark:hover:border-yellow-600 bg-white dark:bg-[#040404] dark:text-neutral-200 dark:border-neutral-600 p-3 border drop-shadow-lg flex-col duration-300 transition-colors">
         {/* Top navigation buttons */}
         <div className="flex justify-between">
-          <i
+          <FontAwesomeIcon
+            className="hover:bg-lime-600 hover:text-white px-2 py-2 text-center w-8 rounded cursor-pointer"
+            icon={faArrowLeft}
+            onClick={handleBack}
+          />
+          {/* <i
             onClick={handleBack}
             className="hover:bg-lime-600 hover:text-white px-2 py-2 text-center w-8 rounded cursor-pointer fa-solid fa-arrow-left"
-          ></i>
-          <i
+          ></i> */}
+          <FontAwesomeIcon
+            className="hover:bg-lime-600 hover:text-white px-2 py-2 text-center w-8 rounded cursor-pointer"
+            icon={faArrowRight}
+            onClick={handleForward}
+          />
+          {/* <i
             onClick={handleForward}
             className="hover:bg-lime-600 hover:text-white px-2 py-2 text-center w-8 rounded cursor-pointer fa-solid fa-arrow-right"
-          ></i>
-          <i
+          ></i> */}
+          <FontAwesomeIcon
+            className="hover:bg-lime-600 hover:text-white px-2 py-2 text-center w-8 rounded cursor-pointer"
+            icon={faRotateRight}
+            onClick={handleRefresh}
+          />
+          {/* <i
             onClick={handleRefresh}
             className="hover:bg-lime-600 hover:text-white px-2 py-2 text-center w-8 rounded cursor-pointer fa-solid fa-rotate-right"
-          ></i>
-          <i
+          ></i> */}
+          <FontAwesomeIcon
+            className="hover:bg-lime-600 hover:text-white px-2 py-2 text-center w-8 rounded cursor-pointer"
+            icon={faArrowUp}
+            onClick={handleScrollTop}
+          />
+          {/* <i
             onClick={handleScrollTop}
             className="hover:bg-lime-600 hover:text-white px-2 py-2 text-center w-8 rounded cursor-pointer fa-solid fa-arrow-up"
-          ></i>
+          ></i> */}
         </div>
 
         <hr className="my-2 border-dashed" />
@@ -160,7 +209,8 @@ export default function CustomContextMenu(props: any) {
             title={locale.MENU.WALK_AROUND}
             className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:bg-lime-600 hover:text-white rounded-lg duration-200 transition-all"
           >
-            <i className="fa-solid fa-podcast mr-2" />
+            <FontAwesomeIcon className="mr-2" icon={faPodcast} />
+            {/* <i className="fa-solid fa-podcast mr-2" /> */}
             <div className="whitespace-nowrap">{locale.MENU.WALK_AROUND}</div>
           </div>
 
@@ -169,7 +219,8 @@ export default function CustomContextMenu(props: any) {
             title={locale.MENU.CATEGORY}
             className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:bg-lime-600 hover:text-white rounded-lg duration-200 transition-all"
           >
-            <i className="fa-solid fa-square-minus mr-2" />
+            <FontAwesomeIcon className="mr-2" icon={faSquareMinus} />
+            {/* <i className="fa-solid fa-square-minus mr-2" /> */}
             <div className="whitespace-nowrap">{locale.MENU.CATEGORY}</div>
           </Link>
 
@@ -178,7 +229,8 @@ export default function CustomContextMenu(props: any) {
             title={locale.MENU.TAGS}
             className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:bg-lime-600 hover:text-white rounded-lg duration-200 transition-all"
           >
-            <i className="fa-solid fa-tag mr-2" />
+            <FontAwesomeIcon className="mr-2" icon={faTag} />
+            {/* <i className="fa-solid fa-tag mr-2" /> */}
             <div className="whitespace-nowrap">{locale.MENU.TAGS}</div>
           </Link>
         </div>
@@ -192,7 +244,8 @@ export default function CustomContextMenu(props: any) {
             title={locale.MENU.COPY_URL}
             className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:bg-lime-600 hover:text-white rounded-lg duration-200 transition-all"
           >
-            <i className="fa-solid fa-arrow-up-right-from-square mr-2" />
+            <FontAwesomeIcon className="mr-2" icon={faArrowUpRightFromSquare} />
+            {/* <i className="fa-solid fa-arrow-up-right-from-square mr-2" /> */}
             <div className="whitespace-nowrap">{locale.MENU.COPY_URL}</div>
           </div>
 
@@ -202,9 +255,11 @@ export default function CustomContextMenu(props: any) {
             className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:bg-lime-600 hover:text-white rounded-lg duration-200 transition-all"
           >
             {isDarkMode ? (
-              <i className="fa-solid fa-cloud-sun mr-2" />
+              <FontAwesomeIcon className="mr-2" icon={faCloudSun} />
             ) : (
-              <i className="fa-solid fa-cloud-moon mr-2" />
+              // <i className="fa-solid fa-cloud-sun mr-2" />
+              <FontAwesomeIcon className="mr-2" icon={faCloudMoon} />
+              // <i className="fa-solid fa-cloud-moon mr-2" />
             )}
             <div className="whitespace-nowrap">
               {" "}

@@ -3,6 +3,12 @@ import Collapse from "@/components/shared/Collapse";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+
+// 사전에 사용할 아이콘 추가
+library.add(faChevronRight);
 
 /**
  * Collapse menu
@@ -67,11 +73,17 @@ export const MenuItemCollapse = (props) => {
               {link.name}
             </div>
             <div className="inline-flex items-center ">
-              <i
+              <FontAwesomeIcon
+                className={`px-2 transition-all duration-200 ${
+                  isOpen ? "rotate-90" : ""
+                }`}
+                icon={faChevronRight}
+              />
+              {/* <i
                 className={`px-2 fas fa-chevron-right transition-all duration-200 ${
                   isOpen ? "rotate-90" : ""
                 }`}
-              ></i>
+              ></i> */}
             </div>
           </div>
         )}

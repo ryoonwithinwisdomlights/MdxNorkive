@@ -4,6 +4,12 @@ import LazyImage from "@/components/shared/LazyImage";
 import { useGlobal } from "@/lib/providers/globalProvider";
 import { useGitBookGlobal } from "@/lib/providers/themeGitbookProvider";
 import Link from "next/link";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAlignJustify, faIndent } from "@fortawesome/free-solid-svg-icons";
+
+// 사전에 사용할 아이콘 추가
+library.add(faAlignJustify, faIndent);
 
 /**
  * Logo area
@@ -25,11 +31,10 @@ export default function LogoBar(props) {
         onClick={togglePageNavVisible}
         className="cursor-pointer md:hidden text-xl pr-3 hover:scale-110 duration-150"
       >
-        <i
-          className={`fa-solid ${
-            pageNavVisible ? "fa-align-justify" : "fa-indent"
-          }`}
-        ></i>
+        <FontAwesomeIcon
+          className="mr-2"
+          icon={pageNavVisible ? faAlignJustify : faIndent}
+        />
       </div>
       <Link
         href="/"

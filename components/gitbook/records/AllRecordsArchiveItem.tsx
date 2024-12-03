@@ -1,6 +1,12 @@
 "use client";
 import { BLOG } from "@/blog.config";
 import Link from "next/link";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
+
+// 사전에 사용할 아이콘 추가
+library.add(faLock);
 
 /**
  * Archive grouping
@@ -53,7 +59,11 @@ export default function AllRecordsArchiveItem({
                   {/* &nbsp;{post.password !== '' && '🔐'} */}
                   &nbsp;
                   {post.password !== "" && (
-                    <i className="fa-solid fa-lock">&nbsp;비공개</i>
+                    <>
+                      {" "}
+                      <FontAwesomeIcon className="mr-1" icon={faLock} />
+                      &nbsp;비공개
+                    </>
                   )}
                 </span>
               </Link>

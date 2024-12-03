@@ -1,6 +1,20 @@
-import { BLOG } from '@/blog.config'
-import React from 'react'
+"use client";
+import { BLOG } from "@/blog.config";
+import React from "react";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
+import { parseIcon } from "@/lib/utils/utils";
 
+// 사전에 사용할 아이콘 추가
+library.add(faBullhorn);
+
+const gitHubicon = parseIcon("fab fa-github");
+const twittericon = parseIcon("fab fa-twitter");
+const linkedInIcon = parseIcon("fab fa-linkedin");
+const emailIcon = parseIcon("fas fa-envelope");
+//fas fa-envelope
+//fab fa-linkedin
 /**
  * Social contact button set
  * @returns {JSX.Element}
@@ -13,20 +27,31 @@ const SocialButton = () => {
         <a
           target="_blank"
           rel="noreferrer"
-          title={'github'}
+          title={"github"}
           href={BLOG.CONTACT_GITHUB}
         >
-          <i className="fab fa-github transform hover:scale-125 duration-150 hover:text-yellow-400" />
+          {gitHubicon && (
+            <FontAwesomeIcon
+              className="transform hover:scale-125 duration-150 hover:text-yellow-400"
+              icon={gitHubicon}
+            />
+          )}
+          {/* <i className="fab fa-github transform hover:scale-125 duration-150 hover:text-yellow-400" /> */}
         </a>
       )}
       {BLOG.CONTACT_TWITTER && (
         <a
           target="_blank"
           rel="noreferrer"
-          title={'twitter'}
+          title={"twitter"}
           href={BLOG.CONTACT_TWITTER}
         >
-          <i className="fab fa-twitter transform hover:scale-125 duration-150 hover:text-yellow-400" />
+          {twittericon && (
+            <FontAwesomeIcon
+              className="transform hover:scale-125 duration-150 hover:text-yellow-400"
+              icon={twittericon}
+            />
+          )}
         </a>
       )}
       {BLOG.CONTACT_LINKEDIN && (
@@ -34,9 +59,15 @@ const SocialButton = () => {
           target="_blank"
           rel="noreferrer"
           href={BLOG.CONTACT_LINKEDIN}
-          title={'linkedIn'}
+          title={"linkedIn"}
         >
-          <i className="transform hover:scale-125 duration-150 fab fa-linkedin dark:hover:text-yellow-400 hover:text-yellow-600" />
+          {linkedInIcon && (
+            <FontAwesomeIcon
+              className="transform hover:scale-125 duration-150 hover:text-yellow-400"
+              icon={linkedInIcon}
+            />
+          )}
+          {/* <i className="transform hover:scale-125 duration-150 fab fa-linkedin dark:hover:text-yellow-400 hover:text-yellow-600" /> */}
         </a>
       )}
       {/* {BLOG.CONTACT_INSTAGRAM && (
@@ -53,10 +84,16 @@ const SocialButton = () => {
         <a
           target="_blank"
           rel="noreferrer"
-          title={'email'}
+          title={"email"}
           href={`mailto:${BLOG.CONTACT_EMAIL}`}
         >
-          <i className="fas fa-envelope transform hover:scale-125 duration-150 hover:text-yellow-400" />
+          {emailIcon && (
+            <FontAwesomeIcon
+              className="transform hover:scale-125 duration-150 hover:text-yellow-400"
+              icon={emailIcon}
+            />
+          )}
+          {/* <i className="fas fa-envelope transform hover:scale-125 duration-150 hover:text-yellow-400" /> */}
         </a>
       )}
       {/* {JSON.parse(BLOG.ENABLE_RSS) && (
@@ -65,6 +102,6 @@ const SocialButton = () => {
         </a>
       )} */}
     </div>
-  )
-}
-export default SocialButton
+  );
+};
+export default SocialButton;

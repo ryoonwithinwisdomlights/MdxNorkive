@@ -1,10 +1,20 @@
+"use client";
 import React from "react";
 import NotionPage from "@/components/shared/NotionPage";
 import Link from "next/link";
 import TagItemMini from "../TagItemMini";
 import { siteConfig } from "@/lib/config";
 import { formatDateFmt } from "@/lib/formatDate";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFolder,
+  faLock,
+  faCalendarAlt,
+} from "@fortawesome/free-solid-svg-icons";
 
+// 사전에 사용할 아이콘 추가
+library.add(faFolder, faLock, faCalendarAlt);
 /**
  *  EngineeringRecords list text content
  * @param {*} param0
@@ -47,13 +57,18 @@ export const EngineeringRecordsCardInfo = ({
               passHref
               className="cursor-pointer font-light text-sm menu-link hover:text-orange-300 transform"
             >
-              <i className="mr-1 far fa-folder" />
+              <FontAwesomeIcon className="mr-1" icon={faFolder} />
+
               {post.category}
             </Link>
             <span className="text-xs">
               &nbsp;&nbsp;&nbsp;{" "}
               {post.password !== "" && (
-                <i className="fa-solid fa-lock">&nbsp;비공개</i>
+                <>
+                  {" "}
+                  <FontAwesomeIcon className="mr-1" icon={faLock} />
+                  &nbsp;비공개
+                </>
               )}
             </span>
           </div>
@@ -89,7 +104,7 @@ export const EngineeringRecordsCardInfo = ({
             passHref
             className="font-light menu-link cursor-pointer text-sm leading-4 mr-3"
           >
-            <i className="far fa-calendar-alt mr-1" />
+            <FontAwesomeIcon className="mr-1" icon={faCalendarAlt} />
             {post?.publishDay || post.lastEditedDay}
           </Link>
 

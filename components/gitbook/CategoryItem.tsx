@@ -1,4 +1,10 @@
+"use client";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faFolder, faFolderOpen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+
+library.add(faFolder, faFolderOpen);
 
 export default function CategoryItem({
   key,
@@ -18,8 +24,12 @@ export default function CategoryItem({
       }
     >
       <div>
-        <i
+        {/* <i
           className={`mr-2 fas ${selected ? "fa-folder-open" : "fa-folder"}`}
+        /> */}
+        <FontAwesomeIcon
+          className="mr-2"
+          icon={selected ? faFolderOpen : faFolder}
         />
         {category} {categoryCount && `(${categoryCount})`}
       </div>

@@ -1,4 +1,11 @@
+"use client";
 import TagItemMini from "./TagItemMini";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTag } from "@fortawesome/free-solid-svg-icons";
+
+// 사전에 사용할 아이콘 추가
+library.add(faTag);
 
 /**
  * tag group
@@ -12,8 +19,9 @@ const TagGroups = ({ tagOptions, currentTag }) => {
   return (
     <div id="tags-group" className="dark:border-neutral-600 py-4">
       <div className="mb-2">
-        <i className="mr-2 fas fa-tag" />
-        标签
+        {/* <i className="mr-2 fas fa-tag" /> */}
+        <FontAwesomeIcon className="mr-2" icon={faTag} />
+        Label
       </div>
       <div className="space-y-2">
         {tagOptions?.map((tag) => {
