@@ -19,3 +19,12 @@ export function hasKey<T extends object>(
 ): key is keyof T {
   return key in obj;
 }
+
+/**
+ * 객체가 정의되어 있는지 확인하는 함수
+ * @param value 확인할 값
+ * @returns 값이 null 또는 undefined가 아니면 true, 그렇지 않으면 false
+ */
+export function isDefined<T>(value: T | null | undefined): value is T {
+  return value !== null && value !== undefined;
+}

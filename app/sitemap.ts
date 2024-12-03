@@ -1,6 +1,10 @@
-import type { MetadataRoute } from "next";
 import { BLOG } from "@/blog.config";
-import { useGlobal } from "@/lib/providers/globalProvider";
+import {
+  ChangeFrequency,
+  InitGlobalNotionData,
+} from "@/lib/providers/provider";
+import type { MetadataRoute } from "next";
+import loadGlobalNotionData from "./api/load-globalNotionData";
 /**
  *
  * Good to know:
@@ -8,20 +12,13 @@ import { useGlobal } from "@/lib/providers/globalProvider";
  * that is cached by default unless it uses a Dynamic API or dynamic config option.
  *
  */
-type changeFrequency =
-  | "always"
-  | "hourly"
-  | "daily"
-  | "weekly"
-  | "monthly"
-  | "yearly"
-  | "never";
 
-const dailyVariable: changeFrequency = "daily";
+const dailyVariable: ChangeFrequency = "daily";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const { allPages } = useGlobal({ from: "index" });
-
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // const { allPages } = useGlobal({ from: "index" });
+  const initGlobalNotionData: InitGlobalNotionData =
+    await loadGlobalNotionData("index");
   const urls = [
     {
       url: `${BLOG.LINK}`,
@@ -85,6 +82,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
   // Cycle page generation
+  const { allPages } = initGlobalNotionData;
   allPages
     ?.filter((p) => p.status === BLOG.NOTION_PROPERTY_NAME.status_publish)
     .forEach((post) => {

@@ -1,61 +1,74 @@
 import type { Metadata } from "next";
+import type { Viewport } from "next";
 import { Inter } from "next/font/google";
-
+// import NextNProgress from "nextjs-progressbar";
 import "@/styles/animate.css"; // @see https://animate.style/
 import "@/styles/globals.css";
-import "@/styles/nprogress.css";
+// import "@/styles/nprogress.css";
 import "@/styles/utility-patterns.css";
-
+// used for rendering equations (optional)
+import "katex/dist/katex.min.css";
+// used for code syntax highlighting (optional)
+import "prismjs/themes/prism-coy.css";
 // core styles shared by all of react-notion-x (required)
+import "react-notion-x/src/styles.css";
+// global style overrides for notion
+import "@/styles/notion.css";
+// global style overrides for prism theme (optional)
+import "@/styles/prism-theme.css";
+import Style from "@/components/gitbook/Style";
+
 import { BLOG } from "@/blog.config";
-// import { AdSlot } from "@/components/GoogleAdsense";
 import { GlobalContextProvider } from "@/lib/providers/globalProvider";
 import { ThemeGitbookProvider } from "@/lib/providers/themeGitbookProvider";
-import "@/styles/notion.css"; //  Override some styles
-import Announcement from "@/themes/gitbook/components/Announcement";
-import ArticleInfo from "@/themes/gitbook/components/ArticleInfo";
-import BottomMenuBar from "@/themes/gitbook/components/BottomMenuBar";
-import CustomedTransiton from "@/themes/gitbook/components/CustomedTransiton";
-import FloatTocButton from "@/themes/gitbook/components/FloatTocButton";
-import Footer from "@/themes/gitbook/components/Footer";
-import InfoCard from "@/themes/gitbook/components/InfoCard";
 
-import PageNavDrawer from "@/themes/gitbook/components/PageNavDrawer";
-import NavPostList from "@/themes/gitbook/components/records/NavPostList";
-import Style from "@/themes/gitbook/Style";
-//import dynamic from "next/dynamic";
-import "react-notion-x/src/styles.css";
-import JumpToTopButton from "@/themes/gitbook/components/JumpToTopButton";
-import JumpToBackButton from "@/themes/gitbook/components/JumpToBackButton";
-import TopNavBar from "@/themes/gitbook/components/TopNavBar";
+import Announcement from "@/components/gitbook/Announcement";
+import ArticleInfo from "@/components/gitbook/ArticleInfo";
+import BottomMenuBar from "@/components/gitbook/BottomMenuBar";
+import CustomedTransiton from "@/components/gitbook/CustomedTransiton";
+import FloatTocButton from "@/components/gitbook/FloatTocButton";
+import Footer from "@/components/gitbook/Footer";
+import InfoCard from "@/components/gitbook/InfoCard";
+import PageNavDrawer from "@/components/gitbook/PageNavDrawer";
+import NavPostList from "@/components/gitbook/records/NavPostList";
+import JumpToTopButton from "@/components/gitbook/JumpToTopButton";
+import JumpToBackButton from "@/components/gitbook/JumpToBackButton";
+import TopNavBar from "@/components/gitbook/TopNavBar";
+import loadGlobalNotionData from "./api/load-globalNotionData";
+import { InitGlobalNotionData } from "@/lib/providers/provider";
+import dynamic from "next/dynamic";
+import { HandleOnComplete } from "@/lib/custom-router";
 
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { siteConfig } from "@/lib/config";
+config.autoAddCss = false;
 // Various extensions, animations, etc.
-///const ExternalPlugins = dynamic(() => import("@/components/ExternalPlugins"));
+const ExternalPlugins = dynamic(
+  () => import("@/components/shared/ExternalPlugins")
+);
+
+const inter = Inter({ subsets: ["latin"] });
+
+export const viewport: Viewport = {
+  // themeColor: "normal",
+  colorScheme: "normal",
+  width: "device-width",
+  initialScale: 1.0,
+  minimumScale: 1.0,
+  maximumScale: 5.0,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("http://localhost:3000"),
-
   title: "Yeollamsil",
   description: BLOG.DESCRIPTION, //"The GitBook-themed Archiving records blog",
-  //   applicationName:"",
+  applicationName: "Yeollamsil",
   authors: {
     url: BLOG.LINK,
     name: BLOG.AUTHOR,
   },
   keywords: BLOG.KEYWORDS,
-  themeColor: BLOG.BACKGROUND_DARK,
-  colorScheme: "normal",
-  robots: {
-    index: true,
-    follow: true,
-  },
-  viewport: {
-    width: "device-width",
-    initialScale: 1.0,
-    minimumScale: 1.0,
-    maximumScale: 5.0,
-    viewportFit: "auto",
-  },
   icons: {
     icon: [
       {
@@ -84,25 +97,32 @@ export const metadata: Metadata = {
     title: BLOG.TITLE,
   },
 };
-const inter = Inter({ subsets: ["latin"] });
-export default function RootLayout({
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const initGlobalNotionData: InitGlobalNotionData =
+    await loadGlobalNotionData("index");
+
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <GlobalContextProvider>
+      <body>
+        <GlobalContextProvider
+          initGlobalNotionData={initGlobalNotionData}
+          from={"index"}
+        >
           <ThemeGitbookProvider>
             <Style />
+
+            <HandleOnComplete />
             <div
               id="theme-gitbook"
-              className="bg-white dark:bg-hexo-black-neutral- w-full h-full min-h-screen justify-center dark:text-neutral-300 dark:bg-black"
+              className={`bg-white dark:bg-hexo-black-neutral- w-full h-full min-h-screen justify-center dark:text-neutral-300 scroll-smooth pb-16 md:pb-0 dark:bg-black`}
             >
               {/* 상단 네비게이션 바 */}
               <TopNavBar />
-
               <main
                 id="wrapper"
                 className={
@@ -140,10 +160,6 @@ export default function RootLayout({
                       className="w-full px-7 max-w-3xl justify-center mx-auto"
                     >
                       <CustomedTransiton>{children}</CustomedTransiton>
-
-                      {/* Google ads */}
-                      {/* <AdSlot type="in-article" /> */}
-
                       {/* Back button */}
                       <JumpToTopButton />
                       <JumpToBackButton />
@@ -166,16 +182,9 @@ export default function RootLayout({
                   <div className="py-14 px-6 sticky top-0">
                     <ArticleInfo />
                     <div className="py-4 justify-center">
-                      {/* <Catalog {...props} /> */}
-
                       <InfoCard />
-
-                      {/* gitbook 테마 홈페이지에는 공지사항만 표시됩니다. */}
-
                       <Announcement />
                     </div>
-
-                    {/* <AdSlot type="in-article" /> */}
                   </div>
                 </div>
               </main>
@@ -189,7 +198,8 @@ export default function RootLayout({
               <BottomMenuBar />
               {/* <BottomMenuBar /> */}
             </div>
-            {children}
+            {/* <NextNProgress /> */}
+            <ExternalPlugins props={Math.random()} />
           </ThemeGitbookProvider>
         </GlobalContextProvider>
       </body>

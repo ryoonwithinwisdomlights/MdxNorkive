@@ -3,7 +3,8 @@
 import { BLOG } from "@/blog.config";
 
 import { deepClone } from "./utils.js";
-import { useGlobal } from "./providers/globalProvider";
+import { useGlobal } from "./providers/globalProvider.jsx";
+import { isUrl } from "./utils/utils.js";
 
 /**
  *Config 읽는 순서
@@ -16,16 +17,44 @@ import { useGlobal } from "./providers/globalProvider";
  * @param {*} extendConfig ; 참조 구성 객체{key:val}.공지사항에서 찾을 수 없다면 먼저 여기서 찾아보세요.
  * @returns
  */
-export const siteConfig = (key, defaultVal = null, extendConfig = null) => {
-  let global = null;
+export const siteConfig = ({
+  key,
+  defaultVal,
+  extendConfig = {},
+}: {
+  key: string;
+  defaultVal?: string;
+  extendConfig?: {};
+}) => {
+  if (!key) {
+    return null;
+  }
+  switch (key) {
+    case "NEXT_REVALIDATE_SECOND":
+    case "POST_RECOMMEND_COUNT":
+    case "IMAGE_COMPRESS_WIDTH":
+    case "PSEUDO_STATIC":
+    case "POSTS_SORT_BY":
+    case "POSTS_PER_PAGE":
+    case "POST_PREVIEW_LINES":
+    case "POST_URL_PREFIX":
+    case "POST_LIST_STYLE":
+    case "POST_LIST_PREVIEW":
+    case "POST_URL_PREFIX_MAPPING_CATEGORY":
+    case "IS_TAG_COLOR_DISTINGUISHED":
+    case "TAG_SORT_BY_COUNT":
+      return convertVal(extendConfig[key] || defaultVal || BLOG[key]);
+    default:
+  }
+  let global: any = {};
   try {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    global = useGlobal();
+    global = useGlobal({ from: "index" });
   } catch (error) {}
 
   // First, configure the table configuration in NOTION to be read first
   let val = null;
-  let siteInfo = null;
+  let siteInfo: any = null;
 
   if (global) {
     val = global.NOTION_CONFIG?.[key];
@@ -80,6 +109,63 @@ export const siteConfig = (key, defaultVal = null, extendConfig = null) => {
   }
 };
 
+export const cleanJsonString = (val) => {
+  // Use regular expressions to remove unnecessary spaces, newlines and tabs
+  return val.replace(/\s+/g, " ").trim();
+};
+
+export const convertVal = (val) => {
+  // If the incoming parameter itself is obj, array, or boolean, there is no need to process it.
+  if (typeof val !== "string" || !val) {
+    return val;
+  }
+
+  // Check if it is a number and avoid numerical overflow
+  if (/^\d+$/.test(val)) {
+    const parsedNum = Number(val);
+    // If the number is greater than JavaScript's maximum safe integer, it is returned as a string
+    if (parsedNum > Number.MAX_SAFE_INTEGER) {
+      return val + "";
+    }
+    return parsedNum;
+  }
+
+  // Check if it is a boolean value
+  if (val === "true" || val === "false") {
+    return JSON.parse(val);
+  }
+
+  // Check whether it is URL
+  if (isUrl(val)) {
+    return val;
+  }
+
+  // 配置值前可能有污染的空格
+  // 如果字符串中没有 '[' 或 '{'，则直接返回
+  // Pèizhì zhí qián kěnéng yǒu wūrǎn de kònggé
+  // rúguǒ zìfú chuàn zhōng méiyǒu'[' huò'{', zé zhíjiē fǎnhuí
+  // There may be contaminated spaces before the configuration value
+  // If there is no '[' or '{' in the string, return directly
+  if (!val.trim().startsWith("{") && !val.trim().startsWith("[")) {
+    return val;
+  }
+
+  //Convert strings like [], {} into objects
+  try {
+    val = cleanJsonString(val);
+    const parsedJson = JSON.parse(val);
+    // Check whether the parsed result is an object
+    if (parsedJson !== null) {
+      return parsedJson;
+    }
+  } catch (error) {
+    // Parsing fails, original string returned
+    return val;
+  }
+
+  return val;
+};
+
 /**
  * Read all configurations
  * 1. Read the NotionConfig table first
@@ -91,7 +177,7 @@ export const siteConfig = (key, defaultVal = null, extendConfig = null) => {
 export const siteConfigMap = () => {
   const val = deepClone(BLOG);
   for (const key in val) {
-    val[key] = siteConfig(key);
+    val[key] = siteConfig({ key: key });
     // console.log('site', key, val[key], siteConfig(key))
   }
   return val;

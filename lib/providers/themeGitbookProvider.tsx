@@ -1,27 +1,20 @@
 "use client";
-import React, { useState, ReactNode } from "react";
-import { createContext, useContext, Dispatch, SetStateAction } from "react";
-import { useGlobal } from "./globalProvider";
-
-interface GitBookGlobalContext {
+import React, { createContext, ReactNode, useContext, useState } from "react";
+type GitBookGlobalContext = {
   tocVisible: boolean;
-  changeTocVisible: Dispatch<SetStateAction<boolean>>;
+  changeTocVisible: () => void; // 토글 함수
   pageNavVisible: boolean;
-  changePageNavVisible: Dispatch<SetStateAction<boolean>>;
-  // filteredNavPages: any[];
-  // allNavPages: any[]; // Replace `any` with the actual type of navigation pages
-  // allNavPagesForGitBook: any[]; // Replace `any` with the actual type if known
-  // setFilteredNavPages: Dispatch<SetStateAction<any[]>>; // Replace `any[]` with the specific type of navigation pages if known
-}
+  changePageNavVisible: () => void; // 토글 함수
+};
 
 // Create the context with an initial value of undefined
+/**
+ *  createContext는 기본값을 설정해야 하므로, 초기값을 undefined로 설정하면 타입스크립트에서 오류가 발생합니다.
+ *  이를 해결하기 위해 컨텍스트 초기값에 적절한 기본값을 제공하거나 null을 허용하도록 설정해야 합니다.
+ */
 const ThemeGlobalGitbook = createContext<GitBookGlobalContext | undefined>(
   undefined
 );
-
-interface Props {
-  children: ReactNode;
-}
 
 /**
  * Global Theme variable Provider
@@ -36,29 +29,21 @@ export const ThemeGitbookProvider: React.FC<{
   const [tocVisible, setTocVisible] = useState<boolean>(false);
   const [pageNavVisible, setPageNavVisible] = useState<boolean>(false);
 
-  // const [allNavPages, setAllNavPages] = useState<any[]>([]); // Replace `any[]` with actual type
-  // const [allNavPagesForGitBook, setAllNavPagesForGitBook] = useState<any[]>([]); // Replace `any[]` with actual type
-  //const [filteredNavPages, setFilteredNavPages] = useState<any[]>([]); // Replace `any[]` with actual type
+  // const {
+  //   allNavPages,
+  //   filteredNavPages,
+  //   setFilteredNavPages,
+  //   allNavPagesForGitBook,
+  // } = useGlobal({ from: "index" });
 
-  const {
-    allNavPages,
-    filteredNavPages,
-    setFilteredNavPages,
-    allNavPagesForGitBook,
-  } = useGlobal();
-
-  const changeTocVisible = (visible: boolean) => setTocVisible(visible);
-  const changePageNavVisible = (visible: boolean) => setPageNavVisible(visible);
+  const changeTocVisible = () => setTocVisible((prev) => !prev);
+  const changePageNavVisible = () => setPageNavVisible((prev) => !prev);
 
   const value: GitBookGlobalContext = {
     tocVisible,
     changeTocVisible,
     pageNavVisible,
     changePageNavVisible,
-    // allNavPages,
-    // allNavPagesForGitBook,
-    // filteredNavPages,
-    // setFilteredNavPages,
   };
 
   return (

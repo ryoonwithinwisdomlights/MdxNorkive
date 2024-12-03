@@ -1,6 +1,6 @@
 "use client";
 
-import AllRecordsArchiveItem from "@/themes/gitbook/components/records/AllRecordsArchiveItem";
+import AllRecordsArchiveItem from "@/components/gitbook/records/AllRecordsArchiveItem";
 
 export default function HomePage({ archivePosts }) {
   return (

@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* @layer base {
+  @font-face {
+    font-family: 'Roboto';
+    font-style: light;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/fonts/Roboto.woff2) format('woff2');
+  }
+} */
+
+ /* body {
+
+  font-style: light;
+ } */
 .wrapper {
   min-height: 100vh;
   display: flex;
@@ -93,7 +108,7 @@ nav {
   @apply right-auto left-0 hidden lg:block z-10 !important;
 }
 
-/* 隐藏滚动条 */
+/* Hide scroll bar */
 .scroll-hidden {
   -ms-overflow-style: none;
   overflow: -moz-scrollbars-none;
@@ -156,11 +171,6 @@ nav {
   vertical-align: baseline;
   height: 1.25em;
   margin: -0.125em 0.25em;
-}
-
-/* twikoo 评论区超链接样式 */
-.tk-main a {
-  @apply text-blue-700;
 }
 
 /* Webmention style */

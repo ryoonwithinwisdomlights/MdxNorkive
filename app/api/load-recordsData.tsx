@@ -1,12 +1,12 @@
-import { BLOG } from "@/blog.config";
 import { formatDateFmt } from "@/lib/formatDate";
 import { getGlobalData } from "@/lib/notion/getNotionData";
 
 export async function getStaticPropsForRecords({
-  from = "archive",
+  from = "index",
 }: {
   from: string;
 }) {
+  // console.log("getStaticPropsForRecords-from", from);
   const props = await getGlobalData({ from: `${from}-index` });
   // Handle pagination
   props.posts = props.allPages?.filter(

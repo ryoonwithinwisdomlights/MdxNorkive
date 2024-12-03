@@ -1,9 +1,8 @@
-import React from "react";
-import { getGlobalData } from "../../lib/notion/getNotionData";
 import { BLOG } from "@/blog.config";
 import { getPostBlocks } from "@/lib/notion";
-import { generateRss } from "@/lib/rss";
-import { generateRobotsTxt } from "@/lib/robots.txt";
+// import { generateRobotsTxt } from "@/lib/robots.txt";
+// import { generateRss } from "@/lib/rss";
+import { getGlobalData } from "@/lib/notion/getNotionData";
 
 export default async function loadGlobalNotionData(from: string = "index") {
   // const from = "index";
@@ -42,11 +41,11 @@ export default async function loadGlobalNotionData(from: string = "index") {
   }
 
   // Generate robotTxt
-  generateRobotsTxt();
+  // generateRobotsTxt();
   // Generate feed subscription
-  if (JSON.parse(BLOG.ENABLE_RSS.toString())) {
-    generateRss(props?.latestPosts || []);
-  }
+  // if (JSON.parse(BLOG.ENABLE_RSS.toString())) {
+  //   generateRss(props?.latestPosts || []);
+  // }
 
   // Generate full-text index - only executed when yarn build && process.env.npm_lifecycle_event === 'build'
 

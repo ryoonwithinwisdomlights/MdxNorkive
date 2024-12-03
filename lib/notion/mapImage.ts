@@ -55,7 +55,7 @@ const mapImgUrl: any = (img, block, type = "block", from) => {
   if (!img) {
     return null;
   }
-  let ret = null;
+  let ret: string = "";
   // Relative directories are regarded as the notation's own pictures.
   if (img.startsWith("/")) {
     ret = BLOG.NOTION_HOST + img;
@@ -120,4 +120,9 @@ function isEmoji(str) {
   return emojiRegex.test(str);
 }
 
+// function isEmoji2(str: string): boolean {
+//   const emojiRegex =
+//     /[\uD83C\uDF00-\uD83D\uDEFF\uD83C\uDDE0-\uD83C\uDDFF\u2600-\u26FF\u2700-\u27BF\uD83E\uDD00-\uD83E\uDDFF\uD83D\uDC18-\uD83D\uDC70]/;
+//   return emojiRegex.test(str);
+// }
 export { mapImgUrl, compressImage };

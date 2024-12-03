@@ -1,11 +1,9 @@
 "use client";
 import { loadExternalResource } from "@/lib/utils";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import vConsole from "vconsole";
 // import { VConsoleOptions } from "vconsole/dist/vconsole.min.js";
-//  interface VConsoleConfig {
 
-// }
 interface VConsoleOptions {
   target?: string | HTMLElement;
   defaultPlugins?: ("system" | "network" | "element" | "storage")[];
@@ -16,8 +14,9 @@ interface VConsoleOptions {
   onClearLog?: () => void;
 }
 const VConsole = () => {
-  const clickCountRef = useRef(0); // The number of clicks
-  const lastClickTimeRef = useRef<number>(); // Last click timestamp
+  const [currentTime, setCurrentTime] = useState(0);
+  const clickCountRef = useRef<number>(0); // The number of clicks
+  const lastClickTimeRef = useRef<number>(0); // Last click timestamp
   const timerRef = useRef<NodeJS.Timeout>(); // timer reference
   const config: VConsoleOptions = {
     onReady: () => {
@@ -31,8 +30,11 @@ const VConsole = () => {
     return new vConsole(config);
   };
   useEffect(() => {
+    const now = Date.now();
+    setCurrentTime(now);
+  }, []);
+  useEffect(() => {
     const clickListener = (event: MouseEvent) => {
-      const now = Date.now();
       // Only listen to click events within 100x100 pixels in the center of the window
       const centerX = window.innerWidth / 2;
       const centerY = window.innerHeight / 2;
@@ -48,24 +50,26 @@ const VConsole = () => {
       }
 
       // If you click 8 times in a row within 1 second
-      if (
-        now - lastClickTimeRef.current < 1000 &&
-        clickCountRef.current + 1 === 8
-      ) {
-        loadVConsole();
-        clickCountRef.current = 0; // reset counter
-        clearTimeout(timerRef.current); // clear timer
-        window.removeEventListener("click", clickListener);
-      } else {
-        // If the condition is not met, reset the timestamp and counter
-        lastClickTimeRef.current = now;
-        clickCountRef.current += 1;
-        // If the counter is not 0, set the timer
-        if (clickCountRef.current > 0) {
-          clearTimeout(timerRef.current);
-          timerRef.current = setTimeout(() => {
-            clickCountRef.current = 0;
-          }, 1000);
+      if (currentTime !== 0) {
+        if (
+          currentTime - lastClickTimeRef.current < 1000 &&
+          clickCountRef.current + 1 === 8
+        ) {
+          loadVConsole();
+          clickCountRef.current = 0; // reset counter
+          clearTimeout(timerRef.current); // clear timer
+          window.removeEventListener("click", clickListener);
+        } else {
+          // If the condition is not met, reset the timestamp and counter
+          lastClickTimeRef.current = currentTime;
+          clickCountRef.current += 1;
+          // If the counter is not 0, set the timer
+          if (clickCountRef.current > 0) {
+            clearTimeout(timerRef.current);
+            timerRef.current = setTimeout(() => {
+              clickCountRef.current = 0;
+            }, 1000);
+          }
         }
       }
     };
