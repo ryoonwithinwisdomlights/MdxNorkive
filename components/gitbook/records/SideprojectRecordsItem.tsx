@@ -13,7 +13,7 @@ export default function SideprojectRecordsItem({
   const showPageCover = pPosts?.pageCoverThumbnail;
 
   return (
-    <div key={pIndex} className="w-full">
+    <div key={pIndex} className="w-full ">
       <div className="hover:scale-110 transition-all duration-150">
         <div
           key={pId}
@@ -23,7 +23,7 @@ export default function SideprojectRecordsItem({
           data-aos-once="false"
           data-aos-anchor-placement="top-bottom"
           id="blog-post-card"
-          className={`group md:h-56 w-full flex justify-between md:flex-row flex-col-reverse ${
+          className={`group  max-md:h-72   w-full flex py-2 justify-between md:flex-row flex-col-reverse ${
             pIndex % 2 === 1 ? "md:flex-row-reverse" : ""
           }overflow-hidden border dark:border-black rounded-xl bg-white dark:bg-neutral-100`}
         >
