@@ -42,5 +42,5 @@ export async function getStaticPropsForRecords({
   props.archivePosts = archivePosts;
   delete props.allPages;
 
-  return props;
+  return { props };
 }

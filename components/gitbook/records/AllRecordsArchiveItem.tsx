@@ -15,11 +15,9 @@ library.add(faLock);
  * @returns
  */
 export default function AllRecordsArchiveItem({
-  key,
   archiveTitle,
   archivePosts,
 }: {
-  key: string;
   archiveTitle: string;
   archivePosts: [];
 }) {

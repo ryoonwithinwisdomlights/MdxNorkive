@@ -11,7 +11,15 @@ import HomePage from "./main-page";
 export default async function Page() {
   // Fetch data directly in a Server Component
   //   const recentPosts = await getPosts()
-  const { props }: any = await getStaticPropsForRecords({ from: "index" });
+  const { props }: any = await getStaticPropsForRecords({
+    from: "index",
+  });
   // Forward fetched data to your Client Component
-  return props ? <HomePage archivePosts={props.archivePosts} /> : <div></div>;
+
+  console.log("props.archivePosts: ", props.archivePosts);
+  return props.archivePosts ? (
+    <HomePage archivePosts={props.archivePosts} />
+  ) : (
+    <div></div>
+  );
 }

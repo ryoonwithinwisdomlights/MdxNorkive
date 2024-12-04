@@ -62,9 +62,9 @@ export default function HomePage({ archivePosts }) {
         </div>
 
         <div className="w-full flex flex-col gap-10 bg-opacity-30 rounded-lg md:pl-10 dark:bg-black dark:bg-opacity-70 bg-white">
-          {Object.keys(archivePosts)?.map((archiveTitle) => (
+          {Object.keys(archivePosts)?.map((archiveTitle, index) => (
             <AllRecordsArchiveItem
-              key={archiveTitle}
+              key={index}
               archiveTitle={archiveTitle}
               archivePosts={archivePosts}
             />

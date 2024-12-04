@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 const AllRecordsPostCard = ({ post, className }) => {
   const pathname = usePathname();
   //const currentSelected = router.asPath.split("?")[0] === "/" + post.slug;
-  console.log("AllRecordsPostCard pathname: ", pathname);
+  // console.log("AllRecordsPostCard pathname: ", pathname);
   const currentSelected = pathname.split("?")[0] === "/" + post.slug;
   // console.log("AllRecordsPostCard::", currentSelected);
   return (
@@ -18,12 +18,11 @@ const AllRecordsPostCard = ({ post, className }) => {
     >
       <div className="flex flex-col w-full select-none">
         <Link href={`${BLOG.SUB_PATH}/${post.slug}`} passHref>
-          <span className="text-xs pr-1">{post.pageIcon} </span>
-          {/* {' '}
+          <span className="text-xs pr-1">{post.pageIcon} </span>{" "}
           {post.title.length > 25
-            ? post.title.substr(0, 25) + '...'
-            : post.title} */}
-          {post.title}
+            ? post.title.substr(0, 25) + "..."
+            : post.title}
+          {/* {post.title} */}
         </Link>
       </div>
     </div>
