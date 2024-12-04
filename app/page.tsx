@@ -1,6 +1,6 @@
 // Import your Client Component
 import { getStaticPropsForRecords } from "./api/load-recordsData";
-import HomePage from "./main-page";
+import HomePage from "./HomePage";
 
 // async function getPosts() {
 //   const res = await fetch('https://...')

@@ -119,7 +119,7 @@ export default async function RootLayout({
             <HandleOnComplete />
             <div
               id="theme-gitbook"
-              className={`bg-white dark:bg-hexo-black-neutral- w-full h-full min-h-screen justify-center dark:text-neutral-300 scroll-smooth pb-16 md:pb-0 dark:bg-black`}
+              className={`${BLOG.FONT_STYLE} bg-white dark:bg-hexo-black-neutral- w-full h-full min-h-screen justify-center dark:text-neutral-300 scroll-smooth pb-16 md:pb-0 dark:bg-black`}
             >
               {/* 상단 네비게이션 바 */}
               <TopNavBar />

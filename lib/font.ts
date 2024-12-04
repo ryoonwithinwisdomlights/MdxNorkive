@@ -1,8 +1,8 @@
 /**
  * Configure fonts here
  */
-const { BLOG } = require("../blog.config");
-
+// const { BLOG } = require("../blog.config");
+import { BLOG } from "../blog.config";
 // const { fontFamily } = require('tailwindcss/defaultTheme')
 
 function CJK() {

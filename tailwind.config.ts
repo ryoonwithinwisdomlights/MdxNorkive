@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
+import { BLOG } from "./blog.config";
 
-const BLOG = require("./blog.config");
 // const { fontFamilies } = require("./lib/font");
 // import {fontSan}
 import { fontFamilies } from "./lib/font";
@@ -8,6 +8,7 @@ const config: Config = {
   content: [
     "./components/**/*.{js,ts,jsx,tsx,}",
     "./app/**/*.{js,ts,jsx,tsx,}",
+    "./styles/**/*.{js,ts,jsx,tsx,css}",
   ],
   darkMode: BLOG.APPEARANCE === "class" ? "media" : "class", // or 'media' or 'class'
   theme: {

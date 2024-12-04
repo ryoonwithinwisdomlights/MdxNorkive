@@ -1,5 +1,4 @@
 "use client";
-
 import AllRecordsArchiveItem from "@/components/gitbook/records/AllRecordsArchiveItem";
 
 export default function HomePage({ archivePosts }) {
@@ -17,7 +16,7 @@ export default function HomePage({ archivePosts }) {
       <div className="w-full flex flex-row ">
         <div className="w-2/5 mt-20 text-right ml-4 md:mr-10 dark:text-neutral-200 text-neutral-700 flex flex-col ">
           <div className="text-left mr-10 dark:text-neutral-200 text-neutral-700 flex flex-col gap-72  ">
-            <div className=" text-center items-center  text-orange-500">
+            <div className="font-bold text-center items-center  text-orange-500">
               👩‍💻
               <br />
               배움.
@@ -48,13 +47,9 @@ export default function HomePage({ archivePosts }) {
               <br />
               나눔.
             </div> */}
-            <div className="   text-center items-center text-orange-400">
-              🎨
-              <br />과
-            </div>
-            <div className="  text-center items-center text-amber-900 dark:text-stone-200 ">
+            <div className=" font-bold  text-center items-center text-amber-900 dark:text-stone-200 ">
               🌳
-              <br /> 사유
+              <br /> 사유.
             </div>
             <div className="  text-stone-600 font-extralight text-center items-center dark:text-neutral-200  ">
               로 <br />
