@@ -4,6 +4,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faKey } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 // 사전에 사용할 아이콘 추가
 library.add(faKey);
@@ -18,7 +19,7 @@ library.add(faKey);
 export const ArticleLock = (props) => {
   const { validPassword } = props;
   const { locale } = useGlobal({ from: "index" });
-
+  const router = useRouter();
   const [tempPassword, setTempPassword] = useState<string>("");
   const submitPassword = () => {
     // const p: HTMLElement = document.getElementById("password");
@@ -32,9 +33,7 @@ export const ArticleLock = (props) => {
   };
 
   const historyGoBack = () => {
-    if (typeof window !== "undefined") {
-      window.history.back();
-    }
+    router.back();
   };
 
   const passwordInputRef = useRef<HTMLInputElement>(null);

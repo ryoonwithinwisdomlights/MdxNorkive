@@ -105,7 +105,8 @@ export const SideprojectRecordsCardInfo = ({
         <div className="text-neutral-400 justify-between flex">
           {/* date */}
           <Link
-            href={`/archive#${formatDateFmt(post?.publishDate, "yyyy-MM")}`}
+            // href={`/archive#${formatDateFmt(post?.publishDate, "yyyy-MM")}`}
+            href={`/#${formatDateFmt(post?.publishDate, "yyyy-MM")}`}
             passHref
             className="font-light menu-link cursor-pointer text-sm leading-4 mr-3"
           >

@@ -7,7 +7,6 @@ import { useGlobal } from "@/lib/providers/globalProvider";
 
 export const MenuBarMobile = (props) => {
   const { customMenu, customNav, locale } = useGlobal({ from: "index" });
-  // console.log("customMenu::::", customMenu);
   let links = [
     // { name: locale.NAV.INDEX, to: '/' || '/', show: true },
     {

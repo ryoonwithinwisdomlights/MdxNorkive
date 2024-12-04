@@ -102,9 +102,7 @@ export default function CustomContextMenu(props: any) {
   }, [windowSize]);
 
   function handleBack() {
-    if (typeof window !== "undefined") {
-      window.history.back();
-    }
+    router.back();
   }
 
   function handleForward() {

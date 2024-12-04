@@ -1,7 +1,9 @@
+"use client";
 import { BLOG } from "@/blog.config";
 import AllRecordsPostCard from "./AllRecordsPostCard";
 import NavPostListEmpty from "./NavPostListEmpty";
 import PaginationSimple from "../PaginationSimple";
+import { useRouter } from "next/navigation";
 /**
  * Article list pagination table
  * @param page current page
@@ -11,15 +13,14 @@ import PaginationSimple from "../PaginationSimple";
  * @constructor
  */
 const AllRecordsPostListPage = ({ page = 1, posts = [], postCount }) => {
+  const router = useRouter();
   const totalPage = Math.ceil(postCount / BLOG.POSTS_PER_PAGE);
 
   if (!posts || posts.length === 0) {
     return <NavPostListEmpty currentSearch="d" />;
   }
   const historGoBack = () => {
-    if (typeof window !== "undefined") {
-      window.history.back();
-    }
+    router.back();
   };
   return (
     <div className="w-full justify-center gap-2">
