@@ -17,7 +17,7 @@ export default async function Page() {
   });
   // Forward fetched data to your Client Component
 
-  console.log("props.recordPosts: ", props.recordPosts);
+  // console.log("props.recordPosts: ", props.recordPosts);
   return props.recordPosts ? (
     <HomePage recordPosts={props.recordPosts} />
   ) : (

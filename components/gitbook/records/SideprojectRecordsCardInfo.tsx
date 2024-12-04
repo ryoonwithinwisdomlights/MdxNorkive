@@ -27,6 +27,7 @@ export const SideprojectRecordsCardInfo = ({
   showPageCover,
   showSummary,
 }) => {
+  // console.log("post.slug:: ", post.slug);
   return (
     <div
       className={`flex flex-col justify-between lg:p-6 p-4   ${

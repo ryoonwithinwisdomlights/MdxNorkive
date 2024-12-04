@@ -137,11 +137,11 @@ export const BLOG = {
     process.env.NEXT_PUBLIC_POST_SHARE_SERVICES || "email,twitter", // 공유 서비스가 쉼표로 구분되어 순서대로 표시됩니다.
   // All supported sharing services: link (copy link), wechat (WeChat), qq, weibo (Weibo), email (mail),facebook,twitter,telegram,messenger,line,reddit,whatsapp,linkedin,vkshare,okshare,tumblr,livejournal,mailru,viber,workplace,pocket,instapaper,hatena
 
-  POST_URL_PREFIX: process.env.NEXT_PUBLIC_POST_URL_PREFIX || "article",
-  // POST 유형 아티클의 기본 경로 접두어입니다. 예를 들어 기본 POST 유형 경로는 /article/[slug]입니다.
+  POST_URL_PREFIX: process.env.NEXT_PUBLIC_POST_URL_PREFIX || "records",
+  // POST 유형 아티클의 기본 경로 접두어입니다. 예를 들어 기본 POST 유형 경로는 /records/[slug]입니다.
   // 이 항목이 '' 비어 있는 것으로 구성되면 기사에는 접두사 경로가 없습니다. 사용 시나리오: 기사 접두사 경로를 /post로 지정하려는 경우 다중 레벨 지원이 지원됩니다.
-  // WP의 사용자 정의 가능한 기사 링크 형식과 유사한 기능 지원: https://wordpress.org/documentation/article/customize-permalinks/, 현재 %year%/%month%/%day%만 먼저 구현됩니다.
-  // 예: 접두사 기사 + 타임스탬프에 대한 링크를 변경하려면 'article/%year%/%month%/%day%'로 변경할 수 있습니다.
+  // WP의 사용자 정의 가능한 기사 링크 형식과 유사한 기능 지원: https://wordpress.org/documentation/records/customize-permalinks/, 현재 %year%/%month%/%day%만 먼저 구현됩니다.
+  // 예: 접두사 기사 + 타임스탬프에 대한 링크를 변경하려면 'records/%year%/%month%/%day%'로 변경할 수 있습니다.
 
   POST_LIST_STYLE: process.env.NEXT_PUBLIC_POST_LIST_STYLE || "page", // ['page','scroll] 기사 목록 스타일: 페이지 번호 페이징, 단일 페이지 스크롤 로딩
   POST_LIST_PREVIEW: process.env.NEXT_PUBLIC_POST_PREVIEW || "false", //  목록에 기사 미리보기를 로드할지 여부

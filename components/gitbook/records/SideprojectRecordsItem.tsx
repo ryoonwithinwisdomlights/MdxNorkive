@@ -11,7 +11,7 @@ export default function SideprojectRecordsItem({
 }) {
   const showPreview = false;
   const showPageCover = pPosts?.pageCoverThumbnail;
-
+  console.log("pPosts.slug: ", pPosts.slug);
   return (
     <div key={pIndex} className="w-full ">
       <div className="hover:scale-110 transition-all duration-150">
@@ -38,7 +38,8 @@ export default function SideprojectRecordsItem({
 
           {/* Picture cover */}
           {showPageCover && (
-            <Link href={`article/${pPosts.slug}`} passHref legacyBehavior>
+            <Link href={`records/${pPosts.slug}`} passHref legacyBehavior>
+              {/* // <Link href={`/${pPosts.slug}`} passHref legacyBehavior> */}
               <div className="md:w-5/12 overflow-hidden">
                 <LazyImage
                   alt=""

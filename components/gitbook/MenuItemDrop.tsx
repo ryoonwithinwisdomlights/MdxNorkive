@@ -16,8 +16,8 @@ export const MenuItemDrop = ({ link }) => {
     return null;
   }
   const hasSubMenu = link?.subMenus?.length > 0;
-  const selected = pathname === link.to;
-
+  // const selected = pathname === link.to;
+  const selected = pathname === link.slug;
   const renderSubmenus = (submenus: any[]) => {
     return submenus.map((sLink, index) => {
       const iconForRenderSubmenus = parseIcon(sLink.icon);
@@ -30,8 +30,8 @@ export const MenuItemDrop = ({ link }) => {
           >
             <Link
               className="hover:bg-[#ffd500] dark:hover:text-[#ffffff] px-2 hover:rounded-lg hover:h-4/5 w-full"
-              href={sLink.to}
-              target={sLink?.to?.includes("http") ? "_blank" : "_self"}
+              href={sLink.slug}
+              target={sLink?.slug?.includes("http") ? "_blank" : "_self"}
             >
               <span className="text-xs font-extralight dark:hover:text-neutral-900">
                 {/* {link?.icon && <i className={sLink?.icon}> &nbsp; </i>} */}
@@ -60,8 +60,8 @@ export const MenuItemDrop = ({ link }) => {
         }
       >
         <Link
-          href={link?.to}
-          target={link?.to?.indexOf("http") === 0 ? "_blank" : "_self"}
+          href={link?.slug}
+          target={link?.slug?.indexOf("http") === 0 ? "_blank" : "_self"}
         >
           {icon && <FontAwesomeIcon icon={icon} />} &nbsp;{link?.name}
         </Link>

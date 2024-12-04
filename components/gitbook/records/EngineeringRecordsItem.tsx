@@ -43,7 +43,7 @@ export default function EngineeringRecordsItem({
 
           {/* Picture cover */}
           {showPageCover && (
-            <Link href={`article/${pPosts.slug}`} passHref legacyBehavior>
+            <Link href={`records/${pPosts.slug}`} passHref legacyBehavior>
               <div className="md:w-5/12 overflow-hidden">
                 <LazyImage
                   priority={pIndex === 1}

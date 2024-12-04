@@ -29,8 +29,8 @@ export const MenuItemCollapse = (props) => {
     return null;
   }
 
-  const selected = pathname === link.to;
-
+  // const selected = pathname === link.to;
+  const selected = pathname === link.slug;
   const toggleShow = () => {
     changeShow(!show);
   };
@@ -52,8 +52,8 @@ export const MenuItemCollapse = (props) => {
       >
         {!hasSubMenu && (
           <Link
-            href={link?.to}
-            target={link?.to?.indexOf("http") === 0 ? "_blank" : "_self"}
+            href={link?.slug}
+            target={link?.slug?.indexOf("http") === 0 ? "_blank" : "_self"}
             className="py-2 w-full my-auto items-center justify-between flex  "
           >
             <div>
@@ -101,8 +101,10 @@ export const MenuItemCollapse = (props) => {
               font-extralighttext-left justify-start bg-neutral-50  text-neutral-600 hover:bg-neutral-100  tracking-widest transition-all duration-200"
               >
                 <Link
-                  href={sLink.to}
-                  target={link?.to?.indexOf("http") === 0 ? "_blank" : "_self"}
+                  href={sLink.slug}
+                  target={
+                    link?.slug?.indexOf("http") === 0 ? "_blank" : "_self"
+                  }
                 >
                   <div>
                     <div

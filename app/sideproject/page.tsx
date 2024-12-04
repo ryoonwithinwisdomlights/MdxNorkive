@@ -10,7 +10,7 @@ export default async function Page() {
     });
   // console.log("recordPosts:", recordPosts);
   const sideProjectList: [] = props.recordPosts;
-  console.log("sideProjectList:", sideProjectList);
+  // console.log("sideProjectList:", sideProjectList);
   return (
     <div className="mb-10 pb-20 md:py-12 w-full py-3  min-h-full">
       <div className="flex flex-col">

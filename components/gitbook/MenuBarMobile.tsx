@@ -7,7 +7,7 @@ import { useGlobal } from "@/lib/providers/globalProvider";
 
 export const MenuBarMobile = (props) => {
   const { customMenu, customNav, locale } = useGlobal({ from: "index" });
-
+  // console.log("customMenu::::", customMenu);
   let links = [
     // { name: locale.NAV.INDEX, to: '/' || '/', show: true },
     {
@@ -57,7 +57,7 @@ export const MenuBarMobile = (props) => {
   if (!links || links.length === 0) {
     return null;
   }
-
+  // console.log("links:::::", links);
   return (
     <nav id="nav" className=" text-md">
       {/* {links.map(link => <NormalMenu key={link?.id} link={link}/>)} */}
