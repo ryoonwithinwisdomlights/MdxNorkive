@@ -13,7 +13,7 @@
     "url": "https://www.ryoonwithwisdomtrees.world/"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "prettier": "prettier --write --ignore-unknown .",

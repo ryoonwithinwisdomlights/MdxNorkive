@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import type { Viewport } from "next";
 import { Inter } from "next/font/google";
 // import NextNProgress from "nextjs-progressbar";
-import "@/styles/animate.css"; // @see https://animate.style/
-import "@/styles/globals.css";
-// import "@/styles/nprogress.css";
-import "@/styles/utility-patterns.css";
+import "./../styles/animate.css"; // @see https://animate.style/
+import "./../styles/globals.css";
+// import "./../styles/nprogress.css";
+import "./../styles/utility-patterns.css";
 // used for rendering equations (optional)
 import "katex/dist/katex.min.css";
 // used for code syntax highlighting (optional)
@@ -13,9 +13,9 @@ import "prismjs/themes/prism-coy.css";
 // core styles shared by all of react-notion-x (required)
 import "react-notion-x/src/styles.css";
 // global style overrides for notion
-import "@/styles/notion.css";
+import "./../styles/notion.css";
 // global style overrides for prism theme (optional)
-import "@/styles/prism-theme.css";
+import "./../styles/prism-theme.css";
 import Style from "@/components/gitbook/Style";
 
 import { BLOG } from "@/blog.config";
