@@ -1,7 +1,7 @@
 "use client";
 import AllRecordsArchiveItem from "@/components/gitbook/records/AllRecordsArchiveItem";
 
-export default function HomePage({ archivePosts }) {
+export default function HomePage({ recordPosts }) {
   return (
     <div className="mb-10 pb-20  py-3 w-full flex flex-col min-h-full">
       <div className="flex flex-col pt-10 ">
@@ -61,11 +61,11 @@ export default function HomePage({ archivePosts }) {
         </div>
 
         <div className="w-full flex flex-col gap-10 bg-opacity-30 rounded-lg md:pl-10 dark:bg-black dark:bg-opacity-70 bg-white">
-          {Object.keys(archivePosts)?.map((archiveTitle, index) => (
+          {Object.keys(recordPosts)?.map((archiveTitle, index) => (
             <AllRecordsArchiveItem
               key={index}
               archiveTitle={archiveTitle}
-              archivePosts={archivePosts}
+              recordPosts={recordPosts}
             />
           ))}
         </div>

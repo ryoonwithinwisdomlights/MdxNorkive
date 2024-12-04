@@ -3,7 +3,7 @@ import React from "react";
 type Props = {};
 
 const page = (props: Props) => {
-  return <div>사이드 프로젝트</div>;
+  return <div>제ㅐ너럴</div>;
 };
 
 export default page;

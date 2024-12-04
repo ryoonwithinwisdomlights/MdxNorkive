@@ -10,8 +10,8 @@ export default function SideprojectRecordsItem({
   pPosts,
 }) {
   const showPreview = false;
-
   const showPageCover = pPosts?.pageCoverThumbnail;
+
   return (
     <div key={pIndex} className="w-full">
       <div className="hover:scale-110 transition-all duration-150">

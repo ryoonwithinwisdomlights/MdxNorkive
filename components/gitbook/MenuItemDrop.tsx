@@ -8,7 +8,7 @@ import { useState } from "react";
 import { parseIcon } from "@/lib/utils/utils";
 
 export const MenuItemDrop = ({ link }) => {
-  console.log("link:::: ", link);
+  // console.log("link:::: ", link);
   const [show, changeShow] = useState(false);
   const pathname = usePathname();
 

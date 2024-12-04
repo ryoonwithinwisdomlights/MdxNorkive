@@ -1,21 +1,21 @@
 /* eslint-disable no-unused-vars */
-import { BLOG } from '@/blog.config'
-import Link from 'next/link'
+import { BLOG } from "@/blog.config";
+import Link from "next/link";
 
-export default function GuestBookItem({ archiveTitle, archivePosts }) {
+export default function GuestBookItem({ archiveTitle, recordPosts }) {
   return (
     <div key={archiveTitle}>
       <div id={archiveTitle} className=" pb-4 text-2xl dark:text-neutral-300">
         {archiveTitle}
       </div>
       <ul>
-        {archivePosts[archiveTitle]?.map(post => (
+        {recordPosts[archiveTitle]?.map((post) => (
           <li
             key={post.id}
             className="border-l-2 p-1 text-xs md:text-base items-center transform duration-500  hover:scale-x-105 hover:border-neutral-500 dark:hover:border-neutral-300 dark:border-neutral-400 "
           >
             <div id={post?.publishDay}>
-              <span className="text-neutral-600">{post.date?.start_date}</span>{' '}
+              <span className="text-neutral-600">{post.date?.start_date}</span>{" "}
               &nbsp;
               <Link
                 passHref
@@ -29,5 +29,5 @@ export default function GuestBookItem({ archiveTitle, archivePosts }) {
         ))}
       </ul>
     </div>
-  )
+  );
 }

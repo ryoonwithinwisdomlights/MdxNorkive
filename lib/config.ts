@@ -2,9 +2,9 @@
 
 import { BLOG } from "@/blog.config";
 
-import { deepClone } from "./utils.js";
-import { useGlobal } from "./providers/globalProvider.jsx";
-import { isUrl } from "./utils/utils.js";
+import { deepClone } from "./utils";
+import { useGlobal } from "@/lib/providers/globalProvider";
+import { isUrl } from "@/lib/utils/utils";
 
 /**
  *Config 읽는 순서

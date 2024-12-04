@@ -2,14 +2,14 @@
 import { BLOG } from "@/blog.config";
 import Link from "next/link";
 
-export default function WritingRecordsItem({ archiveTitle, archivePosts }) {
+export default function WritingRecordsItem({ archiveTitle, recordPosts }) {
   return (
     <div key={archiveTitle}>
       <div id={archiveTitle} className=" pb-4 text-2xl dark:text-neutral-300">
         {archiveTitle}
       </div>
       <ul>
-        {archivePosts[archiveTitle]?.map((post) => (
+        {recordPosts[archiveTitle]?.map((post) => (
           <li
             key={post.id}
             className="border-l-2 p-1 text-xs md:text-base items-center transform duration-500  hover:scale-x-105 hover:border-neutral-500 dark:hover:border-neutral-300 dark:border-neutral-400 "

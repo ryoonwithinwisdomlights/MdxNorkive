@@ -16,12 +16,12 @@ library.add(faLock);
  */
 export default function AllRecordsArchiveItem({
   archiveTitle,
-  archivePosts,
+  recordPosts,
 }: {
   archiveTitle: string;
-  archivePosts: [];
+  recordPosts: [];
 }) {
-  // console.log('archivePosts=========:', archivePosts)
+  // console.log('recordPosts=========:', recordPosts)
   return (
     <div key={archiveTitle}>
       <div
@@ -31,7 +31,7 @@ export default function AllRecordsArchiveItem({
         {archiveTitle}
       </div>
       <ul>
-        {archivePosts[archiveTitle]?.map((post) => (
+        {recordPosts[archiveTitle]?.map((post) => (
           <li
             key={post.id}
             className="border-l-4 border-amber-400/40  hover:border-amber-300 flex flex-row p-2 text-xs md:text-base items-center text-justify  hover:scale-x-105  dark:hover:border-amber-400 dark:border-amber-400/30 transform duration-500"
