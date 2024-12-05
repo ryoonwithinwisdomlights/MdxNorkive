@@ -44,6 +44,11 @@ const nextConfig: NextConfig = {
         destination: "/rss/feed.xml",
         permanent: true,
       },
+      {
+        source: "/records",
+        destination: "/",
+        permanent: true,
+      },
     ];
   },
   async headers() {
