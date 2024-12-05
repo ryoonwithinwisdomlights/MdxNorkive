@@ -29,20 +29,13 @@ export default async function Page({ params }) {
     from: "Sideproject",
   });
 
-  // const { siteInfo, allPages } = props;
-  const siteInfo = props.siteInfo;
-  console.log("allPagesallPagesallPages", props.allPages);
-  // console.log("allPagesallPagesallPages", allPages);
   // Find article in list
   props.post = props?.allPages?.find((item) => {
-    // console.log("idToUuid(recordId)::", idToUuid(recordId));
-    // console.log("item:: ", item.id);
     // if (item.id === recordId) {
     //   console.log("드디어 찾았다.");
     // }
     return item.id === recordId;
   });
-  // console.log("postpostpost:", props.post);
 
   // Unable to retrieve article
   if (!props?.post) {
@@ -51,7 +44,6 @@ export default async function Page({ params }) {
   }
   // Article content loading
   if (!props?.posts?.blockMap) {
-    console.log("props.post:::", props.posts);
     props.post.blockMap = await getPostBlocks(props.post.id, "Sideproject", 3);
   }
 

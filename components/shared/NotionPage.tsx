@@ -12,6 +12,7 @@ import React, { useEffect, useMemo, useRef } from "react";
 import { NotionComponents, NotionRenderer } from "react-notion-x";
 import TweetEmbed from "react-tweet-embed";
 import { useWindowSize } from "usehooks-ts";
+import PrismMac from "./PrismMac";
 
 const Code = dynamic(() =>
   import("react-notion-x/build/third-party/code").then(async (m) => {
@@ -223,7 +224,7 @@ const NotionPage = ({ post }) => {
         components={components}
       />
 
-      {/* <PrismMac /> */}
+      <PrismMac />
     </div>
   );
 };

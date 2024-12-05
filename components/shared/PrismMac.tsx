@@ -1,8 +1,7 @@
 "use client";
+
 import { useEffect } from "react";
 import Prism from "prismjs";
-// prismjs for all languages Use autoloader to introduce
-// import 'prismjs/plugins/autoloader/prism-autoloader'
 import "prismjs/plugins/toolbar/prism-toolbar";
 import "prismjs/plugins/toolbar/prism-toolbar.min.css";
 import "prismjs/plugins/show-language/prism-show-language";
@@ -10,30 +9,23 @@ import "prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard";
 import "prismjs/plugins/line-numbers/prism-line-numbers";
 import "prismjs/plugins/line-numbers/prism-line-numbers.css";
 
-// mermaid diagram
 import { BLOG } from "@/blog.config";
 import { loadExternalResource } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-
 import { useGlobal } from "@/lib/providers/globalProvider";
 
-/**
- * Code beautification related
- * @author https://github.com/txs/
- * @returns
- */
-const PrismMac = () => {
+const PrismMac = (): JSX.Element => {
   const router = useRouter();
   const { isDarkMode } = useGlobal({ from: "index" });
 
   useEffect(() => {
-    if (JSON.parse(BLOG.CODE_MAC_BAR)) {
+    if (BLOG.CODE_MAC_BAR) {
       loadExternalResource("/css/prism-mac-style.css", "css");
     }
-    // Load prism style
+
     loadPrismThemeCSS(isDarkMode);
-    // fold code
-    loadExternalResource(BLOG.PRISM_JS_AUTO_LOADER, "js").then((url) => {
+
+    loadExternalResource(BLOG.PRISM_JS_AUTO_LOADER, "js").then(() => {
       if (window?.Prism?.plugins?.autoloader) {
         window.Prism.plugins.autoloader.languages_path = BLOG.PRISM_JS_PATH;
       }
@@ -47,32 +39,25 @@ const PrismMac = () => {
   return <></>;
 };
 
-/**
- * Load styles
- */
-const loadPrismThemeCSS = (isDarkMode) => {
+const loadPrismThemeCSS = (isDarkMode: boolean): void => {
   loadExternalResource(BLOG.PRISM_THEME_PREFIX_PATH, "css");
 };
 
-/*
- * Convert a code block into a collapsible object
- */
-const renderCollapseCode = () => {
-  if (!JSON.parse(BLOG.CODE_COLLAPSE)) {
-    return;
-  }
+const renderCollapseCode = (): void => {
+  if (!BLOG.CODE_COLLAPSE) return;
+
   const codeBlocks = document.querySelectorAll(".code-toolbar");
-  for (const codeBlock of codeBlocks) {
-    // Determine whether the current element is wrapped
-    if (codeBlock.closest(".collapse-wrapper")) {
-      continue; // If wrapped, skip the current loop
-    }
+  codeBlocks.forEach((codeBlock) => {
+    if (codeBlock.closest(".collapse-wrapper")) return;
 
     const code = codeBlock.querySelector("code");
-    const language = code.getAttribute("class").match(/language-(\w+)/)[1];
+    const language = code?.getAttribute("class")?.match(/language-(\w+)/)?.[1];
+
+    if (!code || !language) return;
 
     const collapseWrapper = document.createElement("div");
     collapseWrapper.className = "collapse-wrapper w-full py-2";
+
     const panelWrapper = document.createElement("div");
     panelWrapper.className =
       "border dark:border-neutral-600 rounded-md hover:border-yellow-500 duration-200 transition-colors";
@@ -90,34 +75,33 @@ const renderCollapseCode = () => {
     panelWrapper.appendChild(panel);
     collapseWrapper.appendChild(panelWrapper);
 
-    codeBlock.parentNode.insertBefore(collapseWrapper, codeBlock);
+    codeBlock.parentNode?.insertBefore(collapseWrapper, codeBlock);
     panel.appendChild(codeBlock);
 
-    function collapseCode() {
+    const collapseCode = () => {
       panel.classList.toggle("invisible");
       panel.classList.toggle("h-0");
       panel.classList.toggle("h-auto");
-      header.querySelector("svg").classList.toggle("rotate-180");
+      header.querySelector("svg")?.classList.toggle("rotate-180");
       panelWrapper.classList.toggle("border-neutral-300");
-    }
+    };
 
-    // Collapse and expand code after click
     header.addEventListener("click", collapseCode);
-    // Whether to automatically expand
-    if (JSON.parse(BLOG.CODE_COLLAPSE_EXPAND_DEFAULT)) {
+
+    if (BLOG.CODE_COLLAPSE_EXPAND_DEFAULT) {
       header.click();
     }
-  }
+  });
 };
 
-/**
- * Render mermaid language into pictures
- */
-const renderMermaid = async () => {
+const renderMermaid = async (): Promise<void> => {
   const observer = new MutationObserver(async (mutationsList) => {
     for (const m of mutationsList) {
-      if (m.target.className === "notion-code language-mermaid") {
-        const chart = m.target.querySelector("code").textContent;
+      if (
+        m.target instanceof HTMLElement &&
+        m.target.className === "notion-code language-mermaid"
+      ) {
+        const chart = m.target.querySelector("code")?.textContent;
         if (chart && !m.target.querySelector(".mermaid")) {
           const mermaidChart = document.createElement("div");
           mermaidChart.className = "mermaid";
@@ -126,100 +110,94 @@ const renderMermaid = async () => {
         }
 
         const mermaidsSvg = document.querySelectorAll(".mermaid");
-        if (mermaidsSvg) {
+        if (mermaidsSvg.length > 0) {
           let needLoad = false;
-          for (const e of mermaidsSvg) {
+          mermaidsSvg.forEach((e) => {
             if (e?.firstChild?.nodeName !== "svg") {
               needLoad = true;
             }
-          }
+          });
+
           if (needLoad) {
-            loadExternalResource(BLOG.MERMAID_CDN, "js").then((url) => {
-              setTimeout(() => {
-                const mermaid = window.mermaid;
-                mermaid?.contentLoaded();
-              }, 100);
-            });
+            await loadExternalResource(BLOG.MERMAID_CDN, "js");
+            setTimeout(() => {
+              const mermaid = (window as any).mermaid;
+              mermaid?.contentLoaded();
+            }, 100);
           }
         }
       }
     }
   });
-  if (document.querySelector("#notion-article")) {
-    observer.observe(document.querySelector("#notion-article"), {
+
+  const notionArticle = document.querySelector("#notion-article");
+  if (notionArticle) {
+    observer.observe(notionArticle, {
       attributes: true,
       subtree: true,
     });
   }
 };
 
-function renderPrismMac() {
+const renderPrismMac = (): void => {
   const container = document?.getElementById("notion-article");
 
-  // Add line numbers
-  if (JSON.parse(BLOG.CODE_LINE_NUMBERS)) {
+  if (BLOG.CODE_LINE_NUMBERS) {
     const codeBlocks = container?.getElementsByTagName("pre");
-    if (codeBlocks) {
-      Array.from(codeBlocks).forEach((item) => {
-        if (!item.classList.contains("line-numbers")) {
-          item.classList.add("line-numbers");
-          item.style.whiteSpace = "pre-wrap";
-        }
-      });
-    }
-  }
-  // Check all redundant text before re-rendering
-
-  try {
-    Prism.highlightAll();
-  } catch (err) {
-    console.log("code rendering", err);
-  }
-
-  const codeToolBars = container?.getElementsByClassName("code-toolbar");
-  // Add pre-mac element for Mac Style UI
-  if (codeToolBars) {
-    Array.from(codeToolBars).forEach((item) => {
-      const existPreMac = item.getElementsByClassName("pre-mac");
-      if (existPreMac.length < codeToolBars.length) {
-        const preMac = document.createElement("div");
-        preMac.classList.add("pre-mac");
-        preMac.innerHTML = "<span></span><span></span><span></span>";
-        item?.appendChild(preMac, item);
+    Array.from(codeBlocks ?? []).forEach((item) => {
+      if (!item.classList.contains("line-numbers")) {
+        item.classList.add("line-numbers");
+        item.style.whiteSpace = "pre-wrap";
       }
     });
   }
 
-  // Folding code line number bug
-  if (JSON.parse(BLOG.CODE_LINE_NUMBERS)) {
+  try {
+    Prism.highlightAll();
+  } catch (err) {
+    console.error("code rendering", err);
+  }
+
+  const codeToolBars = container?.getElementsByClassName("code-toolbar");
+  Array.from(codeToolBars ?? []).forEach((item) => {
+    if (item.getElementsByClassName("pre-mac").length === 0) {
+      const preMac = document.createElement("div");
+      preMac.classList.add("pre-mac");
+      preMac.innerHTML = "<span></span><span></span><span></span>";
+      item.appendChild(preMac);
+    }
+  });
+
+  if (BLOG.CODE_LINE_NUMBERS) {
     fixCodeLineStyle();
   }
-}
+};
 
-/**
- * The row height of the line number style is incorrectly determined after it is first rendered or folded by detail.
- * Manual resize calculation here
- */
-const fixCodeLineStyle = () => {
+const fixCodeLineStyle = (): void => {
   const observer = new MutationObserver((mutationsList) => {
     for (const m of mutationsList) {
-      if (m.target.nodeName === "DETAILS") {
+      if (m.target instanceof HTMLElement && m.target.nodeName === "DETAILS") {
         const preCodes = m.target.querySelectorAll("pre.notion-code");
-        for (const preCode of preCodes) {
+        preCodes.forEach((preCode) => {
           Prism.plugins.lineNumbers.resize(preCode);
-        }
+        });
       }
     }
   });
-  observer.observe(document.querySelector("#notion-article"), {
-    attributes: true,
-    subtree: true,
-  });
+
+  const notionArticle = document.querySelector("#notion-article");
+  if (notionArticle) {
+    observer.observe(notionArticle, {
+      attributes: true,
+      subtree: true,
+    });
+  }
+
   setTimeout(() => {
     const preCodes = document.querySelectorAll("pre.notion-code");
-    for (const preCode of preCodes) {
+    preCodes.forEach((preCode) => {
       Prism.plugins.lineNumbers.resize(preCode);
-    }
+    });
   }, 10);
 };
 

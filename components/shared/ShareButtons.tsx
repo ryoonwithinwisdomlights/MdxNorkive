@@ -58,18 +58,18 @@ const ShareButtons = ({ shareUrl, title, body, image }) => {
             </FacebookShareButton>
           );
         }
-        if (singleService === "messenger") {
-          return (
-            <FacebookMessengerShareButton
-              key={singleService}
-              url={shareUrl}
-              appId={BLOG.FACEBOOK_APP_ID}
-              className="mx-1"
-            >
-              <FacebookMessengerIcon size={32} round iconFillColor="white" />
-            </FacebookMessengerShareButton>
-          );
-        }
+        // if (singleService === "messenger") {
+        //   return (
+        //     <FacebookMessengerShareButton
+        //       key={singleService}
+        //       url={shareUrl}
+        //       appId={BLOG.FACEBOOK_APP_ID}
+        //       className="mx-1"
+        //     >
+        //       <FacebookMessengerIcon size={32} round iconFillColor="white" />
+        //     </FacebookMessengerShareButton>
+        //   );
+        // }
         if (singleService === "reddit") {
           return (
             <RedditShareButton
@@ -116,7 +116,7 @@ const ShareButtons = ({ shareUrl, title, body, image }) => {
               url={shareUrl}
               className="mx-1"
             >
-              <LinkedinIcon size={32} roundiconFillColor="white" />
+              <LinkedinIcon size={32} round iconFillColor="white" />
             </LinkedinShareButton>
           );
         }
@@ -163,7 +163,8 @@ const ShareButtons = ({ shareUrl, title, body, image }) => {
               key={singleService}
               className="cursor-pointer bg-yellow-500 text-white rounded-full mx-1"
             >
-              <div alt={locale.COMMON.URL_COPIED} onClick={copyUrl}>
+              {/* <div alt={locale.COMMON.URL_COPIED} onClick={copyUrl}> */}
+              <div onClick={copyUrl}>
                 <FontAwesomeIcon className="w-8 text-white" icon={faLink} />
               </div>
             </button>
