@@ -3,6 +3,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/navigation";
+import {} from "usehooks-ts";
 
 // 사전에 사용할 아이콘 추가
 library.add(faChevronLeft);
@@ -17,6 +18,10 @@ library.add(faChevronLeft);
  */
 const JumpToBackButton = () => {
   const router = useRouter();
+
+  const handleBack = () => {
+    router.back();
+  };
   return (
     <div
       id="jump-to-back"
@@ -26,19 +31,11 @@ const JumpToBackButton = () => {
       data-aos-anchor-placement="top-center"
       className="fixed xl:right-80 right-2 mr-20 bottom-40 z-20 "
     >
-      <div className="hover:scale-110 duration-150 cursor-pointer p-2 rounded-full border text-white text-xs  bg-stone-500">
-        {" "}
-        <FontAwesomeIcon
-          onClick={() => {
-            // if (typeof window !== "undefined") {
-            //   window.history.back();
-            // }
-
-            router.back();
-          }}
-          icon={faChevronLeft}
-        />{" "}
-        &nbsp; 뒤로 &nbsp;
+      <div
+        onClick={handleBack}
+        className="hover:scale-110 duration-150 cursor-pointer p-2 rounded-full border text-white text-xs  bg-stone-500"
+      >
+        <FontAwesomeIcon icon={faChevronLeft} /> &nbsp; 뒤로 &nbsp;
       </div>
     </div>
   );

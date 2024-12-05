@@ -42,6 +42,8 @@ import { HandleOnComplete } from "@/lib/custom-router";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { siteConfig } from "@/lib/config";
+import { Suspense } from "react";
+import PageLoader from "@/components/ui/page-loader";
 config.autoAddCss = false;
 // Various extensions, animations, etc.
 const ExternalPlugins = dynamic(
@@ -134,72 +136,74 @@ export default async function RootLayout({
             >
               {/* 상단 네비게이션 바 */}
               <TopNavBar />
-              <main
-                id="wrapper"
-                className={
-                  "relative flex justify-between w-full h-full mx-auto"
-                }
-              >
-                {/* 왼쪽 네브바 */}
-                <div
+
+              <Suspense fallback={<PageLoader />}>
+                <main
+                  id="wrapper"
                   className={
-                    "font-sans hidden md:block border-r dark:border-transparent relative z-10 "
+                    "relative flex justify-between w-full h-full mx-auto"
                   }
                 >
-                  <div className="w-72  px-6 sticky top-0 overflow-y-scroll my-16 h-screen ">
-                    {/* {slotLeft} */}
-                    {/* <SearchInput  /> */}
-                    <div className="mb-20">
-                      {/* 모든 기사 목록 */}
-                      {/* <NavPostList filteredNavPages={filteredNavPages} /> */}
-                      <NavPostList />
-                    </div>
-                  </div>
-
-                  <div className="w-72 fixed left-0 bottom-0 z-20 bg-white dark:bg-black">
-                    <Footer />
-                  </div>
-                </div>
-
-                <div
-                  id="center-wrapper"
-                  className="flex flex-col w-full relative z-10 pt-14 min-h-screen"
-                >
-                  <div className="flex flex-col justify-between w-full relative z-10  ">
-                    <div
-                      id="container-inner"
-                      className="w-full px-7 max-w-3xl justify-center mx-auto"
-                    >
-                      <CustomedTransiton>{children}</CustomedTransiton>
-                      {/* Back button */}
-                      <JumpToTopButton />
-                      <JumpToBackButton />
+                  {/* 왼쪽 네브바 */}
+                  <div
+                    className={
+                      "font-sans hidden md:block border-r dark:border-transparent relative z-10 "
+                    }
+                  >
+                    <div className="w-72  px-6 sticky top-0 overflow-y-scroll my-16 h-screen ">
+                      {/* {slotLeft} */}
+                      {/* <SearchInput  /> */}
+                      <div className="mb-20">
+                        {/* 모든 기사 목록 */}
+                        {/* <NavPostList filteredNavPages={filteredNavPages} /> */}
+                        <NavPostList />
+                      </div>
                     </div>
 
-                    {/* bottom */}
-                    <div className="md:hidden mb:16">
+                    <div className="w-72 fixed left-0 bottom-0 z-20 bg-white dark:bg-black">
                       <Footer />
                     </div>
                   </div>
-                </div>
 
-                {/*  오른쪽 슬라이딩 서랍 */}
-                <div
-                  style={{ width: "32rem" }}
-                  className={
-                    "hidden xl:block dark:border-transparent relative z-10 border-l  border-neutral-200  "
-                  }
-                >
-                  <div className="py-14 px-6 sticky top-0">
-                    <ArticleInfo />
-                    <div className="py-4 justify-center">
-                      <InfoCard />
-                      <Announcement />
+                  <div
+                    id="center-wrapper"
+                    className="flex flex-col w-full relative z-10 pt-14 min-h-screen"
+                  >
+                    <div className="flex flex-col justify-between w-full relative z-10  ">
+                      <div
+                        id="container-inner"
+                        className="w-full px-7 max-w-3xl justify-center mx-auto"
+                      >
+                        <CustomedTransiton>{children}</CustomedTransiton>
+                        {/* Back button */}
+                        <JumpToTopButton />
+                        <JumpToBackButton />
+                      </div>
+
+                      {/* bottom */}
+                      <div className="md:hidden mb:16">
+                        <Footer />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </main>
 
+                  {/*  오른쪽 슬라이딩 서랍 */}
+                  <div
+                    style={{ width: "32rem" }}
+                    className={
+                      "hidden xl:block dark:border-transparent relative z-10 border-l  border-neutral-200  "
+                    }
+                  >
+                    <div className="py-14 px-6 sticky top-0">
+                      <ArticleInfo />
+                      <div className="py-4 justify-center">
+                        <InfoCard />
+                        <Announcement />
+                      </div>
+                    </div>
+                  </div>
+                </main>
+              </Suspense>
               <FloatTocButton />
 
               {/* 모바일 탐색 창 */}
