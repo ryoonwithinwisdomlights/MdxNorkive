@@ -6,12 +6,8 @@ import Link from "next/link";
 
 library.add(faFolder, faFolderOpen);
 
-export default function CategoryItem({
-  key,
-  selected,
-  category,
-  categoryCount,
-}) {
+export default function CategoryItem(props) {
+  const { key, selected, category, categoryCount } = props;
   return (
     <Link
       href={`/category/${category}`}

@@ -1,6 +1,8 @@
+"use client";
 /* eslint-disable no-unused-vars */
 import LazyImage from "@/components/shared/LazyImage";
-import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { SideprojectRecordsCardInfo } from "./SideprojectRecordsCardInfo";
 
 export default function SideprojectRecordsItem({
@@ -12,8 +14,22 @@ export default function SideprojectRecordsItem({
   const showPreview = false;
   const showPageCover = pPosts?.pageCoverThumbnail;
   // console.log("pPosts.slug: ", pPosts.slug);
+  const router = useRouter();
+  // const pathname = usePathname();
+  // const url = `${pathname}/${pPosts.slug}`;
+  const url = pPosts.slug.split("/");
+  const modUrl = `/${url[1]}/${pPosts.id}`;
+  ///sideproject/records/sideproject/ryoon-log
   return (
-    <div key={pIndex} className="w-full ">
+    <div
+      key={pIndex}
+      onClick={() => {
+        console.log("modUrl", modUrl);
+        router.push(modUrl);
+        console.log("pPosts", pPosts);
+      }}
+      className="w-full "
+    >
       <div className="hover:scale-110 transition-all duration-150">
         <div
           key={pId}
@@ -38,17 +54,14 @@ export default function SideprojectRecordsItem({
 
           {/* Picture cover */}
           {showPageCover && (
-            <Link href={`${pPosts.slug}`} passHref legacyBehavior>
-              {/* // <Link href={`/${pPosts.slug}`} passHref legacyBehavior> */}
-              <div className="md:w-5/12 overflow-hidden">
-                <LazyImage
-                  alt=""
-                  priority={pIndex === 1}
-                  src={pPosts?.pageCoverThumbnail}
-                  className="h-56 w-full object-cover object-center group-hover:scale-110 duration-500"
-                />
-              </div>
-            </Link>
+            <div className="md:w-5/12 overflow-hidden">
+              <LazyImage
+                alt=""
+                priority={pIndex === 1}
+                src={pPosts?.pageCoverThumbnail}
+                className="h-56 w-full object-cover object-center group-hover:scale-110 duration-500"
+              />
+            </div>
           )}
         </div>
       </div>

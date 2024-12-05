@@ -2,7 +2,7 @@ import PageLoader from "@/components/ui/page-loader";
 
 const Loading = () => {
   return (
-    <div>
+    <div className=" justify-center items-center w-full h-full">
       <PageLoader />
     </div>
   );

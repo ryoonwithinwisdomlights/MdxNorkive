@@ -52,9 +52,9 @@ const ShareButtons = ({ shareUrl, title, body, image }) => {
             <FacebookShareButton
               key={singleService}
               url={shareUrl}
-              className="mx-1"
+              className="mx-1 text-gray-50"
             >
-              <FacebookIcon size={32} round />
+              <FacebookIcon size={32} round iconFillColor="white" />
             </FacebookShareButton>
           );
         }
@@ -66,7 +66,7 @@ const ShareButtons = ({ shareUrl, title, body, image }) => {
               appId={BLOG.FACEBOOK_APP_ID}
               className="mx-1"
             >
-              <FacebookMessengerIcon size={32} round />
+              <FacebookMessengerIcon size={32} round iconFillColor="white" />
             </FacebookMessengerShareButton>
           );
         }
@@ -80,7 +80,7 @@ const ShareButtons = ({ shareUrl, title, body, image }) => {
               windowHeight={460}
               className="mx-1"
             >
-              <RedditIcon size={32} round />
+              <RedditIcon size={32} round iconFillColor="white" />
             </RedditShareButton>
           );
         }
@@ -91,9 +91,9 @@ const ShareButtons = ({ shareUrl, title, body, image }) => {
               url={shareUrl}
               subject={titleWithSiteInfo}
               body={body}
-              className="mx-1"
+              className="mx-1  text-neutral-50"
             >
-              <EmailIcon size={32} round />
+              <EmailIcon size={32} round iconFillColor="white" />
             </EmailShareButton>
           );
         }
@@ -105,7 +105,7 @@ const ShareButtons = ({ shareUrl, title, body, image }) => {
               title={titleWithSiteInfo}
               className="mx-1"
             >
-              <TwitterIcon size={32} round />
+              <TwitterIcon size={32} round iconFillColor="white" />
             </TwitterShareButton>
           );
         }
@@ -116,7 +116,7 @@ const ShareButtons = ({ shareUrl, title, body, image }) => {
               url={shareUrl}
               className="mx-1"
             >
-              <LinkedinIcon size={32} round />
+              <LinkedinIcon size={32} roundiconFillColor="white" />
             </LinkedinShareButton>
           );
         }
@@ -128,7 +128,7 @@ const ShareButtons = ({ shareUrl, title, body, image }) => {
               quote={titleWithSiteInfo}
               className="mx-1"
             >
-              <WorkplaceIcon size={32} round />
+              <WorkplaceIcon size={32} round iconFillColor="white" />
             </WorkplaceShareButton>
           );
         }
@@ -140,7 +140,7 @@ const ShareButtons = ({ shareUrl, title, body, image }) => {
               title={titleWithSiteInfo}
               className="mx-1"
             >
-              <PocketIcon size={32} round />
+              <PocketIcon size={32} round iconFillColor="white" />
             </PocketShareButton>
           );
         }
@@ -152,7 +152,7 @@ const ShareButtons = ({ shareUrl, title, body, image }) => {
               title={titleWithSiteInfo}
               className="mx-1"
             >
-              <InstapaperIcon size={32} round />
+              <InstapaperIcon size={32} round iconFillColor="white" />
             </InstapaperShareButton>
           );
         }
@@ -164,7 +164,7 @@ const ShareButtons = ({ shareUrl, title, body, image }) => {
               className="cursor-pointer bg-yellow-500 text-white rounded-full mx-1"
             >
               <div alt={locale.COMMON.URL_COPIED} onClick={copyUrl}>
-                <FontAwesomeIcon className="w-8" icon={faLink} />
+                <FontAwesomeIcon className="w-8 text-white" icon={faLink} />
               </div>
             </button>
           );

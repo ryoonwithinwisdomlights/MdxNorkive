@@ -1,5 +1,4 @@
-import type { Metadata } from "next";
-import type { Viewport } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 // import NextNProgress from "nextjs-progressbar";
 import "./../styles/animate.css"; // @see https://animate.style/
@@ -15,8 +14,8 @@ import "react-notion-x/src/styles.css";
 // global style overrides for notion
 import "./../styles/notion.css";
 // global style overrides for prism theme (optional)
-import "./../styles/prism-theme.css";
 import Style from "@/components/gitbook/Style";
+import "./../styles/prism-theme.css";
 
 import { BLOG } from "@/blog.config";
 import { GlobalContextProvider } from "@/lib/providers/globalProvider";
@@ -29,21 +28,20 @@ import CustomedTransiton from "@/components/gitbook/CustomedTransiton";
 import FloatTocButton from "@/components/gitbook/FloatTocButton";
 import Footer from "@/components/gitbook/Footer";
 import InfoCard from "@/components/gitbook/InfoCard";
+import JumpToBackButton from "@/components/gitbook/JumpToBackButton";
+import JumpToTopButton from "@/components/gitbook/JumpToTopButton";
 import PageNavDrawer from "@/components/gitbook/PageNavDrawer";
 import NavPostList from "@/components/gitbook/records/NavPostList";
-import JumpToTopButton from "@/components/gitbook/JumpToTopButton";
-import JumpToBackButton from "@/components/gitbook/JumpToBackButton";
 import TopNavBar from "@/components/gitbook/TopNavBar";
-import loadGlobalNotionData from "./api/load-globalNotionData";
+import { HandleOnComplete } from "@/lib/custom-router";
 import { InitGlobalNotionData } from "@/lib/providers/provider";
 import dynamic from "next/dynamic";
-import { HandleOnComplete } from "@/lib/custom-router";
+import loadGlobalNotionData from "./api/load-globalNotionData";
 
+import PageLoader from "@/components/ui/page-loader";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import { siteConfig } from "@/lib/config";
 import { Suspense } from "react";
-import PageLoader from "@/components/ui/page-loader";
 config.autoAddCss = false;
 // Various extensions, animations, etc.
 const ExternalPlugins = dynamic(

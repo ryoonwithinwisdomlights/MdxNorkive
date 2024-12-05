@@ -2,7 +2,7 @@ import styles from "@/styles/page-loader.module.css";
 
 const PageLoader = () => {
   return (
-    <div className="text-center">
+    <div className="text-center flex flex-col ">
       <span className={styles.l}>L</span>
       <span className={styles.o}>o</span>
       <span className={styles.a}>a</span>

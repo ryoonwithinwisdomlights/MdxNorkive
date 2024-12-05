@@ -1,16 +1,15 @@
 "use client";
 import NotionPage from "@/components/shared/NotionPage";
-import Link from "next/link";
-import TagItemMini from "../TagItemMini";
-import { siteConfig } from "@/lib/config";
 import { formatDateFmt } from "@/lib/formatDate";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faCalendarAlt,
   faFolder,
   faLock,
-  faCalendarAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
+import TagItemMini from "../TagItemMini";
 
 // 사전에 사용할 아이콘 추가
 library.add(faFolder, faLock, faCalendarAlt);
@@ -37,7 +36,7 @@ export const SideprojectRecordsCardInfo = ({
       }`}
     >
       <div>
-        <Link
+        {/* <Link
           href={`${siteConfig({ key: "SUB_PATH", defaultVal: "" })}/${
             post.slug
           }`}
@@ -47,8 +46,14 @@ export const SideprojectRecordsCardInfo = ({
           } leading-tight font-normal text-neutral-600  hover:text-red-400`}
         >
           <span className="menu-link ">{post.title}</span>
-        </Link>
-
+        </Link> */}
+        <div
+          className={`line-clamp-2 replace cursor-pointer text-2xl ${
+            showPreview ? "text-center" : ""
+          } leading-tight font-normal text-neutral-600  hover:text-red-400`}
+        >
+          <span className="menu-link ">{post.title}</span>
+        </div>
         {/* Classification */}
         {post?.category && (
           <div

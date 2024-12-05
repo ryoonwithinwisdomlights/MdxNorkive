@@ -17,7 +17,8 @@ const GiscusComponent = dynamic(
  * @param {*} param0
  * @returns
  */
-const Comment = ({ siteInfo, frontMatter, className }) => {
+const Comment = (props) => {
+  const { siteInfo, frontMatter, className } = props;
   const pathname = usePathname();
   /**
    *   const searchParams = useSearchParams()

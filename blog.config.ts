@@ -24,6 +24,7 @@ export const BLOG = {
     process.env.NEXT_PUBLIC_BIO ||
     "A Software Engineer who likes to Giveaway to the World with Joy, Love and Lights.",
   LINK: "https://www.ryoonwithwisdomtrees.world", // website addressprocess.env.NEXT_PUBLIC_LINK || NEXT_PUBLIC_LINK,
+  DEV_LINK: process.env.NEXT_PUBLIC_LINK_DEV,
   KEYWORDS: process.env.NEXT_PUBLIC_KEYWORD || "Notion, 블로그, 개발블로그", // Website keywords separated by English commas
 
   CONTACT_EMAIL: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "",

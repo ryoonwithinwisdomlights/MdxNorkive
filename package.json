@@ -19,7 +19,11 @@
     "prettier": "prettier --write --ignore-unknown .",
     "prettier:check": "prettier --check --ignore-unknown .",
     "export": "next build && next export",
-    "bundle-report": "ANALYZE=true yarn build"
+    "bundle-report": "ANALYZE=true yarn build",
+    "deps:link:notion-types": "pnpm link ../react-notion-x/packages/notion-types",
+    "deps:link:notion-utils": "pnpm link ../react-notion-x/packages/notion-utils",
+    "deps:link:notion-client": "pnpm link ../react-notion-x/packages/notion-client",
+    "deps:link:react-notion-x": "pnpm link ../react-notion-x/packages/react-notion-x"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.1",

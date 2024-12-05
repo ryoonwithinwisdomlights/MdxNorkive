@@ -1,4 +1,4 @@
-const CONFIG = {
+const GITBOOKCONFIG = {
   // INDEX_PAGE: "archive",
   INDEX_PAGE: "main",
   // Articles displayed on the document homepage, please make sure this path is included in your notice database
@@ -16,8 +16,11 @@ const CONFIG = {
   MENU_ENGINEERING: true, // show search
   MENU_SIDEPROJECT: true, // show search
 
+  POST_DETAIL_CATEGORY: true, // Article display category
+  POST_DETAIL_TAG: true, // Article display tags
+
   // Widget
   WIDGET_REVOLVER_MAPS: process.env.NEXT_PUBLIC_WIDGET_REVOLVER_MAPS || "false", // Map plugin
   WIDGET_TO_TOP: true, // Jump back to top
 };
-export default CONFIG;
+export default GITBOOKCONFIG;
