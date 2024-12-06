@@ -26,7 +26,6 @@ export const SideprojectRecordsCardInfo = ({
   showPageCover,
   showSummary,
 }) => {
-  // console.log("post.slug:: ", post.slug);
   return (
     <div
       className={`flex flex-col justify-between lg:p-6 p-4   ${
@@ -35,18 +34,7 @@ export const SideprojectRecordsCardInfo = ({
           : "w-full"
       }`}
     >
-      <div>
-        {/* <Link
-          href={`${siteConfig({ key: "SUB_PATH", defaultVal: "" })}/${
-            post.slug
-          }`}
-          passHref
-          className={`line-clamp-2 replace cursor-pointer text-2xl ${
-            showPreview ? "text-center" : ""
-          } leading-tight font-normal text-neutral-600  hover:text-red-400`}
-        >
-          <span className="menu-link ">{post.title}</span>
-        </Link> */}
+      <div className="w-full">
         <div
           className={`line-clamp-2 replace cursor-pointer text-2xl ${
             showPreview ? "text-center" : ""
@@ -110,7 +98,7 @@ export const SideprojectRecordsCardInfo = ({
         <div className="text-neutral-400 justify-between flex">
           {/* date */}
           <Link
-            // href={`/article#${formatDateFmt(post?.publishDate, "yyyy-MM")}`}
+            // href={`/records#${formatDateFmt(post?.publishDate, "yyyy-MM")}`}
             href={`/#${formatDateFmt(post?.publishDate, "yyyy-MM")}`}
             passHref
             className="font-light menu-link cursor-pointer text-sm leading-4 mr-3"

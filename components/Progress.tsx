@@ -1,7 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { isBrowser } from "@/lib/utils/utils";
-
+import { useMediaQuery } from "usehooks-ts";
+const isMobile = useMediaQuery("(max-width: 768px");
 /**
  * Top page reading progress bar
  * @returns {JSX.Element}

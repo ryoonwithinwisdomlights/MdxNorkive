@@ -4,7 +4,7 @@ import throttle from "lodash.throttle";
 import { usePathname } from "next/navigation";
 import { uuidToId } from "notion-utils";
 import { useCallback, useEffect, useState } from "react";
-
+import { useMediaQuery } from "usehooks-ts";
 /**
  * Directory Navigation Component
  * @param toc
@@ -16,6 +16,7 @@ const Catalog = ({ post }) => {
   if (!post) {
     return <></>;
   }
+  const isMobile = useMediaQuery("(max-width: 768px");
   const toc = post?.toc;
   console.log("post?.toc: ", post?.toc);
   // Synchronize selected directory events
@@ -57,7 +58,7 @@ const Catalog = ({ post }) => {
       setActiveSection(currentSectionId);
       const tocIds = post?.toc?.map((t) => uuidToId(t.id)) || [];
       const index = tocIds.indexOf(currentSectionId) || 0;
-      if (isBrowser && tocIds?.length > 0) {
+      if (!isMobile && tocIds?.length > 0) {
         for (const tocWrapper of document?.getElementsByClassName(
           "toc-wrapper"
         )) {

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/navigation";
 
 // 사전에 사용할 아이콘 추가
 library.add(faLock);
@@ -21,6 +22,12 @@ export default function AllRecordsArchiveItem({
   archiveTitle: string;
   archiveRecords: [];
 }) {
+  const router = useRouter();
+  //이동
+  const onClick = (recordId: string) => {
+    router.push(`/records/${recordId}`);
+  };
+
   return (
     <div key={archiveTitle}>
       <div
@@ -35,7 +42,6 @@ export default function AllRecordsArchiveItem({
             key={post.id}
             className="border-l-4 border-amber-400/40  hover:border-amber-300 flex flex-row p-2 text-xs md:text-base items-center text-justify  hover:scale-x-105  dark:hover:border-amber-400 dark:border-amber-400/30 transform duration-500"
           >
-            {/**   */}
             <div id={post?.publishDay}>
               <span className="text-amber-400/60 dark:hover:text-amber-300">
                 {post.date?.start_date}
@@ -46,9 +52,11 @@ export default function AllRecordsArchiveItem({
               >
                 {post.pageIcon}
               </span>
-              <Link
-                passHref
-                href={`${BLOG.SUB_PATH}/${post.slug}`}
+              <div
+                onClick={(e) => {
+                  onClick(post.slug);
+                }}
+                // href={`${BLOG.SUB_PATH}/${post.slug}`}
                 className="dark:text-neutral-400 hover:text-amber-400  dark:hover:text-amber-200 overflow-x-hidden hover:underline cursor-pointer text-neutral-600"
               >
                 {post.title}{" "}
@@ -57,13 +65,12 @@ export default function AllRecordsArchiveItem({
                   &nbsp;
                   {post.password !== "" && (
                     <>
-                      {" "}
                       <FontAwesomeIcon className="mr-1" icon={faLock} />
                       &nbsp;비공개
                     </>
                   )}
                 </span>
-              </Link>
+              </div>
             </div>
           </li>
         ))}

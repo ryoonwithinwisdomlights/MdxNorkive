@@ -19,14 +19,19 @@ export default function SideprojectRecordsItem({
   // const url = `${pathname}/${pPosts.slug}`;
   const url = pPosts.slug.split("/");
   const modUrl = `/${url[1]}/${pPosts.id}`;
-  ///sideproject/records/sideproject/ryoon-log
+
+  //이동
+  const onClick = (recordId: string) => {
+    // console.log("modUrl", modUrl);
+    // router.push(modUrl);
+    router.push(`/sideproject/${recordId}`);
+  };
+
   return (
     <div
       key={pIndex}
-      onClick={() => {
-        console.log("modUrl", modUrl);
-        router.push(modUrl);
-        console.log("pPosts", pPosts);
+      onClick={(e) => {
+        onClick(pPosts.id);
       }}
       className="w-full "
     >

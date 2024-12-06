@@ -7,6 +7,7 @@ import NotionIcon from "@/components/shared/NotionIcon";
 import NotionPage from "@/components/shared/NotionPage";
 import ShareBar from "@/components/shared/ShareBar";
 import { isBrowser } from "@/lib/utils/utils";
+import { useMediaQuery } from "usehooks-ts";
 import md5 from "js-md5";
 import Link from "next/link";
 import { useParams, usePathname, useRouter } from "next/navigation";
@@ -35,8 +36,14 @@ const SingleRecords = ({ props }) => {
   const router = useRouter();
   const pathname = usePathname();
   const params = useParams();
+  const isMobile = useMediaQuery("(max-width: 768px");
   // Article lock🔐
   const [lock, setLock] = useState(post?.password && post?.password !== "");
+
+  const onClick = (recordId: string) => {
+    router.push(`/sideproject/${recordId}`);
+  };
+
   /**
    * Verify article password
    * @param {*} result
@@ -55,7 +62,7 @@ const SingleRecords = ({ props }) => {
     // 404
     if (!post) {
       setTimeout(() => {
-        if (isBrowser) {
+        if (!isMobile) {
           console.warn("Page not found", `${pathname}/${params}`);
           router.push("/404");
         }
@@ -111,7 +118,7 @@ const SingleRecords = ({ props }) => {
               </div>
             </div>
             <span className="mx-1"> | </span>{" "}
-            <Link href="/article" passHref legacyBehavior>
+            <Link href="/records" passHref legacyBehavior>
               <div className="flex flex-row">
                 <LazyImage
                   src={siteInfo?.icon}

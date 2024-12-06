@@ -1,14 +1,15 @@
 "use client";
 import { BLOG } from "@/blog.config";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const AllRecordsPostCard = ({ post, className }) => {
   const pathname = usePathname();
-  //const currentSelected = router.asPath.split("?")[0] === "/" + post.slug;
-  // console.log("AllRecordsPostCard pathname: ", pathname);
+  const router = useRouter();
   const currentSelected = pathname.split("?")[0] === "/" + post.slug;
-  // console.log("AllRecordsPostCard::", currentSelected);
+  const onClick = (recordId: string) => {
+    router.push(`/records/${recordId}`);
+  };
   return (
     <div
       key={post.id}
@@ -17,13 +18,18 @@ const AllRecordsPostCard = ({ post, className }) => {
       }`}
     >
       <div className="flex flex-col w-full select-none">
-        <Link href={`${BLOG.SUB_PATH}/${post.slug}`} passHref>
+        <div
+          onClick={(e) => {
+            alert(`post.id:${post.id} `);
+            onClick(post.id);
+          }}
+        >
           <span className="text-xs pr-1">{post.pageIcon} </span>{" "}
           {post.title.length > 25
             ? post.title.substr(0, 25) + "..."
             : post.title}
           {/* {post.title} */}
-        </Link>
+        </div>
       </div>
     </div>
   );
