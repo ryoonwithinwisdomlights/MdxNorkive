@@ -19,7 +19,7 @@ export async function getDataFromCache(key, force) {
   // if (BLOG.ENABLE_CACHE || force) {
   if (BLOG.ENABLE_CACHE) {
     const dataFromCache = await api.getCache(key);
-    console.log(` key:${key}, dataFromCache:${dataFromCache}, force:${force}`);
+    // console.log(` key:${key}, dataFromCache:${dataFromCache}, force:${force}`);
     if (JSON.stringify(dataFromCache) === "[]") {
       return null;
     }

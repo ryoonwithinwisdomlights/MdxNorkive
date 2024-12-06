@@ -10,7 +10,7 @@ import "prismjs/plugins/line-numbers/prism-line-numbers";
 import "prismjs/plugins/line-numbers/prism-line-numbers.css";
 
 import { BLOG } from "@/blog.config";
-import { loadExternalResource } from "@/lib/utils";
+import { loadExternalResource } from "@/lib/utils/utils";
 import { useRouter } from "next/navigation";
 import { useGlobal } from "@/lib/providers/globalProvider";
 

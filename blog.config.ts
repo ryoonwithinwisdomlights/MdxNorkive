@@ -1,6 +1,5 @@
 export const BLOG = {
-  // NOTION_PAGE_ID: process.env.NOTION_PAGE_ID,
-  NOTION_PAGE_ID: "1341eb5c0337801da209c34c90bc3377",
+  NOTION_PAGE_ID: process.env.NOTION_PAGE_ID,
   PSEUDO_STATIC: process.env.NEXT_PUBLIC_PSEUDO_STATIC || false,
   NEXT_REVALIDATE_SECOND: process.env.NEXT_PUBLIC_REVALIDATE_SECOND || 5,
   THEME: "gitbook",
@@ -172,7 +171,7 @@ export const BLOG = {
     process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPOUSERNAME || "", // Your Github repository name e.g 'ryoonwithinwisdomlights/yeollam'
   COMMENT_GISCUS_REPONAME:
     process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPONAME || "", // Your Github repository name e.g 'ryoonwithinwisdomlights/yeollam'
-  COMMENT_GISCUS_REPO_ID: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPO_ID || "", // Your Github Repo ID e.g (you can see it after setting up giscus)
+  COMMENT_GISCUS_REPO_ID: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPO_ID, // Your Github Repo ID e.g (you can see it after setting up giscus)
   COMMENT_GISCUS_CATEGORY:
     process.env.NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY || "General",
   COMMENT_GISCUS_CATEGORY_ID:
@@ -203,15 +202,9 @@ export const BLOG = {
   NOTION_PROPERTY_NAME: {
     password: process.env.NEXT_PUBLIC_NOTION_PROPERTY_PASSWORD || "password",
     type: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE || "type", // article type
-    type_able_arr: [
-      "Post",
-      "General-records",
-      "Writing-records",
-      "Engineering-records",
-      "GuestBook",
-      "Sideproject",
-    ],
+    type_able_arr: ["Record", "GuestBook", "Sideproject"],
     type_post: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_POST || "Post", // When the type article type is the same as this value, it is a blog post.
+    type_record: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_POST || "Record",
     type_page: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_PAGE || "Page", // When the type article type is the same as this value, it is a single page.
     type_notice:
       process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_NOTICE || "Notice", // When the type article type is the same as this value, it is an announcement.
@@ -221,13 +214,6 @@ export const BLOG = {
     // yeollam only
     type_sideproject:
       process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_SIDEPROJECT || "Sideproject",
-    type_general:
-      process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_GENERAL || "General-records",
-    type_writing:
-      process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_WRITING || "Writing-records",
-    type_engineering:
-      process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_ENGINEERING ||
-      "Engineering-records",
     type_guestbook:
       process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_GUESTBOOK || "GuestBook",
     // yeollam only

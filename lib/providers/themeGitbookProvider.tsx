@@ -1,5 +1,6 @@
 "use client";
 import React, { createContext, ReactNode, useContext, useState } from "react";
+
 type GitBookGlobalContext = {
   tocVisible: boolean;
   changeTocVisible: () => void; // 토글 함수
@@ -12,9 +13,17 @@ type GitBookGlobalContext = {
  *  createContext는 기본값을 설정해야 하므로, 초기값을 undefined로 설정하면 타입스크립트에서 오류가 발생합니다.
  *  이를 해결하기 위해 컨텍스트 초기값에 적절한 기본값을 제공하거나 null을 허용하도록 설정해야 합니다.
  */
-const ThemeGlobalGitbook = createContext<GitBookGlobalContext | undefined>(
-  undefined
-);
+const ThemeGlobalGitbook = createContext<GitBookGlobalContext | null>(null);
+
+export const useGitBookGlobal = (): GitBookGlobalContext => {
+  const context = useContext(ThemeGlobalGitbook);
+  if (!context) {
+    throw new Error(
+      "useGitBookGlobal must be used within a ThemeGlobalGitbook.Provider"
+    );
+  }
+  return context;
+};
 
 /**
  * Global Theme variable Provider
@@ -28,13 +37,6 @@ export const ThemeGitbookProvider: React.FC<{
 }> = ({ children }) => {
   const [tocVisible, setTocVisible] = useState<boolean>(false);
   const [pageNavVisible, setPageNavVisible] = useState<boolean>(false);
-
-  // const {
-  //   allNavPages,
-  //   filteredNavPages,
-  //   setFilteredNavPages,
-  //   allNavPagesForGitBook,
-  // } = useGlobal({ from: "index" });
 
   const changeTocVisible = () => setTocVisible((prev) => !prev);
   const changePageNavVisible = () => setPageNavVisible((prev) => !prev);
@@ -51,16 +53,4 @@ export const ThemeGitbookProvider: React.FC<{
       {children}
     </ThemeGlobalGitbook.Provider>
   );
-};
-
-// export function ThemeGitbookProvider;
-
-export const useGitBookGlobal = (): GitBookGlobalContext => {
-  const context = useContext(ThemeGlobalGitbook);
-  if (!context) {
-    throw new Error(
-      "useGitBookGlobal must be used within a ThemeGlobalGitbook.Provider"
-    );
-  }
-  return context;
 };

@@ -27,40 +27,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     {
-      url: `${BLOG.LINK}/archive`,
+      url: `${BLOG.LINK}/records`,
       lastModified: new Date(),
       changeFrequency: dailyVariable,
       priority: 1,
-    },
-    {
-      url: `${BLOG.LINK}/techlog`,
-      lastModified: new Date(),
-      changeFrequency: dailyVariable,
-      priority: 1,
-    },
-    {
-      url: `${BLOG.LINK}/general`,
-      lastModified: new Date(),
-      changeFrequency: dailyVariable,
-      priority: 1,
-    },
-    {
-      url: `${BLOG.LINK}/writing`,
-      lastModified: new Date(),
-      changeFrequency: dailyVariable,
-      priority: 1,
-    },
-    {
-      url: `${BLOG.LINK}/agiveawaylog`,
-      lastModified: new Date(),
-      changeFrequency: dailyVariable,
-      priority: 1,
-    },
-
-    {
-      url: `${BLOG.LINK}/inspiration`,
-      lastModified: new Date(),
-      changeFrequency: dailyVariable,
     },
     {
       url: `${BLOG.LINK}/sideproject`,

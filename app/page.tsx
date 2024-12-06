@@ -1,5 +1,5 @@
 // Import your Client Component
-import AllRecordsArchiveItem from "@/components/gitbook/records/AllRecordsArchiveItem";
+import AllRecordsArchiveItem from "@/components/records/AllRecordsArchiveItem";
 import { getStaticNotionRecordsSortByDirType } from "./api/load-recordsData";
 
 export default async function Page() {
@@ -8,10 +8,9 @@ export default async function Page() {
     type: "Post",
   });
 
-  const recordPosts = props.recordPosts;
-  return recordPosts ? (
-    // <HomePage recordPosts={props.recordPosts} />
-    <div className="mb-10 pb-20  py-3 w-full flex flex-col min-h-full">
+  const archiveRecords = props.archiveRecords;
+  return archiveRecords ? (
+    <div className="dark:bg-black mb-10 pb-20  py-3 w-full flex flex-col min-h-full">
       <div className="flex flex-col pt-10 ">
         <div className="text-lg text-stone-600 font-extralight dark:text-neutral-200">
           경계를 오가며 정직하게 기록되는{" "}
@@ -69,11 +68,11 @@ export default async function Page() {
         </div>
 
         <div className="w-full flex flex-col gap-10 bg-opacity-30 rounded-lg md:pl-10 dark:bg-black dark:bg-opacity-70 bg-white">
-          {Object.keys(recordPosts)?.map((archiveTitle, index) => (
+          {Object.keys(archiveRecords)?.map((archiveTitle, index) => (
             <AllRecordsArchiveItem
               key={index}
               archiveTitle={archiveTitle}
-              recordPosts={recordPosts}
+              archiveRecords={archiveRecords}
             />
           ))}
         </div>

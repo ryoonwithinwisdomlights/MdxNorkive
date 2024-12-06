@@ -2,7 +2,7 @@
 
 import { BLOG } from "@/blog.config";
 
-import { deepClone } from "./utils";
+import { deepClone } from "@/lib/utils/utils";
 import { useGlobal } from "@/lib/providers/globalProvider";
 import { isUrl } from "@/lib/utils/utils";
 
@@ -19,11 +19,11 @@ import { isUrl } from "@/lib/utils/utils";
  */
 export const siteConfig = ({
   key,
-  defaultVal,
+  defaultVal = null,
   extendConfig = {},
 }: {
   key: string;
-  defaultVal?: string;
+  defaultVal?: any;
   extendConfig?: {};
 }) => {
   if (!key) {

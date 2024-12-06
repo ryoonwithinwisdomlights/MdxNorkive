@@ -1,11 +1,17 @@
 /* eslint-disable no-unused-vars */
 // Encapsulate asynchronous resource loading method
-import { memo } from "react";
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
 import * as Icons from "@fortawesome/free-solid-svg-icons"; // 모든 아이콘을 가져옴
 type AppType = {
   slug: string;
   type: string;
 };
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 export const parseIcon = (iconString: string) => {
   if (!iconString) return null;

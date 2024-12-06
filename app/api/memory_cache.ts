@@ -11,7 +11,7 @@ export async function getCache(key) {
 }
 
 export async function setCache(key, data) {
-  console.log("setCache cache:", key, data);
+  console.log("setCache cache:", key);
   await cache.put(key, data, cacheTime * 1000);
 }
 

@@ -1,5 +1,4 @@
 "use client";
-import { loadExternalResource } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 import vConsole from "vconsole";
 // import { VConsoleOptions } from "vconsole/dist/vconsole.min.js";

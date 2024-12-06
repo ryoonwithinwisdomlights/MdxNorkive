@@ -1,6 +1,4 @@
-"use client"; // 클라이언트 컴포넌트
 import { BLOG } from "@/blog.config";
-import { useGlobal } from "@/lib/providers/globalProvider";
 import Giscus from "@giscus/react";
 
 /**
@@ -9,35 +7,28 @@ import Giscus from "@giscus/react";
  * @returns {JSX.Element}
  * @constructor
  */
-const GiscusComponent = () => {
-  const { isDarkMode } = useGlobal({ from: "index" });
-  const theme = isDarkMode ? "dark" : "light";
+const GiscusComponent = (props) => {
+  const { theme } = props;
 
   return (
-    // <Giscus
-    //   repo={`${BLOG.COMMENT_GISCUS_REPOUSERNAME}/${BLOG.COMMENT_GISCUS_REPONAME}`}
-    //   repoId={BLOG.COMMENT_GISCUS_REPO_ID}
-    //   category="General"
-    //   categoryId={BLOG.COMMENT_GISCUS_CATEGORY_ID}
-    //   mapping={BLOG.COMMENT_GISCUS_MAPPING}
-    //   reactionsEnabled={BLOG.COMMENT_GISCUS_REACTIONS_ENABLED}
-    //   emitMetadata={BLOG.COMMENT_GISCUS_EMIT_METADATA}
-    //   theme={theme}
-    //   inputPosition={BLOG.COMMENT_GISCUS_INPUT_POSITION}
-    //   lang={BLOG.COMMENT_GISCUS_LANG}
-    //   loading={BLOG.COMMENT_GISCUS_LOADING}
-    //   crossorigin={BLOG.COMMENT_GISCUS_CROSSORIGIN}
-    // />
+    /**
+     * id, host, repo, repoId, category,
+     *  categoryId, mapping, term,
+     * strict, reactionsEnabled, emitMetadata,
+     *  inputPosition, theme,
+     * lang, loading,
+     */
     <Giscus
+      id="giscus"
       repo={`${BLOG.COMMENT_GISCUS_REPOUSERNAME}/${BLOG.COMMENT_GISCUS_REPONAME}`}
-      repoId={BLOG.COMMENT_GISCUS_REPO_ID}
-      category="General"
-      categoryId={BLOG.COMMENT_GISCUS_CATEGORY_ID}
+      repoId={BLOG.COMMENT_GISCUS_REPO_ID as string}
+      category={BLOG.COMMENT_GISCUS_CATEGORY as string}
+      categoryId={BLOG.COMMENT_GISCUS_CATEGORY_ID as string}
       mapping={"pathname"}
       reactionsEnabled={"1"}
       emitMetadata={"0"}
-      theme={theme}
       inputPosition={"bottom"}
+      theme={theme}
       lang={BLOG.COMMENT_GISCUS_LANG}
       loading={"lazy"}
     />

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { getStaticNotionRecordsSortByDirTypeWithoutDateTitle } from "../api/load-recordsData";
-import SideprojectRecordsItem from "@/components/gitbook/records/SideprojectRecordsItem";
+import SideprojectRecordsItem from "@/components/records/SideprojectRecordsItem";
 
 export default async function Page() {
   const { props }: any =
@@ -8,9 +8,9 @@ export default async function Page() {
       from: "index",
       type: "sideproject",
     });
-  // console.log("recordPosts:", recordPosts);
-  const sideProjectList: [] = props.recordPosts;
-  // console.log("sideProjectList:", sideProjectList);
+
+  const sideProjectList: [] = props.archiveRecords;
+
   return (
     <div className="mb-10 pb-20 md:py-12 w-full py-3  min-h-full">
       <div className="flex flex-col">
@@ -40,8 +40,6 @@ export default async function Page() {
         </div>
         <div className="space-y-6 px-2">
           {sideProjectList?.map((item: any, index) => {
-            // console.log("item", item);
-            // console.log(sideProjectList[item.to]);
             return (
               <SideprojectRecordsItem
                 key={index}

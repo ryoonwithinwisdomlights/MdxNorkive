@@ -1,12 +1,9 @@
 import { BLOG } from "@/blog.config";
 import { getPostBlocks } from "@/lib/notion";
-// import { generateRobotsTxt } from "@/lib/robots.txt";
-// import { generateRss } from "@/lib/rss";
 import { getGlobalData } from "@/lib/notion/getNotionData";
 
 export default async function loadGlobalNotionData(from: string = "index") {
-  // const from = "index";
-  const props = await getGlobalData({ from });
+  const props = await getGlobalData({ from: from });
 
   props.posts = props.allPages?.filter(
     (page) =>
@@ -39,15 +36,6 @@ export default async function loadGlobalNotionData(from: string = "index") {
       );
     }
   }
-
-  // Generate robotTxt
-  // generateRobotsTxt();
-  // Generate feed subscription
-  // if (JSON.parse(BLOG.ENABLE_RSS.toString())) {
-  //   generateRss(props?.latestPosts || []);
-  // }
-
-  // Generate full-text index - only executed when yarn build && process.env.npm_lifecycle_event === 'build'
 
   delete props.allPages;
 

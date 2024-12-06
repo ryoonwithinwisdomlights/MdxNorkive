@@ -1,10 +1,11 @@
 "use client"; // 클라이언트 컴포넌트
 
 /* eslint-disable no-unused-vars */
-import { CloudMoon, CloudSun } from "@/lib/Icon";
+// import { CloudMoon, CloudSun } from "@/lib/Icon";
 
 import { useGlobal } from "@/lib/providers/globalProvider";
 import { saveDarkModeToCookies } from "@/lib/utils/theme";
+import { CloudMoon, CloudSun } from "lucide-react";
 
 /**
  * dark mode button

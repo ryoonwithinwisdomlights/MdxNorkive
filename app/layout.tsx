@@ -1,12 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
-// import NextNProgress from "nextjs-progressbar";
 import "./../styles/animate.css"; // @see https://animate.style/
 import "./../styles/globals.css";
-// import "./../styles/nprogress.css";
 import "./../styles/utility-patterns.css";
-// used for rendering equations (optional)
-import "katex/dist/katex.min.css";
+
 // used for code syntax highlighting (optional)
 import "prismjs/themes/prism-coy.css";
 // core styles shared by all of react-notion-x (required)
@@ -14,41 +10,40 @@ import "react-notion-x/src/styles.css";
 // global style overrides for notion
 import "./../styles/notion.css";
 // global style overrides for prism theme (optional)
-import Style from "@/components/gitbook/Style";
 import "./../styles/prism-theme.css";
 
 import { BLOG } from "@/blog.config";
 import { GlobalContextProvider } from "@/lib/providers/globalProvider";
 import { ThemeGitbookProvider } from "@/lib/providers/themeGitbookProvider";
 
-import Announcement from "@/components/gitbook/Announcement";
-import ArticleInfo from "@/components/gitbook/ArticleInfo";
-import BottomMenuBar from "@/components/gitbook/BottomMenuBar";
-import CustomedTransiton from "@/components/gitbook/CustomedTransiton";
-import FloatTocButton from "@/components/gitbook/FloatTocButton";
-import Footer from "@/components/gitbook/Footer";
-import InfoCard from "@/components/gitbook/InfoCard";
-import JumpToBackButton from "@/components/gitbook/JumpToBackButton";
-import JumpToTopButton from "@/components/gitbook/JumpToTopButton";
-import PageNavDrawer from "@/components/gitbook/PageNavDrawer";
-import NavPostList from "@/components/gitbook/records/NavPostList";
-import TopNavBar from "@/components/gitbook/TopNavBar";
+import Announcement from "@/components/Announcement";
+import ArticleInfo from "@/components/ArticleInfo";
+import BottomMenuBar from "@/components/BottomMenuBar";
+import FloatTocButton from "@/components/FloatTocButton";
+import Footer from "@/components/Footer";
+import InfoCard from "@/components/InfoCard";
+import JumpToBackButton from "@/components/JumpToBackButton";
+import JumpToTopButton from "@/components/JumpToTopButton";
+import PageNavDrawer from "@/components/PageNavDrawer";
+import NavPostList from "@/components/records/NavPostList";
+import TopNavBar from "@/components/TopNavBar";
+import CustomedTransitonWrapper from "@/components/wrapper/CustomedTransitonWrapper";
 import { HandleOnComplete } from "@/lib/custom-router";
 import { InitGlobalNotionData } from "@/lib/providers/provider";
 import dynamic from "next/dynamic";
 import loadGlobalNotionData from "./api/load-globalNotionData";
 
+import Catalog from "@/components/Catalog";
 import PageLoader from "@/components/ui/page-loader";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Suspense } from "react";
+
 config.autoAddCss = false;
 // Various extensions, animations, etc.
 const ExternalPlugins = dynamic(
   () => import("@/components/shared/ExternalPlugins")
 );
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const viewport: Viewport = {
   // themeColor: "normal",
@@ -125,12 +120,12 @@ export default async function RootLayout({
           from={"index"}
         >
           <ThemeGitbookProvider>
-            <Style />
+            {/* <Style /> */}
 
             <HandleOnComplete />
             <div
-              id="theme-gitbook"
-              className={`${BLOG.FONT_STYLE} bg-white dark:bg-hexo-black-neutral- w-full h-full min-h-screen justify-center dark:text-neutral-300 scroll-smooth pb-16 md:pb-0 dark:bg-black`}
+              id="gitbook"
+              className={`${BLOG.FONT_STYLE} bg-white w-full h-full min-h-screen justify-center dark:text-neutral-300 scroll-smooth pb-16 md:pb-0 dark:bg-black`}
             >
               {/* 상단 네비게이션 바 */}
               <TopNavBar />
@@ -145,7 +140,7 @@ export default async function RootLayout({
                   {/* 왼쪽 네브바 */}
                   <div
                     className={
-                      "font-sans hidden md:block border-r dark:border-transparent relative z-10 "
+                      "font-sans hidden w-3/12  md:block border-r dark:border-transparent relative z-10 "
                     }
                   >
                     <div className="w-72  px-6 sticky top-0 overflow-y-scroll my-16 h-screen ">
@@ -153,7 +148,6 @@ export default async function RootLayout({
                       {/* <SearchInput  /> */}
                       <div className="mb-20">
                         {/* 모든 기사 목록 */}
-                        {/* <NavPostList filteredNavPages={filteredNavPages} /> */}
                         <NavPostList />
                       </div>
                     </div>
@@ -172,12 +166,12 @@ export default async function RootLayout({
                         id="container-inner"
                         className="w-full px-7 max-w-3xl justify-center mx-auto"
                       >
-                        <CustomedTransiton>{children}</CustomedTransiton>
+                        {/* {slotTop} */}
+                        <CustomedTransitonWrapper>
+                          {children}
+                        </CustomedTransitonWrapper>
                         {/* Back button */}
-                        <JumpToTopButton />
-                        <JumpToBackButton />
                       </div>
-
                       {/* bottom */}
                       <div className="md:hidden mb:16">
                         <Footer />
@@ -187,15 +181,18 @@ export default async function RootLayout({
 
                   {/*  오른쪽 슬라이딩 서랍 */}
                   <div
-                    style={{ width: "32rem" }}
+                    // style={{ width: "32rem" }}
                     className={
-                      "hidden xl:block dark:border-transparent relative z-10 border-l  border-neutral-200  "
+                      "hidden w-3/12 xl:block dark:border-transparent relative z-10 border-l border-neutral-200"
                     }
                   >
                     <div className="py-14 px-6 sticky top-0">
                       <ArticleInfo />
                       <div className="py-4 justify-center">
+                        <Catalog post={null} />
+                        {/* {slotRight}  */}
                         <InfoCard />
+
                         <Announcement />
                       </div>
                     </div>
@@ -203,15 +200,14 @@ export default async function RootLayout({
                 </main>
               </Suspense>
               <FloatTocButton />
-
+              <JumpToTopButton />
+              <JumpToBackButton />
               {/* 모바일 탐색 창 */}
               <PageNavDrawer />
 
               {/* 모바일 하단 탐색 메뉴 */}
               <BottomMenuBar />
-              {/* <BottomMenuBar /> */}
             </div>
-            {/* <NextNProgress /> */}
             <ExternalPlugins props={Math.random()} />
           </ThemeGitbookProvider>
         </GlobalContextProvider>

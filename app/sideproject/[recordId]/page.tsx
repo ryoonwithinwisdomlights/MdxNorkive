@@ -3,7 +3,51 @@ import { BLOG } from "@/blog.config";
 import { getPostBlocks } from "@/lib/notion";
 import { getGlobalData } from "@/lib/notion/getNotionData";
 import { idToUuid } from "notion-utils";
-import SingleRecords from "@/components/gitbook/records/SingleRecords";
+import SingleRecords from "@/components/records/SingleRecords";
+
+/**
+ * Get the list of recommended articles associated with the article, currently filtered based on tag relevance
+ * @param post
+ * @param {*} allPosts
+ * @param {*} count
+ * @returns
+ */
+function getRecommendPost(
+  post: Post,
+  allPosts: Post[],
+  count: number = 6
+): Post[] {
+  let recommendPosts: Post[] = []; // 추천 게시물 배열
+  const postIds: string[] = []; // 추천된 게시물 ID 배열
+  const currentTags: string[] = post?.tags || []; // 현재 게시물의 태그
+  for (let i = 0; i < allPosts.length; i++) {
+    const p = allPosts[i];
+    // 현재 게시물과 동일한 게시물이거나 타입이 'Post'가 아니면 건너뜀
+    if (p.id === post.id || p.type.indexOf("Post") < 0) {
+      continue;
+    }
+
+    for (let j = 0; j < currentTags.length; j++) {
+      const t = currentTags[j];
+      // 이미 추천된 게시물인지 확인getNotionPageData:
+      if (postIds.indexOf(p.id) > -1) {
+        continue;
+      }
+      // 태그가 일치하면 추천 게시물에 추가
+      if (p.tags && p.tags.indexOf(t) > -1) {
+        recommendPosts.push(p);
+        postIds.push(p.id);
+      }
+    }
+  }
+
+  // 추천 게시물 개수를 제한
+  if (recommendPosts.length > count) {
+    recommendPosts = recommendPosts.slice(0, count);
+  }
+  return recommendPosts;
+}
+
 export async function generateStaticParams() {
   // 예제 데이터 - 실제로는 API 호출 등을 통해 데이터를 가져올 수 있음
   const records = [
@@ -85,47 +129,4 @@ interface Post {
   id: string;
   type: string;
   tags?: string[];
-}
-
-/**
- * Get the list of recommended articles associated with the article, currently filtered based on tag relevance
- * @param post
- * @param {*} allPosts
- * @param {*} count
- * @returns
- */
-export function getRecommendPost(
-  post: Post,
-  allPosts: Post[],
-  count: number = 6
-): Post[] {
-  let recommendPosts: Post[] = []; // 추천 게시물 배열
-  const postIds: string[] = []; // 추천된 게시물 ID 배열
-  const currentTags: string[] = post?.tags || []; // 현재 게시물의 태그
-  for (let i = 0; i < allPosts.length; i++) {
-    const p = allPosts[i];
-    // 현재 게시물과 동일한 게시물이거나 타입이 'Post'가 아니면 건너뜀
-    if (p.id === post.id || p.type.indexOf("Post") < 0) {
-      continue;
-    }
-
-    for (let j = 0; j < currentTags.length; j++) {
-      const t = currentTags[j];
-      // 이미 추천된 게시물인지 확인
-      if (postIds.indexOf(p.id) > -1) {
-        continue;
-      }
-      // 태그가 일치하면 추천 게시물에 추가
-      if (p.tags && p.tags.indexOf(t) > -1) {
-        recommendPosts.push(p);
-        postIds.push(p.id);
-      }
-    }
-  }
-
-  // 추천 게시물 개수를 제한
-  if (recommendPosts.length > count) {
-    recommendPosts = recommendPosts.slice(0, count);
-  }
-  return recommendPosts;
 }
