@@ -13,6 +13,7 @@ const gitHubicon = parseIcon("fab fa-github");
 const twittericon = parseIcon("fab fa-twitter");
 const linkedInIcon = parseIcon("fab fa-linkedin");
 const emailIcon = parseIcon("fas fa-envelope");
+const instagramIcon = parseIcon("fab fa-instagram");
 //fas fa-envelope
 //fab fa-linkedin
 /**
@@ -36,7 +37,6 @@ const SocialButton = () => {
               icon={gitHubicon}
             />
           )}
-          {/* <i className="fab fa-github transform hover:scale-125 duration-150 hover:text-yellow-400" /> */}
         </a>
       )}
       {BLOG.CONTACT_TWITTER && (
@@ -67,19 +67,23 @@ const SocialButton = () => {
               icon={linkedInIcon}
             />
           )}
-          {/* <i className="transform hover:scale-125 duration-150 fab fa-linkedin dark:hover:text-yellow-400 hover:text-yellow-600" /> */}
         </a>
       )}
-      {/* {BLOG.CONTACT_INSTAGRAM && (
+      {BLOG.CONTACT_INSTAGRAM && (
         <a
           target="_blank"
           rel="noreferrer"
-          title={'instagram'}
+          title={"instagram"}
           href={BLOG.CONTACT_INSTAGRAM}
         >
-          <i className="fab fa-instagram transform hover:scale-125 duration-150 hover:text-yellow-600" />
+          {instagramIcon && (
+            <FontAwesomeIcon
+              className="transform hover:scale-125 duration-150 hover:text-yellow-400"
+              icon={instagramIcon}
+            />
+          )}
         </a>
-      )} */}
+      )}
       {BLOG.CONTACT_EMAIL && (
         <a
           target="_blank"
@@ -93,14 +97,8 @@ const SocialButton = () => {
               icon={emailIcon}
             />
           )}
-          {/* <i className="fas fa-envelope transform hover:scale-125 duration-150 hover:text-yellow-400" /> */}
         </a>
       )}
-      {/* {JSON.parse(BLOG.ENABLE_RSS) && (
-        <a target="_blank" rel="noreferrer" title={'RSS'} href={'/feed'}>
-          <i className="fas fa-rss transform hover:scale-125 duration-150 hover:text-yellow-600" />
-        </a>
-      )} */}
     </div>
   );
 };

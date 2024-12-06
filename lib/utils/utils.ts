@@ -41,18 +41,6 @@ export const exchangeSlugToType = (slug) => {
     { slug: "guest-book", type: "GuestBook" },
   ];
 
-  // let res: string | null = null;
-  // if (slug) {
-  //   typeApp.forEach((item) => {
-  //     if (item.slug === slug) {
-  //       res = item.type;
-  //     }
-  //   });
-  // } else {
-  //   res = null;
-  // }
-
-  // return res;
   if (!slug) return null;
 
   const found = typeApp.find((item) => item.slug === slug);

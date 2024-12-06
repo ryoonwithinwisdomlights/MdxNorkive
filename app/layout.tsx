@@ -120,8 +120,6 @@ export default async function RootLayout({
           from={"index"}
         >
           <ThemeGitbookProvider>
-            {/* <Style /> */}
-
             <HandleOnComplete />
             <div
               id="gitbook"
@@ -143,7 +141,7 @@ export default async function RootLayout({
                       "font-sans hidden w-3/12  md:block border-r dark:border-transparent relative z-10 "
                     }
                   >
-                    <div className="w-72  px-6 sticky top-0 overflow-y-scroll my-16 h-screen ">
+                    <div className="w-72 px-6 py-2 sticky top-0 overflow-y-scroll my-16 h-screen ">
                       {/* {slotLeft} */}
                       {/* <SearchInput  /> */}
                       <div className="mb-20">
@@ -159,7 +157,7 @@ export default async function RootLayout({
 
                   <div
                     id="center-wrapper"
-                    className="flex flex-col w-full relative z-10 pt-14 min-h-screen"
+                    className="flex flex-col w-full relative z-10 pt-14 min-h-screen bg-white dark:bg-black dark:text-neutral-300"
                   >
                     <div className="flex flex-col justify-between w-full relative z-10  ">
                       <div

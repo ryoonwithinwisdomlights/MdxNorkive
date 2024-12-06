@@ -79,11 +79,6 @@ export const MenuItemCollapse = (props) => {
                 }`}
                 icon={faChevronRight}
               />
-              {/* <i
-                className={`px-2 fas fa-chevron-right transition-all duration-200 ${
-                  isOpen ? "rotate-90" : ""
-                }`}
-              ></i> */}
             </div>
           </div>
         )}

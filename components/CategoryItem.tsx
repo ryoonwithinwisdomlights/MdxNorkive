@@ -7,7 +7,7 @@ import Link from "next/link";
 library.add(faFolder, faFolderOpen);
 
 export default function CategoryItem(props) {
-  const { key, selected, category, categoryCount } = props;
+  const { selected, category, categoryCount } = props;
   return (
     <Link
       href={`/category/${category}`}
@@ -20,9 +20,6 @@ export default function CategoryItem(props) {
       }
     >
       <div>
-        {/* <i
-          className={`mr-2 fas ${selected ? "fa-folder-open" : "fa-folder"}`}
-        /> */}
         <FontAwesomeIcon
           className="mr-2"
           icon={selected ? faFolderOpen : faFolder}

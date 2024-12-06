@@ -10,7 +10,7 @@ export default async function Page() {
 
   const archiveRecords = props.archiveRecords;
   return archiveRecords ? (
-    <div className="dark:bg-black mb-10 pb-20  py-3 w-full flex flex-col min-h-full">
+    <div className=" bg-white dark:bg-black dark:text-neutral-300 mb-10 pb-20  py-3 w-full flex flex-col min-h-full">
       <div className="flex flex-col pt-10 ">
         <div className="text-lg text-stone-600 font-extralight dark:text-neutral-200">
           경계를 오가며 정직하게 기록되는{" "}

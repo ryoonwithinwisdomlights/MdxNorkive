@@ -19,7 +19,6 @@ const TagGroups = ({ tagOptions, currentTag }) => {
   return (
     <div id="tags-group" className="dark:border-neutral-600 py-4">
       <div className="mb-2">
-        {/* <i className="mr-2 fas fa-tag" /> */}
         <FontAwesomeIcon className="mr-2" icon={faTag} />
         Label
       </div>

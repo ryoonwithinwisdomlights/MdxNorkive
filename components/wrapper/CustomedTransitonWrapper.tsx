@@ -24,9 +24,7 @@ const CustomedTransitonWrapper = ({
       leaveTo="opacity-0 -translate-y-16"
       unmount={false}
     >
-      <div ref={ref} className="bg-white p-4">
-        {children}
-      </div>
+      <div ref={ref}>{children}</div>
     </Transition>
   );
 };

@@ -1,8 +1,12 @@
 "use client";
 import AllRecordsPostCard from "./AllRecordsPostCard";
 import React, { useState } from "react";
-// import Collapse from "@/components/shared/Collapse";
 import Collapse from "@/components/shared/Collapse";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+// 사전에 사용할 아이콘 추가
+library.add(faChevronLeft);
 /**
  * navigation list
  * @param posts
@@ -30,11 +34,12 @@ const NavPostItem = (props) => {
         >
           <span>{group?.category}</span>
           <div className="inline-flex items-center select-none pointer-events-none ">
-            <i
-              className={`px-2 fas fa-chevron-left transition-all duration-200 ${
+            <FontAwesomeIcon
+              className={`px-2 transition-all duration-200 ${
                 isOpen ? "rotate-90" : ""
               }`}
-            ></i>
+              icon={faChevronLeft}
+            />
           </div>
         </div>
         <Collapse isOpen={isOpen} onHeightChange={props.onHeightChange}>

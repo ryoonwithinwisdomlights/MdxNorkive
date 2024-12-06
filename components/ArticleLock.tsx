@@ -80,7 +80,6 @@ export const ArticleLock = (props) => {
                   className="duration-200 cursor-pointer "
                   icon={faKey}
                 />
-                {/* <i className={"duration-200 cursor-pointer fas fa-key"}> */}
                 &nbsp;{locale.COMMON.SUBMIT}
                 &nbsp; 입력완료
               </div>
