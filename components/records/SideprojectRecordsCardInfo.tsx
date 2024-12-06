@@ -10,6 +10,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import TagItemMini from "../TagItemMini";
+import { useRouter } from "next/navigation";
 
 // 사전에 사용할 아이콘 추가
 library.add(faFolder, faLock, faCalendarAlt);
@@ -26,6 +27,10 @@ export const SideprojectRecordsCardInfo = ({
   showPageCover,
   showSummary,
 }) => {
+  const router = useRouter();
+  const onClick = (category: string) => {
+    router.push(`/category/${category}`);
+  };
   return (
     <div
       className={`flex flex-col justify-between lg:p-6 p-4   ${
@@ -49,15 +54,18 @@ export const SideprojectRecordsCardInfo = ({
               showPreview ? "justify-center" : "justify-start"
             } flex-wrap dark:text-neutral-500 text-neutral-400 `}
           >
-            <Link
-              href={`/category/${post.category}`}
-              passHref
+            <div
+              // href={`/category/${post.category}`}
+              // passHref
+              onClick={(e) => {
+                onClick(post.category);
+              }}
               className="cursor-pointer font-light text-sm menu-link hover:text-red-400 dark:hover:text-red-400 transform"
             >
               <FontAwesomeIcon className="mr-1" icon={faFolder} />
 
               {post.category}
-            </Link>
+            </div>
             <span className="text-xs">
               &nbsp;&nbsp;&nbsp;{" "}
               {post.password !== "" && (

@@ -14,6 +14,7 @@ export default function EngineeringRecordsItem({
   const showPreview = false;
   // const showPageCover = pPosts?.pageCoverThumbnail && !showPreview
   const showPageCover = pPosts?.pageCoverThumbnail;
+
   return (
     <div key={pIndex} className="w-full">
       {/* <div id={pId} className=" pb-4 text-2xl dark:text-neutral-300">

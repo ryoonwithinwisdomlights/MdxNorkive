@@ -6,10 +6,10 @@ import { usePathname, useRouter } from "next/navigation";
 const AllRecordsPostCard = ({ post, className }) => {
   const pathname = usePathname();
   const router = useRouter();
-  const currentSelected = pathname.split("?")[0] === "/" + post.slug;
   const onClick = (recordId: string) => {
     router.push(`/records/${recordId}`);
   };
+  const currentSelected = pathname.split("?")[0] === "/" + post.slug;
   return (
     <div
       key={post.id}

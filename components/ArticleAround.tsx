@@ -7,6 +7,7 @@ import {
   faAngleDoubleRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRouter } from "next/navigation";
 
 // 사전에 사용할 아이콘 추가
 library.add(faAngleDoubleLeft, faAngleDoubleRight);
@@ -20,25 +21,35 @@ export default function ArticleAround({ prev, next }) {
   if (!prev || !next) {
     return <></>;
   }
+  const router = useRouter();
+  const onClick = (slug: string) => {
+    router.push(`/${slug}`);
+  };
   return (
     <section className="text-neutral-800 dark:text-neutral-400 h-12 flex items-center justify-between space-x-5 my-4">
-      <Link
-        href={`/${prev.slug}`}
-        passHref
+      <div
+        // href={`/${prev.slug}`}
+        // passHref
+        onClick={(e) => {
+          onClick(prev.slug);
+        }}
         className="text-sm cursor-pointer justify-start items-center flex hover:underline duration-300"
       >
         <FontAwesomeIcon className="mr-1" icon={faAngleDoubleLeft} />
 
         {prev.title}
-      </Link>
-      <Link
-        href={`/${next.slug}`}
-        passHref
+      </div>
+      <div
+        // href={`/${next.slug}`}
+        // passHref
+        onClick={(e) => {
+          onClick(next.slug);
+        }}
         className="text-sm cursor-pointer justify-end items-center flex hover:underline duration-300"
       >
         {next.title}
         <FontAwesomeIcon className="mr-1 my-1 " icon={faAngleDoubleRight} />
-      </Link>
+      </div>
     </section>
   );
 }

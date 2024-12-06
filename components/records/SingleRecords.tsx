@@ -118,7 +118,7 @@ const SingleRecords = ({ props }) => {
               </div>
             </div>
             <span className="mx-1"> | </span>{" "}
-            <Link href="/records" passHref legacyBehavior>
+            <Link href="/" passHref legacyBehavior>
               <div className="flex flex-row">
                 <LazyImage
                   src={siteInfo?.icon}
