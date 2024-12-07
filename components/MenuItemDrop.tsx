@@ -8,7 +8,7 @@ import { useState } from "react";
 import { parseIcon } from "@/lib/utils/utils";
 
 export const MenuItemDrop = ({ link }) => {
-  console.log("link:::: ", link);
+  // console.log("link:::: ", link);
   const [show, changeShow] = useState(false);
   const pathname = usePathname();
 
@@ -74,14 +74,13 @@ export const MenuItemDrop = ({ link }) => {
   {
     /* 하위 메뉴 */
   }
-  const renderSubmenus = (submenus: any[]) => {
-    // console.log("submenus::", submenus)
-    // console.log("sLinksLink::", sLink);
+  const renderSubmenus = () => {
     return (
       <ul
         className={`${
           show ? "visible opacity-100 top-12 " : "invisible opacity-0 top-10 "
-        } border-neutral-100  bg-white  dark:bg-neutral-600 dark:border-neutral-800 transition-all duration-300 z-20 absolute block drop-shadow-lg rounded-lg dark:hover:text-[#ffffff]`}
+        } border-neutral-100  bg-white  dark:bg-neutral-600 dark:border-neutral-800 
+        transition-all duration-300 z-20 absolute block drop-shadow-lg rounded-lg dark:hover:text-[#ffffff]`}
       >
         {link?.subMenus?.map((sLink, index) => {
           const iconForRenderSubmenus = parseIcon(sLink.icon);
@@ -122,7 +121,7 @@ export const MenuItemDrop = ({ link }) => {
 
       {!hasSubMenu && renderMainMenusWithNoSubMenus()}
 
-      {hasSubMenu && renderSubmenus(link?.subMenus)}
+      {hasSubMenu && renderSubmenus()}
     </li>
   );
 };

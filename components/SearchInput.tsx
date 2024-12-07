@@ -6,18 +6,21 @@ import { useImperativeHandle, useRef, useState } from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/navigation";
 
 // 사전에 사용할 아이콘 추가
 library.add(faSearch, faTimes);
 
 let lock = false;
 
-const SearchInput = ({ currentSearch, cRef, className }) => {
+const SearchInput = ({ cRef, className }) => {
+  const [showClean, setShowClean] = useState(false);
+  const router = useRouter();
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { setFilteredNavPages, allNavPages, allNavPagesForGitBook } = useGlobal(
     { from: "index" }
   );
-
+  let keyword: string = "";
   useImperativeHandle(cRef, () => {
     return {
       focus: () => {
@@ -27,7 +30,6 @@ const SearchInput = ({ currentSearch, cRef, className }) => {
   });
 
   const handleSearch = () => {
-    let keyword: string = "";
     if (searchInputRef.current) {
       keyword = searchInputRef.current.value.trim();
     } else if (setFilteredNavPages && allNavPagesForGitBook) {
@@ -76,10 +78,9 @@ Enter key
       searchInputRef.current.value = "";
     }
 
-    handleSearch();
+    // handleSearch();
   };
 
-  const [showClean, setShowClean] = useState(false);
   const updateSearchKey = (val) => {
     if (lock) {
       return;
@@ -94,6 +95,7 @@ Enter key
       setShowClean(false);
     }
   };
+
   function lockSearchInput() {
     lock = true;
   }
@@ -113,7 +115,7 @@ Enter key
         onCompositionUpdate={lockSearchInput}
         onCompositionEnd={unLockSearchInput}
         onChange={(e) => updateSearchKey(e.target.value)}
-        defaultValue={currentSearch}
+        defaultValue={keyword}
       />
 
       <div

@@ -42,6 +42,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Suspense } from "react";
 import VConsoleTs from "@/components/shared/VConsoleTs";
+import AllNavRecordsList from "@/components/records/AllNavRecordsList";
 
 config.autoAddCss = false;
 // Various extensions, animations, etc.
@@ -150,15 +151,8 @@ export default async function RootLayout({
                       "font-sans hidden md:block w-3/12 h-screen border-r dark:border-transparent  z-10 "
                     }
                   >
-                    <div className="w-72 h-screen px-6 py-2 sticky top-0 overflow-y-scroll my-16  ">
-                      {/* {slotLeft} */}
-                      {/* <SearchInput  /> */}
-                      <div className="mb-20">
-                        {/* 모든 기사 목록 */}
-                        <NavPostList />
-                      </div>
-                    </div>
-
+                    {/* 검색 및 모든 기사 목록 */}
+                    <AllNavRecordsList />
                     <div className="w-72 fixed left-0 bottom-0 z-20 bg-white dark:bg-black">
                       <Footer />
                     </div>
