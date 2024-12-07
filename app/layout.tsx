@@ -35,7 +35,7 @@ import loadGlobalNotionData from "./api/load-globalNotionData";
 import Catalog from "@/components/Catalog";
 import LoadingCover from "@/components/LoadingCover";
 import Busuanzi from "@/components/shared/Busuanzi";
-import CustomContextMenu from "@/components/shared/CustomContextMenu";
+import RightClickMenu from "@/components/shared/RightClickMenu";
 import DebugPanel from "@/components/shared/DebugPanel";
 import DisableCopy from "@/components/shared/DisableCopy";
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -135,7 +135,7 @@ export default async function RootLayout({
               {!BLOG.CAN_COPY && <DisableCopy />}
               {BLOG.ANALYTICS_BUSUANZI_ENABLE && <Busuanzi />}
               {BLOG.CUSTOM_RIGHT_CLICK_CONTEXT_MENU && (
-                <CustomContextMenu props={Math.random()} />
+                <RightClickMenu props={Math.random()} />
               )}
               <VConsoleTs currentTime={now} />
               <Suspense fallback={<LoadingCover />}>

@@ -28,7 +28,7 @@ const DarkModeButton = (props) => {
         {isDarkMode ? (
           <CloudSun className=" text-amber-300 " />
         ) : (
-          <CloudMoon className="text-green-300" />
+          <CloudMoon className="text-amber-300" />
         )}
       </div>
     </div>
