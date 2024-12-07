@@ -14,7 +14,7 @@ import { useGlobal } from "@/lib/providers/globalProvider";
  */
 const NavPostList = (props) => {
   const { filteredNavPages } = useGlobal({ from: "index" });
-
+  const { searchKeyword, setSearchKeyword } = useGlobal({});
   const pathname = usePathname();
   let selectedSth = false;
   const groupedArray = filteredNavPages?.reduce((groups: any, item: any) => {
@@ -58,7 +58,7 @@ const NavPostList = (props) => {
   }
 
   if (!groupedArray || groupedArray.length === 0) {
-    return <NavPostListEmpty currentSearch="d" />;
+    return <NavPostListEmpty searchKeyword={searchKeyword} />;
   } else {
     return (
       <div id="posts-wrapper" className="w-full flex-grow ">

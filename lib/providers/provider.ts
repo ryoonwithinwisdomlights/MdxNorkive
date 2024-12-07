@@ -71,6 +71,8 @@ interface InitGlobalNotionData {
 interface GlobalValueInferface {
   onLoading: boolean;
   setOnLoading: Dispatch<SetStateAction<boolean>>;
+  searchKeyword: string;
+  setSearchKeyword: Dispatch<SetStateAction<string>>;
   locale: any;
   updateLocale: Dispatch<SetStateAction<string>>;
   isDarkMode: boolean;

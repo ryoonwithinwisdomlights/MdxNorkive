@@ -1,7 +1,7 @@
 "use client";
-import React, { useRef } from "react";
-import NavPostList from "./NavPostList";
+import { useRef } from "react";
 import SearchInput from "../SearchInput";
+import NavPostList from "./NavPostList";
 
 const AllNavRecordsList = () => {
   const cRef = useRef<HTMLInputElement>(null);

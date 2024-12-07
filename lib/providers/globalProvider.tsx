@@ -49,14 +49,7 @@ export function GlobalContextProvider({
     allNavPages,
     latestPosts,
   } = initGlobalNotionData;
-  // const router = useRouter();
-  // const pathname = usePathname();
-  /**
-   *   // on /dashboard/[team] where pathname is /dashboard/nextjs
-  const { team } = useParams() // team === "nextjs"
-   */
-  // const params = useParams();
-  // const searchParams = useSearchParams();
+
   const [lang, updateLang] = useState<string>(BLOG.LANG); // default language
   const [locale, updateLocale] = useState<string>(
     generateLocaleDict(BLOG.LANG)
@@ -65,11 +58,12 @@ export function GlobalContextProvider({
   const [isDarkMode, updateDarkMode] = useState<boolean>(
     BLOG.APPEARANCE === "dark"
   ); // Default dark mode
-  const [onLoading, setOnLoading] = useState<boolean>(false); // Fetch article data
+  const [onLoading, setOnLoading] = useState<boolean>(false);
+  const [searchKeyword, setSearchKeyword] = useState<string>(""); //
   const [filteredNavPages, setFilteredNavPages] = useState<AllNavPages[]>(
     allNavPagesForGitBook
-  );
-  // const [currentTime, setCurrentTime] = useState<number>(0);
+  ); // Fetch article data
+
   const showTocButton = post?.toc?.length > 1;
 
   useEffect(() => {
@@ -79,35 +73,7 @@ export function GlobalContextProvider({
   useEffect(() => {
     initLocale(lang, locale, updateLang, updateLocale);
     initDarkMode(updateDarkMode);
-    // const now = Date.now();
-    // setCurrentTime(now);
   }, []);
-
-  // useEffect(() => {
-  //   const handleStart = () => {
-  //     const url = `${pathname}?${searchParams}`;
-  //     const { theme } = params;
-  //     if (theme && !url.includes(`theme=${theme}`)) {
-  //       const newUrl = `${url}${url.includes("?") ? "&" : "?"}theme=${theme}`;
-  //       router.push(newUrl);
-  //     }
-  //     setOnLoading(true);
-  //   };
-  //   const handleStop = () => {
-  //     // NProgress.done();
-  //     setOnLoading(false);
-  //   };
-  //   const queryTheme = getQueryVariable("theme") || BLOG.THEME;
-  //   setTheme(queryTheme);
-  //   // router.events.on("routeChangeStart", handleStart);
-  //   // router.events.on("routeChangeError", handleStop);
-  //   // router.events.on("routeChangeComplete", handleStop);
-  //   return () => {
-  //     // router.events.off("routeChangeStart", handleStart);
-  //     // router.events.off("routeChangeComplete", handleStop);
-  //     // router.events.off("routeChangeError", handleStop);
-  //   };
-  // }, [router]);
 
   return (
     <GlobalContext.Provider
@@ -136,6 +102,8 @@ export function GlobalContextProvider({
         showTocButton,
         post,
         latestPosts,
+        searchKeyword,
+        setSearchKeyword,
         // currentTime,
       }}
     >

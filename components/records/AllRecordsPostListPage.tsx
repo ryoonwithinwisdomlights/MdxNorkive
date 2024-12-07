@@ -4,6 +4,7 @@ import AllRecordsPostCard from "./AllRecordsPostCard";
 import NavPostListEmpty from "./NavPostListEmpty";
 import PaginationSimple from "../PaginationSimple";
 import { useRouter } from "next/navigation";
+import { useGlobal } from "@/lib/providers/globalProvider";
 /**
  * Article list pagination table
  * @param page current page
@@ -14,10 +15,11 @@ import { useRouter } from "next/navigation";
  */
 const AllRecordsPostListPage = ({ page = 1, posts = [], postCount }) => {
   const router = useRouter();
+  const { searchKeyword, setSearchKeyword } = useGlobal({});
   const totalPage = Math.ceil(postCount / BLOG.POSTS_PER_PAGE);
 
   if (!posts || posts.length === 0) {
-    return <NavPostListEmpty currentSearch="d" />;
+    return <NavPostListEmpty searchKeyword={searchKeyword} />;
   }
   const historGoBack = () => {
     router.back();
