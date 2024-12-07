@@ -23,10 +23,6 @@ export default function AllRecordsArchiveItem({
   archiveRecords: [];
 }) {
   const router = useRouter();
-  //이동
-  const onClick = (recordId: string) => {
-    router.push(`/records/${recordId}`);
-  };
 
   return (
     <div key={archiveTitle}>
@@ -52,11 +48,8 @@ export default function AllRecordsArchiveItem({
               >
                 {post.pageIcon}
               </span>
-              <div
-                onClick={(e) => {
-                  onClick(post.id);
-                }}
-                // href={`${BLOG.SUB_PATH}/${post.slug}`}
+              <Link
+                href={`records/${post.id}`}
                 className="dark:text-neutral-400 hover:text-amber-400  dark:hover:text-amber-200 overflow-x-hidden hover:underline cursor-pointer text-neutral-600"
               >
                 {post.title}{" "}
@@ -70,7 +63,7 @@ export default function AllRecordsArchiveItem({
                     </>
                   )}
                 </span>
-              </div>
+              </Link>
             </div>
           </li>
         ))}
