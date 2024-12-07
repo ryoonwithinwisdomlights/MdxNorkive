@@ -1,16 +1,11 @@
 "use client"; // 클라이언트 컴포넌트
 import busuanzi from "@/lib/plugins/busuanzi";
+import { useParams, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useParams, usePathname, useSearchParams } from "next/navigation";
-import { useGlobal } from "@/lib/providers/globalProvider";
 
 export default function Busuanzi() {
-  const { theme } = useGlobal({ from: "index" });
   const pathname = usePathname();
   const params = useParams();
-  const [searchParams] = useSearchParams();
-
-  console.log("searchParams:", searchParams);
   const [currentUrl, setCurrentUrl] = useState("");
 
   useEffect(() => {

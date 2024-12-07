@@ -15,12 +15,11 @@ export default function LoadingCover() {
       }
     >
       <div className="w-full h-screen flex justify-center items-center">
+        Loading...
         <FontAwesomeIcon
-          className="text-2xl text-black dark:text-white animate-spin"
+          className="text-3xl text-black dark:text-white animate-spin"
           icon={faSpinner}
         />
-
-        {/* <i className="fa-solid fa-spinner text-2xl text-black dark:text-white animate-spin">  </i> */}
       </div>
     </div>
   );

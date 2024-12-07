@@ -6,7 +6,7 @@ import { isBrowser } from "@/lib/utils/utils";
 import dynamic from "next/dynamic";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-// import GiscusComponent from "./Giscus";
+import LoadingCover from "../LoadingCover";
 
 const GiscusComponent = dynamic(
   () => {
@@ -23,14 +23,16 @@ const GiscusComponent = dynamic(
 const Comment = (props) => {
   const { frontMatter } = props;
   const pathname = usePathname();
+  //sideproject/1341eb5c-0337-81ad-a46c-d94c8abcdada
+
   const [shouldLoad, setShouldLoad] = useState(false);
+  const { isDarkMode } = useGlobal({ from: "index" });
   const commentRef = useRef(null);
   const searchParams = useSearchParams();
-  const url = `${pathname}?${searchParams}`;
-  const { isDarkMode } = useGlobal({ from: "index" });
-  const theme = isDarkMode ? "dark" : "light";
+  const url = `${pathname}`;
 
-  console.log("CommentCommentCommentComment:", url);
+  const theme = isDarkMode ? "dark" : "light";
+  // console.log("themethemethemethemeL:", theme);
   useEffect(() => {
     // Check if the component is visible in the viewport
     const observer = new IntersectionObserver((entries) => {
@@ -52,10 +54,6 @@ const Comment = (props) => {
       }
     };
   }, [frontMatter]);
-  /**
-   *   const searchParams = useSearchParams()
-  searchParams.get('foo') // returns 'bar' when ?foo=bar
-   */
 
   // Jump to the comment area when there are special parameters in the connection
   if (
@@ -64,6 +62,7 @@ const Comment = (props) => {
   ) {
     setTimeout(() => {
       const newurl = url.replace("?target=comment", "");
+      console.log("newurlnewurl:", newurl);
       history.replaceState({}, "", newurl);
       document
         ?.getElementById("comment")
@@ -72,7 +71,7 @@ const Comment = (props) => {
   }
 
   if (!frontMatter) {
-    return <>Loading...</>;
+    return <LoadingCover />;
   }
 
   if (frontMatter?.comment === "Hide") {
@@ -89,8 +88,7 @@ const Comment = (props) => {
       {/* Lazy loading of comment area */}
       {!shouldLoad && (
         <div className="text-center">
-          Loading...
-          <i className="fas fa-spinner animate-spin text-3xl " />
+          <LoadingCover />
         </div>
       )}
       {shouldLoad && (

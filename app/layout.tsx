@@ -18,7 +18,6 @@ import { ThemeGitbookProvider } from "@/lib/providers/themeGitbookProvider";
 
 import Announcement from "@/components/Announcement";
 import ArticleInfo from "@/components/ArticleInfo";
-import BottomMenuBar from "@/components/BottomMenuBar";
 import FloatTocButton from "@/components/FloatTocButton";
 import Footer from "@/components/Footer";
 import InfoCard from "@/components/InfoCard";
@@ -34,21 +33,18 @@ import dynamic from "next/dynamic";
 import loadGlobalNotionData from "./api/load-globalNotionData";
 
 import Catalog from "@/components/Catalog";
-import PageLoader from "@/components/ui/page-loader";
+import LoadingCover from "@/components/LoadingCover";
+import Busuanzi from "@/components/shared/Busuanzi";
+import CustomContextMenu from "@/components/shared/CustomContextMenu";
+import DebugPanel from "@/components/shared/DebugPanel";
+import DisableCopy from "@/components/shared/DisableCopy";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Suspense } from "react";
-import DisableCopy from "@/components/shared/DisableCopy";
-import DebugPanel from "@/components/shared/DebugPanel";
-import CustomContextMenu from "@/components/shared/CustomContextMenu";
-import { siteConfig } from "@/lib/config";
-import Busuanzi from "@/components/shared/Busuanzi";
+import VConsoleTs from "@/components/shared/VConsoleTs";
 
 config.autoAddCss = false;
 // Various extensions, animations, etc.
-const ExternalPlugins = dynamic(
-  () => import("@/components/shared/ExternalPlugins")
-);
 
 export const viewport: Viewport = {
   // themeColor: "normal",
@@ -116,6 +112,7 @@ export default async function RootLayout({
 }) {
   const initGlobalNotionData: InitGlobalNotionData =
     await loadGlobalNotionData("index");
+  const now = Date.now();
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -128,25 +125,32 @@ export default async function RootLayout({
             <HandleOnComplete />
             <div
               id="gitbook"
-              className={`${BLOG.FONT_STYLE} bg-white w-full h-full min-h-screen justify-center dark:text-neutral-300 scroll-smooth pb-16 md:pb-0 dark:bg-black`}
+              className={`${BLOG.FONT_STYLE} bg-white w-full h-screen justify-center dark:text-neutral-300 scroll-smooth pb-16 md:pb-0 dark:bg-black`}
             >
               {/* 상단 네비게이션 바 */}
               <TopNavBar />
 
-              <Suspense fallback={<PageLoader />}>
+              {!BLOG.isProd && <DebugPanel />}
+              {!BLOG.CAN_COPY && <DisableCopy />}
+              {BLOG.ANALYTICS_BUSUANZI_ENABLE && <Busuanzi />}
+              {BLOG.CUSTOM_RIGHT_CLICK_CONTEXT_MENU && (
+                <CustomContextMenu props={Math.random()} />
+              )}
+              <VConsoleTs currentTime={now} />
+              <Suspense fallback={<LoadingCover />}>
                 <main
                   id="wrapper"
                   className={
-                    "relative flex justify-between w-full h-full mx-auto"
+                    "relative flex justify-between w-full h-screen mx-auto"
                   }
                 >
                   {/* 왼쪽 네브바 */}
                   <div
                     className={
-                      "font-sans hidden w-3/12  md:block border-r dark:border-transparent relative z-10 "
+                      "font-sans hidden md:block w-3/12 h-screen border-r dark:border-transparent  z-10 "
                     }
                   >
-                    <div className="w-72 px-6 py-2 sticky top-0 overflow-y-scroll my-16 h-screen ">
+                    <div className="w-72 h-screen px-6 py-2 sticky top-0 overflow-y-scroll my-16  ">
                       {/* {slotLeft} */}
                       {/* <SearchInput  /> */}
                       <div className="mb-20">
@@ -174,6 +178,8 @@ export default async function RootLayout({
                           {children}
                         </CustomedTransitonWrapper>
                         {/* Back button */}
+                        <JumpToTopButton />
+                        <JumpToBackButton />
                       </div>
                       {/* bottom */}
                       <div className="md:hidden mb:16">
@@ -203,21 +209,13 @@ export default async function RootLayout({
                 </main>
               </Suspense>
               <FloatTocButton />
-              <JumpToTopButton />
-              <JumpToBackButton />
+
               {/* 모바일 탐색 창 */}
               <PageNavDrawer />
 
               {/* 모바일 하단 탐색 메뉴 */}
-              <BottomMenuBar />
+              {/* <BottomMenuBar /> */}
             </div>
-
-            {!BLOG.isProd && <DebugPanel />}
-            {!BLOG.CAN_COPY && <DisableCopy />}
-            {BLOG.ANALYTICS_BUSUANZI_ENABLE && <Busuanzi />}
-            {BLOG.CUSTOM_RIGHT_CLICK_CONTEXT_MENU && (
-              <CustomContextMenu props={Math.random()} />
-            )}
           </ThemeGitbookProvider>
         </GlobalContextProvider>
       </body>

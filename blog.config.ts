@@ -167,9 +167,8 @@ export const BLOG = {
 
   // giscus @see https://giscus.app/
   COMMENT_GISCUS_REPOUSERNAME:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPOUSERNAME || "", // Your Github repository name e.g 'ryoonwithinwisdomlights/yeollam'
-  COMMENT_GISCUS_REPONAME:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPONAME || "", // Your Github repository name e.g 'ryoonwithinwisdomlights/yeollam'
+    process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPOUSERNAME, // Your Github repository name e.g 'ryoonwithinwisdomlights/yeollam'
+  COMMENT_GISCUS_REPONAME: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPONAME, // Your Github repository name e.g 'ryoonwithinwisdomlights/yeollam'
   COMMENT_GISCUS_REPO_ID: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPO_ID, // Your Github Repo ID e.g (you can see it after setting up giscus)
   COMMENT_GISCUS_CATEGORY:
     process.env.NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY || "General",
