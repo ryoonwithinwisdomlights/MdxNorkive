@@ -5,17 +5,16 @@ import { useEffect, useState } from "react";
 
 export default function Busuanzi() {
   const pathname = usePathname();
-  const params = useParams();
   const [currentUrl, setCurrentUrl] = useState("");
 
   useEffect(() => {
-    const newPath = `${pathname}/${params}`;
-    console.log("newPathnewPath:", newPath);
-    if (newPath !== currentUrl) {
-      setCurrentUrl(newPath);
+    // const newPath = `${pathname}/${params}`;
+    console.log("newPathnewPath:", pathname);
+    if (pathname !== currentUrl) {
+      setCurrentUrl(pathname);
       busuanzi.fetch();
     }
-  }, [pathname, params]); // pathname 또는 search가 변경될 때마다 useEffect를 트리거합니다.
+  }, [pathname]); // pathname 또는 search가 변경될 때마다 useEffect를 트리거합니다.
   //  const shareUrl = BLOG.LINK + `${pathname}?${params}`;
   return null;
 }

@@ -169,7 +169,7 @@ const SingleRecords = ({ props }) => {
               <Comment frontMatter={post} />
             </section>
           )}
-          <CatalogDrawerWrapper post={post} />
+          {post?.toc && <CatalogDrawerWrapper post={post} />}
         </div>
       )}
     </>

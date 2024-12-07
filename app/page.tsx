@@ -21,42 +21,28 @@ export default async function Page() {
         </div>
       </div>
       <div className="w-full flex flex-row ">
-        <div className="w-2/5 mt-20 text-right ml-4 md:mr-10 dark:text-neutral-200 text-neutral-700 flex flex-col ">
-          <div className="text-left mr-10 dark:text-neutral-200 text-neutral-700 flex flex-col gap-72  ">
+        <div className="w-2/5 mt-16 text-right ml-4 md:mr-10 dark:text-neutral-200 text-neutral-700 flex flex-col ">
+          <div className="text-left mr-10 dark:text-neutral-200 text-neutral-700 flex flex-col gap-36   ">
             <div className="font-bold text-center items-center  text-orange-500">
               👩‍💻
-              <br />
-              배움.
             </div>
-            {/* <div className=" font-bold  text-center items-center text-red-500">
-            {" "}
-            📙
-            <br />
-            일기.
-          </div>
-          <div className=" font-bold text-center items-center  text-amber-500 ">
-            {" "}
-            📔
-            <br />
-            글.
-          </div>
-          <div className=" font-bold text-center items-center  text-amber-900 dark:text-stone-300">
-            📝
-            <br /> 책.
-          </div>
-          <div className=" font-bold  text-center items-center text-amber-400">
-            💡
-            <br />
-            영감.
-          </div>
-          <div className=" font-bold  text-center items-center text-orange-400">
-            🎨
-            <br />
-            나눔.
-          </div> */}
+            <div className=" font-bold  text-center items-center text-red-500">
+              📙
+            </div>
+            <div className=" font-bold text-center items-center  text-amber-500 ">
+              📔
+            </div>
+            <div className=" font-bold text-center items-center  text-amber-900 dark:text-stone-300">
+              📝
+            </div>
+            <div className=" font-bold  text-center items-center text-amber-400">
+              💡
+            </div>
+            <div className=" font-bold  text-center items-center text-orange-400">
+              🎨
+            </div>
             <div className=" font-bold  text-center items-center text-amber-900 dark:text-stone-200 ">
               🌳
-              <br /> 사유.
             </div>
             <div className="  text-stone-600 font-extralight text-center items-center dark:text-neutral-200  ">
               로 <br />
