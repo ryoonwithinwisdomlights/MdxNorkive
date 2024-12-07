@@ -38,6 +38,10 @@ import PageLoader from "@/components/ui/page-loader";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Suspense } from "react";
+import DisableCopy from "@/components/shared/DisableCopy";
+import DebugPanel from "@/components/shared/DebugPanel";
+import CustomContextMenu from "@/components/shared/CustomContextMenu";
+import { siteConfig } from "@/lib/config";
 
 config.autoAddCss = false;
 // Various extensions, animations, etc.
@@ -56,8 +60,8 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("http://localhost:3000"),
-  title: "Yeollamsil",
-  description: BLOG.DESCRIPTION, //"The GitBook-themed Archiving records blog",
+  title: BLOG.TITLE as string,
+  description: BLOG.DESCRIPTION as string, //"The GitBook-themed Archiving records blog",
   applicationName: "Yeollamsil",
   authors: {
     url: BLOG.LINK,
@@ -206,7 +210,12 @@ export default async function RootLayout({
               {/* 모바일 하단 탐색 메뉴 */}
               <BottomMenuBar />
             </div>
-            <ExternalPlugins props={Math.random()} />
+
+            {!BLOG.isProd && <DebugPanel />}
+            {!BLOG.CAN_COPY && <DisableCopy />}
+            {BLOG.CUSTOM_RIGHT_CLICK_CONTEXT_MENU && (
+              <CustomContextMenu props={Math.random()} />
+            )}
           </ThemeGitbookProvider>
         </GlobalContextProvider>
       </body>

@@ -9,6 +9,20 @@ type AppType = {
   type: string;
 };
 
+export function convertUrlStartWithOneSlash(str) {
+  if (!str) {
+    return "#";
+  }
+  // Determine whether the url ends with / beginning
+  if (!str.startsWith("/")) {
+    // If not, splice one in front /
+    str = "/" + str;
+  }
+  // Remove multiple consecutive slashes at the beginning, leaving only one
+  str = str.replace(/\/+/g, "/");
+  return str;
+}
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }

@@ -1,6 +1,4 @@
 "use client";
-import { BLOG } from "@/blog.config";
-import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 const AllRecordsPostCard = ({ post, className }) => {

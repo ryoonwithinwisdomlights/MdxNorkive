@@ -6,7 +6,7 @@ import { useEffect, useState, useRef, useLayoutEffect } from "react";
 import { useGlobal } from "@/lib/providers/globalProvider";
 import { saveDarkModeToCookies } from "@/lib/utils/theme";
 import { BLOG } from "@/blog.config";
-import useWindowSize from "@/hooks/useWindowSize";
+import useWindowSize from "@/lib/hooks/useWindowSize";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -74,16 +74,19 @@ export default function CustomContextMenu(props: any) {
     const handleContextMenu = (event) => {
       event.preventDefault();
       // Calculate whether the click position plus menu width and height exceed the screen. If it exceeds, the edge will pop up.
-      const x =
-        event.clientX < windowSize.width - width
-          ? event.clientX
-          : windowSize.width - width;
-      const y =
-        event.clientY < windowSize.height - height
-          ? event.clientY
-          : windowSize.height - height;
-      setPosition({ y: `${y}px`, x: `${x}px` });
-      setShow(true);
+
+      if (windowSize.width !== undefined && windowSize.height) {
+        const x =
+          event.clientX < windowSize.width - width
+            ? event.clientX
+            : windowSize.width - width;
+        const y =
+          event.clientY < windowSize.height - height
+            ? event.clientY
+            : windowSize.height - height;
+        setPosition({ y: `${y}px`, x: `${x}px` });
+        setShow(true);
+      }
     };
 
     const handleClick = (event) => {

@@ -223,6 +223,7 @@ interface GlobalValueInferface {
   notice: any;
   post: any;
   latestPosts: [];
+  currentTime: number;
 }
 export type {
   ChangeFrequency,

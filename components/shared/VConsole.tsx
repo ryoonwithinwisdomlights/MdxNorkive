@@ -1,7 +1,7 @@
 "use client";
+import { useGlobal } from "@/lib/providers/globalProvider";
 import { useEffect, useRef, useState } from "react";
 import vConsole from "vconsole";
-// import { VConsoleOptions } from "vconsole/dist/vconsole.min.js";
 
 interface VConsoleOptions {
   target?: string | HTMLElement;
@@ -12,26 +12,25 @@ interface VConsoleOptions {
   onReady?: () => void;
   onClearLog?: () => void;
 }
+
+const config: VConsoleOptions = {
+  onReady: () => {
+    const button = document.querySelector(".vc-switch") as HTMLElement;
+    button.style.position = "fixed";
+    button.style.bottom = "200px";
+  },
+};
+
 const VConsole = () => {
-  const [currentTime, setCurrentTime] = useState(0);
+  const { currentTime } = useGlobal({});
   const clickCountRef = useRef<number>(0); // The number of clicks
   const lastClickTimeRef = useRef<number>(0); // Last click timestamp
   const timerRef = useRef<NodeJS.Timeout>(); // timer reference
-  const config: VConsoleOptions = {
-    onReady: () => {
-      const button = document.querySelector(".vc-switch") as HTMLElement;
-      button.style.position = "fixed";
-      button.style.bottom = "200px";
-    },
-  };
 
-  const loadVConsole = () => {
+  const loadVConsoleHandler = () => {
     return new vConsole(config);
   };
-  useEffect(() => {
-    const now = Date.now();
-    setCurrentTime(now);
-  }, []);
+
   useEffect(() => {
     const clickListener = (event: MouseEvent) => {
       // Only listen to click events within 100x100 pixels in the center of the window
@@ -54,7 +53,7 @@ const VConsole = () => {
           currentTime - lastClickTimeRef.current < 1000 &&
           clickCountRef.current + 1 === 8
         ) {
-          loadVConsole();
+          loadVConsoleHandler();
           clickCountRef.current = 0; // reset counter
           clearTimeout(timerRef.current); // clear timer
           window.removeEventListener("click", clickListener);

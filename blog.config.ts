@@ -8,7 +8,6 @@ export const BLOG = {
   APPEARANCE: process.env.NEXT_PUBLIC_APPEARANCE || "light",
   APPEARANCE_DARK_TIME: process.env.NEXT_PUBLIC_APPEARANCE_DARK_TIME || [18, 6], // 야간 모드 시작 시간, 시간에 따라 야간 모드 자동 전환을 비활성화하려면 false입니다.
   SINCE: process.env.NEXT_PUBLIC_SINCE || 2024, // e.g if leave this empty, current year will be used.
-
   TAG_SORT_BY_COUNT: true, // Whether the tags are sorted in descending order by the number of articles, with tags with more articles ranked first.
   IS_TAG_COLOR_DISTINGUISHED:
     process.env.NEXT_PUBLIC_IS_TAG_COLOR_DISTINGUISHED === "true" || true,
@@ -89,9 +88,9 @@ export const BLOG = {
   // font-awesome Font icon address; optional /css/all.min.css ， https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/6.0.0/css/all.min.css
   // END ************website font*****************
 
-  CAN_COPY: process.env.NEXT_PUBLIC_CAN_COPY || true, // Whether to allow copying of page content is allowed by default. If set to false, copying of content is prohibited in the entire stack.
+  CAN_COPY: process.env.NEXT_PUBLIC_CAN_COPY, //|| true, // Whether to allow copying of page content is allowed by default. If set to false, copying of content is prohibited in the entire stack.
   CUSTOM_RIGHT_CLICK_CONTEXT_MENU:
-    process.env.NEXT_PUBLIC_CUSTOM_RIGHT_CLICK_CONTEXT_MENU || true, // Customize the right-click menu and override the system menu
+    process.env.NEXT_PUBLIC_CUSTOM_RIGHT_CLICK_CONTEXT_MENU, //|| true, // Customize the right-click menu and override the system menu
 
   // Custom external scripts, external style
   CUSTOM_EXTERNAL_JS: [""], // e.g. ['http://xx.com/script.js','http://xx.com/script.js']
@@ -238,10 +237,12 @@ export const BLOG = {
 
   // Obsolete configuration
   AVATAR: process.env.NEXT_PUBLIC_AVATAR || "/images/rwwt_lemon.svg", // The author's avatar is covered by the ICON in the notice. If there is no ICON, take avatar.png in the public directory.
-  TITLE: process.env.NEXT_PUBLIC_TITLE || "R.W.W.Blog", // Click title, which will be covered by the page title in the notice; please do not leave a blank here, otherwise the server will not be able to compile
+  TITLE: process.env.NEXT_PUBLIC_TITLE || "Yeollamsil", // Click title, which will be covered by the page title in the notice; please do not leave a blank here, otherwise the server will not be able to compile
   HOME_BANNER_IMAGE:
     process.env.NEXT_PUBLIC_HOME_BANNER_IMAGE || "/images/bg_image.png", // The home page background image will be covered by the cover image in the notice. If there is no cover image, the /public/bg_image.jpg file in the code will be used.
-  DESCRIPTION: process.env.NEXT_PUBLIC_DESCRIPTION || "R.W.W.Blog", // Site description, overridden by the page description in the notice
+  DESCRIPTION:
+    process.env.NEXT_PUBLIC_DESCRIPTION ||
+    "Yeollamsil - notion based static Blog for your every Records", // Site description, overridden by the page description in the notice
 
   // ANIMATE.css
   ANIMATE_CSS_URL:

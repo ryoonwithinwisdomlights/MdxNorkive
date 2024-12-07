@@ -69,7 +69,7 @@ export function GlobalContextProvider({
   const [filteredNavPages, setFilteredNavPages] = useState<AllNavPages[]>(
     allNavPagesForGitBook
   );
-
+  const [currentTime, setCurrentTime] = useState<number>(0);
   const showTocButton = post?.toc?.length > 1;
 
   useEffect(() => {
@@ -79,6 +79,8 @@ export function GlobalContextProvider({
   useEffect(() => {
     initLocale(lang, locale, updateLang, updateLocale);
     initDarkMode(updateDarkMode);
+    const now = Date.now();
+    setCurrentTime(now);
   }, []);
 
   // useEffect(() => {
@@ -134,6 +136,7 @@ export function GlobalContextProvider({
         showTocButton,
         post,
         latestPosts,
+        currentTime,
       }}
     >
       {children}
