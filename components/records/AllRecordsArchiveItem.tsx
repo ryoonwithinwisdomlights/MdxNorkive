@@ -54,7 +54,7 @@ export default function AllRecordsArchiveItem({
               </span>
               <div
                 onClick={(e) => {
-                  onClick(post.slug);
+                  onClick(post.id);
                 }}
                 // href={`${BLOG.SUB_PATH}/${post.slug}`}
                 className="dark:text-neutral-400 hover:text-amber-400  dark:hover:text-amber-200 overflow-x-hidden hover:underline cursor-pointer text-neutral-600"

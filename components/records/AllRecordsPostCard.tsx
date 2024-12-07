@@ -5,40 +5,27 @@ import { usePathname, useRouter } from "next/navigation";
 const AllRecordsPostCard = ({ post, className }) => {
   const pathname = usePathname();
   const router = useRouter();
-  const onClick = (recordId: string) => {
-    router.push(`/records/${recordId}`);
-  };
-  //const currentSelected = pathname;
-  const currentSelected = pathname.split("?")[0] === "/" + post.slug;
-  // console.log("pathname:::", pathname);
-  // console.log("post.slug;:::", post.slug);
+
+  const currentSelected = pathname.split("/")[2] === post.id;
+  // console.log("currentSelected 1", pathname.split("/")[2]);
+  // console.log("currentSelected 2", post.id);
+
   return (
-    <Link
-      href={`/records/${post.id}`}
+    <div
       key={post.id}
-      onMouseMove={(e) => {
-        console.log("pathname:::", pathname);
-        console.log("post.slug;:::", post.slug);
-        console.log("post.id;:::", post.id);
-      }}
       className={`${className} py-1 cursor-pointer px-2 hover:bg-neutral-100 rounded-md dark:hover:bg-neutral-500  ${
-        currentSelected ? "bg-yellow-50 text-yellow-500" : ""
+        currentSelected ? " text-yellow-500" : ""
       }`}
     >
       <div className="flex flex-col w-full select-none">
-        <div
-        // onClick={(e) => {
-        //   alert(`post.id:${post.id} `);
-        //   onClick(post.id);
-        // }}
-        >
+        <Link href={`/records/${post.id}`} passHref>
           <span className="text-xs pr-1">{post.pageIcon} </span>{" "}
           {post.title.length > 25
             ? post.title.substr(0, 25) + "..."
             : post.title}
-        </div>
+        </Link>
       </div>
-    </Link>
+    </div>
   );
 };
 
