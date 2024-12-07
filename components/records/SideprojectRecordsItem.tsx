@@ -1,7 +1,6 @@
 "use client";
 /* eslint-disable no-unused-vars */
 import LazyImage from "@/components/shared/LazyImage";
-import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { SideprojectRecordsCardInfo } from "./SideprojectRecordsCardInfo";
 
@@ -13,17 +12,10 @@ export default function SideprojectRecordsItem({
 }) {
   const showPreview = false;
   const showPageCover = pPosts?.pageCoverThumbnail;
-  // console.log("pPosts.slug: ", pPosts.slug);
   const router = useRouter();
-  // const pathname = usePathname();
-  // const url = `${pathname}/${pPosts.slug}`;
-  const url = pPosts.slug.split("/");
-  const modUrl = `/${url[1]}/${pPosts.id}`;
 
   //이동
   const onClick = (recordId: string) => {
-    // console.log("modUrl", modUrl);
-    // router.push(modUrl);
     router.push(`/sideproject/${recordId}`);
   };
 

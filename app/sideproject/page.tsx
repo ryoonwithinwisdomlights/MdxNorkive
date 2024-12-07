@@ -27,15 +27,15 @@ export default async function Page() {
             </div>
           </div>
           <div className="text-3xl font-bold dark:text-neutral-100 text-right text-neutral-900 ">
-            <p className="text-orange-500 p-0 m-0 text-left align-text-top  ">
+            <div className="text-orange-500 p-0 m-0 text-left align-text-top  ">
               .{""}
-            </p>
+            </div>
             ✂️ Side
             <br />
             Project
-            <p className="text-orange-500 p-0 m-0 text-right align-text-bottom ">
+            <div className="text-orange-500 p-0 m-0 text-right align-text-bottom ">
               .
-            </p>
+            </div>
           </div>
         </div>
         <div className="space-y-6 px-2">

@@ -6,26 +6,25 @@ import LazyImage from "@/components/shared/LazyImage";
 import NotionIcon from "@/components/shared/NotionIcon";
 import NotionPage from "@/components/shared/NotionPage";
 import ShareBar from "@/components/shared/ShareBar";
-import { isBrowser } from "@/lib/utils/utils";
-import { useMediaQuery } from "usehooks-ts";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faCalendar,
+  faCalendarCheck,
+  faChevronLeft,
+  faEye,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import md5 from "js-md5";
 import Link from "next/link";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { getPageTableOfContents } from "notion-utils";
 import { useEffect, useState } from "react";
+import { useMediaQuery } from "usehooks-ts";
 import ArticleAround from "../ArticleAround";
 import { ArticleLock } from "../ArticleLock";
-import CatalogDrawerWrapper from "../wrapper/CatalogDrawerWrapper";
 import CategoryItem from "../CategoryItem";
 import TagItemMini from "../TagItemMini";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronLeft,
-  faEye,
-  faCalendar,
-  faCalendarCheck,
-} from "@fortawesome/free-solid-svg-icons";
+import CatalogDrawerWrapper from "../wrapper/CatalogDrawerWrapper";
 // 사전에 사용할 아이콘 추가
 library.add(faChevronLeft);
 

@@ -32,7 +32,6 @@ const SearchInput = ({ cRef, className }) => {
 
   const handleSearch = () => {
     if (searchInputRef?.current) {
-      // keyword = searchInputRef.current.value.trim();
       setSearchKeyword(searchInputRef.current.value.trim());
     } else if (setFilteredNavPages && allNavPagesForGitBook) {
       // undefined가 아닌 경우에만 실행

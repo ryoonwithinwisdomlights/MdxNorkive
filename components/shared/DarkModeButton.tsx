@@ -4,7 +4,7 @@
 // import { CloudMoon, CloudSun } from "@/lib/Icon";
 
 import { useGlobal } from "@/lib/providers/globalProvider";
-import { saveDarkModeToCookies } from "@/lib/utils/theme";
+import { saveDarkModeToLocalStorage } from "@/lib/utils/theme";
 import { CloudMoon, CloudSun } from "lucide-react";
 
 /**
@@ -12,28 +12,7 @@ import { CloudMoon, CloudSun } from "lucide-react";
  */
 const DarkModeButton = (props) => {
   const { className } = props;
-  const { isDarkMode, updateDarkMode } = useGlobal({ from: "index" });
-
-  /**
-   * External exposure method
-   */
-  // useImperativeHandle(cRef, () => {
-  //   return {
-  //     handleChangeDarkMode: () => {
-  //       handleChangeDarkMode();
-  //     },
-  //   };
-  // });
-
-  // User sets theme manually
-  const handleChangeDarkMode = () => {
-    const newStatus = !isDarkMode;
-    saveDarkModeToCookies(newStatus);
-    updateDarkMode(newStatus);
-    const htmlElement = document.getElementsByTagName("html")[0];
-    htmlElement.classList?.remove(newStatus ? "light" : "dark");
-    htmlElement.classList?.add(newStatus ? "dark" : "light");
-  };
+  const { isDarkMode, handleChangeDarkMode } = useGlobal({ from: "index" });
 
   return (
     <div
@@ -46,7 +25,11 @@ const DarkModeButton = (props) => {
         id="darkModeButton"
         className=" hover:scale-110 cursor-pointer transform duration-200 w-5 h-5"
       >
-        {isDarkMode ? <CloudSun /> : <CloudMoon />}
+        {isDarkMode ? (
+          <CloudSun className=" text-amber-300 " />
+        ) : (
+          <CloudMoon className="text-green-300" />
+        )}
       </div>
     </div>
   );

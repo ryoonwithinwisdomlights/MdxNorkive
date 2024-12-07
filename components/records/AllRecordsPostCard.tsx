@@ -9,7 +9,6 @@ const AllRecordsPostCard = ({ post, className }) => {
   const currentSelected = pathname.split("/")[2] === post.id;
   // console.log("currentSelected 1", pathname.split("/")[2]);
   // console.log("currentSelected 2", post.id);
-
   return (
     <div
       key={post.id}

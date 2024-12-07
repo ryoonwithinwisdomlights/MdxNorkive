@@ -8,7 +8,6 @@ import { useState } from "react";
 import { parseIcon } from "@/lib/utils/utils";
 
 export const MenuItemDrop = ({ link }) => {
-  // console.log("link:::: ", link);
   const [show, changeShow] = useState(false);
   const pathname = usePathname();
 
@@ -16,7 +15,6 @@ export const MenuItemDrop = ({ link }) => {
     return null;
   }
   const hasSubMenu = link?.subMenus?.length > 0;
-  // const selected = pathname === link.to;
   const selected = pathname === link.to;
   console.log(
     "pathname:",

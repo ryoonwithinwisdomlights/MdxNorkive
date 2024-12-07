@@ -8,13 +8,11 @@ export default function Busuanzi() {
   const [currentUrl, setCurrentUrl] = useState("");
 
   useEffect(() => {
-    // const newPath = `${pathname}/${params}`;
-    console.log("newPathnewPath:", pathname);
+    // console.log("newPathnewPath:", pathname);
     if (pathname !== currentUrl) {
       setCurrentUrl(pathname);
       busuanzi.fetch();
     }
   }, [pathname]); // pathname 또는 search가 변경될 때마다 useEffect를 트리거합니다.
-  //  const shareUrl = BLOG.LINK + `${pathname}?${params}`;
   return null;
 }

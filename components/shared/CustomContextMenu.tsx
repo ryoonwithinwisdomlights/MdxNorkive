@@ -1,27 +1,26 @@
 "use client"; // 클라이언트 컴포넌트
 /* eslint-disable multiline-ternary */
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useState, useRef, useLayoutEffect } from "react";
-import { useGlobal } from "@/lib/providers/globalProvider";
-import { saveDarkModeToCookies } from "@/lib/utils/theme";
 import { BLOG } from "@/blog.config";
 import useWindowSize from "@/lib/hooks/useWindowSize";
+import { useGlobal } from "@/lib/providers/globalProvider";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBullhorn,
-  faRotateRight,
-  faArrowUp,
   faArrowLeft,
   faArrowRight,
+  faArrowUp,
+  faArrowUpRightFromSquare,
+  faBullhorn,
+  faCloudMoon,
+  faCloudSun,
   faPodcast,
+  faRotateRight,
   faSquareMinus,
   faTag,
-  faArrowUpRightFromSquare,
-  faCloudSun,
-  faCloudMoon,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 // 사전에 사용할 아이콘 추가
 library.add(
@@ -46,13 +45,14 @@ export default function CustomContextMenu(props: any) {
   const { latestPosts } = useGlobal({ from: "index" });
   const [position, setPosition] = useState({ x: "0px", y: "0px" });
   const [show, setShow] = useState(false);
-  const { isDarkMode, updateDarkMode, locale } = useGlobal({ from: "index" });
+  const { isDarkMode, locale, handleChangeDarkMode } = useGlobal({
+    from: "index",
+  });
   const menuRef = useRef<HTMLDivElement>(null);
   const windowSize = useWindowSize();
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
 
-  // const { latestPosts } = props;
   const router = useRouter();
   /**
    * Randomly jump to articles
@@ -142,15 +142,6 @@ export default function CustomContextMenu(props: any) {
     }
   }
 
-  function handleChangeDarkMode() {
-    const newStatus = !isDarkMode;
-    saveDarkModeToCookies(newStatus);
-    updateDarkMode(newStatus);
-    const htmlElement = document.getElementsByTagName("html")[0];
-    htmlElement.classList?.remove(newStatus ? "light" : "dark");
-    htmlElement.classList?.add(newStatus ? "dark" : "light");
-  }
-
   return (
     <div
       ref={menuRef}
@@ -168,37 +159,24 @@ export default function CustomContextMenu(props: any) {
             icon={faArrowLeft}
             onClick={handleBack}
           />
-          {/* <i
-            onClick={handleBack}
-            className="hover:bg-lime-600 hover:text-white px-2 py-2 text-center w-8 rounded cursor-pointer fa-solid fa-arrow-left"
-          ></i> */}
+
           <FontAwesomeIcon
             className="hover:bg-lime-600 hover:text-white px-2 py-2 text-center w-8 rounded cursor-pointer"
             icon={faArrowRight}
             onClick={handleForward}
           />
-          {/* <i
-            onClick={handleForward}
-            className="hover:bg-lime-600 hover:text-white px-2 py-2 text-center w-8 rounded cursor-pointer fa-solid fa-arrow-right"
-          ></i> */}
+
           <FontAwesomeIcon
             className="hover:bg-lime-600 hover:text-white px-2 py-2 text-center w-8 rounded cursor-pointer"
             icon={faRotateRight}
             onClick={handleRefresh}
           />
-          {/* <i
-            onClick={handleRefresh}
-            className="hover:bg-lime-600 hover:text-white px-2 py-2 text-center w-8 rounded cursor-pointer fa-solid fa-rotate-right"
-          ></i> */}
+
           <FontAwesomeIcon
             className="hover:bg-lime-600 hover:text-white px-2 py-2 text-center w-8 rounded cursor-pointer"
             icon={faArrowUp}
             onClick={handleScrollTop}
           />
-          {/* <i
-            onClick={handleScrollTop}
-            className="hover:bg-lime-600 hover:text-white px-2 py-2 text-center w-8 rounded cursor-pointer fa-solid fa-arrow-up"
-          ></i> */}
         </div>
 
         <hr className="my-2 border-dashed" />
@@ -211,7 +189,6 @@ export default function CustomContextMenu(props: any) {
             className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:bg-lime-600 hover:text-white rounded-lg duration-200 transition-all"
           >
             <FontAwesomeIcon className="mr-2" icon={faPodcast} />
-            {/* <i className="fa-solid fa-podcast mr-2" /> */}
             <div className="whitespace-nowrap">{locale.MENU.WALK_AROUND}</div>
           </div>
 
@@ -221,7 +198,7 @@ export default function CustomContextMenu(props: any) {
             className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:bg-lime-600 hover:text-white rounded-lg duration-200 transition-all"
           >
             <FontAwesomeIcon className="mr-2" icon={faSquareMinus} />
-            {/* <i className="fa-solid fa-square-minus mr-2" /> */}
+
             <div className="whitespace-nowrap">{locale.MENU.CATEGORY}</div>
           </Link>
 
@@ -231,7 +208,7 @@ export default function CustomContextMenu(props: any) {
             className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:bg-lime-600 hover:text-white rounded-lg duration-200 transition-all"
           >
             <FontAwesomeIcon className="mr-2" icon={faTag} />
-            {/* <i className="fa-solid fa-tag mr-2" /> */}
+
             <div className="whitespace-nowrap">{locale.MENU.TAGS}</div>
           </Link>
         </div>
@@ -246,7 +223,7 @@ export default function CustomContextMenu(props: any) {
             className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:bg-lime-600 hover:text-white rounded-lg duration-200 transition-all"
           >
             <FontAwesomeIcon className="mr-2" icon={faArrowUpRightFromSquare} />
-            {/* <i className="fa-solid fa-arrow-up-right-from-square mr-2" /> */}
+
             <div className="whitespace-nowrap">{locale.MENU.COPY_URL}</div>
           </div>
 
@@ -258,12 +235,9 @@ export default function CustomContextMenu(props: any) {
             {isDarkMode ? (
               <FontAwesomeIcon className="mr-2" icon={faCloudSun} />
             ) : (
-              // <i className="fa-solid fa-cloud-sun mr-2" />
               <FontAwesomeIcon className="mr-2" icon={faCloudMoon} />
-              // <i className="fa-solid fa-cloud-moon mr-2" />
             )}
             <div className="whitespace-nowrap">
-              {" "}
               {isDarkMode ? locale.MENU.LIGHT_MODE : locale.MENU.DARK_MODE}
             </div>
           </div>

@@ -1,7 +1,7 @@
 "use client";
 import { BLOG } from "@/blog.config";
 import { generateLocaleDict, initLocale } from "@/lib/lang";
-import { initDarkMode } from "@/lib/utils/theme";
+import { initDarkMode, saveDarkModeToLocalStorage } from "@/lib/utils/theme";
 import NextNProgress from "nextjs-progressbar";
 
 import {
@@ -66,6 +66,15 @@ export function GlobalContextProvider({
 
   const showTocButton = post?.toc?.length > 1;
 
+  const handleChangeDarkMode = () => {
+    const newStatus = !isDarkMode;
+    saveDarkModeToLocalStorage(newStatus);
+    updateDarkMode(newStatus);
+    const htmlElement = document.getElementsByTagName("html")[0];
+    htmlElement.classList?.remove(newStatus ? "light" : "dark");
+    htmlElement.classList?.add(newStatus ? "dark" : "light");
+  };
+
   useEffect(() => {
     setFilteredNavPages(allNavPagesForGitBook);
   }, [post]);
@@ -104,7 +113,7 @@ export function GlobalContextProvider({
         latestPosts,
         searchKeyword,
         setSearchKeyword,
-        // currentTime,
+        handleChangeDarkMode,
       }}
     >
       {children}

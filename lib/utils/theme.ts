@@ -1,5 +1,4 @@
 import { BLOG } from "@/blog.config";
-import cookie from "react-cookies";
 import { getQueryVariable } from "./utils";
 
 /**
@@ -12,10 +11,11 @@ export const initDarkMode = (updateDarkMode) => {
   // Check if the user's device browser is in dark mode
   let newDarkMode = isPreferDark();
 
-  // Check whether the user forces dark mode in the cookie
-  const cookieDarkMode = loadDarkModeFromCookies();
-  if (cookieDarkMode) {
-    newDarkMode = JSON.parse(cookieDarkMode);
+  // Check whether the user record in localStorage is in dark mode
+  const userDarkMode = loadDarkModeFromLocalStorage();
+  if (userDarkMode) {
+    newDarkMode = userDarkMode === "dark" || userDarkMode === "true";
+    saveDarkModeToLocalStorage(newDarkMode); //  Only saved manually by the user
   }
 
   // Whether the dark mode is in the url query condition
@@ -25,7 +25,7 @@ export const initDarkMode = (updateDarkMode) => {
   }
 
   updateDarkMode(newDarkMode);
-  saveDarkModeToCookies(newDarkMode);
+  // saveDarkModeToCookies(newDarkMode);
   document
     .getElementsByTagName("html")[0]
     .setAttribute("class", newDarkMode ? "dark" : "light");
@@ -59,30 +59,22 @@ export function isPreferDark() {
  * Read dark mode
  * @returns {*}
  */
-export const loadDarkModeFromCookies = () => {
-  return cookie.load("darkMode");
+export const loadDarkModeFromLocalStorage = () => {
+  return localStorage.getItem("darkMode");
 };
 
 /**
  * Save dark mode
  * @param newTheme
  */
-export const saveDarkModeToCookies = (newTheme) => {
-  cookie.save("darkMode", newTheme, { path: "/" });
+export const saveDarkModeToLocalStorage = (newTheme) => {
+  localStorage.setItem("darkMode", newTheme);
 };
 
-/**
- * Read default theme
- * @returns {*}
- */
-export const loadThemeFromCookies = () => {
-  return cookie.load("theme");
-};
+// export const loadDarkModeFromCookies = () => {
+//   return cookie.load("darkMode");
+// };
 
-/**
- * Save default theme
- * @param newTheme
- */
-export const saveThemeToCookies = (newTheme) => {
-  cookie.save("theme", newTheme, { path: "/" });
-};
+// export const saveDarkModeToCookies = (newTheme) => {
+//   cookie.save("darkMode", newTheme, { path: "/" });
+// };

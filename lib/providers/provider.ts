@@ -95,6 +95,7 @@ interface GlobalValueInferface {
   notice: any;
   post: any;
   latestPosts: [];
+  handleChangeDarkMode: () => void;
 }
 export type {
   ChangeFrequency,
