@@ -30,6 +30,7 @@ const Comment = (props) => {
   const { isDarkMode } = useGlobal({ from: "index" });
   const theme = isDarkMode ? "dark" : "light";
 
+  console.log("CommentCommentCommentComment:", url);
   useEffect(() => {
     // Check if the component is visible in the viewport
     const observer = new IntersectionObserver((entries) => {

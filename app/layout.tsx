@@ -42,6 +42,7 @@ import DisableCopy from "@/components/shared/DisableCopy";
 import DebugPanel from "@/components/shared/DebugPanel";
 import CustomContextMenu from "@/components/shared/CustomContextMenu";
 import { siteConfig } from "@/lib/config";
+import Busuanzi from "@/components/shared/Busuanzi";
 
 config.autoAddCss = false;
 // Various extensions, animations, etc.
@@ -213,6 +214,7 @@ export default async function RootLayout({
 
             {!BLOG.isProd && <DebugPanel />}
             {!BLOG.CAN_COPY && <DisableCopy />}
+            {BLOG.ANALYTICS_BUSUANZI_ENABLE && <Busuanzi />}
             {BLOG.CUSTOM_RIGHT_CLICK_CONTEXT_MENU && (
               <CustomContextMenu props={Math.random()} />
             )}

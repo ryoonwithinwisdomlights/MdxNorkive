@@ -1,25 +1,26 @@
 "use client"; // 클라이언트 컴포넌트
 import busuanzi from "@/lib/plugins/busuanzi";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useParams, usePathname, useSearchParams } from "next/navigation";
 import { useGlobal } from "@/lib/providers/globalProvider";
-import React, { useEffect } from "react";
 
-let path = "";
 export default function Busuanzi() {
   const { theme } = useGlobal({ from: "index" });
-  const Router = useRouter();
-  // Router.events.on("routeChangeComplete", (url, option) => {
-  //   if (url !== path) {
-  //     path = url;
-  //     busuanzi.fetch();
-  //   }
-  // });
+  const pathname = usePathname();
+  const params = useParams();
+  const [searchParams] = useSearchParams();
 
-  // // Update when changing themes
-  // React.useEffect(() => {
-  //   if (theme) {
-  //     busuanzi.fetch();
-  //   }
-  // }, [theme]);
-  // return null;
+  console.log("searchParams:", searchParams);
+  const [currentUrl, setCurrentUrl] = useState("");
+
+  useEffect(() => {
+    const newPath = `${pathname}/${params}`;
+    console.log("newPathnewPath:", newPath);
+    if (newPath !== currentUrl) {
+      setCurrentUrl(newPath);
+      busuanzi.fetch();
+    }
+  }, [pathname, params]); // pathname 또는 search가 변경될 때마다 useEffect를 트리거합니다.
+  //  const shareUrl = BLOG.LINK + `${pathname}?${params}`;
+  return null;
 }
