@@ -30,8 +30,6 @@ library.add(faChevronLeft);
 
 const SingleRecords = ({ props }) => {
   const { post, prev, next, siteInfo } = props;
-
-  console.log(post);
   const router = useRouter();
   const pathname = usePathname();
   const params = useParams();

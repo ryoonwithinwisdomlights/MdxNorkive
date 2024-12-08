@@ -49,7 +49,6 @@ function getRecommendPost(
 }
 
 export async function generateStaticParams() {
-  // 예제 데이터 - 실제로는 API 호출 등을 통해 데이터를 가져올 수 있음
   const records = [
     { recordId: "1341eb5c-0337-81ad-a46c-d94c8abcdada" },
     { recordId: "another-record-id" },

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { getStaticNotionRecordsSortByDirTypeWithoutDateTitle } from "../api/load-recordsData";
+import { getStaticNotionRecordsSortByDirTypeWithoutDateTitle } from "@/app/api/load-recordsData";
 import SideprojectRecordsItem from "@/components/records/SideprojectRecordsItem";
 
 export default async function Page() {

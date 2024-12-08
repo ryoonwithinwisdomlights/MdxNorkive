@@ -24,28 +24,26 @@ import InfoCard from "@/components/InfoCard";
 import JumpToBackButton from "@/components/JumpToBackButton";
 import JumpToTopButton from "@/components/JumpToTopButton";
 import PageNavDrawer from "@/components/PageNavDrawer";
-import NavPostList from "@/components/records/NavPostList";
 import TopNavBar from "@/components/TopNavBar";
 import CustomedTransitonWrapper from "@/components/wrapper/CustomedTransitonWrapper";
 import { HandleOnComplete } from "@/lib/custom-router";
 import { InitGlobalNotionData } from "@/lib/providers/provider";
-import dynamic from "next/dynamic";
 import loadGlobalNotionData from "./api/load-globalNotionData";
 
 import Catalog from "@/components/Catalog";
 import LoadingCover from "@/components/LoadingCover";
+import AllNavRecordsList from "@/components/records/AllNavRecordsList";
 import Busuanzi from "@/components/shared/Busuanzi";
-import RightClickMenu from "@/components/shared/RightClickMenu";
 import DebugPanel from "@/components/shared/DebugPanel";
 import DisableCopy from "@/components/shared/DisableCopy";
+import RightClickMenu from "@/components/shared/RightClickMenu";
+import VConsoleTs from "@/components/shared/VConsoleTs";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Suspense } from "react";
-import VConsoleTs from "@/components/shared/VConsoleTs";
-import AllNavRecordsList from "@/components/records/AllNavRecordsList";
+import BottomMenuBar from "@/components/BottomMenuBar";
 
 config.autoAddCss = false;
-// Various extensions, animations, etc.
 
 export const viewport: Viewport = {
   // themeColor: "normal",
@@ -59,7 +57,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("http://localhost:3000"),
   title: BLOG.TITLE as string,
-  description: BLOG.DESCRIPTION as string, //"The GitBook-themed Archiving records blog",
+  description: BLOG.DESCRIPTION as string, //
   applicationName: "Yeollamsil",
   authors: {
     url: BLOG.LINK,
@@ -123,12 +121,12 @@ export default async function RootLayout({
           from={"index"}
         >
           <ThemeGitbookProvider>
-            <HandleOnComplete />
+            {/* <HandleOnComplete /> */}
             <div
               id="gitbook"
               className={`${BLOG.FONT_STYLE} bg-white w-full h-screen justify-center dark:text-neutral-300 scroll-smooth pb-16 md:pb-0 dark:bg-black`}
             >
-              {/* 상단 네비게이션 바 */}
+              {/* top navigation bar */}
               <TopNavBar />
 
               {!BLOG.isProd && <DebugPanel />}
@@ -145,13 +143,13 @@ export default async function RootLayout({
                     "relative flex justify-between w-full h-screen mx-auto"
                   }
                 >
-                  {/* 왼쪽 네브바 */}
+                  {/* left navigation bar */}
                   <div
                     className={
                       "font-sans hidden md:block w-3/12 h-screen border-r dark:border-transparent  z-10 "
                     }
                   >
-                    {/* 검색 및 모든 기사 목록 */}
+                    {/* Search and list all articles */}
                     <AllNavRecordsList />
                     <div className="w-72 fixed left-0 bottom-0 z-20 bg-white dark:bg-black">
                       <Footer />
@@ -182,7 +180,7 @@ export default async function RootLayout({
                     </div>
                   </div>
 
-                  {/*  오른쪽 슬라이딩 서랍 */}
+                  {/*  right sliding drawer */}
                   <div
                     // style={{ width: "32rem" }}
                     className={
@@ -204,11 +202,11 @@ export default async function RootLayout({
               </Suspense>
               <FloatTocButton />
 
-              {/* 모바일 탐색 창 */}
+              {/*Mobile navigation drawer*/}
               <PageNavDrawer />
 
-              {/* 모바일 하단 탐색 메뉴 */}
-              {/* <BottomMenuBar /> */}
+              {/* Mobile bottom navigation bar */}
+              <BottomMenuBar />
             </div>
           </ThemeGitbookProvider>
         </GlobalContextProvider>

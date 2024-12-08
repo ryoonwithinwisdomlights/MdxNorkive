@@ -4,7 +4,7 @@ import {
   InitGlobalNotionData,
 } from "@/lib/providers/provider";
 import type { MetadataRoute } from "next";
-import loadGlobalNotionData from "./api/load-globalNotionData";
+import loadGlobalNotionData from "@/app/api/load-globalNotionData";
 /**
  *
  * Good to know:

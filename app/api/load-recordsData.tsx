@@ -59,12 +59,7 @@ export async function getStaticNotionRecordsSortByDirTypeWithoutDateTitle({
   from: string;
   type: string;
 }) {
-  console.log(
-    "getStaticNotionRecordsSortByDirTypeWithoutDateTitle -from",
-    from,
-    ",type:",
-    type
-  );
+  console.log("[get Static Notion Records]\n -from:", from, "\n -type:", type);
   const props = await getGlobalData({
     from: `${from}-index-props`,
     type: type,

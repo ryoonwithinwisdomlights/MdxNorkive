@@ -104,11 +104,11 @@ export function loadExternalResource(url, type) {
     }
     if (tag) {
       tag.onload = () => {
-        console.log("Load Success", url);
+        console.log("[Load Success]", url);
         resolve(url);
       };
       tag.onerror = () => {
-        console.log("Load Error", url);
+        console.log("[Load Error]", url);
         reject(url);
       };
       document.head.appendChild(tag);

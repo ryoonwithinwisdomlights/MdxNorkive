@@ -1,5 +1,5 @@
 import EngineeringRecordsItem from "@/components/records/EngineeringRecordsItem";
-import { getStaticNotionRecordsSortByDirTypeWithoutDateTitle } from "../api/load-recordsData";
+import { getStaticNotionRecordsSortByDirTypeWithoutDateTitle } from "@/app/api/load-recordsData";
 
 export default async function Page() {
   const { props }: any =

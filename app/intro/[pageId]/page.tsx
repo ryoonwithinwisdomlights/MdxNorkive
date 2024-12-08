@@ -5,7 +5,6 @@ import { getPostBlocks } from "@/lib/notion/notion";
 import { getGlobalData } from "@/lib/notion/getNotionData";
 
 export async function generateStaticParams() {
-  // 예제 데이터 - 실제로는 API 호출 등을 통해 데이터를 가져올 수 있음
   const records = [
     { pageId: "341eb5c0337801da209c34c90bc3377" },
     { pageId: "another-page-id" },

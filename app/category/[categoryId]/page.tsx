@@ -4,7 +4,6 @@ import { getGlobalData } from "@/lib/notion/getNotionData";
 import React from "react";
 
 export async function generateStaticParams() {
-  // 예제 데이터 - 실제로는 API 호출 등을 통해 데이터를 가져올 수 있음
   const records = [
     { categoryId: "tailwindcss" },
     { categoryId: "another-category" },
