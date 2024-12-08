@@ -49,11 +49,6 @@ const nextConfig: NextConfig = {
         destination: "/records",
         permanent: true,
       },
-      // {
-      //   source: "/records/sideproject/*",
-      //   destination: "/sideproject",
-      //   permanent: true,
-      // },
     ];
   },
   async headers() {

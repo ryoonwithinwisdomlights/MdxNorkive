@@ -9,7 +9,6 @@ export default async function Page() {
     });
 
   const engineeringList: [] = props.archiveRecords;
-  console.log("props:", props);
   return (
     <div className="mb-10 pb-20 md:py-12 w-full py-3  min-h-full">
       <div className="flex flex-col">

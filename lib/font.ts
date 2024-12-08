@@ -1,25 +1,20 @@
 /**
  * Configure fonts here
  */
-// const { BLOG } = require("../blog.config");
+
 import { BLOG } from "../blog.config";
-// const { fontFamily } = require('tailwindcss/defaultTheme')
 
 function CJK() {
   switch (BLOG.LANG.toLowerCase()) {
-    case "zh-cn":
-    case "zh-sg":
-      return "SC";
-    case "zh":
-    case "zh-hk":
-    case "zh-tw":
-      return "TC";
-    case "ja":
-    case "ja-jp":
-      return "JP";
     case "ko":
     case "kr-KR":
       return "KR";
+    case "zh-cn":
+    case "zh-sg":
+      return "SC";
+    case "ja":
+    case "ja-jp":
+      return "JP";
     default:
       return null;
   }
@@ -43,4 +38,3 @@ export const fontFamilies = {
     "sans-serif",
   ],
 };
-// module.exports = { fontFamilies };

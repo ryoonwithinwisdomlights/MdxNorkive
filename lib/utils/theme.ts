@@ -2,10 +2,10 @@ import { BLOG } from "@/blog.config";
 import { getQueryVariable } from "./utils";
 
 /**
- * Initialize topic, priorityquery > cookies > systemPrefer
+ * Initialize topic, priorityquery > localstorage > systemPrefer
  * @param isDarkMode
  * @param updateDarkMode Change themeChangeState function
- * @description Read the user theme stored in the cookie
+ * @description Read the user theme stored in the localstorage
  */
 export const initDarkMode = (updateDarkMode) => {
   // Check if the user's device browser is in dark mode

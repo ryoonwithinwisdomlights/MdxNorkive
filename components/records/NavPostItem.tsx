@@ -19,7 +19,7 @@ const NavPostItem = (props) => {
   // const [isOpen, changeIsOpen] = useState(false);
   const [isOpen, changeIsOpen] = useState(group?.selected);
   // 언제나 접어져있는 상태로 유지
-  // console.log("group::", group);
+
   const toggleOpenSubMenu = () => {
     changeIsOpen(!isOpen);
   };

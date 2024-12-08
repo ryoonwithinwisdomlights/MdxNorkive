@@ -1,7 +1,7 @@
 // [slug] 동적 세그먼트를 채우기 위한 `params` 목록을 반환합니다.
 import { BLOG } from "@/blog.config";
 import SingleRecords from "@/components/records/SingleRecords";
-import { getPostBlocks } from "@/lib/notion";
+import { getPostBlocks } from "@/lib/notion/notion";
 import { getGlobalData } from "@/lib/notion/getNotionData";
 
 export async function generateStaticParams() {

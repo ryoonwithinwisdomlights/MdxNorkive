@@ -7,14 +7,14 @@ import { useGlobal } from "@/lib/providers/globalProvider";
 import { isUrl } from "@/lib/utils/utils";
 
 /**
- *Config 읽는 순서
- * 1.먼저 NotionConfig 테이블을 읽어보세요
- * 2. 두 번째로 환경 변수를 읽으십시오.
- * 3. 그런 다음 blog.config.js / 또는 각 테마의 CONFIG 파일을 읽으십시오.
- * @param {*} key ； 매개변수 이름
+* Read configuration sequence
+ * 1. Read the NotionConfig table first
+ * 2. Secondly read the environment variables
+ * 3. Then read blog.config.js / or the CONFIG file of each theme
+ * @param {*} key ；Parameter name
 
- * @param {*} defaultVal ; 매개변수에 대한 기본 반환 값이 없습니다.
- * @param {*} extendConfig ; 참조 구성 객체{key:val}.공지사항에서 찾을 수 없다면 먼저 여기서 찾아보세요.
+ * @param {*} defaultVal ; There is no default return value for the parameter
+ * @param {*} extendConfig ; Refer to the configuration object {key:val}. If it cannot be found in the notice, try to find it here first.
  * @returns
  */
 export const siteConfig = ({

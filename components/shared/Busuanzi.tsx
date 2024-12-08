@@ -8,7 +8,6 @@ export default function Busuanzi() {
   const [currentUrl, setCurrentUrl] = useState("");
 
   useEffect(() => {
-    // console.log("newPathnewPath:", pathname);
     if (pathname !== currentUrl) {
       setCurrentUrl(pathname);
       busuanzi.fetch();

@@ -1,5 +1,5 @@
 import { BLOG } from "@/blog.config";
-import { formatDateFmt } from "@/lib/formatDate";
+import { formatDateFmt } from "@/lib/utils/formatDate";
 import { getGlobalData } from "@/lib/notion/getNotionData";
 
 export async function getStaticNotionRecordsSortByDirType({

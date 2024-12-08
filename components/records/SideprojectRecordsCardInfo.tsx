@@ -1,6 +1,6 @@
 "use client";
 import NotionPage from "@/components/shared/NotionPage";
-import { formatDateFmt } from "@/lib/formatDate";
+import { formatDateFmt } from "@/lib/utils/formatDate";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faCalendarAlt,

@@ -9,7 +9,7 @@ import SocialButton from "./SocialButton";
 const InfoCard = () => {
   const router = useRouter();
   const pathname = usePathname();
-  // console.log("pathnamepathnamepathname", pathname);
+
   return (
     <div id="info-card" className="py-4">
       <div className="items-center justify-center flex flex-col">
@@ -20,7 +20,7 @@ const InfoCard = () => {
           }}
         >
           <LazyImage
-            src={"/images/rwwt_avatar.png"}
+            src={"/images/rwwt_lemon.png"}
             className="rounded-full dark:border dark:border-neutral-300"
             width={120}
             alt={BLOG.AUTHOR}

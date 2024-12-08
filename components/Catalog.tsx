@@ -28,7 +28,6 @@ const Catalog = ({ post }) => {
   }
   const isMobile = useMediaQuery("(max-width: 768px");
   const toc = post?.toc;
-  console.log("Catalog post.toc: ", post.toc);
   // Synchronize selected directory events
   const [activeSection, setActiveSection] = useState(null);
 
