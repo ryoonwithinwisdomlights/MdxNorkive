@@ -6,7 +6,7 @@ import { MenuItemCollapse } from "./MenuItemCollapse";
 import { useGlobal } from "@/lib/providers/globalProvider";
 
 export const MenuBarMobile = (props) => {
-  const { customMenu, customNav, locale } = useGlobal({ from: "index" });
+  const { customMenu, locale } = useGlobal({ from: "index" });
   let links = [
     {
       name: locale.COMMON.CATEGORY,
@@ -23,9 +23,9 @@ export const MenuBarMobile = (props) => {
     // { name: locale.NAV.SEARCH, to: '/search', show: CONFIG.MENU_SEARCH }
   ];
 
-  if (customNav) {
-    links = links.concat(customNav);
-  }
+  // if (customNav) {
+  //   links = links.concat(customNav);
+  // }
 
   // If the custom menu is enabled, Page will no longer be used to generate the menu.
   if (BLOG.CUSTOM_MENU) {

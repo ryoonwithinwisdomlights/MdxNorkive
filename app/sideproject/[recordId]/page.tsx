@@ -97,6 +97,7 @@ export default async function Page({ params }) {
       page.type !== "CONFIG" &&
       page.type !== "Menu" &&
       page.type !== "SubMenu" &&
+      page.type !== "SubMenuPage" &&
       page.type !== "Notice" &&
       page.type !== "Page" &&
       page.status === "Published" &&

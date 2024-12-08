@@ -10,6 +10,7 @@ export default async function loadGlobalNotionData(from: string = "index") {
       page.type !== "CONFIG" &&
       page.type !== "Menu" &&
       page.type !== "SubMenu" &&
+      page.type !== "SubMenuPage" &&
       page.type !== "Notice" &&
       page.type !== "Page" &&
       page.status === "Published"

@@ -29,7 +29,6 @@ export const MenuItemCollapse = (props) => {
     return null;
   }
 
-  // const selected = pathname === link.to;
   const selected = pathname === link.slug;
   const toggleShow = () => {
     changeShow(!show);
@@ -88,6 +87,10 @@ export const MenuItemCollapse = (props) => {
       {hasSubMenu && (
         <Collapse isOpen={isOpen} onHeightChange={props.onHeightChange}>
           {link?.subMenus?.map((sLink, index) => {
+            const hrefUrl =
+              sLink?.type === "SubMenuPage"
+                ? `intro/${sLink?.id}`
+                : sLink?.slug;
             return (
               <div
                 key={index}
@@ -96,7 +99,7 @@ export const MenuItemCollapse = (props) => {
               font-extralighttext-left justify-start bg-neutral-50  text-neutral-600 hover:bg-neutral-100  tracking-widest transition-all duration-200"
               >
                 <Link
-                  href={sLink.slug}
+                  href={hrefUrl}
                   target={
                     link?.slug?.indexOf("http") === 0 ? "_blank" : "_self"
                   }

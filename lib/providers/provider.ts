@@ -63,6 +63,7 @@ interface InitGlobalNotionData {
   customNav: CustomNavList[];
   customMenu: any[];
   notice: any;
+  guestbook: any;
   post: any;
   allPages: AllPages[];
   allNavPages: AllNavPages[];
@@ -93,6 +94,7 @@ interface GlobalValueInferface {
   allNavPages: AllNavPages[];
   showTocButton?: boolean;
   notice: any;
+  guestbook: any;
   post: any;
   latestPosts: [];
   handleChangeDarkMode: () => void;

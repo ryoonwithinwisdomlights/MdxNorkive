@@ -56,15 +56,15 @@ const TopNavBar = () => {
     // },
   ];
 
-  let links: any[] = defaultLinks.concat(customNav);
-
+  // let links: any[] = defaultLinks.concat(customNav);
+  let links: any[] = BLOG.CUSTOM_MENU ? customMenu : defaultLinks;
   const toggleMenuOpen = () => {
     changeShow(!isOpen);
   };
 
-  if (BLOG.CUSTOM_MENU) {
-    links = customMenu;
-  }
+  // if (BLOG.CUSTOM_MENU) {
+  //   links = customMenu;
+  // }
 
   return (
     <div id="top-nav" className={"fixed top-0 w-full z-40 "}>

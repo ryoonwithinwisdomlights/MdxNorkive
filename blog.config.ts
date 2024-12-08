@@ -209,6 +209,9 @@ export const BLOG = {
     type_menu: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_MENU || "Menu", // When the type article type is the same as this value, it is a menu.
     type_sub_menu:
       process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_SUB_MENU || "SubMenu", // When the type article type is the same as this value, it is a submenu.
+    type_sub_menu_page:
+      process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_SUB_MENU_PAGE ||
+      "SubMenuPage", // When the type article type is the same as this value, it is a submenu but presenting page, simultaenousely.
     // yeollam only
     type_sideproject:
       process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_SIDEPROJECT || "Sideproject",

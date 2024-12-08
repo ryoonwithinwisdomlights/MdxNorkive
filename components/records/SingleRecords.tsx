@@ -157,6 +157,7 @@ const SingleRecords = ({ props }) => {
               {post?.type !== "CONFIG" &&
                 post?.type !== "Menu" &&
                 post?.type !== "SubMenu" &&
+                post?.type !== "SubMenuPage" &&
                 post?.type !== "Notice" &&
                 post?.type !== "Page" &&
                 post?.status === "Published" &&

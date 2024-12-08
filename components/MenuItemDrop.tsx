@@ -16,14 +16,7 @@ export const MenuItemDrop = ({ link }) => {
   }
   const hasSubMenu = link?.subMenus?.length > 0;
   const selected = pathname === link.to;
-  console.log(
-    "pathname:",
-    pathname,
-    " , link.slug:",
-    link.slug,
-    " , link.to:",
-    link.to
-  );
+
   const renderMainMenus = () => {
     const icon = parseIcon(link.icon);
     return (
@@ -82,6 +75,8 @@ export const MenuItemDrop = ({ link }) => {
       >
         {link?.subMenus?.map((sLink, index) => {
           const iconForRenderSubmenus = parseIcon(sLink.icon);
+          const hrefUrl =
+            sLink?.type === "SubMenuPage" ? `intro/${sLink?.id}` : sLink?.slug;
           return (
             <div key={index} className="h-full w-full">
               <li
@@ -91,7 +86,7 @@ export const MenuItemDrop = ({ link }) => {
               >
                 <Link
                   className="hover:bg-[#ffd500] dark:hover:text-[#ffffff] px-2 hover:rounded-lg hover:h-4/5 w-full"
-                  href={sLink.slug}
+                  href={hrefUrl}
                   target={sLink?.slug?.includes("http") ? "_blank" : "_self"}
                 >
                   <span className="text-xs font-extralight dark:hover:text-neutral-900">

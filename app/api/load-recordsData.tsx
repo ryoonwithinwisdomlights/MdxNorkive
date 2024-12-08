@@ -20,6 +20,7 @@ export async function getStaticNotionRecordsSortByDirType({
       page.type !== "CONFIG" &&
       page.type !== "Menu" &&
       page.type !== "SubMenu" &&
+      page.type !== "SubMenuPage" &&
       page.type !== "Notice" &&
       page.type !== "Page" &&
       page.status === "Published"
@@ -106,6 +107,7 @@ export async function getStaticNotionRecordsArticle({
       page.type !== "CONFIG" &&
       page.type !== "Menu" &&
       page.type !== "SubMenu" &&
+      page.type !== "SubMenuPage" &&
       page.type !== "Notice" &&
       page.type !== "Page" &&
       page.status === "Published"
