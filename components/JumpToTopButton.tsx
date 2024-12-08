@@ -30,7 +30,7 @@ const JumpToTopButton = () => {
             window.scrollTo({ top: 0, behavior: "smooth" });
           }
         }}
-        className="hover:scale-110 duration-150 cursor-pointer p-2 rounded-full border text-white text-xs bg-neutral-700"
+        className="hover:scale-110 duration-150 cursor-pointer p-2 rounded-full border text-white text-xs bg-neutral-700 dark:border-white"
         icon={faChevronUp}
       />
     </div>

@@ -11,7 +11,7 @@ const GITBOOKCONFIG = {
   MENU_RECORDS: true, // show archive
   MENU_SIDEPROJECT: true, // show search
   MENU_SEARCH: true, // show search
-  POST_DETAIL_CATEGORY: true, // Article display category
-  POST_DETAIL_TAG: true, // Article display tags
+  RECORD_DETAIL_CATEGORY: true, // Article display category
+  RECORD_DETAIL_TAG: true, // Article display tags
 };
 export default GITBOOKCONFIG;

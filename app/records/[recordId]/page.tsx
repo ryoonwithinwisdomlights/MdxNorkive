@@ -106,7 +106,7 @@ export default async function Page({ params }) {
     props.recommendPosts = getRecommendPost(
       props.post,
       allPosts,
-      Number(BLOG.POST_RECOMMEND_COUNT)
+      Number(BLOG.RECORD_RECOMMEND_COUNT)
     );
   } else {
     props.prev = null;

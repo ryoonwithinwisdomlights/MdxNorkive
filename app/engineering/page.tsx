@@ -10,35 +10,25 @@ export default async function Page() {
 
   const engineeringList: [] = props.archiveRecords;
   return (
-    <div className="mb-10 pb-20 md:py-12 w-full py-3  min-h-full">
-      <div className="flex flex-col">
-        <div className="w-full mb-4 py-6">
-          <div>
-            {/* https://nextjs.org/docs/pages/building-your-application/optimizing/images */}
-            {/* &gt;<Image src={ReadPic} alt="So-I-Read-And-Write" /> */}
-            <div className="text-3xl font-bold dark:text-neutral-100">
-              TIL Tech Logs <span className="text-[#ff6f00]">.</span>
-            </div>
-            <div className=" dark:text-neutral-200 mt-1  flex flex-row p-2 ">
-              <div className="flex flex-row  text-base align-bottom  break-words  text-right">
-                {" "}
-                一 개라도 배우는
-                <div className="font-bold text-[#ff6f00] break-words  text-right">
-                  &nbsp;완료주의
-                </div>{" "}
-              </div>
-
-              <div className=" text-sm  align-bottom pt-1">
-                {" "}
-                &nbsp;&nbsp;&nbsp;&nbsp;{">"}&nbsp;&nbsp;&nbsp;&nbsp;{" "}
-              </div>
-              <div className="text-xs align-bottom  pt-2 break-words text-right">
-                완벽하려 꾸물대는 완성주의
-              </div>
-            </div>
-          </div>
+    <div className="mb-10 pb-20 md:py-10 w-full py-3 flex flex-col min-h-full">
+      <div className="mb-4 py-2 mr-4 flex flex-col justify-end">
+        <div className="flex flex-row justify-end text-xs  text-stone-600 font-extralight dark:text-neutral-200 hover:text-stone-800 ">
+          browsing all the engineering related records you have learned
         </div>
-        <div className="space-y-6 px-2">
+        <div className="text-4xl ont-semibold dark:text-neutral-100 flex flex-row justify-end ">
+          Software Engineering <span className="text-[#f1efe9e2]">.</span>
+        </div>
+        <div className=" dark:text-neutral-200 md:px-2 text-neutral-700 mt-1 text-right my-2 mr-4 ">
+          배우고 기록한 좋은
+          <span className="font-semibold "> 지식, 정보, 앎</span>에 대한
+          <span className="text-[#cbcac4e2] dark:text-[#ffffff] font-bold">
+            {" "}
+            열람.
+          </span>
+        </div>
+      </div>
+      <div className="flex flex-row justify-end">
+        <div className="space-y-6 w-11/12 px-2">
           {engineeringList?.map((item: any, index) => {
             return (
               <EngineeringRecordsItem

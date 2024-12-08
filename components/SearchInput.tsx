@@ -114,7 +114,7 @@ Enter key  // 키 입력 처리 함수
       <input
         ref={searchInputRef}
         type="text"
-        className={`my-3 rounded-md border border-neutral-100 dark:border-none outline-none w-full text-sm pl-2 transition focus:shadow-lg font-light leading-10 text-black bg-neutral-100  dark:bg-neutral-900  dark:text-white`}
+        className={`my-3 rounded-md border border-[#f1efe9e2] dark:border-none outline-none w-full text-sm pl-2 transition focus:shadow-lg font-light leading-10 text-black bg-[#f1efe9e2] dark:bg-neutral-900  dark:text-white`}
         onKeyUp={handleKeyUp}
         onFocus={() => {
           if (searchInputRef.current) {

@@ -44,10 +44,10 @@ export default async function Page({ params }) {
   // Process article page count
   props.postCount = props.posts.length;
   // Handle pagination
-  if (BLOG.POST_LIST_STYLE === "scroll") {
+  if (BLOG.RECORD_LIST_STYLE === "scroll") {
     // Scroll list returns all data to the front end
-  } else if (BLOG.POST_LIST_STYLE === "page") {
-    props.posts = props.posts?.slice(0, BLOG.POSTS_PER_PAGE);
+  } else if (BLOG.RECORD_LIST_STYLE === "page") {
+    props.posts = props.posts?.slice(0, BLOG.RECORDS_PER_PAGE);
   }
   delete props.allPages;
   return (

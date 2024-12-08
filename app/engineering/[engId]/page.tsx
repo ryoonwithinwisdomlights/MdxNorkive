@@ -1,9 +1,14 @@
 // [slug] 동적 세그먼트를 채우기 위한 `params` 목록을 반환합니다.
 import { BLOG } from "@/blog.config";
-import { getPostBlocks } from "@/lib/notion/notion";
-import { getGlobalData } from "@/lib/notion/getNotionData";
-import { idToUuid } from "notion-utils";
 import SingleRecords from "@/components/records/SingleRecords";
+import { getGlobalData } from "@/lib/notion/getNotionData";
+import { getPostBlocks } from "@/lib/notion/notion";
+
+interface Post {
+  id: string;
+  type: string;
+  tags?: string[];
+}
 
 /**
  * Get the list of recommended articles associated with the article, currently filtered based on tag relevance
@@ -107,7 +112,7 @@ export default async function Page({ params }) {
     props.recommendPosts = getRecommendPost(
       props.post,
       allPosts,
-      Number(BLOG.POST_RECOMMEND_COUNT)
+      Number(BLOG.RECORD_RECOMMEND_COUNT)
     );
   } else {
     props.prev = null;
@@ -120,10 +125,4 @@ export default async function Page({ params }) {
       <SingleRecords props={props} />
     </div>
   );
-}
-
-interface Post {
-  id: string;
-  type: string;
-  tags?: string[];
 }

@@ -155,25 +155,25 @@ export default function RightClickMenu(props: any) {
         {/* Top navigation buttons */}
         <div className="flex justify-between">
           <FontAwesomeIcon
-            className="dark:hover:text-black dark:hover:bg-[#ffd500] hover:text-[#ffd500] px-2 py-2 text-center w-8 rounded cursor-pointer"
+            className="dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2] px-2 py-2 text-center w-8 rounded cursor-pointer"
             icon={faArrowLeft}
             onClick={handleBack}
           />
 
           <FontAwesomeIcon
-            className="dark:hover:text-black dark:hover:bg-[#ffd500] hover:text-[#ffd500] px-2 py-2 text-center w-8 rounded cursor-pointer"
+            className="dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2] px-2 py-2 text-center w-8 rounded cursor-pointer"
             icon={faArrowRight}
             onClick={handleForward}
           />
 
           <FontAwesomeIcon
-            className="dark:hover:text-black dark:hover:bg-[#ffd500] hover:text-[#ffd500]  px-2 py-2 text-center w-8 rounded cursor-pointer"
+            className="dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2]  px-2 py-2 text-center w-8 rounded cursor-pointer"
             icon={faRotateRight}
             onClick={handleRefresh}
           />
 
           <FontAwesomeIcon
-            className="dark:hover:text-black dark:hover:bg-[#ffd500] hover:text-[#ffd500]  px-2 py-2 text-center w-8 rounded cursor-pointer"
+            className="dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2]  px-2 py-2 text-center w-8 rounded cursor-pointer"
             icon={faArrowUp}
             onClick={handleScrollTop}
           />
@@ -186,7 +186,7 @@ export default function RightClickMenu(props: any) {
           <div
             onClick={handleJumpToRandomPost}
             title={locale.MENU.WALK_AROUND}
-            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer  dark:hover:text-black dark:hover:bg-[#ffd500] hover:text-[#ffd500]  rounded-lg duration-200 transition-all"
+            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer  dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2]  rounded-lg duration-200 transition-all"
           >
             <FontAwesomeIcon className="mr-2" icon={faPodcast} />
             <div className="whitespace-nowrap">{locale.MENU.WALK_AROUND}</div>
@@ -195,7 +195,7 @@ export default function RightClickMenu(props: any) {
           <Link
             href="/category"
             title={locale.MENU.CATEGORY}
-            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer dark:hover:text-black dark:hover:bg-[#ffd500] hover:text-[#ffd500]  rounded-lg duration-200 transition-all"
+            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2]  rounded-lg duration-200 transition-all"
           >
             <FontAwesomeIcon className="mr-2" icon={faSquareMinus} />
 
@@ -205,7 +205,7 @@ export default function RightClickMenu(props: any) {
           <Link
             href="/tag"
             title={locale.MENU.TAGS}
-            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer dark:hover:text-black dark:hover:bg-[#ffd500] hover:text-[#ffd500] rounded-lg duration-200 transition-all"
+            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2] rounded-lg duration-200 transition-all"
           >
             <FontAwesomeIcon className="mr-2" icon={faTag} />
 
@@ -220,7 +220,7 @@ export default function RightClickMenu(props: any) {
           <div
             onClick={handleCopyLink}
             title={locale.MENU.COPY_URL}
-            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer dark:hover:text-black dark:hover:bg-[#ffd500] hover:text-[#ffd500] rounded-lg duration-200 transition-all"
+            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2] rounded-lg duration-200 transition-all"
           >
             <FontAwesomeIcon className="mr-2" icon={faArrowUpRightFromSquare} />
 
@@ -230,7 +230,7 @@ export default function RightClickMenu(props: any) {
           <div
             onClick={handleChangeDarkMode}
             title={isDarkMode ? locale.MENU.LIGHT_MODE : locale.MENU.DARK_MODE}
-            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer dark:hover:text-black dark:hover:bg-[#ffd500]  hover:text-[#ffd500]  rounded-lg duration-200 transition-all"
+            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer dark:hover:text-black dark:hover:bg-[#f1efe9e2]  hover:text-[#f1efe9e2]  rounded-lg duration-200 transition-all"
           >
             {isDarkMode ? (
               <FontAwesomeIcon className="mr-2" icon={faCloudSun} />

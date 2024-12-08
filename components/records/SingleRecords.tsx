@@ -141,11 +141,11 @@ const SingleRecords = ({ props }) => {
               <ShareBar post={post} />
               {/* Article classification and tag information */}
               <div className="flex justify-between">
-                {GITBOOKCONFIG.POST_DETAIL_CATEGORY && post?.category && (
+                {GITBOOKCONFIG.RECORD_DETAIL_CATEGORY && post?.category && (
                   <CategoryItem category={post.category} />
                 )}
                 <div>
-                  {GITBOOKCONFIG.POST_DETAIL_TAG &&
+                  {GITBOOKCONFIG.RECORD_DETAIL_TAG &&
                     post?.tagItems?.map((tag) => (
                       <TagItemMini key={tag.name} tag={tag} />
                     ))}

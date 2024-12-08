@@ -17,14 +17,14 @@ export default async function loadGlobalNotionData(from: string = "index") {
   );
 
   // Handle pagination
-  if (BLOG.POST_LIST_STYLE === "scroll") {
+  if (BLOG.RECORD_LIST_STYLE === "scroll") {
     // The scrolling list returns all data to the front end by default
-  } else if (BLOG.POST_LIST_STYLE === "page") {
-    props.posts = props.posts?.slice(0, BLOG.POSTS_PER_PAGE);
+  } else if (BLOG.RECORD_LIST_STYLE === "page") {
+    props.posts = props.posts?.slice(0, BLOG.RECORDS_PER_PAGE);
   }
 
   // Preview article content
-  if (BLOG.POST_LIST_PREVIEW === "true") {
+  if (BLOG.RECORD_LIST_PREVIEW === "true") {
     for (const i in props.posts) {
       const post = props.posts[i];
       if (post.password && post.password !== "") {
@@ -33,7 +33,7 @@ export default async function loadGlobalNotionData(from: string = "index") {
       post.blockMap = await getPostBlocks(
         post.id,
         "slug",
-        BLOG.POST_PREVIEW_LINES
+        BLOG.RECORD_PREVIEW_LINES
       );
     }
   }

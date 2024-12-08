@@ -32,13 +32,13 @@ export default function LogoBar(props) {
         className="cursor-pointer md:hidden text-xl pr-3 hover:scale-110 duration-150"
       >
         <FontAwesomeIcon
-          className="mr-2"
+          className="mr-2 text-[#f1efe9e2]"
           icon={pageNavVisible ? faAlignJustify : faIndent}
         />
       </div>
       <Link
         href="/"
-        className="flex text-md  text-neutral-900 dark:text-neutral-200  dark:hover:text-neutral-900  hover:bg-amber-300 px-2 hover:rounded-lg "
+        className="flex text-md  text-neutral-900 dark:text-neutral-200  dark:hover:text-neutral-900  hover:bg-[#f1efe9e2] px-2 hover:rounded-lg "
       >
         <LazyImage
           src={siteInfo?.icon}

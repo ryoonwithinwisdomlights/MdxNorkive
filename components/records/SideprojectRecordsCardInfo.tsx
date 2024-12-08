@@ -43,7 +43,7 @@ export const SideprojectRecordsCardInfo = ({
         <div
           className={`line-clamp-2 replace cursor-pointer text-2xl ${
             showPreview ? "text-center" : ""
-          } leading-tight font-normal text-neutral-600  hover:text-red-400`}
+          } leading-tight font-normal text-neutral-600  hover:text-black`}
         >
           <span className="menu-link ">{post.title}</span>
         </div>
@@ -58,7 +58,7 @@ export const SideprojectRecordsCardInfo = ({
               onClick={(e) => {
                 onClick(post.category);
               }}
-              className="cursor-pointer font-light text-sm menu-link hover:text-red-400 dark:hover:text-red-400 transform"
+              className="cursor-pointer font-light text-sm menu-link hover:text-black dark:hover:text-black transform"
             >
               <FontAwesomeIcon className="mr-1" icon={faFolder} />
 

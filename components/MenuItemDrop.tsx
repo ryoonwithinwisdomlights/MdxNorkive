@@ -34,10 +34,10 @@ export const MenuItemDrop = ({ link }) => {
     return (
       <div
         className={
-          "px-2 h-full whitespace-nowrap duration-300 text-sm justify-between dark:text-neutral-300 cursor-pointer flex flex-nowrap items-center " +
+          "px-2 h-full whitespace-nowrap duration-300 text-sm justify-between text-neutral-700  dark:text-neutral-300 cursor-pointer flex flex-nowrap items-center " +
           (selected
-            ? "bg-[#ffd500] rounded-lg h-4/5 text-black dark:text-neutral-700 hover:text-white "
-            : "hover:text-[#ffd500] dark:hover:text-[#ffffff]")
+            ? "bg-[#f1efe9e2] rounded-lg h-4/5 text-neutral-700 hover:text-neutral-700 dark:text-neutral-700  dark:hover:text-black "
+            : "hover:text-black dark:hover:text-[#ffffff]")
         }
       >
         <div>
@@ -61,10 +61,10 @@ export const MenuItemDrop = ({ link }) => {
     return (
       <div
         className={
-          "px-2 h-full whitespace-nowrap duration-300 text-sm justify-between dark:text-neutral-300 cursor-pointer flex flex-nowrap items-center " +
+          "px-2 h-full  whitespace-nowrap duration-300 text-sm justify-between text-neutral-700  dark:text-neutral-300 cursor-pointer flex flex-nowrap items-center " +
           (selected
-            ? "bg-[#ffd500] rounded-lg h-4/5 text-black dark:text-neutral-700 hover:text-white "
-            : "hover:text-[#ffd500] dark:hover:text-[#ffffff]")
+            ? "bg-[#f1efe9e2] rounded-lg h-4/5 text-neutral-700 hover:text-neutral-900 dark:text-neutral-700 dark:hover:text-black "
+            : " hover:text-black  dark:hover:text-[#ffffff]")
         }
       >
         <Link
@@ -85,12 +85,11 @@ export const MenuItemDrop = ({ link }) => {
         className={`${
           show ? "visible opacity-100 top-12 " : "invisible opacity-0 top-10 "
         } border-neutral-100  bg-white  dark:bg-neutral-600 dark:border-neutral-800 
-        transition-all duration-300 z-20 absolute block drop-shadow-lg rounded-lg dark:hover:text-[#ffffff]`}
+        transition-all duration-300 z-20 absolute block drop-shadow-lg rounded-lg `}
       >
         {link?.subMenus?.map((sLink, index) => {
           const iconForRenderSubmenus = parseIcon(sLink.icon);
-          const hrefUrl =
-            sLink?.type === "SubMenuPage" ? `intro/${sLink?.id}` : sLink?.slug;
+
           return (
             <div key={index} className="h-full w-full">
               <li
@@ -99,18 +98,12 @@ export const MenuItemDrop = ({ link }) => {
             tracking-widest transition-all duration-200  dark:border-neutral-800 py-3 pr-6 pl-3"
               >
                 <div
-                  className="hover:bg-[#ffd500] dark:hover:text-[#ffffff] px-2 hover:rounded-lg hover:h-4/5 w-full"
+                  className="hover:bg-[#f1efe9e2]  px-2 hover:rounded-lg hover:h-4/5 w-full"
                   onClick={() => {
                     onClickUrl(sLink);
                   }}
-                  // href={
-                  //   sLink?.type === "SubMenuPage"
-                  //     ? `intro/${sLink?.id}`
-                  //     : sLink?.slug
-                  // }
-                  // target={sLink?.slug?.includes("http") ? "_blank" : "_self"}
                 >
-                  <span className="text-xs font-extralight dark:hover:text-neutral-900">
+                  <span className="text-xs  hover:text-black   ">
                     {iconForRenderSubmenus && (
                       <FontAwesomeIcon icon={iconForRenderSubmenus} />
                     )}
@@ -127,7 +120,7 @@ export const MenuItemDrop = ({ link }) => {
 
   return (
     <li
-      className="cursor-pointer list-none items-center flex mx-2"
+      className="cursor-pointer list-none flex flex-row justify-center items-center mx-2"
       onMouseOver={() => changeShow(true)}
       onMouseOut={() => changeShow(false)}
     >

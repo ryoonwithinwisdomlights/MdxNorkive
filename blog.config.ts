@@ -131,26 +131,27 @@ export const BLOG = {
   BACKGROUND_DARK: "#000000", // use hex value, don't forget '#'
   SUB_PATH: "", // leave this empty unless you want to deploy in a folder
 
-  POST_SHARE_BAR_ENABLE: process.env.NEXT_PUBLIC_POST_SHARE_BAR || "true", // Article sharing function, a sharing bar will be displayed at the bottom
-  POSTS_SHARE_SERVICES:
-    process.env.NEXT_PUBLIC_POST_SHARE_SERVICES || "email,twitter", // 공유 서비스가 쉼표로 구분되어 순서대로 표시됩니다.
+  RECORD_SHARE_BAR_ENABLE: process.env.NEXT_PUBLIC_RECORD_SHARE_BAR || "true", // Article sharing function, a sharing bar will be displayed at the bottom
+  RECORDS_SHARE_SERVICES:
+    process.env.NEXT_PUBLIC_RECORD_SHARE_SERVICES || "email,twitter", // 공유 서비스가 쉼표로 구분되어 순서대로 표시됩니다.
   // All supported sharing services: link (copy link), wechat (WeChat), qq, weibo (Weibo), email (mail),facebook,twitter,telegram,messenger,line,reddit,whatsapp,linkedin,vkshare,okshare,tumblr,livejournal,mailru,viber,workplace,pocket,instapaper,hatena
 
-  POST_URL_PREFIX: process.env.NEXT_PUBLIC_POST_URL_PREFIX || "records",
-  // POST 유형 아티클의 기본 경로 접두어입니다. 예를 들어 기본 POST 유형 경로는 /records/[slug]입니다.
+  RECORD_URL_PREFIX: process.env.NEXT_PUBLIC_RECORD_URL_PREFIX || "records",
+  // RECORD 유형 아티클의 기본 경로 접두어입니다. 예를 들어 기본 POST 유형 경로는 /records/[slug]입니다.
   // 이 항목이 '' 비어 있는 것으로 구성되면 기사에는 접두사 경로가 없습니다. 사용 시나리오: 기사 접두사 경로를 /post로 지정하려는 경우 다중 레벨 지원이 지원됩니다.
   // WP의 사용자 정의 가능한 기사 링크 형식과 유사한 기능 지원: https://wordpress.org/documentation/records/customize-permalinks/, 현재 %year%/%month%/%day%만 먼저 구현됩니다.
   // 예: 접두사 기사 + 타임스탬프에 대한 링크를 변경하려면 'records/%year%/%month%/%day%'로 변경할 수 있습니다.
 
-  POST_LIST_STYLE: process.env.NEXT_PUBLIC_POST_LIST_STYLE || "page", // ['page','scroll] 기사 목록 스타일: 페이지 번호 페이징, 단일 페이지 스크롤 로딩
-  POST_LIST_PREVIEW: process.env.NEXT_PUBLIC_POST_PREVIEW || "false", //  목록에 기사 미리보기를 로드할지 여부
-  POST_PREVIEW_LINES: process.env.NEXT_PUBLIC_POST_POST_PREVIEW_LINES || 12, // Preview blog line count
-  POST_RECOMMEND_COUNT: process.env.NEXT_PUBLIC_POST_RECOMMEND_COUNT || 6, // Number of recommended articles
-  POSTS_PER_PAGE: 12, // post counts per page
-  POSTS_SORT_BY: process.env.NEXT_PUBLIC_POST_SORT_BY || "notion", // 정렬 방식은 '날짜'는 시간 기준, '노션'은 알림 기준
+  RECORD_LIST_STYLE: process.env.NEXT_PUBLIC_RECORD_LIST_STYLE || "page", // ['page','scroll] 기사 목록 스타일: 페이지 번호 페이징, 단일 페이지 스크롤 로딩
+  RECORD_LIST_PREVIEW: process.env.NEXT_PUBLIC_RECORD_PREVIEW || "false", //  목록에 기사 미리보기를 로드할지 여부
+  RECORD_PREVIEW_LINES:
+    process.env.NEXT_PUBLIC_RECORD_RECORD_PREVIEW_LINES || 12, // Preview blog line count
+  RECORD_RECOMMEND_COUNT: process.env.NEXT_PUBLIC_RECORD_RECOMMEND_COUNT || 6, // Number of recommended articles
+  RECORDS_PER_PAGE: 12, // post counts per page
+  RECORDS_SORT_BY: process.env.NEXT_PUBLIC_RECORD_SORT_BY || "notion", // 정렬 방식은 '날짜'는 시간 기준, '노션'은 알림 기준
 
-  POST_WAITING_TIME_FOR_404:
-    process.env.NEXT_PUBLIC_POST_WAITING_TIME_FOR_404 || "8",
+  RECORD_WAITING_TIME_FOR_404:
+    process.env.NEXT_PUBLIC_RECORD_WAITING_TIME_FOR_404 || "8",
 
   ALGOLIA_APP_ID: process.env.NEXT_PUBLIC_ALGOLIA_APP_ID || null, //  https://dashboard.algolia.com/account/api-keys/
   ALGOLIA_ADMIN_APP_KEY: process.env.ALGOLIA_ADMIN_APP_KEY || null, // KEY in the management background, do not expose it in the code, view it herehttps://dashboard.algolia.com/account/api-keys/
@@ -162,8 +163,8 @@ export const BLOG = {
   PREVIEW_CATEGORY_COUNT: 16, // The maximum number of categories displayed on the homepage, 0 means no limit
   PREVIEW_TAG_COUNT: 16, // The maximum number of tags displayed on the homepage, 0 means no limit
 
-  POST_DISABLE_GALLERY_CLICK:
-    process.env.NEXT_PUBLIC_POST_DISABLE_GALLERY_CLICK || false, // Clicking is prohibited in the picture album view, making it easier to insert links into the picture album on the friend link page.
+  RECORD_DISABLE_GALLERY_CLICK:
+    process.env.NEXT_PUBLIC_RECORD_DISABLE_GALLERY_CLICK || false, // Clicking is prohibited in the picture album view, making it easier to insert links into the picture album on the friend link page.
 
   // giscus @see https://giscus.app/
   COMMENT_GISCUS_REPOUSERNAME:

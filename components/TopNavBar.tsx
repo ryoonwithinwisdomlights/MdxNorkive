@@ -99,20 +99,23 @@ const TopNavBar = () => {
             className="cursor-pointer text-lg hover:scale-110 duration-150"
           >
             {isOpen ? (
-              <FontAwesomeIcon icon={faTimes} />
+              <FontAwesomeIcon icon={faTimes} className="text-[#f1efe9e2]" />
             ) : (
-              <FontAwesomeIcon icon={faEllipsisVertical} />
+              <FontAwesomeIcon
+                icon={faEllipsisVertical}
+                className="text-[#f1efe9e2]"
+              />
             )}
           </div>
         </div>
 
         {/* Desktop top menu */}
-        <div className="hidden md:flex py-2">
+        <div className="hidden md:flex md:flex-row justify-center  py-2">
           {links &&
             links?.map((link, index) => (
               <MenuItemDrop key={index} link={link} />
             ))}
-          <DarkModeButton className="text-sm flex items-center h-full" />
+          <DarkModeButton className="flex flex-col justify-center items-center " />
         </div>
       </div>
     </div>

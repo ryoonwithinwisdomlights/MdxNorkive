@@ -57,8 +57,8 @@ export const MenuItemCollapse = (props) => {
       <div
         className={
           (selected
-            ? "bg-yellow-500 text-white hover:text-white"
-            : "hover:text-yellow-500") +
+            ? "bg-neutral-500 text-white hover:text-white"
+            : "hover:text-neutral-500") +
           " px-7 w-full text-left duration-200 dark:bg-neutral-700 dark:border-black"
         }
         onClick={toggleShow}
@@ -87,7 +87,7 @@ export const MenuItemCollapse = (props) => {
             </div>
             <div className="inline-flex items-center ">
               <FontAwesomeIcon
-                className={`px-2 transition-all duration-200 ${
+                className={`px-2 transition-all duration-200 text-[#f1efe9e2] ${
                   isOpen ? "rotate-90" : ""
                 }`}
                 icon={faChevronRight}
@@ -112,14 +112,6 @@ export const MenuItemCollapse = (props) => {
                   onClick={() => {
                     onClickUrl(sLink);
                   }}
-                  // href={
-                  //   sLink?.type === "SubMenuPage"
-                  //     ? `intro/${sLink?.id}`
-                  //     : sLink?.slug
-                  // }
-                  // target={
-                  //   link?.slug?.indexOf("http") === 0 ? "_blank" : "_self"
-                  // }
                 >
                   <div>
                     <div

@@ -30,7 +30,6 @@ export default function EngineeringRecordsItem({
         >
           {/* Text content */}
           <EngineeringRecordsCardInfo
-            // index={pIndex}
             post={pPosts}
             showPageCover={showPageCover}
             showPreview={showPreview}
@@ -40,7 +39,7 @@ export default function EngineeringRecordsItem({
           {/* Picture cover */}
           {showPageCover && (
             <Link href={pPosts.slug} passHref legacyBehavior>
-              <div className="md:w-5/12 overflow-hidden">
+              <div className="md:w-4/12 overflow-hidden">
                 <LazyImage
                   priority={pIndex === 1}
                   src={pPosts?.pageCoverThumbnail}

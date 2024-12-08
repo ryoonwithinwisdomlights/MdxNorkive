@@ -31,16 +31,16 @@ export const siteConfig = ({
   }
   switch (key) {
     case "NEXT_REVALIDATE_SECOND":
-    case "POST_RECOMMEND_COUNT":
+    case "RECORD_RECOMMEND_COUNT":
     case "IMAGE_COMPRESS_WIDTH":
     case "PSEUDO_STATIC":
-    case "POSTS_SORT_BY":
-    case "POSTS_PER_PAGE":
-    case "POST_PREVIEW_LINES":
-    case "POST_URL_PREFIX":
-    case "POST_LIST_STYLE":
-    case "POST_LIST_PREVIEW":
-    case "POST_URL_PREFIX_MAPPING_CATEGORY":
+    case "RECORDS_SORT_BY":
+    case "RECORDS_PER_PAGE":
+    case "RECORD_PREVIEW_LINES":
+    case "RECORD_URL_PREFIX":
+    case "RECORD_LIST_STYLE":
+    case "RECORD_LIST_PREVIEW":
+    case "RECORD_URL_PREFIX_MAPPING_CATEGORY":
     case "IS_TAG_COLOR_DISTINGUISHED":
     case "TAG_SORT_BY_COUNT":
       return convertVal(extendConfig[key] || defaultVal || BLOG[key]);

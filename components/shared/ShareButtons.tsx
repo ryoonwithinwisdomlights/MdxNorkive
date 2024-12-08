@@ -35,7 +35,7 @@ library.add(faLink);
  * @returns
  */
 const ShareButtons = ({ shareUrl, title, body, image }) => {
-  const services = BLOG.POSTS_SHARE_SERVICES.split(",");
+  const services = BLOG.RECORDS_SHARE_SERVICES.split(",");
   const titleWithSiteInfo = title + " | " + BLOG.TITLE;
   const { locale } = useGlobal({ from: "index" });
 

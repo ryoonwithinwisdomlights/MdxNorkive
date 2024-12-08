@@ -24,7 +24,7 @@ const AllRecordsPostListPage = ({
 }) => {
   const router = useRouter();
   const { searchKeyword, setSearchKeyword } = useGlobal({});
-  const totalPage = Math.ceil(postCount / BLOG.POSTS_PER_PAGE);
+  const totalPage = Math.ceil(postCount / BLOG.RECORDS_PER_PAGE);
 
   if (!posts || posts.length === 0) {
     return <NavPostListEmpty searchKeyword={searchKeyword} />;

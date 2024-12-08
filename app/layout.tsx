@@ -165,7 +165,6 @@ export default async function RootLayout({
                         id="container-inner"
                         className="w-full px-7 max-w-3xl justify-center mx-auto"
                       >
-                        {/* {slotTop} */}
                         <CustomedTransitonWrapper>
                           {children}
                         </CustomedTransitonWrapper>
@@ -191,7 +190,7 @@ export default async function RootLayout({
                       <ArticleInfo />
                       <div className="py-4 justify-center">
                         <Catalog post={null} />
-                        {/* {slotRight}  */}
+
                         <InfoCard />
 
                         <Announcement />

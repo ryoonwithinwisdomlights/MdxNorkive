@@ -12,11 +12,11 @@ import TweetEmbed from "react-tweet-embed";
 
 const NotionPage = ({ post }) => {
   // Whether to turn off the click jump of the database and album
-  const POST_DISABLE_GALLERY_CLICK = siteConfig({
-    key: "POST_DISABLE_GALLERY_CLICK",
+  const RECORD_DISABLE_GALLERY_CLICK = siteConfig({
+    key: "RECORD_DISABLE_GALLERY_CLICK",
   });
-  const POST_DISABLE_DATABASE_CLICK = siteConfig({
-    key: "POST_DISABLE_DATABASE_CLICK",
+  const RECORD_DISABLE_DATABASE_CLICK = siteConfig({
+    key: "RECORD_DISABLE_DATABASE_CLICK",
   });
 
   const { width: windowWidth, height: windowHeight } = useWindowSize();
@@ -44,13 +44,13 @@ const NotionPage = ({ post }) => {
   // The hook that will be executed when the page article changes
   useEffect(() => {
     // Clicking on the album view prohibits jumping, and you can only enlarge the picture to view it.
-    if (POST_DISABLE_GALLERY_CLICK) {
+    if (RECORD_DISABLE_GALLERY_CLICK) {
       // For the gallery view on the page, after clicking, whether to enlarge the picture or jump to the internal page of the gallery
       processGalleryImg(zoomRef?.current);
     }
 
     // Clicking on the in-page database prohibits jumping and can only be viewed.
-    if (POST_DISABLE_DATABASE_CLICK) {
+    if (RECORD_DISABLE_DATABASE_CLICK) {
       processDisableDatabaseUrl();
     }
 
@@ -95,7 +95,7 @@ const NotionPage = ({ post }) => {
     return () => {
       observer.disconnect();
     };
-  }, [zoomRef, POST_DISABLE_GALLERY_CLICK, POST_DISABLE_DATABASE_CLICK]);
+  }, [zoomRef, RECORD_DISABLE_GALLERY_CLICK, RECORD_DISABLE_DATABASE_CLICK]);
 
   return (
     <div id="notion-article" className={`mx-auto overflow-hidden `}>

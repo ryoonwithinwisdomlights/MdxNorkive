@@ -17,18 +17,16 @@ const DarkModeButton = (props) => {
   return (
     <div
       onClick={handleChangeDarkMode}
-      className={`${
-        className || ""
-      } flex justify-center dark:text-neutral-200 text-neutral-800`}
+      className={`${className || ""}  dark:text-stone-200 `}
     >
       <div
         id="darkModeButton"
-        className=" hover:scale-110 cursor-pointer transform duration-200 w-5 h-5"
+        className="w-6 h-6 flex flex-col  justify-center items-center   hover:scale-110 cursor-pointer transform duration-200 "
       >
         {isDarkMode ? (
-          <CloudSun className=" text-amber-300 " />
+          <CloudSun className=" text-[#f1efe9e2]  " />
         ) : (
-          <CloudMoon className="text-amber-300" />
+          <CloudMoon className="text-[#f1efe9e2] " />
         )}
       </div>
     </div>
