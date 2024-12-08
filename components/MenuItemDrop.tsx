@@ -16,7 +16,6 @@ export const MenuItemDrop = ({ link }) => {
   }
   const hasSubMenu = link?.subMenus?.length > 0;
   const selected = pathname === link.to;
-
   const router = useRouter();
   const onClickUrl = (sLink) => {
     if (sLink) {
@@ -36,7 +35,9 @@ export const MenuItemDrop = ({ link }) => {
       <div
         className={
           "px-2 h-full whitespace-nowrap duration-300 text-sm justify-between dark:text-neutral-300 cursor-pointer flex flex-nowrap items-center " +
-          (selected ? " text-black hover:text-white " : "hover:text-[#ffd500]")
+          (selected
+            ? "bg-[#ffd500] rounded-lg h-4/5 text-black dark:text-neutral-700 hover:text-white "
+            : "hover:text-[#ffd500] dark:hover:text-[#ffffff]")
         }
       >
         <div>

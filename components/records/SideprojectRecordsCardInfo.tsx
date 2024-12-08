@@ -55,8 +55,6 @@ export const SideprojectRecordsCardInfo = ({
             } flex-wrap dark:text-neutral-500 text-neutral-400 `}
           >
             <div
-              // href={`/category/${post.category}`}
-              // passHref
               onClick={(e) => {
                 onClick(post.category);
               }}

@@ -1,17 +1,15 @@
 "use client";
-import React from "react";
 import NotionPage from "@/components/shared/NotionPage";
-import Link from "next/link";
-import TagItemMini from "../TagItemMini";
-import { siteConfig } from "@/lib/config";
-import { formatDateFmt } from "@/lib/formatDate";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faCalendarAlt,
   faFolder,
   faLock,
-  faCalendarAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import TagItemMini from "../TagItemMini";
 
 // 사전에 사용할 아이콘 추가
 library.add(faFolder, faLock, faCalendarAlt);
@@ -26,7 +24,10 @@ export const EngineeringRecordsCardInfo = ({
   showPageCover,
   showSummary,
 }) => {
-  // console.log(' EngineeringRecordsCardInfo::', post)
+  const router = useRouter();
+  const onClick = (engId: string) => {
+    router.push(`/engineering/${engId}`);
+  };
   return (
     <div
       className={`flex flex-col justify-between lg:p-6 p-4  ${
@@ -34,17 +35,16 @@ export const EngineeringRecordsCardInfo = ({
       }`}
     >
       <div>
-        <Link
-          href={`${siteConfig({ key: "SUB_PATH", defaultVal: "" })}/${
-            post.slug
-          }`}
-          passHref
+        <div
+          onClick={(e) => {
+            onClick(post.id);
+          }}
           className={`line-clamp-2 replace cursor-pointer text-2xl ${
             showPreview ? "text-center" : ""
           } leading-tight font-normal text-neutral-600  hover:text-[#ff6f00] `}
         >
           <span className="menu-link ">{post.title}</span>
-        </Link>
+        </div>
         {/* Classification */}
         {post?.category && (
           <div
@@ -98,19 +98,10 @@ export const EngineeringRecordsCardInfo = ({
       <div>
         {/* date label */}
         <div className="text-neutral-400 justify-between flex">
-          {/* date */}
-          <Link
-            href={`/records#${formatDateFmt(post?.publishDate, "yyyy-MM")}`}
-            passHref
-            className="font-light menu-link cursor-pointer text-sm leading-4 mr-3"
-          >
-            <FontAwesomeIcon className="mr-1" icon={faCalendarAlt} />
-            {post?.publishDay || post.lastEditedDay}
-          </Link>
-
+          <FontAwesomeIcon className="mr-1" icon={faCalendarAlt} />
+          {post?.publishDay || post.lastEditedDay}
           <div className="md:flex-nowrap flex-wrap md:justify-start inline-block">
             <div>
-              {" "}
               {post.tagItems?.map((tag) => (
                 <TagItemMini key={tag.name} tag={tag} />
               ))}

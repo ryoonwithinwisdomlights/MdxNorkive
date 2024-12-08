@@ -59,20 +59,19 @@ export async function getStaticNotionRecordsSortByDirTypeWithoutDateTitle({
   from: string;
   type: string;
 }) {
-  // console.log("getStaticPropsForRecords-from", from);
+  console.log(
+    "getStaticNotionRecordsSortByDirTypeWithoutDateTitle -from",
+    from,
+    ",type:",
+    type
+  );
   const props = await getGlobalData({
     from: `${from}-index-props`,
     type: type,
   });
-  console.log("type-from:", type);
-  // console.log("getStaticPropsForRecords-from", props);
   // Handle pagination
   props.posts = props.allPages?.filter((page) => {
-    // if (page.type === 'Sideproject') {
-    //   //   console.log(page)
-    // }
-
-    return page.type === "Sideproject" && page.status === "Published";
+    return page.type === type && page.status === "Published";
   });
   // const archiveRecords = {};
 

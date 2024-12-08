@@ -6,11 +6,11 @@ export default async function Page() {
   const { props }: any =
     await getStaticNotionRecordsSortByDirTypeWithoutDateTitle({
       from: "index",
-      type: "sideproject",
+      type: "Sideproject",
     });
 
   const sideProjectList: [] = props.archiveRecords;
-
+  console.log("props:", props);
   return (
     <div className="mb-10 pb-20 md:py-12 w-full py-3  min-h-full">
       <div className="flex flex-col">

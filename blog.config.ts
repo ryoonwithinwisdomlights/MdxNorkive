@@ -200,7 +200,7 @@ export const BLOG = {
   NOTION_PROPERTY_NAME: {
     password: process.env.NEXT_PUBLIC_NOTION_PROPERTY_PASSWORD || "password",
     type: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE || "type", // article type
-    type_able_arr: ["Record", "GuestBook", "Sideproject"],
+    type_able_arr: ["Record", "GuestBook", "Sideproject", "Engineering"],
     type_post: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_POST || "Post", // When the type article type is the same as this value, it is a blog post.
     type_record: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_POST || "Record",
     type_page: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_PAGE || "Page", // When the type article type is the same as this value, it is a single page.
@@ -215,6 +215,8 @@ export const BLOG = {
     // yeollam only
     type_sideproject:
       process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_SIDEPROJECT || "Sideproject",
+    type_engineering:
+      process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_SIDEPROJECT || "Engineering",
     type_guestbook:
       process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_GUESTBOOK || "GuestBook",
     // yeollam only

@@ -13,7 +13,15 @@ import { useGlobal } from "@/lib/providers/globalProvider";
  * @returns {JSX.Element}
  * @constructor
  */
-const AllRecordsPostListPage = ({ page = 1, posts = [], postCount }) => {
+const AllRecordsPostListPage = ({
+  page = 1,
+  posts = [],
+  postCount,
+}: {
+  page?: number;
+  posts?: [];
+  postCount: number;
+}) => {
   const router = useRouter();
   const { searchKeyword, setSearchKeyword } = useGlobal({});
   const totalPage = Math.ceil(postCount / BLOG.POSTS_PER_PAGE);

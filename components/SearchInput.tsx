@@ -80,7 +80,7 @@ Enter key  // 키 입력 처리 함수
     if (searchInputRef.current) {
       searchInputRef.current.value = "";
     }
-
+    setShowClean((prev) => !prev);
     handleSearch();
   };
 
@@ -146,8 +146,13 @@ Enter key  // 키 입력 처리 함수
         />
       </div>
 
-      {showClean && (
-        <div className="-ml-14 cursor-pointer float-right items-end px-4   justify-center py-4">
+      {searchKeyword !== "" && (
+        <div
+          onClick={() => {
+            cleanSearch();
+          }}
+          className="-ml-14 cursor-pointer float-right items-end px-4   justify-center py-4"
+        >
           <FontAwesomeIcon
             className=" hover:text-neutral-400 items-center justify-center transform duration-200 text-neutral-200 cursor-pointer py-2  dark:hover:text-neutral-300"
             icon={faTimes}
