@@ -28,7 +28,7 @@ export default function AllRecordsArchiveItem({
     <div key={archiveTitle}>
       <div
         id={archiveTitle}
-        className="pt-10  text-amber-400/50 font-semibold pb-4 text-2xl  "
+        className="pt-10  text-[#cbcac4e2] font-semibold pb-4 text-2xl  "
       >
         {archiveTitle}
       </div>
@@ -36,10 +36,10 @@ export default function AllRecordsArchiveItem({
         {archiveRecords[archiveTitle]?.map((post) => (
           <li
             key={post.id}
-            className="border-l-4 border-amber-400/40  hover:border-amber-300 flex flex-row p-2 text-xs md:text-base items-center text-justify  hover:scale-x-105  dark:hover:border-amber-400 dark:border-amber-400/30 transform duration-500"
+            className="border-l-4 border-[#f1efe9e2]  hover:border-[#cbcac4e2] flex flex-row p-2 text-xs md:text-base items-center text-justify  hover:scale-x-105  dark:hover:border-neutral-400 dark:border-neutral-400/30 transform duration-500"
           >
             <div id={post?.publishDay}>
-              <span className="text-amber-400/60 dark:hover:text-amber-300">
+              <span className="text-[#cbcac4e2] dark:hover:text-neutral-300">
                 {post.date?.start_date}
               </span>{" "}
               <span
@@ -50,7 +50,7 @@ export default function AllRecordsArchiveItem({
               </span>
               <Link
                 href={`records/${post.id}`}
-                className="dark:text-neutral-400 hover:text-amber-400  dark:hover:text-amber-200 overflow-x-hidden hover:underline cursor-pointer text-neutral-600"
+                className="dark:text-neutral-400 hover:text-neutral-400  dark:hover:text-neutral-200 overflow-x-hidden hover:underline cursor-pointer text-neutral-600"
               >
                 {post.title}{" "}
                 <span className="text-xs">

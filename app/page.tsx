@@ -21,8 +21,8 @@ export default async function Page() {
               yeollam
             </div>
             <div
-              className="text-7xl       flex flex-row justify-end underline 
-         decoration-stone-400/30 "
+              className="text-7xl flex flex-row justify-end underline 
+         decoration-[#f1efe9e2] "
             >
               열람.
             </div>
@@ -36,7 +36,7 @@ export default async function Page() {
           {/* Your archive honestly recorded across borders */}
           {/* Records reading room =열람실 */}
           {/* This is a reading room for everything that has been honestly recorded across boundaries.
-          경계를 넘어 솔직하게 기록한 모든 것을 담은 열람실입니다. */}
+           */}
           {/* for everything that has been honestly recorded across boundaries */}
           {/* An archive of everything honestly recorded beyond boundaries,  */}
         </div>
@@ -53,38 +53,33 @@ export default async function Page() {
         </div>
         <div className="w-2/12  mt-20  dark:text-neutral-200 text-neutral-700 flex flex-col items-end  text-right ">
           <div className=" text-stone-600  text-center items-center dark:text-neutral-200  ">
-            {/* w<br />
-            i<br />
-            t<br />h */}
             with
           </div>
-          <div className="text-left mt-10 dark:text-neutral-200 text-neutral-700 flex flex-col gap-20   ">
-            <div className="font-bold text-right flex flex-col items-end justify-end   text-orange-500">
+          <div className="text-left mt-10 dark:text-neutral-200 text-neutral-600 flex flex-col gap-20   ">
+            <div className=" text-right flex flex-col items-end justify-end   ">
               👩‍💻 <br />,
             </div>
-            <div className=" font-bold text-right flex flex-col items-end justify-end  text-red-500">
+            <div className="  text-right flex flex-col items-end justify-end  ">
               📙
               <span>,</span>
             </div>
-            <div className=" font-bold text-right flex flex-col items-end justify-end   text-amber-500 ">
+            <div className="  text-right flex flex-col items-end justify-end    ">
               📔
               <br />,
             </div>
-            <div className=" font-bold text-right flex flex-col items-end justify-end  text-amber-900 dark:text-stone-300">
+            <div className="  text-right flex flex-col items-end justify-end  ">
               📝
               <br />,
             </div>
-            <div className=" font-bold  text-right flex flex-col items-end justify-end  text-amber-400">
+            <div className="   text-right flex flex-col items-end justify-end  ">
               💡
               <br />,
             </div>
-            <div className=" font-bold  text-right flex flex-col items-end  text-orange-400">
+            <div className="   text-right flex flex-col items-end  ">
               🎨
               <br />,
             </div>
-            <div className=" font-bold text-right items-center text-amber-900 dark:text-stone-200 ">
-              🌳
-            </div>
+            <div className="  text-right items-center  ">🌳</div>
           </div>
           <div className="mt-12 text-stone-600 font-extralight text-right items-center dark:text-neutral-200  ">
             and
