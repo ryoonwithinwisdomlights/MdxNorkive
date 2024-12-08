@@ -2,7 +2,7 @@
 import Collapse from "@/components/shared/Collapse";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
@@ -24,6 +24,18 @@ export const MenuItemCollapse = (props) => {
   const [isOpen, changeIsOpen] = useState(false);
 
   const router = useRouter();
+
+  const onClickUrl = (sLink) => {
+    if (sLink) {
+      const href =
+        sLink?.type === "SubMenuPage" ? `/intro/${sLink?.id}` : sLink?.slug;
+      if (sLink?.slug?.includes("http")) {
+        window.open(sLink.slug, "_blank");
+      } else {
+        router.push(href);
+      }
+    }
+  };
 
   if (!link || !link.show) {
     return null;
@@ -87,10 +99,6 @@ export const MenuItemCollapse = (props) => {
       {hasSubMenu && (
         <Collapse isOpen={isOpen} onHeightChange={props.onHeightChange}>
           {link?.subMenus?.map((sLink, index) => {
-            const hrefUrl =
-              sLink?.type === "SubMenuPage"
-                ? `intro/${sLink?.id}`
-                : sLink?.slug;
             return (
               <div
                 key={index}
@@ -98,11 +106,18 @@ export const MenuItemCollapse = (props) => {
               not:last-child:border-b-0 border-b dark:border-neutral-800  dark:bg-neutral-600 dark:hover:bg-neutral-700 dark:text-neutral-200  py-2 px-14 cursor-pointer
               font-extralighttext-left justify-start bg-neutral-50  text-neutral-600 hover:bg-neutral-100  tracking-widest transition-all duration-200"
               >
-                <Link
-                  href={hrefUrl}
-                  target={
-                    link?.slug?.indexOf("http") === 0 ? "_blank" : "_self"
-                  }
+                <div
+                  onClick={() => {
+                    onClickUrl(sLink);
+                  }}
+                  // href={
+                  //   sLink?.type === "SubMenuPage"
+                  //     ? `intro/${sLink?.id}`
+                  //     : sLink?.slug
+                  // }
+                  // target={
+                  //   link?.slug?.indexOf("http") === 0 ? "_blank" : "_self"
+                  // }
                 >
                   <div>
                     <div
@@ -110,7 +125,7 @@ export const MenuItemCollapse = (props) => {
                     />
                     {sLink.title}
                   </div>
-                </Link>
+                </div>
               </div>
             );
           })}

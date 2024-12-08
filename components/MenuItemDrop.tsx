@@ -3,8 +3,8 @@ import * as Icons from "@fortawesome/free-solid-svg-icons"; // 모든 아이콘�
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { parseIcon } from "@/lib/utils/utils";
 
 export const MenuItemDrop = ({ link }) => {
@@ -16,6 +16,19 @@ export const MenuItemDrop = ({ link }) => {
   }
   const hasSubMenu = link?.subMenus?.length > 0;
   const selected = pathname === link.to;
+
+  const router = useRouter();
+  const onClickUrl = (sLink) => {
+    if (sLink) {
+      const href =
+        sLink?.type === "SubMenuPage" ? `/intro/${sLink?.id}` : sLink?.slug;
+      if (sLink?.slug?.includes("http")) {
+        window.open(sLink.slug, "_blank");
+      } else {
+        router.push(href);
+      }
+    }
+  };
 
   const renderMainMenus = () => {
     const icon = parseIcon(link.icon);
@@ -84,10 +97,17 @@ export const MenuItemDrop = ({ link }) => {
            text-neutral-700 dark:text-neutral-200
             tracking-widest transition-all duration-200  dark:border-neutral-800 py-3 pr-6 pl-3"
               >
-                <Link
+                <div
                   className="hover:bg-[#ffd500] dark:hover:text-[#ffffff] px-2 hover:rounded-lg hover:h-4/5 w-full"
-                  href={hrefUrl}
-                  target={sLink?.slug?.includes("http") ? "_blank" : "_self"}
+                  onClick={() => {
+                    onClickUrl(sLink);
+                  }}
+                  // href={
+                  //   sLink?.type === "SubMenuPage"
+                  //     ? `intro/${sLink?.id}`
+                  //     : sLink?.slug
+                  // }
+                  // target={sLink?.slug?.includes("http") ? "_blank" : "_self"}
                 >
                   <span className="text-xs font-extralight dark:hover:text-neutral-900">
                     {iconForRenderSubmenus && (
@@ -95,7 +115,7 @@ export const MenuItemDrop = ({ link }) => {
                     )}
                     &nbsp;{sLink.title}
                   </span>
-                </Link>
+                </div>
               </li>
             </div>
           );
