@@ -18,13 +18,13 @@ export default async function Page() {
         >
           <div className="  dark:text-neutral-300 flex flex-col justify-end ">
             <div className="text-1xl flex flex-row justify-end mr-2 text-neutral-600  ">
-              notion | recorded | archive
+              archive | recorded in | notion
             </div>
             <div
               className="text-7xl font-semibold text-black flex flex-row justify-end underline 
-         decoration-stone-300 "
+         decoration-black "
             >
-              Norchive
+              Norkive
             </div>
             <div className="mt-2 flex flex-row justify-end text-sm text-stone-800 font-extralight dark:text-neutral-200  ">
               Browsing all archives written and recored in Notion.

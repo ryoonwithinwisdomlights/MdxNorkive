@@ -1,4 +1,5 @@
 export const BLOG = {
+  APP_NAME: "Norkive",
   NOTION_PAGE_ID: process.env.NOTION_PAGE_ID,
   PSEUDO_STATIC: process.env.NEXT_PUBLIC_PSEUDO_STATIC || false,
   NEXT_REVALIDATE_SECOND: process.env.NEXT_PUBLIC_REVALIDATE_SECOND || 5,
@@ -168,8 +169,8 @@ export const BLOG = {
 
   // giscus @see https://giscus.app/
   COMMENT_GISCUS_REPOUSERNAME:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPOUSERNAME, // Your Github repository name e.g 'ryoonwithinwisdomlights/norchive'
-  COMMENT_GISCUS_REPONAME: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPONAME, // Your Github repository name e.g 'ryoonwithinwisdomlights/norchive'
+    process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPOUSERNAME, // Your Github repository name e.g 'ryoonwithinwisdomlights/norkive'
+  COMMENT_GISCUS_REPONAME: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPONAME, // Your Github repository name e.g 'ryoonwithinwisdomlights/norkive'
   COMMENT_GISCUS_REPO_ID: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPO_ID, // Your Github Repo ID e.g (you can see it after setting up giscus)
   COMMENT_GISCUS_CATEGORY:
     process.env.NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY || "General",
@@ -239,13 +240,13 @@ export const BLOG = {
   MAILCHIMP_API_KEY: process.env.MAILCHIMP_API_KEY || null, // Enable mailichimp email subscription APIkey
 
   // Obsolete configuration
-  AVATAR: process.env.NEXT_PUBLIC_AVATAR || "/images/rwwt_lemon.svg", // The author's avatar is covered by the ICON in the notice. If there is no ICON, take avatar.png in the public directory.
-  TITLE: process.env.NEXT_PUBLIC_TITLE || "Yeollamsil", // Click title, which will be covered by the page title in the notice; please do not leave a blank here, otherwise the server will not be able to compile
+  AVATAR: process.env.NEXT_PUBLIC_AVATAR || "/images/norkive_black.png", // The author's avatar is covered by the ICON in the notice. If there is no ICON, take avatar.png in the public directory.
+  TITLE: process.env.NEXT_PUBLIC_TITLE || "Norkive", // Click title, which will be covered by the page title in the notice; please do not leave a blank here, otherwise the server will not be able to compile
   HOME_BANNER_IMAGE:
     process.env.NEXT_PUBLIC_HOME_BANNER_IMAGE || "/images/bg_image.png", // The home page background image will be covered by the cover image in the notice. If there is no cover image, the /public/bg_image.jpg file in the code will be used.
   DESCRIPTION:
     process.env.NEXT_PUBLIC_DESCRIPTION ||
-    "Yeollamsil - notion based static Blog for your every Records", // Site description, overridden by the page description in the notice
+    "Norkive - notion based static Blog for your every Records", // Site description, overridden by the page description in the notice
 
   // ANIMATE.css
   ANIMATE_CSS_URL:

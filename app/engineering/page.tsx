@@ -23,7 +23,7 @@ export default async function Page() {
           <span className="font-semibold "> 지식, 정보, 앎</span>에 대한
           <span className="text-[#cbcac4e2] dark:text-[#ffffff] font-bold">
             {" "}
-            레코드.
+            아카이브.
           </span>
         </div>
       </div>

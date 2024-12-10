@@ -26,10 +26,10 @@ import JumpToTopButton from "@/components/JumpToTopButton";
 import PageNavDrawer from "@/components/PageNavDrawer";
 import TopNavBar from "@/components/TopNavBar";
 import CustomedTransitonWrapper from "@/components/wrapper/CustomedTransitonWrapper";
-import { HandleOnComplete } from "@/lib/custom-router";
 import { InitGlobalNotionData } from "@/lib/providers/provider";
 import loadGlobalNotionData from "./api/load-globalNotionData";
 
+import BottomMenuBar from "@/components/BottomMenuBar";
 import Catalog from "@/components/Catalog";
 import LoadingCover from "@/components/LoadingCover";
 import AllNavRecordsList from "@/components/records/AllNavRecordsList";
@@ -41,7 +41,6 @@ import VConsoleTs from "@/components/shared/VConsoleTs";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Suspense } from "react";
-import BottomMenuBar from "@/components/BottomMenuBar";
 
 config.autoAddCss = false;
 
@@ -56,9 +55,9 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("http://localhost:3000"),
-  title: BLOG.TITLE as string,
+  title: BLOG.APP_NAME as string,
   description: BLOG.DESCRIPTION as string, //
-  applicationName: "Yeollamsil",
+  applicationName: BLOG.APP_NAME as string,
   authors: {
     url: BLOG.LINK,
     name: BLOG.AUTHOR,
@@ -68,11 +67,11 @@ export const metadata: Metadata = {
     icon: [
       {
         media: "(prefers-color-scheme: light)",
-        url: "/images/norchive_white.png",
+        url: "/images/norkive_white.png",
       },
       {
         media: "(prefers-color-scheme: dark)",
-        url: "/images/norchive_black.png",
+        url: "/images/norkive_black.png",
       },
     ],
   },
@@ -82,7 +81,7 @@ export const metadata: Metadata = {
     description: BLOG.DESCRIPTION,
     siteName: BLOG.TITLE,
     locale: BLOG.LANG,
-    images: "/images/rwwt_lemon.png",
+    images: "/images/norkive_black.png",
     url: BLOG.LINK,
   },
   category: BLOG.KEYWORDS || "Software Technology", // section Mainly like category Such classification, Facebook Use this to capture link categories,
