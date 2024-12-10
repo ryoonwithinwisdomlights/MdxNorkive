@@ -38,7 +38,7 @@ const SingleRecords = ({ props }) => {
   const [lock, setLock] = useState(post?.password && post?.password !== "");
 
   const onClick = (recordId: string) => {
-    router.push(`/sideproject/${recordId}`);
+    router.push(`/devproject/${recordId}`);
   };
 
   /**
@@ -159,7 +159,7 @@ const SingleRecords = ({ props }) => {
                 post?.type !== "Notice" &&
                 post?.type !== "Page" &&
                 post?.status === "Published" &&
-                post.type === "Sideproject" && (
+                post.type === "Devproject" && (
                   <ArticleAround prev={prev} next={next} />
                 )}
               {/* <AdSlot /> */}

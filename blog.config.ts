@@ -168,8 +168,8 @@ export const BLOG = {
 
   // giscus @see https://giscus.app/
   COMMENT_GISCUS_REPOUSERNAME:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPOUSERNAME, // Your Github repository name e.g 'ryoonwithinwisdomlights/yeollam'
-  COMMENT_GISCUS_REPONAME: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPONAME, // Your Github repository name e.g 'ryoonwithinwisdomlights/yeollam'
+    process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPOUSERNAME, // Your Github repository name e.g 'ryoonwithinwisdomlights/norchive'
+  COMMENT_GISCUS_REPONAME: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPONAME, // Your Github repository name e.g 'ryoonwithinwisdomlights/norchive'
   COMMENT_GISCUS_REPO_ID: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPO_ID, // Your Github Repo ID e.g (you can see it after setting up giscus)
   COMMENT_GISCUS_CATEGORY:
     process.env.NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY || "General",
@@ -201,7 +201,7 @@ export const BLOG = {
   NOTION_PROPERTY_NAME: {
     password: process.env.NEXT_PUBLIC_NOTION_PROPERTY_PASSWORD || "password",
     type: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE || "type", // article type
-    type_able_arr: ["Record", "GuestBook", "Sideproject", "Engineering"],
+    type_able_arr: ["Record", "GuestBook", "Devproject", "Engineering"],
     type_post: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_POST || "Post", // When the type article type is the same as this value, it is a blog post.
     type_record: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_POST || "Record",
     type_page: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_PAGE || "Page", // When the type article type is the same as this value, it is a single page.
@@ -213,14 +213,12 @@ export const BLOG = {
     type_sub_menu_page:
       process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_SUB_MENU_PAGE ||
       "SubMenuPage", // When the type article type is the same as this value, it is a submenu but presenting page, simultaenousely.
-    // yeollam only
-    type_sideproject:
-      process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_SIDEPROJECT || "Sideproject",
+    type_devproject:
+      process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_DEVPROJECT || "Devproject",
     type_engineering:
-      process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_SIDEPROJECT || "Engineering",
+      process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_ENGINEERING || "Engineering",
     type_guestbook:
       process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_GUESTBOOK || "GuestBook",
-    // yeollam only
     title: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TITLE || "title", // Article title
     status: process.env.NEXT_PUBLIC_NOTION_PROPERTY_STATUS || "status",
     status_publish:

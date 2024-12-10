@@ -2,21 +2,16 @@
 /* eslint-disable no-unused-vars */
 import LazyImage from "@/components/shared/LazyImage";
 import { useRouter } from "next/navigation";
-import { SideprojectRecordsCardInfo } from "./SideprojectRecordsCardInfo";
+import { DevprojectRecordsCardInfo } from "./DevprojectRecordsCardInfo";
 
-export default function SideprojectRecordsItem({
-  pIndex,
-  pId,
-  pTitle,
-  pPosts,
-}) {
+export default function DevprojectRecordsItem({ pIndex, pId, pTitle, pPosts }) {
   const showPreview = false;
   const showPageCover = pPosts?.pageCoverThumbnail;
   const router = useRouter();
 
   //이동
   const onClick = (recordId: string) => {
-    router.push(`/sideproject/${recordId}`);
+    router.push(`/devproject/${recordId}`);
   };
 
   return (
@@ -41,7 +36,7 @@ export default function SideprojectRecordsItem({
           }overflow-hidden border dark:border-black rounded-xl bg-white dark:bg-neutral-100`}
         >
           {/* Text content */}
-          <SideprojectRecordsCardInfo
+          <DevprojectRecordsCardInfo
             index={pIndex}
             post={pPosts}
             showPageCover={showPageCover}

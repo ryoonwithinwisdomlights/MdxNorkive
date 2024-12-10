@@ -20,7 +20,7 @@ library.add(faFolder, faLock, faCalendarAlt);
  * @param {*} param0
  * @returns
  */
-export const SideprojectRecordsCardInfo = ({
+export const DevprojectRecordsCardInfo = ({
   index,
   post,
   showPreview,
@@ -50,20 +50,10 @@ export const SideprojectRecordsCardInfo = ({
         {/* Classification */}
         {post?.category && (
           <div
-            className={`flex mt-2 items-center ${
+            className={`flex items-center ${
               showPreview ? "justify-center" : "justify-start"
             } flex-wrap dark:text-neutral-500 text-neutral-400 `}
           >
-            <div
-              onClick={(e) => {
-                onClick(post.category);
-              }}
-              className="cursor-pointer font-light text-sm menu-link hover:text-black dark:hover:text-black transform"
-            >
-              <FontAwesomeIcon className="mr-1" icon={faFolder} />
-
-              {post.category}
-            </div>
             <span className="text-xs">
               &nbsp;&nbsp;&nbsp;{" "}
               {post.password !== "" && (
@@ -78,7 +68,7 @@ export const SideprojectRecordsCardInfo = ({
 
         {/* Summary */}
         {(!showPreview || showSummary) && !post.results && (
-          <p className="line-clamp-2 replace my-3 text-neutral-500  dark:text-neutral-500 text-sm font-light leading-7">
+          <p className="line-clamp-2 replace  text-neutral-500  dark:text-neutral-500 text-sm font-light leading-7">
             {post.summary}
           </p>
         )}

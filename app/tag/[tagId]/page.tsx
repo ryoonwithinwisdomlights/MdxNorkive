@@ -35,7 +35,7 @@ export default async function Page({ params }) {
         page.status === "Published"
     )
     .filter((post) => {
-      // if (post.type === "Sideproject") {
+      // if (post.type === "Devproject") {
       //   console.log("decodedTagId:", decodedTagId);
       //   console.log("post.tags:", post.tags);
       // }

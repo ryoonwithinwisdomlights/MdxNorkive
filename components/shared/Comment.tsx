@@ -23,7 +23,7 @@ const GiscusComponent = dynamic(
 const Comment = (props) => {
   const { frontMatter } = props;
   const pathname = usePathname();
-  //sideproject/1341eb5c-0337-81ad-a46c-d94c8abcdada
+  //devproject/1341eb5c-0337-81ad-a46c-d94c8abcdada
 
   const [shouldLoad, setShouldLoad] = useState(false);
   const { isDarkMode } = useGlobal({ from: "index" });

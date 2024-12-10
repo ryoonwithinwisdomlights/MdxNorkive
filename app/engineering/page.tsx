@@ -15,7 +15,7 @@ export default async function Page() {
         <div className="flex flex-row justify-end text-xs  text-stone-600 font-extralight dark:text-neutral-200 hover:text-stone-800 ">
           browsing all the engineering related records you have learned
         </div>
-        <div className="text-4xl ont-semibold dark:text-neutral-100 flex flex-row justify-end ">
+        <div className="text-4xl  dark:text-neutral-100 flex flex-row justify-end ">
           Software Engineering <span className="text-[#f1efe9e2]">.</span>
         </div>
         <div className=" dark:text-neutral-200 md:px-2 text-neutral-700 mt-1 text-right my-2 mr-4 ">
@@ -23,7 +23,7 @@ export default async function Page() {
           <span className="font-semibold "> 지식, 정보, 앎</span>에 대한
           <span className="text-[#cbcac4e2] dark:text-[#ffffff] font-bold">
             {" "}
-            열람.
+            레코드.
           </span>
         </div>
       </div>
