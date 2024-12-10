@@ -4,6 +4,10 @@ import { useEffect } from "react";
 import Catalog from "../Catalog";
 import { useGitBookGlobal } from "@/lib/providers/themeGitbookProvider";
 import { useGlobal } from "@/lib/providers/globalProvider";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faTh, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+library.add(faTimes);
 
 /**
  * Floating drawer catalog
@@ -39,14 +43,18 @@ const CatalogDrawerWrapper = ({ post }) => {
         >
           {post && (
             <>
-              <div className="px-4 pb-2 flex justify-between items-center border-b font-bold">
+              <div
+                onClick={() => {
+                  changeTocVisible();
+                }}
+                className="px-4 pb-2 flex justify-between items-center border-b font-bold"
+              >
                 <span>{locale.COMMON.TABLE_OF_CONTENTS}</span>
-                <i
-                  className="fas fa-times p-1 cursor-pointer"
-                  onClick={() => {
-                    changeTocVisible();
-                  }}
-                ></i>
+
+                <FontAwesomeIcon
+                  className="p-1 cursor-pointer"
+                  icon={faTimes}
+                />
               </div>
               <div className="dark:text-gray-400 text-gray-600 px-3">
                 <Catalog post={post} />

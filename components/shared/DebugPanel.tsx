@@ -3,7 +3,10 @@
 import { BLOG } from "@/blog.config";
 import { useEffect, useState } from "react";
 import { useGlobal } from "@/lib/providers/globalProvider";
-
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faTimes, faTools } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+library.add(faTimes);
 /**
  *
  * @returns Debug panel
@@ -44,9 +47,17 @@ const DebugPanel = () => {
           onClick={toggleShow}
         >
           {show ? (
-            <i className="fas fa-times">&nbsp;{locale.COMMON.DEBUG_CLOSE}</i>
+            <>
+              {" "}
+              <FontAwesomeIcon icon={faTimes} />
+              &nbsp;{locale.COMMON.DEBUG_CLOSE}
+            </>
           ) : (
-            <i className="fas fa-tools">&nbsp;{locale.COMMON.DEBUG_OPEN}</i>
+            <>
+              {" "}
+              <FontAwesomeIcon icon={faTools} />
+              &nbsp;{locale.COMMON.DEBUG_OPEN}
+            </>
           )}
         </div>
       </div>
@@ -58,29 +69,12 @@ const DebugPanel = () => {
         } overflow-y-scroll h-full p-5 bg-white fixed bottom-0 z-50 duration-200`}
       >
         <div className="flex justify-between space-x-1 my-5">
-          <div className="p-2">
-            <i className="fas fa-times" onClick={toggleShow} />
+          <div className="p-2" onClick={toggleShow}>
+            <FontAwesomeIcon icon={faTimes} />
           </div>
         </div>
 
         <div>
-          {/* <div>
-                        <div className="font-bold w-18 border-b my-2">
-                            Theme configuration{`config_${debugTheme}.js`}:
-                        </div>
-                        <div className="text-xs">
-                            {Object.keys(themeConfig).map(k => (
-                                <div key={k} className="justify-between flex py-1">
-                                    <span className="bg-indigo-500 p-0.5 rounded text-white mr-2">
-                                        {k}
-                                    </span>
-                                    <span className="whitespace-nowrap">
-                                        {filterResult(themeConfig[k] + '')}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
-                    </div> */}
           <div className="font-bold w-18 border-b my-2">
             사이트 구성 [blog.config.js]
           </div>
