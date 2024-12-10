@@ -15,7 +15,6 @@ const DebugPanel = () => {
 
   useEffect(() => {
     updateSiteConfig(Object.assign({}, BLOG));
-    // updateThemeConfig(Object.assign({}, ThemeMap[BLOG.THEME].THEME_CONFIG))
   }, []);
 
   function toggleShow() {

@@ -50,10 +50,9 @@ export const parseIcon = (iconString: string) => {
 export const exchangeSlugToType = (slug) => {
   const typeApp: AppType[] = [
     { slug: "devproject", type: "Devproject" },
-    { slug: "general", type: "General" },
     { slug: "engineering", type: "Engineering" },
-    { slug: "writing", type: "Writing" },
-    { slug: "guest-book", type: "GuestBook" },
+    // { slug: "general", type: "General" },
+    // { slug: "writing", type: "Writing" },
   ];
 
   if (!slug) return null;

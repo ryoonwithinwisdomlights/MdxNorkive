@@ -45,7 +45,6 @@ export function GlobalContextProvider({
     customMenu,
     post,
     notice,
-    guestbook,
     allPages,
     allNavPages,
     latestPosts,
@@ -55,7 +54,6 @@ export function GlobalContextProvider({
   const [locale, updateLocale] = useState<string>(
     generateLocaleDict(BLOG.LANG)
   ); // default language
-  const [theme, setTheme] = useState<string>(BLOG.THEME); // Default blog theme
   const [isDarkMode, updateDarkMode] = useState<boolean>(
     BLOG.APPEARANCE === "dark"
   ); // Default dark mode
@@ -95,9 +93,6 @@ export function GlobalContextProvider({
         isDarkMode,
         updateDarkMode,
         notice,
-        guestbook,
-        theme,
-        setTheme,
         siteInfo,
         categoryOptions,
         subTypeOptions,

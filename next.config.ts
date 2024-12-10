@@ -36,14 +36,8 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  // Feed is redirected to /public/rss/feed.xml by default
   async redirects() {
     return [
-      {
-        source: "/feed",
-        destination: "/rss/feed.xml",
-        permanent: true,
-      },
       {
         source: "/records",
         destination: "/records",

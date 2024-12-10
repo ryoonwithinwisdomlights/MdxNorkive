@@ -63,7 +63,6 @@ interface InitGlobalNotionData {
   customNav: CustomNavList[];
   customMenu: any[];
   notice: any;
-  guestbook: any;
   post: any;
   allPages: AllPages[];
   allNavPages: AllNavPages[];
@@ -78,8 +77,6 @@ interface GlobalValueInferface {
   updateLocale: Dispatch<SetStateAction<string>>;
   isDarkMode: boolean;
   updateDarkMode: Dispatch<SetStateAction<boolean>>;
-  theme?: string;
-  setTheme?: Dispatch<SetStateAction<string>>;
   siteInfo: SiteInfo;
   categoryOptions?: [];
   subTypeOptions?: [];
@@ -94,7 +91,6 @@ interface GlobalValueInferface {
   allNavPages: AllNavPages[];
   showTocButton?: boolean;
   notice: any;
-  guestbook: any;
   post: any;
   latestPosts: [];
   handleChangeDarkMode: () => void;

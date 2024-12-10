@@ -28,7 +28,6 @@ export default async function Page({ params }) {
     from: "SubMenuPage",
   });
 
-  // console.log("IntroPage:", props.introPage);
   // Find article in list
   props.post = props?.allPages?.find((item) => {
     return item.id === pageId;
