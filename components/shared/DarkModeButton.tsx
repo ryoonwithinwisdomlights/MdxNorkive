@@ -5,7 +5,7 @@
 
 import { useGlobal } from "@/lib/providers/globalProvider";
 import { saveDarkModeToLocalStorage } from "@/lib/utils/theme";
-import { CloudMoon, CloudSun } from "lucide-react";
+import { Archive, CloudMoon, CloudSun } from "lucide-react";
 
 /**
  * dark mode button
@@ -21,13 +21,15 @@ const DarkModeButton = (props) => {
     >
       <div
         id="darkModeButton"
+        data-tooltip={isDarkMode ? "light" : "dark"}
         className="w-6 h-6 flex flex-col  justify-center items-center   hover:scale-110 cursor-pointer transform duration-200 "
       >
         {isDarkMode ? (
-          <CloudSun className=" text-[#f1efe9e2]  " />
+          <Archive className=" text-[#f1efe9e2]  " />
         ) : (
-          <CloudMoon className="text-[#f1efe9e2] " />
+          <Archive className="text-stone-600" />
         )}
+        {/* <span className="font-xs"> {isDarkMode ? "light" : "dark"}</span> */}
       </div>
     </div>
   );
