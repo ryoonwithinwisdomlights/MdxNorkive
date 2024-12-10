@@ -1,9 +1,8 @@
 "use client";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
-import {} from "usehooks-ts";
 
 // 사전에 사용할 아이콘 추가
 library.add(faChevronLeft);

@@ -11,7 +11,7 @@ library.add(faTh, faFolder);
 const TagList = () => {
   const { tagOptions } = useGlobal({});
   return (
-    <div className="bg-white dark:bg-neutral-700  px-10 py-10">
+    <div className=" px-10 py-10">
       <div className=" items-center  flex flex-row dark:text-neutral-200 mb-5  ">
         {/* {locale.COMMON.TAGS}: */}
         <FontAwesomeIcon

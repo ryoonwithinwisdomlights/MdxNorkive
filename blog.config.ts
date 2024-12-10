@@ -27,7 +27,8 @@ export const BLOG = {
 
   CONTACT_EMAIL:
     process.env.NEXT_PUBLIC_CONTACT_EMAIL || "ryoon.with.wisdomtrees@gmail.com",
-  CONTACT_TWITTER: process.env.NEXT_PUBLIC_CONTACT_TWITTER || "",
+  CONTACT_TWITTER:
+    process.env.NEXT_PUBLIC_CONTACT_TWITTER || "https://x.com/RyoonWisdomTree",
   CONTACT_GITHUB:
     process.env.NEXT_PUBLIC_CONTACT_GITHUB ||
     "https://github.com/ryoonwithinwisdomlights",

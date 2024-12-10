@@ -24,7 +24,7 @@ const instagramIcon = parseIcon("fab fa-instagram");
 const SocialButton = () => {
   return (
     <div className="space-x-3 text-xl text-neutral-600 dark:text-neutral-400 flex-wrap flex justify-center ">
-      {BLOG.CONTACT_GITHUB && (
+      {(BLOG.CONTACT_GITHUB as string) && (
         <a
           target="_blank"
           rel="noreferrer"
@@ -39,7 +39,7 @@ const SocialButton = () => {
           )}
         </a>
       )}
-      {BLOG.CONTACT_TWITTER && (
+      {(BLOG.CONTACT_TWITTER as string) && (
         <a
           target="_blank"
           rel="noreferrer"
@@ -84,7 +84,7 @@ const SocialButton = () => {
           )}
         </a>
       )}
-      {BLOG.CONTACT_EMAIL && (
+      {(BLOG.CONTACT_EMAIL as string) && (
         <a
           target="_blank"
           rel="noreferrer"

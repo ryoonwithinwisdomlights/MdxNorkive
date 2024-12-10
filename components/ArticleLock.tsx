@@ -84,12 +84,6 @@ export const ArticleLock = (props) => {
                 &nbsp; 입력완료
               </div>
             </div>
-            {/* <Button
-              onClick={historyGoBack}
-              className=" px-3 cursor-pointer items-center justify-center py-2 bg-neutral-100 hover:bg-neutral-50  text-black rounded-r duration-300"
-            >
-              뒤로가기
-            </Button> */}
           </div>
           {/** mobile */}
           <div className="lg:hidden sm:hidden md:hidden text-left flex flex-col gap-2 py-4 dark:text-neutral-100">
@@ -131,7 +125,7 @@ export const ArticleLock = (props) => {
         </div>
         <div
           onClick={historyGoBack}
-          className="flex flex-row items-start justify-start text  text-right md:w-2/5  md:my-20  duration-200  hover:border-orange-200 border-b-2 border-neutral-100  hover:font-bold "
+          className="flex flex-row items-start justify-start text  text-right md:w-2/5  md:my-20  duration-200  hover:border-stone-200 border-b-2 border-neutral-100  hover:font-bold "
         >
           ← 뒤로가기
         </div>

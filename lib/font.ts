@@ -9,6 +9,8 @@ function CJK() {
     case "ko":
     case "kr-KR":
       return "KR";
+    case "en-US":
+      return "EN";
     case "zh-cn":
     case "zh-sg":
       return "SC";

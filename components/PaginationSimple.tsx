@@ -34,7 +34,7 @@ const PaginationSimple = ({ page, totalPage }) => {
         rel="prev"
         className={`${
           currentPage === 1 ? "invisible" : "block"
-        } text-center w-full duration-200 px-4 py-2 hover:border-orange-300 border-b-2 hover:font-bold`}
+        } text-center w-full duration-200 px-4 py-2 hover:border-stone-300 border-b-2 hover:font-bold`}
       >
         ←{locale.PAGINATION.PREV}
       </Link>
@@ -47,7 +47,7 @@ const PaginationSimple = ({ page, totalPage }) => {
         rel="next"
         className={`${
           +showNext ? "block" : "invisible"
-        } text-center w-full duration-200 px-4 py-2 hover:border-orange-300 border-b-2 hover:font-bold`}
+        } text-center w-full duration-200 px-4 py-2 hover:border-stone-300 border-b-2 hover:font-bold`}
       >
         {locale.PAGINATION.NEXT}→
       </Link>

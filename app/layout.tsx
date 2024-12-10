@@ -64,16 +64,7 @@ export const metadata: Metadata = {
   },
   keywords: BLOG.KEYWORDS,
   icons: {
-    icon: [
-      {
-        media: "(prefers-color-scheme: light)",
-        url: "/images/norkive_white.png",
-      },
-      {
-        media: "(prefers-color-scheme: dark)",
-        url: "/images/norkive_black.png",
-      },
-    ],
+    icon: BLOG.BLOG_FAVICON,
   },
   openGraph: {
     type: "website",
@@ -166,10 +157,10 @@ export default async function RootLayout({
                       >
                         <CustomedTransitonWrapper>
                           {children}
+                          {/* Back button */}
+                          <JumpToTopButton />
+                          <JumpToBackButton />
                         </CustomedTransitonWrapper>
-                        {/* Back button */}
-                        <JumpToTopButton />
-                        <JumpToBackButton />
                       </div>
                       {/* bottom */}
                       <div className="md:hidden mb:16">

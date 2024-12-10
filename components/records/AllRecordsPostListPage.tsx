@@ -25,6 +25,7 @@ const AllRecordsPostListPage = ({
   const router = useRouter();
   const { searchKeyword, setSearchKeyword } = useGlobal({});
   const totalPage = Math.ceil(postCount / BLOG.RECORDS_PER_PAGE);
+  const { locale } = useGlobal({ from: "index" });
 
   if (!posts || posts.length === 0) {
     return <NavPostListEmpty searchKeyword={searchKeyword} />;
@@ -36,9 +37,9 @@ const AllRecordsPostListPage = ({
     <div className="w-full justify-center gap-2">
       <div
         onClick={historGoBack}
-        className="text-center w-2/5 mt-4 mb-10  duration-200 p-2 hover:border-orange-200 border-b-2 hover:font-bold "
+        className="text-center w-2/5 mt-4 mb-10  duration-200 p-2 hover:border-stone-200 border-b-2 hover:font-bold "
       >
-        ← 뒤로가기
+        ← {locale.PAGINATION.PREV}
       </div>
       <div id="posts-wrapper">
         {/* Article list */}

@@ -15,10 +15,13 @@ const CategoryList = () => {
     router.push(`/category/${encodeURIComponent(categoryId)}`);
   };
   return (
-    <div className="bg-white dark:bg-neutral-700  px-10 py-10">
+    <div className="  px-10 py-10">
       <div className="dark:text-neutral-200 text-neutral-700 mb-5">
-        <FontAwesomeIcon className="mr-4 text-neutral-700" icon={faTh} />
-        <span>Category</span>
+        <FontAwesomeIcon
+          className="mr-4 text-neutral-700 dark:text-white"
+          icon={faTh}
+        />
+        <span className="text-xl ">Category</span>
       </div>
       <div id="category-list" className="duration-200 flex flex-wrap">
         {categoryOptions?.map((category: any) => {
