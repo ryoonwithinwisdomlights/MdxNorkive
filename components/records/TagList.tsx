@@ -12,13 +12,13 @@ const TagList = () => {
   const { tagOptions } = useGlobal({});
   return (
     <div className=" px-10 py-10">
-      <div className=" items-center  flex flex-row dark:text-neutral-200 mb-5  ">
+      <div className=" items-center  flex flex-row dark:hover:text-white dark:text-neutral-200 mb-5  ">
         {/* {locale.COMMON.TAGS}: */}
         <FontAwesomeIcon
           className=" text-neutral-700  mr-2 dark:text-neutral-200 "
           icon={faTag}
         />
-        <span>Tags</span>
+        <span className="text-xl ">Tags</span>
       </div>
       <div id="tags-list" className="duration-200 flex flex-wrap">
         {tagOptions?.map((tag: any) => {
