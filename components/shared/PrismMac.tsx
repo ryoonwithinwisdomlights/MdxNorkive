@@ -60,7 +60,7 @@ const renderCollapseCode = (): void => {
 
     const panelWrapper = document.createElement("div");
     panelWrapper.className =
-      "border dark:border-neutral-600 rounded-md hover:border-yellow-500 duration-200 transition-colors";
+      "border dark:border-neutral-600 rounded-md hover:border-stone-500 duration-200 transition-colors";
 
     const header = document.createElement("div");
     header.className =

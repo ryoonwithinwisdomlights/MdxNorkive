@@ -33,7 +33,7 @@ const SocialButton = () => {
         >
           {gitHubicon && (
             <FontAwesomeIcon
-              className="transform hover:scale-125 duration-150 hover:text-yellow-400"
+              className="transform hover:scale-125 duration-150 hover:text-stone-400"
               icon={gitHubicon}
             />
           )}
@@ -48,7 +48,7 @@ const SocialButton = () => {
         >
           {twittericon && (
             <FontAwesomeIcon
-              className="transform hover:scale-125 duration-150 hover:text-yellow-400"
+              className="transform hover:scale-125 duration-150 hover:text-stone-400"
               icon={twittericon}
             />
           )}
@@ -63,7 +63,7 @@ const SocialButton = () => {
         >
           {linkedInIcon && (
             <FontAwesomeIcon
-              className="transform hover:scale-125 duration-150 hover:text-yellow-400"
+              className="transform hover:scale-125 duration-150 hover:text-stone-400"
               icon={linkedInIcon}
             />
           )}
@@ -78,7 +78,7 @@ const SocialButton = () => {
         >
           {instagramIcon && (
             <FontAwesomeIcon
-              className="transform hover:scale-125 duration-150 hover:text-yellow-400"
+              className="transform hover:scale-125 duration-150 hover:text-stone-400"
               icon={instagramIcon}
             />
           )}
@@ -93,7 +93,7 @@ const SocialButton = () => {
         >
           {emailIcon && (
             <FontAwesomeIcon
-              className="transform hover:scale-125 duration-150 hover:text-yellow-400"
+              className="transform hover:scale-125 duration-150 hover:text-stone-400"
               icon={emailIcon}
             />
           )}

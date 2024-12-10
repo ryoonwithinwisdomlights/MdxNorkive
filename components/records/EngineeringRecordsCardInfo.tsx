@@ -43,7 +43,10 @@ export const EngineeringRecordsCardInfo = ({
             showPreview ? "text-center" : ""
           } leading-tight  text-neutral-500  hover:text-black `}
         >
-          <span className="menu-link ">{post.title}</span>
+          <span className="menu-link ">
+            {/* {post.title.substr(0, 500) + "..."} */}
+            {post.title}
+          </span>
         </div>
         {/* Classification */}
         {post?.category && (

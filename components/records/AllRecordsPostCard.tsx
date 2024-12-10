@@ -12,8 +12,8 @@ const AllRecordsPostCard = ({ post, className }) => {
   return (
     <div
       key={post.id}
-      className={`${className} py-1 cursor-pointer px-2 hover:bg-neutral-100 rounded-md dark:hover:bg-neutral-500  ${
-        currentSelected ? " text-yellow-500" : ""
+      className={`${className} py-1 cursor-pointer px-2 hover:bg-neutral-100 hover:dark:text-white rounded-md dark:hover:bg-neutral-500  ${
+        currentSelected ? " text-stone-500" : ""
       }`}
     >
       <div className="flex flex-col w-full select-none">

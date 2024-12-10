@@ -1,5 +1,6 @@
 import EngineeringRecordsItem from "@/components/records/EngineeringRecordsItem";
 import { getStaticNotionRecordsSortByDirTypeWithoutDateTitle } from "@/app/api/load-recordsData";
+import NoRecordFound from "@/components/NoRecordFound";
 
 export default async function Page() {
   const { props }: any =
@@ -21,25 +22,26 @@ export default async function Page() {
         <div className=" dark:text-neutral-200 md:px-2 text-neutral-700 mt-1 text-right my-2 mr-4 ">
           배우고 기록한 좋은
           <span className="font-semibold "> 지식, 정보, 앎</span>에 대한
-          <span className="text-[#cbcac4e2] dark:text-[#ffffff] font-bold">
-            {" "}
-            아카이브.
-          </span>
+          <span className=" dark:text-[#ffffff] font-bold"> 아카이브.</span>
         </div>
       </div>
       <div className="flex flex-row justify-end">
         <div className="space-y-6 w-11/12 px-2">
-          {engineeringList?.map((item: any, index) => {
-            return (
-              <EngineeringRecordsItem
-                key={index}
-                pIndex={index}
-                pId={item.id}
-                pTitle={item.title}
-                pPosts={item}
-              />
-            );
-          })}
+          {engineeringList ? (
+            engineeringList?.map((item: any, index) => {
+              return (
+                <EngineeringRecordsItem
+                  key={index}
+                  pIndex={index}
+                  pId={item.id}
+                  pTitle={item.title}
+                  pPosts={item}
+                />
+              );
+            })
+          ) : (
+            <NoRecordFound />
+          )}
         </div>
       </div>
     </div>

@@ -151,7 +151,7 @@ export default function RightClickMenu(props: any) {
       } select-none transition-opacity duration-200 fixed z-50`}
     >
       {/* Menu content */}
-      <div className="rounded-xl w-52 dark:hover:border-yellow-600 bg-white dark:bg-[#040404] dark:text-neutral-200 dark:border-neutral-600 p-3 border drop-shadow-lg flex-col duration-300 transition-colors">
+      <div className="rounded-xl w-52 dark:hover:border-white bg-white dark:bg-[#040404] dark:text-neutral-200 dark:border-neutral-600 p-3 border drop-shadow-lg flex-col duration-300 transition-colors">
         {/* Top navigation buttons */}
         <div className="flex justify-between">
           <FontAwesomeIcon
@@ -183,14 +183,14 @@ export default function RightClickMenu(props: any) {
 
         {/* Jump navigation button */}
         <div className="w-full px-2">
-          <div
+          {/* <div
             onClick={handleJumpToRandomPost}
             title={locale.MENU.WALK_AROUND}
             className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer  dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2]  rounded-lg duration-200 transition-all"
           >
             <FontAwesomeIcon className="mr-2" icon={faPodcast} />
             <div className="whitespace-nowrap">{locale.MENU.WALK_AROUND}</div>
-          </div>
+          </div> */}
 
           <Link
             href="/category"

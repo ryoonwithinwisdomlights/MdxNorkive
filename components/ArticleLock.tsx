@@ -74,7 +74,7 @@ export const ArticleLock = (props) => {
               ></input>
               <div
                 onClick={submitPassword}
-                className="px-3 whitespace-nowrap cursor-pointer text-center items-center justify-center py-2 dark:bg-yellow-500 bg-yellow-400 hover:bg-yellow-300 text-white rounded-r duration-300"
+                className="px-3 whitespace-nowrap cursor-pointer text-center items-center justify-center py-2 dark:bg-stone-500 bg-stone-400 hover:bg-stone-300 text-white rounded-r duration-300"
               >
                 <FontAwesomeIcon
                   className="duration-200 cursor-pointer "
@@ -115,7 +115,7 @@ export const ArticleLock = (props) => {
               ></input>
               <div
                 onClick={submitPassword}
-                className="px-3 whitespace-nowrap cursor-pointer text-center items-center justify-center py-2 dark:bg-yellow-500 bg-yellow-400 hover:bg-yellow-300 text-white rounded-r duration-300"
+                className="px-3 whitespace-nowrap cursor-pointer text-center items-center justify-center py-2 dark:bg-stone-500 bg-stone-400 hover:bg-stone-300 text-white rounded-r duration-300"
               >
                 <FontAwesomeIcon
                   className="duration-200 cursor-pointer "

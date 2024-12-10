@@ -45,7 +45,10 @@ export const DevprojectRecordsCardInfo = ({
             showPreview ? "text-center" : ""
           } leading-tight font-normal text-neutral-600  hover:text-black`}
         >
-          <span className="menu-link ">{post.title}</span>
+          <span className="menu-link ">
+            {post.title}
+            {/* {post.title.substr(0, 25) + "..."} */}
+          </span>
         </div>
         {/* Classification */}
         {post?.category && (

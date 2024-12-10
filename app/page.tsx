@@ -1,6 +1,7 @@
 // Import your Client Component
 import AllRecordsArchiveItem from "@/components/records/AllRecordsArchiveItem";
 import { getStaticNotionRecordsSortByDirType } from "./api/load-recordsData";
+import NoRecordFound from "@/components/NoRecordFound";
 
 export default async function Page() {
   const { props }: any = await getStaticNotionRecordsSortByDirType({
@@ -17,17 +18,17 @@ export default async function Page() {
         flex flex-col justify-end  break-words overflow "
         >
           <div className="  dark:text-neutral-300 flex flex-col justify-end ">
-            <div className="text-1xl flex flex-row justify-end mr-2 text-neutral-600  ">
-              archive | recorded in | notion
+            <div className="text-1xl flex flex-row justify-end mr-2 text-neutral-600 dark:text-neutral-300 ">
+              archive | recorded | in notion
             </div>
             <div
-              className="text-7xl font-semibold text-black flex flex-row justify-end underline 
-         decoration-black "
+              className="text-7xl font-semibold text-black dark:text-white flex flex-row justify-end underline 
+         decoration-black dark:decoration-neutral-100 "
             >
               Norkive
             </div>
             <div className="mt-2 flex flex-row justify-end text-sm text-stone-800 font-extralight dark:text-neutral-200  ">
-              Browsing all archives written and recored in Notion.
+              Browsing all your archives written and recored in Notion.
             </div>
           </div>
         </div>
@@ -82,6 +83,6 @@ export default async function Page() {
       </div>
     </div>
   ) : (
-    <div></div>
+    <NoRecordFound />
   );
 }

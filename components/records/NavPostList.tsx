@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import NavPostItem from "./NavPostItem";
 import NavPostListEmpty from "./NavPostListEmpty";
 import { useGlobal } from "@/lib/providers/globalProvider";
+import NoRecordFound from "../NoRecordFound";
 
 /**
  * Blog list scrolling paging
@@ -14,6 +15,9 @@ import { useGlobal } from "@/lib/providers/globalProvider";
  */
 const NavPostList = (props) => {
   const { filteredNavPages } = useGlobal({ from: "index" });
+  if (filteredNavPages.length < 0) {
+    return <NoRecordFound />;
+  }
   const { searchKeyword, setSearchKeyword } = useGlobal({});
   const pathname = usePathname();
   let selectedSth = false;

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { getStaticNotionRecordsSortByDirTypeWithoutDateTitle } from "@/app/api/load-recordsData";
 import DevprojectRecordsItem from "@/components/records/DevprojectRecordsItem";
+import NoRecordFound from "@/components/NoRecordFound";
 
 export default async function Page() {
   const { props }: any =
@@ -53,27 +54,30 @@ export default async function Page() {
           Dev Projects<span className="text-[#f1efe9e2]">.</span>
         </div>
         <div className=" dark:text-neutral-200 md:px-2 text-neutral-700 mt-1 text-right my-2  ">
-          배우고 기록한 좋은
-          <span className="font-semibold "> 지식, 정보, 앎</span>에 대한
-          <span className="text-[#cbcac4e2] dark:text-[#ffffff] font-bold">
-            {" "}
-            아카이브.
+          작고 큰 배움으로 연결된
+          <span className="font-semibold "> Dev</span> 프로젝트에 대한
+          <span className=" dark:text-[#ffffff] font-bold">
+            &nbsp;아카이브.
           </span>
         </div>
       </div>
       <div className="flex flex-row justify-end">
         <div className="space-y-6 w-full px-2">
-          {devProjectList?.map((item: any, index) => {
-            return (
-              <DevprojectRecordsItem
-                key={index}
-                pIndex={index}
-                pId={item.id}
-                pTitle={item.title}
-                pPosts={item}
-              />
-            );
-          })}
+          {devProjectList ? (
+            devProjectList?.map((item: any, index) => {
+              return (
+                <DevprojectRecordsItem
+                  key={index}
+                  pIndex={index}
+                  pId={item.id}
+                  pTitle={item.title}
+                  pPosts={item}
+                />
+              );
+            })
+          ) : (
+            <NoRecordFound />
+          )}
         </div>
       </div>
     </div>

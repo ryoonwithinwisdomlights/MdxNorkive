@@ -161,7 +161,7 @@ const ShareButtons = ({ shareUrl, title, body, image }) => {
             <button
               aria-label={singleService}
               key={singleService}
-              className="cursor-pointer bg-yellow-500 text-white rounded-full mx-1"
+              className="cursor-pointer bg-stone-500 text-white rounded-full mx-1"
             >
               {/* <div alt={locale.COMMON.URL_COPIED} onClick={copyUrl}> */}
               <div onClick={copyUrl}>
