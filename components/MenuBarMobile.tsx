@@ -17,7 +17,7 @@ export const MenuBarMobile = (props) => {
     { name: locale.NAV.RECORD, to: "/records", show: CONFIG.MENU_RECORDS },
     {
       name: locale.NAV.SIDEPROJECT,
-      to: "/sideproject",
+      to: "/devproject",
       show: CONFIG.MENU_SIDEPROJECT,
     },
     // { name: locale.NAV.SEARCH, to: '/search', show: CONFIG.MENU_SEARCH }

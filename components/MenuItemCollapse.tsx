@@ -106,7 +106,7 @@ export const MenuItemCollapse = (props) => {
                 key={index}
                 className="
               not:last-child:border-b-0 border-b dark:border-neutral-800  dark:bg-neutral-600 dark:hover:bg-neutral-700 dark:text-neutral-200  py-2 px-14 cursor-pointer
-              font-extralighttext-left justify-start bg-neutral-50  text-neutral-600 hover:bg-neutral-100  tracking-widest transition-all duration-200"
+              font-extralight text-left justify-start bg-neutral-50  text-neutral-600 hover:bg-neutral-100  tracking-widest transition-all duration-200"
               >
                 <div
                   onClick={() => {

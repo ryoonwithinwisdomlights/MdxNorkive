@@ -26,10 +26,10 @@ export default function LogoBar(props) {
     }
   };
   return (
-    <div id="top-wrapper" className="w-full flex items-center">
+    <div id="top-wrapper" className="w-full flex  flex-row items-center   ">
       <div
         onClick={togglePageNavVisible}
-        className="cursor-pointer md:hidden text-xl pr-3 hover:scale-110 duration-150"
+        className="cursor-pointer    md:hidden text-xl pr-3 hover:scale-110 duration-150"
       >
         <FontAwesomeIcon
           className="mr-2 text-[#f1efe9e2]"
@@ -38,7 +38,7 @@ export default function LogoBar(props) {
       </div>
       <Link
         href="/"
-        className="flex text-md  text-neutral-900 dark:text-neutral-200  dark:hover:text-neutral-900  hover:bg-[#f1efe9e2] px-2 hover:rounded-lg "
+        className="flex flex-row   text-md  text-neutral-900 dark:text-neutral-200  dark:hover:text-neutral-900  hover:bg-[#f1efe9e2] px-2 hover:rounded-lg "
       >
         <LazyImage
           src={siteInfo?.icon}
@@ -48,6 +48,9 @@ export default function LogoBar(props) {
           className="mr-2  "
         />
         {siteInfo?.title}
+        <span className="text-xs flex flex-row  items-end mb-1  ">
+          &nbsp; ©
+        </span>
       </Link>
     </div>
   );

@@ -68,11 +68,11 @@ export const metadata: Metadata = {
     icon: [
       {
         media: "(prefers-color-scheme: light)",
-        url: "/images/rwwt_lemon.svg",
+        url: "/images/norchive_white.png",
       },
       {
         media: "(prefers-color-scheme: dark)",
-        url: "/images/rwwt_lemon.svg",
+        url: "/images/norchive_black.png",
       },
     ],
   },

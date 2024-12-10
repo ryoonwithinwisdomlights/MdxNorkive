@@ -45,7 +45,7 @@ const TopNavBar = () => {
     {
       icon: "fa-solid fa-hand-sparkles",
       name: locale.NAV.SIDEPROJECT,
-      to: "/sideproject",
+      to: "/devproject",
       show: CONFIG.MENU_SIDEPROJECT,
     },
     // {

@@ -11,34 +11,25 @@ export default async function Page() {
   const archiveRecords = props.archiveRecords;
   return archiveRecords ? (
     <div className=" bg-white dark:bg-black dark:text-neutral-300 mb-10 pb-20 pr-10 py-3 w-full flex flex-col min-h-full">
-      <div className="flex flex-col justify-end   pt-10 ">
+      <div className="flex flex-col justify-end  pt-4 ">
         <div
           className="
         flex flex-col justify-end  break-words overflow "
         >
-          <div className="text-neutral-900 hover:text-neutral-600  dark:text-neutral-300 flex flex-col justify-end ">
-            <div className="text-2xl flex flex-row justify-end mr-8 ">
-              yeollam
+          <div className="  dark:text-neutral-300 flex flex-col justify-end ">
+            <div className="text-1xl flex flex-row justify-end mr-2 text-neutral-600  ">
+              notion | recorded | archive
             </div>
             <div
-              className="text-7xl flex flex-row justify-end underline 
-         decoration-[#f1efe9e2] "
+              className="text-7xl font-semibold text-black flex flex-row justify-end underline 
+         decoration-stone-300 "
             >
-              열람.
+              Norchive
+            </div>
+            <div className="mt-2 flex flex-row justify-end text-sm text-stone-800 font-extralight dark:text-neutral-200  ">
+              Browsing all archives written and recored in Notion.
             </div>
           </div>
-        </div>
-        <div className="pt-4 flex flex-row justify-end text-sm  text-stone-600 font-extralight dark:text-neutral-200 hover:text-stone-800 ">
-          {/* 경계를 오가며 정직하게 기록되는{" "} */}
-          Browsing of all the archive you've recorded
-          {/* An archive of everything you've ever recorded */}
-          {/* Records reading room of everything you've honestly ever recorded  across borders*/}
-          {/* Your archive honestly recorded across borders */}
-          {/* Records reading room =열람실 */}
-          {/* This is a reading room for everything that has been honestly recorded across boundaries.
-           */}
-          {/* for everything that has been honestly recorded across boundaries */}
-          {/* An archive of everything honestly recorded beyond boundaries,  */}
         </div>
       </div>
       <div className="flex flex-row justify-end   ">

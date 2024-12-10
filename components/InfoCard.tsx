@@ -20,7 +20,7 @@ const InfoCard = () => {
           }}
         >
           <LazyImage
-            src={"/images/rwwt_lemon.png"}
+            src={"/images/norchive_black.png"}
             className="rounded-full dark:border dark:border-neutral-300"
             width={120}
             alt={BLOG.AUTHOR}

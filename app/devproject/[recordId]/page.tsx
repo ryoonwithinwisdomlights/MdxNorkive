@@ -67,9 +67,9 @@ export default async function Page({ params }) {
   }
 
   const props = await getGlobalData({
-    type: "Sideproject",
+    type: "Devproject",
     pageId: BLOG.NOTION_PAGE_ID,
-    from: "Sideproject",
+    from: "Devproject",
   });
 
   // Find article in list
@@ -87,7 +87,7 @@ export default async function Page({ params }) {
   }
   // Article content loading
   if (!props?.posts?.blockMap) {
-    props.post.blockMap = await getPostBlocks(props.post.id, "Sideproject", 3);
+    props.post.blockMap = await getPostBlocks(props.post.id, "Devproject", 3);
   }
 
   // Recommended related article processing
@@ -100,7 +100,7 @@ export default async function Page({ params }) {
       page.type !== "Notice" &&
       page.type !== "Page" &&
       page.status === "Published" &&
-      page.type === "Sideproject"
+      page.type === "Devproject"
   );
 
   if (allPosts && allPosts.length > 0) {

@@ -49,7 +49,7 @@ export const parseIcon = (iconString: string) => {
 
 export const exchangeSlugToType = (slug) => {
   const typeApp: AppType[] = [
-    { slug: "sideproject", type: "Sideproject" },
+    { slug: "devproject", type: "Devproject" },
     { slug: "general", type: "General" },
     { slug: "engineering", type: "Engineering" },
     { slug: "writing", type: "Writing" },
