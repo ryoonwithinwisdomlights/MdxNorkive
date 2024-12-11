@@ -122,9 +122,7 @@ export default async function RootLayout({
               {!BLOG.isProd && <DebugPanel />}
               {!BLOG.CAN_COPY && <DisableCopy />}
               {BLOG.ANALYTICS_BUSUANZI_ENABLE && <Busuanzi />}
-              {BLOG.CUSTOM_RIGHT_CLICK_CONTEXT_MENU && (
-                <RightClickMenu props={Math.random()} />
-              )}
+              {BLOG.CUSTOM_RIGHT_CLICK_CONTEXT_MENU && <RightClickMenu />}
               <VConsoleTs currentTime={now} />
               <Suspense fallback={<LoadingCover />}>
                 <main

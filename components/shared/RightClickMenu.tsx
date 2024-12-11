@@ -54,7 +54,7 @@ library.add(
  * @param {*} props
  * @returns
  */
-export default function RightClickMenu(props: any) {
+export default function RightClickMenu() {
   const { latestPosts, changeLang, isDarkMode, locale, handleChangeDarkMode } =
     useGlobal({ from: "index" });
   const [position, setPosition] = useState({ x: "0px", y: "0px" });
@@ -130,9 +130,9 @@ export default function RightClickMenu(props: any) {
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) {
     event.stopPropagation();
-    const randomIndex = Math.floor(props * latestPosts.length);
+    const randomIndex = Math.floor(Math.random() * latestPosts.length);
     const randomPost: any = latestPosts[randomIndex];
-    router.push(`/${randomPost?.slug}`);
+    router.push(`/records/${randomPost?.id}`);
   }
 
   function handleBack(event: React.MouseEvent<SVGSVGElement, MouseEvent>) {
