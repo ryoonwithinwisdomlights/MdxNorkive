@@ -6,15 +6,6 @@ import { uuidToId } from "notion-utils";
 import { useCallback, useEffect, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 
-// [
-//   {
-//       "id": "1481eb5c-0337-80d2-a0d3-fc76ca2c9401",
-//       "type": "header",
-//       "text": "Typeof 연산자",
-//       "indentLevel": 0
-//   }
-// ]
-
 /**
  * Directory Navigation Component
  * @param toc

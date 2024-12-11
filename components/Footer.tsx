@@ -48,14 +48,6 @@ const Footer = () => {
         </div>
         © {`${copyrightDate}`}
       </div>
-      {/* <span className="hidden busuanzi_container_site_pv">
-        <FontAwesomeIcon className="mr-1" icon={faEye} />
-        <span className="px-1 busuanzi_value_site_pv"> </span>{" "}
-      </span>
-      <span className="pl-2 hidden busuanzi_container_site_uv">
-        <FontAwesomeIcon className="mr-1" icon={faUsers} />
-        <span className="px-1 busuanzi_value_site_uv"> </span>{" "}
-      </span> */}
       <div className="text-xs font-sans">
         Powered By{" "}
         <a

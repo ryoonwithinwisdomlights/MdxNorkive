@@ -161,10 +161,6 @@ export default async function RootLayout({
                           <JumpToBackButton />
                         </CustomedTransitonWrapper>
                       </div>
-                      {/* bottom */}
-                      <div className="md:hidden mb:16">
-                        <Footer />
-                      </div>
                     </div>
                   </div>
 

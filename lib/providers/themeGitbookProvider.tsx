@@ -38,8 +38,8 @@ export const ThemeGitbookProvider: React.FC<{
   const [tocVisible, setTocVisible] = useState<boolean>(false);
   const [pageNavVisible, setPageNavVisible] = useState<boolean>(false);
 
-  const changeTocVisible = () => setTocVisible((prev) => !prev);
-  const changePageNavVisible = () => setPageNavVisible((prev) => !prev);
+  const changeTocVisible = () => setTocVisible(!tocVisible);
+  const changePageNavVisible = () => setPageNavVisible(!pageNavVisible);
 
   const value: GitBookGlobalContext = {
     tocVisible,
