@@ -26,7 +26,7 @@ import CategoryItem from "../CategoryItem";
 import TagItemMini from "../TagItemMini";
 import CatalogDrawerWrapper from "../wrapper/CatalogDrawerWrapper";
 // 사전에 사용할 아이콘 추가
-library.add(faChevronLeft);
+library.add(faChevronLeft, faEye, faCalendar, faCalendarCheck);
 
 const SingleRecords = ({ props }) => {
   const { post, prev, next, siteInfo } = props;
@@ -36,7 +36,7 @@ const SingleRecords = ({ props }) => {
   const isMobile = useMediaQuery("(max-width: 768px");
   // Article lock🔐
   const [lock, setLock] = useState(post?.password && post?.password !== "");
-
+  const [isMounted, setIsMounted] = useState(false);
   const onClick = (recordId: string) => {
     router.push(`/devproject/${recordId}`);
   };
@@ -80,6 +80,11 @@ const SingleRecords = ({ props }) => {
     }
   }, [post]);
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  // none of the modals are gonna be rendered unless we are fully on the client side.
+  if (!isMounted) return null;
   return (
     <>
       {lock && <ArticleLock validPassword={validPassword} />}
@@ -108,13 +113,16 @@ const SingleRecords = ({ props }) => {
 
                 {post?.lastEditedDay}
               </span>
-              <div className="hidden busuanzi_container_page_pv font-light mr-2 whitespace-nowrap">
-                <FontAwesomeIcon className="mr-1" icon={faEye} />
+              <span className="hidden busuanzi_container_page_pv ">
+                <FontAwesomeIcon
+                  className="mr-2 font-light whitespace-nowrap "
+                  icon={faEye}
+                />
 
-                <span className="busuanzi_value_page_pv" />
-              </div>
+                <span className="busuanzi_value_page_pv"></span>
+              </span>
             </div>
-            <span className="mx-1"> | </span>{" "}
+            <span className="mx-1 mr-2"> | </span>{" "}
             <Link href="/" passHref legacyBehavior>
               <div className="flex flex-row">
                 <LazyImage

@@ -58,18 +58,6 @@ const ShareButtons = ({ shareUrl, title, body, image }) => {
             </FacebookShareButton>
           );
         }
-        // if (singleService === "messenger") {
-        //   return (
-        //     <FacebookMessengerShareButton
-        //       key={singleService}
-        //       url={shareUrl}
-        //       appId={BLOG.FACEBOOK_APP_ID}
-        //       className="mx-1"
-        //     >
-        //       <FacebookMessengerIcon size={32} round iconFillColor="white" />
-        //     </FacebookMessengerShareButton>
-        //   );
-        // }
         if (singleService === "reddit") {
           return (
             <RedditShareButton
@@ -120,42 +108,6 @@ const ShareButtons = ({ shareUrl, title, body, image }) => {
             </LinkedinShareButton>
           );
         }
-        if (singleService === "workplace") {
-          return (
-            <WorkplaceShareButton
-              key={singleService}
-              url={shareUrl}
-              quote={titleWithSiteInfo}
-              className="mx-1"
-            >
-              <WorkplaceIcon size={32} round iconFillColor="white" />
-            </WorkplaceShareButton>
-          );
-        }
-        if (singleService === "pocket") {
-          return (
-            <PocketShareButton
-              key={singleService}
-              url={shareUrl}
-              title={titleWithSiteInfo}
-              className="mx-1"
-            >
-              <PocketIcon size={32} round iconFillColor="white" />
-            </PocketShareButton>
-          );
-        }
-        if (singleService === "instapaper") {
-          return (
-            <InstapaperShareButton
-              key={singleService}
-              url={shareUrl}
-              title={titleWithSiteInfo}
-              className="mx-1"
-            >
-              <InstapaperIcon size={32} round iconFillColor="white" />
-            </InstapaperShareButton>
-          );
-        }
         if (singleService === "link") {
           return (
             <button
@@ -163,7 +115,6 @@ const ShareButtons = ({ shareUrl, title, body, image }) => {
               key={singleService}
               className="cursor-pointer bg-neutral-500 text-white rounded-full mx-1"
             >
-              {/* <div alt={locale.COMMON.URL_COPIED} onClick={copyUrl}> */}
               <div onClick={copyUrl}>
                 <FontAwesomeIcon className="w-8 text-white" icon={faLink} />
               </div>

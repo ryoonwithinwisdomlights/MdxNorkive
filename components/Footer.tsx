@@ -1,6 +1,11 @@
+"use client";
 import { BLOG } from "@/blog.config";
-import SocialButton from "./SocialButton";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faEye, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 
+library.add(faEye, faUsers);
 function toBlogNumber(a: any) {
   let tempVal: any;
   if (typeof a === "string") {
@@ -21,7 +26,13 @@ const Footer = () => {
     }
     return currentYear;
   })(); // 바로실행함수
+  const [isMounted, setIsMounted] = useState(false);
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  // none of the modals are gonna be rendered unless we are fully on the client side.
+  if (!isMounted) return null;
   return (
     <footer className="z-20 py-2 bg-white  dark:bg-neutral-900 dark:text-neutral-300 justify-center text-center w-full text-sm relative">
       <hr className="pb-2" />
@@ -37,14 +48,14 @@ const Footer = () => {
         </div>
         © {`${copyrightDate}`}
       </div>
-      <span className="hidden busuanzi_container_site_pv">
-        <i className="fas fa-eye" />
+      {/* <span className="hidden busuanzi_container_site_pv">
+        <FontAwesomeIcon className="mr-1" icon={faEye} />
         <span className="px-1 busuanzi_value_site_pv"> </span>{" "}
       </span>
       <span className="pl-2 hidden busuanzi_container_site_uv">
-        <i className="fas fa-users" />{" "}
+        <FontAwesomeIcon className="mr-1" icon={faUsers} />
         <span className="px-1 busuanzi_value_site_uv"> </span>{" "}
-      </span>
+      </span> */}
       <div className="text-xs font-sans">
         Powered By{" "}
         <a

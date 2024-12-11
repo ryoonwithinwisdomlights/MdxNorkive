@@ -133,7 +133,7 @@ export const BLOG = {
 
   RECORD_SHARE_BAR_ENABLE: process.env.NEXT_PUBLIC_RECORD_SHARE_BAR || "true", // Article sharing function, a sharing bar will be displayed at the bottom
   RECORDS_SHARE_SERVICES:
-    process.env.NEXT_PUBLIC_RECORD_SHARE_SERVICES || "email,twitter", // 공유 서비스가 쉼표로 구분되어 순서대로 표시됩니다.
+    process.env.NEXT_PUBLIC_RECORD_SHARE_SERVICES || "email,twitter,link", // 공유 서비스가 쉼표로 구분되어 순서대로 표시됩니다.
   // All supported sharing services: link (copy link), email (mail),facebook,twitter,telegram,messenger,line,reddit,whatsapp,linkedin,instapaper
 
   RECORD_URL_PREFIX: process.env.NEXT_PUBLIC_RECORD_URL_PREFIX || "records",
