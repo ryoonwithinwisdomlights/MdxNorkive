@@ -1,9 +1,13 @@
 // [slug] 동적 세그먼트를 채우기 위한 `params` 목록을 반환합니다.
 import { BLOG } from "@/blog.config";
 import { getPostBlocks } from "@/lib/notion/notion";
-import { getGlobalData } from "@/lib/notion/getNotionData";
+import {
+  getGlobalData,
+  getNotionPageDataForOne,
+} from "@/lib/notion/getNotionData";
 import { idToUuid } from "notion-utils";
 import SingleRecords from "@/components/records/SingleRecords";
+import { getPost } from "@/lib/notion/getNotionPost";
 
 /**
  * Get the list of recommended articles associated with the article, currently filtered based on tag relevance
@@ -71,7 +75,9 @@ export default async function Page({ params }) {
     pageId: BLOG.NOTION_PAGE_ID,
     from: "Devproject",
   });
-
+  // console.log("idToUuid(recordId)");
+  // console.log(idToUuid(recordId));
+  // console.log(recordId);
   // Find article in list
   props.post = props?.allPages?.find((item) => {
     return item.id === recordId;
@@ -79,12 +85,23 @@ export default async function Page({ params }) {
 
   // Unable to retrieve article
   if (!props?.post) {
-    props.post = null;
-    return <div>Invalid record ID</div>;
+    const pageId = props?.post.slug.slice(-1)[0];
+    if (pageId.length >= 32) {
+      const post = await getPost(pageId);
+      props.post = post;
+    }
+    // return <div>Invalid record ID</div>;
   }
+
+  if (!props?.post) {
+    props.post = null;
+
+    // return <div>Invalid record ID</div>;
+  }
+
   // Article content loading
   if (!props?.posts?.blockMap) {
-    props.post.blockMap = await getPostBlocks(props.post.id, "Devproject", 3);
+    props.post.blockMap = await getPostBlocks(props.post.id, "Devproject");
   }
 
   // Recommended related article processing

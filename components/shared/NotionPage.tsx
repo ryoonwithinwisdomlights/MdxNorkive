@@ -96,7 +96,6 @@ const NotionPage = ({ post }) => {
       observer.disconnect();
     };
   }, [zoomRef, RECORD_DISABLE_GALLERY_CLICK, RECORD_DISABLE_DATABASE_CLICK]);
-  console.log("post:::", post?.blockMap);
   return (
     <div id="notion-article" className={`mx-auto overflow-hidden `}>
       <NotionRenderer

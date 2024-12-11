@@ -40,7 +40,7 @@ export default async function Page({ params }) {
   }
   // Article content loading
   if (!props?.posts?.blockMap) {
-    props.post.blockMap = await getPostBlocks(props.post.id, "Page", 3);
+    props.post.blockMap = await getPostBlocks(props.post.id, "Page");
   }
 
   // Recommended related article processing

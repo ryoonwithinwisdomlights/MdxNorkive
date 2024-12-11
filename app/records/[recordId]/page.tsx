@@ -83,7 +83,7 @@ export default async function Page({ params }) {
   }
   // Article content loading
   if (!props?.posts?.blockMap) {
-    props.post.blockMap = await getPostBlocks(props.post.id, "Record", 3);
+    props.post.blockMap = await getPostBlocks(props.post.id, "Record");
   }
 
   // Recommended related article processing
