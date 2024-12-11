@@ -5,7 +5,6 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
 import { parseIcon } from "@/lib/utils/utils";
-
 // 사전에 사용할 아이콘 추가
 library.add(faBullhorn);
 
@@ -14,6 +13,15 @@ const twittericon = parseIcon("fab fa-twitter");
 const linkedInIcon = parseIcon("fab fa-linkedin");
 const emailIcon = parseIcon("fas fa-envelope");
 const instagramIcon = parseIcon("fab fa-instagram");
+import {
+  Github,
+  InstagramIcon,
+  Linkedin,
+  LinkedinIcon,
+  MailPlusIcon,
+  TwitterIcon,
+} from "lucide-react";
+import { TwitterShareButton } from "react-share";
 //fas fa-envelope
 //fab fa-linkedin
 /**
@@ -24,21 +32,6 @@ const instagramIcon = parseIcon("fab fa-instagram");
 const SocialButton = () => {
   return (
     <div className="space-x-3 text-xl text-neutral-600 dark:text-neutral-400 flex-wrap flex justify-center ">
-      {(BLOG.CONTACT_GITHUB as string) && (
-        <a
-          target="_blank"
-          rel="noreferrer"
-          title={"github"}
-          href={BLOG.CONTACT_GITHUB}
-        >
-          {gitHubicon && (
-            <FontAwesomeIcon
-              className="transform hover:scale-125 duration-150 hover:text-neutral-400"
-              icon={gitHubicon}
-            />
-          )}
-        </a>
-      )}
       {(BLOG.CONTACT_TWITTER as string) && (
         <a
           target="_blank"
@@ -46,42 +39,27 @@ const SocialButton = () => {
           title={"twitter"}
           href={BLOG.CONTACT_TWITTER}
         >
-          {twittericon && (
-            <FontAwesomeIcon
-              className="transform hover:scale-125 duration-150 hover:text-neutral-400"
-              icon={twittericon}
-            />
-          )}
+          <TwitterIcon className="transform hover:scale-125 duration-150 hover:text-neutral-400" />
         </a>
       )}
-      {BLOG.CONTACT_LINKEDIN && (
+      {(BLOG.CONTACT_LINKEDIN as string) && (
         <a
           target="_blank"
           rel="noreferrer"
           href={BLOG.CONTACT_LINKEDIN}
           title={"linkedIn"}
         >
-          {linkedInIcon && (
-            <FontAwesomeIcon
-              className="transform hover:scale-125 duration-150 hover:text-neutral-400"
-              icon={linkedInIcon}
-            />
-          )}
+          <LinkedinIcon className="transform hover:scale-125 duration-150 hover:text-neutral-400" />
         </a>
       )}
-      {BLOG.CONTACT_INSTAGRAM && (
+      {(BLOG.CONTACT_INSTAGRAM as string) && (
         <a
           target="_blank"
           rel="noreferrer"
           title={"instagram"}
           href={BLOG.CONTACT_INSTAGRAM}
         >
-          {instagramIcon && (
-            <FontAwesomeIcon
-              className="transform hover:scale-125 duration-150 hover:text-neutral-400"
-              icon={instagramIcon}
-            />
-          )}
+          <InstagramIcon className="transform hover:scale-125 duration-150 hover:text-neutral-400" />
         </a>
       )}
       {(BLOG.CONTACT_EMAIL as string) && (
@@ -91,12 +69,17 @@ const SocialButton = () => {
           title={"email"}
           href={`mailto:${BLOG.CONTACT_EMAIL}`}
         >
-          {emailIcon && (
-            <FontAwesomeIcon
-              className="transform hover:scale-125 duration-150 hover:text-neutral-400"
-              icon={emailIcon}
-            />
-          )}
+          <MailPlusIcon className="transform hover:scale-125 duration-150 hover:text-neutral-400" />
+        </a>
+      )}
+      {(BLOG.CONTACT_GITHUB as string) && (
+        <a
+          target="_blank"
+          rel="noreferrer"
+          title={"github"}
+          href={BLOG.CONTACT_GITHUB}
+        >
+          <Github className="transform hover:scale-125 duration-150 hover:text-neutral-400" />
         </a>
       )}
     </div>

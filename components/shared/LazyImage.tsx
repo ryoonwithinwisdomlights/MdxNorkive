@@ -52,9 +52,7 @@ export default function LazyImage({
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const lazyImage: any = entry.target;
-            // console.log("lazyImage:::", lazyImage);
             lazyImage.src = src;
-            // console.log("azyImage.src:::", lazyImage.src);
             observer.unobserve(lazyImage);
           }
         });

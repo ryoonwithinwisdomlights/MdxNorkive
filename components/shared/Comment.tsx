@@ -62,7 +62,7 @@ const Comment = (props) => {
   ) {
     setTimeout(() => {
       const newurl = url.replace("?target=comment", "");
-      console.log("newurlnewurl:", newurl);
+      // console.log("newurlnewurl:", newurl);
       history.replaceState({}, "", newurl);
       document
         ?.getElementById("comment")

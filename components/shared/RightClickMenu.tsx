@@ -19,12 +19,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import {
-  useParams,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from "next/navigation";
+import { useRouter } from "next/navigation";
 import {
   ElementRef,
   useEffect,
@@ -32,9 +27,8 @@ import {
   useRef,
   useState,
 } from "react";
-import { useCopyToClipboard } from "usehooks-ts";
 import { toast } from "sonner";
-import { useSetting } from "@/hooks/use-settings";
+import { useCopyToClipboard } from "usehooks-ts";
 // 사전에 사용할 아이콘 추가
 library.add(
   faBullhorn,
@@ -62,7 +56,6 @@ export default function RightClickMenu() {
   const [copiedText, copyFn] = useCopyToClipboard();
   const menuRef = useRef<ElementRef<"div">>(null);
   const windowSize = useWindowSize();
-  const setting = useSetting();
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
 

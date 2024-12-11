@@ -74,9 +74,6 @@ export default async function Page({ params }) {
 
   // Find article in list
   props.post = props?.allPages?.find((item) => {
-    // if (item.id === recordId) {
-    //   console.log("드디어 찾았다.");
-    // }
     return item.id === recordId;
   });
 
