@@ -1,6 +1,10 @@
 "use client";
 import { BLOG } from "@/blog.config";
-import { generateLocaleDict, initLocale } from "@/lib/lang";
+import {
+  generateLocaleDict,
+  initLocale,
+  saveLangToLocalStorage,
+} from "@/lib/lang";
 import { initDarkMode, saveDarkModeToLocalStorage } from "@/lib/utils/theme";
 import NextNProgress from "nextjs-progressbar";
 
@@ -73,6 +77,14 @@ export function GlobalContextProvider({
     htmlElement.classList?.remove(newStatus ? "light" : "dark");
     htmlElement.classList?.add(newStatus ? "dark" : "light");
   };
+
+  function changeLang(lang) {
+    if (lang) {
+      saveLangToLocalStorage(lang);
+      updateLang(lang);
+      updateLocale(generateLocaleDict(lang));
+    }
+  }
 
   useEffect(() => {
     setFilteredNavPages(allNavPagesForGitBook);

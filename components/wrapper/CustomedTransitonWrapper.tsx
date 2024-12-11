@@ -1,20 +1,23 @@
 "use client"; // 클라이언트 컴포넌트
 import { useGlobal } from "@/lib/providers/globalProvider";
 import { Transition } from "@headlessui/react";
-import React, { Fragment, useRef } from "react";
+import React, { Fragment, useEffect, useRef } from "react";
 
 const CustomedTransitonWrapper = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
-  const { onLoading } = useGlobal({ from: "index" });
+  const { onLoading, setOnLoading } = useGlobal({ from: "index" });
   const ref = useRef(null);
   // console.log(ref.current); // 렌더링 후 ref가 null인지 확인
+  useEffect(() => {
+    setOnLoading((prev) => !prev);
+  }, []);
   return (
     <Transition
       as={Fragment}
-      show={!onLoading}
+      show={onLoading}
       appear={true}
       enter="transition ease-in-out duration-700 transform order-first"
       enterFrom="opacity-0 translate-y-16"
