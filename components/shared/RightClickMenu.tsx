@@ -19,9 +19,22 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
+import {
+  ElementRef,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
+import { useCopyToClipboard } from "usehooks-ts";
+import { toast } from "sonner";
+import { useSetting } from "@/hooks/use-settings";
 // 사전에 사용할 아이콘 추가
 library.add(
   faBullhorn,
@@ -42,26 +55,19 @@ library.add(
  * @returns
  */
 export default function RightClickMenu(props: any) {
-  const { latestPosts } = useGlobal({ from: "index" });
+  const { latestPosts, changeLang, isDarkMode, locale, handleChangeDarkMode } =
+    useGlobal({ from: "index" });
   const [position, setPosition] = useState({ x: "0px", y: "0px" });
   const [show, setShow] = useState(false);
-  const { isDarkMode, locale, handleChangeDarkMode } = useGlobal({
-    from: "index",
-  });
-  const menuRef = useRef<HTMLDivElement>(null);
+  const [copiedText, copyFn] = useCopyToClipboard();
+  const menuRef = useRef<ElementRef<"div">>(null);
   const windowSize = useWindowSize();
+  const setting = useSetting();
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
 
+  const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
-  /**
-   * Randomly jump to articles
-   */
-  function handleJumpToRandomPost() {
-    const randomIndex = Math.floor(props * latestPosts.length);
-    const randomPost: any = latestPosts[randomIndex];
-    router.push(`${BLOG.SUB_PATH}/${randomPost?.slug}`);
-  }
 
   useLayoutEffect(() => {
     if (menuRef.current) {
@@ -71,10 +77,9 @@ export default function RightClickMenu(props: any) {
   }, []);
 
   useEffect(() => {
-    const handleContextMenu = (event) => {
+    const handleContextMenu = (event: PointerEvent) => {
       event.preventDefault();
       // Calculate whether the click position plus menu width and height exceed the screen. If it exceeds, the edge will pop up.
-
       if (windowSize.width !== undefined && windowSize.height) {
         const x =
           event.clientX < windowSize.width - width
@@ -104,41 +109,75 @@ export default function RightClickMenu(props: any) {
     };
   }, [windowSize]);
 
-  function handleBack() {
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // not gonna be rendered unless we are fully on the client side.
+
+  useEffect(() => {
+    if (isMounted) {
+      changeLang(BLOG.LANG);
+    }
+  }, []);
+
+  if (!isMounted) return null;
+
+  /**
+   * Randomly jump to articles
+   */
+  function handleJumpToRandomPost(
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) {
+    event.stopPropagation();
+    const randomIndex = Math.floor(props * latestPosts.length);
+    const randomPost: any = latestPosts[randomIndex];
+    router.push(`/${randomPost?.slug}`);
+  }
+
+  function handleBack(event: React.MouseEvent<SVGSVGElement, MouseEvent>) {
+    event.stopPropagation();
     router.back();
   }
 
-  function handleForward() {
-    if (typeof window !== "undefined") {
-      window.history.forward();
-    }
+  function handleForward(event: React.MouseEvent<SVGSVGElement, MouseEvent>) {
+    event.stopPropagation();
+    // if (typeof window !== "undefined") {
+    //   window.history.forward();
+    // }
+    router.forward();
   }
 
-  function handleRefresh() {
-    if (typeof window !== "undefined") {
-      window.location.reload();
-    }
+  function handleRefresh(event: React.MouseEvent<SVGSVGElement, MouseEvent>) {
+    event.stopPropagation();
+    // if (typeof window !== "undefined") {
+    //   window.location.reload();
+    // }
+    router.refresh();
   }
 
-  function handleScrollTop() {
+  function handleScrollTop(event: React.MouseEvent<SVGSVGElement, MouseEvent>) {
+    event.stopPropagation();
     if (typeof window !== "undefined") {
       window.scrollTo({ top: 0, behavior: "smooth" });
       setShow(false);
     }
   }
 
-  function handleCopyLink() {
+  function handleCopyLink(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    event.stopPropagation();
     if (typeof window !== "undefined") {
       const url = window.location.href;
-      navigator.clipboard
-        .writeText(url)
+      copyFn(url)
         .then(() => {
-          console.log("The page address has been copied");
+          toast.success("The page address has been copied");
         })
         .catch((error) => {
-          console.error("Failed to copy page address:", error);
+          toast.error("Failed to copy page address");
+        })
+        .finally(() => {
+          setShow((prev) => !prev);
         });
-      setShow(false);
     }
   }
 
@@ -157,25 +196,33 @@ export default function RightClickMenu(props: any) {
           <FontAwesomeIcon
             className="dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2] px-2 py-2 text-center w-8 rounded cursor-pointer"
             icon={faArrowLeft}
-            onClick={handleBack}
+            onClick={(e) => {
+              handleBack(e);
+            }}
           />
 
           <FontAwesomeIcon
             className="dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2] px-2 py-2 text-center w-8 rounded cursor-pointer"
             icon={faArrowRight}
-            onClick={handleForward}
+            onClick={(e) => {
+              handleForward(e);
+            }}
           />
 
           <FontAwesomeIcon
             className="dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2]  px-2 py-2 text-center w-8 rounded cursor-pointer"
             icon={faRotateRight}
-            onClick={handleRefresh}
+            onClick={(e) => {
+              handleRefresh(e);
+            }}
           />
 
           <FontAwesomeIcon
             className="dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2]  px-2 py-2 text-center w-8 rounded cursor-pointer"
             icon={faArrowUp}
-            onClick={handleScrollTop}
+            onClick={(e) => {
+              handleScrollTop(e);
+            }}
           />
         </div>
 
@@ -183,14 +230,16 @@ export default function RightClickMenu(props: any) {
 
         {/* Jump navigation button */}
         <div className="w-full px-2">
-          {/* <div
-            onClick={handleJumpToRandomPost}
+          <div
+            onClick={(e) => {
+              handleJumpToRandomPost(e);
+            }}
             title={locale.MENU.WALK_AROUND}
             className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer  dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2]  rounded-lg duration-200 transition-all"
           >
             <FontAwesomeIcon className="mr-2" icon={faPodcast} />
             <div className="whitespace-nowrap">{locale.MENU.WALK_AROUND}</div>
-          </div> */}
+          </div>
 
           <Link
             href="/category"
@@ -218,7 +267,9 @@ export default function RightClickMenu(props: any) {
         {/* Function buttons */}
         <div className="w-full px-2">
           <div
-            onClick={handleCopyLink}
+            onClick={(e) => {
+              handleCopyLink(e);
+            }}
             title={locale.MENU.COPY_URL}
             className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2] rounded-lg duration-200 transition-all"
           >
@@ -228,7 +279,13 @@ export default function RightClickMenu(props: any) {
           </div>
 
           <div
-            onClick={handleChangeDarkMode}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleChangeDarkMode(!isDarkMode);
+              toast.success(
+                `Set to be ${isDarkMode ? locale.MENU.LIGHT_MODE : locale.MENU.DARK_MODE} `
+              );
+            }}
             title={isDarkMode ? locale.MENU.LIGHT_MODE : locale.MENU.DARK_MODE}
             className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer dark:hover:text-black dark:hover:bg-[#f1efe9e2]  hover:text-[#f1efe9e2]  rounded-lg duration-200 transition-all"
           >

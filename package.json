@@ -75,6 +75,7 @@
     "react-notion-x": "^7.0.1",
     "react-share": "^4.4.1",
     "react-tweet-embed": "~2.0.0",
+    "sonner": "^1.7.1",
     "styled-components": "5.3.10",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",

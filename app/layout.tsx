@@ -42,6 +42,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Suspense } from "react";
 
+import { ModalProvider } from "@/lib/providers/ModalProvider";
 config.autoAddCss = false;
 
 export const viewport: Viewport = {
@@ -71,7 +72,6 @@ export const metadata: Metadata = {
     title: BLOG.TITLE,
     description: BLOG.DESCRIPTION,
     siteName: BLOG.TITLE,
-    locale: BLOG.LANG,
     images: "/images/norkive_black.png",
     url: BLOG.LINK,
   },
@@ -156,6 +156,7 @@ export default async function RootLayout({
                         className="w-full px-7 max-w-3xl justify-center mx-auto"
                       >
                         <CustomedTransitonWrapper>
+                          <ModalProvider />
                           {children}
                           {/* Back button */}
                           <JumpToTopButton />

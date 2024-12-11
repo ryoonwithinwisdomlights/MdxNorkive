@@ -69,8 +69,7 @@ export function GlobalContextProvider({
 
   const showTocButton = post?.toc?.length > 1;
 
-  const handleChangeDarkMode = () => {
-    const newStatus = !isDarkMode;
+  const handleChangeDarkMode = (newStatus = !isDarkMode) => {
     saveDarkModeToLocalStorage(newStatus);
     updateDarkMode(newStatus);
     const htmlElement = document.getElementsByTagName("html")[0];
@@ -102,6 +101,7 @@ export function GlobalContextProvider({
         setOnLoading,
         locale,
         updateLocale,
+        changeLang,
         isDarkMode,
         updateDarkMode,
         notice,

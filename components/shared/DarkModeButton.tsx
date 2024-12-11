@@ -4,8 +4,7 @@
 // import { CloudMoon, CloudSun } from "@/lib/Icon";
 
 import { useGlobal } from "@/lib/providers/globalProvider";
-import { saveDarkModeToLocalStorage } from "@/lib/utils/theme";
-import { Archive, CloudMoon, CloudSun } from "lucide-react";
+import { Archive } from "lucide-react";
 
 /**
  * dark mode button
@@ -16,7 +15,9 @@ const DarkModeButton = (props) => {
 
   return (
     <div
-      onClick={handleChangeDarkMode}
+      onClick={() => {
+        handleChangeDarkMode(!isDarkMode);
+      }}
       className={`${className || ""}  dark:text-neutral-200 `}
     >
       <div
@@ -29,7 +30,6 @@ const DarkModeButton = (props) => {
         ) : (
           <Archive className="text-neutral-600" />
         )}
-        {/* <span className="font-xs"> {isDarkMode ? "light" : "dark"}</span> */}
       </div>
     </div>
   );
