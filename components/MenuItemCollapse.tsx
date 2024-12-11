@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { parseIcon } from "@/lib/utils/utils";
 
 // 사전에 사용할 아이콘 추가
 library.add(faChevronRight);
@@ -52,6 +53,74 @@ export const MenuItemCollapse = (props) => {
     changeIsOpen(!isOpen);
   };
 
+  const renderMainMenus = () => {
+    const icon = parseIcon(link.icon);
+    return (
+      <div
+        onClick={toggleOpenSubMenu}
+        className="py-2 font-extralight flex justify-between cursor-pointer  dark:text-neutral-200 no-underline tracking-widest"
+      >
+        <div>
+          <div className={`${link.icon} text-center w-4 mr-4`} />
+          {icon && <FontAwesomeIcon icon={icon} />} {link.name}
+        </div>
+        <div className="inline-flex items-center ">
+          <FontAwesomeIcon
+            className={`px-2 transition-all duration-200 text-[#f1efe9e2] ${
+              isOpen ? "rotate-90" : ""
+            }`}
+            icon={faChevronRight}
+          />
+        </div>
+      </div>
+    );
+  };
+  const renderMainMenusWithNoSubMenus = () => {
+    const icon = parseIcon(link.icon);
+    return (
+      <Link
+        href={link?.slug}
+        target={link?.slug?.indexOf("http") === 0 ? "_blank" : "_self"}
+        className="py-2 w-full my-auto items-center justify-between flex  "
+      >
+        <div>
+          <div className={`${link.icon} text-center w-4 mr-4`} />
+          {icon && <FontAwesomeIcon icon={icon} />} {link.name}
+        </div>
+      </Link>
+    );
+  };
+
+  const renderSubmenus = () => {
+    return (
+      <Collapse isOpen={isOpen} onHeightChange={props.onHeightChange}>
+        {link?.subMenus?.map((sLink, index) => {
+          const icon = parseIcon(sLink.icon);
+          return (
+            <div
+              key={index}
+              className="
+        not:last-child:border-b-0 border-b dark:border-neutral-800  dark:bg-neutral-600 dark:hover:bg-neutral-700 dark:text-neutral-200  py-2 px-14 cursor-pointer
+        font-extralight text-left justify-start bg-neutral-50  text-neutral-600 hover:bg-neutral-100  tracking-widest transition-all duration-200"
+            >
+              <div
+                onClick={() => {
+                  onClickUrl(sLink);
+                }}
+              >
+                <div>
+                  <div
+                    className={`${sLink.icon} text-center w-3 mr-3 text-xs`}
+                  />
+                  {icon && <FontAwesomeIcon icon={icon} />} {sLink.title}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </Collapse>
+    );
+  };
   return (
     <>
       <div
@@ -63,68 +132,13 @@ export const MenuItemCollapse = (props) => {
         }
         onClick={toggleShow}
       >
-        {!hasSubMenu && (
-          <Link
-            href={link?.slug}
-            target={link?.slug?.indexOf("http") === 0 ? "_blank" : "_self"}
-            className="py-2 w-full my-auto items-center justify-between flex  "
-          >
-            <div>
-              <div className={`${link.icon} text-center w-4 mr-4`} />
-              {link.name}
-            </div>
-          </Link>
-        )}
+        {!hasSubMenu && renderMainMenusWithNoSubMenus()}
 
-        {hasSubMenu && (
-          <div
-            onClick={hasSubMenu && toggleOpenSubMenu}
-            className="py-2 font-extralight flex justify-between cursor-pointer  dark:text-neutral-200 no-underline tracking-widest"
-          >
-            <div>
-              <div className={`${link.icon} text-center w-4 mr-4`} />
-              {link.name}
-            </div>
-            <div className="inline-flex items-center ">
-              <FontAwesomeIcon
-                className={`px-2 transition-all duration-200 text-[#f1efe9e2] ${
-                  isOpen ? "rotate-90" : ""
-                }`}
-                icon={faChevronRight}
-              />
-            </div>
-          </div>
-        )}
+        {hasSubMenu && renderMainMenus()}
       </div>
 
       {/* Collapse submenu */}
-      {hasSubMenu && (
-        <Collapse isOpen={isOpen} onHeightChange={props.onHeightChange}>
-          {link?.subMenus?.map((sLink, index) => {
-            return (
-              <div
-                key={index}
-                className="
-              not:last-child:border-b-0 border-b dark:border-neutral-800  dark:bg-neutral-600 dark:hover:bg-neutral-700 dark:text-neutral-200  py-2 px-14 cursor-pointer
-              font-extralight text-left justify-start bg-neutral-50  text-neutral-600 hover:bg-neutral-100  tracking-widest transition-all duration-200"
-              >
-                <div
-                  onClick={() => {
-                    onClickUrl(sLink);
-                  }}
-                >
-                  <div>
-                    <div
-                      className={`${sLink.icon} text-center w-3 mr-3 text-xs`}
-                    />
-                    {sLink.title}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </Collapse>
-      )}
+      {hasSubMenu && renderSubmenus()}
     </>
   );
 };

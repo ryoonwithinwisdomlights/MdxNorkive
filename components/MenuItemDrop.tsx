@@ -1,11 +1,10 @@
 "use client";
-import * as Icons from "@fortawesome/free-solid-svg-icons"; // 모든 아이콘을 가져옴
+import { parseIcon } from "@/lib/utils/utils";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { parseIcon } from "@/lib/utils/utils";
+import { useState } from "react";
 
 export const MenuItemDrop = ({ link }) => {
   const [show, changeShow] = useState(false);
