@@ -32,7 +32,7 @@ const JumpToBackButton = () => {
     >
       <div
         onClick={handleBack}
-        className="hover:scale-110 duration-150 cursor-pointer p-2 rounded-full border text-white text-xs font-bold  bg-stone-500 dark:border-white"
+        className="hover:scale-110 duration-150 cursor-pointer p-2 rounded-full border text-white text-xs font-bold  bg-neutral-500 dark:border-white"
       >
         <FontAwesomeIcon icon={faChevronLeft} /> &nbsp; 뒤로 &nbsp;
       </div>

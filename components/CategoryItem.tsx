@@ -22,8 +22,8 @@ export default function CategoryItem(props) {
       }}
       className={
         (selected
-          ? "hover:text-white dark:hover:text-white bg-stone-600 text-white "
-          : "dark:text-stone-400 text-neutral-500 hover:text-white dark:hover:text-white hover:bg-stone-600") +
+          ? "hover:text-white dark:hover:text-white bg-neutral-600 text-white "
+          : "dark:text-neutral-400 text-neutral-500 hover:text-white dark:hover:text-white hover:bg-neutral-600") +
         " flex text-sm items-center duration-300 cursor-pointer py-1 font-light px-2 whitespace-nowrap"
       }
     >

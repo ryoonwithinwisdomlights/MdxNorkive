@@ -20,8 +20,8 @@ export const MenuItemPCNormal = (props) => {
       className={
         "px-2 duration-300 text-sm justify-between dark:text-neutral-300 cursor-pointer flex flex-nowrap items-center " +
         (selected
-          ? "bg-stone-600 text-white hover:text-white"
-          : "hover:text-stone-600")
+          ? "bg-neutral-600 text-white hover:text-white"
+          : "hover:text-neutral-600")
       }
     >
       <div className="items-center justify-center flex ">

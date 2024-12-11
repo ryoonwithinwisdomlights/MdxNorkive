@@ -43,11 +43,11 @@ export default async function Page() {
             </div>
           </div>
         </div> */}
-      <div className="mb-4 py-2 mr-4 flex flex-col justify-end">
-        <div className="flex flex-row justify-end text-xs  text-stone-600 font-extralight dark:text-neutral-200 hover:text-stone-800 pr-3">
+      <div className="mb-4 mr-4 flex flex-col justify-end">
+        <div className="flex flex-row justify-end text-xs  text-neutral-600 font-extralight dark:text-neutral-200 hover:text-neutral-800 pr-3">
           Take a look at the Dev Projects LEGOs
         </div>
-        <div className="flex flex-row justify-end text-sm   text-stone-600 font-extralight dark:text-neutral-200 hover:text-stone-800 pr-3">
+        <div className="flex flex-row justify-end text-sm   text-neutral-600 font-extralight dark:text-neutral-200 hover:text-neutral-800 pr-3">
           I built based on what I've enjoyed
         </div>
         <div className="text-4xl  dark:text-neutral-100 flex flex-row justify-end ">

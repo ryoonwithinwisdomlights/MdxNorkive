@@ -17,7 +17,7 @@ const DarkModeButton = (props) => {
   return (
     <div
       onClick={handleChangeDarkMode}
-      className={`${className || ""}  dark:text-stone-200 `}
+      className={`${className || ""}  dark:text-neutral-200 `}
     >
       <div
         id="darkModeButton"
@@ -27,7 +27,7 @@ const DarkModeButton = (props) => {
         {isDarkMode ? (
           <Archive className=" text-[#f1efe9e2]  " />
         ) : (
-          <Archive className="text-stone-600" />
+          <Archive className="text-neutral-600" />
         )}
         {/* <span className="font-xs"> {isDarkMode ? "light" : "dark"}</span> */}
       </div>

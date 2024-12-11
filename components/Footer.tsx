@@ -22,7 +22,7 @@ const Footer = () => {
   })(); // 바로실행함수
 
   return (
-    <footer className="z-20 py-2 bg-white dark:bg-black dark:text-neutral-300 justify-center text-center w-full text-sm relative">
+    <footer className="z-20 py-2 bg-white  dark:bg-neutral-900 dark:text-neutral-300 justify-center text-center w-full text-sm relative">
       <hr className="pb-2" />
 
       <div className="flex justify-center">

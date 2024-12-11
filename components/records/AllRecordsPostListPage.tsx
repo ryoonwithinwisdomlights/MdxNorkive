@@ -37,7 +37,7 @@ const AllRecordsPostListPage = ({
     <div className="w-full justify-center gap-2">
       <div
         onClick={historGoBack}
-        className="text-center w-2/5 mt-4 mb-10  duration-200 p-2 hover:border-stone-200 border-b-2 hover:font-bold "
+        className="text-center w-2/5 mt-4 mb-10  duration-200 p-2 hover:border-neutral-200 border-b-2 hover:font-bold "
       >
         ← {locale.PAGINATION.PREV}
       </div>

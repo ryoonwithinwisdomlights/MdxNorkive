@@ -1,9 +1,7 @@
 "use client";
 import { useGlobal } from "@/lib/providers/globalProvider";
-import Link from "next/link";
-import React from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faTh, faFolder } from "@fortawesome/free-solid-svg-icons";
+import { faFolder, faTh } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
 library.add(faTh, faFolder);

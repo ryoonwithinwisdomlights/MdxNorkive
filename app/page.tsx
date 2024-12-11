@@ -27,7 +27,7 @@ export default async function Page() {
             >
               Norkive
             </div>
-            <div className="mt-2 flex flex-row justify-end text-sm text-stone-800 font-extralight dark:text-neutral-200  ">
+            <div className="mt-2 flex flex-row justify-end text-sm text-neutral-800 font-extralight dark:text-neutral-200  ">
               Browsing all your archives written and recored in Notion.
             </div>
           </div>
@@ -44,7 +44,7 @@ export default async function Page() {
           ))}
         </div>
         <div className="w-2/12  mt-20  dark:text-neutral-200 text-neutral-700 flex flex-col items-end  text-right ">
-          <div className=" text-stone-600  text-center items-center dark:text-neutral-200  ">
+          <div className=" text-neutral-600  text-center items-center dark:text-neutral-200  ">
             with
           </div>
           <div className="text-left mt-10 dark:text-neutral-200 text-neutral-600 flex flex-col gap-20   ">
@@ -73,7 +73,7 @@ export default async function Page() {
             </div>
             <div className="  text-right items-center  ">🌳</div>
           </div>
-          <div className="mt-12 text-stone-600 font-extralight text-right items-center dark:text-neutral-200  ">
+          <div className="mt-12 text-neutral-600 font-extralight text-right items-center dark:text-neutral-200  ">
             and
             <br />
             more

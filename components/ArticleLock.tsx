@@ -74,7 +74,7 @@ export const ArticleLock = (props) => {
               ></input>
               <div
                 onClick={submitPassword}
-                className="px-3 whitespace-nowrap cursor-pointer text-center items-center justify-center py-2 dark:bg-stone-500 bg-stone-400 hover:bg-stone-300 text-white rounded-r duration-300"
+                className="px-3 whitespace-nowrap cursor-pointer text-center items-center justify-center py-2 dark:bg-neutral-500 bg-neutral-400 hover:bg-neutral-300 text-white rounded-r duration-300"
               >
                 <FontAwesomeIcon
                   className="duration-200 cursor-pointer "
@@ -109,7 +109,7 @@ export const ArticleLock = (props) => {
               ></input>
               <div
                 onClick={submitPassword}
-                className="px-3 whitespace-nowrap cursor-pointer text-center items-center justify-center py-2 dark:bg-stone-500 bg-stone-400 hover:bg-stone-300 text-white rounded-r duration-300"
+                className="px-3 whitespace-nowrap cursor-pointer text-center items-center justify-center py-2 dark:bg-neutral-500 bg-neutral-400 hover:bg-neutral-300 text-white rounded-r duration-300"
               >
                 <FontAwesomeIcon
                   className="duration-200 cursor-pointer "
@@ -125,7 +125,7 @@ export const ArticleLock = (props) => {
         </div>
         <div
           onClick={historyGoBack}
-          className="flex flex-row items-start justify-start text  text-right md:w-2/5  md:my-20  duration-200  hover:border-stone-200 border-b-2 border-neutral-100  hover:font-bold "
+          className="flex flex-row items-start justify-start text  text-right md:w-2/5  md:my-20  duration-200  hover:border-neutral-200 border-b-2 border-neutral-100  hover:font-bold "
         >
           ← 뒤로가기
         </div>

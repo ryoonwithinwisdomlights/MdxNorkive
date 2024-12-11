@@ -114,7 +114,7 @@ export default async function RootLayout({
             {/* <HandleOnComplete /> */}
             <div
               id="gitbook"
-              className={`${BLOG.FONT_STYLE} bg-white w-full h-screen justify-center dark:text-neutral-300 scroll-smooth pb-16 md:pb-0 dark:bg-black`}
+              className={`${BLOG.FONT_STYLE}  w-full h-screen   justify-center dark:text-neutral-300 scroll-smooth pb-16  md:pb-0 `}
             >
               {/* top navigation bar */}
               <TopNavBar />
@@ -130,18 +130,18 @@ export default async function RootLayout({
                 <main
                   id="wrapper"
                   className={
-                    "relative flex justify-between w-full h-screen mx-auto"
+                    "relative flex justify-between w-full min-h-screen  mx-auto"
                   }
                 >
                   {/* left navigation bar */}
                   <div
                     className={
-                      "font-sans hidden md:block w-3/12 h-screen border-r dark:border-transparent  z-10 "
+                      "font-sans hidden md:block w-3/12 min-h-screen dark:bg-neutral-900 border-r dark:border-transparent  z-10 "
                     }
                   >
                     {/* Search and list all articles */}
                     <AllNavRecordsList />
-                    <div className="w-72 fixed left-0 bottom-0 z-20 bg-white dark:bg-black">
+                    <div className="w-72 fixed left-0 bottom-0 z-20 bg-white  dark:bg-neutral-900">
                       <Footer />
                     </div>
                   </div>
