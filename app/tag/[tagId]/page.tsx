@@ -58,7 +58,7 @@ export default async function Page({ params, searchParams }) {
           POSTS_PER_PAGE * (pagenum - 1),
           POSTS_PER_PAGE * pagenum
         )
-      : props.posts?.slice(0, BLOG.RECORDS_PER_PAGE);
+      : props.posts?.slice(0, POSTS_PER_PAGE);
 
   props.tag = tagId;
   props.pagenum = pagenum;

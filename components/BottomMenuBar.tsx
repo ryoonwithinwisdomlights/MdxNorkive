@@ -52,6 +52,15 @@ const BottomMenuBar = () => {
     >
       <div className="flex  justify-between h-full shadow-card">
         <div className="flex flex-col py-2 pl-4">
+          <div className="text-xs font-sans">
+            Powered By{" "}
+            <a
+              href={BLOG.CONTACT_GITHUB}
+              className="underline text-gray-500 dark:text-gray-300 font-semibold"
+            >
+              Norkive
+            </a>
+          </div>
           <div className="flex flex-row justify-center text-center  items-center text-xs">
             <div className="flex flex-row justify-center text-center  items-center ">
               <a
@@ -63,15 +72,6 @@ const BottomMenuBar = () => {
               .<br />
             </div>
             © {`${copyrightDate}`}
-          </div>
-          <div className="text-xs font-sans">
-            Powered By{" "}
-            <a
-              href={BLOG.CONTACT_GITHUB}
-              className="underline text-gray-500 dark:text-gray-300 font-semibold"
-            >
-              Norkive
-            </a>
           </div>
           {/* SEO title */}
           <h1 className="pt-1 hidden">{BLOG.TITLE}</h1>

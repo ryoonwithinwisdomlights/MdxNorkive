@@ -36,6 +36,16 @@ const Footer = () => {
   return (
     <footer className="z-20 py-2 bg-white  dark:bg-neutral-900 dark:text-neutral-300 justify-center text-center w-full text-sm relative">
       <hr className="pb-2" />
+
+      <div className="text-xs font-sans">
+        Powered By{" "}
+        <a
+          href={BLOG.CONTACT_GITHUB}
+          className="underline text-gray-500 dark:text-gray-300 font-semibold"
+        >
+          Norkive
+        </a>
+      </div>
       <div className="flex justify-center text-xs">
         <div>
           <a
@@ -47,15 +57,6 @@ const Footer = () => {
           .<br />
         </div>
         © {`${copyrightDate}`}
-      </div>
-      <div className="text-xs font-sans">
-        Powered By{" "}
-        <a
-          href={BLOG.CONTACT_GITHUB}
-          className="underline text-gray-500 dark:text-gray-300 font-semibold"
-        >
-          Norkive
-        </a>
       </div>
       {/* SEO title */}
       <h1 className="pt-1 hidden">{BLOG.TITLE}</h1>
