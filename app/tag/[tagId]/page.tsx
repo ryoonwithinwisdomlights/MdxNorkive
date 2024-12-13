@@ -1,4 +1,3 @@
-import { getPageId } from "@/app/api/route";
 import { BLOG } from "@/blog.config";
 import AllRecordsPostListPage from "@/components/records/AllRecordsPostListPage";
 import { getGlobalData } from "@/lib/notion/getNotionData";
