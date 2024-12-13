@@ -1,11 +1,6 @@
 import { useGlobal } from "@/lib/providers/globalProvider";
 import { useGitBookGlobal } from "@/lib/providers/themeGitbookProvider";
-import { faBook } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { library } from "@fortawesome/fontawesome-svg-core";
-// 사전에 사용할 아이콘 추가
-library.add(faBook);
-
+import { BookOpenTextIcon } from "lucide-react";
 /**
  * Mobile article navigation buttons
  */
@@ -27,10 +22,10 @@ export default function MobileButtonPageNav() {
       <a
         id="nav-button"
         className={
-          "space-x-4 cursor-pointer hover:scale-150 transform duration-200"
+          "space-x-4 cursor-pointer hover:scale-150 transform duration-200 flex flex-col justify-center"
         }
       >
-        <FontAwesomeIcon icon={faBook} />
+        <BookOpenTextIcon />
         <span>{locale.COMMON.ARTICLE_LIST}</span>
       </a>
     </div>

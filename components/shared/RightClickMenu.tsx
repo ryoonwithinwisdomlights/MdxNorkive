@@ -3,21 +3,17 @@
 import { BLOG } from "@/blog.config";
 import useWindowSize from "@/lib/hooks/useWindowSize";
 import { useGlobal } from "@/lib/providers/globalProvider";
-import { library } from "@fortawesome/fontawesome-svg-core";
 import {
-  faArrowLeft,
-  faArrowRight,
-  faArrowUp,
-  faArrowUpRightFromSquare,
-  faBullhorn,
-  faCloudMoon,
-  faCloudSun,
-  faPodcast,
-  faRotateRight,
-  faSquareMinus,
-  faTag,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  ArrowUpIcon,
+  CandyIcon,
+  CopyIcon,
+  RotateCwIcon,
+  SunriseIcon,
+  SunsetIcon,
+  TagIcon,
+} from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -29,20 +25,7 @@ import {
 } from "react";
 import { toast } from "sonner";
 import { useCopyToClipboard } from "usehooks-ts";
-// 사전에 사용할 아이콘 추가
-library.add(
-  faBullhorn,
-  faRotateRight,
-  faArrowUp,
-  faArrowLeft,
-  faArrowRight,
-  faPodcast,
-  faSquareMinus,
-  faTag,
-  faArrowUpRightFromSquare,
-  faCloudSun,
-  faCloudMoon
-);
+
 /**
  * Customize right-click menu
  * @param {*} props
@@ -183,39 +166,38 @@ export default function RightClickMenu() {
       } select-none transition-opacity duration-200 fixed z-50`}
     >
       {/* Menu content */}
-      <div className="rounded-xl w-52 dark:hover:border-white bg-white dark:bg-[#040404] dark:text-neutral-200 dark:border-neutral-600 p-3 border drop-shadow-lg flex-col duration-300 transition-colors">
+      <div
+        className="rounded-xl px-2 w-52 
+      dark:hover:border-white bg-white text-stone-500
+       dark:bg-[#040404] dark:text-neutral-200 dark:border-neutral-600 p-3 border drop-shadow-lg
+        flex-col duration-300 transition-colors"
+      >
         {/* Top navigation buttons */}
-        <div className="flex justify-between">
-          <FontAwesomeIcon
-            className="dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2] px-2 py-2 text-center w-8 rounded cursor-pointer"
-            icon={faArrowLeft}
+        <div className="flex justify-between px-2 ">
+          <ArrowLeftIcon
             onClick={(e) => {
               handleBack(e);
             }}
+            className="hover:text-black  dark:hover:bg-[#f1efe9e2]  w-5 text-center  rounded cursor-pointer"
           />
-
-          <FontAwesomeIcon
-            className="dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2] px-2 py-2 text-center w-8 rounded cursor-pointer"
-            icon={faArrowRight}
+          <ArrowRightIcon
             onClick={(e) => {
               handleForward(e);
             }}
+            className="hover:text-black dark:hover:bg-[#f1efe9e2]  w-5 text-center  rounded cursor-pointer"
           />
 
-          <FontAwesomeIcon
-            className="dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2]  px-2 py-2 text-center w-8 rounded cursor-pointer"
-            icon={faRotateRight}
+          <RotateCwIcon
             onClick={(e) => {
               handleRefresh(e);
             }}
+            className="hover:text-black dark:hover:bg-[#f1efe9e2]  w-5 text-center  rounded cursor-pointer"
           />
-
-          <FontAwesomeIcon
-            className="dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2]  px-2 py-2 text-center w-8 rounded cursor-pointer"
-            icon={faArrowUp}
+          <ArrowUpIcon
             onClick={(e) => {
               handleScrollTop(e);
             }}
+            className="hover:text-black dark:hover:bg-[#f1efe9e2]  w-5 text-center  rounded cursor-pointer"
           />
         </div>
 
@@ -227,30 +209,30 @@ export default function RightClickMenu() {
             onClick={(e) => {
               handleJumpToRandomPost(e);
             }}
-            title={locale.MENU.WALK_AROUND}
-            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer  dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2]  rounded-lg duration-200 transition-all"
+            title={locale.MENU.RANDOM_PAGE}
+            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer  hover:text-black dark:hover:bg-[#f1efe9e2]   rounded-lg duration-200 transition-all"
           >
-            <FontAwesomeIcon className="mr-2" icon={faPodcast} />
-            <div className="whitespace-nowrap">{locale.MENU.WALK_AROUND}</div>
+            <CandyIcon className="mr-2 w-5 h-5" />
+            <div className="whitespace-nowrap text-sm">
+              {locale.MENU.RANDOM_PAGE}
+            </div>
           </div>
 
           <Link
             href="/category"
             title={locale.MENU.CATEGORY}
-            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2]  rounded-lg duration-200 transition-all"
+            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:text-black dark:hover:bg-[#f1efe9e2]   rounded-lg duration-200 transition-all"
           >
-            <FontAwesomeIcon className="mr-2" icon={faSquareMinus} />
-
+            <TagIcon className="mr-2 w-4 h-4" />
             <div className="whitespace-nowrap">{locale.MENU.CATEGORY}</div>
           </Link>
 
           <Link
             href="/tag"
             title={locale.MENU.TAGS}
-            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2] rounded-lg duration-200 transition-all"
+            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:text-black dark:hover:bg-[#f1efe9e2]  rounded-lg duration-200 transition-all"
           >
-            <FontAwesomeIcon className="mr-2" icon={faTag} />
-
+            <TagIcon className="mr-2 w-4 h-4" />
             <div className="whitespace-nowrap">{locale.MENU.TAGS}</div>
           </Link>
         </div>
@@ -264,10 +246,9 @@ export default function RightClickMenu() {
               handleCopyLink(e);
             }}
             title={locale.MENU.COPY_URL}
-            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer dark:hover:text-black dark:hover:bg-[#f1efe9e2] hover:text-[#f1efe9e2] rounded-lg duration-200 transition-all"
+            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:text-black dark:hover:bg-[#f1efe9e2]  rounded-lg duration-200 transition-all"
           >
-            <FontAwesomeIcon className="mr-2" icon={faArrowUpRightFromSquare} />
-
+            <CopyIcon className="mr-2 w-4 h-4" />
             <div className="whitespace-nowrap">{locale.MENU.COPY_URL}</div>
           </div>
 
@@ -280,12 +261,12 @@ export default function RightClickMenu() {
               );
             }}
             title={isDarkMode ? locale.MENU.LIGHT_MODE : locale.MENU.DARK_MODE}
-            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer dark:hover:text-black dark:hover:bg-[#f1efe9e2]  hover:text-[#f1efe9e2]  rounded-lg duration-200 transition-all"
+            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:text-black dark:hover:bg-[#f1efe9e2]    rounded-lg duration-200 transition-all"
           >
             {isDarkMode ? (
-              <FontAwesomeIcon className="mr-2" icon={faCloudSun} />
+              <SunriseIcon className="mr-2 w-4 h-4" />
             ) : (
-              <FontAwesomeIcon className="mr-2" icon={faCloudMoon} />
+              <SunsetIcon className="mr-2 w-4 h-4" />
             )}
             <div className="whitespace-nowrap">
               {isDarkMode ? locale.MENU.LIGHT_MODE : locale.MENU.DARK_MODE}

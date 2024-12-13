@@ -1,10 +1,6 @@
 "use client";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-// 사전에 사용할 아이콘 추가
-library.add(faSpinner);
+import { LoaderIcon } from "lucide-react";
 
 const Loading = () => {
   return (
@@ -17,10 +13,7 @@ const Loading = () => {
       >
         <div className="w-full h-screen flex justify-center items-center">
           Loading...
-          <FontAwesomeIcon
-            className="text-3xl text-black dark:text-white animate-spin"
-            icon={faSpinner}
-          />
+          <LoaderIcon className="text-3xl text-black dark:text-white animate-spin" />
         </div>
       </div>
     </div>

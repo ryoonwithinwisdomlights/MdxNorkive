@@ -9,12 +9,11 @@ import { useGlobal } from "@/lib/providers/globalProvider";
 import { CustomNavList } from "@/lib/providers/provider";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEllipsisVertical, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AlignRightIcon, MenuIcon } from "lucide-react";
 import { useRef, useState } from "react";
 import LogoBar from "./LogoBar";
 import { MenuBarMobile } from "./MenuBarMobile";
 import { MenuItemDrop } from "./MenuItemDrop";
-
 // 사전에 사용할 아이콘 추가
 library.add(faEllipsisVertical, faTimes);
 
@@ -99,12 +98,9 @@ const TopNavBar = () => {
             className="cursor-pointer text-lg hover:scale-110 duration-150"
           >
             {isOpen ? (
-              <FontAwesomeIcon icon={faTimes} className="text-[#f1efe9e2]" />
+              <AlignRightIcon className="dark:text-[#f1efe9e2]" />
             ) : (
-              <FontAwesomeIcon
-                icon={faEllipsisVertical}
-                className="text-[#f1efe9e2]"
-              />
+              <MenuIcon className="dark:text-[#f1efe9e2]" />
             )}
           </div>
         </div>

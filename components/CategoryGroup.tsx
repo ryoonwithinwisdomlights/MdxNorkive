@@ -1,9 +1,5 @@
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faTh } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CategoryItem from "./CategoryItem";
-
-library.add(faTh);
+import { TagIcon } from "lucide-react";
 
 const CategoryGroup = ({ currentCategory, categoryOptions }) => {
   if (!categoryOptions) {
@@ -12,7 +8,7 @@ const CategoryGroup = ({ currentCategory, categoryOptions }) => {
   return (
     <div id="category-list" className="pt-4">
       <div className="mb-2">
-        <FontAwesomeIcon className="mr-2" icon={faTh} />
+        <TagIcon className="mr-2" />
         Classification
       </div>
       <div className="flex flex-wrap">

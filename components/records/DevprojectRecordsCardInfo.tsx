@@ -1,20 +1,10 @@
 "use client";
 import NotionPage from "@/components/shared/NotionPage";
 import { formatDateFmt } from "@/lib/utils/formatDate";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import {
-  faCalendar,
-  faCalendarAlt,
-  faFolder,
-  faLock,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { CalendarIcon, LockIcon } from "lucide-react";
 import Link from "next/link";
-import TagItemMini from "../TagItemMini";
 import { useRouter } from "next/navigation";
-
-// 사전에 사용할 아이콘 추가
-library.add(faFolder, faLock, faCalendar, faCalendarAlt);
+import TagItemMini from "../TagItemMini";
 
 /**
  * Portfolio list text content
@@ -59,11 +49,11 @@ export const DevprojectRecordsCardInfo = ({
               showPreview ? "justify-center" : "justify-start"
             } flex-wrap dark:text-neutral-500 text-neutral-400 `}
           >
-            <span className="text-xs">
+            <span className="text-xs flex flex-row">
               &nbsp;&nbsp;&nbsp;{" "}
               {post.password !== "" && (
                 <>
-                  <FontAwesomeIcon className="mr-1" icon={faLock} />
+                  <LockIcon className="mr-1 w-4 h-4" />
                   &nbsp;비공개
                 </>
               )}
@@ -93,10 +83,9 @@ export const DevprojectRecordsCardInfo = ({
           <Link
             href={`/#${formatDateFmt(post?.publishDate, "yyyy-MM")}`}
             passHref
-            className="font-light menu-link cursor-pointer text-sm leading-4 mr-3"
+            className="font-light menu-link cursor-pointer text-sm leading-4 mr-3 flex flex-row"
           >
-            <FontAwesomeIcon className="mr-1" icon={faCalendar} />
-
+            <CalendarIcon className="mr-1 w-4 h-4" />
             {post?.publishDay || post.lastEditedDay}
           </Link>
 

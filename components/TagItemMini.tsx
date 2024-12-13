@@ -1,9 +1,5 @@
 import Link from "next/link";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTag } from "@fortawesome/free-solid-svg-icons";
-// 사전에 사용할 아이콘 추가
-library.add(faTag);
+import { TagIcon } from "lucide-react";
 
 const TagItemMini = ({ tag, selected = false }) => {
   return (
@@ -20,7 +16,7 @@ const TagItemMini = ({ tag, selected = false }) => {
          }`}
     >
       <div className="font-light ">
-        {selected && <FontAwesomeIcon className="mr-1" icon={faTag} />}{" "}
+        {selected && <TagIcon className="mr-1" />}
         {tag.name + (tag.count ? `(${tag.count})` : "")}{" "}
       </div>
     </Link>

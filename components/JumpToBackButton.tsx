@@ -1,11 +1,9 @@
 "use client";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { MoveLeftIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 // 사전에 사용할 아이콘 추가
-library.add(faChevronLeft);
 
 /**
  * Jump to top of page
@@ -32,9 +30,10 @@ const JumpToBackButton = () => {
     >
       <div
         onClick={handleBack}
-        className="hover:scale-110 duration-150 cursor-pointer p-2 rounded-full border text-white text-xs font-bold  bg-neutral-500 dark:border-white"
+        className="flex flex-row item-center justify-center text-center hover:scale-110 duration-150 cursor-pointer p-2 rounded-full border text-white font-bold  bg-neutral-500 dark:border-white"
       >
-        <FontAwesomeIcon icon={faChevronLeft} /> &nbsp; 뒤로 &nbsp;
+        <MoveLeftIcon className="w-4 " />
+        <span className="text-sm "> &nbsp; 뒤로 &nbsp;</span>
       </div>
     </div>
   );

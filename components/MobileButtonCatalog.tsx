@@ -4,6 +4,7 @@ import { useGitBookGlobal } from "@/lib/providers/themeGitbookProvider";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faListOl } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ListIcon } from "lucide-react";
 
 library.add(faListOl);
 /**
@@ -29,7 +30,7 @@ export default function MobileButtonCatalog() {
           "space-x-4 text-xs cursor-pointer hover:scale-150 transform duration-200"
         }
       >
-        <FontAwesomeIcon icon={faListOl} />
+        <ListIcon />
         <span>{locale.COMMON.TABLE_OF_CONTENTS}</span>
       </a>
     </div>

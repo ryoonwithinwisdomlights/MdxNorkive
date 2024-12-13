@@ -1,16 +1,9 @@
 "use client";
-import { useGitBookGlobal } from "@/lib/providers/themeGitbookProvider";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faBook } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import JumpToTopButton from "./JumpToTopButton";
-import MobileButtonPageNav from "./MobileButtonPageNav";
-import MobileButtonCatalog from "./MobileButtonCatalog";
-import { usePathname } from "next/navigation";
 import { BLOG } from "@/blog.config";
+import { useGitBookGlobal } from "@/lib/providers/themeGitbookProvider";
 
-// 사전에 사용할 아이콘 추가
-library.add(faBook);
+import { usePathname } from "next/navigation";
+import MobileButtonPageNav from "./MobileButtonPageNav";
 
 function toBlogNumber(a: any) {
   let tempVal: any;
@@ -80,7 +73,6 @@ const BottomMenuBar = () => {
           onClick={togglePageNavVisible}
           className="flex  items-center justify-end cursor-pointer"
         >
-          {/* <FontAwesomeIcon icon={faBook} /> */}
           <MobileButtonPageNav />
           {/* <MobileButtonCatalog /> */}
         </div>

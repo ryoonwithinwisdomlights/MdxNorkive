@@ -1,17 +1,8 @@
-import React from "react";
-import NotionIcon from "../shared/NotionIcon";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import {
-  faCalendar,
-  faCalendarCheck,
-  faEye,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { BLOG } from "@/blog.config";
+import { CalendarIcon, EyeIcon, FolderClockIcon } from "lucide-react";
 import Link from "next/link";
 import LazyImage from "../shared/LazyImage";
-import { BLOG } from "@/blog.config";
-// 사전에 사용할 아이콘 추가
-library.add(faEye, faCalendar, faCalendarCheck);
+import NotionIcon from "../shared/NotionIcon";
 
 const SingleRecordsInroduction = ({ post, siteInfo }) => {
   return (
@@ -21,41 +12,34 @@ const SingleRecordsInroduction = ({ post, siteInfo }) => {
         <NotionIcon icon={post?.pageIcon} />
         {post?.title}
       </h1>
-      <section
-        className="flex-wrap
-shadow-text-md flex text-sm
-justify-start mt-4 text-neutral-500
- dark:text-neutral-400 font-light py-2
- "
-      >
-        <div className="flex justify-start dark:text-neutral-200 ">
-          <span className="whitespace-nowrap">
-            <FontAwesomeIcon className="mr-2" icon={faCalendar} />
-            {post?.publishDay}
-          </span>{" "}
-          <span className="mx-1"> | </span>{" "}
-          <span className="whitespace-nowrap mr-2">
-            <FontAwesomeIcon className="mr-2" icon={faCalendarCheck} />
-
-            {post?.lastEditedDay}
+      <section className="flex-wrap shadow-text-md flex text-sm justify-start mt-4 text-neutral-500 dark:text-neutral-400 font-light py-2 ">
+        <div className="flex justify-start dark:text-neutral-200 flex-row items-center ">
+          <span className="whitespace-nowrap flex flex-row items-center">
+            <CalendarIcon className="mr-1 w-4 h-4" />
+            작성일: {post?.publishDay}
           </span>
-          <span className="hidden busuanzi_container_page_pv ">
-            <FontAwesomeIcon
-              className="mr-2 font-light whitespace-nowrap "
-              icon={faEye}
-            />
-
-            <span className="busuanzi_value_page_pv"></span>
+          <span className="mx-1 ml-2 mr-2"> | </span>
+          <span className="whitespace-nowrap mr-2 flex flex-row items-center">
+            <FolderClockIcon className="mr-2 w-4 h-4" />
+            최종수정일: {post?.lastEditedDay}
+          </span>
+          {/* <span className="mx-1 ml-2 mr-2"> | </span> */}
+          <span className="hidden flex-row items-center busuanzi_container_page_pv ">
+            <div className="flex flex-row items-center">
+              <EyeIcon className="mr-2 font-light whitespace-nowrap w-4 h-4 " />
+              <span className="busuanzi_value_page_pv"></span>
+              <span className="ml-1">뷰</span>
+            </div>
           </span>
         </div>
-        <span className="mx-1 mr-2"> | </span>{" "}
+        <span className="mx-1 ml-2 mr-2"> | </span>
         <Link href="/" passHref legacyBehavior>
-          <div className="flex flex-row">
+          <div className="flex flex-row items-center">
             <LazyImage
               src={siteInfo?.icon}
               className="rounded-full cursor-pointer dark:border dark:border-neutral-300"
-              width={20}
-              height={20}
+              width={16}
+              height={16}
               alt={BLOG.AUTHOR}
             />
 

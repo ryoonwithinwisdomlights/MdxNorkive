@@ -6,6 +6,7 @@ import { useGlobal } from "@/lib/providers/globalProvider";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTimes, faTools } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { BugIcon, XIcon } from "lucide-react";
 library.add(faTimes);
 /**
  *
@@ -41,23 +42,21 @@ const DebugPanel = () => {
       <div>
         <div
           style={{ writingMode: "vertical-lr" }}
-          className={`bg-black text-xs text-white shadow-2xl p-1.5 rounded-l-xl cursor-pointer ${
+          className={`bg-black text-xs text-white shadow-2xl p-1.5 rounded-l-xl cursor-pointer  ${
             show ? "right-96" : "right-0"
           } fixed bottom-72 duration-200 z-50`}
           onClick={toggleShow}
         >
           {show ? (
-            <>
-              {" "}
-              <FontAwesomeIcon icon={faTimes} />
-              &nbsp;{locale.COMMON.DEBUG_CLOSE}
-            </>
+            <div className="flex flex-row p-1 gap-1">
+              <XIcon className="w-4" />
+              {locale.COMMON.DEBUG_CLOSE}
+            </div>
           ) : (
-            <>
-              {" "}
-              <FontAwesomeIcon icon={faTools} />
-              &nbsp;{locale.COMMON.DEBUG_OPEN}
-            </>
+            <div className="flex flex-row p-1 gap-1">
+              <BugIcon className="w-4" />
+              <span>{locale.COMMON.DEBUG_OPEN}</span>
+            </div>
           )}
         </div>
       </div>
@@ -69,8 +68,8 @@ const DebugPanel = () => {
         } overflow-y-scroll h-full p-5 bg-white fixed bottom-0 z-50 duration-200`}
       >
         <div className="flex justify-between space-x-1 my-5">
-          <div className="p-2" onClick={toggleShow}>
-            <FontAwesomeIcon icon={faTimes} />
+          <div className="" onClick={toggleShow}>
+            <XIcon className="w-4" />
           </div>
         </div>
 

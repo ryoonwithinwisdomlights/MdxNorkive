@@ -5,8 +5,9 @@ import Catalog from "../Catalog";
 import { useGitBookGlobal } from "@/lib/providers/themeGitbookProvider";
 import { useGlobal } from "@/lib/providers/globalProvider";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faTh, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { XIcon } from "lucide-react";
 library.add(faTimes);
 
 /**
@@ -50,11 +51,7 @@ const CatalogDrawerWrapper = ({ post }) => {
                 className="px-4 pb-2 flex justify-between items-center border-b font-bold"
               >
                 <span>{locale.COMMON.TABLE_OF_CONTENTS}</span>
-
-                <FontAwesomeIcon
-                  className="p-1 cursor-pointer"
-                  icon={faTimes}
-                />
+                <XIcon className="p-1 cursor-pointer" />
               </div>
               <div className="dark:text-gray-400 text-gray-600 px-3">
                 <Catalog post={post} />

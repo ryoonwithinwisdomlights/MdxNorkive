@@ -1,19 +1,10 @@
 "use client";
 import NotionPage from "@/components/shared/NotionPage";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import {
-  faCalendar,
-  faCalendarAlt,
-  faFolder,
-  faLock,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { CalendarIcon, FolderClosedIcon, LockIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import TagItemMini from "../TagItemMini";
 
-// 사전에 사용할 아이콘 추가
-library.add(faFolder, faCalendar, faLock, faCalendarAlt);
 /**
  *  EngineeringRecords list text content
  * @param {*} param0
@@ -59,18 +50,16 @@ export const EngineeringRecordsCardInfo = ({
             <Link
               href={`/category/${post.category}`}
               passHref
-              className="cursor-pointer font-light text-sm menu-link hover:text-black transform"
+              className="flex flex-row items-center cursor-pointer font-light text-sm menu-link hover:text-black transform"
             >
-              <FontAwesomeIcon className="mr-1" icon={faFolder} />
-
+              <FolderClosedIcon className="mr-1 w-4 h-4" />
               {post.category}
             </Link>
-            <span className="text-xs">
+            <span className="text-xs flex flex-row items-center">
               &nbsp;&nbsp;&nbsp;{" "}
               {post.password !== "" && (
                 <>
-                  {" "}
-                  <FontAwesomeIcon className="mr-1" icon={faLock} />
+                  <LockIcon className="mr-1 w-4 h-4" />
                   &nbsp;비공개
                 </>
               )}
@@ -108,9 +97,9 @@ export const EngineeringRecordsCardInfo = ({
 
       <div>
         {/* date label */}
-        <div className="text-neutral-400  justify-between flex">
-          <div>
-            <FontAwesomeIcon className="mr-1" icon={faCalendar} />
+        <div className="flex text-neutral-400  justify-between ">
+          <div className="flex flex-row items-center">
+            <CalendarIcon className="mr-1 w-4 h-4" />
             {post?.publishDay || post.lastEditedDay}
           </div>
           <div className="md:flex-nowrap flex-wrap md:justify-start inline-block">

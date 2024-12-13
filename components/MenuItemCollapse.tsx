@@ -1,15 +1,13 @@
 "use client"; // 클라이언트 컴포넌트
 import Collapse from "@/components/shared/Collapse";
-import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { parseIcon } from "@/lib/utils/utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ChevronRightIcon } from "lucide-react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 
 // 사전에 사용할 아이콘 추가
-library.add(faChevronRight);
 
 /**
  * Collapse menu
@@ -65,11 +63,10 @@ export const MenuItemCollapse = (props) => {
           {icon && <FontAwesomeIcon icon={icon} />} {link.name}
         </div>
         <div className="inline-flex items-center ">
-          <FontAwesomeIcon
+          <ChevronRightIcon
             className={`px-2 transition-all duration-200 text-[#f1efe9e2] ${
               isOpen ? "rotate-90" : ""
             }`}
-            icon={faChevronRight}
           />
         </div>
       </div>

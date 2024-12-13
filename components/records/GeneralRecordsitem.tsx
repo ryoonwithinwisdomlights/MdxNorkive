@@ -1,13 +1,8 @@
 "use client";
 /* eslint-disable no-unused-vars */
 import { BLOG } from "@/blog.config";
+import { LockIcon } from "lucide-react";
 import Link from "next/link";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLock } from "@fortawesome/free-solid-svg-icons";
-
-// 사전에 사용할 아이콘 추가
-library.add(faLock);
 
 export default function GeneralRecordsitem({ archiveTitle, archiveRecords }) {
   return (
@@ -37,7 +32,7 @@ export default function GeneralRecordsitem({ archiveTitle, archiveRecords }) {
                   {post.password !== "" && (
                     <>
                       {" "}
-                      <FontAwesomeIcon className="mr-1" icon={faLock} />
+                      <LockIcon className="mr-1" />
                       &nbsp;비공개
                     </>
                   )}

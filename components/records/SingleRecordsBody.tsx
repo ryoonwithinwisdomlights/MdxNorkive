@@ -15,7 +15,7 @@ const SingleRecordsBody = ({ post, prev, next }) => {
       {/* share */}
       <ShareBar post={post} />
       {/* Article classification and tag information */}
-      <div className="flex justify-between">
+      <div className="mt-6 flex justify-between">
         {GITBOOKCONFIG.RECORD_DETAIL_CATEGORY && post?.category && (
           <CategoryItem category={post.category} />
         )}

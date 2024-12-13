@@ -1,10 +1,7 @@
 "use client";
 import { useGlobal } from "@/lib/providers/globalProvider";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faFolder, faTh } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FolderIcon, FolderOpen } from "lucide-react";
 import { useRouter } from "next/navigation";
-library.add(faTh, faFolder);
 
 const CategoryList = () => {
   const { categoryOptions } = useGlobal({});
@@ -14,11 +11,9 @@ const CategoryList = () => {
   };
   return (
     <div className="  px-10 py-10">
-      <div className="dark:text-neutral-200 text-neutral-700 mb-5">
-        <FontAwesomeIcon
-          className="mr-4 text-neutral-700 dark:text-white"
-          icon={faTh}
-        />
+      <div className="dark:text-neutral-200 flex flex-row text-center items-center text-neutral-700 mb-5">
+        {/* <TagIcon/> */}
+        <FolderOpen className="mr-2 h-5 text-neutral-700 dark:text-white fill-stone-900 " />
         <span className="text-xl ">Category</span>
       </div>
       <div id="category-list" className="duration-200 flex flex-wrap">
@@ -32,12 +27,11 @@ const CategoryList = () => {
             >
               <div
                 className={
-                  "hover:text-black text-neutral-700 dark:hover:text-white dark:text-neutral-300 dark:hover:bg-neutral-600 px-5 cursor-pointer py-2 hover:bg-neutral-100"
+                  " flex flex-row items-center hover:text-black text-neutral-700 dark:hover:text-white dark:text-neutral-300 dark:hover:bg-neutral-600 px-5 cursor-pointer py-2 hover:bg-neutral-100"
                 }
               >
-                <FontAwesomeIcon
-                  className={`mr-4 text-${category.color}-400 `}
-                  icon={faFolder}
+                <FolderIcon
+                  className={`mr-4 text-${category.color}-400 fill-stone-900 `}
                 />
                 {category.name}({category.count})
               </div>

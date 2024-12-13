@@ -7,28 +7,17 @@ import {
   EmailIcon,
   EmailShareButton,
   FacebookIcon,
-  FacebookMessengerIcon,
-  FacebookMessengerShareButton,
   FacebookShareButton,
-  InstapaperIcon,
-  InstapaperShareButton,
   LinkedinIcon,
   LinkedinShareButton,
-  PocketIcon,
-  PocketShareButton,
   RedditIcon,
   RedditShareButton,
   TwitterIcon,
   TwitterShareButton,
-  WorkplaceIcon,
-  WorkplaceShareButton,
 } from "react-share";
 
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faLink } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { LinkIcon } from "lucide-react";
 // 사전에 사용할 아이콘 추가
-library.add(faLink);
 /**
  * @author https://github.com/txs
  * @param {*} param0
@@ -116,7 +105,7 @@ const ShareButtons = ({ shareUrl, title, body, image }) => {
               className="cursor-pointer bg-neutral-500 text-white rounded-full mx-1"
             >
               <div onClick={copyUrl}>
-                <FontAwesomeIcon className="w-8 text-white" icon={faLink} />
+                <LinkIcon className="p-1 w-8 text-white" />
               </div>
             </button>
           );

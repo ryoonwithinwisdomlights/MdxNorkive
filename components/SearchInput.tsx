@@ -2,13 +2,9 @@
 "use client";
 import { useGlobal } from "@/lib/providers/globalProvider";
 import { deepClone } from "@/lib/utils/utils";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useImperativeHandle, useRef, useState } from "react";
 
-// 사전에 사용할 아이콘 추가
-library.add(faSearch, faTimes);
+import { SearchIcon, XIcon } from "lucide-react";
+import { useImperativeHandle, useRef, useState } from "react";
 
 let lock = false;
 
@@ -135,28 +131,23 @@ Enter key  // 키 입력 처리 함수
         defaultValue={""}
         placeholder="검색어를 입력하세요"
       />
-
-      <div
-        className="flex -ml-8 cursor-pointer float-right items-center justify-center py-2"
-        onClick={handleSearch}
-      >
-        <FontAwesomeIcon
-          className="hover:text-neutral-400 transform duration-200 text-neutral-200  dark:hover:text-neutral-400 cursor-pointer "
-          icon={faSearch}
-        />
-      </div>
+      {searchKeyword === "" && (
+        <div
+          className="flex -ml-8 cursor-pointer float-right items-center justify-center py-2"
+          onClick={handleSearch}
+        >
+          <SearchIcon className=" w-4 hover:text-neutral-400 transform duration-200 text-neutral-200  dark:hover:text-neutral-400 cursor-pointer " />
+        </div>
+      )}
 
       {searchKeyword !== "" && (
         <div
           onClick={() => {
             cleanSearch();
           }}
-          className="-ml-14 cursor-pointer float-right items-end px-4   justify-center py-4"
+          className="flex -ml-8 cursor-pointer float-right justify-center items-center py-4"
         >
-          <FontAwesomeIcon
-            className=" hover:text-neutral-400 items-center justify-center transform duration-200 text-neutral-200 cursor-pointer py-2  dark:hover:text-neutral-300"
-            icon={faTimes}
-          />
+          <XIcon className="w-4 hover:text-neutral-400 transform duration-200 text-neutral-200  dark:hover:text-neutral-400 cursor-pointer " />
         </div>
       )}
     </div>

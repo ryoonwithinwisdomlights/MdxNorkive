@@ -1,12 +1,8 @@
 "use client";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faFolder, faFolderOpen } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-library.add(faFolder, faFolderOpen);
-
+import { FolderIcon, FolderOpen, FolderOpenIcon } from "lucide-react";
 export default function CategoryItem(props) {
   const { selected, category, categoryCount } = props;
   const router = useRouter();
@@ -15,8 +11,6 @@ export default function CategoryItem(props) {
   };
   return (
     <div
-      // href={`/category/${category}`}
-      // passHref
       onClick={(e) => {
         onClick(category);
       }}
@@ -27,11 +21,12 @@ export default function CategoryItem(props) {
         " flex text-sm items-center duration-300 cursor-pointer py-1 font-light px-2 whitespace-nowrap"
       }
     >
-      <div>
-        <FontAwesomeIcon
-          className="mr-2"
-          icon={selected ? faFolderOpen : faFolder}
-        />
+      <div className="flex flex-row items-center">
+        {selected ? (
+          <FolderIcon className="mr-2 w-5 h-5" />
+        ) : (
+          <FolderOpenIcon className="mr-2 w-5 h-5" />
+        )}
         {category} {categoryCount && `(${categoryCount})`}
       </div>
     </div>

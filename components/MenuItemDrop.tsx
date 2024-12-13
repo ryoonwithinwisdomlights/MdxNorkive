@@ -2,6 +2,7 @@
 import { parseIcon } from "@/lib/utils/utils";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ChevronDownIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
@@ -39,12 +40,12 @@ export const MenuItemDrop = ({ link }) => {
             : "hover:text-black dark:hover:text-[#ffffff]")
         }
       >
-        <div>
-          {icon && <FontAwesomeIcon icon={icon} />} {link?.title}
+        <div className="flex flex-row items-center ">
+          {icon && <FontAwesomeIcon icon={icon} className="mr-1" />}{" "}
+          {link?.title}
           {hasSubMenu && (
-            <FontAwesomeIcon
-              icon={faChevronDown}
-              className={`px-2 duration-500 transition-all ${
+            <ChevronDownIcon
+              className={`p-1 duration-500 transition-all ${
                 show ? " rotate-180" : ""
               }`}
             />
@@ -70,7 +71,8 @@ export const MenuItemDrop = ({ link }) => {
           href={link?.slug}
           target={link?.slug?.indexOf("http") === 0 ? "_blank" : "_self"}
         >
-          {icon && <FontAwesomeIcon icon={icon} />} &nbsp;{link?.title}
+          {icon && <FontAwesomeIcon icon={icon} className="mr-1" />} &nbsp;
+          {link?.title}
         </Link>
       </div>
     );
@@ -104,7 +106,10 @@ export const MenuItemDrop = ({ link }) => {
                 >
                   <span className="text-xs  hover:text-black   ">
                     {iconForRenderSubmenus && (
-                      <FontAwesomeIcon icon={iconForRenderSubmenus} />
+                      <FontAwesomeIcon
+                        icon={iconForRenderSubmenus}
+                        className="mr-1"
+                      />
                     )}
                     &nbsp;{sLink.title}
                   </span>

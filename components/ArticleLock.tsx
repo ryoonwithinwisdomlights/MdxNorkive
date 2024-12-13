@@ -1,13 +1,8 @@
 "use client";
 import { useGlobal } from "@/lib/providers/globalProvider";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faKey } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-
-// 사전에 사용할 아이콘 추가
-library.add(faKey);
+import { KeyRoundIcon } from "lucide-react";
 
 /**
  * Encrypted article verification component
@@ -76,10 +71,7 @@ export const ArticleLock = (props) => {
                 onClick={submitPassword}
                 className="px-3 whitespace-nowrap cursor-pointer text-center items-center justify-center py-2 dark:bg-neutral-500 bg-neutral-400 hover:bg-neutral-300 text-white rounded-r duration-300"
               >
-                <FontAwesomeIcon
-                  className="duration-200 cursor-pointer "
-                  icon={faKey}
-                />
+                <KeyRoundIcon className="duration-200 cursor-pointer " />
                 &nbsp;{locale.COMMON.SUBMIT}
                 &nbsp; 입력완료
               </div>
@@ -111,10 +103,7 @@ export const ArticleLock = (props) => {
                 onClick={submitPassword}
                 className="px-3 whitespace-nowrap cursor-pointer text-center items-center justify-center py-2 dark:bg-neutral-500 bg-neutral-400 hover:bg-neutral-300 text-white rounded-r duration-300"
               >
-                <FontAwesomeIcon
-                  className="duration-200 cursor-pointer "
-                  icon={faKey}
-                />
+                <KeyRoundIcon className="duration-200 cursor-pointer " />
                 &nbsp;{locale.COMMON.SUBMIT}
                 &nbsp; 입력완료
               </div>

@@ -1,16 +1,6 @@
 "use client";
-import Link from "next/link";
-
-import { library } from "@fortawesome/fontawesome-svg-core";
-import {
-  faAngleDoubleLeft,
-  faAngleDoubleRight,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ChevronsLeftIcon, ChevronsRightIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-
-// 사전에 사용할 아이콘 추가
-library.add(faAngleDoubleLeft, faAngleDoubleRight);
 
 /**
  * Previous article, next article
@@ -35,8 +25,7 @@ export default function ArticleAround({ prev, next }) {
         }}
         className="text-sm cursor-pointer justify-start items-center flex hover:underline duration-300"
       >
-        <FontAwesomeIcon className="mr-1" icon={faAngleDoubleLeft} />
-
+        <ChevronsLeftIcon className="mr-1" />
         {prev.title}
       </div>
       <div
@@ -48,7 +37,7 @@ export default function ArticleAround({ prev, next }) {
         className="text-sm cursor-pointer justify-end items-center flex hover:underline duration-300"
       >
         {next.title}
-        <FontAwesomeIcon className="mr-1 my-1 " icon={faAngleDoubleRight} />
+        <ChevronsRightIcon className="mr-1 my-1 " />
       </div>
     </section>
   );

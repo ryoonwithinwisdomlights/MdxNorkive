@@ -5,6 +5,7 @@ import Collapse from "@/components/shared/Collapse";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { ChevronLeftIcon } from "lucide-react";
 // 사전에 사용할 아이콘 추가
 library.add(faChevronLeft);
 /**
@@ -34,11 +35,10 @@ const NavPostItem = (props) => {
         >
           <span>{group?.category}</span>
           <div className="inline-flex items-center select-none pointer-events-none ">
-            <FontAwesomeIcon
-              className={`px-2 transition-all duration-200 ${
+            <ChevronLeftIcon
+              className={`px-1 transition-all duration-200 ${
                 isOpen ? "rotate-90" : ""
               }`}
-              icon={faChevronLeft}
             />
           </div>
         </div>
