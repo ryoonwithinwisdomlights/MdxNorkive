@@ -3,6 +3,7 @@ import NotionPage from "@/components/shared/NotionPage";
 import { formatDateFmt } from "@/lib/utils/formatDate";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
+  faCalendar,
   faCalendarAlt,
   faFolder,
   faLock,
@@ -13,7 +14,7 @@ import TagItemMini from "../TagItemMini";
 import { useRouter } from "next/navigation";
 
 // 사전에 사용할 아이콘 추가
-library.add(faFolder, faLock, faCalendarAlt);
+library.add(faFolder, faLock, faCalendar, faCalendarAlt);
 
 /**
  * Portfolio list text content
@@ -31,6 +32,7 @@ export const DevprojectRecordsCardInfo = ({
   const onClick = (category: string) => {
     router.push(`/category/${category}`);
   };
+
   return (
     <div
       className={`flex flex-col justify-between lg:p-6 p-4   ${
@@ -39,13 +41,13 @@ export const DevprojectRecordsCardInfo = ({
           : "w-full"
       }`}
     >
-      <div className="w-full">
+      <div className="flex flex-col items-start">
         <div
-          className={`line-clamp-2 replace cursor-pointer text-2xl ${
+          className={`line-clamp-2 flex flex-row replace cursor-pointer text-2xl ${
             showPreview ? "text-center" : ""
           } leading-tight font-normal text-neutral-600  hover:text-black`}
         >
-          <span className="menu-link ">
+          <span className="menu-link text-start">
             {post.title}
             {/* {post.title.substr(0, 25) + "..."} */}
           </span>
@@ -76,14 +78,6 @@ export const DevprojectRecordsCardInfo = ({
           </p>
         )}
 
-        {/* search results */}
-        {post.results && (
-          <p className="line-clamp-2 mt-4 text-neutral-700 dark:text-neutral-300 text-sm font-light leading-7">
-            {post.results.map((r, index) => (
-              <span key={index}>{r}</span>
-            ))}
-          </p>
-        )}
         {/* Preview */}
         {showPreview && (
           <div className="overflow-ellipsis truncate">
@@ -97,19 +91,17 @@ export const DevprojectRecordsCardInfo = ({
         <div className="text-neutral-400 justify-between flex">
           {/* date */}
           <Link
-            // href={`/records#${formatDateFmt(post?.publishDate, "yyyy-MM")}`}
             href={`/#${formatDateFmt(post?.publishDate, "yyyy-MM")}`}
             passHref
             className="font-light menu-link cursor-pointer text-sm leading-4 mr-3"
           >
-            <FontAwesomeIcon className="mr-1" icon={faCalendarAlt} />
+            <FontAwesomeIcon className="mr-1" icon={faCalendar} />
 
             {post?.publishDay || post.lastEditedDay}
           </Link>
 
           <div className="md:flex-nowrap flex-wrap md:justify-start inline-block">
             <div>
-              {" "}
               {post.tagItems?.map((tag) => (
                 <TagItemMini key={tag.name} tag={tag} />
               ))}

@@ -1,6 +1,6 @@
 /**
- * 渲染pdf
- * 直接用googledocs预览pdf
+ * Render pdf
+ * Preview pdf directly using googledocs
  * @param {*} file
  * @returns
  */

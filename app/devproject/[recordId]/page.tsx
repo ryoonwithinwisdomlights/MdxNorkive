@@ -75,14 +75,13 @@ export default async function Page({ params }) {
     pageId: BLOG.NOTION_PAGE_ID,
     from: "Devproject",
   });
-  // console.log("idToUuid(recordId)");
-  // console.log(idToUuid(recordId));
-  // console.log(recordId);
+
   // Find article in list
   props.post = props?.allPages?.find((item) => {
     return item.id === recordId;
   });
 
+  console.log(" props.post::", props.post);
   // Unable to retrieve article
   if (!props?.post) {
     const pageId = props?.post.slug.slice(-1)[0];

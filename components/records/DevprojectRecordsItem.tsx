@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { DevprojectRecordsCardInfo } from "./DevprojectRecordsCardInfo";
 
 export default function DevprojectRecordsItem({ pIndex, pId, pTitle, pPosts }) {
-  const showPreview = false;
+  const showPreview = true;
   const showPageCover = pPosts?.pageCoverThumbnail;
   const router = useRouter();
 

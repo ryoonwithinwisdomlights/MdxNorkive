@@ -10,7 +10,7 @@ export default function EngineeringRecordsItem({
   pTitle,
   pPosts,
 }) {
-  const showPreview = false;
+  const showPreview = true;
   const showPageCover = pPosts?.pageCoverThumbnail;
 
   return (

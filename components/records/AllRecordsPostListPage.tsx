@@ -14,11 +14,11 @@ import { useGlobal } from "@/lib/providers/globalProvider";
  * @constructor
  */
 const AllRecordsPostListPage = ({
-  page = 1,
+  pagenum = 1,
   posts = [],
   postCount,
 }: {
-  page?: number;
+  pagenum?: number;
   posts?: [];
   postCount: number;
 }) => {
@@ -26,7 +26,8 @@ const AllRecordsPostListPage = ({
   const { searchKeyword, setSearchKeyword } = useGlobal({});
   const totalPage = Math.ceil(postCount / BLOG.RECORDS_PER_PAGE);
   const { locale } = useGlobal({ from: "index" });
-
+  const currentPage = +pagenum;
+  const showNext = currentPage < totalPage;
   if (!posts || posts.length === 0) {
     return <NavPostListEmpty searchKeyword={searchKeyword} />;
   }
@@ -37,7 +38,7 @@ const AllRecordsPostListPage = ({
     <div className="w-full justify-center gap-2">
       <div
         onClick={historGoBack}
-        className="text-center w-2/5 mt-4 mb-10  duration-200 p-2 hover:border-neutral-200 border-b-2 hover:font-bold "
+        className={` ${!+showNext && "font-bold"} text-center w-2/5 mt-4 mb-10  duration-200 p-2 hover:border-neutral-200 border-b-2 hover:font-bold `}
       >
         ← {locale.PAGINATION.PREV}
       </div>
@@ -48,7 +49,7 @@ const AllRecordsPostListPage = ({
         ))}
       </div>
 
-      <PaginationSimple page={page} totalPage={totalPage} />
+      <PaginationSimple pagenum={pagenum} totalPage={totalPage} />
     </div>
   );
 };

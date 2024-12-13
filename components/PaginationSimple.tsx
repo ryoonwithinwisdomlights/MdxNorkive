@@ -1,7 +1,8 @@
 "use client";
 import { useGlobal } from "@/lib/providers/globalProvider";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { idToUuid } from "notion-utils";
 
 /**
  * Simple page turning plug-in
@@ -10,47 +11,43 @@ import { usePathname } from "next/navigation";
  * @returns {JSX.Element}
  * @constructor
  */
-const PaginationSimple = ({ page, totalPage }) => {
+const PaginationSimple = ({ pagenum, totalPage }) => {
   const { locale } = useGlobal({ from: "index" });
-
+  const router = useRouter();
   const pathname = usePathname();
-  const currentPage = +page;
+  // const param = useSearchParams()
+  const currentPage = +pagenum;
   const showNext = currentPage < totalPage;
-  const pagePrefix = pathname
-    .replace(/\/page\/[1-9]\d*/, "")
-    .replace(/\/$/, "");
+  const pagePrefix = pathname.replace(/\/page\/[1-9]\d*/, "");
 
   return (
-    <div className="my-10 flex justify-between font-medium text-black dark:text-neutral-100 space-x-2">
-      <Link
-        href={{
-          pathname:
+    <div
+      className={`my-10 flex w-full justify-end font-medium text-black dark:text-neutral-100 space-x-2`}
+    >
+      {/* <div
+        onClick={() => {
+          router.push(
             currentPage === 2
               ? `${pagePrefix}/`
-              : `${pagePrefix}/page/${currentPage - 1}`,
-          // query: router.query.s ? { s: router.query.s } : {},
+              : `${pagePrefix}?pagenum=${currentPage + 1}`
+          );
         }}
-        passHref
-        rel="prev"
         className={`${
           currentPage === 1 ? "invisible" : "block"
         } text-center w-full duration-200 px-4 py-2 hover:border-neutral-300 border-b-2 hover:font-bold`}
       >
         ←{locale.PAGINATION.PREV}
-      </Link>
-      <Link
-        href={{
-          pathname: `${pagePrefix}/page/${currentPage + 1}`,
-          // query: router.query.s ? { s: router.query.s } : {},
+      </div> */}
+      <div
+        onClick={() => {
+          router.push(`${pagePrefix}?pagenum=${currentPage + 1}`);
         }}
-        passHref
-        rel="next"
         className={`${
           +showNext ? "block" : "invisible"
-        } text-center w-full duration-200 px-4 py-2 hover:border-neutral-300 border-b-2 hover:font-bold`}
+        } text-center w-1/2 duration-200 px-4 py-2 hover:border-neutral-300 border-b-2 hover:font-bold`}
       >
         {locale.PAGINATION.NEXT}→
-      </Link>
+      </div>
     </div>
   );
 };

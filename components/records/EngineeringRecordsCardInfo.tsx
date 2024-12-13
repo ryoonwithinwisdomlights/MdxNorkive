@@ -2,6 +2,7 @@
 import NotionPage from "@/components/shared/NotionPage";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
+  faCalendar,
   faCalendarAlt,
   faFolder,
   faLock,
@@ -12,7 +13,7 @@ import { useRouter } from "next/navigation";
 import TagItemMini from "../TagItemMini";
 
 // 사전에 사용할 아이콘 추가
-library.add(faFolder, faLock, faCalendarAlt);
+library.add(faFolder, faCalendar, faLock, faCalendarAlt);
 /**
  *  EngineeringRecords list text content
  * @param {*} param0
@@ -28,25 +29,25 @@ export const EngineeringRecordsCardInfo = ({
   const onClick = (engId: string) => {
     router.push(`/engineering/${engId}`);
   };
+
   return (
     <div
-      className={`flex flex-col justify-between lg:p-6 p-4  ${
-        showPageCover && !showPreview ? "md:w-7/12 w-full " : "w-full"
+      className={`flex flex-col justify-around lg:p-6 p-4  ${
+        showPageCover && !showPreview
+          ? "md:w-7/12 w-full md:max-h-60"
+          : "w-full"
       }`}
     >
-      <div>
+      <div className="flex flex-col items-start text-start">
         <div
           onClick={(e) => {
             onClick(post.id);
           }}
-          className={`line-clamp-2 replace cursor-pointer text-2xl ${
+          className={`line-clamp-2 flex flex-row  replace cursor-pointer text-2xl ${
             showPreview ? "text-center" : ""
-          } leading-tight  text-neutral-500  hover:text-black `}
+          } leading-tight font-normal text-neutral-500  hover:text-black `}
         >
-          <span className="menu-link ">
-            {/* {post.title.substr(0, 500) + "..."} */}
-            {post.title}
-          </span>
+          <span className="menu-link text-start ">{post.title}</span>
         </div>
         {/* Classification */}
         {post?.category && (
@@ -78,13 +79,20 @@ export const EngineeringRecordsCardInfo = ({
         )}
         {/* Summary */}
         {(!showPreview || showSummary) && !post.results && (
-          <p className="line-clamp-2 replace my-3 text-neutral-700  dark:text-neutral-300 text-sm font-light leading-7">
+          <p className="line-clamp-2  replace my-3 text-neutral-700  dark:text-neutral-300 text-sm font-light leading-7">
             {post.summary}
           </p>
         )}
+
+        {/* 본문 일부 */}
+        {/* {(!showPreview || !showSummary) && (
+          <p className="line-clamp-2 replace my-3 text-neutral-700  dark:text-neutral-300 text-sm font-light leading-7">
+            {post.title.substr(0, 500) + "..."}
+          </p>
+        )} */}
         {/* search results */}
         {post.results && (
-          <p className="line-clamp-2 mt-4 text-neutral-700 dark:text-neutral-300 text-sm font-light leading-7">
+          <p className="line-clamp-2   mt-4 text-neutral-700 dark:text-neutral-300 text-sm font-light leading-7">
             {post.results.map((r, index) => (
               <span key={index}>{r}</span>
             ))}
@@ -92,7 +100,7 @@ export const EngineeringRecordsCardInfo = ({
         )}
         {/* Preview */}
         {showPreview && (
-          <div className="overflow-ellipsis truncate">
+          <div className="overflow-ellipsis truncate ">
             <NotionPage post={post} />
           </div>
         )}
@@ -100,9 +108,11 @@ export const EngineeringRecordsCardInfo = ({
 
       <div>
         {/* date label */}
-        <div className="text-neutral-400 justify-between flex">
-          <FontAwesomeIcon className="mr-1" icon={faCalendarAlt} />
-          {post?.publishDay || post.lastEditedDay}
+        <div className="text-neutral-400  justify-between flex">
+          <div>
+            <FontAwesomeIcon className="mr-1" icon={faCalendar} />
+            {post?.publishDay || post.lastEditedDay}
+          </div>
           <div className="md:flex-nowrap flex-wrap md:justify-start inline-block">
             <div>
               {post.tagItems?.map((tag) => (

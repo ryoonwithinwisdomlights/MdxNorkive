@@ -1,6 +1,7 @@
 import { BLOG } from "@/blog.config";
 import { formatDateFmt } from "@/lib/utils/formatDate";
 import { getGlobalData } from "@/lib/notion/getNotionData";
+import { getPostBlocks } from "@/lib/notion/getPostBlocks";
 
 export async function getStaticNotionRecordsSortByDirType({
   from = "records",
@@ -68,7 +69,6 @@ export async function getStaticNotionRecordsSortByDirTypeWithoutDateTitle({
   props.posts = props.allPages?.filter((page) => {
     return page.type === type && page.status === "Published";
   });
-  // const archiveRecords = {};
 
   props.archiveRecords = props.posts;
   delete props.allPages;

@@ -1,3 +1,4 @@
+import { getPageId } from "@/app/api/route";
 import { BLOG } from "@/blog.config";
 import AllRecordsPostListPage from "@/components/records/AllRecordsPostListPage";
 import { getGlobalData } from "@/lib/notion/getNotionData";
@@ -9,9 +10,18 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function Page({ params }) {
+// After
+type Params = Promise<{ tagId: string }>;
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
+
+export default async function Page({ params, searchParams }) {
   const { tagId } = await params;
+  const { pagenum } = await searchParams;
+
   const decodedTagId = decodeURIComponent(tagId);
+  // console.log("decodedTagId:", decodedTagId);
+  // console.log("tagId", tagId);
+  // console.log("pagenum", pagenum);
 
   if (!tagId) {
     return <div>Invalid tag</div>;
@@ -35,25 +45,31 @@ export default async function Page({ params }) {
         page.status === "Published"
     )
     .filter((post) => {
-      // if (post.type === "Devproject") {
-      //   console.log("decodedTagId:", decodedTagId);
-      //   console.log("post.tags:", post.tags);
-      // }
       return post && post.tags && post.tags.includes(decodedTagId);
     });
 
   // Process article page count
   props.postCount = props.posts.length;
+  const POSTS_PER_PAGE = BLOG.RECORDS_PER_PAGE;
   // Handle pagination
-  if (BLOG.RECORD_LIST_STYLE === "scroll") {
-    // Scroll list returns all data to the front end
-  } else if (BLOG.RECORD_LIST_STYLE === "page") {
-    props.posts = props.posts?.slice(0, BLOG.RECORDS_PER_PAGE);
-  }
+
+  props.posts =
+    pagenum !== undefined
+      ? props.posts.slice(
+          POSTS_PER_PAGE * (pagenum - 1),
+          POSTS_PER_PAGE * pagenum
+        )
+      : props.posts?.slice(0, BLOG.RECORDS_PER_PAGE);
+
   props.tag = tagId;
+  props.pagenum = pagenum;
   delete props.allPages;
 
   return (
-    <AllRecordsPostListPage postCount={props.postCount} posts={props.posts} />
+    <AllRecordsPostListPage
+      pagenum={pagenum !== undefined ? pagenum : 1}
+      postCount={props.postCount}
+      posts={props.posts}
+    />
   );
 }
