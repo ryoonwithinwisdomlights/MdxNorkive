@@ -13,8 +13,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function Page({ params }) {
+export default async function Page({ params, searchParams }) {
   const { categoryId } = await params;
+  const { pagenum } = await searchParams;
   const decodedCategoryId = decodeURIComponent(categoryId);
   if (!categoryId) {
     return <div>Invalid category</div>;
@@ -43,14 +44,23 @@ export default async function Page({ params }) {
 
   // Process article page count
   props.postCount = props.posts.length;
+  const POSTS_PER_PAGE = BLOG.RECORDS_PER_PAGE;
   // Handle pagination
-  if (BLOG.RECORD_LIST_STYLE === "scroll") {
-    // Scroll list returns all data to the front end
-  } else if (BLOG.RECORD_LIST_STYLE === "page") {
-    props.posts = props.posts?.slice(0, BLOG.RECORDS_PER_PAGE);
-  }
+
+  props.posts =
+    pagenum !== undefined
+      ? props.posts.slice(
+          POSTS_PER_PAGE * (pagenum - 1),
+          POSTS_PER_PAGE * pagenum
+        )
+      : props.posts?.slice(0, POSTS_PER_PAGE);
+
   delete props.allPages;
   return (
-    <AllRecordsPostListPage postCount={props.postCount} posts={props.posts} />
+    <AllRecordsPostListPage
+      pagenum={pagenum !== undefined ? pagenum : 1}
+      postCount={props.postCount}
+      posts={props.posts}
+    />
   );
 }
