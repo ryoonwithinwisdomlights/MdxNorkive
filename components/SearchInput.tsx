@@ -108,6 +108,7 @@ Enter key  // 키 입력 처리 함수
   return (
     <div className={"flex w-full border-neutral-400"}>
       <input
+        name="searchInput"
         ref={searchInputRef}
         type="text"
         className={`my-3 rounded-md border border-[#f1efe9e2] dark:border-none outline-none w-full text-sm pl-2 transition focus:shadow-lg font-light leading-10 text-black bg-[#f1efe9e2] dark:bg-neutral-700  dark:text-white`}

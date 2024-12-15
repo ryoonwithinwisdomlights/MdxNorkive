@@ -57,6 +57,7 @@ export const ArticleLock = (props) => {
             </div>
             <div className="flex ">
               <input
+                name="passwordCheck1"
                 id="password"
                 type="password"
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -89,6 +90,7 @@ export const ArticleLock = (props) => {
             </div>
             <div className="flex ">
               <input
+                name="passwordCheck2"
                 id="password"
                 type="password"
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
