@@ -7,13 +7,14 @@ import dynamic from "next/dynamic";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import LoadingCover from "../LoadingCover";
+import GiscusComponent from "./Giscus";
 
-const GiscusComponent = dynamic(
-  () => {
-    return import("@/components/shared/Giscus");
-  },
-  { ssr: false }
-);
+// const GiscusComponent = dynamic(
+//   () => {
+//     return import("@/components/shared/Giscus");
+//   },
+//   { ssr: false }
+// );
 
 /**
  * Comment component
@@ -26,12 +27,10 @@ const Comment = (props) => {
   //devproject/1341eb5c-0337-81ad-a46c-d94c8abcdada
 
   const [shouldLoad, setShouldLoad] = useState(false);
-  const { isDarkMode } = useGlobal({ from: "index" });
+
   const commentRef = useRef(null);
   const searchParams = useSearchParams();
   const url = `${pathname}`;
-
-  const theme = isDarkMode ? "dark" : "light";
 
   useEffect(() => {
     // Check if the component is visible in the viewport
@@ -95,7 +94,7 @@ const Comment = (props) => {
         <Tabs className="px-2">
           {BLOG.COMMENT_GISCUS_REPONAME && (
             <div key="Giscus">
-              <GiscusComponent theme={theme} />
+              <GiscusComponent />
             </div>
           )}
         </Tabs>

@@ -160,23 +160,19 @@ export const BLOG = {
     process.env.NEXT_PUBLIC_RECORD_DISABLE_GALLERY_CLICK || false, // Clicking is prohibited in the picture album view, making it easier to insert links into the picture album on the friend link page.
 
   // giscus @see https://giscus.app/
-  COMMENT_GISCUS_REPOUSERNAME:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPOUSERNAME, // Your Github repository name e.g 'ryoonwithinwisdomlights/norkive'
   COMMENT_GISCUS_REPONAME: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPONAME, // Your Github repository name e.g 'ryoonwithinwisdomlights/norkive'
   COMMENT_GISCUS_REPO_ID: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPO_ID, // Your Github Repo ID e.g (you can see it after setting up giscus)
-  COMMENT_GISCUS_CATEGORY:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY || "General",
+  COMMENT_GISCUS_CATEGORY: process.env.NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY,
   COMMENT_GISCUS_CATEGORY_ID:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY_ID || "", // Category ID in your Github Discussions (you can see it after setting up giscus)
-  COMMENT_GISCUS_MAPPING:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_MAPPING || "pathname", // Which method does your Github Discussions use to demarcate datas? Default is 'pathname'
+    process.env.NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY_ID, // Category ID in your Github Discussions (you can see it after setting up giscus)
+  COMMENT_GISCUS_MAPPING: process.env.NEXT_PUBLIC_COMMENT_GISCUS_MAPPING, // Which method does your Github Discussions use to demarcate datas? Default is 'pathname'
   COMMENT_GISCUS_REACTIONS_ENABLED:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_REACTIONS_ENABLED || "1", // Does your Giscus enable data emoticons? '1' is on "0" is off and is on by default.
+    process.env.NEXT_PUBLIC_COMMENT_GISCUS_REACTIONS_ENABLED, // Does your Giscus enable data emoticons? '1' is on "0" is off and is on by default.
   COMMENT_GISCUS_EMIT_METADATA:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_EMIT_METADATA || "0", // Whether your Giscus extracts Metadata '1' On '0' Off The default is off
+    process.env.NEXT_PUBLIC_COMMENT_GISCUS_EMIT_METADATA, // Whether your Giscus extracts Metadata '1' On '0' Off The default is off
   COMMENT_GISCUS_INPUT_POSITION:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_INPUT_POSITION || "bottom", // Your Giscus comment position 'bottom' tail 'top' top, default 'bottom'
-  COMMENT_GISCUS_LANG: process.env.NEXT_PUBLIC_COMMENT_GISCUS_LANG || "ko", // Your Giscus language e.g 'en', 'zh-TW', 'zh-CN', default 'en'
+    process.env.NEXT_PUBLIC_COMMENT_GISCUS_INPUT_POSITION, // Your Giscus comment position 'bottom' tail 'top' top, default 'bottom'
+  COMMENT_GISCUS_LANG: "ko", // Your Giscus language e.g 'en', 'zh-TW', 'zh-CN', default 'en'
   COMMENT_GISCUS_LOADING:
     process.env.NEXT_PUBLIC_COMMENT_GISCUS_LOADING || "lazy", // Whether your Giscus load is progressive, default is 'lazy'
   COMMENT_GISCUS_CROSSORIGIN:
@@ -247,7 +243,7 @@ export const BLOG = {
 
   // development related
   NOTION_ACCESS_TOKEN: process.env.NOTION_ACCESS_TOKEN || "", // Useful if you prefer not to make your database public
-  DEBUG: process.env.NEXT_PUBLIC_DEBUG || false, // Whether to automatically add shadows to data images
+  DEBUG: process.env.NEXT_PUBLIC_DEBUG || false, //
   ENABLE_CACHE:
     process.env.ENABLE_CACHE ||
     process.env.npm_lifecycle_event === "build" ||

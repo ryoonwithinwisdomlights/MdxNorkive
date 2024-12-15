@@ -22,7 +22,7 @@ export const ArticleLock = (props) => {
       const tips = document.getElementById("tips");
       if (tips) {
         tips.innerHTML = "";
-        tips.innerHTML = `<div class='text-red-500 animate__shakeX animate__animated'>${locale.COMMON.PASSWORD_ERROR}</div>`;
+        tips.innerHTML = `<div class='pt-4 font-semibold text-red-500  dark:text-red-500 animate__shakeX animate__animated'>${locale.COMMON.PASSWORD_ERROR}</div>`;
       }
     }
   };
@@ -40,16 +40,16 @@ export const ArticleLock = (props) => {
   }, []);
 
   return (
-    <div className="w-full flex flex-col justify-center  items-start ">
+    <div className="w-full h-full  flex flex-col justify-center items-center p-24 ">
       <div
-        id="container"
-        className="w-full flex flex-col justify-center items-start px-24 md:py-24 h-96 "
+        id="articlelock_container"
+        className="w-full flex flex-col justify-center items-start "
       >
-        <div className="flex flex-row items-start ">
+        <div className="flex flex-col justify-center  w-full">
           {/** pc */}
-          <div className="hidden md:flex">
-            <div className="  flex flex-col items-start">
-              <div className="font-bold text-lg p-0 mr-4">
+          <div className="hidden md:flex w-full flex-row items-center justify-center">
+            <div className=" flex flex-col items-start text-stone-700">
+              <div className="font-semibold text-lg p-0 mr-4 ">
                 비밀번호를 입력하세요.
               </div>
               {/* <p className="text-sm">{locale.COMMON.ARTICLE_LOCK_TIPS}</p> */}
@@ -66,29 +66,33 @@ export const ArticleLock = (props) => {
                   submitPassword();
                 }}
                 ref={passwordInputRef} // Bind ref to passwordInputRef variable
-                className="outline-none w-full text-sm pl-5 rounded-l transition focus:shadow-lg dark:text-neutral-300 font-light leading-10 text-black bg-neutral-50 dark:bg-neutral-500"
+                className="outline-none w-full text-sm pl-5 rounded-l transition focus:shadow-lg
+                 dark:text-neutral-300 font-light leading-10 text-black
+                  bg-stone-100 dark:bg-stone-200"
               ></input>
               <div
                 onClick={submitPassword}
-                className="px-3 whitespace-nowrap cursor-pointer text-center items-center justify-center py-2 dark:bg-neutral-500 bg-neutral-400 hover:bg-neutral-300 text-white rounded-r duration-300"
+                className="px-3 flex flex-row whitespace-nowrap cursor-pointer  items-center justify-center py-2  bg-stone-600 
+                 hover:bg-stone-800 hover:dark:bg-stone-500 text-stone-100  hover:text-white rounded-r duration-300"
               >
-                <KeyRoundIcon className="duration-200 cursor-pointer " />
-                &nbsp;{locale.COMMON.SUBMIT}
-                &nbsp; 입력완료
+                <KeyRoundIcon className="duration-200 cursor-pointer w-4 h-4 " />
+
+                <span className="font-semibold text-center">
+                  &nbsp;{locale.COMMON.SUBMIT}
+                </span>
               </div>
             </div>
           </div>
           {/** mobile */}
-          <div className="lg:hidden sm:hidden md:hidden text-left flex flex-col gap-2 py-4 dark:text-neutral-100">
+          <div className="lg:hidden sm:hidden md:hidden text-center w-full justify-center flex flex-col gap-2 py-4 dark:text-neutral-100">
             <div className=" ">
-              {" "}
-              <div className="font-bold text-lg p-0 m-0">
-                비밀번호를 입력하세요.
+              <div className="font-semibold text-lg p-0 m-0 text-stone-700">
+                비밀번호를 <br />
+                입력하세요.
               </div>
-              {/* <p className="text-sm">{locale.COMMON.ARTICLE_LOCK_TIPS}</p> */}
               <p className="text-sm">{locale.COMMON.ARTICLE_LOCK_TIPS}</p>
             </div>
-            <div className="flex ">
+            <div className="flex w-full pt-4">
               <input
                 name="passwordCheck2"
                 id="password"
@@ -99,24 +103,32 @@ export const ArticleLock = (props) => {
                   submitPassword();
                 }}
                 ref={passwordInputRef} // Bind ref to passwordInputRef variable
-                className="outline-none w-full text-sm  rounded-l transition focus:shadow-lg dark:text-neutral-300 font-light leading-10 text-black bg-neutral-50 dark:bg-neutral-700"
+                className="outline-none w-full text-sm  rounded-l transition focus:shadow-lg dark:text-neutral-300 font-light leading-10 text-black
+                  bg-stone-100 dark:bg-stone-200"
               ></input>
               <div
                 onClick={submitPassword}
-                className="px-3 whitespace-nowrap cursor-pointer text-center items-center justify-center py-2 dark:bg-neutral-500 bg-neutral-400 hover:bg-neutral-300 text-white rounded-r duration-300"
+                className="px-3 flex flex-row whitespace-nowrap cursor-pointer text-center items-center justify-center py-2 rounded-r duration-300 bg-stone-600 
+                 hover:bg-stone-800 hover:dark:bg-stone-500 text-stone-100  hover:text-white "
               >
                 <KeyRoundIcon className="duration-200 cursor-pointer " />
-                &nbsp;{locale.COMMON.SUBMIT}
-                &nbsp; 입력완료
+                {/* &nbsp;{locale.COMMON.SUBMIT} */}
+                <span className="font-semibold text-center ">
+                  &nbsp;{locale.COMMON.SUBMIT}
+                </span>
               </div>
             </div>
           </div>
 
-          <div id="tips"></div>
+          <div
+            id="tips"
+            className="flex flex-row justify-center items-center text-right "
+          ></div>
         </div>
         <div
           onClick={historyGoBack}
-          className="flex flex-row items-start justify-start text  text-right md:w-2/5  md:my-20  duration-200  hover:border-neutral-200 border-b-2 border-neutral-100  hover:font-bold "
+          className="pt-4 flex flex-row text-stone-700 items-start justify-start text-right md:w-2/5 
+           md:my-20 duration-200  hover:border-stone-200 border-b-2 border-stone-100 hover:font-semibold "
         >
           ← 뒤로가기
         </div>

@@ -30,7 +30,8 @@ const JumpToBackButton = () => {
     >
       <div
         onClick={handleBack}
-        className="flex flex-row item-center justify-center text-center hover:scale-110 duration-150 cursor-pointer p-2 rounded-full border text-white font-bold  bg-neutral-500 dark:border-white"
+        className="flex flex-row item-center justify-center text-center hover:scale-110 
+        duration-150 cursor-pointer p-2 rounded-full border text-white font-bold  bg-neutral-600 dark:border-white"
       >
         <MoveLeftIcon className="w-4 " />
         <span className="text-sm "> &nbsp; 뒤로 &nbsp;</span>

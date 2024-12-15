@@ -4,17 +4,16 @@ import { LoaderIcon } from "lucide-react";
 
 const Loading = () => {
   return (
-    <div className=" justify-center items-center w-full h-full">
+    <div className="  w-full h-screen flex flex-col justify-center items-center">
       <div
         id="cover-loading"
-        className={
-          "z-50 opacity-50pointer-events-none transition-all duration-300"
-        }
+        className="z-50 opacity-50pointer-events-none transition-all 
+          duration-300 w-full h-full flex flex-row justify-center items-center"
       >
-        <div className="w-full h-screen flex justify-center items-center">
+        <span className="text-3xl text-stone-700 dark:text-stone-200">
           Loading...
-          <LoaderIcon className="text-3xl text-black dark:text-white animate-spin" />
-        </div>
+        </span>
+        <LoaderIcon className="w-8 h-8 text-stone-700 dark:text-stone-200 animate-spin" />
       </div>
     </div>
   );

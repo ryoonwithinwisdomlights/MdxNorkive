@@ -10,7 +10,7 @@ export default function LoadingCover() {
         "z-50 opacity-50pointer-events-none transition-all duration-300"
       }
     >
-      <div className="w-full h-screen flex justify-center items-center">
+      <div className="w-full h-full flex flex-row justify-center items-center">
         Loading...
         <LoaderIcon className="text-3xl text-black dark:text-white animate-spin" />
       </div>

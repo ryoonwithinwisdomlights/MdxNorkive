@@ -153,7 +153,7 @@ export default async function RootLayout({
                     <div className="flex flex-col justify-between w-full relative z-10  ">
                       <div
                         id="container-inner"
-                        className="w-full px-7 max-w-3xl justify-center mx-auto"
+                        className="w-full pl-7 pr-7 max-w-3xl justify-center mx-auto "
                       >
                         <CustomedTransitonWrapper>
                           <ModalProvider />

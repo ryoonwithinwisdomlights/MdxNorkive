@@ -24,7 +24,7 @@ import {
   useState,
 } from "react";
 import { toast } from "sonner";
-import { useCopyToClipboard } from "usehooks-ts";
+import { useCopyToClipboard, useMediaQuery } from "usehooks-ts";
 
 /**
  * Customize right-click menu
@@ -32,6 +32,7 @@ import { useCopyToClipboard } from "usehooks-ts";
  * @returns
  */
 export default function RightClickMenu() {
+  const isMobile = useMediaQuery("(max-width: 768px");
   const { latestPosts, changeLang, isDarkMode, locale, handleChangeDarkMode } =
     useGlobal({ from: "index" });
   const [position, setPosition] = useState({ x: "0px", y: "0px" });
@@ -158,122 +159,126 @@ export default function RightClickMenu() {
   }
 
   return (
-    <div
-      ref={menuRef}
-      style={{ top: position.y, left: position.x }}
-      className={`${
-        show ? "" : "invisible opacity-0"
-      } select-none transition-opacity duration-200 fixed z-50`}
-    >
-      {/* Menu content */}
+    !isMobile && (
       <div
-        className="rounded-xl px-2 w-52 
+        ref={menuRef}
+        style={{ top: position.y, left: position.x }}
+        className={` ${
+          show ? "" : "invisible opacity-0"
+        } select-none transition-opacity duration-200 fixed z-50`}
+      >
+        {/* Menu content */}
+        <div
+          className="rounded-xl px-2 w-52 
       dark:hover:border-white bg-white text-stone-500
        dark:bg-[#040404] dark:text-neutral-200 dark:border-neutral-600 p-3 border drop-shadow-lg
         flex-col duration-300 transition-colors"
-      >
-        {/* Top navigation buttons */}
-        <div className="flex justify-between px-2 ">
-          <ArrowLeftIcon
-            onClick={(e) => {
-              handleBack(e);
-            }}
-            className="hover:text-black  dark:hover:bg-[#f1efe9e2]  w-5 text-center  rounded cursor-pointer"
-          />
-          <ArrowRightIcon
-            onClick={(e) => {
-              handleForward(e);
-            }}
-            className="hover:text-black dark:hover:bg-[#f1efe9e2]  w-5 text-center  rounded cursor-pointer"
-          />
+        >
+          {/* Top navigation buttons */}
+          <div className="flex justify-between px-2 ">
+            <ArrowLeftIcon
+              onClick={(e) => {
+                handleBack(e);
+              }}
+              className="hover:text-black  dark:hover:bg-[#f1efe9e2]  w-5 text-center  rounded cursor-pointer"
+            />
+            <ArrowRightIcon
+              onClick={(e) => {
+                handleForward(e);
+              }}
+              className="hover:text-black dark:hover:bg-[#f1efe9e2]  w-5 text-center  rounded cursor-pointer"
+            />
 
-          <RotateCwIcon
-            onClick={(e) => {
-              handleRefresh(e);
-            }}
-            className="hover:text-black dark:hover:bg-[#f1efe9e2]  w-5 text-center  rounded cursor-pointer"
-          />
-          <ArrowUpIcon
-            onClick={(e) => {
-              handleScrollTop(e);
-            }}
-            className="hover:text-black dark:hover:bg-[#f1efe9e2]  w-5 text-center  rounded cursor-pointer"
-          />
-        </div>
+            <RotateCwIcon
+              onClick={(e) => {
+                handleRefresh(e);
+              }}
+              className="hover:text-black dark:hover:bg-[#f1efe9e2]  w-5 text-center  rounded cursor-pointer"
+            />
+            <ArrowUpIcon
+              onClick={(e) => {
+                handleScrollTop(e);
+              }}
+              className="hover:text-black dark:hover:bg-[#f1efe9e2]  w-5 text-center  rounded cursor-pointer"
+            />
+          </div>
 
-        <hr className="my-2 border-dashed" />
+          <hr className="my-2 border-dashed" />
 
-        {/* Jump navigation button */}
-        <div className="w-full px-2">
-          <div
-            onClick={(e) => {
-              handleJumpToRandomPost(e);
-            }}
-            title={locale.MENU.RANDOM_PAGE}
-            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer  hover:text-black dark:hover:bg-[#f1efe9e2]   rounded-lg duration-200 transition-all"
-          >
-            <CandyIcon className="mr-2 w-5 h-5" />
-            <div className="whitespace-nowrap text-sm">
-              {locale.MENU.RANDOM_PAGE}
+          {/* Jump navigation button */}
+          <div className="w-full px-2">
+            <div
+              onClick={(e) => {
+                handleJumpToRandomPost(e);
+              }}
+              title={locale.MENU.RANDOM_PAGE}
+              className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer  hover:text-black dark:hover:bg-[#f1efe9e2]   rounded-lg duration-200 transition-all"
+            >
+              <CandyIcon className="mr-2 w-5 h-5" />
+              <div className="whitespace-nowrap text-sm">
+                {locale.MENU.RANDOM_PAGE}
+              </div>
             </div>
+
+            <Link
+              href="/category"
+              title={locale.MENU.CATEGORY}
+              className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:text-black dark:hover:bg-[#f1efe9e2]   rounded-lg duration-200 transition-all"
+            >
+              <TagIcon className="mr-2 w-4 h-4" />
+              <div className="whitespace-nowrap">{locale.MENU.CATEGORY}</div>
+            </Link>
+
+            <Link
+              href="/tag"
+              title={locale.MENU.TAGS}
+              className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:text-black dark:hover:bg-[#f1efe9e2]  rounded-lg duration-200 transition-all"
+            >
+              <TagIcon className="mr-2 w-4 h-4" />
+              <div className="whitespace-nowrap">{locale.MENU.TAGS}</div>
+            </Link>
           </div>
 
-          <Link
-            href="/category"
-            title={locale.MENU.CATEGORY}
-            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:text-black dark:hover:bg-[#f1efe9e2]   rounded-lg duration-200 transition-all"
-          >
-            <TagIcon className="mr-2 w-4 h-4" />
-            <div className="whitespace-nowrap">{locale.MENU.CATEGORY}</div>
-          </Link>
+          <hr className="my-2 border-dashed" />
 
-          <Link
-            href="/tag"
-            title={locale.MENU.TAGS}
-            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:text-black dark:hover:bg-[#f1efe9e2]  rounded-lg duration-200 transition-all"
-          >
-            <TagIcon className="mr-2 w-4 h-4" />
-            <div className="whitespace-nowrap">{locale.MENU.TAGS}</div>
-          </Link>
-        </div>
+          {/* Function buttons */}
+          <div className="w-full px-2">
+            <div
+              onClick={(e) => {
+                handleCopyLink(e);
+              }}
+              title={locale.MENU.COPY_URL}
+              className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:text-black dark:hover:bg-[#f1efe9e2]  rounded-lg duration-200 transition-all"
+            >
+              <CopyIcon className="mr-2 w-4 h-4" />
+              <div className="whitespace-nowrap">{locale.MENU.COPY_URL}</div>
+            </div>
 
-        <hr className="my-2 border-dashed" />
-
-        {/* Function buttons */}
-        <div className="w-full px-2">
-          <div
-            onClick={(e) => {
-              handleCopyLink(e);
-            }}
-            title={locale.MENU.COPY_URL}
-            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:text-black dark:hover:bg-[#f1efe9e2]  rounded-lg duration-200 transition-all"
-          >
-            <CopyIcon className="mr-2 w-4 h-4" />
-            <div className="whitespace-nowrap">{locale.MENU.COPY_URL}</div>
-          </div>
-
-          <div
-            onClick={(e) => {
-              e.stopPropagation();
-              handleChangeDarkMode(!isDarkMode);
-              toast.success(
-                `Set to be ${isDarkMode ? locale.MENU.LIGHT_MODE : locale.MENU.DARK_MODE} `
-              );
-            }}
-            title={isDarkMode ? locale.MENU.LIGHT_MODE : locale.MENU.DARK_MODE}
-            className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:text-black dark:hover:bg-[#f1efe9e2]    rounded-lg duration-200 transition-all"
-          >
-            {isDarkMode ? (
-              <SunriseIcon className="mr-2 w-4 h-4" />
-            ) : (
-              <SunsetIcon className="mr-2 w-4 h-4" />
-            )}
-            <div className="whitespace-nowrap">
-              {isDarkMode ? locale.MENU.LIGHT_MODE : locale.MENU.DARK_MODE}
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                handleChangeDarkMode(!isDarkMode);
+                toast.success(
+                  `Set to be ${isDarkMode ? locale.MENU.LIGHT_MODE : locale.MENU.DARK_MODE} `
+                );
+              }}
+              title={
+                isDarkMode ? locale.MENU.LIGHT_MODE : locale.MENU.DARK_MODE
+              }
+              className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:text-black dark:hover:bg-[#f1efe9e2]    rounded-lg duration-200 transition-all"
+            >
+              {isDarkMode ? (
+                <SunriseIcon className="mr-2 w-4 h-4" />
+              ) : (
+                <SunsetIcon className="mr-2 w-4 h-4" />
+              )}
+              <div className="whitespace-nowrap">
+                {isDarkMode ? locale.MENU.LIGHT_MODE : locale.MENU.DARK_MODE}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    )
   );
 }
