@@ -32,7 +32,7 @@ const Comment = (props) => {
   const url = `${pathname}`;
 
   const theme = isDarkMode ? "dark" : "light";
-  // console.log("themethemethemethemeL:", theme);
+
   useEffect(() => {
     // Check if the component is visible in the viewport
     const observer = new IntersectionObserver((entries) => {

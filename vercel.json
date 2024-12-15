@@ -1,5 +1,5 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "headers": []
+  "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }]
 }
