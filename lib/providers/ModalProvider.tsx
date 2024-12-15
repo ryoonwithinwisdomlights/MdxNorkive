@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ThemeSettingModal from "@/components/modals/SettingModal";
 import { Toaster } from "sonner";
 
 export const ModalProvider = () => {
