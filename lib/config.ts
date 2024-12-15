@@ -10,7 +10,7 @@ import { isUrl } from "@/lib/utils/utils";
 * Read configuration sequence
  * 1. Read the NotionConfig table first
  * 2. Secondly read the environment variables
- * 3. Then read blog.config.js / or the CONFIG file of each theme
+ * 3. Then read blog.config.js / or the CONFIG filee
  * @param {*} key ；Parameter name
 
  * @param {*} defaultVal ; There is no default return value for the parameter
