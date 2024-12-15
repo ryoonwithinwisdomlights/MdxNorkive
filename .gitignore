@@ -41,15 +41,8 @@ yarn-error.log*
 # sitemap
 /public/robots.txt
 /public/sitemap.xml
-/public/rss/*
 /sitemap.xml
 
-
-
-#deprecated
-/__deprecated/*
-/__pages/*
-/_themes/*
 
 # yarn
 package-lock.json
