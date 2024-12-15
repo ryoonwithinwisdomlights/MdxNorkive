@@ -22,7 +22,7 @@ const GiscusComponent = () => {
     const categoryId = process.env
       .NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY_ID as string;
     const lang = process.env.NEXT_PUBLIC_COMMENT_GISCUS_LANG as string;
-    const pathname = process.env.NEXT_PUBLIC_COMMENT_GISCUS_MAPPING as string;
+    const mapping = process.env.NEXT_PUBLIC_COMMENT_GISCUS_MAPPING as string;
     // 환경 변수 값이 없으면 return
     if (!repo || !repoId || !category || !categoryId || !lang) {
       console.log("Giscus not found");
@@ -43,7 +43,7 @@ const GiscusComponent = () => {
     scriptElem.setAttribute("data-repo-id", repoId);
     // scriptElem.setAttribute("data-category", category);
     scriptElem.setAttribute("data-category-id", categoryId);
-    scriptElem.setAttribute("data-mapping", pathname);
+    scriptElem.setAttribute("data-mapping", mapping);
     scriptElem.setAttribute("data-strict", "0");
     scriptElem.setAttribute("data-reactions-enabled", "1");
     scriptElem.setAttribute("data-emit-metadata", "0");
