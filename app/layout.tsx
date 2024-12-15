@@ -56,7 +56,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: BLOG.isProd
-    ? new URL(BLOG.LINK)
+    ? new URL(BLOG.LINK as string)
     : new URL("http://localhost:3000"),
   title: BLOG.APP_NAME as string,
   description: BLOG.DESCRIPTION as string, //

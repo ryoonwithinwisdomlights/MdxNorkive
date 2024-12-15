@@ -19,7 +19,7 @@ export const BLOG = {
   BIO:
     process.env.NEXT_PUBLIC_BIO ||
     "A Software Engineer who likes to Giveaway to the World with Joy, Love and Lights.",
-  LINK: process.env.NEXT_PUBLIC_LINK || "https://norkive.vercel.app/", // website address process.env.NEXT_PUBLIC_LINK || NEXT_PUBLIC_LINK,
+  LINK: "https://norkive.vercel.app/", // website address process.env.NEXT_PUBLIC_LINK || NEXT_PUBLIC_LINK,
   DEV_LINK: process.env.NEXT_PUBLIC_LINK_DEV,
   KEYWORDS:
     process.env.NEXT_PUBLIC_KEYWORD ||
