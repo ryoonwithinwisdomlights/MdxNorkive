@@ -1,4 +1,3 @@
-// [slug] 동적 세그먼트를 채우기 위한 `params` 목록을 반환합니다.
 import { BLOG } from "@/blog.config";
 import { getPostBlocks } from "@/lib/notion/notion";
 import {
@@ -84,17 +83,15 @@ export default async function Page({ params }) {
   // console.log(" props.post::", props.post);
   // Unable to retrieve article
   if (!props?.post) {
+    props.post = null;
+    return <div>Invalid record ID</div>;
+  }
+  if (props?.post) {
     const pageId = props?.post.slug.slice(-1)[0];
     if (pageId.length >= 32) {
       const post = await getPost(pageId);
       props.post = post;
     }
-    // return <div>Invalid record ID</div>;
-  }
-
-  if (!props?.post) {
-    props.post = null;
-
     // return <div>Invalid record ID</div>;
   }
 
