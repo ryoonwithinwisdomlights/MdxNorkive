@@ -65,20 +65,7 @@ const nextConfig: NextConfig = {
     ];
   },
   webpack: (config, { dev, isServer }) => {
-    // Dynamic theme: Add resolve.alias configuration to map dynamic paths to actual paths
-
-    // Workaround for ensuring that `react` and `react-dom` resolve correctly
-    // when using a locally-linked version of `react-notion-x`.
-    // @see https://github.com/vercel/next.js/issues/50391
-    // const path = require("path");
-    // 동적 테마: 동적 경로를 실제 경로에 매핑하기 위해solve.alias 구성을 추가합니다.
     config.resolve.alias["@"] = path.resolve(__dirname);
-    // config.resolve.alias.react = path.resolve(__dirname, "node_modules/react");
-    // config.resolve.alias["react-dom"] = path.resolve(
-    //   __dirname,
-    //   "node_modules/react-dom"
-    // );
-    // Enable source maps in development mode
     if (process.env.NODE_ENV_API === "development") {
       config.devtool = "source-map";
     }
