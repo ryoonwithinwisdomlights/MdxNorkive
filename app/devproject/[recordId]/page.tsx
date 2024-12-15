@@ -81,7 +81,7 @@ export default async function Page({ params }) {
     return item.id === recordId;
   });
 
-  console.log(" props.post::", props.post);
+  // console.log(" props.post::", props.post);
   // Unable to retrieve article
   if (!props?.post) {
     const pageId = props?.post.slug.slice(-1)[0];
