@@ -50,6 +50,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: dailyVariable,
       priority: 1,
     },
+    {
+      url: `${BLOG.LINK}/engineering`,
+      lastModified: new Date(),
+      changeFrequency: dailyVariable,
+      priority: 1,
+    },
   ];
   // Cycle page generation
   const { allPages } = initGlobalNotionData;
