@@ -103,7 +103,6 @@ export default async function RootLayout({
 }) {
   const initGlobalNotionData: InitGlobalNotionData =
     await loadGlobalNotionData("index");
-  const now = Date.now();
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -125,7 +124,7 @@ export default async function RootLayout({
               {!BLOG.CAN_COPY && <DisableCopy />}
               {BLOG.ANALYTICS_BUSUANZI_ENABLE && <Busuanzi />}
               {BLOG.CUSTOM_RIGHT_CLICK_CONTEXT_MENU && <RightClickMenu />}
-              <VConsoleTs currentTime={now} />
+              <VConsoleTs />
               <Suspense fallback={<LoadingCover />}>
                 <main
                   id="wrapper"

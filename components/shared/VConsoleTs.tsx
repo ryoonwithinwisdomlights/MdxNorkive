@@ -1,8 +1,15 @@
 "use client";
 import { loadExternalResource } from "@/lib/utils/utils";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useLayoutEffect, useState } from "react";
 
-const VConsoleTs = ({ currentTime }) => {
+const VConsoleTs = () => {
+  const [currentTime, setTime] = useState<number>();
+  useLayoutEffect(() => {
+    // You can determine when and how often to update
+    // the time here. In this example we update it only once
+    const now = Date.now();
+    setTime(now);
+  }, []);
   const clickCountRef = useRef<number>(0); // 클릭 횟수
   const lastClickTimeRef = useRef<number>(0); // 마지막 클릭 시간 타임스탬프
   const timerRef = useRef<NodeJS.Timeout | null>(null); // 타이머 참조 NodeJS.Timeout 타입을 사용하여 타이머에 대한 참조를 저장합니다. 이는 Node.js와 브라우저 둘 다에서 작동하는 타입입니다.
@@ -30,53 +37,55 @@ const VConsoleTs = ({ currentTime }) => {
    * 각 클릭 이벤트는 중앙에서 100x100 픽셀 범위 내에서 발생해야 합니다.
    */
   useEffect(() => {
-    const clickListener = (event: MouseEvent) => {
-      //   const now = Date.now();
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
-      const range = 50;
-      const inRange =
-        event.clientX >= centerX - range &&
-        event.clientX <= centerX + range &&
-        event.clientY >= centerY - range &&
-        event.clientY <= centerY + range;
+    if (currentTime) {
+      const clickListener = (event: MouseEvent) => {
+        //   const now = Date.now();
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        const range = 50;
+        const inRange =
+          event.clientX >= centerX - range &&
+          event.clientX <= centerX + range &&
+          event.clientY >= centerY - range &&
+          event.clientY <= centerY + range;
 
-      if (!inRange) {
-        return;
-      }
-
-      if (
-        currentTime - lastClickTimeRef.current < 1000 &&
-        clickCountRef.current + 1 === 8
-      ) {
-        loadVConsole();
-        clickCountRef.current = 0; // 계수기 초기화
-        if (timerRef.current) {
-          clearTimeout(timerRef.current); // 타이머 초기화
+        if (!inRange) {
+          return;
         }
-        window.removeEventListener("click", clickListener);
-      } else {
-        lastClickTimeRef.current = currentTime;
-        clickCountRef.current += 1;
 
-        if (clickCountRef.current > 0) {
+        if (
+          currentTime - lastClickTimeRef.current < 1000 &&
+          clickCountRef.current + 1 === 8
+        ) {
+          loadVConsole();
+          clickCountRef.current = 0; // 계수기 초기화
           if (timerRef.current) {
-            clearTimeout(timerRef.current);
+            clearTimeout(timerRef.current); // 타이머 초기화
           }
-          timerRef.current = setTimeout(() => {
-            clickCountRef.current = 0;
-          }, 1000);
-        }
-      }
-    };
+          window.removeEventListener("click", clickListener);
+        } else {
+          lastClickTimeRef.current = currentTime;
+          clickCountRef.current += 1;
 
-    window.addEventListener("click", clickListener);
-    return () => {
-      window.removeEventListener("click", clickListener);
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-      }
-    };
+          if (clickCountRef.current > 0) {
+            if (timerRef.current) {
+              clearTimeout(timerRef.current);
+            }
+            timerRef.current = setTimeout(() => {
+              clickCountRef.current = 0;
+            }, 1000);
+          }
+        }
+      };
+
+      window.addEventListener("click", clickListener);
+      return () => {
+        window.removeEventListener("click", clickListener);
+        if (timerRef.current) {
+          clearTimeout(timerRef.current);
+        }
+      };
+    }
   }, []);
 
   return null;
