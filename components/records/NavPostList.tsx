@@ -15,8 +15,11 @@ import NoRecordFound from "../NoRecordFound";
  */
 const NavPostList = (props) => {
   const { filteredNavPages } = useGlobal({ from: "index" });
-  if (filteredNavPages.length < 0) {
-    return <NoRecordFound />;
+
+  if (filteredNavPages !== undefined) {
+    if (filteredNavPages.length < 0) {
+      return <NoRecordFound />;
+    }
   }
   const { searchKeyword, setSearchKeyword } = useGlobal({});
   const pathname = usePathname();

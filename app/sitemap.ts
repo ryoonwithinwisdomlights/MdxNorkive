@@ -16,7 +16,6 @@ import loadGlobalNotionData from "@/app/api/load-globalNotionData";
 const dailyVariable: ChangeFrequency = "daily";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // const { allPages } = useGlobal({ from: "index" });
   const initGlobalNotionData: InitGlobalNotionData =
     await loadGlobalNotionData("index");
   const urls = [
@@ -65,6 +64,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       const slugWithoutLeadingSlash = post?.slug?.startsWith("/")
         ? post?.slug?.slice(1)
         : post.slug;
+      console.log(`slugWithoutLeadingSlash::::`);
+      console.log(`${BLOG.LINK}/${slugWithoutLeadingSlash}`);
       urls.push({
         url: `${BLOG.LINK}/${slugWithoutLeadingSlash}`,
         lastModified: new Date(post?.publishDay),
