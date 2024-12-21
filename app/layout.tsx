@@ -4,14 +4,15 @@ import "./../styles/globals.css";
 import "./../styles/utility-patterns.css";
 
 // used for code syntax highlighting (optional)
-import "prismjs/themes/prism-coy.css";
+import "prismjs/themes/prism-tomorrow.css";
 // core styles shared by all of react-notion-x (required)
 import "react-notion-x/src/styles.css";
 // global style overrides for notion
 import "./../styles/notion.css";
 // global style overrides for prism theme (optional)
 import "./../styles/prism-theme.css";
-
+// used for rendering equations (optional)
+import "katex/dist/katex.min.css";
 import { BLOG } from "@/blog.config";
 import { GlobalContextProvider } from "@/lib/providers/globalProvider";
 import { ThemeGitbookProvider } from "@/lib/providers/themeGitbookProvider";
