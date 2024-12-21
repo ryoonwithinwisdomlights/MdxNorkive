@@ -3,7 +3,8 @@ import { siteConfig } from "@/lib/config";
 import { compressImage, mapImgUrl } from "@/lib/notion/mapImage";
 import { isBrowser } from "@/lib/utils/utils";
 import mediumZoom from "@fisch0920/medium-zoom";
-
+import Image from "next/image"; // or import Image from 'next/legacy/image' if you use legacy Image
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useEffect, useMemo, useRef } from "react";
 import { NotionRenderer } from "react-notion-x";
@@ -109,6 +110,8 @@ const NotionPage = ({ post }) => {
           Modal,
           Pdf,
           Tweet,
+          nextImage: Image, // or nextLegacyImage: LegacyImage,
+          nextLink: Link,
         }}
       />
 
@@ -117,13 +120,6 @@ const NotionPage = ({ post }) => {
   );
 };
 
-// const Code = dynamic(
-//   () =>
-//     import("react-notion-x/build/third-party/code").then(async (m) => {
-//       return m.Code;
-//     }),
-//   { ssr: false }
-// );
 const Code = dynamic(() =>
   import("react-notion-x/build/third-party/code").then(async (m) => {
     // additional prism syntaxes
@@ -136,6 +132,8 @@ const Code = dynamic(() =>
       import("prismjs/components/prism-csharp.js"),
       import("prismjs/components/prism-docker.js"),
       import("prismjs/components/prism-java.js"),
+      import("prismjs/components/prism-javascript.js"),
+      import("prismjs/components/prism-typescript.js"),
       import("prismjs/components/prism-js-templates.js"),
       import("prismjs/components/prism-coffeescript.js"),
       import("prismjs/components/prism-diff.js"),
