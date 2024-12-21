@@ -23,10 +23,6 @@ export const MenuBarMobile = (props) => {
     // { name: locale.NAV.SEARCH, to: '/search', show: CONFIG.MENU_SEARCH }
   ];
 
-  // if (customNav) {
-  //   links = links.concat(customNav);
-  // }
-
   // If the custom menu is enabled, Page will no longer be used to generate the menu.
   if (BLOG.CUSTOM_MENU) {
     // links = customMenu;

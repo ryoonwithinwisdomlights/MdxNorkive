@@ -1,10 +1,12 @@
+import { loadGlobalNotionPageIdData } from "@/app/api/load-globalNotionData";
 import { BLOG } from "@/blog.config";
 import {
+  AllPageIds,
   ChangeFrequency,
   InitGlobalNotionData,
 } from "@/lib/providers/provider";
 import type { MetadataRoute } from "next";
-import loadGlobalNotionData from "@/app/api/load-globalNotionData";
+
 /**
  *
  * Good to know:
@@ -12,12 +14,11 @@ import loadGlobalNotionData from "@/app/api/load-globalNotionData";
  * that is cached by default unless it uses a Dynamic API or dynamic config option.
  *
  */
-
-const dailyVariable: ChangeFrequency = "daily";
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const initGlobalNotionData: InitGlobalNotionData =
-    await loadGlobalNotionData("index");
+  const initGlobalNotionPageIdData: InitGlobalNotionData =
+    await loadGlobalNotionPageIdData("index");
+  const dailyVariable: ChangeFrequency = "daily";
+
   const urls = [
     {
       url: `${BLOG.LINK}`,
@@ -38,18 +39,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     {
-      url: `${BLOG.LINK}/category`,
-      lastModified: new Date(),
-      changeFrequency: dailyVariable,
-      priority: 1,
-    },
-    {
-      url: `${BLOG.LINK}/tag`,
-      lastModified: new Date(),
-      changeFrequency: dailyVariable,
-      priority: 1,
-    },
-    {
       url: `${BLOG.LINK}/engineering`,
       lastModified: new Date(),
       changeFrequency: dailyVariable,
@@ -57,18 +46,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
   // Cycle page generation
-  const { allPages } = initGlobalNotionData;
-  allPages
+  const { allPageIds } = initGlobalNotionPageIdData;
+  allPageIds
     ?.filter((p) => p.status === BLOG.NOTION_PROPERTY_NAME.status_publish)
     .forEach((post) => {
-      const slugWithoutLeadingSlash = post?.slug?.startsWith("/")
-        ? post?.slug?.slice(1)
-        : post.slug;
-      console.log(`slugWithoutLeadingSlash::::`);
-      console.log(`${BLOG.LINK}/${slugWithoutLeadingSlash}`);
+      console.log(`initGlobalNotionPageIdData::::`);
+      console.log(`${BLOG.LINK}/${post.id}`);
       urls.push({
-        url: `${BLOG.LINK}/${slugWithoutLeadingSlash}`,
-        lastModified: new Date(post?.publishDay),
+        url: `${BLOG.LINK}/${post.type.toLowerCase()}/${post.id}`,
+        lastModified: new Date(),
         changeFrequency: dailyVariable,
         priority: 1,
       });

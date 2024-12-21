@@ -1,12 +1,8 @@
 import { BLOG } from "@/blog.config";
-import { getPostBlocks } from "@/lib/notion/notion";
-import {
-  getGlobalData,
-  getNotionPageDataForOne,
-} from "@/lib/notion/getNotionData";
-import { idToUuid } from "notion-utils";
 import SingleRecords from "@/components/records/SingleRecords";
+import { getGlobalData } from "@/lib/notion/getNotionData";
 import { getPost } from "@/lib/notion/getNotionPost";
+import { getPostBlocks } from "@/lib/notion/notion";
 
 /**
  * Get the list of recommended articles associated with the article, currently filtered based on tag relevance
@@ -68,7 +64,6 @@ export default async function Page({ params }) {
   if (!recordId) {
     return <div>Invalid record ID</div>;
   }
-
   const props = await getGlobalData({
     type: "Devproject",
     pageId: BLOG.NOTION_PAGE_ID,

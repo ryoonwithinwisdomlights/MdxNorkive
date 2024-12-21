@@ -49,7 +49,6 @@ export function GlobalContextProvider({
     customMenu,
     post,
     notice,
-    allPages,
     allNavPages,
     latestPosts,
   } = initGlobalNotionData;
@@ -111,7 +110,6 @@ export function GlobalContextProvider({
         tagOptions,
         filteredNavPages,
         setFilteredNavPages,
-        allPages,
         allNavPagesForGitBook,
         className,
         customNav,
@@ -134,12 +132,6 @@ export function GlobalContextProvider({
 type GbP = {
   from?: string;
 };
-// export const useGlobal = ({ from }: GbP):globalValueInferface => useContext(GlobalContext);
-//
-/**
- * Type error: Property 'allPages' does not exist on type 'globalValueInferface | undefined'.
- * 이렇게 하면, useGlobal을 사용할 때 항상 GlobalContext.Provider 내부에서 호출되어야 함을 보장하며, 컴파일 에러를 방지합니
- */
 
 export const useGlobal = ({ from }: GbP): GlobalValueInferface => {
   const context = useContext(GlobalContext);

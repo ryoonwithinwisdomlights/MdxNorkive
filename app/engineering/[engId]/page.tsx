@@ -57,6 +57,7 @@ export async function generateStaticParams() {
     { engId: "1341eb5c-0337-81be-960b-c573287179cc" },
     { engId: "another-record-id" },
   ];
+
   return records.map((record) => ({
     engId: record.engId,
   }));

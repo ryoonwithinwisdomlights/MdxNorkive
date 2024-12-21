@@ -1,6 +1,6 @@
 import { BLOG } from "@/blog.config";
 import { getPostBlocks } from "@/lib/notion/notion";
-import { getGlobalData } from "@/lib/notion/getNotionData";
+import { getGlobalData, getGlobalPageIdData } from "@/lib/notion/getNotionData";
 
 export default async function loadGlobalNotionData(from: string = "index") {
   const props = await getGlobalData({ from: from });
@@ -39,6 +39,27 @@ export default async function loadGlobalNotionData(from: string = "index") {
   }
 
   delete props.allPages;
+
+  return props;
+}
+
+export async function loadGlobalNotionPageIdData(from: string = "index") {
+  const props = await getGlobalPageIdData({ from: from });
+
+  props.allPageIds = props.collectionData;
+  // Preview article content
+  if (BLOG.RECORD_LIST_PREVIEW === "true") {
+    for (const i in props.posts) {
+      const post = props.posts[i];
+      post.blockMap = await getPostBlocks(
+        post.id,
+        "slug",
+        BLOG.RECORD_PREVIEW_LINES
+      );
+    }
+  }
+
+  delete props.collectionData;
 
   return props;
 }

@@ -50,7 +50,7 @@ export const ArticleLock = (props) => {
           <div className="hidden md:flex w-full flex-row items-center justify-center">
             <div className=" flex flex-col items-start text-stone-700">
               <div className="font-semibold text-lg p-0 mr-4 ">
-                비밀번호를 입력하세요.
+                {locale.COMMON.PASSWORD_SUBMIT}
               </div>
               {/* <p className="text-sm">{locale.COMMON.ARTICLE_LOCK_TIPS}</p> */}
               <p className="text-sm">{locale.COMMON.ARTICLE_LOCK_TIPS}</p>
@@ -87,8 +87,9 @@ export const ArticleLock = (props) => {
           <div className="lg:hidden sm:hidden md:hidden text-center w-full justify-center flex flex-col gap-2 py-4 dark:text-neutral-100">
             <div className=" ">
               <div className="font-semibold text-lg p-0 m-0 text-stone-700">
-                비밀번호를 <br />
-                입력하세요.
+                {/* 비밀번호를 <br />
+                입력하세요. */}
+                {locale.COMMON.PASSWORD_SUBMIT}
               </div>
               <p className="text-sm">{locale.COMMON.ARTICLE_LOCK_TIPS}</p>
             </div>
@@ -112,7 +113,7 @@ export const ArticleLock = (props) => {
                  hover:bg-stone-800 hover:dark:bg-stone-500 text-stone-100  hover:text-white "
               >
                 <KeyRoundIcon className="duration-200 cursor-pointer " />
-                {/* &nbsp;{locale.COMMON.SUBMIT} */}
+
                 <span className="font-semibold text-center ">
                   &nbsp;{locale.COMMON.SUBMIT}
                 </span>
@@ -130,7 +131,7 @@ export const ArticleLock = (props) => {
           className="pt-4 flex flex-row text-stone-700 items-start justify-start text-right md:w-2/5 
            md:my-20 duration-200  hover:border-stone-200 border-b-2 border-stone-100 hover:font-semibold "
         >
-          ← 뒤로가기
+          {locale.RECORD.BACK}
         </div>
       </div>
     </div>

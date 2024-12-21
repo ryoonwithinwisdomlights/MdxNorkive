@@ -43,20 +43,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // images: {
-  //   // Image compression
-  //   formats: ["image/avif", "image/webp"],
-  //   // Allow next/image to load images domain name
-  //   domains: [
-  //     "gravatar.com",
-  //     "www.notion.so",
-  //     "avatars.githubusercontent.com",
-  //     "images.unsplash.com",
-  //     "source.unsplash.com",
-  //     "p1.qhimg.com",
-  //     "ko-fi.com",
-  //   ],
-  // },
   async rewrites() {
     return [
       {
@@ -114,14 +100,6 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     scrollRestoration: true,
-    dynamicIO: true,
-    cacheLife: {
-      record: {
-        stale: 3600, // 1 hour
-        revalidate: 300, // 5 minutes
-        expire: 43200, // half a day
-      },
-    },
   },
 };
 

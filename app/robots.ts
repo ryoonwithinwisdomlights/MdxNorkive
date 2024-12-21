@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       disallow: "/private/",
     },
     host: BLOG.LINK,
-    sitemap: `${BLOG.LINK}/sitemap.xml`,
+    // sitemap: `${BLOG.LINK}/sitemap.xml`,
   };
 }

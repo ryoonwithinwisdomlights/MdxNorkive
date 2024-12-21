@@ -16,6 +16,22 @@ interface SiteInfo {
   icon: any;
 }
 
+interface AllPageIds {
+  id: any;
+  type: any;
+  status: any;
+  category?: any;
+  publishDate?: any;
+  publishDay?: string;
+  lastEditedDate?: Date;
+  lastEditedDay?: string;
+  fullWidth?: any;
+  pageIcon?: any;
+  pageCover?: any;
+  pageCoverThumbnail?: any;
+  password?: any;
+  slug?: any;
+}
 interface AllPages {
   id: any;
   type: any;
@@ -65,6 +81,7 @@ interface InitGlobalNotionData {
   notice: any;
   post: any;
   allPages: AllPages[];
+  allPageIds: AllPageIds[];
   allNavPages: AllNavPages[];
   latestPosts: [];
 }
@@ -87,7 +104,6 @@ interface GlobalValueInferface {
   className?: string;
   customNav: CustomNavList[];
   customMenu: any[];
-  allPages: AllPages[];
   allNavPages: AllNavPages[];
   showTocButton?: boolean;
   notice: any;
@@ -97,6 +113,7 @@ interface GlobalValueInferface {
   changeLang: (text: string) => void;
 }
 export type {
+  AllPageIds,
   ChangeFrequency,
   InitGlobalNotionData,
   CustomNavList,
