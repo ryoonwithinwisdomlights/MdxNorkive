@@ -1,15 +1,9 @@
-import React from "react";
 /* eslint-disable no-unused-vars */
 import LazyImage from "@/components/shared/LazyImage";
 import Link from "next/link";
-import { EngineeringRecordsCardInfo } from "./EngineeringRecordsCardInfo";
+import { RecordCardInfo } from "./RecordCardInfo";
 
-export default function EngineeringRecordsItem({
-  pIndex,
-  pId,
-  pTitle,
-  pPosts,
-}) {
+export default function EngineeringRecordsItem({ pIndex, pId, pPosts }) {
   const showPreview = true;
   const showPageCover = pPosts?.pageCoverThumbnail;
 
@@ -23,13 +17,13 @@ export default function EngineeringRecordsItem({
           data-aos-duration="800"
           data-aos-once="false"
           data-aos-anchor-placement="top-bottom"
-          id="blog-post-card"
+          id="notion-page-card"
           className={`group w-full flex justify-between md:flex-row flex-col-reverse ${
             pIndex % 2 === 1 ? "md:flex-row-reverse" : ""
           }overflow-hidden border dark:border-black rounded-xl bg-white dark:bg-neutral-100`}
         >
           {/* Text content */}
-          <EngineeringRecordsCardInfo
+          <RecordCardInfo
             post={pPosts}
             showPageCover={showPageCover}
             showPreview={showPreview}

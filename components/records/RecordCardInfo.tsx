@@ -2,23 +2,26 @@
 import NotionPage from "@/components/shared/NotionPage";
 import { CalendarIcon, FolderClosedIcon, LockIcon } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import TagItemMini from "../TagItemMini";
+import { useGlobal } from "@/lib/providers/globalProvider";
 
 /**
- *  EngineeringRecords list text content
+ *  Records list Card Info
  * @param {*} param0
  * @returns
  */
-export const EngineeringRecordsCardInfo = ({
+export const RecordCardInfo = ({
   post,
   showPreview,
   showPageCover,
   showSummary,
 }) => {
   const router = useRouter();
-  const onClick = (engId: string) => {
-    router.push(`/engineering/${engId}`);
+  const patname = usePathname();
+  const { locale } = useGlobal({ from: "index" });
+  const onClick = (recId: string) => {
+    router.push(`${patname}/${recId}`);
   };
 
   return (
@@ -60,7 +63,7 @@ export const EngineeringRecordsCardInfo = ({
               {post.password !== "" && (
                 <>
                   <LockIcon className="mr-1 w-4 h-4" />
-                  &nbsp;비공개
+                  &nbsp;{locale.COMMON.LOCKED}
                 </>
               )}
             </span>
@@ -73,12 +76,6 @@ export const EngineeringRecordsCardInfo = ({
           </p>
         )}
 
-        {/* 본문 일부 */}
-        {/* {(!showPreview || !showSummary) && (
-          <p className="line-clamp-2 replace my-3 text-neutral-700  dark:text-neutral-300 text-sm font-light leading-7">
-            {post.title.substr(0, 500) + "..."}
-          </p>
-        )} */}
         {/* search results */}
         {post.results && (
           <p className="line-clamp-2   mt-4 text-neutral-700 dark:text-neutral-300 text-sm font-light leading-7">

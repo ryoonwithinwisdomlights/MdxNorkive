@@ -18,8 +18,8 @@ export default async function Page({ params, searchParams }) {
   const { pagenum } = await searchParams;
 
   const decodedTagId = decodeURIComponent(tagId);
-  // console.log("decodedTagId:", decodedTagId);
-  // console.log("tagId", tagId);
+  console.log("decodedTagId:", decodedTagId);
+  console.log("tagId", tagId);
   // console.log("pagenum", pagenum);
 
   if (!tagId) {

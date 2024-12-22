@@ -29,12 +29,15 @@ export default async function Page() {
         <div className="space-y-6 w-11/12 px-2">
           {engineeringList ? (
             engineeringList?.map((item: any, index) => {
+              const showPreview = true;
+              const showSummary = true;
+              const showPageCover = item?.pageCoverThumbnail;
+
               return (
                 <EngineeringRecordsItem
                   key={index}
                   pIndex={index}
                   pId={item.id}
-                  pTitle={item.title}
                   pPosts={item}
                 />
               );

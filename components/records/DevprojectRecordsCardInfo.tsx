@@ -1,9 +1,8 @@
 "use client";
 import NotionPage from "@/components/shared/NotionPage";
-import { formatDateFmt } from "@/lib/utils/formatDate";
+import { useGlobal } from "@/lib/providers/globalProvider";
 import { CalendarIcon, LockIcon } from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import TagItemMini from "../TagItemMini";
 
 /**
@@ -12,17 +11,20 @@ import TagItemMini from "../TagItemMini";
  * @returns
  */
 export const DevprojectRecordsCardInfo = ({
-  index,
   post,
   showPreview,
   showPageCover,
   showSummary,
 }) => {
   const router = useRouter();
-  const onClick = (category: string) => {
-    router.push(`/category/${category}`);
+  const patname = usePathname();
+  const { locale } = useGlobal({ from: "index" });
+  // const onClick = (category: string) => {
+  //   router.push(`/category/${category}`);
+  // };
+  const onClick = (recId: string) => {
+    router.push(`${patname}/${recId}`);
   };
-
   return (
     <div
       className={`flex flex-col justify-between lg:p-6 p-4   ${
@@ -31,8 +33,11 @@ export const DevprojectRecordsCardInfo = ({
           : "w-full"
       }`}
     >
-      <div className="flex flex-col items-start">
+      <div className="flex flex-col items-start  text-start">
         <div
+          onClick={(e) => {
+            onClick(post.id);
+          }}
           className={`line-clamp-2 flex flex-row replace cursor-pointer text-2xl ${
             showPreview ? "text-center" : ""
           } leading-tight font-normal text-neutral-600  hover:text-black`}
@@ -54,7 +59,7 @@ export const DevprojectRecordsCardInfo = ({
               {post.password !== "" && (
                 <>
                   <LockIcon className="mr-1 w-4 h-4" />
-                  &nbsp;비공개
+                  &nbsp;{locale.COMMON.LOCKED}
                 </>
               )}
             </span>
@@ -79,16 +84,10 @@ export const DevprojectRecordsCardInfo = ({
       <div>
         {/* date label */}
         <div className="text-neutral-400 justify-between flex">
-          {/* date */}
-          <Link
-            href={`/#${formatDateFmt(post?.publishDate, "yyyy-MM")}`}
-            passHref
-            className="font-light menu-link cursor-pointer text-sm leading-4 mr-3 flex flex-row"
-          >
+          <div className="flex flex-row items-center">
             <CalendarIcon className="mr-1 w-4 h-4" />
             {post?.publishDay || post.lastEditedDay}
-          </Link>
-
+          </div>
           <div className="md:flex-nowrap flex-wrap md:justify-start inline-block">
             <div>
               {post.tagItems?.map((tag) => (

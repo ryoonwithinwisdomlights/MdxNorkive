@@ -100,6 +100,8 @@ const NotionPage = ({ post }) => {
   return (
     <div id="notion-article" className={`mx-auto overflow-hidden `}>
       <NotionRenderer
+        disableHeader // notion 헤더 안보이도록
+        // fullPage={true}
         recordMap={post?.blockMap}
         mapPageUrl={mapPageUrl}
         mapImageUrl={mapImgUrl}

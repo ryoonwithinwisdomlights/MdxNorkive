@@ -3,10 +3,9 @@
 import LazyImage from "@/components/shared/LazyImage";
 import { DevprojectRecordsCardInfo } from "./DevprojectRecordsCardInfo";
 
-export default function DevprojectRecordsItem({ pIndex, pId, pPosts }) {
+const RecordsCardItem = ({ pIndex, pId, pPosts }) => {
   const showPreview = true;
   const showPageCover = pPosts?.pageCoverThumbnail;
-
   return (
     <div key={pIndex} className="w-full ">
       <div className="hover:scale-110 transition-all duration-150">
@@ -45,4 +44,6 @@ export default function DevprojectRecordsItem({ pIndex, pId, pPosts }) {
       </div>
     </div>
   );
-}
+};
+
+export default RecordsCardItem;

@@ -17,12 +17,14 @@ export default async function Page() {
         <div className="space-y-6 w-full px-2">
           {devProjectList ? (
             devProjectList?.map((item: any, index) => {
+              const showPreview = true;
+              const showSummary = true;
+              const showPageCover = item?.pageCoverThumbnail;
               return (
                 <DevprojectRecordsItem
                   key={index}
                   pIndex={index}
                   pId={item.id}
-                  pTitle={item.title}
                   pPosts={item}
                 />
               );
