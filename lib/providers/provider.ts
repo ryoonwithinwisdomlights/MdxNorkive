@@ -80,6 +80,7 @@ interface InitGlobalNotionData {
   customMenu: any[];
   notice: any;
   post: any;
+  allPosts: AllPages[];
   allPages: AllPages[];
   allPageIds: AllPageIds[];
   allNavPages: AllNavPages[];

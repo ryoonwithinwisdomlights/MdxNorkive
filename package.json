@@ -72,6 +72,7 @@
     "react-katex": "^3.0.1",
     "react-notion-x": "^7.0.1",
     "react-share": "^4.4.1",
+    "react-tweet": "^3.2.1",
     "react-tweet-embed": "~2.0.0",
     "sonner": "^1.7.1",
     "styled-components": "5.3.10",

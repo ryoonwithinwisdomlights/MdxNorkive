@@ -37,7 +37,7 @@ export default async function loadGlobalNotionData(from: string = "index") {
       );
     }
   }
-
+  props.allPosts = props.posts;
   delete props.allPages;
 
   return props;

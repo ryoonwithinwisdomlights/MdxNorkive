@@ -41,6 +41,9 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "ko-fi.com",
       },
+      { protocol: "https", hostname: "abs.twimg.com" },
+      { protocol: "https", hostname: "pbs.twimg.com" },
+      { protocol: "https", hostname: "s3.us-west-2.amazonaws.com" },
     ],
   },
   async rewrites() {

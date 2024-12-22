@@ -1,10 +1,6 @@
-import { loadGlobalNotionPageIdData } from "@/app/api/load-globalNotionData";
+import loadGlobalNotionData from "@/app/api/load-globalNotionData";
 import { BLOG } from "@/blog.config";
-import {
-  AllPageIds,
-  ChangeFrequency,
-  InitGlobalNotionData,
-} from "@/lib/providers/provider";
+import { ChangeFrequency } from "@/lib/providers/provider";
 import type { MetadataRoute } from "next";
 
 /**
@@ -15,46 +11,47 @@ import type { MetadataRoute } from "next";
  *
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const initGlobalNotionPageIdData: InitGlobalNotionData =
-    await loadGlobalNotionPageIdData("index");
+  const initGlobalNotionData: any = await loadGlobalNotionData("index");
   const dailyVariable: ChangeFrequency = "daily";
 
   const urls = [
     {
       url: `${BLOG.LINK}`,
-      lastModified: new Date(),
+      lastModified: new Date().toISOString().split("T")[0],
       changeFrequency: dailyVariable,
       priority: 1,
     },
     {
-      url: `${BLOG.LINK}/records`,
-      lastModified: new Date(),
+      url: `${BLOG.LINK}records`,
+      lastModified: new Date().toISOString().split("T")[0],
       changeFrequency: dailyVariable,
       priority: 1,
     },
     {
-      url: `${BLOG.LINK}/devproject`,
-      lastModified: new Date(),
+      url: `${BLOG.LINK}devproject`,
+      lastModified: new Date().toISOString().split("T")[0],
       changeFrequency: dailyVariable,
       priority: 1,
     },
     {
-      url: `${BLOG.LINK}/engineering`,
-      lastModified: new Date(),
+      url: `${BLOG.LINK}engineering`,
+      lastModified: new Date().toISOString().split("T")[0],
       changeFrequency: dailyVariable,
       priority: 1,
     },
   ];
   // Cycle page generation
-  const { allPageIds } = initGlobalNotionPageIdData;
-  allPageIds
+  const { allPosts } = initGlobalNotionData;
+  allPosts
     ?.filter((p) => p.status === BLOG.NOTION_PROPERTY_NAME.status_publish)
     .forEach((post) => {
-      console.log(`initGlobalNotionPageIdData::::`);
-      console.log(`${BLOG.LINK}/${post.id}`);
+      const lmd = post.lastEditedDate
+        ? new Date(post.date.start_date).toISOString().split("T")[0]
+        : new Date(post.lastEditedDate).toISOString().split("T")[0];
+      console.log(`lmd: ${lmd}`);
       urls.push({
-        url: `${BLOG.LINK}/${post.type.toLowerCase()}/${post.id}`,
-        lastModified: new Date(),
+        url: `${BLOG.LINK}${post.type.toLowerCase()}/${post.id}`,
+        lastModified: lmd,
         changeFrequency: dailyVariable,
         priority: 1,
       });
