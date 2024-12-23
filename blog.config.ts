@@ -1,49 +1,41 @@
 export const BLOG = {
   APP_NAME: "Norkive",
   NOTION_PAGE_ID: process.env.NOTION_PAGE_ID,
-  NOTION_ACTIVE_USER: process.env.NOTION_ACTIVE_USER,
+  NOTION_ACTIVE_USER: process.env.NOTION_ACTIVE_USER || "",
   NOTION_ACCESS_TOKEN: process.env.NOTION_TOKEN_V2 || "", // Useful if you prefer not to make your database public
-  PSEUDO_STATIC: process.env.NEXT_PUBLIC_PSEUDO_STATIC || false,
-  NEXT_REVALIDATE_SECOND: process.env.NEXT_PUBLIC_REVALIDATE_SECOND || 5,
-  LANG: process.env.NEXT_PUBLIC_LANG || "kr-KR", // e.g ,'en-US'  see /lib/lang.js for more.
+  PSEUDO_STATIC: process.env.NEXT_PUBLIC_PSEUDO_STATIC || false, //Pseudo-static path, after it is turned on, all article URLs will end with .html.
+  LANG: process.env.NEXT_PUBLIC_LANG || "kr-KR", // e.g ,'en-US'  see /lib/constants for more.
   APPEARANCE: process.env.NEXT_PUBLIC_APPEARANCE || "light",
-  APPEARANCE_DARK_TIME: process.env.NEXT_PUBLIC_APPEARANCE_DARK_TIME || [18, 6], // 야간 모드 시작 시간, 시간에 따라 야간 모드 자동 전환을 비활성화하려면 false입니다.
+  APPEARANCE_DARK_TIME: process.env.NEXT_PUBLIC_APPEARANCE_DARK_TIME || [18, 6], //Night mode start time, false to disable automatic switching of night mode based on time
   SINCE: process.env.NEXT_PUBLIC_SINCE || 2024, // e.g if leave this empty, current year will be used.
   TAG_SORT_BY_COUNT: true, // Whether the tags are sorted in descending order by the number of datas, with tags with more datas ranked first.
   IS_TAG_COLOR_DISTINGUISHED:
-    process.env.NEXT_PUBLIC_IS_TAG_COLOR_DISTINGUISHED === "true" || true,
-  GREETING_WORDS:
-    process.env.NEXT_PUBLIC_GREETING_WORDS ||
-    "Achieves, builds solidarity, and develops together.",
+    process.env.NEXT_PUBLIC_IS_TAG_COLOR_DISTINGUISHED === "true" || true, //Whether to distinguish the color of tags with the same name
 
   CUSTOM_MENU: process.env.NEXT_PUBLIC_CUSTOM_MENU || true,
-  AUTHOR: process.env.NEXT_PUBLIC_AUTHOR || "ryoonwithinwisdomlights",
+  AUTHOR: process.env.NEXT_PUBLIC_AUTHOR || "ryoonwithinwisdomlights", //Your nickname
   BIO:
     process.env.NEXT_PUBLIC_BIO ||
-    "A Software Engineer who likes to Giveaway to the World with Joy, Love and Lights.",
+    "A Software Engineer who likes to Giveaway to the World with Joy, Love and Lights.", //About the author
   LINK: "https://norkive.vercel.app/", // website address process.env.NEXT_PUBLIC_LINK || NEXT_PUBLIC_LINK,
-  DEV_LINK: process.env.NEXT_PUBLIC_LINK_DEV,
+  DEV_LINK: process.env.NEXT_PUBLIC_LINK_DEV, // link only for dev mode.
   KEYWORDS:
     process.env.NEXT_PUBLIC_KEYWORD ||
-    "Gitbook Themed, Static Website, with Motion API, Norkive", // Website keywords separated by English commas
+    "Norkive, Gitbook Themed-Static Website, with Notion API", // Website keywords separated by English commas
 
-  CONTACT_EMAIL:
-    process.env.NEXT_PUBLIC_CONTACT_EMAIL || "ryoon.with.wisdomtrees@gmail.com",
-  CONTACT_TWITTER:
-    process.env.NEXT_PUBLIC_CONTACT_TWITTER || "https://x.com/RyoonWisdomTree",
-  CONTACT_GITHUB:
-    process.env.NEXT_PUBLIC_CONTACT_GITHUB ||
-    "https://github.com/ryoonwithinwisdomlights",
-  CONTACT_INSTAGRAM: process.env.NEXT_PUBLIC_CONTACT_INSTAGRAM || "",
-  CONTACT_LINKEDIN: process.env.NEXT_PUBLIC_CONTACT_LINKEDIN || "",
+  CONTACT_EMAIL: process.env.NEXT_PUBLIC_CONTACT_EMAIL || " ",
+  CONTACT_TWITTER: process.env.NEXT_PUBLIC_CONTACT_TWITTER || " ",
+  CONTACT_GITHUB: process.env.NEXT_PUBLIC_CONTACT_GITHUB || " ",
+  CONTACT_INSTAGRAM: process.env.NEXT_PUBLIC_CONTACT_INSTAGRAM || " ",
+  CONTACT_LINKEDIN: process.env.NEXT_PUBLIC_CONTACT_LINKEDIN || " ",
 
   NOTION_HOST: process.env.NEXT_PUBLIC_NOTION_HOST || "https://www.notion.so", // Notion domain name, you can choose to use your own domain name for reverse proxy. If you do not know what a reverse proxy is, please do not modify this item.
 
-  BLOG_FAVICON: process.env.NEXT_PUBLIC_FAVICON || "/favicon.ico", //
+  BLOG_FAVICON: process.env.NEXT_PUBLIC_FAVICON || "/favicon.ico", //Blog favicon configuration, uses /public/favicon.ico by default, supports online images, such as https://img.imesong.com/favicon.png
   IMAGE_COMPRESS_WIDTH: process.env.NEXT_PUBLIC_IMAGE_COMPRESS_WIDTH || 800, // Default image compression width, applied to blog cover and data content
   IMAGE_ZOOM_IN_WIDTH: process.env.NEXT_PUBLIC_IMAGE_ZOOM_IN_WIDTH || 1200, // The image quality width after clicking on the data image to enlarge it does not represent the actual display width on the web page.
 
-  RANDOM_IMAGE_URL: process.env.NEXT_PUBLIC_RANDOM_IMAGE_URL || "",
+  RANDOM_IMAGE_URL: process.env.NEXT_PUBLIC_RANDOM_IMAGE_URL || "", //Random picture API, if the following keywords are not configured, the homepage cover, avatar, and article cover image will be replaced with random pictures.
   RANDOM_IMAGE_REPLACE_TEXT:
     process.env.NEXT_PUBLIC_RANDOM_IMAGE_NOT_REPLACE_TEXT ||
     "images.unsplash.com",
@@ -133,24 +125,24 @@ export const BLOG = {
   BACKGROUND_DARK: "#000000", // use hex value, don't forget '#'
   SUB_PATH: "", // leave this empty unless you want to deploy in a folder
 
-  RECORD_SHARE_BAR_ENABLE: process.env.NEXT_PUBLIC_RECORD_SHARE_BAR || "true", // Article sharing function, a sharing bar will be displayed at the bottom
+  RECORD_SHARE_BAR_ENABLE: process.env.NEXT_PUBLIC_RECORD_SHARE_BAR || "true", // Record Article sharing function, a sharing bar will be displayed at the bottom
   RECORDS_SHARE_SERVICES:
-    process.env.NEXT_PUBLIC_RECORD_SHARE_SERVICES || "email,twitter,link", // 공유 서비스가 쉼표로 구분되어 순서대로 표시됩니다.
+    process.env.NEXT_PUBLIC_RECORD_SHARE_SERVICES || "email,twitter,link", // Shared services, displayed in order, separated by commas
   // All supported sharing services: link (copy link), email (mail),facebook,twitter,telegram,messenger,line,reddit,whatsapp,linkedin,instapaper
 
   RECORD_URL_PREFIX: process.env.NEXT_PUBLIC_RECORD_URL_PREFIX || "records",
-  // RECORD 유형 아티클의 기본 경로 접두어입니다. 예를 들어 기본 레코드 유형 경로는 /records/[slug]입니다.
-  // 이 항목이 '' 비어 있는 것으로 구성되면 기사에는 접두사 경로가 없습니다. 사용 시나리오: 기사 접두사 경로를 /post로 지정하려는 경우 다중 레벨 지원이 지원됩니다.
-  // WP의 사용자 정의 가능한 기사 링크 형식과 유사한 기능 지원: https://wordpress.org/documentation/records/customize-permalinks/, 현재 %year%/%month%/%day%만 먼저 구현됩니다.
-  // 예: 접두사 기사 + 타임스탬프에 대한 링크를 변경하려면 'records/%year%/%month%/%day%'로 변경할 수 있습니다.
+  //The default path prefix for RECORD type articles, for example, the default RECORD type path is /records/[slug]
+  // If this item is configured as '' empty, the article will have no prefix path
+  // Supports functions similar to WP's customizable article link format: https://wordpress.org/documentation/article/customize-permalinks/, currently only %year%/%month%/%day% is implemented first
+  //Example: If you want to change the link to the prefix article + timestamp, you can change it to: 'article/%year%/%month%/%day%'
 
-  RECORD_LIST_STYLE: process.env.NEXT_PUBLIC_RECORD_LIST_STYLE || "page", // ['page','scroll] 기사 목록 스타일: 페이지 번호 페이징, 단일 페이지 스크롤 로딩
-  RECORD_LIST_PREVIEW: process.env.NEXT_PUBLIC_RECORD_PREVIEW || "false", //  목록에 기사 미리보기를 로드할지 여부
+  RECORD_LIST_STYLE: process.env.NEXT_PUBLIC_RECORD_LIST_STYLE || "page", // ['page','scroll] Article list style: page number paging, single page scrolling loading
+  RECORD_LIST_PREVIEW: process.env.NEXT_PUBLIC_RECORD_PREVIEW || "false", //  Whether to load article preview in the list
   RECORD_PREVIEW_LINES:
     process.env.NEXT_PUBLIC_RECORD_RECORD_PREVIEW_LINES || 12, // Preview blog line count
   RECORD_RECOMMEND_COUNT: process.env.NEXT_PUBLIC_RECORD_RECOMMEND_COUNT || 6, // Number of recommended datas
   RECORDS_PER_PAGE: 12, // record counts per page
-  RECORDS_SORT_BY: process.env.NEXT_PUBLIC_RECORD_SORT_BY || "notion", // 정렬 방식은 '날짜'는 시간 기준, '노션'은 알림 기준
+  RECORDS_SORT_BY: process.env.NEXT_PUBLIC_RECORD_SORT_BY || "notion", //Sorting method 'date' is by time, 'notion' is controlled by notification
 
   RECORD_WAITING_TIME_FOR_404:
     process.env.NEXT_PUBLIC_RECORD_WAITING_TIME_FOR_404 || "8",
@@ -251,6 +243,6 @@ export const BLOG = {
     process.env.npm_lifecycle_event === "build" ||
     process.env.npm_lifecycle_event === "export", // The cache can be selectively turned on during development, debugging, and packaging. It does not make much sense to turn this feature on during formal deployment.
   isProd: process.env.NEXT_VERCEL_ENV === "production", // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)  isProd: process.env.VERCEL_ENV === 'production' // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
-  BUNDLE_ANALYZER: process.env.ANALYZE === "true" || false, //컴파일 종속성 내용 및 크기를 표시할지 여부
+  BUNDLE_ANALYZER: process.env.ANALYZE === "true" || false, //Whether to display the compilation dependency content and size
   VERSION: process.env.NEXT_PUBLIC_VERSION || 2, // version number
 };

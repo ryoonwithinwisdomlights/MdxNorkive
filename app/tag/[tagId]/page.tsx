@@ -3,7 +3,7 @@ import { TotalPageParams } from "@/lib/models";
 import { generatingCategoryAndTagPageByTypeAndId } from "@/lib/notion/getNotionData";
 
 export async function generateStaticParams() {
-  const records = [{ tagId: "기술로그" }, { tagId: "another-Tags" }];
+  const records = [{ tagId: "techLog" }, { tagId: "another-Tags" }];
   return records.map((record) => ({
     tagId: record.tagId,
   }));
