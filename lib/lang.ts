@@ -43,7 +43,7 @@ export function generateLocaleDict(langString) {
 
   // 일치하는 항목이 없으면 가장 가까운 언어 팩을 반환합니다.
   if (!userLocale) {
-    const fallbackLocale = supportedLocales.find((locale) =>
+    const fallbackLocale: any = supportedLocales.find((locale) =>
       locale.startsWith("en")
     );
     userLocale = lang[fallbackLocale];

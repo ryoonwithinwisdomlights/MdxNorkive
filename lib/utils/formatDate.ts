@@ -7,7 +7,11 @@
 export default function formatDate(date, local) {
   if (!date || !local) return date || "";
   const d = new Date(date);
-  const options = { year: "numeric", month: "short", day: "numeric" };
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  };
   const res = d.toLocaleDateString(local, options);
   // If the format is Chinese date, it will be converted to a horizontal bar
   const format =
