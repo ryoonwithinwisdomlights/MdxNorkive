@@ -14,9 +14,9 @@ const SearchInput = ({ cRef, className }) => {
   const { searchKeyword, setSearchKeyword, locale } = useGlobal({});
   // 입력 필드 참조
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const { setFilteredNavPages, allNavPages, allNavPagesForGitBook } = useGlobal(
-    { from: "index" }
-  );
+  const { setFilteredNavPages, allNavPagesForGitBook } = useGlobal({
+    from: "index",
+  });
 
   useImperativeHandle(cRef, () => {
     return {
@@ -76,15 +76,16 @@ Enter key  // 키 입력 처리 함수
     if (searchInputRef.current) {
       searchInputRef.current.value = "";
     }
+
     setShowClean((prev) => !prev);
     handleSearch();
   };
 
   // 검색 키워드 변경 처리
   const updateSearchKey = (val) => {
-    if (lock) {
-      return;
-    }
+    // if (lock) {
+    //   return;
+    // }
     if (searchInputRef.current) {
       searchInputRef.current.value = val;
     }
@@ -110,6 +111,10 @@ Enter key  // 키 입력 처리 함수
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  useEffect(() => {
+    handleSearch();
+  }, [searchInputRef, showClean]);
   // none of the modals are gonna be rendered unless we are fully on the client side.
   if (!isMounted) return null;
 
@@ -134,9 +139,9 @@ Enter key  // 키 입력 처리 함수
             // 포커스 잃었을 때 비어있으면 placeholder 복구
           }
         }}
-        onCompositionStart={lockSearchInput}
-        onCompositionUpdate={lockSearchInput}
-        onCompositionEnd={unLockSearchInput}
+        // onCompositionStart={lockSearchInput}
+        // onCompositionUpdate={lockSearchInput}
+        // onCompositionEnd={unLockSearchInput}
         onChange={(e) => updateSearchKey(e.target.value)}
         defaultValue={""}
         placeholder={locale.COMMON.ENTER_SEARCH_TERM}
@@ -144,7 +149,9 @@ Enter key  // 키 입력 처리 함수
       {searchKeyword === "" && (
         <div
           className="flex -ml-8 cursor-pointer float-right items-center justify-center py-2"
-          onClick={handleSearch}
+          onClick={() => {
+            handleSearch();
+          }}
         >
           <SearchIcon className=" w-4 hover:text-neutral-400 transform duration-200 text-neutral-200  dark:hover:text-neutral-400 cursor-pointer " />
         </div>
@@ -154,6 +161,7 @@ Enter key  // 키 입력 처리 함수
         <div
           onClick={() => {
             cleanSearch();
+            // handleSearch();
           }}
           className="flex -ml-8 cursor-pointer float-right justify-center items-center py-4"
         >
