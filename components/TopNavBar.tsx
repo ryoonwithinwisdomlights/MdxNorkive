@@ -6,7 +6,7 @@ import CONFIG from "@/components/config";
 import Collapse from "@/components/shared/Collapse";
 import DarkModeButton from "@/components/shared/DarkModeButton";
 import { useGlobal } from "@/lib/providers/globalProvider";
-import { CustomNavList } from "@/lib/providers/provider";
+import { CustomNavList } from "@/lib/models";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEllipsisVertical, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { AlignRightIcon, MenuIcon } from "lucide-react";

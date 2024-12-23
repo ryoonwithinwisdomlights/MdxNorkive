@@ -1,8 +1,9 @@
 "use client";
+import { AllRecordsPostCardProps } from "@/lib/models";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
-const AllRecordsPostCard = ({ post, className }) => {
+const AllRecordsPostCard = ({ post, className }: AllRecordsPostCardProps) => {
   const pathname = usePathname();
   const router = useRouter();
 

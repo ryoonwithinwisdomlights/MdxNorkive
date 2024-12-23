@@ -3,6 +3,7 @@ import { BLOG } from "@/blog.config";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { LockIcon } from "lucide-react";
+import { AllRecordsArchiveItemProps } from "@/lib/models";
 
 /**
  * Records grouping
@@ -13,10 +14,7 @@ import { LockIcon } from "lucide-react";
 export default function AllRecordsArchiveItem({
   archiveTitle,
   archiveRecords,
-}: {
-  archiveTitle: string;
-  archiveRecords: [];
-}) {
+}: AllRecordsArchiveItemProps) {
   const router = useRouter();
 
   return (

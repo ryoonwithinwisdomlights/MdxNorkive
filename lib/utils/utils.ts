@@ -4,11 +4,27 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 import * as Icons from "@fortawesome/free-solid-svg-icons"; // 모든 아이콘을 가져옴
+import { RecommendPost } from "../models/page.model";
+import React from "react";
+import { SlugConvertProps } from "../models";
 
-type AppType = {
-  slug: string;
-  type: string;
-};
+/**
+ * Convert string to json
+ * @param {*} str
+ * @returns
+ */
+export function convertToJSON(str) {
+  if (!str) {
+    return {};
+  }
+  // Use regular expressions to remove spaces and newlines. The latest article is marked with a red dot.
+  try {
+    return JSON.parse(str.replace(/\s/g, ""));
+  } catch (error) {
+    console.warn("Invalid JSON", str);
+    return {};
+  }
+}
 
 export function convertUrlStartWithOneSlash(str) {
   if (!str) {
@@ -48,7 +64,7 @@ export const parseIcon = (iconString: string) => {
 };
 
 export const exchangeSlugToType = (slug) => {
-  const typeApp: AppType[] = [
+  const typeApp: SlugConvertProps[] = [
     { slug: "devproject", type: "Devproject" },
     { slug: "engineering", type: "Engineering" },
     // { slug: "general", type: "General" },
@@ -303,3 +319,52 @@ export function hasKey<T extends object>(
 ): key is keyof T {
   return key in obj;
 }
+
+/**
+ * Get the list of recommended articles associated with the article, currently filtered based on tag relevance
+ * @param post
+ * @param {*} allPosts
+ * @param {*} count
+ * @returns
+ */
+export function getRecommendPost(
+  post: RecommendPost,
+  allPosts: RecommendPost[],
+  count: number = 6
+): RecommendPost[] {
+  let recommendPosts: RecommendPost[] = []; // 추천 게시물 배열
+  const postIds: string[] = []; // 추천된 게시물 ID 배열
+  const currentTags: string[] = post?.tags || []; // 현재 게시물의 태그
+  for (let i = 0; i < allPosts.length; i++) {
+    const p = allPosts[i];
+    // 현재 게시물과 동일한 게시물이거나 타입이 'Post'가 아니면 건너뜀
+    if (p.id === post.id || p.type.indexOf("Post") < 0) {
+      continue;
+    }
+
+    for (let j = 0; j < currentTags.length; j++) {
+      const t = currentTags[j];
+      // 이미 추천된 게시물인지 확인getNotionPageData:
+      if (postIds.indexOf(p.id) > -1) {
+        continue;
+      }
+      // 태그가 일치하면 추천 게시물에 추가
+      if (p.tags && p.tags.indexOf(t) > -1) {
+        recommendPosts.push(p);
+        postIds.push(p.id);
+      }
+    }
+  }
+
+  // 추천 게시물 개수를 제한
+  if (recommendPosts.length > count) {
+    recommendPosts = recommendPosts.slice(0, count);
+  }
+  return recommendPosts;
+}
+
+export const lazyComponent = (componentImportFn: Function) =>
+  React.lazy(async () => {
+    let obj = await componentImportFn();
+    return typeof obj.default === "function" ? obj : obj.default;
+  });

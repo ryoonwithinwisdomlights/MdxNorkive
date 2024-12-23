@@ -1,4 +1,4 @@
-export default {
+export const ENG_LANG = {
   LOCALE: "en-US",
   MENU: {
     RANDOM_PAGE: "Go to Random Page",
@@ -41,7 +41,6 @@ export default {
     VIEWS: "Views",
     COPYRIGHT_NOTICE:
       "All articles in this blog, except for special statements, adopt BY-NC-SA agreement. Please indicate the source!",
-    RESULT_OF_SEARCH: "Results Found",
     ARTICLE_DETAIL: "Article Details",
     PASSWORD_SUBMIT: "Please enter your password",
     PASSWORD_ERROR: "Password does not match",
@@ -59,6 +58,7 @@ export default {
     MINUTE: "min",
     WORD_COUNT: "W.C.",
     LOCKED: "private",
+    NO_RECORD_FOUND: "No record found.",
   },
   PAGINATION: {
     PREV: "Prev",

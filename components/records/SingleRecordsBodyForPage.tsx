@@ -6,7 +6,7 @@ import ArticleAround from "../ArticleAround";
 import CategoryItem from "../CategoryItem";
 import TagItemMini from "../TagItemMini";
 
-const SingleRecordsBody = ({ post, prev, next }) => {
+const SingleRecordsBodyForPage = ({ post, prev, next }) => {
   return (
     <section className="px-1 dark:text-neutral-200">
       <div id="article-wrapper">
@@ -42,4 +42,4 @@ const SingleRecordsBody = ({ post, prev, next }) => {
   );
 };
 
-export default SingleRecordsBody;
+export default SingleRecordsBodyForPage;

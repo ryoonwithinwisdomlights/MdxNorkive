@@ -1,7 +1,5 @@
 import { getStaticNotionRecordsSortByDirTypeWithoutDateTitle } from "@/app/api/load-recordsData";
-import NoRecordFound from "@/components/NoRecordFound";
-import DevProjectIntro from "@/components/records/DevProjectIntro";
-import DevprojectRecordsItem from "@/components/records/DevprojectRecordsItem";
+import BasicRecordPage from "@/components/records/BasicRecordPage";
 
 export default async function Page() {
   const { props }: any =
@@ -10,30 +8,5 @@ export default async function Page() {
       type: "Devproject",
     });
   const devProjectList: [] = props.archiveRecords;
-  return (
-    <div className="mb-10 pb-20 md:py-10 w-full py-3 flex flex-col min-h-full">
-      <DevProjectIntro />
-      <div className="flex flex-row justify-end">
-        <div className="space-y-6 w-full px-2">
-          {devProjectList ? (
-            devProjectList?.map((item: any, index) => {
-              const showPreview = true;
-              const showSummary = true;
-              const showPageCover = item?.pageCoverThumbnail;
-              return (
-                <DevprojectRecordsItem
-                  key={index}
-                  pIndex={index}
-                  pId={item.id}
-                  pPosts={item}
-                />
-              );
-            })
-          ) : (
-            <NoRecordFound />
-          )}
-        </div>
-      </div>
-    </div>
-  );
+  return <BasicRecordPage pageType="Devproject" recordList={devProjectList} />;
 }

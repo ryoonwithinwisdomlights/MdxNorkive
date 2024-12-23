@@ -1,22 +1,9 @@
 "use client";
 import { BLOG } from "@/blog.config";
+import { ImgProps, LazyImageProps } from "@/lib/models";
 import Head from "next/head";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
-
-interface lazyImage {
-  priority?: any;
-  id?: any;
-  src: any;
-  alt?: any;
-  placeholderSrc?: string;
-  className?: any;
-  width?: any;
-  height?: any;
-  title?: any;
-  onLoad?: any;
-  style?: any;
-}
 
 /**
  * Lazy loading of images
@@ -35,7 +22,7 @@ export default function LazyImage({
   title,
   onLoad,
   style,
-}: lazyImage) {
+}: LazyImageProps) {
   const imageRef = useRef(null);
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -70,19 +57,6 @@ export default function LazyImage({
       }
     };
   }, [src]);
-
-  interface ImgProps {
-    ref: React.RefObject<HTMLImageElement>;
-    src: string;
-    alt: string;
-    onLoad: () => void;
-    id?: string;
-    title?: string;
-    width?: string | number;
-    height?: string | number;
-    className?: string;
-    style?: React.CSSProperties;
-  }
 
   // Dynamically add width, height and className properties only if they are valid values
   const imgProps: ImgProps = {

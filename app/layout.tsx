@@ -27,7 +27,7 @@ import JumpToTopButton from "@/components/JumpToTopButton";
 import PageNavDrawer from "@/components/PageNavDrawer";
 import TopNavBar from "@/components/TopNavBar";
 import CustomedTransitonWrapper from "@/components/wrapper/CustomedTransitonWrapper";
-import { InitGlobalNotionData } from "@/lib/providers/provider";
+import { InitGlobalNotionData } from "@/lib/models/provider.model";
 import loadGlobalNotionData from "./api/load-globalNotionData";
 
 import BottomMenuBar from "@/components/BottomMenuBar";
@@ -44,6 +44,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Suspense } from "react";
 
 import { ModalProvider } from "@/lib/providers/ModalProvider";
+import { LayoutProps } from "@/lib/models";
 config.autoAddCss = false;
 
 export const viewport: Viewport = {
@@ -59,7 +60,11 @@ export const metadata: Metadata = {
   metadataBase: BLOG.isProd
     ? new URL(BLOG.LINK as string)
     : new URL("http://localhost:3000"),
-  title: BLOG.APP_NAME as string,
+  // title: BLOG.APP_NAME as string,
+  title: {
+    template: "Norkive - %s",
+    default: BLOG.APP_NAME as string, // 템플릿을 설정할때 default는 필수 요소입니다.
+  },
   description: BLOG.DESCRIPTION as string, //
   applicationName: BLOG.APP_NAME as string,
   authors: {
@@ -97,11 +102,7 @@ export const metadata: Metadata = {
  * 
  * 
  */
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function RootLayout({ children }: LayoutProps) {
   const initGlobalNotionData: InitGlobalNotionData =
     await loadGlobalNotionData("index");
 

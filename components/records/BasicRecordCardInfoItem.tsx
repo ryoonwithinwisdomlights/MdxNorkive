@@ -5,18 +5,19 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import TagItemMini from "../TagItemMini";
 import { useGlobal } from "@/lib/providers/globalProvider";
+import { BasicRecordCardInfoItemProps } from "@/lib/models";
 
 /**
  *  Records list Card Info
  * @param {*} param0
  * @returns
  */
-export const RecordCardInfo = ({
+function BasicRecordCardInfoItem({
   post,
   showPreview,
   showPageCover,
   showSummary,
-}) => {
+}: BasicRecordCardInfoItemProps) {
   const router = useRouter();
   const patname = usePathname();
   const { locale } = useGlobal({ from: "index" });
@@ -110,4 +111,5 @@ export const RecordCardInfo = ({
       </div>
     </div>
   );
-};
+}
+export default BasicRecordCardInfoItem;

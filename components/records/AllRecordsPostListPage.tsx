@@ -5,6 +5,7 @@ import NavPostListEmpty from "./NavPostListEmpty";
 import PaginationSimple from "../PaginationSimple";
 import { useRouter } from "next/navigation";
 import { useGlobal } from "@/lib/providers/globalProvider";
+import { AllRecordsPostListPageProps } from "@/lib/models";
 /**
  * Article list pagination table
  * @param page current page
@@ -17,11 +18,7 @@ const AllRecordsPostListPage = ({
   pagenum = 1,
   posts = [],
   postCount,
-}: {
-  pagenum?: number;
-  posts?: [];
-  postCount: number;
-}) => {
+}: AllRecordsPostListPageProps) => {
   const router = useRouter();
   const { searchKeyword, setSearchKeyword } = useGlobal({});
   const totalPage = Math.ceil(postCount / BLOG.RECORDS_PER_PAGE);

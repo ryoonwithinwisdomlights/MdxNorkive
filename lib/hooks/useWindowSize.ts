@@ -1,11 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
+import { WindowSize } from "../models";
 
 // Window size를 담은 객체의 타입을 정의합니다.
-interface WindowSize {
-  width: number | undefined;
-  height: number | undefined;
-}
 
 function useWindowSize(): WindowSize {
   // window size 상태를 저장할 useState를 선언합니다.

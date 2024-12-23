@@ -81,12 +81,12 @@ const mapImgUrl: any = (img, block, type = "block", from) => {
 
   if (!isEmoji(ret) && ret.indexOf("notion.so/images/page-cover") < 0) {
     if (BLOG.RANDOM_IMAGE_URL) {
-      // 只有配置了随机图片接口，才会替换图片
+      // Only when the random picture interface is configured, the picture will be replaced.
       const texts = BLOG.RANDOM_IMAGE_REPLACE_TEXT;
       let isReplace = false;
       if (texts) {
         const textArr = texts.split(",");
-        // 判断是否包含替换的文本
+        // Determine whether replacement text is included
         textArr.forEach((text) => {
           if (ret.indexOf(text) > -1) {
             isReplace = true;

@@ -16,10 +16,11 @@ import {
   useState,
 } from "react";
 import {
+  GbP,
   AllNavPages,
   GlobalValueInferface,
   InitGlobalNotionData,
-} from "./provider";
+} from "../models/provider.model";
 
 type globalState = GlobalValueInferface;
 const GlobalContext = createContext<globalState | undefined>(undefined);
@@ -128,10 +129,6 @@ export function GlobalContextProvider({
     </GlobalContext.Provider>
   );
 }
-
-type GbP = {
-  from?: string;
-};
 
 export const useGlobal = ({ from }: GbP): GlobalValueInferface => {
   const context = useContext(GlobalContext);

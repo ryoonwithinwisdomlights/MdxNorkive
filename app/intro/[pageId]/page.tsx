@@ -1,8 +1,6 @@
 // [slug] 동적 세그먼트를 채우기 위한 `params` 목록을 반환합니다.
-import { BLOG } from "@/blog.config";
 import SingleRecords from "@/components/records/SingleRecords";
-import { getPostBlocks } from "@/lib/notion/notion";
-import { getGlobalData } from "@/lib/notion/getNotionData";
+import { generatingPageByTypeAndId } from "@/lib/notion/getNotionData";
 
 export async function generateStaticParams() {
   const records = [
@@ -22,58 +20,11 @@ export default async function Page({ params }) {
     return <div>Invalid pageId ID</div>;
   }
 
-  const props = await getGlobalData({
-    type: "SubMenuPage",
-    pageId: BLOG.NOTION_PAGE_ID,
-    from: "SubMenuPage",
-  });
-
-  // Find article in list
-  props.post = props?.allPages?.find((item) => {
-    return item.id === pageId;
-  });
-
-  // Unable to retrieve article
-  if (!props?.post) {
-    props.post = null;
-    return <div>Invalid IntoPagId</div>;
-  }
-  // Article content loading
-  if (!props?.posts?.blockMap) {
-    props.post.blockMap = await getPostBlocks(props.post.id, "Page");
-  }
-
-  // Recommended related article processing
-  // const allPosts = props?.allPages?.filter(
-  //   (page) =>
-  //     page.type !== "CONFIG" &&
-  //     page.type !== "Menu" &&
-  //     page.type !== "Notice" &&
-  //     page.type !== "Record" &&
-  //     page.status === "Published" &&
-  //     page.type !== "Page" &&
-  //     page.type === "SubMenu"
-  // );
-
-  // if (allPosts && allPosts.length > 0) {
-  //   const index = allPosts.indexOf(props.post);
-  //   props.prev = allPosts.slice(index - 1, index)[0] ?? allPosts.slice(-1)[0];
-  //   props.next = allPosts.slice(index + 1, index + 2)[0] ?? allPosts[0];
-  // } else {
-  //   props.prev = null;
-  //   props.next = null;
-  //   props.recommendPosts = [];
-  // }
+  const props = await generatingPageByTypeAndId(pageId, "SubMenuPage");
 
   return (
     <div className="w-full h-full">
       <SingleRecords props={props} />
     </div>
   );
-}
-
-interface Post {
-  id: string;
-  type: string;
-  tags?: string[];
 }

@@ -5,8 +5,8 @@ import { getPageTableOfContents } from "notion-utils";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { ArticleLock } from "../ArticleLock";
-import SingleRecordsBody from "./SingleRecordsBody";
-import SingleRecordsInroduction from "./SingleRecordsInroduction";
+import SingleRecordsBodyForPage from "./SingleRecordsBodyForPage";
+import SingleRecordsIntroForPage from "./SingleRecordsIntroForPage";
 import CatalogDrawerWrapper from "../wrapper/CatalogDrawerWrapper";
 
 const SingleRecords = ({ props }) => {
@@ -69,9 +69,11 @@ const SingleRecords = ({ props }) => {
       {!lock && (
         <div id="container">
           {/* Notion기사 서문 */}
-          <SingleRecordsInroduction post={post} siteInfo={siteInfo} />
+          <SingleRecordsIntroForPage post={post} siteInfo={siteInfo} />
           {/* Notion기사 본문 */}
-          {post && <SingleRecordsBody post={post} prev={prev} next={next} />}
+          {post && (
+            <SingleRecordsBodyForPage post={post} prev={prev} next={next} />
+          )}
           {post?.toc && <CatalogDrawerWrapper post={post} />}
         </div>
       )}

@@ -1,4 +1,4 @@
-export default {
+export const KOR_LANG = {
   LOCALE: "kr-KR",
   MENU: {
     RANDOM_PAGE: "Go to Random Page",
@@ -27,7 +27,7 @@ export default {
   COMMON: {
     MORE: "더보기",
     NO_MORE: "더보기 종료",
-    LATEST_RECORDS: "Latest records",
+    LATEST_RECORDS: "최근 레코드",
     TAGS: "Tags",
     NO_TAG: "NoTag",
     CATEGORY: "Category",
@@ -44,7 +44,6 @@ export default {
     VIEWS: "조회수",
     COPYRIGHT_NOTICE:
       "이 블로그의 모든 기사는 특별한 진술을 제외하고 BY-NC-SA 계약을 채택하고 있습니다. 출처를 알려주세요.",
-    RESULT_OF_SEARCH: "Results Found",
     ARTICLE_DETAIL: "Article Details",
     PASSWORD_SUBMIT: "비밀번호를 입력하세요.",
     PASSWORD_ERROR: "비밀번호가 일치하지않습니다.",
@@ -58,10 +57,11 @@ export default {
     DEBUG_OPEN: "디버그",
     DEBUG_CLOSE: "닫기",
     ANNOUNCEMENT: "공지사항",
-    START_READING: "Start Reading",
+    START_READING: "읽기시작",
     MINUTE: "분",
     WORD_COUNT: "W.C.",
     LOCKED: "비공개",
+    NO_RECORD_FOUND: "레코드를 찾을 수 없습니다.",
   },
   PAGINATION: {
     PREV: "이전",

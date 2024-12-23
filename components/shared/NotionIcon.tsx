@@ -1,7 +1,7 @@
 import LazyImage from "./LazyImage";
 /**
- * notion的图标icon
- * 可能是emoji 可能是 svg 也可能是 图片
+ * notion icon
+ * It may be emoji, it may be svg, it may be a picture
  * @returns
  */
 const NotionIcon = ({ icon }) => {

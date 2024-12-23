@@ -16,7 +16,7 @@ const NavPostListEmpty = ({
           <span className="font-semibold">"{searchKeyword}"</span>에 대한
         </div>
       )}
-      <div className="">아카이브를 찾을 수 없습니다. </div>
+      <div className=""> 레코드를 찾을 수 없습니다. </div>
     </div>
   );
 };

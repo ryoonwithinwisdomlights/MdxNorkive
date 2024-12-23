@@ -10,12 +10,12 @@ import TagItemMini from "../TagItemMini";
  * @param {*} param0
  * @returns
  */
-export const DevprojectRecordsCardInfo = ({
+function DevprojectCardInfoItem({
   post,
   showPreview,
   showPageCover,
   showSummary,
-}) => {
+}) {
   const router = useRouter();
   const patname = usePathname();
   const { locale } = useGlobal({ from: "index" });
@@ -99,4 +99,6 @@ export const DevprojectRecordsCardInfo = ({
       </div>
     </div>
   );
-};
+}
+
+export default DevprojectCardInfoItem;

@@ -1,26 +1,14 @@
 "use client";
+import {
+  InnerHtmlStateProps,
+  KaTeXProps,
+} from "@/lib/models/externalUtils.model";
 import KaTeX from "katex";
-import React, { ReactNode, useEffect, useState } from "react";
-// 타입 정의
-interface TeXProps {
-  children?: string;
-  math?: string;
-  block?: boolean;
-  errorColor?: string;
-  renderError?: (error: Error) => ReactNode;
-  settings?: KaTeX.KatexOptions;
-  as?: keyof JSX.IntrinsicElements;
-  [key: string]: any; // 추가적인 prop 허용
-}
-
-interface StateProps {
-  innerHtml: string | TrustedHTML;
-  errorElement?: ReactNode;
-}
+import React, { useEffect, useState } from "react";
 
 // type dangerouslySetInnerHTML =  string | TrustedHTML;
 
-const TeX: React.FC<TeXProps> = ({
+const TeX: React.FC<KaTeXProps> = ({
   children,
   math,
   block = false,
@@ -35,7 +23,7 @@ const TeX: React.FC<TeXProps> = ({
   const content = children ?? math;
 
   // const [state, setState] = useState<{ innerHtml: string; errorElement?: ReactNode }>({ innerHtml: "" });
-  const [state, setState] = useState<StateProps>({ innerHtml: "" });
+  const [state, setState] = useState<InnerHtmlStateProps>({ innerHtml: "" });
 
   useEffect(() => {
     try {

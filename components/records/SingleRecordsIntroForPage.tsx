@@ -5,7 +5,7 @@ import LazyImage from "../shared/LazyImage";
 import NotionIcon from "../shared/NotionIcon";
 import { useGlobal } from "@/lib/providers/globalProvider";
 
-const SingleRecordsInroduction = ({ post, siteInfo }) => {
+const SingleRecordsIntroForPage = ({ post, siteInfo }) => {
   const { locale } = useGlobal({ from: "index" });
   return (
     <>
@@ -57,4 +57,4 @@ const SingleRecordsInroduction = ({ post, siteInfo }) => {
   );
 };
 
-export default SingleRecordsInroduction;
+export default SingleRecordsIntroForPage;

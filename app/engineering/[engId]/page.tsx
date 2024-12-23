@@ -1,56 +1,11 @@
 import { BLOG } from "@/blog.config";
 import SingleRecords from "@/components/records/SingleRecords";
-import { getGlobalData } from "@/lib/notion/getNotionData";
-import { getPostBlocks } from "@/lib/notion/notion";
-
-interface Post {
-  id: string;
-  type: string;
-  tags?: string[];
-}
-
-/**
- * Get the list of recommended articles associated with the article, currently filtered based on tag relevance
- * @param post
- * @param {*} allPosts
- * @param {*} count
- * @returns
- */
-function getRecommendPost(
-  post: Post,
-  allPosts: Post[],
-  count: number = 6
-): Post[] {
-  let recommendPosts: Post[] = []; // 추천 게시물 배열
-  const postIds: string[] = []; // 추천된 게시물 ID 배열
-  const currentTags: string[] = post?.tags || []; // 현재 게시물의 태그
-  for (let i = 0; i < allPosts.length; i++) {
-    const p = allPosts[i];
-    // 현재 게시물과 동일한 게시물이거나 타입이 'Post'가 아니면 건너뜀
-    if (p.id === post.id || p.type.indexOf("Post") < 0) {
-      continue;
-    }
-
-    for (let j = 0; j < currentTags.length; j++) {
-      const t = currentTags[j];
-      // 이미 추천된 게시물인지 확인getNotionPageData:
-      if (postIds.indexOf(p.id) > -1) {
-        continue;
-      }
-      // 태그가 일치하면 추천 게시물에 추가
-      if (p.tags && p.tags.indexOf(t) > -1) {
-        recommendPosts.push(p);
-        postIds.push(p.id);
-      }
-    }
-  }
-
-  // 추천 게시물 개수를 제한
-  if (recommendPosts.length > count) {
-    recommendPosts = recommendPosts.slice(0, count);
-  }
-  return recommendPosts;
-}
+import { AllPosts } from "@/lib/models";
+import {
+  generatingPageByTypeAndId,
+  getPageProps,
+} from "@/lib/notion/getNotionData";
+import { Metadata } from "next";
 
 export async function generateStaticParams() {
   const records = [
@@ -63,63 +18,21 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({ params }): Promise<Metadata> {
+  const { engId } = await params;
+  const props = await getPageProps(engId, "Engineering");
+  const postTitle = props?.post ? props.post : "";
+  return {
+    title: postTitle,
+    description: BLOG.DESCRIPTION as string,
+  };
+}
+
 // `generateStaticParams`가 반환한 `params`를 사용하여 이 페이지의 여러 버전이 정적으로 생성됩니다.
 export default async function Page({ params }) {
   const { engId } = await params;
 
-  if (!engId) {
-    return <div>Invalid Post</div>;
-  }
-
-  const props = await getGlobalData({
-    type: "Engineering",
-    pageId: BLOG.NOTION_PAGE_ID,
-    from: "Engineering",
-  });
-
-  // Find article in list
-  props.post = props?.allPages?.find((item) => {
-    return item.id === engId;
-  });
-
-  // Unable to retrieve article
-  if (!props?.post) {
-    props.post = null;
-    return <div>Invalid record ID</div>;
-  }
-  // Article content loading
-  if (!props?.posts?.blockMap) {
-    props.post.blockMap = await getPostBlocks(props.post.id, "Engineering");
-  }
-
-  // Recommended related article processing
-  const allPosts = props?.allPages?.filter(
-    (page) =>
-      page.type !== "CONFIG" &&
-      page.type !== "Menu" &&
-      page.type !== "SubMenu" &&
-      page.type !== "SubMenuPage" &&
-      page.type !== "Notice" &&
-      page.type !== "Page" &&
-      page.status === "Published" &&
-      page.type === "Engineering"
-  );
-
-  if (allPosts && allPosts.length > 0) {
-    const index = allPosts.indexOf(props.post);
-    props.prev = allPosts.slice(index - 1, index)[0] ?? allPosts.slice(-1)[0];
-    props.next = allPosts.slice(index + 1, index + 2)[0] ?? allPosts[0];
-    props.recommendPosts = getRecommendPost(
-      props.post,
-      allPosts,
-      Number(BLOG.RECORD_RECOMMEND_COUNT)
-    );
-  } else {
-    props.prev = null;
-    props.next = null;
-    props.recommendPosts = [];
-  }
-
+  const props = await generatingPageByTypeAndId(engId, "Engineering");
   return (
     <div className="w-full h-full">
       <SingleRecords props={props} />

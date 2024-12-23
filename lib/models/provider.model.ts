@@ -1,14 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
 
-type ChangeFrequency =
-  | "always"
-  | "hourly"
-  | "daily"
-  | "weekly"
-  | "monthly"
-  | "yearly"
-  | "never";
-
 interface SiteInfo {
   title: any;
   description: any;
@@ -32,6 +23,33 @@ interface AllPageIds {
   password?: any;
   slug?: any;
 }
+
+interface tagItemsProps {
+  name: string;
+  color: string;
+}
+interface AllPosts {
+  id: any;
+  type: any;
+  title: any;
+  status: any;
+  category: any;
+  publishDate: any;
+  publishDay: string;
+  lastEditedDate: Date;
+  lastEditedDay: string;
+  date: { start_date: string };
+  fullWidth: any;
+  pageIcon: any;
+  pageCover: any;
+  pageCoverThumbnail: any;
+  password: any;
+  summary?: any;
+  slug: any;
+  results?: any;
+  tagItems?: tagItemsProps[];
+}
+
 interface AllPages {
   id: any;
   type: any;
@@ -80,7 +98,7 @@ interface InitGlobalNotionData {
   customMenu: any[];
   notice: any;
   post: any;
-  allPosts: AllPages[];
+  allPosts: AllPosts[];
   allPages: AllPages[];
   allPageIds: AllPageIds[];
   allNavPages: AllNavPages[];
@@ -113,13 +131,19 @@ interface GlobalValueInferface {
   handleChangeDarkMode: (boolean) => void;
   changeLang: (text: string) => void;
 }
+
+type GbP = {
+  from?: string;
+};
+
 export type {
   AllPageIds,
-  ChangeFrequency,
+  AllPosts,
   InitGlobalNotionData,
   CustomNavList,
   AllNavPages,
   AllPages,
   SiteInfo,
   GlobalValueInferface,
+  GbP,
 };

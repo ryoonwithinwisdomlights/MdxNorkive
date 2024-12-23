@@ -11,11 +11,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-
-interface ConfirmModalProps {
-  children: React.ReactNode;
-  onConfirm: () => void;
-}
+import { ConfirmModalProps } from "@/lib/models/utils.model";
 
 export const ConfirmModal = ({ children, onConfirm }: ConfirmModalProps) => {
   const handleConfirm = (
