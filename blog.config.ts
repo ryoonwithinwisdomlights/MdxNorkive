@@ -204,7 +204,7 @@ export const BLOG = {
       process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_SUB_MENU_PAGE ||
       "SubMenuPage", // When the type data type is the same as this value, it is a submenu but presenting page, simultaenousely.
     type_devproject:
-      process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_DEVPROJECT || "Devproject", // When the data type is the same as this value, it is specially for Sideproject & Portfolio.
+      process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_DEVPROJECT || "Devproject", // When the data type is the same as this value, it is specially for DEVPROJECT & Portfolio.
     type_engineering:
       process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_ENGINEERING || "Engineering", // When the data type is the same as this value, it is all the record  pecifically for Software engineering.
     title: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TITLE || "title", // data title

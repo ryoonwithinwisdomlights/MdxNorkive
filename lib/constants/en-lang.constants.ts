@@ -16,6 +16,7 @@ export const ENG_LANG = {
     MAIL: "E-Mail",
     RECORDS: "RECORDS",
     DEVPROJECT: "Dev Project",
+    ENGINEERING: "Engineering",
   },
   PAGE: {
     DEVPROJECT: `<span className="font-semibold ">Archive</span> of

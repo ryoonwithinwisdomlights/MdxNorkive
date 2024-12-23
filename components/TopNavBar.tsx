@@ -2,7 +2,7 @@
 /* eslint-disable multiline-ternary */
 
 import { BLOG } from "@/blog.config";
-import CONFIG from "@/components/config";
+import MENU_MOBILE from "@/lib/constants/menu-mobile.constansts";
 import Collapse from "@/components/shared/Collapse";
 import DarkModeButton from "@/components/shared/DarkModeButton";
 import { useGlobal } from "@/lib/providers/globalProvider";
@@ -27,31 +27,37 @@ const TopNavBar = () => {
       icon: "fa-solid fa-wand-magic-sparkles",
       name: locale.COMMON.CATEGORY,
       to: "/category",
-      show: CONFIG.MENU_CATEGORY,
+      show: MENU_MOBILE.MENU_CATEGORY,
     },
     {
       icon: "fas fa-tag",
       name: locale.COMMON.TAGS,
       to: "/tag",
-      show: CONFIG.MENU_TAG,
+      show: MENU_MOBILE.MENU_TAG,
     },
     {
       icon: "fa-solid fa-folder-closed",
       name: locale.NAV.RECORD,
       to: "/records",
-      show: CONFIG.MENU_RECORDS,
+      show: MENU_MOBILE.MENU_RECORDS,
     },
     {
       icon: "fa-solid fa-hand-sparkles",
-      name: locale.NAV.SIDEPROJECT,
+      name: locale.NAV.DEVPROJECT,
       to: "/devproject",
-      show: CONFIG.MENU_SIDEPROJECT,
+      show: MENU_MOBILE.MENU_DEVPROJECT,
+    },
+    {
+      icon: "fa-solid fa-hand-sparkles",
+      name: locale.NAV.ENGINEERING,
+      to: "/eengineering",
+      show: MENU_MOBILE.MENU_ENGINEERING,
     },
     // {
     //   icon: 'fas fa-search',
     //   name: locale.NAV.SEARCH,
     //   to: '/search',
-    //   show: CONFIG.MENU_SEARCH
+    //   show: MENU_MOBILE.MENU_SEARCH
     // },
   ];
 

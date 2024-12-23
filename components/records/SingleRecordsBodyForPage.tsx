@@ -1,4 +1,4 @@
-import GITBOOKCONFIG from "@/components/config";
+import MENU_MOBILE from "@/lib/constants/menu-mobile.constansts";
 import Comment from "@/components/shared/Comment";
 import NotionPage from "@/components/shared/NotionPage";
 import ShareBar from "@/components/shared/ShareBar";
@@ -16,11 +16,11 @@ const SingleRecordsBodyForPage = ({ post, prev, next }) => {
       <ShareBar post={post} />
       {/* Article classification and tag information */}
       <div className="mt-6 flex justify-between">
-        {GITBOOKCONFIG.RECORD_DETAIL_CATEGORY && post?.category && (
+        {MENU_MOBILE.RECORD_DETAIL_CATEGORY && post?.category && (
           <CategoryItem category={post.category} />
         )}
         <div>
-          {GITBOOKCONFIG.RECORD_DETAIL_TAG &&
+          {MENU_MOBILE.RECORD_DETAIL_TAG &&
             post?.tagItems?.map((tag) => (
               <TagItemMini key={tag.name} tag={tag} />
             ))}

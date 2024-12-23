@@ -1,6 +1,6 @@
 "use client"; // 클라이언트 컴포넌트
 import React from "react";
-import CONFIG from "@/components/config";
+import MENU_MOBILE from "@/lib/constants/menu-mobile.constansts";
 import { BLOG } from "@/blog.config";
 import { MenuItemCollapse } from "./MenuItemCollapse";
 import { useGlobal } from "@/lib/providers/globalProvider";
@@ -11,16 +11,21 @@ export const MenuBarMobile = (props) => {
     {
       name: locale.COMMON.CATEGORY,
       to: "/category",
-      show: CONFIG.MENU_CATEGORY,
+      show: MENU_MOBILE.MENU_CATEGORY,
     },
-    { name: locale.COMMON.TAGS, to: "/tag", show: CONFIG.MENU_TAG },
-    { name: locale.NAV.RECORD, to: "/records", show: CONFIG.MENU_RECORDS },
+    { name: locale.COMMON.TAGS, to: "/tag", show: MENU_MOBILE.MENU_TAG },
+    { name: locale.NAV.RECORD, to: "/records", show: MENU_MOBILE.MENU_RECORDS },
     {
-      name: locale.NAV.SIDEPROJECT,
+      name: locale.NAV.DEVPROJECT,
       to: "/devproject",
-      show: CONFIG.MENU_SIDEPROJECT,
+      show: MENU_MOBILE.MENU_DEVPROJECT,
     },
-    // { name: locale.NAV.SEARCH, to: '/search', show: CONFIG.MENU_SEARCH }
+    {
+      name: locale.NAV.ENGINEERING,
+      to: "/eengineering",
+      show: MENU_MOBILE.MENU_ENGINEERING,
+    },
+    // { name: locale.NAV.SEARCH, to: '/search', show: MENU_MOBILE.MENU_SEARCH }
   ];
 
   // If the custom menu is enabled, Page will no longer be used to generate the menu.

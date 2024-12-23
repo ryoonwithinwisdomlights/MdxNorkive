@@ -1,5 +1,5 @@
 "use client";
-import CONFIG from "@/components/config";
+import MENU_MOBILE from "@/lib/constants/menu-mobile.constansts";
 import { usePathname } from "next/navigation";
 import NavPostItem from "./NavPostItem";
 import NavPostListEmpty from "./NavPostListEmpty";
@@ -29,7 +29,7 @@ const NavPostList = (props) => {
 
     let existingGroup: any = null;
     // Turn on automatic group sorting
-    if (JSON.parse(CONFIG.AUTO_SORT.toString())) {
+    if (JSON.parse(MENU_MOBILE.AUTO_SORT.toString())) {
       existingGroup = groups.find(
         (group: any) => group.category === categoryName
       ); // Search for the last group with the same name
