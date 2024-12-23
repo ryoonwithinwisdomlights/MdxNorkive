@@ -1,12 +1,13 @@
 export const KOR_LANG = {
   LOCALE: "kr-KR",
   MENU: {
-    RANDOM_PAGE: "Go to Random Page",
-    CATEGORY: "Category",
-    TAGS: "Tags",
-    COPY_URL: "Copy URL",
-    DARK_MODE: "Dark Mode",
-    LIGHT_MODE: "Light Mode",
+    RANDOM_PAGE: "랜덤 페이지",
+    CATEGORY: "카테고리",
+    TAGS: "태그",
+    COPY_URL: "URL 복사",
+    DARK_MODE: "다크모드",
+    LIGHT_MODE: "라이트모드",
+    LANG_CHANGE: "영어로 언어변경",
   },
   NAV: {
     INDEX: "Home",
@@ -14,8 +15,9 @@ export const KOR_LANG = {
     SEARCH: "Search",
     ABOUT: "About",
     MAIL: "E-Mail",
-    RECORDS: "Record",
-    DEVPROJECT: "Dev 프로젝트",
+    RECORDS: "레코드 일반",
+    DEVPROJECT: "Dev 프로젝트 레코드",
+    ENGINEERING: "엔지니어링 레코드",
   },
   PAGE: {
     DEVPROJECT: `작고 큰 배움으로 연결된
@@ -61,7 +63,10 @@ export const KOR_LANG = {
     MINUTE: "분",
     WORD_COUNT: "W.C.",
     LOCKED: "비공개",
-    NO_RECORD_FOUND: "레코드를 찾을 수 없습니다.",
+    SEARCH_TERM: "검색어",
+    NO_RECORD_FOUND: "관련 아카이브 레코드가 없습니다.",
+    ENTER_SEARCH_TERM: "검색어를 입력하세요.",
+    INVALID_RECORD: "유효하지 않은 레코드입니다.",
   },
   PAGINATION: {
     PREV: "이전",
@@ -69,7 +74,7 @@ export const KOR_LANG = {
   },
   SEARCH: {
     ARTICLES: "레코드 검색",
-    TAGS: "Search in",
+    TAGS: "태그 검색",
   },
   RECORD: {
     BACK: "뒤로",

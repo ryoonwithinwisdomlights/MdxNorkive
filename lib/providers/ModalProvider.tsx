@@ -14,7 +14,7 @@ export const ModalProvider = () => {
 
   return (
     <>
-      <Toaster position="bottom-right" />
+      <Toaster position="bottom-right" style={{ border: "1px solid black" }} />
     </>
   );
 };

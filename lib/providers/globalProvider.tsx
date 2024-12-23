@@ -2,11 +2,13 @@
 import { BLOG } from "@/blog.config";
 import {
   generateLocaleDict,
+  getFilteredLangListKey,
   initLocale,
   saveLangToLocalStorage,
 } from "@/lib/lang";
 import { initDarkMode, saveDarkModeToLocalStorage } from "@/lib/utils/theme";
 import NextNProgress from "nextjs-progressbar";
+import { toast } from "sonner";
 
 import {
   createContext,
@@ -55,9 +57,7 @@ export function GlobalContextProvider({
   } = initGlobalNotionData;
 
   const [lang, updateLang] = useState<string>(BLOG.LANG); // default language
-  const [locale, updateLocale] = useState<string>(
-    generateLocaleDict(BLOG.LANG)
-  ); // default language
+  const [locale, updateLocale] = useState<any>(generateLocaleDict(BLOG.LANG)); // default language
   const [isDarkMode, updateDarkMode] = useState<boolean>(
     BLOG.APPEARANCE === "dark"
   ); // Default dark mode
@@ -85,9 +85,25 @@ export function GlobalContextProvider({
     }
   }
 
+  function changeOppositeLang() {
+    const resLang = getFilteredLangListKey(locale.LOCALE);
+    console.log("changeOppositeLang[locale]:", resLang);
+    if (resLang) {
+      saveLangToLocalStorage(resLang);
+      updateLang(resLang);
+      updateLocale(generateLocaleDict(resLang));
+      toast.success(`Language set to be ${locale.LOCALE} `);
+    }
+  }
+
   useEffect(() => {
     setFilteredNavPages(allNavPagesForGitBook);
   }, [post]);
+
+  useEffect(() => {
+    initLocale(lang, locale, updateLang, updateLocale);
+    initDarkMode(updateDarkMode);
+  }, [lang]);
 
   useEffect(() => {
     initLocale(lang, locale, updateLang, updateLocale);
@@ -101,7 +117,9 @@ export function GlobalContextProvider({
         setOnLoading,
         locale,
         updateLocale,
+        lang,
         changeLang,
+        changeOppositeLang,
         isDarkMode,
         updateDarkMode,
         notice,

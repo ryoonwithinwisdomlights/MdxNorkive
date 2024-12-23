@@ -4,14 +4,14 @@ import { useGlobal } from "@/lib/providers/globalProvider";
 import { deepClone } from "@/lib/utils/utils";
 
 import { SearchIcon, XIcon } from "lucide-react";
-import { useImperativeHandle, useRef, useState } from "react";
+import { useEffect, useImperativeHandle, useRef, useState } from "react";
 
 let lock = false;
 
 const SearchInput = ({ cRef, className }) => {
   const [showClean, setShowClean] = useState(false);
   // 검색 키워드 상태
-  const { searchKeyword, setSearchKeyword } = useGlobal({});
+  const { searchKeyword, setSearchKeyword, locale } = useGlobal({});
   // 입력 필드 참조
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { setFilteredNavPages, allNavPages, allNavPagesForGitBook } = useGlobal(
@@ -105,6 +105,14 @@ Enter key  // 키 입력 처리 함수
     lock = false;
   }
 
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  // none of the modals are gonna be rendered unless we are fully on the client side.
+  if (!isMounted) return null;
+
   return (
     <div className={"flex w-full border-neutral-400"}>
       <input
@@ -121,7 +129,8 @@ Enter key  // 키 입력 처리 함수
         }}
         onBlur={() => {
           if (searchInputRef.current && searchInputRef.current.value === "") {
-            searchInputRef.current.placeholder = "검색어를 입력하세요";
+            searchInputRef.current.placeholder =
+              locale.COMMON.ENTER_SEARCH_TERM;
             // 포커스 잃었을 때 비어있으면 placeholder 복구
           }
         }}
@@ -130,7 +139,7 @@ Enter key  // 키 입력 처리 함수
         onCompositionEnd={unLockSearchInput}
         onChange={(e) => updateSearchKey(e.target.value)}
         defaultValue={""}
-        placeholder="검색어를 입력하세요"
+        placeholder={locale.COMMON.ENTER_SEARCH_TERM}
       />
       {searchKeyword === "" && (
         <div

@@ -81,7 +81,7 @@
 .token.keyword {
   color: rgba(59, 130, 246, 1);
 }
-.token.class-name,
+.token.className,
 .token.function {
   color: rgba(236, 72, 153, 1);
 }

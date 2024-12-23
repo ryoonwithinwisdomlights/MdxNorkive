@@ -9,6 +9,7 @@ import {
   ArrowUpIcon,
   CandyIcon,
   CopyIcon,
+  ReplaceIcon,
   RotateCwIcon,
   SunriseIcon,
   SunsetIcon,
@@ -33,8 +34,15 @@ import { useCopyToClipboard, useMediaQuery } from "usehooks-ts";
  */
 export default function RightClickMenu() {
   const isMobile = useMediaQuery("(max-width: 768px");
-  const { latestPosts, changeLang, isDarkMode, locale, handleChangeDarkMode } =
-    useGlobal({ from: "index" });
+  const {
+    latestPosts,
+    changeLang,
+    lang,
+    changeOppositeLang,
+    isDarkMode,
+    locale,
+    handleChangeDarkMode,
+  } = useGlobal({ from: "index" });
   const [position, setPosition] = useState({ x: "0px", y: "0px" });
   const [show, setShow] = useState(false);
   const [copiedText, copyFn] = useCopyToClipboard();
@@ -172,7 +180,7 @@ export default function RightClickMenu() {
           className="rounded-xl px-2 w-52 
       dark:hover:border-white bg-white text-stone-500
        dark:bg-[#040404] dark:text-neutral-200 dark:border-neutral-600 p-3 border drop-shadow-lg
-        flex-col duration-300 transition-colors"
+        flex-col duration-300 transition-colors   "
         >
           {/* Top navigation buttons */}
           <div className="flex justify-between px-2 ">
@@ -215,7 +223,9 @@ export default function RightClickMenu() {
               className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer  hover:text-black dark:hover:bg-[#f1efe9e2]   rounded-lg duration-200 transition-all"
             >
               <CandyIcon className="mr-2 w-5 h-5" />
-              <div className="whitespace-nowrap text-sm">
+              <div
+                className={`whitespace-nowrap ${lang !== "kr-KR" && "text-xs"}`}
+              >
                 {locale.MENU.RANDOM_PAGE}
               </div>
             </div>
@@ -275,6 +285,17 @@ export default function RightClickMenu() {
               <div className="whitespace-nowrap">
                 {isDarkMode ? locale.MENU.LIGHT_MODE : locale.MENU.DARK_MODE}
               </div>
+            </div>
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                changeOppositeLang();
+              }}
+              title={locale.MENU.LANG_CHANGE}
+              className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer hover:text-black dark:hover:bg-[#f1efe9e2]    rounded-lg duration-200 transition-all"
+            >
+              <ReplaceIcon className="mr-2 w-4 h-4" />
+              <div className="whitespace-nowrap">{locale.MENU.LANG_CHANGE}</div>
             </div>
           </div>
         </div>

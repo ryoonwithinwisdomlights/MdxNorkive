@@ -121,6 +121,7 @@ interface GlobalValueInferface {
   setFilteredNavPages?: Dispatch<SetStateAction<AllNavPages[]>>;
   allNavPagesForGitBook?: AllNavPages[];
   className?: string;
+  lang: string;
   customNav: CustomNavList[];
   customMenu: any[];
   allNavPages: AllNavPages[];
@@ -130,6 +131,7 @@ interface GlobalValueInferface {
   latestPosts: [];
   handleChangeDarkMode: (boolean) => void;
   changeLang: (text: string) => void;
+  changeOppositeLang: () => void;
 }
 
 type GbP = {

@@ -1,7 +1,9 @@
 "use client";
 
+import { useGlobal } from "@/lib/providers/globalProvider";
 import { MoveLeftIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 // 사전에 사용할 아이콘 추가
 
@@ -15,10 +17,18 @@ import { useRouter } from "next/navigation";
  */
 const JumpToBackButton = () => {
   const router = useRouter();
-
+  const { locale } = useGlobal({ from: "index" });
   const handleBack = () => {
     router.back();
   };
+
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  // none of the modals are gonna be rendered unless we are fully on the client side.
+  if (!isMounted) return null;
   return (
     <div
       id="jump-to-back"
@@ -34,7 +44,7 @@ const JumpToBackButton = () => {
         duration-150 cursor-pointer p-2 rounded-full border text-white font-bold  bg-neutral-600 dark:border-white"
       >
         <MoveLeftIcon className="w-4 " />
-        <span className="text-sm "> &nbsp; 뒤로 &nbsp;</span>
+        <span className="text-sm "> &nbsp; {locale.RECORD.BACK} &nbsp;</span>
       </div>
     </div>
   );

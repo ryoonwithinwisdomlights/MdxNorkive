@@ -7,6 +7,7 @@ export const ENG_LANG = {
     COPY_URL: "Copy URL",
     DARK_MODE: "Dark Mode",
     LIGHT_MODE: "Light Mode",
+    LANG_CHANGE: "Language => Kor",
   },
   NAV: {
     INDEX: "Home",
@@ -59,7 +60,10 @@ export const ENG_LANG = {
     MINUTE: "min",
     WORD_COUNT: "W.C.",
     LOCKED: "private",
-    NO_RECORD_FOUND: "No record found.",
+    SEARCH_TERM: "Search term",
+    NO_RECORD_FOUND: "No relevant archive records have been created.",
+    ENTER_SEARCH_TERM: "Search term...",
+    INVALID_RECORD: "Invalid Record",
   },
   PAGINATION: {
     PREV: "Prev",

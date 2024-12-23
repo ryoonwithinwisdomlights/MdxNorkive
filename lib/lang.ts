@@ -6,12 +6,29 @@ import { getQueryVariable, isBrowser, mergeDeep } from "./utils/utils";
  * Configure all supported languages here
  * country / region
  */
-const lang = {
+const langList = {
   "en-US": ENG_LANG,
   "kr-KR": KOR_LANG,
 };
 
-export default lang;
+export default langList;
+
+// 키가 "currentLang"이 아닌 요소들을 필터링
+export const getFilteredLangList = (currentLang) => {
+  return Object.keys(langList)
+    .filter((key) => key !== currentLang)
+    .reduce((obj, key) => {
+      obj[key] = langList[key];
+      return obj;
+    }, {});
+};
+
+// 키가 "currentLang"이 아닌 키값 반환
+export const getFilteredLangListKey = (currentLang) => {
+  return Object.keys(langList)
+    .filter((key) => key !== currentLang)
+    .join();
+};
 
 /**
  * 현재 언어 사전 가져오기
@@ -19,7 +36,7 @@ export default lang;
  * @returns 다양한 언어에 대응하는 사전
  */
 export function generateLocaleDict(langString) {
-  const supportedLocales = Object.keys(lang);
+  const supportedLocales = Object.keys(langList);
   let userLocale;
 
   // 언어 문자열을 언어 및 지역 코드로 분할합니다(예: "kr-KR"을 "kr" 및 "KR"으로 분할).
@@ -28,7 +45,7 @@ export function generateLocaleDict(langString) {
   // 언어와 지역이 모두 일치하는 상황을 우선적으로 고려합니다.
   const specificLocale = `${language}-${region}`;
   if (supportedLocales.includes(specificLocale)) {
-    userLocale = lang[specificLocale];
+    userLocale = langList[specificLocale];
   }
 
   // 그런 다음 언어만 일치하는 경우를 일치시켜 보세요.
@@ -37,7 +54,7 @@ export function generateLocaleDict(langString) {
       locale.startsWith(language)
     );
     if (languageOnlyLocales.length > 0) {
-      userLocale = lang[languageOnlyLocales[0]];
+      userLocale = langList[languageOnlyLocales[0]];
     }
   }
 
@@ -46,10 +63,10 @@ export function generateLocaleDict(langString) {
     const fallbackLocale: any = supportedLocales.find((locale) =>
       locale.startsWith("en")
     );
-    userLocale = lang[fallbackLocale];
+    userLocale = langList[fallbackLocale];
   }
 
-  return mergeDeep({}, lang["en-US"], userLocale);
+  return mergeDeep({}, langList["en-US"], userLocale);
 }
 
 /**
