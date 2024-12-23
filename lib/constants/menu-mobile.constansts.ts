@@ -1,4 +1,4 @@
-const MENU_MOBILE = {
+export const MENU_MOBILE = {
   INDEX_PAGE: "records",
   // Articles displayed on the document homepage, please make sure this path is included in your notice database
   AUTO_SORT: process.env.NEXT_PUBLIC_AUTO_SORT || true,
@@ -13,4 +13,3 @@ const MENU_MOBILE = {
   RECORD_DETAIL_CATEGORY: true, // Article display category
   RECORD_DETAIL_TAG: true, // Article display tags
 };
-export default MENU_MOBILE;

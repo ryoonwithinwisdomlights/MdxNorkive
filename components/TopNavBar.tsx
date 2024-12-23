@@ -2,7 +2,7 @@
 /* eslint-disable multiline-ternary */
 
 import { BLOG } from "@/blog.config";
-import MENU_MOBILE from "@/lib/constants/menu-mobile.constansts";
+import { MENU_MOBILE } from "@/lib/constants/menu-mobile.constansts";
 import Collapse from "@/components/shared/Collapse";
 import DarkModeButton from "@/components/shared/DarkModeButton";
 import { useGlobal } from "@/lib/providers/globalProvider";

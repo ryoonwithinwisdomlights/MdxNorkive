@@ -1,6 +1,6 @@
 "use client"; // 클라이언트 컴포넌트
 import React from "react";
-import MENU_MOBILE from "@/lib/constants/menu-mobile.constansts";
+import { MENU_MOBILE } from "@/lib/constants/menu-mobile.constansts";
 import { BLOG } from "@/blog.config";
 import { MenuItemCollapse } from "./MenuItemCollapse";
 import { useGlobal } from "@/lib/providers/globalProvider";

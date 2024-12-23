@@ -1,4 +1,4 @@
-import MENU_MOBILE from "@/lib/constants/menu-mobile.constansts";
+import { MENU_MOBILE } from "@/lib/constants/menu-mobile.constansts";
 import Comment from "@/components/shared/Comment";
 import NotionPage from "@/components/shared/NotionPage";
 import ShareBar from "@/components/shared/ShareBar";

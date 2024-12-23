@@ -1,5 +1,5 @@
 "use client";
-import MENU_MOBILE from "@/lib/constants/menu-mobile.constansts";
+import { MENU_MOBILE } from "@/lib/constants/menu-mobile.constansts";
 import { usePathname } from "next/navigation";
 import NavPostItem from "./NavPostItem";
 import NavPostListEmpty from "./NavPostListEmpty";
