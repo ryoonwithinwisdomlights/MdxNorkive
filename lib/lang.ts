@@ -50,7 +50,7 @@ export function generateLocaleDict(langString) {
 
   // 그런 다음 언어만 일치하는 경우를 일치시켜 보세요.
   if (!userLocale) {
-    const languageOnlyLocales = supportedLocales.filter((locale) =>
+    const languageOnlyLocales: any[] = supportedLocales.filter((locale) =>
       locale.startsWith(language)
     );
     if (languageOnlyLocales.length > 0) {
