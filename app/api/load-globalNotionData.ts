@@ -1,5 +1,5 @@
 import { BLOG } from "@/blog.config";
-import { getPostBlocks } from "@/lib/notion/notion";
+import { getPostBlocks } from "@/lib/notion/getPostBlocks";
 import { getGlobalData, getGlobalPageIdData } from "@/lib/notion/getNotionData";
 
 export default async function loadGlobalNotionData(from: string = "index") {

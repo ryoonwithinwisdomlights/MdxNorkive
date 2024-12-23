@@ -2,7 +2,7 @@ export const BLOG = {
   APP_NAME: "Norkive",
   NOTION_PAGE_ID: process.env.NOTION_PAGE_ID,
   NOTION_ACTIVE_USER: process.env.NOTION_ACTIVE_USER,
-  NOTION_ACCESS_TOKEN: process.env.NOTION_ACTIVE_USER || "", // Useful if you prefer not to make your database public
+  NOTION_ACCESS_TOKEN: process.env.NOTION_TOKEN_V2 || "", // Useful if you prefer not to make your database public
   PSEUDO_STATIC: process.env.NEXT_PUBLIC_PSEUDO_STATIC || false,
   NEXT_REVALIDATE_SECOND: process.env.NEXT_PUBLIC_REVALIDATE_SECOND || 5,
   LANG: process.env.NEXT_PUBLIC_LANG || "kr-KR", // e.g ,'en-US'  see /lib/lang.js for more.
