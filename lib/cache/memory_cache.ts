@@ -39,4 +39,4 @@ export async function delCache(key) {
   // React's cache does not support explicit deletion of data.
 }
 
-export default { getCache };
+export default { getCache, setCache, delCache };
