@@ -26,6 +26,7 @@ export const KOR_LANG = {
             &nbsp;아카이브.
           </span>`,
   },
+  LOADING: "로딩중...",
   COMMON: {
     MORE: "더보기",
     NO_MORE: "더보기 종료",

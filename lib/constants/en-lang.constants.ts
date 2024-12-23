@@ -23,6 +23,7 @@ export const ENG_LANG = {
     DEVPROJECT: `<span className="font-semibold ">Archive</span> of
           <span className="font-semibold "> Dev</span> projects connected by small and big learnings`,
   },
+  LOADING: "Loading...",
   COMMON: {
     MORE: "More",
     NO_MORE: "No More",

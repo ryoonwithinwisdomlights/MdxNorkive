@@ -92,7 +92,7 @@ export function GlobalContextProvider({
       saveLangToLocalStorage(resLang);
       updateLang(resLang);
       updateLocale(generateLocaleDict(resLang));
-      toast.success(`Language set to be ${locale.LOCALE} `);
+      toast.success(`Language set to be ${resLang} `);
     }
   }
 

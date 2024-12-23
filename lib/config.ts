@@ -1,8 +1,7 @@
 // "use client";
 
 import { BLOG } from "@/blog.config";
-
-import { deepClone } from "@/lib/utils/utils";
+import { convertCleanJsonString, deepClone } from "@/lib/utils/utils";
 import { useGlobal } from "@/lib/providers/globalProvider";
 import { isUrl } from "@/lib/utils/utils";
 
@@ -109,11 +108,6 @@ export const siteConfig = ({
   }
 };
 
-export const cleanJsonString = (val) => {
-  // Use regular expressions to remove unnecessary spaces, newlines and tabs
-  return val.replace(/\s+/g, " ").trim();
-};
-
 export const convertVal = (val) => {
   // If the incoming parameter itself is obj, array, or boolean, there is no need to process it.
   if (typeof val !== "string" || !val) {
@@ -140,10 +134,6 @@ export const convertVal = (val) => {
     return val;
   }
 
-  // 配置值前可能有污染的空格
-  // 如果字符串中没有 '[' 或 '{'，则直接返回
-  // Pèizhì zhí qián kěnéng yǒu wūrǎn de kònggé
-  // rúguǒ zìfú chuàn zhōng méiyǒu'[' huò'{', zé zhíjiē fǎnhuí
   // There may be contaminated spaces before the configuration value
   // If there is no '[' or '{' in the string, return directly
   if (!val.trim().startsWith("{") && !val.trim().startsWith("[")) {
@@ -152,7 +142,7 @@ export const convertVal = (val) => {
 
   //Convert strings like [], {} into objects
   try {
-    val = cleanJsonString(val);
+    val = convertCleanJsonString(val);
     const parsedJson = JSON.parse(val);
     // Check whether the parsed result is an object
     if (parsedJson !== null) {
@@ -178,7 +168,6 @@ export const siteConfigMap = () => {
   const val = deepClone(BLOG);
   for (const key in val) {
     val[key] = siteConfig({ key: key });
-    // console.log('site', key, val[key], siteConfig(key))
   }
   return val;
 };

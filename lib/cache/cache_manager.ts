@@ -9,7 +9,7 @@ let api = MemoryCache;
  * @param {*} key
  * @returns
  */
-export async function getDataFromCache(key, force) {
+export async function getDataFromCache(key, force = false) {
   if (BLOG.ENABLE_CACHE || force) {
     const dataFromCache = await api.getCache(key);
     console.log("dataFromCache::", dataFromCache);

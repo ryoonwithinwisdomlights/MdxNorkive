@@ -1,12 +1,10 @@
 /* eslint-disable no-unused-vars */
-// Encapsulate asynchronous resource loading method
+import React from "react";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-
 import * as Icons from "@fortawesome/free-solid-svg-icons"; // 모든 아이콘을 가져옴
-import { RecommendPost } from "../models/page.model";
-import React from "react";
-import { SlugConvertProps } from "../models";
+import { RecommendPost } from "@/lib/models/page.model";
+import { SlugConvertProps } from "@/lib/models";
 
 /**
  * Convert string to json
@@ -40,6 +38,11 @@ export function convertUrlStartWithOneSlash(str) {
   return str;
 }
 
+export const convertCleanJsonString = (val) => {
+  // Use regular expressions to remove unnecessary spaces, newlines and tabs
+  return val.replace(/\s+/g, " ").trim();
+};
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -67,8 +70,6 @@ export const exchangeSlugToType = (slug) => {
   const typeApp: SlugConvertProps[] = [
     { slug: "devproject", type: "Devproject" },
     { slug: "engineering", type: "Engineering" },
-    // { slug: "general", type: "General" },
-    // { slug: "writing", type: "Writing" },
   ];
 
   if (!slug) return null;
@@ -76,12 +77,6 @@ export const exchangeSlugToType = (slug) => {
   const found = typeApp.find((item) => item.slug === slug);
   return found ? found.type : null;
 };
-
-/**
- * Determine whether the client
- * @returns {boolean}
- */
-export const isBrowser = typeof window !== "undefined";
 
 /**
  * Load external resources
@@ -131,6 +126,56 @@ export function loadExternalResource(url, type) {
   });
 }
 
+//#############################Checking Function###############################
+/**
+ * Determine whether the client
+ * @returns {boolean}
+ */
+export const isBrowser = typeof window !== "undefined";
+
+/**
+ * Determine whether to move the device
+ */
+export const isMobile = () => {
+  let isMobile = false;
+  if (!isBrowser) {
+    return isMobile;
+  }
+
+  if (!isMobile && /Mobi|Android|iPhone/i.test(navigator.userAgent)) {
+    isMobile = true;
+  }
+
+  if (/Android|iPhone|iPad|iPod/i.test(navigator.platform)) {
+    isMobile = true;
+  }
+
+  if (typeof window.orientation !== "undefined") {
+    isMobile = true;
+  }
+
+  return isMobile;
+};
+
+/**
+ * Whether object
+
+ * @param item
+ * @returns {boolean}
+ */
+export function isObject(item) {
+  return item && typeof item === "object" && !Array.isArray(item);
+}
+
+/**
+ * Is iterable
+ * @param {*} obj
+ * @returns
+ */
+export function isIterable(obj) {
+  return obj != null && typeof obj[Symbol.iterator] === "function";
+}
+
 /**
  * Whether it is a relative or absolute path to the ur class
  * @param {*} str
@@ -141,11 +186,11 @@ export function isUrl(str) {
     return false;
   }
 
-  return str?.indexOf("/") === 0 || checkStartWithHttp(str);
+  return str?.indexOf("/") === 0 || isStartWithHttp(str);
 }
 
 // Check if there is an external link
-export function checkStartWithHttp(str) {
+export function isStartWithHttp(str) {
   // Check if string contains http
   if (str?.indexOf("http:") === 0 || str?.indexOf("https:") === 0) {
     // If included, find the location of http
@@ -155,6 +200,21 @@ export function checkStartWithHttp(str) {
     return false;
   }
 }
+
+/**
+ * 객체에 특정 키가 존재하는지 확인하는 타입 가드 함수
+ * @param obj 확인할 객체
+ * @param key 확인할 키
+ * @returns 키가 객체에 존재하면 true, 그렇지 않으면 false
+ */
+export function isHasKey<T extends object>(
+  obj: T,
+  key: PropertyKey
+): key is keyof T {
+  return key in obj;
+}
+
+//#############################Query related Function###############################
 
 /**
  * Query the query parameters in the url
@@ -184,6 +244,8 @@ export function getQueryParam(url, param) {
   return searchParams.get(param);
 }
 
+//############################Merge & Clone Function###############################
+
 /**
  * Deep merge two objects
  * @param target
@@ -204,25 +266,6 @@ export function mergeDeep(target, ...sources) {
     }
   }
   return mergeDeep(target, ...sources);
-}
-
-/**
- * Whether object
-
- * @param item
- * @returns {boolean}
- */
-export function isObject(item) {
-  return item && typeof item === "object" && !Array.isArray(item);
-}
-
-/**
- * Is iterable
- * @param {*} obj
- * @returns
- */
-export function isIterable(obj) {
-  return obj != null && typeof obj[Symbol.iterator] === "function";
 }
 
 /**
@@ -251,74 +294,8 @@ export function deepClone(obj) {
     return obj;
   }
 }
-/**
- * delay
- * @param {*} ms
- * @returns
- */
-export const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-/**
- * Get articles from page 1 to the specified page number
- * @param pageIndex which page
- * @param list All articles
- * @param pageSize Number of articles per page
- * @returns {*}
- */
-export const getListByPage = function (list, pageIndex, pageSize) {
-  return list.slice(0, pageIndex * pageSize);
-};
-
-/**
- * Determine whether to move the device
- */
-export const isMobile = () => {
-  let isMobile = false;
-  if (!isBrowser) {
-    return isMobile;
-  }
-
-  // This judgment will trigger TypeError: navigator.userAgentData.mobile is undefined Problem causing the blog to not work properly
-  // if (!isMobile && navigator.userAgentData.mobile) {
-  //   isMobile = true
-  // }
-
-  if (!isMobile && /Mobi|Android|iPhone/i.test(navigator.userAgent)) {
-    isMobile = true;
-  }
-
-  if (/Android|iPhone|iPad|iPod/i.test(navigator.platform)) {
-    isMobile = true;
-  }
-
-  if (typeof window.orientation !== "undefined") {
-    isMobile = true;
-  }
-
-  return isMobile;
-};
-
-/**
- * 객체에 특정 키가 존재하는지 확인하는 타입 가드 함수
- * @param obj 확인할 객체
- * @param key 확인할 키
- * @returns 키가 객체에 존재하면 true, 그렇지 않으면 false
- */
-// export function hasKey<T extends object, K extends PropertyKey>(obj: T, key: K): key is keyof T {
-//     return key in obj;
-// }
-/**
- * 객체에 특정 키가 존재하는지 확인하는 타입 가드 함수
- * @param obj 확인할 객체
- * @param key 확인할 키
- * @returns 키가 객체에 존재하면 true, 그렇지 않으면 false
- */
-export function hasKey<T extends object>(
-  obj: T,
-  key: PropertyKey
-): key is keyof T {
-  return key in obj;
-}
+//############################Record related Function###############################
 
 /**
  * Get the list of recommended articles associated with the article, currently filtered based on tag relevance
@@ -363,7 +340,31 @@ export function getRecommendPost(
   return recommendPosts;
 }
 
-export const lazyComponent = (componentImportFn: Function) =>
+/**
+ * Get articles from page 1 to the specified page number
+ * @param pageIndex which page
+ * @param list All articles
+ * @param pageSize Number of articles per page
+ * @returns {*}
+ */
+export const getListByPage = function (list, pageIndex, pageSize) {
+  return list.slice(0, pageIndex * pageSize);
+};
+
+/**
+ * delay
+ * @param {*} ms
+ * @returns
+ */
+export const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+/**
+ * Lazy load
+ * @param {*} componentImportFn
+ * @returns
+ */
+
+export const getLazyComponent = (componentImportFn: Function) =>
   React.lazy(async () => {
     let obj = await componentImportFn();
     return typeof obj.default === "function" ? obj : obj.default;

@@ -1,7 +1,3 @@
-/**
- * Configure fonts here
- */
-
 // import { BLOG } from "@/blog.config";
 
 import { BLOG } from "../blog.config";

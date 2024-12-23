@@ -13,8 +13,6 @@ export const ModalProvider = () => {
   if (!isMounted) return null;
 
   return (
-    <>
-      <Toaster position="bottom-right" style={{ border: "1px solid black" }} />
-    </>
+    <Toaster position="bottom-right" style={{ border: "1px solid black" }} />
   );
 };

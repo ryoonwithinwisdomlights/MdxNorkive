@@ -1,8 +1,10 @@
 "use client";
 
+import { useGlobal } from "@/lib/providers/globalProvider";
 import { LoaderIcon } from "lucide-react";
 
 const Loading = () => {
+  const { locale } = useGlobal({});
   return (
     <div className="  w-full h-screen flex flex-col justify-center items-center">
       <div
@@ -11,7 +13,7 @@ const Loading = () => {
           duration-300 w-full h-full flex flex-row justify-center items-center"
       >
         <span className="text-3xl text-stone-700 dark:text-stone-200">
-          Loading...
+          {locale.LOADING}
         </span>
         <LoaderIcon className="w-8 h-8 text-stone-700 dark:text-stone-200 animate-spin" />
       </div>
