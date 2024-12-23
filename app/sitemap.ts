@@ -51,7 +51,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       const lmd = post.lastEditedDate
         ? formatDate(post.date.start_date, BLOG.LANG)
         : formatDate(post.lastEditedDate, BLOG.LANG);
-      console.log(`lmd: ${lmd}`);
+      // console.log(`lmd: ${lmd}`);
       urls.push({
         url: `${BLOG.LINK}${post.type.toLowerCase()}/${post.id}`,
         lastModified: lmd,
