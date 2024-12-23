@@ -25,18 +25,18 @@ export async function getCache(key) {
   return await getBlogData(key);
 }
 
-// export async function setCache(key, data) {
-//   console.log(
-//     "[setCache]: This operation is not needed as cache manages the data."
-//   );
-//   // In React's cache, you don't explicitly set data. It's handled by the cache function internally when fetching.
-// }
+export async function setCache(key, data) {
+  console.log(
+    "[setCache]: This operation is not needed as cache manages the data."
+  );
+  // In React's cache, you don't explicitly set data. It's handled by the cache function internally when fetching.
+}
 
-// export async function delCache(key) {
-//   console.log(
-//     "[delCache]: This operation is not supported by React's cache mechanism."
-//   );
-//   // React's cache does not support explicit deletion of data.
-// }
+export async function delCache(key) {
+  console.log(
+    "[delCache]: This operation is not supported by React's cache mechanism."
+  );
+  // React's cache does not support explicit deletion of data.
+}
 
 export default { getCache };
