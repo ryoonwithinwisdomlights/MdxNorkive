@@ -11,7 +11,9 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  output: process.env.EXPORT ? "export" : undefined,
+  // output: process.env.EXPORT ? "export" : undefined,
+  // for self-hosting
+  output: "standalone",
   staticPageGenerationTimeout: 120,
   images: {
     // Image compression

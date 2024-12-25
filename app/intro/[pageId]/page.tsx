@@ -1,12 +1,13 @@
-// [slug] 동적 세그먼트를 채우기 위한 `params` 목록을 반환합니다.
+import { BLOG } from "@/blog.config";
 import SingleRecords from "@/components/records/SingleRecords";
 import { generatingPageByTypeAndId } from "@/lib/notion/getNotionData";
 
 export async function generateStaticParams() {
-  const records = [
-    { pageId: "341eb5c0337801da209c34c90bc3377" },
-    { pageId: "another-page-id" },
-  ];
+  // const records: any =
+  //   BLOG.LINK !== ""
+  //     ? await fetch("https://norkive.vercel.app/").then((res) => res.json())
+  //     : [{ pageId: "341eb5c0337801da209c34c90bc3377" }];
+  const records = [{ pageId: "341eb5c0337801da209c34c90bc3377" }];
   return records.map((record) => ({
     pageId: record.pageId,
   }));
