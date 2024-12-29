@@ -2,7 +2,7 @@ import MemoryCache from "./memory_cache";
 import FileCache from "./local_file_cache";
 import { BLOG } from "@/blog.config";
 
-let api = MemoryCache;
+// let api = MemoryCache;
 
 /**
  * To reduce frequent interface requests，notion data will be cached

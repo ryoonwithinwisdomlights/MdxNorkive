@@ -1,5 +1,5 @@
 import * as React from "react";
-import { getPost } from "../../lib/notion/getNotionPost";
+import { getPost } from "@/lib/notion/getNotionData";
 import Katex from "@/components/shared/KatexReact";
 import { getBlockTitle } from "notion-utils";
 import { BLOG } from "@/blog.config";
@@ -10,7 +10,7 @@ const katexSettings = {
 };
 
 /**
- * 数学公式
+ * mathematical formula
  * @param {} param0
  * @returns
  */
