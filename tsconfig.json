@@ -9,11 +9,9 @@
     ], 
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@/lib/*": [ "lib/*"],
-      "@/styles/*": ["styles/*"],
+      "@/*": ["./*"],
+      "@/lib/*": ["lib/*"],
+      // "@/styles/*": ["styles/*"],
       "@/context/*": ["context/*"],
       "@/modules/*": ["modules/*"],
       "@/types/*": ["types/*"],

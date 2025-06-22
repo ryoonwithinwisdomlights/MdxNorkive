@@ -8,7 +8,7 @@ const RecordBodyForPage = ({ pageType, recordList }: BasicRecordPageType) => {
   return (
     <div className="flex flex-row justify-end">
       <div className="space-y-6 w-full px-2">
-        {recordList ? (
+        {recordList && recordList.length > 0 ? (
           recordList?.map((item: any, index) => {
             const showPageCover = item?.pageCoverThumbnail;
             return (

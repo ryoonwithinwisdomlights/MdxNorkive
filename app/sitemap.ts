@@ -1,4 +1,4 @@
-import loadGlobalNotionData from "@/app/api/load-globalNotionData";
+import loadGlobalNotionData from "@/lib/data/load-globalNotionData";
 import { BLOG } from "@/blog.config";
 import { InitGlobalNotionData } from "@/types/provider.model";
 import { ChangeFrequency } from "@/types";

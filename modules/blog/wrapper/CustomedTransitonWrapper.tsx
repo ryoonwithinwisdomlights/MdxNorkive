@@ -10,7 +10,7 @@ const CustomedTransitonWrapper = ({
 }) => {
   const { onLoading, setOnLoading } = useGlobal({ from: "index" });
   const ref = useRef(null);
-  // console.log(ref.current); // 렌더링 후 ref가 null인지 확인
+  console.log("렌더링 후 ref가 null인지 확인::", ref.current); // 렌더링 후 ref가 null인지 확인
   useEffect(() => {
     setOnLoading((prev) => !prev);
   }, []);

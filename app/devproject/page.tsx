@@ -1,4 +1,4 @@
-import { getStaticNotionRecordsSortByDirTypeWithoutDateTitle } from "@/app/api/load-recordsData";
+import { getStaticNotionRecordsSortByDirTypeWithoutDateTitle } from "@/lib/data/load-recordsData";
 import BasicRecordPage from "@/modules/blog/records/BasicRecordPage";
 
 export default async function Page() {

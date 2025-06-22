@@ -12,40 +12,29 @@ import "./../styles/notion.css";
 // global style overrides for prism theme (optional)
 import "./../styles/prism-theme.css";
 // used for rendering equations (optional)
-import "katex/dist/katex.min.css";
 import { BLOG } from "@/blog.config";
 import { GlobalContextProvider } from "@/context/globalProvider";
 import { ThemeGitbookProvider } from "@/context/themeGitbookProvider";
+import "katex/dist/katex.min.css";
 
-import Announcement from "@/modules/announcement/Announcement";
-import ArticleInfo from "@/modules/common/components/article/ArticleInfo";
 import FloatTocButton from "@/modules/common/components/FloatTocButton";
-import Footer from "@/modules/layout/templates/footer/Footer";
-import InfoCard from "@/modules/layout/components/InfoCard";
-import JumpToBackButton from "@/modules/common/components/JumpToBackButton";
-import JumpToTopButton from "@/modules/common/components/JumpToTopButton";
 import PageNavDrawer from "@/modules/layout/components/navigation-post/PageNavDrawer";
 
-import CustomedTransitonWrapper from "@/modules/blog/wrapper/CustomedTransitonWrapper";
-import { InitGlobalNotionData } from "@/types/provider.model";
-import loadGlobalNotionData from "./api/load-globalNotionData";
-
+import loadGlobalNotionData from "@/lib/data/load-globalNotionData";
 import BottomMenuBar from "@/modules/common/components/menu/BottomMenuBar";
-import Catalog from "@/modules/common/components/catalog/Catalog";
 import LoadingCover from "@/modules/common/icons/LoadingCover";
-import MainNav from "@/modules/layout/templates/nav";
-import Busuanzi from "@/modules/shared/Busuanzi";
-import DebugPanel from "@/modules/shared/DebugPanel";
-import DisableCopy from "@/modules/shared/DisableCopy";
-import RightClickMenu from "@/modules/shared/RightClickMenu";
-import VConsoleTs from "@/modules/shared/VConsoleTs";
+import TopNavBar from "@/modules/layout/components/navigation-post/TopNavBar";
+import { InitGlobalNotionData } from "@/types/provider.model";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Suspense } from "react";
 
-import { ModalProvider } from "@/context/ModalProvider";
+import LeftNavigationBar from "@/modules/layout/templates/LeftNavigationBar";
+import MainLayoutWrapper from "@/modules/layout/templates/MainLayoutWrapper";
+import RightSlidingDrawer from "@/modules/layout/templates/RightSlidingDrawer";
 import { LayoutProps } from "@/types";
-import TopNavBar from "@/modules/layout/components/navigation-post/TopNavBar";
+import AuxiliaryBlogComponent from "@/modules/layout/components/AuxiliaryBlogComponent";
+
 config.autoAddCss = false;
 
 export const viewport: Viewport = {
@@ -115,19 +104,13 @@ export default async function RootLayout({ children }: LayoutProps) {
           from={"index"}
         >
           <ThemeGitbookProvider>
-            {/* <HandleOnComplete /> */}
             <div
               id="gitbook"
-              className={`${BLOG.FONT_STYLE}  w-full h-screen   justify-center dark:text-neutral-300 scroll-smooth pb-16  md:pb-0 `}
+              className={`${BLOG.FONT_STYLE}  w-full h-screen justify-center dark:text-neutral-300 scroll-smooth pb-16  md:pb-0 `}
             >
-              {/* top navigation bar */}
               <TopNavBar />
+              <AuxiliaryBlogComponent />
 
-              {!BLOG.isProd && <DebugPanel />}
-              {!BLOG.CAN_COPY && <DisableCopy />}
-              {BLOG.ANALYTICS_BUSUANZI_ENABLE && <Busuanzi />}
-              {BLOG.CUSTOM_RIGHT_CLICK_CONTEXT_MENU && <RightClickMenu />}
-              <VConsoleTs />
               <Suspense fallback={<LoadingCover />}>
                 <main
                   id="wrapper"
@@ -136,56 +119,10 @@ export default async function RootLayout({ children }: LayoutProps) {
                   }
                 >
                   {/* left navigation bar */}
-                  <div
-                    className={
-                      "font-sans hidden md:block w-3/12 min-h-screen dark:bg-neutral-900 border-r dark:border-transparent  z-10 "
-                    }
-                  >
-                    {/* Search and list all articles */}
-                    <MainNav />
-                    <div className="w-72 fixed left-0 bottom-0 z-20 bg-white  dark:bg-neutral-900">
-                      <Footer />
-                    </div>
-                  </div>
-
-                  <div
-                    id="center-wrapper"
-                    className="flex flex-col w-full relative z-10 pt-14 min-h-screen bg-white dark:bg-black dark:text-neutral-300"
-                  >
-                    <div className="flex flex-col justify-between w-full relative z-10  ">
-                      <div
-                        id="container-inner"
-                        className="w-full pl-7 pr-7 max-w-3xl justify-center mx-auto "
-                      >
-                        <CustomedTransitonWrapper>
-                          <ModalProvider />
-                          {children}
-                          {/* Back button */}
-                          <JumpToTopButton />
-                          <JumpToBackButton />
-                        </CustomedTransitonWrapper>
-                      </div>
-                    </div>
-                  </div>
-
+                  <LeftNavigationBar />
+                  <MainLayoutWrapper> {children}</MainLayoutWrapper>
                   {/*  right sliding drawer */}
-                  <div
-                    // style={{ width: "32rem" }}
-                    className={
-                      "hidden w-3/12 xl:block dark:border-transparent relative z-10 border-l border-neutral-200"
-                    }
-                  >
-                    <div className="py-14 px-6 sticky top-0">
-                      <ArticleInfo />
-                      <div className="py-4 justify-center">
-                        <Catalog post={null} />
-
-                        <InfoCard />
-
-                        <Announcement />
-                      </div>
-                    </div>
-                  </div>
+                  <RightSlidingDrawer />
                 </main>
               </Suspense>
               <FloatTocButton />

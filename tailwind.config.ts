@@ -5,8 +5,11 @@ import { fontFamilies } from "./lib/font";
 module.exports = {
   darkMode: ["class"],
   content: [
-    "./components/**/*.{js,ts,jsx,tsx,}",
+    "./modules/**/*.{js,ts,jsx,tsx,}",
+    "./context/**/*.{js,ts,jsx,tsx,}",
+    "./lib/**/*.{js,ts,jsx,tsx,}",
     "./app/**/*.{js,ts,jsx,tsx,}",
+    "./types/**/*.{js,ts,jsx,tsx,}",
     "./styles/**/*.{js,ts,jsx,tsx,css}",
   ],
   theme: {

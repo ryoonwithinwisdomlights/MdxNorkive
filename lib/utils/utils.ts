@@ -369,3 +369,9 @@ export const getLazyComponent = (componentImportFn: Function) =>
     let obj = await componentImportFn();
     return typeof obj.default === "function" ? obj : obj.default;
   });
+
+export const isNotEmptyObj = (obj) => {
+  if (obj) {
+    if (Object.keys(obj).length > 0) return true;
+  } else return false;
+};
