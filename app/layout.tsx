@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from "next";
+import { BLOG } from "@/blog.config";
+import { Suspense } from "react";
 import "./../styles/animate.css"; // @see https://animate.style/
 import "./../styles/globals.css";
 import "./../styles/utility-patterns.css";
@@ -12,10 +14,11 @@ import "./../styles/notion.css";
 // global style overrides for prism theme (optional)
 import "./../styles/prism-theme.css";
 // used for rendering equations (optional)
-import { BLOG } from "@/blog.config";
+import "katex/dist/katex.min.css";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+
 import { GlobalContextProvider } from "@/context/globalProvider";
 import { ThemeGitbookProvider } from "@/context/themeGitbookProvider";
-import "katex/dist/katex.min.css";
 
 import FloatTocButton from "@/modules/common/components/FloatTocButton";
 import PageNavDrawer from "@/modules/layout/components/navigation-post/PageNavDrawer";
@@ -26,8 +29,6 @@ import LoadingCover from "@/modules/common/icons/LoadingCover";
 import TopNavBar from "@/modules/layout/components/navigation-post/TopNavBar";
 import { InitGlobalNotionData } from "@/types/provider.model";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import "@fortawesome/fontawesome-svg-core/styles.css";
-import { Suspense } from "react";
 
 import LeftNavigationBar from "@/modules/layout/templates/LeftNavigationBar";
 import MainLayoutWrapper from "@/modules/layout/templates/MainLayoutWrapper";
