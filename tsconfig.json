@@ -21,6 +21,15 @@
       "@/styles/*": [
         "styles/*"
       ],
+      "@/context/*": [
+        "context/*"
+      ],
+      "@/modules/*": [
+        "context/*"
+      ],
+      "@/types/*": [
+        "types/*"
+      ],
       // "@/app/api/*": [
       //   "app/api/*"
       // ]
