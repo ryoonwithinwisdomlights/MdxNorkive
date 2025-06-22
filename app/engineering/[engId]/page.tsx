@@ -1,10 +1,10 @@
 import { BLOG } from "@/blog.config";
-import SingleRecords from "@/components/records/SingleRecords";
-import { AllPosts } from "@/lib/models";
+import SingleRecords from "@/modules/blog/records/SingleRecords";
+import { AllPosts } from "@/types";
 import {
   generatingPageByTypeAndId,
   getPageProps,
-} from "@/lib/notion/getNotionData";
+} from "@/lib/data/notion/getNotionData";
 import { Metadata } from "next";
 
 export async function generateStaticParams() {

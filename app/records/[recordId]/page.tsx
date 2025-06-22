@@ -2,8 +2,8 @@
 
 import { revalidatePath } from "next/cache";
 import { BLOG } from "@/blog.config";
-import SingleRecords from "@/components/records/SingleRecords";
-import { generatingPageByTypeAndId } from "@/lib/notion/getNotionData";
+import SingleRecords from "@/modules/blog/records/SingleRecords";
+import { generatingPageByTypeAndId } from "@/lib/data/notion/getNotionData";
 
 // We'll prerender only the params from `generateStaticParams` at build time.
 // If a request comes in for a path that hasn't been generated,

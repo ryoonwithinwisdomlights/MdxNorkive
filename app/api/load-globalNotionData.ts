@@ -1,6 +1,9 @@
 import { BLOG } from "@/blog.config";
-import { getPostBlocks } from "@/lib/notion/getPostBlocks";
-import { getGlobalData, getGlobalPageIdData } from "@/lib/notion/getNotionData";
+import { getPostBlocks } from "@/lib/data/notion/getPostBlocks";
+import {
+  getGlobalData,
+  getGlobalPageIdData,
+} from "@/lib/data/notion/getNotionData";
 
 export default async function loadGlobalNotionData(from: string = "index") {
   const props = await getGlobalData({ from: from });

@@ -1,7 +1,7 @@
 import loadGlobalNotionData from "@/app/api/load-globalNotionData";
 import { BLOG } from "@/blog.config";
-import { InitGlobalNotionData } from "@/lib/models/provider.model";
-import { ChangeFrequency } from "@/lib/models";
+import { InitGlobalNotionData } from "@/types/provider.model";
+import { ChangeFrequency } from "@/types";
 import type { MetadataRoute } from "next";
 import formatDate from "@/lib/utils/formatDate";
 

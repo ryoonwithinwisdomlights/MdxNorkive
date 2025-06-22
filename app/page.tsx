@@ -1,7 +1,7 @@
 // Import your Client Component
-import AllRecordsArchiveItem from "@/components/records/AllRecordsArchiveItem";
+import AllRecordsArchiveItem from "@/modules/blog/records/AllRecordsArchiveItem";
 import { getStaticNotionRecordsSortByDirType } from "./api/load-recordsData";
-import NoRecordFound from "@/components/NoRecordFound";
+import NoRecordFound from "@/modules/blog/records/NoRecordFound";
 
 export default async function Page() {
   const { props }: any = await getStaticNotionRecordsSortByDirType({

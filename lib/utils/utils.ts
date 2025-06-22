@@ -3,8 +3,8 @@ import React from "react";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import * as Icons from "@fortawesome/free-solid-svg-icons"; // 모든 아이콘을 가져옴
-import { RecommendPost } from "@/lib/models/page.model";
-import { SlugConvertProps } from "@/lib/models";
+import { RecommendPost } from "@/types/page.model";
+import { SlugConvertProps } from "@/types";
 
 /**
  * Convert string to json

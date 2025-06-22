@@ -1,6 +1,6 @@
-import AllRecordsPostListPage from "@/components/records/AllRecordsPostListPage";
-import { TotalPageParams } from "@/lib/models";
-import { generatingCategoryAndTagPageByTypeAndId } from "@/lib/notion/getNotionData";
+import AllRecordsPostListPage from "@/modules/blog/records/AllRecordsPostListPage";
+import { TotalPageParams } from "@/types";
+import { generatingCategoryAndTagPageByTypeAndId } from "@/lib/data/notion/getNotionData";
 
 export async function generateStaticParams() {
   const records = [

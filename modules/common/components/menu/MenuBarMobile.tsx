@@ -2,7 +2,7 @@
 import React from "react";
 import { MENU_MOBILE } from "@/lib/constants/menu-mobile.constansts";
 import { BLOG } from "@/blog.config";
-import { MenuItemCollapse } from "./MenuItemCollapse";
+import { MenuItemCollapse } from "@/modules/common/components/menu/MenuItemCollapse";
 import { useGlobal } from "@/context/globalProvider";
 
 export const MenuBarMobile = (props) => {

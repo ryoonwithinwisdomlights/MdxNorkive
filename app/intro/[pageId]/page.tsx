@@ -1,6 +1,6 @@
 import { BLOG } from "@/blog.config";
-import SingleRecords from "@/components/records/SingleRecords";
-import { generatingPageByTypeAndId } from "@/lib/notion/getNotionData";
+import SingleRecords from "@/modules/blog/records/SingleRecords";
+import { generatingPageByTypeAndId } from "@/lib/data/notion/getNotionData";
 
 export async function generateStaticParams() {
   const records = [{ pageId: "341eb5c0337801da209c34c90bc3377" }];

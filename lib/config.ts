@@ -2,7 +2,7 @@
 
 import { BLOG } from "@/blog.config";
 import { convertCleanJsonString, deepClone } from "@/lib/utils/utils";
-import { useGlobal } from "@/lib/providers/globalProvider";
+import { useGlobal } from "@/context/globalProvider";
 import { isUrl } from "@/lib/utils/utils";
 
 /**

@@ -1,6 +1,6 @@
 "use client";
 
-import { useGlobal } from "@/lib/providers/globalProvider";
+import { useGlobal } from "@/context/globalProvider";
 import { LoaderIcon } from "lucide-react";
 
 const Loading = () => {

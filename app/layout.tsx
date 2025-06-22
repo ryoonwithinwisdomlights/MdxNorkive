@@ -14,37 +14,38 @@ import "./../styles/prism-theme.css";
 // used for rendering equations (optional)
 import "katex/dist/katex.min.css";
 import { BLOG } from "@/blog.config";
-import { GlobalContextProvider } from "@/lib/providers/globalProvider";
-import { ThemeGitbookProvider } from "@/lib/providers/themeGitbookProvider";
+import { GlobalContextProvider } from "@/context/globalProvider";
+import { ThemeGitbookProvider } from "@/context/themeGitbookProvider";
 
-import Announcement from "@/components/Announcement";
-import ArticleInfo from "@/components/ArticleInfo";
-import FloatTocButton from "@/components/FloatTocButton";
-import Footer from "@/components/Footer";
-import InfoCard from "@/components/InfoCard";
-import JumpToBackButton from "@/components/JumpToBackButton";
-import JumpToTopButton from "@/components/JumpToTopButton";
-import PageNavDrawer from "@/components/PageNavDrawer";
-import TopNavBar from "@/components/TopNavBar";
-import CustomedTransitonWrapper from "@/components/wrapper/CustomedTransitonWrapper";
-import { InitGlobalNotionData } from "@/lib/models/provider.model";
+import Announcement from "@/modules/announcement/Announcement";
+import ArticleInfo from "@/modules/common/components/article/ArticleInfo";
+import FloatTocButton from "@/modules/common/components/FloatTocButton";
+import Footer from "@/modules/layout/templates/footer/Footer";
+import InfoCard from "@/modules/layout/components/InfoCard";
+import JumpToBackButton from "@/modules/common/components/JumpToBackButton";
+import JumpToTopButton from "@/modules/common/components/JumpToTopButton";
+import PageNavDrawer from "@/modules/layout/components/navigation-post/PageNavDrawer";
+
+import CustomedTransitonWrapper from "@/modules/blog/wrapper/CustomedTransitonWrapper";
+import { InitGlobalNotionData } from "@/types/provider.model";
 import loadGlobalNotionData from "./api/load-globalNotionData";
 
-import BottomMenuBar from "@/components/BottomMenuBar";
-import Catalog from "@/components/Catalog";
-import LoadingCover from "@/components/LoadingCover";
-import AllNavRecordsList from "@/components/records/AllNavRecordsList";
-import Busuanzi from "@/components/shared/Busuanzi";
-import DebugPanel from "@/components/shared/DebugPanel";
-import DisableCopy from "@/components/shared/DisableCopy";
-import RightClickMenu from "@/components/shared/RightClickMenu";
-import VConsoleTs from "@/components/shared/VConsoleTs";
+import BottomMenuBar from "@/modules/common/components/menu/BottomMenuBar";
+import Catalog from "@/modules/common/components/catalog/Catalog";
+import LoadingCover from "@/modules/common/icons/LoadingCover";
+import MainNav from "@/modules/layout/templates/nav";
+import Busuanzi from "@/modules/shared/Busuanzi";
+import DebugPanel from "@/modules/shared/DebugPanel";
+import DisableCopy from "@/modules/shared/DisableCopy";
+import RightClickMenu from "@/modules/shared/RightClickMenu";
+import VConsoleTs from "@/modules/shared/VConsoleTs";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Suspense } from "react";
 
-import { ModalProvider } from "@/lib/providers/ModalProvider";
-import { LayoutProps } from "@/lib/models";
+import { ModalProvider } from "@/context/ModalProvider";
+import { LayoutProps } from "@/types";
+import TopNavBar from "@/modules/layout/components/navigation-post/TopNavBar";
 config.autoAddCss = false;
 
 export const viewport: Viewport = {
@@ -141,7 +142,7 @@ export default async function RootLayout({ children }: LayoutProps) {
                     }
                   >
                     {/* Search and list all articles */}
-                    <AllNavRecordsList />
+                    <MainNav />
                     <div className="w-72 fixed left-0 bottom-0 z-20 bg-white  dark:bg-neutral-900">
                       <Footer />
                     </div>

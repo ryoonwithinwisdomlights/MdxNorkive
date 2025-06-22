@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { WindowSize } from "../models";
+import { WindowSize } from "@/types";
 
 // Window size를 담은 객체의 타입을 정의합니다.
 

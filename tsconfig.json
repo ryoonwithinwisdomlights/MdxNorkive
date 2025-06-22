@@ -12,27 +12,11 @@
       "@/*": [
         "./*"
       ],
-      "@/components/*": [
-        "components/*"
-      ],
-      "@/lib/*": [
-        "lib/*"
-      ],
-      "@/styles/*": [
-        "styles/*"
-      ],
-      "@/context/*": [
-        "context/*"
-      ],
-      "@/modules/*": [
-        "context/*"
-      ],
-      "@/types/*": [
-        "types/*"
-      ],
-      // "@/app/api/*": [
-      //   "app/api/*"
-      // ]
+      "@/lib/*": [ "lib/*"],
+      "@/styles/*": ["styles/*"],
+      "@/context/*": ["context/*"],
+      "@/modules/*": ["modules/*"],
+      "@/types/*": ["types/*"],
     },
 
     "allowJs": true,

@@ -1,5 +1,5 @@
 import { getStaticNotionRecordsSortByDirTypeWithoutDateTitle } from "@/app/api/load-recordsData";
-import BasicRecordPage from "@/components/records/BasicRecordPage";
+import BasicRecordPage from "@/modules/blog/records/BasicRecordPage";
 
 export default async function Page() {
   const { props }: any =

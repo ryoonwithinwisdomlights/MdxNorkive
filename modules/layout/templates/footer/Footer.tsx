@@ -2,7 +2,6 @@
 import { BLOG } from "@/blog.config";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEye, faUsers } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 
 library.add(faEye, faUsers);
