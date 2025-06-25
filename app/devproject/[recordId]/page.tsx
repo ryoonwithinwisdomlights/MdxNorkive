@@ -1,10 +1,10 @@
 import { BLOG } from "@/blog.config";
-import SingleRecords from "@/modules/blog/records/SingleRecords";
-import { AllPosts } from "@/types";
 import {
-  generatingPageByTypeAndId,
+  getPageByPageIdAndType,
   getPageProps,
 } from "@/lib/data/notion/getNotionData";
+import SingleRecords from "@/modules/blog/records/SingleRecords";
+import ErrorComponent from "@/modules/shared/ErrorComponent";
 import { Metadata } from "next";
 
 export async function generateStaticParams() {
@@ -19,7 +19,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }): Promise<Metadata> {
   const { recordId } = await params;
-  const props = await getPageProps(recordId, "Devproject");
+  const props = await getPageProps({ paramId: recordId, type: "Devproject" });
   const postTitle = props?.post ? props.post : "";
   return {
     title: postTitle,
@@ -31,11 +31,23 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 export default async function Page({ params }) {
   const { recordId } = await params;
 
-  const props = await generatingPageByTypeAndId(recordId, "Devproject");
+  if (!recordId) {
+    return <ErrorComponent />;
+  }
+  const props = await getPageProps({
+    paramId: recordId,
+    type: "Devproject",
+  });
 
+  if (!props?.post) {
+    return <div>Invalid record ID</div>;
+  }
+
+  const page = await getPageByPageIdAndType(props, "Devproject");
+  // console.log("Devproject SingleRecords:", props);
   return (
     <div className="w-full h-full">
-      <SingleRecords props={props} />
+      <SingleRecords props={page} />
     </div>
   );
 }

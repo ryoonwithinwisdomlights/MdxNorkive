@@ -1,6 +1,7 @@
 import AllRecordsPostListPage from "@/modules/blog/records/AllRecordsPostListPage";
 import { TotalPageParams } from "@/types";
-import { generatingCategoryAndTagPageByTypeAndId } from "@/lib/data/notion/getNotionData";
+import { getCategoryAndTagByPageId } from "@/lib/data/notion/getNotionData";
+import ErrorComponent from "@/modules/shared/ErrorComponent";
 
 export async function generateStaticParams() {
   const records = [
@@ -17,8 +18,10 @@ export default async function Page({ params, searchParams }: TotalPageParams) {
   const { pagenum } = await searchParams;
   const decodedCategoryId = decodeURIComponent(categoryId);
 
-  const props = await generatingCategoryAndTagPageByTypeAndId(
-    categoryId,
+  if (!categoryId) {
+    <ErrorComponent />;
+  }
+  const props = await getCategoryAndTagByPageId(
     decodedCategoryId,
     "category",
     pagenum

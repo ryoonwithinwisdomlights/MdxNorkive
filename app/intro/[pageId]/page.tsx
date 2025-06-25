@@ -1,7 +1,9 @@
-import { BLOG } from "@/blog.config";
+import {
+  getPageByPageIdAndType,
+  getPageProps,
+} from "@/lib/data/notion/getNotionData";
 import SingleRecords from "@/modules/blog/records/SingleRecords";
-import { generatingPageByTypeAndId } from "@/lib/data/notion/getNotionData";
-
+import ErrorComponent from "@/modules/shared/ErrorComponent";
 export async function generateStaticParams() {
   const records = [{ pageId: "341eb5c0337801da209c34c90bc3377" }];
   return records.map((record) => ({
@@ -14,14 +16,22 @@ export default async function Page({ params }) {
   const { pageId } = await params;
 
   if (!pageId) {
-    return <div>Invalid pageId ID</div>;
+    return <ErrorComponent />;
+  }
+  const props = await getPageProps({
+    paramId: pageId,
+    type: "SubMenuPage",
+  });
+  if (!props?.post) {
+    // props.post = null;
+    return <div>Invalid record ID</div>;
   }
 
-  const props = await generatingPageByTypeAndId(pageId, "SubMenuPage");
-
+  const page = await getPageByPageIdAndType(props, "SubMenuPage");
+  console.log("SubMenuPage SingleRecords:", props);
   return (
     <div className="w-full h-full">
-      <SingleRecords props={props} />
+      <SingleRecords props={page} />
     </div>
   );
 }

@@ -1,133 +1,54 @@
-import { BLOG } from "@/blog.config";
 import { getGlobalData } from "@/lib/data/notion/getNotionData";
 import { formatDateFmt } from "@/lib/utils/formatDate";
 
-export async function getStaticNotionRecordsSortByDirType({
+export async function getNotionRecordsByType({
   from = "records",
-  type = "Record",
+  type,
+  dateSort = true,
 }: {
   from: string;
-  type: string;
+  type?: string;
+  dateSort?: boolean;
 }) {
   const props = await getGlobalData({
     from: `${from}-index-props`,
     type: type,
   });
-
-  // Handle pagination
-  props.posts = props.allPages?.filter(
-    (page) =>
-      page.type !== "CONFIG" &&
-      page.type !== "Menu" &&
-      page.type !== "SubMenu" &&
-      page.type !== "SubMenuPage" &&
-      page.type !== "Notice" &&
-      page.type !== "Page" &&
-      page.status === "Published"
-  );
-  delete props.allPages;
-
-  const postsSortByDate = Object.create(props.posts);
-
-  postsSortByDate.sort((a, b) => {
-    return b?.publishDate - a?.publishDate;
-  });
-
-  const archiveRecords = {};
-
-  postsSortByDate.forEach((post) => {
-    const date = formatDateFmt(post.publishDate, "yyyy-MM");
-    if (date !== "2012-12" && date !== "2013-12" && date !== "2015-07") {
-      if (archiveRecords[date]) {
-        archiveRecords[date].push(post);
-      } else {
-        archiveRecords[date] = [post];
-      }
-    }
-  });
-
+  const archiveRecords = getArchiveRecords(dateSort, props);
   props.archiveRecords = archiveRecords;
   delete props.allPages;
-
   return { props };
 }
 
-export async function getStaticNotionRecordsSortByDirTypeWithoutDateTitle({
-  from = "records",
-  type = "Record",
-}: {
-  from: string;
-  type: string;
-}) {
-  console.log("[get Static Notion Records]\n -from:", from, "\n -type:", type);
-  const props = await getGlobalData({
-    from: `${from}-index-props`,
-    type: type,
-  });
-  // Handle pagination
-  props.posts = props.allPages?.filter((page) => {
-    return page.type === type && page.status === "Published";
-  });
-
-  props.archiveRecords = props.posts;
-  delete props.allPages;
-
-  return { props };
-}
-
-export async function getStaticNotionRecordsArticle({
-  from = "slug-paths",
-  type = "Record",
-}: {
-  from: string;
-  type: string;
-}) {
-  if (!BLOG.isProd) {
-    return {
-      paths: [],
-      fallback: true,
-    };
+function getArchiveRecords(dateSort, props) {
+  let result = props.posts;
+  if (dateSort === true) {
+    const postsSortByDate = getSortedPostObj(props.posts);
+    const archiveRecords = getPostsGroupByDate(postsSortByDate);
+    result = archiveRecords;
   }
+  return result;
+}
 
-  const props = await getGlobalData({
-    from: `${from}-index-props`,
-    type: type,
-  });
-  console.log("type-from:", type);
-  // Handle pagination
-  props.posts = props.allPages?.filter(
-    (page) =>
-      page.type !== "CONFIG" &&
-      page.type !== "Menu" &&
-      page.type !== "SubMenu" &&
-      page.type !== "SubMenuPage" &&
-      page.type !== "Notice" &&
-      page.type !== "Page" &&
-      page.status === "Published"
-  );
-  delete props.allPages;
-
-  const postsSortByDate = Object.create(props.posts);
+function getSortedPostObj(obj) {
+  const postsSortByDate = Object.create(obj);
 
   postsSortByDate.sort((a, b) => {
     return b?.publishDate - a?.publishDate;
   });
+  return postsSortByDate;
+}
 
-  const archiveRecords = {};
+function getPostsGroupByDate(array) {
+  const allPosts = {};
 
-  postsSortByDate.forEach((post) => {
+  array.forEach((post) => {
     const date = formatDateFmt(post.publishDate, "yyyy-MM");
-    if (date !== "2012-12" && date !== "2013-12" && date !== "2015-07") {
-      if (archiveRecords[date]) {
-        archiveRecords[date].push(post);
-      } else {
-        archiveRecords[date] = [post];
-      }
+    if (allPosts[date]) {
+      allPosts[date].push(post);
+    } else {
+      allPosts[date] = [post];
     }
   });
-
-  props.archiveRecords = archiveRecords;
-  delete props.allPages;
-
-  return { props };
+  return allPosts;
 }

@@ -1,10 +1,10 @@
 import { BLOG } from "@/blog.config";
-import SingleRecords from "@/modules/blog/records/SingleRecords";
-import { AllPosts } from "@/types";
 import {
-  generatingPageByTypeAndId,
+  getPageByPageIdAndType,
   getPageProps,
 } from "@/lib/data/notion/getNotionData";
+import SingleRecords from "@/modules/blog/records/SingleRecords";
+import ErrorComponent from "@/modules/shared/ErrorComponent";
 import { Metadata } from "next";
 
 export async function generateStaticParams() {
@@ -20,7 +20,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }): Promise<Metadata> {
   const { engId } = await params;
-  const props = await getPageProps(engId, "Engineering");
+  const props = await getPageProps({ paramId: engId, type: "Engineering" });
   const postTitle = props?.post ? props.post : "";
   return {
     title: postTitle,
@@ -31,11 +31,24 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 // `generateStaticParams`가 반환한 `params`를 사용하여 이 페이지의 여러 버전이 정적으로 생성됩니다.
 export default async function Page({ params }) {
   const { engId } = await params;
+  if (!engId) {
+    return <ErrorComponent />;
+  }
+  const props = await getPageProps({
+    paramId: engId,
+    type: "Devproject",
+  });
 
-  const props = await generatingPageByTypeAndId(engId, "Engineering");
+  if (!props?.post) {
+    // props.post = null;
+    return <div>Invalid record ID</div>;
+  }
+
+  const page = await getPageByPageIdAndType(props, "Engineering");
+  console.log("Engineering SingleRecords:", props);
   return (
     <div className="w-full h-full">
-      <SingleRecords props={props} />
+      <SingleRecords props={page} />
     </div>
   );
 }

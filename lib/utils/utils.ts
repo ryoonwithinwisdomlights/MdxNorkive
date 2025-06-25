@@ -295,6 +295,37 @@ export function deepClone(obj) {
   }
 }
 
+function deepCloneGpt(value) {
+  // 원시값은 그대로 리턴
+  if (value === null || typeof value !== "object") {
+    return value;
+  }
+
+  // Date 객체 복사
+  if (value instanceof Date) {
+    return new Date(value.getTime());
+  }
+
+  // Array 복사
+  if (Array.isArray(value)) {
+    return value.map(deepClone);
+  }
+
+  // Object 복사 (plain object만 대상)
+  if (value.constructor === Object) {
+    return Object.keys(value).reduce((acc, key) => {
+      acc[key] = deepClone(value[key]);
+      return acc;
+    }, {});
+  }
+
+  // Map, Set, Function, Symbol 등 특별 객체는 여기서 필요 시 추가 지원
+  // 현재 버전은 일반 Object / Array / Date만 deep copy
+
+  throw new Error(
+    `Unsupported type in deepClone: ${Object.prototype.toString.call(value)}`
+  );
+}
 //############################Record related Function###############################
 
 /**
@@ -321,7 +352,7 @@ export function getRecommendPost(
 
     for (let j = 0; j < currentTags.length; j++) {
       const t = currentTags[j];
-      // 이미 추천된 게시물인지 확인getNotionPageData:
+      // 이미 추천된 게시물인지 확인getAllNotionPageData:
       if (postIds.indexOf(p.id) > -1) {
         continue;
       }

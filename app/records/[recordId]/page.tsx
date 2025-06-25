@@ -1,16 +1,14 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
-import { BLOG } from "@/blog.config";
+import {
+  getPageByPageIdAndType,
+  getPageProps,
+} from "@/lib/data/notion/getNotionData";
 import SingleRecords from "@/modules/blog/records/SingleRecords";
-import { generatingPageByTypeAndId } from "@/lib/data/notion/getNotionData";
+import ErrorComponent from "@/modules/shared/ErrorComponent";
 
-// We'll prerender only the params from `generateStaticParams` at build time.
-// If a request comes in for a path that hasn't been generated,
-// Next.js will server-render the page on-demand.
-//see the details https://nextjs.org/docs/app/building-your-application/data-fetching/incremental-static-regeneration
-// export const dynamicParams = true; // or false, to 404 on unknown paths
-
+//메두사 참고하여 generateStaticParams/generateMetadata 개정. 아멘.
+//
 export async function generateStaticParams() {
   const records = [{ recordId: "1481eb5c-0337-8087-a304-f2af3275be11" }];
 
@@ -27,11 +25,18 @@ export default async function Page({
 }) {
   const { recordId } = await params;
 
-  const props = await generatingPageByTypeAndId(recordId, "Record");
-
+  if (!recordId) {
+    return <ErrorComponent />;
+  }
+  const props = await getPageProps({
+    paramId: recordId,
+    type: "Record",
+  });
+  const page = await getPageByPageIdAndType(props, "Record");
+  // console.log("Record SingleRecords:", props);
   return (
     <div className="w-full h-full">
-      <SingleRecords props={props} />
+      <SingleRecords props={page} />
     </div>
   );
 }

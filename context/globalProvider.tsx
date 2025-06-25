@@ -52,7 +52,6 @@ export function GlobalContextProvider({
     customMenu,
     post,
     notice,
-    allNavPages,
     latestPosts,
   } = initGlobalNotionData;
 
@@ -133,7 +132,6 @@ export function GlobalContextProvider({
         className,
         customNav,
         customMenu,
-        allNavPages,
         showTocButton,
         post,
         latestPosts,

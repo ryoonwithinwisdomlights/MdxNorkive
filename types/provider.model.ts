@@ -124,7 +124,6 @@ interface GlobalValueInferface {
   lang: string;
   customNav: CustomNavList[];
   customMenu: any[];
-  allNavPages: AllNavPages[];
   showTocButton?: boolean;
   notice: any;
   post: any;

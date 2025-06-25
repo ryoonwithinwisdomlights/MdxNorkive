@@ -1,7 +1,7 @@
 import AllRecordsPostListPage from "@/modules/blog/records/AllRecordsPostListPage";
 import { TotalPageParams } from "@/types";
-import { generatingCategoryAndTagPageByTypeAndId } from "@/lib/data/notion/getNotionData";
-
+import { getCategoryAndTagByPageId } from "@/lib/data/notion/getNotionData";
+import ErrorComponent from "@/modules/shared/ErrorComponent";
 export async function generateStaticParams() {
   const records = [{ tagId: "techLog" }, { tagId: "another-Tags" }];
   return records.map((record) => ({
@@ -13,11 +13,12 @@ export default async function Page({ params, searchParams }: TotalPageParams) {
   const { tagId } = await params;
   const { pagenum } = await searchParams;
   const decodedTagId = decodeURIComponent(tagId);
-
-  const props = await generatingCategoryAndTagPageByTypeAndId(
-    tagId,
+  if (!tagId) {
+    <ErrorComponent />;
+  }
+  const props = await getCategoryAndTagByPageId(
     decodedTagId,
-    "tag",
+    "category",
     pagenum
   );
   return (
