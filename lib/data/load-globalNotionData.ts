@@ -4,8 +4,8 @@ import { getPostBlocks } from "@/lib/data/notion/getPostBlocks";
 import { testGetPP } from "./notion/typescript/notion-api";
 
 export default async function loadGlobalNotionData(from: string = "index") {
-  const testee = await testGetPP(BLOG.NOTION_PAGE_ID as string);
-  console.log("testee:", testee);
+  // const testee = await testGetPP(BLOG.NOTION_PAGE_ID as string);
+  // console.log("testee:", testee);
   const props = await getGlobalData({
     rootPageId: BLOG.NOTION_PAGE_ID,
     from: "main",

@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { GeistSans } from "geist/font/sans";
 import { BLOG } from "@/blog.config";
 import { Suspense } from "react";
 import "./../styles/animate.css"; // @see https://animate.style/
@@ -98,7 +99,7 @@ export default async function RootLayout({ children }: LayoutProps) {
     await loadGlobalNotionData("index");
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={GeistSans.className}>
       <body>
         <GlobalContextProvider
           initGlobalNotionData={initGlobalNotionData}
