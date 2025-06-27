@@ -2,6 +2,7 @@
 /* eslint-disable multiline-ternary */
 import { BLOG } from "@/blog.config";
 import { useGlobal } from "@/context/globalProvider";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { BugIcon, XIcon } from "lucide-react";
@@ -13,7 +14,7 @@ library.add(faTimes);
  */
 const DebugPanel = () => {
   const [show, setShow] = useState(false);
-  const { locale } = useGlobal({});
+  const { locale } = useNorkiveTheme();
   const [siteConfig, updateSiteConfig] = useState({});
 
   useEffect(() => {

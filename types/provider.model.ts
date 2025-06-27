@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-
+import { SiteInfoModel } from "./siteconfig.model";
 interface SiteInfo {
   title: any;
   description: any;
@@ -105,14 +105,9 @@ interface InitGlobalNotionData {
   latestPosts: [];
 }
 interface GlobalValueInferface {
-  onLoading: boolean;
-  setOnLoading: Dispatch<SetStateAction<boolean>>;
   searchKeyword: string;
   setSearchKeyword: Dispatch<SetStateAction<string>>;
-  locale: any;
-  updateLocale: Dispatch<SetStateAction<string>>;
-  isDarkMode: boolean;
-  updateDarkMode: Dispatch<SetStateAction<boolean>>;
+
   siteInfo: SiteInfo;
   categoryOptions?: [];
   subTypeOptions?: [];
@@ -121,16 +116,11 @@ interface GlobalValueInferface {
   setFilteredNavPages?: Dispatch<SetStateAction<AllNavPages[]>>;
   allNavPagesForLeftSiedBar?: AllNavPages[];
   className?: string;
-  lang: string;
   oldNav: CustomNavList[];
   customMenu: any[];
-  showTocButton?: boolean;
   notice: any;
   post: any;
   latestPosts: [];
-  handleChangeDarkMode: (boolean) => void;
-  changeLang: (text: string) => void;
-  changeOppositeLang: () => void;
 }
 
 type GbP = {
@@ -148,3 +138,22 @@ export type {
   GlobalValueInferface,
   GbP,
 };
+
+export interface NorKiveThemeProviderContext {
+  onLoading: boolean;
+  setOnLoading: Dispatch<SetStateAction<boolean>>;
+  searchKeyword: string;
+  setSearchKeyword: Dispatch<SetStateAction<string>>;
+  siteInfo?: SiteInfoModel;
+  isDarkMode: boolean;
+  pageNavVisible: boolean;
+  changePageNavVisible: () => void;
+  handleChangeDarkMode: (boolean) => void;
+  locale: any;
+  updateLocale: Dispatch<SetStateAction<string>>;
+  changeLang: (text: string) => void;
+  changeOppositeLang: () => void;
+  lang: string;
+  // theme?: string | null;
+  // setTheme?: Dispatch<SetStateAction<"light" | "dark" | null>>;
+}

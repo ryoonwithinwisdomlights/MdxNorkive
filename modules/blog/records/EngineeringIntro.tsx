@@ -1,9 +1,8 @@
 "use client";
-import React from "react";
 
-import { useGlobal } from "@/context/globalProvider";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 const EngineeringIntro = () => {
-  const { lang } = useGlobal({ from: "index" });
+  const { lang } = useNorkiveTheme();
   return (
     <div className="mb-4  mr-4 flex flex-col justify-end">
       <div className="flex flex-row justify-end text-xs  text-neutral-600 font-extralight dark:text-neutral-200 hover:text-neutral-800 ">

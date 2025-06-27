@@ -1,6 +1,6 @@
 "use client";
 
-import { useGlobal } from "@/context/globalProvider";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 import { MoveLeftIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -17,7 +17,7 @@ import { useEffect, useState } from "react";
  */
 const JumpToBackButton = () => {
   const router = useRouter();
-  const { locale } = useGlobal({ from: "index" });
+  const { locale } = useNorkiveTheme();
   const handleBack = () => {
     router.back();
   };

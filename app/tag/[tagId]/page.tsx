@@ -1,6 +1,7 @@
 import AllRecordsPostListPage from "@/modules/blog/records/AllRecordsPostListPage";
 import { TotalPageParams } from "@/types";
-import { getCategoryAndTagByPageId } from "@/lib/data/notion/getNotionData";
+import { getCategoryAndTagByPageId } from "@/lib/data/notion/typescript/getNotionData";
+
 import ErrorComponent from "@/modules/shared/ErrorComponent";
 export async function generateStaticParams() {
   const records = [{ tagId: "techLog" }, { tagId: "another-Tags" }];

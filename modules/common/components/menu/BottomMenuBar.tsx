@@ -1,10 +1,10 @@
 "use client";
-import { useState, useLayoutEffect } from "react";
 import { BLOG } from "@/blog.config";
-import { useGitBookGlobal } from "@/context/themeGitbookProvider";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { usePathname } from "next/navigation";
+import { useLayoutEffect, useState } from "react";
 import MobileButtonPageNav from "./MobileButtonPageNav";
 
 // 사전에 사용할 아이콘 추가
@@ -33,7 +33,7 @@ const BottomMenuBar = () => {
     // the time here. In this example we update it only once
     setTime(new Date());
   }, []);
-  const { pageNavVisible, changePageNavVisible } = useGitBookGlobal();
+  const { pageNavVisible, changePageNavVisible } = useNorkiveTheme();
   const pathname = usePathname();
   const togglePageNavVisible = () => {
     changePageNavVisible();

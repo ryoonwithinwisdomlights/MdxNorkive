@@ -17,6 +17,7 @@ import {
 } from "react-share";
 
 import { LinkIcon } from "lucide-react";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 // 사전에 사용할 아이콘 추가
 /**
  * @author https://github.com/txs
@@ -26,7 +27,7 @@ import { LinkIcon } from "lucide-react";
 const ShareButtons = ({ shareUrl, title, body, image }) => {
   const services = BLOG.RECORDS_SHARE_SERVICES.split(",");
   const titleWithSiteInfo = title + " | " + BLOG.TITLE;
-  const { locale } = useGlobal({ from: "index" });
+  const { locale } = useNorkiveTheme();
 
   const copyUrl = () => {
     copy(shareUrl);

@@ -26,6 +26,7 @@ import {
 } from "react";
 import { toast } from "sonner";
 import { useCopyToClipboard, useMediaQuery } from "usehooks-ts";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 
 /**
  * Customize right-click menu
@@ -34,15 +35,10 @@ import { useCopyToClipboard, useMediaQuery } from "usehooks-ts";
  */
 export default function RightClickMenu() {
   const isMobile = useMediaQuery("(max-width: 768px");
-  const {
-    latestPosts,
-    changeLang,
-    lang,
-    changeOppositeLang,
-    isDarkMode,
-    locale,
-    handleChangeDarkMode,
-  } = useGlobal({ from: "index" });
+  const { latestPosts, changeLang, lang, changeOppositeLang, locale } =
+    useGlobal({ from: "index" });
+  const { isDarkMode, handleChangeDarkMode } = useNorkiveTheme();
+
   const [position, setPosition] = useState({ x: "0px", y: "0px" });
   const [show, setShow] = useState(false);
   const [copiedText, copyFn] = useCopyToClipboard();

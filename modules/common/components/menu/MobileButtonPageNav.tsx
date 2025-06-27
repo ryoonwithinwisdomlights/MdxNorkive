@@ -1,12 +1,12 @@
 import { useGlobal } from "@/context/globalProvider";
-import { useGitBookGlobal } from "@/context/themeGitbookProvider";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 import { BookOpenTextIcon } from "lucide-react";
 /**
  * Mobile article navigation buttons
  */
 export default function MobileButtonPageNav() {
-  const { pageNavVisible, changePageNavVisible } = useGitBookGlobal();
-  const { locale } = useGlobal({});
+  const { locale, pageNavVisible, changePageNavVisible } = useNorkiveTheme();
+
   const togglePageNavVisible = () => {
     if (changePageNavVisible) {
       changePageNavVisible();

@@ -1,13 +1,12 @@
 "use client";
+import { ArticleLock } from "@/modules/common/components/article/ArticleLock";
 import md5 from "js-md5";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { getPageTableOfContents } from "notion-utils";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
-import { ArticleLock } from "@/modules/common/components/article/ArticleLock";
 import SingleRecordsBodyForPage from "./SingleRecordsBodyForPage";
 import SingleRecordsIntroForPage from "./SingleRecordsIntroForPage";
-import CatalogDrawerWrapper from "../wrapper/CatalogDrawerWrapper";
 
 const SingleRecords = ({ props }) => {
   const { post, prev, next, siteInfo } = props;
@@ -76,7 +75,6 @@ const SingleRecords = ({ props }) => {
           {post && (
             <SingleRecordsBodyForPage post={post} prev={prev} next={next} />
           )}
-          {post?.toc && <CatalogDrawerWrapper post={post} />}
         </div>
       )}
     </>

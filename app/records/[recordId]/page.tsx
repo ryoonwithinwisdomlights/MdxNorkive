@@ -3,7 +3,8 @@
 import {
   getPageByPageIdAndType,
   getPageProps,
-} from "@/lib/data/notion/getNotionData";
+} from "@/lib/data/notion/typescript/getNotionData";
+
 import SingleRecords from "@/modules/blog/records/SingleRecords";
 import ErrorComponent from "@/modules/shared/ErrorComponent";
 
@@ -29,7 +30,7 @@ export default async function Page({
     return <ErrorComponent />;
   }
   const props = await getPageProps({
-    paramId: recordId,
+    pageId: recordId,
     type: "Record",
   });
   const page = await getPageByPageIdAndType(props, "Record");

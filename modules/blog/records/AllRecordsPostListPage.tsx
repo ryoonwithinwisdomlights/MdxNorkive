@@ -1,11 +1,12 @@
 "use client";
 import { BLOG } from "@/blog.config";
-import AllRecordsPostCard from "./AllRecordsPostCard";
-import NavPostListEmpty from "@/modules/layout/components/navigation-post/NavPostListEmpty";
-import PaginationSimple from "./PaginationSimple";
-import { useRouter } from "next/navigation";
 import { useGlobal } from "@/context/globalProvider";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import NavPostListEmpty from "@/modules/layout/components/navigation-post/NavPostListEmpty";
 import { AllRecordsPostListPageProps } from "@/types";
+import { useRouter } from "next/navigation";
+import AllRecordsPostCard from "./AllRecordsPostCard";
+import PaginationSimple from "./PaginationSimple";
 /**
  * Article list pagination table
  * @param page current page
@@ -22,7 +23,7 @@ const AllRecordsPostListPage = ({
   const router = useRouter();
   const { searchKeyword, setSearchKeyword } = useGlobal({});
   const totalPage = Math.ceil(postCount / BLOG.RECORDS_PER_PAGE);
-  const { locale } = useGlobal({ from: "index" });
+  const { locale } = useNorkiveTheme();
   const currentPage = +pagenum;
   const showNext = currentPage < totalPage;
   if (!posts || posts.length === 0) {

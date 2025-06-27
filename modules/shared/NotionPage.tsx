@@ -1,6 +1,9 @@
 "use client";
 import { siteConfig } from "@/lib/config";
-import { compressImage, mapImgUrl } from "@/lib/data/notion/mapImage";
+import {
+  compressImage,
+  mapImgUrl,
+} from "@/lib/data/notion/typescript/mapImage";
 import { isBrowser } from "@/lib/utils/utils";
 import mediumZoom from "@fisch0920/medium-zoom";
 import Image from "next/image"; // or import Image from 'next/legacy/image' if you use legacy Image

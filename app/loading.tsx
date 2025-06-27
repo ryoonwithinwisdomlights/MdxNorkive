@@ -1,10 +1,11 @@
 "use client";
 
 import { useGlobal } from "@/context/globalProvider";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 import { LoaderIcon } from "lucide-react";
 
 const Loading = () => {
-  const { locale } = useGlobal({});
+  const { locale } = useNorkiveTheme();
   return (
     <div className="  w-full h-screen flex flex-col justify-center items-center">
       <div

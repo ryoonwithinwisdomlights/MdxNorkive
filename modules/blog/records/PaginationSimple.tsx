@@ -1,5 +1,6 @@
 "use client";
 import { useGlobal } from "@/context/globalProvider";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 import { usePathname, useRouter } from "next/navigation";
 
 /**
@@ -10,7 +11,7 @@ import { usePathname, useRouter } from "next/navigation";
  * @constructor
  */
 const PaginationSimple = ({ pagenum, totalPage }) => {
-  const { locale } = useGlobal({ from: "index" });
+  const { locale } = useNorkiveTheme();
   const router = useRouter();
   const pathname = usePathname();
   // const param = useSearchParams()

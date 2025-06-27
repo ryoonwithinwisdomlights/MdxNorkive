@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 "use client";
 import { useGlobal } from "@/context/globalProvider";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 import { deepClone } from "@/lib/utils/utils";
 
 import { SearchIcon, XIcon } from "lucide-react";
@@ -11,7 +12,8 @@ let lock = false;
 const SearchInput = ({ cRef, className }) => {
   const [showClean, setShowClean] = useState(false);
   // 검색 키워드 상태
-  const { searchKeyword, setSearchKeyword, locale } = useGlobal({});
+  const { searchKeyword, setSearchKeyword } = useGlobal({});
+  const { locale } = useNorkiveTheme();
   // 입력 필드 참조
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { setFilteredNavPages, allNavPagesForLeftSiedBar } = useGlobal({

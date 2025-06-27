@@ -4,9 +4,10 @@ import Link from "next/link";
 import LazyImage from "@/modules/shared/LazyImage";
 import NotionIcon from "@/modules/shared/NotionIcon";
 import { useGlobal } from "@/context/globalProvider";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 
 const SingleRecordsIntroForPage = ({ post, siteInfo }) => {
-  const { locale } = useGlobal({ from: "index" });
+  const { locale } = useNorkiveTheme();
   return (
     <>
       {" "}

@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import TagItemMini from "../tag/TagItemMini";
 import { useGlobal } from "@/context/globalProvider";
 import { BasicRecordCardInfoItemProps } from "@/types";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 
 /**
  *  Records list Card Info
@@ -20,7 +21,7 @@ function BasicRecordCardInfoItem({
 }: BasicRecordCardInfoItemProps) {
   const router = useRouter();
   const patname = usePathname();
-  const { locale } = useGlobal({ from: "index" });
+  const { locale } = useNorkiveTheme();
   const onClick = (recId: string) => {
     router.push(`${patname}/${recId}`);
   };

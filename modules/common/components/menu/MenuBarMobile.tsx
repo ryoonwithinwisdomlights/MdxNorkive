@@ -4,9 +4,11 @@ import { MENU_MOBILE } from "@/lib/constants/menu-mobile.constansts";
 import { BLOG } from "@/blog.config";
 import { MenuItemCollapse } from "@/modules/common/components/menu/MenuItemCollapse";
 import { useGlobal } from "@/context/globalProvider";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 
 export const MenuBarMobile = (props) => {
-  const { customMenu, locale } = useGlobal({ from: "index" });
+  const { customMenu } = useGlobal({ from: "index" });
+  const { locale } = useNorkiveTheme();
   let links = [
     {
       name: locale.COMMON.CATEGORY,

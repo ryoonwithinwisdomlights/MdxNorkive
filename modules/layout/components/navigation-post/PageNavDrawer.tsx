@@ -1,5 +1,5 @@
 "use client";
-import { useGitBookGlobal } from "@/context/themeGitbookProvider";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 import NavPostList from "@/modules/layout/components/navigation-post/NavPostList";
 
 /**
@@ -10,8 +10,7 @@ import NavPostList from "@/modules/layout/components/navigation-post/NavPostList
  * @constructor
  */
 const PageNavDrawer = () => {
-  const { pageNavVisible, changePageNavVisible } = useGitBookGlobal();
-
+  const { pageNavVisible, changePageNavVisible } = useNorkiveTheme();
   const switchVisible = () => {
     if (pageNavVisible) {
       changePageNavVisible();
@@ -21,7 +20,7 @@ const PageNavDrawer = () => {
   return (
     <>
       <div
-        id="gitbook-left-float"
+        id="left-sidebar-float"
         className="fixed top-0 left-0 z-40 md:hidden"
       >
         {/* side menu */}

@@ -1,6 +1,6 @@
-import type { Metadata, Viewport } from "next";
-import { GeistSans } from "geist/font/sans";
 import { BLOG } from "@/blog.config";
+import { GeistSans } from "geist/font/sans";
+import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
 import "./../styles/animate.css"; // @see https://animate.style/
 import "./../styles/globals.css";
@@ -15,13 +15,11 @@ import "./../styles/notion.css";
 // global style overrides for prism theme (optional)
 import "./../styles/prism-theme.css";
 // used for rendering equations (optional)
-import "katex/dist/katex.min.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
+import "katex/dist/katex.min.css";
 
 import { GlobalContextProvider } from "@/context/globalProvider";
-import { ThemeGitbookProvider } from "@/context/themeGitbookProvider";
 
-import FloatTocButton from "@/modules/common/components/FloatTocButton";
 import PageNavDrawer from "@/modules/layout/components/navigation-post/PageNavDrawer";
 
 import loadGlobalNotionData from "@/lib/data/load-globalNotionData";
@@ -31,11 +29,12 @@ import TopNavBar from "@/modules/layout/components/navigation-post/TopNavBar";
 import { InitGlobalNotionData } from "@/types/provider.model";
 import { config } from "@fortawesome/fontawesome-svg-core";
 
+import { NorkiveThemeProvider } from "@/context/NorkiveThemeProvider";
+import AuxiliaryBlogComponent from "@/modules/layout/components/AuxiliaryBlogComponent";
 import LeftNavigationBar from "@/modules/layout/templates/LeftNavigationBar";
 import MainLayoutWrapper from "@/modules/layout/templates/MainLayoutWrapper";
 import RightSlidingDrawer from "@/modules/layout/templates/RightSlidingDrawer";
 import { LayoutProps } from "@/types";
-import AuxiliaryBlogComponent from "@/modules/layout/components/AuxiliaryBlogComponent";
 
 config.autoAddCss = false;
 
@@ -105,7 +104,7 @@ export default async function RootLayout({ children }: LayoutProps) {
           initGlobalNotionData={initGlobalNotionData}
           from={"index"}
         >
-          <ThemeGitbookProvider>
+          <NorkiveThemeProvider>
             <div
               id="gitbook"
               className={`${BLOG.FONT_STYLE}  w-full h-screen justify-center dark:text-neutral-300 scroll-smooth pb-16  md:pb-0 `}
@@ -127,7 +126,7 @@ export default async function RootLayout({ children }: LayoutProps) {
                   <RightSlidingDrawer />
                 </main>
               </Suspense>
-              <FloatTocButton />
+              {/* <FloatTocButton /> */}
 
               {/*Mobile navigation drawer*/}
               <PageNavDrawer />
@@ -135,7 +134,7 @@ export default async function RootLayout({ children }: LayoutProps) {
               {/* Mobile bottom navigation bar */}
               <BottomMenuBar />
             </div>
-          </ThemeGitbookProvider>
+          </NorkiveThemeProvider>
         </GlobalContextProvider>
       </body>
     </html>

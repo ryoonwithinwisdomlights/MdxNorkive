@@ -4,6 +4,7 @@ import { useGlobal } from "@/context/globalProvider";
 import { CalendarIcon, LockIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import TagItemMini from "../tag/TagItemMini";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 
 /**
  * Portfolio list text content
@@ -18,7 +19,7 @@ function DevprojectCardInfoItem({
 }) {
   const router = useRouter();
   const patname = usePathname();
-  const { locale } = useGlobal({ from: "index" });
+  const { locale } = useNorkiveTheme();
   // const onClick = (category: string) => {
   //   router.push(`/category/${category}`);
   // };

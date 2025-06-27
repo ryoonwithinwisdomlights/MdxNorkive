@@ -1,6 +1,5 @@
 "use client";
 import ArticleInfo from "@/modules/common/components/article/ArticleInfo";
-import Catalog from "@/modules/common/components/catalog/Catalog";
 import React from "react";
 import InfoCard from "../components/InfoCard";
 import Announcement from "@/modules/announcement/Announcement";
@@ -18,8 +17,6 @@ const RightSlidingDrawer = (props: Props) => {
       <div className="py-14 px-6 sticky top-0">
         <ArticleInfo />
         <div className="py-4 justify-center">
-          <Catalog post={null} />
-
           <InfoCard />
 
           <Announcement />

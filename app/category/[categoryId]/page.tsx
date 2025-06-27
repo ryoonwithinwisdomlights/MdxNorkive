@@ -1,7 +1,7 @@
 import AllRecordsPostListPage from "@/modules/blog/records/AllRecordsPostListPage";
 import { TotalPageParams } from "@/types";
-import { getCategoryAndTagByPageId } from "@/lib/data/notion/getNotionData";
 import ErrorComponent from "@/modules/shared/ErrorComponent";
+import { getCategoryAndTagByPageId } from "@/lib/data/notion/typescript/getNotionData";
 
 export async function generateStaticParams() {
   const records = [

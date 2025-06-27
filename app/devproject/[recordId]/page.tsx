@@ -1,8 +1,10 @@
 import { BLOG } from "@/blog.config";
+
 import {
   getPageByPageIdAndType,
   getPageProps,
-} from "@/lib/data/notion/getNotionData";
+} from "@/lib/data/notion/typescript/getNotionData";
+
 import SingleRecords from "@/modules/blog/records/SingleRecords";
 import ErrorComponent from "@/modules/shared/ErrorComponent";
 import { Metadata } from "next";
@@ -19,7 +21,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }): Promise<Metadata> {
   const { recordId } = await params;
-  const props = await getPageProps({ paramId: recordId, type: "Devproject" });
+  const props = await getPageProps({ pageId: recordId, type: "Devproject" });
   const postTitle = props?.post ? props.post : "";
   return {
     title: postTitle,
@@ -35,7 +37,7 @@ export default async function Page({ params }) {
     return <ErrorComponent />;
   }
   const props = await getPageProps({
-    paramId: recordId,
+    pageId: recordId,
     type: "Devproject",
   });
 

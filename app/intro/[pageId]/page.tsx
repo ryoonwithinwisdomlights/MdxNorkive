@@ -1,7 +1,8 @@
 import {
   getPageByPageIdAndType,
   getPageProps,
-} from "@/lib/data/notion/getNotionData";
+} from "@/lib/data/notion/typescript/getNotionData";
+
 import SingleRecords from "@/modules/blog/records/SingleRecords";
 import ErrorComponent from "@/modules/shared/ErrorComponent";
 export async function generateStaticParams() {
@@ -19,7 +20,7 @@ export default async function Page({ params }) {
     return <ErrorComponent />;
   }
   const props = await getPageProps({
-    paramId: pageId,
+    pageId: pageId,
     type: "SubMenuPage",
   });
   if (!props?.post) {

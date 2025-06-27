@@ -1,8 +1,8 @@
 "use client";
-import { useGlobal } from "@/context/globalProvider";
-import React, { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 import { KeyRoundIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useRef, useState } from "react";
 
 /**
  * Encrypted article verification component
@@ -13,7 +13,7 @@ import { KeyRoundIcon } from "lucide-react";
  */
 export const ArticleLock = (props) => {
   const { validPassword } = props;
-  const { locale } = useGlobal({ from: "index" });
+  const { locale } = useNorkiveTheme();
   const router = useRouter();
   const [tempPassword, setTempPassword] = useState<string>("");
   const submitPassword = () => {

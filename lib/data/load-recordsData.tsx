@@ -1,4 +1,5 @@
-import { getGlobalData } from "@/lib/data/notion/getNotionData";
+import { BLOG } from "@/blog.config";
+import { getGlobalData } from "@/lib/data/notion/typescript/getNotionData";
 import { formatDateFmt } from "@/lib/utils/formatDate";
 
 export async function getNotionRecordsByType({
@@ -11,7 +12,7 @@ export async function getNotionRecordsByType({
   dateSort?: boolean;
 }) {
   const props = await getGlobalData({
-    from: `${from}-index-props`,
+    pageId: BLOG.NOTION_DATABASE_ID as string,
     type: type,
   });
   const archiveRecords = getArchiveRecords(dateSort, props);

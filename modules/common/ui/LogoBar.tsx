@@ -1,10 +1,9 @@
 "use client"; // 클라이언트 컴포넌트
 import { BLOG } from "@/blog.config";
-import LazyImage from "@/modules/shared/LazyImage";
 import { useGlobal } from "@/context/globalProvider";
-import { useGitBookGlobal } from "@/context/themeGitbookProvider";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import LazyImage from "@/modules/shared/LazyImage";
 import Link from "next/link";
-import { AlignJustify, TextQuoteIcon } from "lucide-react";
 
 /**
  * Logo area
@@ -13,8 +12,7 @@ import { AlignJustify, TextQuoteIcon } from "lucide-react";
  */
 export default function LogoBar(props) {
   const { siteInfo } = useGlobal({ from: "index" });
-  const { pageNavVisible, changePageNavVisible } = useGitBookGlobal();
-
+  const { pageNavVisible, changePageNavVisible } = useNorkiveTheme();
   const togglePageNavVisible = () => {
     if (changePageNavVisible) {
       changePageNavVisible();

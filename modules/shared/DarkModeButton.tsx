@@ -1,6 +1,7 @@
 "use client"; // 클라이언트 컴포넌트
 
 import { useGlobal } from "@/context/globalProvider";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 import { Archive } from "lucide-react";
 
 /**
@@ -8,7 +9,7 @@ import { Archive } from "lucide-react";
  */
 const DarkModeButton = (props) => {
   const { className } = props;
-  const { isDarkMode, handleChangeDarkMode } = useGlobal({ from: "index" });
+  const { isDarkMode, handleChangeDarkMode } = useNorkiveTheme();
 
   return (
     <div

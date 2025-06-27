@@ -6,10 +6,15 @@ import {
   initLocale,
   saveLangToLocalStorage,
 } from "@/lib/lang";
-import { initDarkMode, saveDarkModeToLocalStorage } from "@/lib/utils/theme";
 import NextNProgress from "nextjs-progressbar";
 import { toast } from "sonner";
 
+import {
+  AllNavPages,
+  GbP,
+  GlobalValueInferface,
+  InitGlobalNotionData,
+} from "@/types/provider.model";
 import {
   createContext,
   ReactNode,
@@ -17,12 +22,6 @@ import {
   useEffect,
   useState,
 } from "react";
-import {
-  GbP,
-  AllNavPages,
-  GlobalValueInferface,
-  InitGlobalNotionData,
-} from "@/types/provider.model";
 
 type globalState = GlobalValueInferface;
 const GlobalContext = createContext<globalState | undefined>(undefined);
@@ -55,72 +54,18 @@ export function GlobalContextProvider({
     latestPosts,
   } = initGlobalNotionData;
 
-  const [lang, updateLang] = useState<string>(BLOG.LANG); // default language
-  const [locale, updateLocale] = useState<any>(generateLocaleDict(BLOG.LANG)); // default language
-  const [isDarkMode, updateDarkMode] = useState<boolean>(
-    BLOG.APPEARANCE === "dark"
-  ); // Default dark mode
-  const [onLoading, setOnLoading] = useState<boolean>(false);
   const [searchKeyword, setSearchKeyword] = useState<string>(""); //
   const [filteredNavPages, setFilteredNavPages] = useState<AllNavPages[]>(
     allNavPagesForLeftSiedBar
   ); // Fetch article data
 
-  const showTocButton = post?.toc?.length > 1;
-
-  const handleChangeDarkMode = (newStatus = !isDarkMode) => {
-    saveDarkModeToLocalStorage(newStatus);
-    updateDarkMode(newStatus);
-    const htmlElement = document.getElementsByTagName("html")[0];
-    htmlElement.classList?.remove(newStatus ? "light" : "dark");
-    htmlElement.classList?.add(newStatus ? "dark" : "light");
-  };
-
-  function changeLang(lang) {
-    if (lang) {
-      saveLangToLocalStorage(lang);
-      updateLang(lang);
-      updateLocale(generateLocaleDict(lang));
-    }
-  }
-
-  function changeOppositeLang() {
-    const resLang = getFilteredLangListKey(locale.LOCALE);
-    // console.log("changeOppositeLang[locale]:", resLang);
-    if (resLang) {
-      saveLangToLocalStorage(resLang);
-      updateLang(resLang);
-      updateLocale(generateLocaleDict(resLang));
-      toast.success(`Language set to be ${resLang} `);
-    }
-  }
-
   useEffect(() => {
     setFilteredNavPages(allNavPagesForLeftSiedBar);
   }, [post]);
 
-  useEffect(() => {
-    initLocale(lang, locale, updateLang, updateLocale);
-    initDarkMode(updateDarkMode);
-  }, [lang]);
-
-  useEffect(() => {
-    initLocale(lang, locale, updateLang, updateLocale);
-    initDarkMode(updateDarkMode);
-  }, []);
-
   return (
     <GlobalContext.Provider
       value={{
-        onLoading,
-        setOnLoading,
-        locale,
-        updateLocale,
-        lang,
-        changeLang,
-        changeOppositeLang,
-        isDarkMode,
-        updateDarkMode,
         notice,
         siteInfo,
         categoryOptions,
@@ -132,12 +77,10 @@ export function GlobalContextProvider({
         className,
         oldNav,
         customMenu,
-        showTocButton,
         post,
         latestPosts,
         searchKeyword,
         setSearchKeyword,
-        handleChangeDarkMode,
       }}
     >
       {children}

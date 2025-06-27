@@ -1,6 +1,7 @@
 "use client";
 
 import { useGlobal } from "@/context/globalProvider";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 
 /**
  * Blank Blog List
@@ -12,7 +13,7 @@ const NavPostListEmpty = ({
 }: {
   searchKeyword?: string;
 }) => {
-  const { locale } = useGlobal({ from: "index" });
+  const { locale } = useNorkiveTheme();
   return (
     <div className="text-neutral-500 dark:text-neutral-300 flex flex-col w-full items-center justify-center min-h-screen mx-auto md:-mt-20">
       {searchKeyword && (

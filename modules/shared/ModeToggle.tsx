@@ -10,9 +10,10 @@ import {
   DropdownMenuTrigger,
 } from "@/modules/common/ui/dropdown-menu";
 import { useGlobal } from "@/context/globalProvider";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 
 export function ModeToggle() {
-  const { isDarkMode, handleChangeDarkMode } = useGlobal({ from: "index" });
+  const { isDarkMode, handleChangeDarkMode } = useNorkiveTheme();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

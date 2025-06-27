@@ -1,24 +1,25 @@
 "use client";
 /* eslint-disable multiline-ternary */
 
-import { BLOG } from "@/blog.config";
+import { useGlobal } from "@/context/globalProvider";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 import { MENU_MOBILE } from "@/lib/constants/menu-mobile.constansts";
+import { MenuBarMobile } from "@/modules/common/components/menu/MenuBarMobile";
+import { MenuItemDrop } from "@/modules/common/components/menu/MenuItemDrop";
+import LogoBar from "@/modules/common/ui/LogoBar";
 import Collapse from "@/modules/shared/Collapse";
 import DarkModeButton from "@/modules/shared/DarkModeButton";
-import { useGlobal } from "@/context/globalProvider";
 import { CustomNavList } from "@/types";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEllipsisVertical, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { AlignRightIcon, MenuIcon } from "lucide-react";
 import { useRef, useState } from "react";
-import LogoBar from "@/modules/common/ui/LogoBar";
-import { MenuBarMobile } from "@/modules/common/components/menu/MenuBarMobile";
-import { MenuItemDrop } from "@/modules/common/components/menu/MenuItemDrop";
-// 사전에 사용할 아이콘 추가
+
 library.add(faEllipsisVertical, faTimes);
 
 const TopNavBar = () => {
-  const { oldNav, customMenu, locale } = useGlobal({ from: "index" });
+  const { oldNav, customMenu } = useGlobal({ from: "index" });
+  const { locale } = useNorkiveTheme();
   const [isOpen, changeShow] = useState(false);
   const collapseRef = useRef<any>(null);
 

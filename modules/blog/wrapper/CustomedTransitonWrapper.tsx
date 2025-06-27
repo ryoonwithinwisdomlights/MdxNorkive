@@ -1,5 +1,6 @@
 "use client"; // 클라이언트 컴포넌트
 import { useGlobal } from "@/context/globalProvider";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 import { Transition } from "@headlessui/react";
 import React, { Fragment, useEffect, useRef } from "react";
 
@@ -8,7 +9,8 @@ const CustomedTransitonWrapper = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const { onLoading, setOnLoading } = useGlobal({ from: "index" });
+  const { onLoading, setOnLoading } = useNorkiveTheme();
+
   const ref = useRef(null);
   //console.log("렌더링 후 ref가 null인지 확인::", ref.current); // 렌더링 후 ref가 null인지 확인
   useEffect(() => {
