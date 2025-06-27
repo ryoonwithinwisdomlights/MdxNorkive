@@ -90,11 +90,11 @@ interface CustomNavList {
 interface InitGlobalNotionData {
   siteInfo: SiteInfo;
   categoryOptions?: [];
-  allNavPagesForGitBook: AllNavPages[];
+  allNavPagesForLeftSiedBar: AllNavPages[];
   subTypeOptions?: [];
   tagOptions?: [];
   className?: string;
-  customNav: CustomNavList[];
+  oldNav: CustomNavList[];
   customMenu: any[];
   notice: any;
   post: any;
@@ -119,10 +119,10 @@ interface GlobalValueInferface {
   tagOptions?: [];
   filteredNavPages: AllNavPages[];
   setFilteredNavPages?: Dispatch<SetStateAction<AllNavPages[]>>;
-  allNavPagesForGitBook?: AllNavPages[];
+  allNavPagesForLeftSiedBar?: AllNavPages[];
   className?: string;
   lang: string;
-  customNav: CustomNavList[];
+  oldNav: CustomNavList[];
   customMenu: any[];
   showTocButton?: boolean;
   notice: any;

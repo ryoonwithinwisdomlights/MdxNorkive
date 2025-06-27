@@ -63,6 +63,8 @@ const SingleRecords = ({ props }) => {
   }, []);
   // none of the modals are gonna be rendered unless we are fully on the client side.
   if (!isMounted) return null;
+
+  // console.log("post:::", post);
   return (
     <>
       {lock && <ArticleLock validPassword={validPassword} />}

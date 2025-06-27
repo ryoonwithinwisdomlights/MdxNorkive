@@ -28,7 +28,7 @@ export default async function Page({ params }) {
   }
 
   const page = await getPageByPageIdAndType(props, "SubMenuPage");
-  console.log("SubMenuPage SingleRecords:", props);
+  // console.log("SubMenuPage SingleRecords:", props);
   return (
     <div className="w-full h-full">
       <SingleRecords props={page} />

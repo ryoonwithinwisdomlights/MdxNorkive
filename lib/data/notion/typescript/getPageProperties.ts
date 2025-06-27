@@ -1,68 +1,68 @@
 /* eslint-disable no-unused-vars */
-import { getTextContent, getDateValue } from "notion-utils";
-import { NotionAPI } from "notion-client";
 import { BLOG } from "@/blog.config";
-import formatDate from "@/lib/utils/formatDate";
-import md5 from "js-md5";
-import { mapImgUrl } from "./mapImage";
-import {
-  isStartWithHttp,
-  convertUrlStartWithOneSlash,
-} from "@/lib/utils/utils";
 import { siteConfig } from "@/lib/config";
-import { extractLangPrefix } from "@/lib/utils/pageId";
+import formatDate from "@/lib/utils/formatDate";
+import { isStartWithHttp } from "@/lib/utils/utils";
+import { CollectionData } from "@/types";
+import md5 from "js-md5";
+import { NotionAPI } from "notion-client";
+import {
+  BlockMap,
+  CollectionPropertySchemaMap,
+  Decoration,
+  SelectOption,
+  User,
+} from "notion-types";
+import { getDateValue, getTextContent } from "notion-utils";
+import { mapImgUrl } from "./mapImage";
 
 export async function getPageProperties(
-  id,
-  block,
-  schema,
-  authToken,
-  tagOptions
-) {
+  id: string,
+  block: BlockMap,
+  schema: CollectionPropertySchemaMap,
+  authToken: string | null,
+  tagOptions: SelectOption[]
+): Promise<CollectionData | null> {
   const rawProperties = Object.entries(block?.[id]?.value?.properties || []);
   const excludeProperties = ["date", "select", "multi_select", "person"];
   const value = block[id]?.value;
-  const properties = {};
+  const properties: Partial<CollectionData> & {
+    id: string;
+    [key: string]: any;
+  } = { id };
   for (let i = 0; i < rawProperties.length; i++) {
     const [key, val] = rawProperties[i];
     properties.id = id;
     if (schema[key]?.type && !excludeProperties.includes(schema[key].type)) {
-      properties[schema[key].name] = getTextContent(val);
+      properties[schema[key].name] = getTextContent(val as Decoration[]);
     } else {
       switch (schema[key]?.type) {
         case "date": {
-          const dateProperty = getDateValue(val);
-          delete dateProperty.type;
+          const dateProperty = getDateValue(val as Decoration[]);
+          // delete dateProperty.type;
           properties[schema[key].name] = dateProperty;
           break;
         }
         case "select":
         case "multi_select": {
-          const selects = getTextContent(val);
+          const selects = getTextContent(val as Decoration[]);
           if (selects[0]?.length) {
             properties[schema[key].name] = selects.split(",");
           }
           break;
         }
         case "person": {
-          const rawUsers = val.flat();
-          const users = [];
-          const api = new NotionAPI({ authToken });
+          const rawUsers = (val as Decoration[]).flat();
+          const users: User[] = [];
+          const api = new NotionAPI({});
 
           for (let i = 0; i < rawUsers.length; i++) {
             if (rawUsers[i][0][1]) {
-              const userId = rawUsers[i][0];
-              const res = await api.getUsers(userId);
-
-              const resValue =
-                res?.recordMapWithRoles?.notion_user?.[userId[1]]?.value;
-              const user = {
-                id: resValue?.id,
-                first_name: resValue?.given_name,
-                last_name: resValue?.family_name,
-                profile_photo: resValue?.profile_photo,
-              };
-              users.push(user);
+              const userArr = rawUsers[i][0];
+              const userList = await api.getUsers(userArr as string[]);
+              const userResult: any[] = userList.results;
+              const userValue: User = userResult[1].value;
+              users.push(userValue);
             }
           }
           properties[schema[key].name] = users;
@@ -145,7 +145,7 @@ export async function getPageProperties(
     properties.slug = generateCustomizeUrlWithType(properties, properties.type);
   }
   // Enable pseudo-static path
-  if (JSON.parse(BLOG.PSEUDO_STATIC)) {
+  if (JSON.parse(BLOG.PSEUDO_STATIC as string)) {
     if (
       !properties?.slug?.endsWith(".html") &&
       !properties?.slug?.startsWith("http")
@@ -156,13 +156,15 @@ export async function getPageProperties(
   properties.password = properties.password
     ? md5(properties.slug + properties.password)
     : "";
-  return properties;
+  return properties as CollectionData;
 }
 
 /**
  * Mapping user-defined headers
  */
-function mapProperties(properties) {
+function mapProperties(
+  properties: Partial<CollectionData> & { [key: string]: any }
+) {
   if (properties?.type === BLOG.NOTION_PROPERTY_NAME.type_record) {
     properties.type = "Record";
   }
@@ -193,7 +195,10 @@ function mapProperties(properties) {
  * @param {*} postProperties
  * @returns
  */
-function generateCustomizeUrlWithType(postProperties, type) {
+function generateCustomizeUrlWithType(
+  postProperties: Partial<CollectionData> & { [key: string]: any },
+  type: string
+) {
   let fullPrefix = "";
   const allSlugPatterns = BLOG.RECORD_URL_PREFIX.split("/");
   // console.log("allSlugPatterns", allSlugPatterns);
@@ -205,11 +210,11 @@ function generateCustomizeUrlWithType(postProperties, type) {
       const formatPostCreatedDate = new Date(postProperties?.publishDay);
       fullPrefix += String(formatPostCreatedDate.getUTCMonth() + 1).padStart(
         2,
-        0
+        "0"
       );
     } else if (pattern === "%day%" && postProperties?.publishDay) {
       const formatPostCreatedDate = new Date(postProperties?.publishDay);
-      fullPrefix += String(formatPostCreatedDate.getUTCDate()).padStart(2, 0);
+      fullPrefix += String(formatPostCreatedDate.getUTCDate()).padStart(2, "0");
     } else if (pattern === "%slug%") {
       fullPrefix += postProperties.slug ?? postProperties.id;
     } else if (!pattern.includes("%")) {
@@ -246,90 +251,33 @@ function generateCustomizeUrlWithType(postProperties, type) {
 }
 
 /**
- * Filter and process page data
- * The filtering process will use the configuration in NOTION_CONFIG
- */
-export function adjustPageProperties(properties, NOTION_CONFIG) {
-  // handle URL
-  // 1. Convert the slug according to the URL_PREFIX configured by the user
-  // 2. Add an href field to the article to store the final adjusted path
-  if (properties.type === "Post") {
-    if (siteConfig("RECORD_URL_PREFIX", "", NOTION_CONFIG)) {
-      properties.slug = generateCustomizeSlug(properties, NOTION_CONFIG);
-    }
-    properties.href = properties.slug ?? properties.id;
-  } else if (properties.type === "Page") {
-    properties.href = properties.slug ?? properties.id;
-  } else if (properties.type === "Menu" || properties.type === "SubMenu") {
-    // The menu path is empty and used as an expandable menu.
-    properties.href = properties.slug ?? "#";
-    properties.name = properties.title ?? "";
-  }
-
-  // Anything starting with http or https is considered an external link
-  if (isStartWithHttp(properties?.href)) {
-    properties.href = properties?.slug;
-    properties.target = "_blank";
-  } else {
-    properties.target = "_self";
-    // Pseudo-static path splicing on the right side.html
-    if (siteConfig("PSEUDO_STATIC", false, NOTION_CONFIG)) {
-      if (
-        !properties?.href?.endsWith(".html") &&
-        properties?.href !== "" &&
-        properties?.href !== "#" &&
-        properties?.href !== "/"
-      ) {
-        properties.href += ".html";
-      }
-    }
-
-    // Convert the path to an absolute path: Splice the left side of the url /
-    properties.href = convertUrlStartWithOneSlash(properties?.href);
-  }
-
-  // If the jump link is multi-lingual, it will open in a new window
-  if (BLOG.NOTION_DATABASE_ID.indexOf(",") > 0) {
-    const siteIds = BLOG.NOTION_DATABASE_ID.split(",");
-    for (let index = 0; index < siteIds.length; index++) {
-      const siteId = siteIds[index];
-      const prefix = extractLangPrefix(siteId);
-      if (getLastSegmentFromUrl(properties.href) === prefix) {
-        properties.target = "_blank";
-      }
-    }
-  }
-
-  // Password field md5
-  properties.password = properties.password
-    ? md5(properties.slug + properties.password)
-    : "";
-}
-
-/**
  * Get custom URL
  * URL can be generated based on variables
  * Support: %category%/%year%/%month%/%day%/%slug%
  * @param {*} postProperties
  * @returns
  */
-function generateCustomizeSlug(postProperties, NOTION_CONFIG) {
+function generateCustomizeSlug(
+  postProperties: Partial<CollectionData> & { [key: string]: any },
+  NOTION_CONFIG: any
+) {
   // External links are not processed
   if (isStartWithHttp(postProperties.slug)) {
     return postProperties.slug;
   }
   let fullPrefix = "";
-  const allSlugPatterns = siteConfig(
-    "RECORD_URL_PREFIX",
-    "",
-    NOTION_CONFIG
-  ).split("/");
 
-  const RECORD_URL_PREFIX_MAPPING_CATEGORY = siteConfig(
-    "RECORD_URL_PREFIX_MAPPING_CATEGORY",
-    {},
-    NOTION_CONFIG
-  );
+  const allSlugPatterns = siteConfig({
+    key: "RECORD_URL_PREFIX",
+    defaultVal: null,
+    extendConfig: NOTION_CONFIG,
+  }).split("/");
+
+  const RECORD_URL_PREFIX_MAPPING_CATEGORY = siteConfig({
+    key: "RECORD_URL_PREFIX_MAPPING_CATEGORY",
+    defaultVal: null,
+    extendConfig: NOTION_CONFIG,
+  });
 
   allSlugPatterns.forEach((pattern, idx) => {
     if (pattern === "%year%" && postProperties?.publishDay) {
@@ -339,11 +287,11 @@ function generateCustomizeSlug(postProperties, NOTION_CONFIG) {
       const formatPostCreatedDate = new Date(postProperties?.publishDay);
       fullPrefix += String(formatPostCreatedDate.getUTCMonth() + 1).padStart(
         2,
-        0
+        "0"
       );
     } else if (pattern === "%day%" && postProperties?.publishDay) {
       const formatPostCreatedDate = new Date(postProperties?.publishDay);
-      fullPrefix += String(formatPostCreatedDate.getUTCDate()).padStart(2, 0);
+      fullPrefix += String(formatPostCreatedDate.getUTCDate()).padStart(2, "0");
     } else if (pattern === "%slug%") {
       fullPrefix += postProperties.slug ?? postProperties.id;
     } else if (pattern === "%category%" && postProperties?.category) {

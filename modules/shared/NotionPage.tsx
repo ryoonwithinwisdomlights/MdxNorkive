@@ -173,20 +173,27 @@ const Collection = dynamic(
   }
 );
 
-const Equation = dynamic(
-  () =>
-    import("@/modules/shared/Equation").then(async (m) => {
-      // chemical equation
-      await import("@/lib/plugins/mhchem");
-      return m.Equation;
-    }),
-  { ssr: false }
+// const Equation = dynamic(
+//   () =>
+//     import("@/modules/shared/Equation").then(async (m) => {
+//       // chemical equation
+//       await import("@/lib/plugins/mhchem");
+//       return m.Equation;
+//     }),
+//   { ssr: false }
+// );
+const Equation = dynamic(() =>
+  import("react-notion-x/build/third-party/equation").then((m) => m.Equation)
 );
-
-const Pdf = dynamic(() => import("@/modules/shared/Pdf").then((m) => m.Pdf), {
-  ssr: false,
-});
-
+// const Pdf = dynamic(() => import("@/modules/shared/Pdf").then((m) => m.Pdf), {
+//   ssr: false,
+// });
+const Pdf = dynamic(
+  () => import("react-notion-x/build/third-party/pdf").then((m) => m.Pdf),
+  {
+    ssr: false,
+  }
+);
 // https://github.com/txs
 const PrismMac = dynamic(() => import("@/modules/shared/PrismMac"), {
   ssr: false,

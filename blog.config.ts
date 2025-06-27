@@ -1,6 +1,6 @@
 export const BLOG = {
   APP_NAME: "Norkive",
-  NOTION_PAGE_ID: process.env.NOTION_PAGE_ID,
+  NOTION_DATABASE_ID: process.env.NOTION_DATABASE_ID,
   NOTION_ACTIVE_USER: process.env.NOTION_ACTIVE_USER || "",
   NOTION_ACCESS_TOKEN: process.env.NOTION_TOKEN_V2 || "", // Useful if you prefer not to make your database public
   PSEUDO_STATIC: process.env.NEXT_PUBLIC_PSEUDO_STATIC || false, //Pseudo-static path, after it is turned on, all article URLs will end with .html.
@@ -136,11 +136,8 @@ export const BLOG = {
   // Supports functions similar to WP's customizable article link format: https://wordpress.org/documentation/article/customize-permalinks/, currently only %year%/%month%/%day% is implemented first
   //Example: If you want to change the link to the prefix article + timestamp, you can change it to: 'article/%year%/%month%/%day%'
 
-  RECORD_LIST_STYLE: process.env.NEXT_PUBLIC_RECORD_LIST_STYLE || "page", // ['page','scroll] Article list style: page number paging, single page scrolling loading
-  RECORD_LIST_PREVIEW: process.env.NEXT_PUBLIC_RECORD_PREVIEW || "false", //  Whether to load article preview in the list
-  RECORD_PREVIEW_LINES:
-    process.env.NEXT_PUBLIC_RECORD_RECORD_PREVIEW_LINES || 12, // Preview blog line count
-  RECORD_RECOMMEND_COUNT: process.env.NEXT_PUBLIC_RECORD_RECOMMEND_COUNT || 6, // Number of recommended datas
+  RECORD_LIST_STYLE: "page", // ['page','scroll] Article list style: page number paging, single page scrolling loading
+  RECORD_RECOMMEND_COUNT: 6, // Number of recommended datas
   RECORDS_PER_PAGE: 12, // record counts per page
   RECORDS_SORT_BY: process.env.NEXT_PUBLIC_RECORD_SORT_BY || "notion", //Sorting method 'date' is by time, 'notion' is controlled by notification
 

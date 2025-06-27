@@ -18,7 +18,7 @@ import { MenuItemDrop } from "@/modules/common/components/menu/MenuItemDrop";
 library.add(faEllipsisVertical, faTimes);
 
 const TopNavBar = () => {
-  const { customNav, customMenu, locale } = useGlobal({ from: "index" });
+  const { oldNav, customMenu, locale } = useGlobal({ from: "index" });
   const [isOpen, changeShow] = useState(false);
   const collapseRef = useRef<any>(null);
 

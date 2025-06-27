@@ -2,6 +2,7 @@ import Link from "next/link";
 import { TagIcon } from "lucide-react";
 
 const TagItemMini = ({ tag, selected = false }) => {
+  // console.log("tag::", tag);
   return (
     <Link
       key={tag}

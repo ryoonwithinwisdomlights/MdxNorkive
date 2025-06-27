@@ -1,0 +1,36 @@
+{
+  "results": [
+    {
+      "role": "reader"
+    },
+    {
+      "value": {
+        "id": "fb600eee-71bb-4060-a882-67acf4b8265d",
+        "version": 4,
+        "email": "ryoon.with.wisdomtrees@gmail.com",
+        "profile_photo": "https://lh3.googleusercontent.com/a/ACg8ocKXukemH65404jAn8MD_yB_sfMXTTZWDbqSEOt7SWLlBc-pOvo=s100",
+        "onboarding_completed": true,
+        "name": "Ryoon Wisdom Tree"
+      },
+      "role": "reader"
+    }
+  ],
+  "recordMapWithRoles": {
+    "notion_user": {
+      "u": {
+        "role": "reader"
+      },
+      "fb600eee-71bb-4060-a882-67acf4b8265d": {
+        "value": {
+          "id": "fb600eee-71bb-4060-a882-67acf4b8265d",
+          "version": 4,
+          "email": "ryoon.with.wisdomtrees@gmail.com",
+          "profile_photo": "https://lh3.googleusercontent.com/a/ACg8ocKXukemH65404jAn8MD_yB_sfMXTTZWDbqSEOt7SWLlBc-pOvo=s100",
+          "onboarding_completed": true,
+          "name": "Ryoon Wisdom Tree"
+        },
+        "role": "reader"
+      }
+    }
+  }
+}

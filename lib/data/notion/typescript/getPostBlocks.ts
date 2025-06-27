@@ -1,7 +1,7 @@
-import { BLOG } from "@/blog.config";
-import { NotionAPI } from "notion-client";
 import { getDataFromCache, setDataToCache } from "@/lib/cache/cache_manager";
 import { deepClone, delay } from "@/lib/utils/utils";
+import { GetPostBlockData } from "@/types/getnotion.func.model";
+import { NotionAPI } from "notion-client";
 
 //캐슁적용필요
 /**
@@ -11,10 +11,10 @@ import { deepClone, delay } from "@/lib/utils/utils";
  * @param {*} slice
  * @returns
  */
-export async function getPostBlocks(id, from, slice) {
-  const pageBlock = await getPageWithRetry(id, from);
+export async function getPostBlocks({ pageId, from, slice }: GetPostBlockData) {
+  const pageBlock = await getPageWithRetry(pageId, from);
   if (pageBlock) {
-    return filterPostBlocks(id, pageBlock, slice);
+    return filterPostBlocks(pageId, pageBlock);
   }
   return pageBlock;
 }
@@ -66,17 +66,15 @@ export async function getPageWithRetry(id, from, retryAttempts = 3) {
  * @param {*} slice interception quantity
  * @returns
  */
-function filterPostBlocks(id, pageBlock, slice) {
+function filterPostBlocks(id, pageBlock) {
   const newPageBlock = deepClone(pageBlock);
   const blockEntries = Object.entries(newPageBlock?.block || {});
   const newKeys = Object.keys(newPageBlock.block);
-  const totalCount = { count: 0 };
-
-  // const languageMap = new Map([
-  //   ["C++", "cpp"],
-  //   ["C#", "csharp"],
-  //   ["Assembly", "asm6502"],
-  // ]);
+  const languageMap = new Map([
+    ["C++", "cpp"],
+    ["C#", "csharp"],
+    ["Assembly", "asm6502"],
+  ]);
 
   const handleSyncBlock = (blockId, b, index) => {
     b.value.children.forEach((childBlock, childIndex) => {
@@ -94,44 +92,35 @@ function filterPostBlocks(id, pageBlock, slice) {
     }
   };
 
-  const limitedBlockEntries = blockEntries.filter(([blockId, block]) => {
-    if (slice && slice > 0 && totalCount.count >= slice) {
-      delete newPageBlock.block[blockId];
-      return false;
-    }
-    totalCount.count++;
-    return true;
-  });
+  // const limitedBlockEntries = blockEntries.forEach(
+  //   ([blockId, block], index) => {
+  //     const b = block;
+  //     // PageId 블록 내부 민감 정보 삭제
+  //     if (b?.value?.id === id) {
+  //       delete b?.value?.properties;
+  //       return;
+  //     }
 
-  limitedBlockEntries.forEach(([blockId, block], index) => {
-    const b = block;
+  //     // sync_block => 하위 블록으로 교체
+  //     if (b?.value?.type === "sync_block" && Array.isArray(b.value.children)) {
+  //       handleSyncBlock(blockId, b, index);
+  //       return;
+  //     }
+  //     // 코드블록 언어 이름 매핑
+  //     if (b?.value?.type === "code") {
+  //       mapCodeLanguage(b);
+  //     }
 
-    // console.log("block::", block);
-    // PageId 블록 내부 민감 정보 삭제
-    if (b?.value?.id === id) {
-      delete b?.value?.properties;
-      return;
-    }
-
-    // // sync_block => 하위 블록으로 교체
-    // if (b?.value?.type === "sync_block" && Array.isArray(b.value.children)) {
-    //   handleSyncBlock(blockId, b, index);
-    //   return;
-    // }
-    // // 코드블록 언어 이름 매핑
-    // if (b?.value?.type === "code") {
-    //   mapCodeLanguage(b);
-    // }
-
-    // 파일/미디어 링크 변환
-    // if (
-    //   ["file", "pdf", "video", "audio"].includes(b?.value?.type) &&
-    //   b.value.properties?.source?.[0]?.[0]?.includes("amazonaws.com")
-    // ) {
-    //   const oldUrl = b.value.properties.source[0][0];
-    //   b.value.properties.source[0][0] = `https://notion.so/signed/${encodeURIComponent(oldUrl)}?table=block&id=${b.value.id}`;
-    // }
-  });
+  //     // 파일/미디어 링크 변환
+  //     if (
+  //       ["file", "pdf", "video", "audio"].includes(b?.value?.type) &&
+  //       b.value.properties?.source?.[0]?.[0]?.includes("amazonaws.com")
+  //     ) {
+  //       const oldUrl = b.value.properties.source[0][0];
+  //       b.value.properties.source[0][0] = `https://notion.so/signed/${encodeURIComponent(oldUrl)}?table=block&id=${b.value.id}`;
+  //     }
+  //   }
+  // );
 
   return newPageBlock;
 }
@@ -142,18 +131,18 @@ function filterPostBlocks(id, pageBlock, slice) {
  * @param {*} slice
  * @returns
  */
-export async function getPage(id, from, slice) {
+export async function getPage(id, from) {
   const cacheKey = "page_block_" + id;
   let pageBlock = await getDataFromCache(cacheKey);
   if (pageBlock) {
-    return filterPostBlocks(id, pageBlock, slice);
+    return filterPostBlocks(id, pageBlock);
   }
 
   pageBlock = await getPageWithRetry(id, from);
 
   if (pageBlock) {
     await setDataToCache(cacheKey, pageBlock);
-    return filterPostBlocks(id, pageBlock, slice);
+    return filterPostBlocks(id, pageBlock);
   }
   return pageBlock;
 }

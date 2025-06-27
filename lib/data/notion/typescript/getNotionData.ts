@@ -1,5 +1,15 @@
 /* eslint-disable no-unused-vars */
 import { BLOG } from "@/blog.config";
+import { getRecommendPost } from "@/lib/utils/utils";
+import { CollectionData } from "@/types";
+import { GlobalData } from "@/types/getnotion.func.model";
+import { Collection, CollectionPropertySchemaMap } from "notion-types";
+import { formatDate, idToUuid } from "notion-utils";
+import { getAllCategories } from "./getAllCategories";
+import { getAllPageIds } from "./getAllPageIds";
+import { getAllTags } from "./getAllTags";
+import { getPageProperties } from "./getPageProperties";
+import { getPostBlocks } from "./getPostBlocks";
 import {
   dbDeepClone,
   EmptyData,
@@ -10,22 +20,16 @@ import {
   getFilteredArrayWithPropertyAndIndex,
   getLatestPosts,
   getNavPagesForLeftSideBar,
+  getPageCover,
   getSiteInfo,
   getTagOptions,
-} from "@/lib/data/notion/utilsForNotionData";
-import { getRecommendPost } from "@/lib/utils/utils";
-import { idToUuid } from "notion-utils";
-import { getAllCategories } from "./getAllCategories";
-import { getAllPageIds } from "./getAllPageIds";
-import { getAllTags } from "./getAllTags";
-import { getPageProperties } from "./getPageProperties";
-import { getPostBlocks } from "./getPostBlocks";
+} from "./utilsForNotionData";
 
-export async function getGlobalData({ rootPageId, from, type } = {}) {
-  const db = await getAllNotionDataBaseByNotionAPI({ rootPageId, from, type });
+const NOTION_DB_ID = BLOG.NOTION_DATABASE_ID as string;
+export async function getGlobalData({ pageId, from, type }: GlobalData) {
+  const db = await getAllNotionDataBaseByNotionAPI({ pageId, from, type });
   const props = dbDeepClone(db);
-  const allPages = excludingMenuPages(props.allPages, type);
-  // console.log("props::", props);
+  const allPages = excludingMenuPages({ arr: props.allPages, type: type });
   props.posts = allPages;
   return props;
 }
@@ -36,7 +40,6 @@ function isDatabase(rawMetadata, uuidedRootPageId) {
     rawMetadata?.type !== "collection_view"
   ) {
     console.error(`rootPageId -"${uuidedRootPageId}" is not a database`);
-    //collection_view_page이고 collection_view이어야 디비군.
     return false;
   }
   return true;
@@ -46,36 +49,34 @@ function isDatabase(rawMetadata, uuidedRootPageId) {
  * @returns {Promise<JSX.Element|null|*>}
  */
 export async function getAllNotionDataBaseByNotionAPI({
-  rootPageId = BLOG.NOTION_DATABASE_ID,
+  pageId = NOTION_DB_ID,
   type,
   from = "main_page",
-} = {}) {
+}: GlobalData) {
   //return type ExtendedRecordMap임.
-  const pageRecordMap = await getPostBlocks(rootPageId, from);
+  const pageRecordMap = await getPostBlocks({ pageId: pageId, from: from });
 
-  console.log(typeof pageRecordMap);
   if (!pageRecordMap) {
-    console.error("can`t get Notion Data ; Which id is: ", rootPageId);
+    console.error("can`t get Notion Data ; Which id is: ", pageId);
     return {};
   }
-  console.log(typeof pageRecordMap.collection);
   // console.log("pageRecordMap::", pageRecordMap); // ExtendedRecordMap
   const block = pageRecordMap.block || {};
-
-  const uuidedRootPageId = idToUuid(rootPageId);
+  const uuidedRootPageId = idToUuid(pageId);
   const rawMetadata = block[uuidedRootPageId]?.value;
 
   const isntDB = isDatabase(rawMetadata, uuidedRootPageId);
   if (!isntDB) {
     return EmptyData(uuidedRootPageId);
   }
-  // console.log("rawMetadata::", rawMetadata);
-  //console.log("pageRecordMap.collection::", pageRecordMap.collection);
   const collectionId = rawMetadata?.collection_id;
   const viewIds = rawMetadata?.view_ids;
+  // if(pageRecordMap.collection)
 
-  const collection = Object.values(pageRecordMap.collection)[0]?.value || {};
-  const schema = collection?.schema;
+  const collection =
+    (Object.values(pageRecordMap.collection || {})[0] as { value: Collection })
+      ?.value || {};
+  const schema: CollectionPropertySchemaMap = collection?.schema;
   const siteInfo = getSiteInfo({ collection, block });
 
   const collectionQuery = pageRecordMap.collection_query;
@@ -105,25 +106,23 @@ export async function getAllNotionDataBaseByNotionAPI({
         const value = block[id]?.value;
         if (!value) return null;
 
-        const properties =
-          (await getPageProperties(
-            id,
-            block,
-            schema,
-            null,
-            getTagOptions(schema)
-          )) || null;
-
+        const properties = await getPageProperties(
+          id,
+          block,
+          schema,
+          null,
+          getTagOptions(schema)
+        );
         return properties;
       })
     )
-  ).filter((item) => item !== null);
+  ).filter((item): item is CollectionData => item !== null);
 
   const dateSort = BLOG.RECORDS_SORT_BY === "date" ? true : false;
   // article count
   const postCounter = { count: 0 };
   // Find all Posts and Pages
-  // console.log("collectionData:", collectionData);
+  // console.log("collectionData:", typeof collectionData);
   const allPages = returnFilteredArr(
     collectionData,
     postCounter,
@@ -131,7 +130,7 @@ export async function getAllNotionDataBaseByNotionAPI({
     dateSort
   );
 
-  console.log("collectionData:", typeof collectionData[0].lastEditedDate);
+  // console.log("allPages:", allPages);
   const notice = await getNoticePage(collectionData);
 
   const categoryOptions = getAllCategories({
@@ -146,7 +145,7 @@ export async function getAllNotionDataBaseByNotionAPI({
 
   // old menu
   const oldNav = getOldNav({
-    allPages: collectionData.filter(
+    allPages: (collectionData as CollectionData[]).filter(
       (post) => post?.type === "Page" && post.status === "Published"
     ),
   });
@@ -179,7 +178,7 @@ export async function getAllNotionDataBaseByNotionAPI({
  * @returns
  */
 export async function getPost(pageId) {
-  const blockMap = await getPage(pageId, "slug");
+  const blockMap = await getPostBlocks({ pageId: pageId, from: "slug" });
   if (!blockMap) {
     return null;
   }
@@ -193,21 +192,12 @@ export async function getPost(pageId) {
     tags: [],
     title: postInfo?.properties?.title?.[0],
     status: "Published",
-    createdTime: formatDate(
-      new Date(postInfo.created_time).toString(),
-      BLOG.LANG
-    ),
-    lastEditedDay: formatDate(
-      new Date(postInfo?.last_edited_time).toString(),
-      BLOG.LANG
-    ),
+    createdTime: formatDate(new Date(postInfo.created_time).toString()),
+    lastEditedDay: formatDate(new Date(postInfo?.last_edited_time).toString()),
     fullWidth: postInfo?.fullWidth || false,
     page_cover: getPageCover(postInfo) || BLOG.HOME_BANNER_IMAGE,
     date: {
-      start_date: formatDate(
-        new Date(postInfo?.last_edited_time).toString(),
-        BLOG.LANG
-      ),
+      start_date: formatDate(new Date(postInfo?.last_edited_time).toString()),
     },
     blockMap,
   };
@@ -226,7 +216,7 @@ async function getNoticePage(collectionData) {
     return null;
   }
 
-  post.blockMap = await getPostBlocks(post.id, "data-notice");
+  post.blockMap = await getPostBlocks({ pageId: post.id, from: "data-notice" });
   return post;
 }
 
@@ -265,7 +255,7 @@ lodash.cloneDeep이나 JSON.parse(JSON.stringify(post)) 같은 방법이 필요�
     });
 
   if (dateSort) {
-    filtered.sort((a, b) => {
+    filteredArr.sort((a, b) => {
       return b?.publishDate - a?.publishDate;
     });
   }
@@ -280,30 +270,35 @@ lodash.cloneDeep이나 JSON.parse(JSON.stringify(post)) 같은 방법이 필요�
  * @param {*} type
  * @returns
  */
-export async function getPageProps({ from, paramId, type } = {}) {
+export async function getPageProps({ pageId, from, type }: GlobalData) {
   const props = await getGlobalData({
     type: type,
-    pageId: BLOG.NOTION_DATABASE_ID,
+    pageId: NOTION_DB_ID,
     from: from,
   });
   // console.log("props:", props);
   // Find article in list
   props.post = props?.allPages?.find((item) => {
-    return item.id === paramId;
+    return item.id === pageId;
   });
   return props;
 }
 
 export async function getPageByPageIdAndType(props, recordType) {
-  // console.log("props.post:::", props.post);
   // Article content loading
   if (!props?.posts?.blockMap) {
-    props.post.blockMap = await getPostBlocks(props.post.id, recordType);
+    props.post.blockMap = await getPostBlocks({
+      pageId: props.post.id,
+      from: recordType,
+    });
   }
 
   if (recordType !== "SubMenuPage") {
     // Recommended related article processing
-    const allPosts = excludingMenuPages(props?.allPages, recordType);
+    const allPosts = excludingMenuPages({
+      arr: props?.allPages,
+      type: recordType,
+    });
 
     if (allPosts && allPosts.length > 0) {
       const index = allPosts.indexOf(props.post);
@@ -330,7 +325,7 @@ export async function getCategoryAndTagByPageId(
   pagenum
 ) {
   const props = await getGlobalData({
-    pageId: BLOG.NOTION_DATABASE_ID,
+    pageId: NOTION_DB_ID,
     from: `${pageProperty}-props`,
   });
 

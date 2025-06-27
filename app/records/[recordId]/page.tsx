@@ -33,7 +33,7 @@ export default async function Page({
     type: "Record",
   });
   const page = await getPageByPageIdAndType(props, "Record");
-  // console.log("Record SingleRecords:", props);
+
   return (
     <div className="w-full h-full">
       <SingleRecords props={page} />

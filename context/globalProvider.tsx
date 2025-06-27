@@ -44,11 +44,11 @@ export function GlobalContextProvider({
   const {
     siteInfo,
     categoryOptions,
-    allNavPagesForGitBook,
+    allNavPagesForLeftSiedBar,
     subTypeOptions,
     tagOptions,
     className,
-    customNav,
+    oldNav,
     customMenu,
     post,
     notice,
@@ -63,7 +63,7 @@ export function GlobalContextProvider({
   const [onLoading, setOnLoading] = useState<boolean>(false);
   const [searchKeyword, setSearchKeyword] = useState<string>(""); //
   const [filteredNavPages, setFilteredNavPages] = useState<AllNavPages[]>(
-    allNavPagesForGitBook
+    allNavPagesForLeftSiedBar
   ); // Fetch article data
 
   const showTocButton = post?.toc?.length > 1;
@@ -86,7 +86,7 @@ export function GlobalContextProvider({
 
   function changeOppositeLang() {
     const resLang = getFilteredLangListKey(locale.LOCALE);
-    console.log("changeOppositeLang[locale]:", resLang);
+    // console.log("changeOppositeLang[locale]:", resLang);
     if (resLang) {
       saveLangToLocalStorage(resLang);
       updateLang(resLang);
@@ -96,7 +96,7 @@ export function GlobalContextProvider({
   }
 
   useEffect(() => {
-    setFilteredNavPages(allNavPagesForGitBook);
+    setFilteredNavPages(allNavPagesForLeftSiedBar);
   }, [post]);
 
   useEffect(() => {
@@ -128,9 +128,9 @@ export function GlobalContextProvider({
         tagOptions,
         filteredNavPages,
         setFilteredNavPages,
-        allNavPagesForGitBook,
+        allNavPagesForLeftSiedBar,
         className,
-        customNav,
+        oldNav,
         customMenu,
         showTocButton,
         post,

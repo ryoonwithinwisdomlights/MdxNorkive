@@ -1,11 +1,22 @@
-import { compressImage, mapImgUrl } from "./mapImage";
 import { BLOG } from "@/blog.config";
-
+import { deepClone } from "@/lib/utils/utils";
+import {
+  CategoryItem,
+  CollectionData,
+  LeftSideBarNavItem,
+  NavItem,
+  TagItem,
+} from "@/types";
+import { GetSiteInfo } from "@/types/getnotion.func.model";
+import { CollectionPropertySchemaMap } from "notion-types";
+import { defaultMapImageUrl } from "notion-utils";
+import { compressImage, mapImgUrl } from "./mapImage";
 export function getPageCover(postInfo) {
   const pageCover = postInfo.format?.page_cover;
   if (pageCover) {
     if (pageCover.startsWith("/")) return BLOG.NOTION_HOST + pageCover;
-    if (pageCover.startsWith("http")) return MapImageUrlFn(pageCover, postInfo);
+    if (pageCover.startsWith("http"))
+      return defaultMapImageUrl(pageCover, postInfo);
   }
 }
 
@@ -14,11 +25,11 @@ export function getPageCover(postInfo) {
  * @param schema
  * @returns {undefined}
  */
-export function getTagOptions(schema) {
-  if (!schema) return {};
+export function getTagOptions(schema: CollectionPropertySchemaMap) {
+  if (!schema) return [];
   const tagSchema = Object.values(schema).find(
-    (e) => e.name === BLOG.NOTION_PROPERTY_NAME.tags
-  );
+    (element) => element.name === BLOG.NOTION_PROPERTY_NAME.tags
+  ) as TagItem | undefined;
   return tagSchema?.options || [];
 }
 
@@ -27,20 +38,20 @@ export function getTagOptions(schema) {
  * @param schema
  * @returns {{}|*|*[]}
  */
-export function getCategoryOptions(schema) {
+export function getCategoryOptions(schema: CollectionPropertySchemaMap) {
   if (!schema) return {};
   const categorySchema = Object.values(schema).find(
     (e) => e.name === BLOG.NOTION_PROPERTY_NAME.category
-  );
+  ) as CategoryItem | undefined;
   return categorySchema?.options || [];
 }
 
 export function getOldNav({ allPages }) {
-  const customNav = [];
+  const oldNav: NavItem[] = [];
   if (allPages && allPages.length > 0) {
     allPages.forEach((p) => {
       p.to = p.slug;
-      customNav.push({
+      oldNav.push({
         icon: p.icon || null,
         name: p.title,
         href: p.href,
@@ -49,23 +60,29 @@ export function getOldNav({ allPages }) {
       });
     });
   }
-  return customNav;
+  return oldNav;
 }
 
-export function getCustomMenu({ collectionData, NOTION_CONFIG }) {
+export function getCustomMenu({
+  collectionData,
+}: {
+  collectionData: CollectionData[];
+}) {
   const menuPages = collectionData.filter(
     (post) =>
       post.status === "Published" &&
       (post?.type === "Menu" || post?.type === "SubMenu")
   );
-  const menus = [];
+  const menus: NavItem[] = [];
   if (menuPages && menuPages.length > 0) {
     menuPages.forEach((e) => {
-      e.show = true;
+      // e.show = true;
+      const menuItem = generateMenu(e);
       if (e.type === "Menu") {
-        menus.push(e);
+        menus.push(menuItem);
       } else if (e.type === "SubMenu") {
         const parentMenu = menus[menus.length - 1];
+
         if (parentMenu) {
           if (parentMenu.subMenus) {
             parentMenu.subMenus.push(e);
@@ -77,6 +94,19 @@ export function getCustomMenu({ collectionData, NOTION_CONFIG }) {
     });
   }
   return menus;
+}
+
+export function generateMenu(data: CollectionData) {
+  const tempMenuItem: NavItem = {
+    icon: data.pageIcon,
+    name: data.title,
+    show: true,
+    slug: data.slug,
+    type: data.type,
+    title: data.title,
+    subMenus: [],
+  };
+  return tempMenuItem;
 }
 
 /**
@@ -96,12 +126,12 @@ export function getLatestPosts({ allPages, from, latestPostCount }) {
       page.type !== "Page" &&
       page.status === "Published"
   );
-
-  const latestPosts = Object.create(allPosts).sort((a, b) => {
+  const latestPosts = [...allPosts].sort((a, b) => {
     const dateA = new Date(a?.lastEditedDate || a?.publishDate);
     const dateB = new Date(b?.lastEditedDate || b?.publishDate);
-    return dateB - dateA;
+    return dateB.getTime() - dateA.getTime();
   });
+
   return latestPosts.slice(0, latestPostCount);
 }
 
@@ -111,13 +141,12 @@ export function getLatestPosts({ allPages, from, latestPostCount }) {
  * @param from
  * @returns {Promise<{title,description,pageCover,icon}>}
  */
-export function getSiteInfo({ collection, block, NOTION_CONFIG }) {
-  const defaultTitle = NOTION_CONFIG?.TITLE || BLOG.TITLE;
-  const defaultDescription = NOTION_CONFIG?.DESCRIPTION || BLOG.DESCRIPTION;
-  const defaultPageCover =
-    NOTION_CONFIG?.HOME_BANNER_IMAGE || BLOG.HOME_BANNER_IMAGE;
-  const defaultIcon = NOTION_CONFIG?.AVATAR || BLOG.AVATAR;
-  const defaultLink = NOTION_CONFIG?.LINK || BLOG.LINK;
+export function getSiteInfo({ collection, block }: GetSiteInfo) {
+  const defaultTitle = BLOG.TITLE;
+  const defaultDescription = BLOG.DESCRIPTION;
+  const defaultPageCover = BLOG.HOME_BANNER_IMAGE;
+  const defaultIcon = BLOG.AVATAR;
+  const defaultLink = BLOG.LINK;
   if (!collection && !block) {
     return {
       title: defaultTitle,
@@ -144,7 +173,7 @@ export function getSiteInfo({ collection, block, NOTION_CONFIG }) {
       : defaultIcon
   );
   // Site URL
-  const link = NOTION_CONFIG?.LINK || defaultLink;
+  const link = defaultLink;
 
   // Site icon cannot be emoji
   const emojiPattern = /\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g;
@@ -152,6 +181,22 @@ export function getSiteInfo({ collection, block, NOTION_CONFIG }) {
     icon = defaultIcon;
   }
   return { title, description, pageCover, icon, link };
+}
+
+export function generateLeftSideBarNavItem(data: CollectionData) {
+  const tempMenuItem: LeftSideBarNavItem = {
+    id: data.id,
+    title: data.title || "",
+    pageCoverThumbnail: data.pageCoverThumbnail || "",
+    category: data.category || "",
+    tags: data.tags || null,
+    summary: data.summary || null,
+    slug: data.slug,
+    pageIcon: data.pageIcon || "",
+    lastEditedDate: data.lastEditedDate,
+    type: data.type,
+  };
+  return tempMenuItem;
 }
 
 /**
@@ -162,72 +207,69 @@ of the article are retained, and the summary, password, date and other data are 
  * @param {*} param0
  */
 export function getNavPagesForLeftSideBar({ allPages }) {
-  const allNavPages = allPages?.filter((post) => {
-    return (
-      post &&
-      post?.slug &&
-      !post?.slug?.startsWith("http") &&
-      post?.type !== "CONFIG" &&
-      post?.type !== "Menu" &&
-      post?.type !== "SubMenu" &&
-      post?.type !== "SubMenuPage" &&
-      post?.type !== "Notice" &&
-      post?.type !== "Page" &&
-      post?.status === "Published"
-    );
-  });
-
-  return allNavPages.map((item) => ({
-    id: item.id,
-    title: item.title || "",
-    pageCoverThumbnail: item.pageCoverThumbnail || "",
-    category: item.category || null,
-    tags: item.tags || null,
-    summary: item.summary || null,
-    slug: item.slug,
-    pageIcon: item.pageIcon || "",
-    lastEditedDate: item.lastEditedDate,
-    type: item.type | "",
-  }));
+  const allNavPages = excludingMenuPages({ arr: allPages });
+  return allNavPages.map((item) => generateLeftSideBarNavItem(item));
 }
 
-/**
-   * Get a reduced list of articles for navigation
-   * Used in the gitbook theme, only the title, classification, label and classification information
-  of the article are retained, and the summary, password, date and other data are reduced.
-   * The conditions for navigation page must be Posts
-   * @param {*} param0
-   */
-export function getNavPages({ allPages }) {
-  const allNavPages = allPages?.filter((post) => {
-    return (
-      post &&
-      post?.slug &&
-      !post?.slug?.startsWith("http") &&
-      post?.type !== "CONFIG" &&
-      post?.type !== "Menu" &&
-      post?.type !== "SubMenu" &&
-      post?.type !== "SubMenuPage" &&
-      post?.type !== "Notice" &&
-      post?.type !== "Page" &&
-      post?.status === "Published"
-    );
-  });
+export function dbDeepClone(data) {
+  const db = deepClone(data);
 
-  return allNavPages.map((item) => ({
-    id: item.id,
-    title: item.title || "",
-    pageCoverThumbnail: item.pageCoverThumbnail || "",
-    category: item.category || null,
-    tags: item.tags || null,
-    summary: item.summary || null,
-    slug: item.slug,
-    pageIcon: item.pageIcon || "",
-    lastEditedDate: item.lastEditedDate,
-    type: item.type | "",
-  }));
+  delete db.block;
+  delete db.schema;
+  delete db.rawMetadata;
+  delete db.pageIds;
+  delete db.viewIds;
+  delete db.collection;
+  delete db.collectionQuery;
+  delete db.collectionId;
+  delete db.collectionView;
+  // Sensitive data not returned
+  return db;
 }
 
+export function excludingMenuPages({
+  arr,
+  type,
+}: {
+  arr: any[];
+  type?: string;
+}) {
+  const copy = arr.slice();
+  const newArr = copy.filter((page) => {
+    const excludedTypes = [
+      "CONFIG",
+      "Menu",
+      "SubMenu",
+      "SubMenuPage",
+      "Notice",
+      "Page",
+    ];
+    const isExcluded = excludedTypes.includes(page.type);
+    const isPublished = page.status === "Published";
+    const isTypeMatch = type ? page.type === type : true;
+
+    return !isExcluded && isPublished && isTypeMatch;
+  });
+  return newArr;
+}
+export function getFilteredArrayWithPropertyAndIndex(arr, propertyName, index) {
+  const copy = arr.slice();
+  const newArr = copy.filter((item) => {
+    return item && item[propertyName] && item[propertyName].includes(index);
+  });
+  return newArr;
+}
+
+// function createEmptyCollectionData(id: string): CollectionData {
+//   return {
+//     id,
+//     title: "",
+//     type: "",
+//     status: "",
+//     slug: "",
+//     date: undefined,
+//   };
+// }
 // Return when there is no data
 export const EmptyData = (pageId) => {
   const empty = {
@@ -259,7 +301,7 @@ export const EmptyData = (pageId) => {
     tagOptions: [],
     categoryOptions: [],
     rawMetadata: {},
-    customNav: [],
+    oldNav: [],
     customMenu: [],
     postCount: 1,
     pageIds: [],

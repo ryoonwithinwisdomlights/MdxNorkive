@@ -1,0 +1,118 @@
+ customMenu: [
+    {
+      id: '21a1eb5c-0337-80c6-b8a6-d3f858a988b9',
+      icon: 'fa-solid fa-gift',
+      date: [
+        Object
+      ],
+      type: 'Menu',
+      title: '_ ',
+      status: 'Published',
+      category: '',
+      publishDate: 1679529600000,
+      publishDay: 'Mar 23, 2023',
+      lastEditedDate: '2025-06-22T15:33:40.415Z',
+      lastEditedDay: 'Jun 23, 2025',
+      fullWidth: false,
+      pageIcon: '📂',
+      pageCover: '',
+      pageCoverThumbnail: '',
+      tagItems: [
+        
+      ],
+      to: '#',
+      name: '_ ',
+      password: '',
+      show: true,
+      subMenus: [
+        Array
+      ]
+    },
+    {
+      id: '21a1eb5c-0337-80a7-871c-d2667b74e33b',
+      icon: 'fa-solid fa-folder',
+      date: [
+        Object
+      ],
+      type: 'Menu',
+      slug: '/',
+      title: 'All Records',
+      status: 'Published',
+      category: '',
+      publishDate: 1625184000000,
+      publishDay: 'Jul 2, 2021',
+      lastEditedDate: '2025-06-22T15:33:47.300Z',
+      lastEditedDay: 'Jun 23, 2025',
+      fullWidth: false,
+      pageIcon: '📂',
+      pageCover: '',
+      pageCoverThumbnail: '',
+      tagItems: [
+        
+      ],
+      to: '/',
+      name: 'All Records',
+      password: '',
+      show: true,
+      subMenus: [
+        Array
+      ]
+    },
+    {
+      id: '21a1eb5c-0337-80e7-b536-cb707097440f',
+      icon: 'fa-regular fa-folder',
+      date: [
+        Object
+      ],
+      type: 'Menu',
+      slug: '/devproject',
+      title: 'Dev Project',
+      status: 'Published',
+      category: '',
+      publishDate: 1679529600000,
+      publishDay: 'Mar 23, 2023',
+      lastEditedDate: '2025-06-22T15:33:50.058Z',
+      lastEditedDay: 'Jun 23, 2025',
+      fullWidth: false,
+      pageIcon: '📁',
+      pageCover: 'https://source.unsplash.com/random?t=21a1eb5c-0337-80e7-b536-cb707097440f',
+      pageCoverThumbnail: 'https://source.unsplash.com/random?t=21a1eb5c-0337-80e7-b536-cb707097440f',
+      tagItems: [
+        
+      ],
+      to: '/devproject',
+      name: 'Dev Project',
+      password: '',
+      show: true
+    },
+    {
+      id: '21a1eb5c-0337-80cf-ba42-e4b519eca0e5',
+      icon: 'fa-solid fa-magnifying-glass',
+      date: [
+        Object
+      ],
+      type: 'Menu',
+      slug: '/search',
+      title: 'Search By',
+      status: 'Published',
+      category: '',
+      publishDate: 1679529600000,
+      publishDay: 'Mar 23, 2023',
+      lastEditedDate: '2025-06-22T15:33:51.277Z',
+      lastEditedDay: 'Jun 23, 2025',
+      fullWidth: false,
+      pageIcon: '📂',
+      pageCover: '',
+      pageCoverThumbnail: '',
+      tagItems: [
+        
+      ],
+      to: '/search',
+      name: 'Search By',
+      password: '',
+      show: true,
+      subMenus: [
+        Array
+      ]
+    }
+  ]

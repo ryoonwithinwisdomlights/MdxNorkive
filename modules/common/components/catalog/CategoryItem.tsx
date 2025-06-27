@@ -8,6 +8,7 @@ export default function CategoryItem(props) {
   const onClick = (category: string) => {
     router.push(`/category/${category}`);
   };
+  // console.log("category::", category);
   return (
     <div
       onClick={(e) => {

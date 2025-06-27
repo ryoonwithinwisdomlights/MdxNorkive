@@ -14,7 +14,7 @@ const SearchInput = ({ cRef, className }) => {
   const { searchKeyword, setSearchKeyword, locale } = useGlobal({});
   // 입력 필드 참조
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const { setFilteredNavPages, allNavPagesForGitBook } = useGlobal({
+  const { setFilteredNavPages, allNavPagesForLeftSiedBar } = useGlobal({
     from: "index",
   });
 
@@ -29,11 +29,11 @@ const SearchInput = ({ cRef, className }) => {
   const handleSearch = () => {
     if (searchInputRef?.current) {
       setSearchKeyword(searchInputRef.current.value.trim());
-    } else if (setFilteredNavPages && allNavPagesForGitBook) {
+    } else if (setFilteredNavPages && allNavPagesForLeftSiedBar) {
       // undefined가 아닌 경우에만 실행
-      setFilteredNavPages(allNavPagesForGitBook);
+      setFilteredNavPages(allNavPagesForLeftSiedBar);
     }
-    const filterAllNavPages = deepClone(allNavPagesForGitBook);
+    const filterAllNavPages = deepClone(allNavPagesForLeftSiedBar);
 
     for (let i = filterAllNavPages.length - 1; i >= 0; i--) {
       const post = filterAllNavPages[i];
@@ -48,7 +48,7 @@ const SearchInput = ({ cRef, className }) => {
     }
 
     // Updated
-    if (setFilteredNavPages && allNavPagesForGitBook) {
+    if (setFilteredNavPages && allNavPagesForLeftSiedBar) {
       setFilteredNavPages(filterAllNavPages);
     }
     // cleanSearch()

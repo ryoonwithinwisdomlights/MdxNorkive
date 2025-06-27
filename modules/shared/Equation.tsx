@@ -21,7 +21,7 @@ export async function Equation({
   className,
   ...rest
 }) {
-  const recordMap = await getPost(BLOG.NOTION_PAGE_ID);
+  const recordMap = await getPost(BLOG.NOTION_DATABASE_ID);
   math = math || getBlockTitle(block, recordMap?.blockMap);
   if (!math) return null;
 
