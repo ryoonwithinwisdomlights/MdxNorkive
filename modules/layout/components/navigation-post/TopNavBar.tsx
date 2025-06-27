@@ -55,7 +55,7 @@ const TopNavBar = () => {
     },
   ];
 
-  let links: any[] = BLOG.CUSTOM_MENU ? customMenu : defaultLinks;
+  let links = customMenu;
   const toggleMenuOpen = () => {
     changeShow(!isOpen);
   };

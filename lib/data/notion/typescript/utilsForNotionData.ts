@@ -76,7 +76,6 @@ export function getCustomMenu({
   const menus: NavItem[] = [];
   if (menuPages && menuPages.length > 0) {
     menuPages.forEach((e) => {
-      // e.show = true;
       const menuItem = generateMenu(e);
       if (e.type === "Menu") {
         menus.push(menuItem);
@@ -98,7 +97,7 @@ export function getCustomMenu({
 
 export function generateMenu(data: CollectionData) {
   const tempMenuItem: NavItem = {
-    icon: data.pageIcon,
+    icon: data.icon,
     name: data.title,
     show: true,
     slug: data.slug,

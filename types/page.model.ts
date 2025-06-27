@@ -93,6 +93,7 @@ export type CollectionData = {
   tagItems: TagItem[];
   summary?: any;
   slug: string;
+  icon?: string;
   results?: any;
   password?: string;
 };
