@@ -35,7 +35,7 @@ const SingleRecordsIntroForPage = ({ post, siteInfo }) => {
           </span>
         </div>
         <span className="mx-1 ml-2 mr-2"> | </span>
-        <Link href="/" passHref legacyBehavior>
+        <Link href="/" passHref>
           <div className="flex flex-row items-center">
             <LazyImage
               src={siteInfo?.icon}
