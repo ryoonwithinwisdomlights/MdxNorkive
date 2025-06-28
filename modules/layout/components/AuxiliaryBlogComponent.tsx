@@ -12,7 +12,7 @@ const AuxiliaryBlogComponent = (props: Props) => {
     <div>
       {!BLOG.isProd && <DebugPanel />}
       {!BLOG.CAN_COPY && <DisableCopy />}
-      {BLOG.ANALYTICS_BUSUANZI_ENABLE && <Busuanzi />}
+      {BLOG.analytics_busuanzi_enable && <Busuanzi />}
       <VConsoleTs />
     </div>
   );

@@ -1,9 +1,23 @@
 "use client";
-import { InnerHtmlStateProps, KaTeXProps } from "@/types/externalUtils.model";
+
 import KaTeX from "katex";
 import React, { useEffect, useState } from "react";
+import { ReactNode } from "react";
+export type KaTeXProps = {
+  children?: string;
+  math?: string;
+  block?: boolean;
+  errorColor?: string;
+  renderError?: (error: Error) => ReactNode;
+  settings?: KaTeX.KatexOptions;
+  as?: keyof JSX.IntrinsicElements;
+  [key: string]: any; // 추가적인 prop 허용
+};
 
-// type dangerouslySetInnerHTML =  string | TrustedHTML;
+export type InnerHtmlStateProps = {
+  innerHtml: string | TrustedHTML;
+  errorElement?: ReactNode;
+};
 
 const TeX: React.FC<KaTeXProps> = ({
   children,

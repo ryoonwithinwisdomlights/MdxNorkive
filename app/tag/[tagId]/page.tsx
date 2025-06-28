@@ -1,10 +1,10 @@
-import AllRecordsPostListPage from "@/modules/blog/records/AllRecordsPostListPage";
+import AllRecordsList from "@/modules/blog/records/AllRecordsList";
 import { TotalPageParams } from "@/types";
-import { getCategoryAndTagByPageId } from "@/lib/data/notion/typescript/getNotionData";
 
 import ErrorComponent from "@/modules/shared/ErrorComponent";
+import { getCategoryAndTagByPageId } from "@/lib/data/actions/pages/page-action";
 export async function generateStaticParams() {
-  const records = [{ tagId: "techLog" }, { tagId: "another-Tags" }];
+  const records = [{ tagId: "기술로그" }, { tagId: "another-Tags" }];
   return records.map((record) => ({
     tagId: record.tagId,
   }));
@@ -17,13 +17,9 @@ export default async function Page({ params, searchParams }: TotalPageParams) {
   if (!tagId) {
     <ErrorComponent />;
   }
-  const props = await getCategoryAndTagByPageId(
-    decodedTagId,
-    "category",
-    pagenum
-  );
+  const props = await getCategoryAndTagByPageId(decodedTagId, "tags", pagenum);
   return (
-    <AllRecordsPostListPage
+    <AllRecordsList
       pagenum={pagenum !== undefined ? pagenum : 1}
       postCount={props.postCount}
       posts={props.posts}

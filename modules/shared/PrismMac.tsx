@@ -1,22 +1,22 @@
 "use client";
 
-import { useEffect } from "react";
 import Prism from "prismjs";
-import "prismjs/plugins/toolbar/prism-toolbar";
-import "prismjs/plugins/toolbar/prism-toolbar.min.css";
-import "prismjs/plugins/show-language/prism-show-language";
 import "prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard";
 import "prismjs/plugins/line-numbers/prism-line-numbers";
 import "prismjs/plugins/line-numbers/prism-line-numbers.css";
+import "prismjs/plugins/show-language/prism-show-language";
+import "prismjs/plugins/toolbar/prism-toolbar";
+import "prismjs/plugins/toolbar/prism-toolbar.min.css";
+import { useEffect } from "react";
 
 import { BLOG } from "@/blog.config";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 import { loadExternalResource } from "@/lib/utils/utils";
 import { useRouter } from "next/navigation";
-import { useGlobal } from "@/context/globalProvider";
 
 const PrismMac = (): JSX.Element => {
   const router = useRouter();
-  const { isDarkMode } = useGlobal({ from: "index" });
+  const { isDarkMode } = useNorkiveTheme();
 
   useEffect(() => {
     if (BLOG.CODE_MAC_BAR) {

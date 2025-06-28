@@ -34,7 +34,7 @@ const SingleRecordsBodyForPage = ({ post, prev, next }) => {
         post?.type !== "Notice" &&
         post?.type !== "Page" &&
         post?.status === "Published" &&
-        post.type === "Devproject" && <ArticleAround prev={prev} next={next} />}
+        post.type === "Project" && <ArticleAround prev={prev} next={next} />}
       {/* <AdSlot /> */}
 
       <Comment frontMatter={post} />

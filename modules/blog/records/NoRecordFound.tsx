@@ -1,7 +1,5 @@
 "use client";
-import { useGlobal } from "@/context/globalProvider";
 import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
-import React from "react";
 
 const NoRecordFound = () => {
   const { locale } = useNorkiveTheme();

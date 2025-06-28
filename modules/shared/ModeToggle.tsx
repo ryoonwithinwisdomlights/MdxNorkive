@@ -1,7 +1,6 @@
 "use client";
 
-import * as React from "react";
-import { MoonIcon, SunIcon } from "lucide-react";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 import { Button } from "@/modules/common/ui/button";
 import {
   DropdownMenu,
@@ -9,8 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/modules/common/ui/dropdown-menu";
-import { useGlobal } from "@/context/globalProvider";
-import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import { MoonIcon, SunIcon } from "lucide-react";
 
 export function ModeToggle() {
   const { isDarkMode, handleChangeDarkMode } = useNorkiveTheme();

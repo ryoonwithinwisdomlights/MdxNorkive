@@ -1,8 +1,7 @@
 import {
   getPageByPageIdAndType,
   getPageProps,
-} from "@/lib/data/notion/typescript/getNotionData";
-
+} from "@/lib/data/actions/pages/page-action";
 import SingleRecords from "@/modules/blog/records/SingleRecords";
 import ErrorComponent from "@/modules/shared/ErrorComponent";
 export async function generateStaticParams() {

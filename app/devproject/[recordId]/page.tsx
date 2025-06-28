@@ -1,9 +1,8 @@
 import { BLOG } from "@/blog.config";
-
 import {
   getPageByPageIdAndType,
   getPageProps,
-} from "@/lib/data/notion/typescript/getNotionData";
+} from "@/lib/data/actions/pages/page-action";
 
 import SingleRecords from "@/modules/blog/records/SingleRecords";
 import ErrorComponent from "@/modules/shared/ErrorComponent";
@@ -21,7 +20,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }): Promise<Metadata> {
   const { recordId } = await params;
-  const props = await getPageProps({ pageId: recordId, type: "Devproject" });
+  const props = await getPageProps({ pageId: recordId, type: "Project" });
   const postTitle = props?.post ? props.post : "";
   return {
     title: postTitle,
@@ -38,14 +37,14 @@ export default async function Page({ params }) {
   }
   const props = await getPageProps({
     pageId: recordId,
-    type: "Devproject",
+    type: "Project",
   });
 
   if (!props?.post) {
     return <div>Invalid record ID</div>;
   }
 
-  const page = await getPageByPageIdAndType(props, "Devproject");
+  const page = await getPageByPageIdAndType(props, "Project");
   // console.log("Devproject SingleRecords:", props);
   return (
     <div className="w-full h-full">

@@ -125,63 +125,63 @@ export const BLOG = {
   BACKGROUND_DARK: "#000000", // use hex value, don't forget '#'
   SUB_PATH: "", // leave this empty unless you want to deploy in a folder
 
-  RECORD_SHARE_BAR_ENABLE: process.env.NEXT_PUBLIC_RECORD_SHARE_BAR || "true", // Record Article sharing function, a sharing bar will be displayed at the bottom
-  RECORDS_SHARE_SERVICES:
+  archive_share_bar_enable: process.env.NEXT_PUBLIC_RECORD_SHARE_BAR || "true", // Record Article sharing function, a sharing bar will be displayed at the bottom
+  archive_share_service:
     process.env.NEXT_PUBLIC_RECORD_SHARE_SERVICES || "email,twitter,link", // Shared services, displayed in order, separated by commas
   // All supported sharing services: link (copy link), email (mail),facebook,twitter,telegram,messenger,line,reddit,whatsapp,linkedin,instapaper
 
-  RECORD_URL_PREFIX: process.env.NEXT_PUBLIC_RECORD_URL_PREFIX || "records",
+  archive_url_prefix: process.env.NEXT_PUBLIC_archive_url_prefix || "archive",
   //The default path prefix for RECORD type articles, for example, the default RECORD type path is /records/[slug]
   // If this item is configured as '' empty, the article will have no prefix path
   // Supports functions similar to WP's customizable article link format: https://wordpress.org/documentation/article/customize-permalinks/, currently only %year%/%month%/%day% is implemented first
   //Example: If you want to change the link to the prefix article + timestamp, you can change it to: 'article/%year%/%month%/%day%'
 
-  RECORD_LIST_STYLE: "page", // ['page','scroll] Article list style: page number paging, single page scrolling loading
-  RECORD_RECOMMEND_COUNT: 6, // Number of recommended datas
-  RECORDS_PER_PAGE: 12, // record counts per page
-  RECORDS_SORT_BY: process.env.NEXT_PUBLIC_RECORD_SORT_BY || "notion", //Sorting method 'date' is by time, 'notion' is controlled by notification
+  archive_list_stye: "page", // ['page','scroll] Article list style: page number paging, single page scrolling loading
+  archive_recommend_count: 6, // Number of recommended datas
+  archive_per_page: 12, // record counts per page
+  archive_sort_by: process.env.NEXT_PUBLIC_RECORD_SORT_BY || "notion", //Sorting method 'date' is by time, 'notion' is controlled by notification
 
-  RECORD_WAITING_TIME_FOR_404:
-    process.env.NEXT_PUBLIC_RECORD_WAITING_TIME_FOR_404 || "8",
+  archive_waiting_time_for_404:
+    process.env.NEXT_PUBLIC_archive_waiting_time_for_404 || "8",
 
   PREVIEW_CATEGORY_COUNT: 16, // The maximum number of categories displayed on the homepage, 0 means no limit
   PREVIEW_TAG_COUNT: 16, // The maximum number of tags displayed on the homepage, 0 means no limit
 
-  RECORD_DISABLE_GALLERY_CLICK:
-    process.env.NEXT_PUBLIC_RECORD_DISABLE_GALLERY_CLICK || false, // Clicking is prohibited in the picture album view, making it easier to insert links into the picture album on the friend link page.
+  archive_disable_gallery_click:
+    process.env.NEXT_PUBLIC_archive_disable_gallery_click || false, // Clicking is prohibited in the picture album view, making it easier to insert links into the picture album on the friend link page.
 
   // giscus @see https://giscus.app/
-  COMMENT_GISCUS_REPONAME: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPONAME, // Your Github repository name e.g 'ryoonwithinwisdomlights/norkive'
-  COMMENT_GISCUS_REPO_ID: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPO_ID, // Your Github Repo ID e.g (you can see it after setting up giscus)
-  COMMENT_GISCUS_CATEGORY: process.env.NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY,
-  COMMENT_GISCUS_CATEGORY_ID:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY_ID, // Category ID in your Github Discussions (you can see it after setting up giscus)
-  COMMENT_GISCUS_MAPPING: process.env.NEXT_PUBLIC_COMMENT_GISCUS_MAPPING, // Which method does your Github Discussions use to demarcate datas? Default is 'pathname'
-  COMMENT_GISCUS_REACTIONS_ENABLED:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_REACTIONS_ENABLED, // Does your Giscus enable data emoticons? '1' is on "0" is off and is on by default.
-  COMMENT_GISCUS_EMIT_METADATA:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_EMIT_METADATA, // Whether your Giscus extracts Metadata '1' On '0' Off The default is off
-  COMMENT_GISCUS_INPUT_POSITION:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_INPUT_POSITION, // Your Giscus comment position 'bottom' tail 'top' top, default 'bottom'
-  COMMENT_GISCUS_LANG: "ko", // Your Giscus language e.g 'en', 'zh-TW', 'zh-CN', default 'en'
-  COMMENT_GISCUS_LOADING:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_LOADING || "lazy", // Whether your Giscus load is progressive, default is 'lazy'
-  COMMENT_GISCUS_CROSSORIGIN:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_CROSSORIGIN || "anonymous", // Your Giscus can be cross-domain, default 'anonymous'
+  comment_giscus_reponame: process.env.NEXT_PUBLIC_comment_giscus_reponame, // Your Github repository name e.g 'ryoonwithinwisdomlights/norkive'
+  comment_giscus_repo_id: process.env.NEXT_PUBLIC_comment_giscus_repo_id, // Your Github Repo ID e.g (you can see it after setting up giscus)
+  comment_giscus_category_id:
+    process.env.NEXT_PUBLIC_comment_giscus_category_id,
+  comment_giscus_category_id_ID:
+    process.env.NEXT_PUBLIC_comment_giscus_category_id_ID, // Category ID in your Github Discussions (you can see it after setting up giscus)
+  comment_giscus_mapping: process.env.NEXT_PUBLIC_comment_giscus_mapping, // Which method does your Github Discussions use to demarcate datas? Default is 'pathname'
+  comment_giscus_reactions_enabled:
+    process.env.NEXT_PUBLIC_comment_giscus_reactions_enabled, // Does your Giscus enable data emoticons? '1' is on "0" is off and is on by default.
+  comment_giscus_emit_data: process.env.NEXT_PUBLIC_comment_giscus_emit_data, // Whether your Giscus extracts Metadata '1' On '0' Off The default is off
+  comment_giscus_input_position:
+    process.env.NEXT_PUBLIC_comment_giscus_input_position, // Your Giscus comment position 'bottom' tail 'top' top, default 'bottom'
+  comment_giscus_lang: "ko", // Your Giscus language e.g 'en', 'zh-TW', 'zh-CN', default 'en'
+  comment_giscus_loading:
+    process.env.NEXT_PUBLIC_comment_giscus_loading || "lazy", // Whether your Giscus load is progressive, default is 'lazy'
+  comment_giscus_crossorigin:
+    process.env.NEXT_PUBLIC_comment_giscus_crossorigin || "anonymous", // Your Giscus can be cross-domain, default 'anonymous'
 
   // ----> Site statistics
-  ANALYTICS_GOOGLE_ID: process.env.NEXT_PUBLIC_ANALYTICS_GOOGLE_ID || false,
+  analytics_google_id: process.env.NEXT_PUBLIC_analytics_google_id || false,
   ANALYTICS_VERCEL: process.env.NEXT_PUBLIC_ANALYTICS_VERCEL || false, //
-  ANALYTICS_BUSUANZI_ENABLE:
-    process.env.NEXT_PUBLIC_ANALYTICS_BUSUANZI_ENABLE || true, // Display website reading volume and number of visits see http://busuanzi.ibruce.info/
-  SEO_GOOGLE_SITE_VERIFICATION:
-    process.env.NEXT_PUBLIC_SEO_GOOGLE_SITE_VERIFICATION || "", // Remove the value or replace it with your own google site verification code
+  analytics_busuanzi_enable:
+    process.env.NEXT_PUBLIC_analytics_busuanzi_enable || true, // Display website reading volume and number of visits see http://busuanzi.ibruce.info/
+  seo_google_verification:
+    process.env.NEXT_PUBLIC_seo_google_verification || "", // Remove the value or replace it with your own google site verification code
 
   // Custom configuration notification database field name
   NOTION_PROPERTY_NAME: {
     password: process.env.NEXT_PUBLIC_NOTION_PROPERTY_PASSWORD || "password",
     type: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE || "type", // data type
-    type_able_arr: ["Record", "GuestBook", "Devproject", "Engineering"],
+    type_able_arr: ["Record", "Project", "Engineering"],
     type_record: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_POST || "Record", // When the data type is the same as this value, it is all the general record.
     type_page: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_PAGE || "Page", // When the type data type is the same as this value, it is a single page.
     type_notice:
@@ -193,7 +193,7 @@ export const BLOG = {
       process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_SUB_MENU_PAGE ||
       "SubMenuPage", // When the type data type is the same as this value, it is a submenu but presenting page, simultaenousely.
     type_devproject:
-      process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_DEVPROJECT || "Devproject", // When the data type is the same as this value, it is specially for DEVPROJECT & Portfolio.
+      process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_DEVPROJECT || "Project", // When the data type is the same as this value, it is specially for DEVPROJECT & Portfolio.
     type_engineering:
       process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_ENGINEERING || "Engineering", // When the data type is the same as this value, it is all the record  pecifically for Software engineering.
     title: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TITLE || "title", // data title
@@ -211,7 +211,7 @@ export const BLOG = {
   },
 
   // Obsolete configuration
-  AVATAR: process.env.NEXT_PUBLIC_AVATAR || "/images/norkive_black.png", // The author's avatar is covered by the ICON in the notice. If there is no ICON, take avatar.png in the public directory.
+  AVATAR: "/images/norkive_black.png", // The author's avatar is covered by the ICON in the notice. If there is no ICON, take avatar.png in the public directory.
   TITLE: process.env.NEXT_PUBLIC_TITLE || "Norkive", // Click title, which will be covered by the page title in the notice; please do not leave a blank here, otherwise the server will not be able to compile
   HOME_BANNER_IMAGE:
     process.env.NEXT_PUBLIC_HOME_BANNER_IMAGE || "/images/bg_image.png", // The home page background image will be covered by the cover image in the notice. If there is no cover image, the /public/bg_image.jpg file in the code will be used.
@@ -241,5 +241,4 @@ export const BLOG = {
     process.env.npm_lifecycle_event === "export", // The cache can be selectively turned on during development, debugging, and packaging. It does not make much sense to turn this feature on during formal deployment.
   isProd: process.env.NEXT_VERCEL_ENV === "production", // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)  isProd: process.env.VERCEL_ENV === 'production' // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
   BUNDLE_ANALYZER: process.env.ANALYZE === "true" || false, //Whether to display the compilation dependency content and size
-  VERSION: process.env.NEXT_PUBLIC_VERSION || 2, // version number
 };

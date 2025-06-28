@@ -1,10 +1,10 @@
-import { BasicRecordPageType } from "@/types";
+import { BasicRecordPageProps } from "@/types";
 import NoRecordFound from "./NoRecordFound";
 import LazyImage from "@/modules/shared/LazyImage";
-import DevprojectCardInfoItem from "./DevprojectCardInfoItem";
-import BasicRecordCardInfoItem from "./BasicRecordCardInfoItem";
+import DevprojectCardInfo from "./DevprojectCardInfo";
+import RecordCardInfo from "./RecordCardInfo";
 
-const RecordBodyForPage = ({ pageType, recordList }: BasicRecordPageType) => {
+const RecordBodyForPage = ({ type, recordList }: BasicRecordPageProps) => {
   return (
     <div className="flex flex-row justify-end">
       <div className="space-y-6 w-full px-2">
@@ -28,15 +28,15 @@ const RecordBodyForPage = ({ pageType, recordList }: BasicRecordPageType) => {
                   >
                     {/* Text content */}
 
-                    {pageType === "Devproject" ? (
-                      <DevprojectCardInfoItem
+                    {type === "Project" ? (
+                      <DevprojectCardInfo
                         post={item}
                         showPageCover={showPageCover}
                         showPreview={true}
                         showSummary={true}
                       />
                     ) : (
-                      <BasicRecordCardInfoItem
+                      <RecordCardInfo
                         post={item}
                         showPageCover={showPageCover}
                         showPreview={true}

@@ -1,8 +1,7 @@
-// Import your Client Component
-import AllRecordsArchiveItem from "@/modules/blog/records/AllRecordsArchiveItem";
-import { getNotionRecordsByType } from "@/lib/data/load-recordsData";
-import NoRecordFound from "@/modules/blog/records/NoRecordFound";
+import { getNotionRecordsByType } from "@/lib/data/actions/pages/page-action";
 import { isNotEmptyObj } from "@/lib/utils/utils";
+import AllRecords from "@/modules/blog/records/AllRecords";
+import NoRecordFound from "@/modules/blog/records/NoRecordFound";
 
 export default async function Page() {
   const { props }: any = await getNotionRecordsByType({
@@ -37,11 +36,11 @@ export default async function Page() {
       {isAble ? (
         <div className="flex flex-row justify-end ">
           <div className="w-8/12 mt-20 flex flex-col justify-end  items-end gap-10 bg-opacity-30 rounded-lg md:pl-10 dark:bg-black dark:bg-opacity-70 bg-white">
-            {Object.keys(archiveRecords)?.map((archiveTitle, index) => (
-              <AllRecordsArchiveItem
+            {Object.keys(archiveRecords)?.map((title, index) => (
+              <AllRecords
                 key={index}
-                archiveTitle={archiveTitle}
-                archiveRecords={archiveRecords}
+                title={title}
+                recordList={archiveRecords}
               />
             ))}
           </div>

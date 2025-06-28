@@ -1,7 +1,7 @@
-import AllRecordsPostListPage from "@/modules/blog/records/AllRecordsPostListPage";
+import AllRecordsList from "@/modules/blog/records/AllRecordsList";
 import { TotalPageParams } from "@/types";
 import ErrorComponent from "@/modules/shared/ErrorComponent";
-import { getCategoryAndTagByPageId } from "@/lib/data/notion/typescript/getNotionData";
+import { getCategoryAndTagByPageId } from "@/lib/data/actions/pages/page-action";
 
 export async function generateStaticParams() {
   const records = [
@@ -28,7 +28,7 @@ export default async function Page({ params, searchParams }: TotalPageParams) {
   );
 
   return (
-    <AllRecordsPostListPage
+    <AllRecordsList
       pagenum={pagenum !== undefined ? pagenum : 1}
       postCount={props.postCount}
       posts={props.posts}

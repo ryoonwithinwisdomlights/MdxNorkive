@@ -1,7 +1,4 @@
-import {
-  getNotionRecordsByType,
-  getNotionRecordsByTypeWithoutDateTitle,
-} from "@/lib/data/load-recordsData";
+import { getNotionRecordsByType } from "@/lib/data/actions/pages/page-action";
 import BasicRecordPage from "@/modules/blog/records/BasicRecordPage";
 
 export default async function Page() {
@@ -12,7 +9,5 @@ export default async function Page() {
   });
 
   const engineeringList: [] = props.archiveRecords;
-  return (
-    <BasicRecordPage pageType="Engineering" recordList={engineeringList} />
-  );
+  return <BasicRecordPage type="Engineering" recordList={engineeringList} />;
 }

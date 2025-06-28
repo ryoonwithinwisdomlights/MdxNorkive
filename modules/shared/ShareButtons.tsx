@@ -1,6 +1,5 @@
 "use client";
 import { BLOG } from "@/blog.config";
-import { useGlobal } from "@/context/globalProvider";
 import copy from "copy-to-clipboard";
 
 import {
@@ -16,8 +15,8 @@ import {
   TwitterShareButton,
 } from "react-share";
 
-import { LinkIcon } from "lucide-react";
 import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import { LinkIcon } from "lucide-react";
 // 사전에 사용할 아이콘 추가
 /**
  * @author https://github.com/txs
@@ -25,7 +24,7 @@ import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
  * @returns
  */
 const ShareButtons = ({ shareUrl, title, body, image }) => {
-  const services = BLOG.RECORDS_SHARE_SERVICES.split(",");
+  const services = BLOG.archive_share_service.split(",");
   const titleWithSiteInfo = title + " | " + BLOG.TITLE;
   const { locale } = useNorkiveTheme();
 

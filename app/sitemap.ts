@@ -1,9 +1,17 @@
-import loadGlobalNotionData from "@/lib/data/load-globalNotionData";
+import loadGlobalNotionData from "@/lib/data/actions/notion/getNotionData";
 import { BLOG } from "@/blog.config";
-import { InitGlobalNotionData } from "@/types/provider.model";
-import { ChangeFrequency } from "@/types";
+
 import type { MetadataRoute } from "next";
-import formatDate from "@/lib/utils/formatDate";
+import formatDate from "@/lib/utils/utils";
+import { InitGlobalNotionData } from "@/types";
+type ChangeFrequency =
+  | "always"
+  | "hourly"
+  | "daily"
+  | "weekly"
+  | "monthly"
+  | "yearly"
+  | "never";
 
 /**
  *
@@ -44,8 +52,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
   // Cycle page generation
-  const { allPosts } = initGlobalNotionData;
-  allPosts
+  const { allArchive } = initGlobalNotionData;
+  allArchive
     ?.filter((p) => p.status === BLOG.NOTION_PROPERTY_NAME.status_publish)
     .forEach((post) => {
       const lmd = post.lastEditedDate

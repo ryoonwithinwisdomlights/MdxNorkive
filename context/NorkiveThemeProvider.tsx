@@ -14,9 +14,8 @@ import {
   getFilteredLangListKey,
   initLocale,
   saveLangToLocalStorage,
-} from "@/lib/lang";
+} from "@/lib/utils/lang";
 import { toast } from "sonner";
-// import { getBlogConfig } from "../utils/get-config-value";
 
 const NorKiveTheme = createContext<NorKiveThemeProviderContext | null>(null);
 

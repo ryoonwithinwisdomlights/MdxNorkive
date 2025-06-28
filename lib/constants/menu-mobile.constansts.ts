@@ -1,5 +1,5 @@
 export const MENU_MOBILE = {
-  INDEX_PAGE: "records",
+  INDEX_PAGE: "archive",
   // Articles displayed on the document homepage, please make sure this path is included in your notice database
   AUTO_SORT: process.env.NEXT_PUBLIC_AUTO_SORT || true,
   // Whether to automatically sort articles by category name; automatic grouping may disrupt the order of articles in your Notion

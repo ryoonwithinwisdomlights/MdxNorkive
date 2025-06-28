@@ -1,8 +1,10 @@
 import * as React from "react";
-import { getPost } from "@/lib/data/notion/getNotionData";
+
 import Katex from "@/modules/shared/KatexReact";
 import { getBlockTitle } from "notion-utils";
 import { BLOG } from "@/blog.config";
+import { getSinlgePost } from "@/lib/data/actions/notion/getNotionData";
+// import { getSinlgePost } from "@/lib/data/notion/typescript";
 
 const katexSettings = {
   throwOnError: false,
@@ -21,7 +23,10 @@ export async function Equation({
   className,
   ...rest
 }) {
-  const recordMap = await getPost(BLOG.NOTION_DATABASE_ID);
+  const recordMap = await getSinlgePost({
+    id: BLOG.NOTION_DATABASE_ID as string,
+    from: "equation",
+  });
   math = math || getBlockTitle(block, recordMap?.blockMap);
   if (!math) return null;
 

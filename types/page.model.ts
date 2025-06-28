@@ -1,18 +1,10 @@
 import { CollectionPropertySchema, SelectOption } from "notion-types";
-import { AllPosts } from "./provider.model";
 
-interface RecommendPost {
+export type RecommendPage = {
   id: string;
   type: string;
   tags?: string[];
-}
-
-interface BasicRecordPageType {
-  pageType: string;
-  recordList?: any[];
-}
-
-export type { RecommendPost, BasicRecordPageType };
+};
 
 export interface TagItem {
   color: string;
@@ -21,61 +13,21 @@ export interface TagItem {
   options?: SelectOption[];
   count?: number;
 }
-export interface CategoryItem extends CollectionPropertySchema {
+export interface CategoryItem {
   color: string;
+  name?: string;
   id?: string;
+  options?: SelectOption[];
   count?: number;
 }
 
-export type NavItem = {
-  icon?: string;
-  name?: string;
-  href?: string;
-  target?: string;
-  show?: boolean;
-  slug?: string;
-  type?: string;
-  title?: string;
-  subMenus?: any[];
-};
-
-export type LeftSideBarNavItem = {
-  id?: string;
-  title?: string;
-  pageCoverThumbnail?: string;
-  category?: string;
-  tags?: any;
-  summary?: string;
-  slug?: string;
-  pageIcon?: string;
-  lastEditedDate?: Date;
-  type?: string;
-  subMenus?: any[];
-};
-
-export const NorKiveMenuItem = ["Menu", "SubMenu", "SubMenuPage"];
-
-// export type PageSchema ={
-//       id: string;
-//     "date": {
-//         "start_date": "2025-06-27",
-//         "date_format": "relative"
-//     },
-//     "type": string;
-//     "category": string;
-//     "sub_type": [
-//         "Record"
-//     ],
-//     "tags": string[],
-// }
-
-export type dateObj = {
+export type DateObj = {
   start_date?: string;
   date_format?: string;
 };
-export type CollectionData = {
+export type NorkiveRecordData = {
   id: string;
-  date?: dateObj;
+  date: DateObj;
   type: string;
   category: string;
   sub_type?: string[];
@@ -90,7 +42,7 @@ export type CollectionData = {
   pageIcon?: string;
   pageCover?: string;
   pageCoverThumbnail?: string;
-  tagItems: TagItem[];
+  tagItems?: TagItem[];
   summary?: any;
   slug: string;
   icon?: string;

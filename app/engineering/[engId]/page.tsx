@@ -2,7 +2,8 @@ import { BLOG } from "@/blog.config";
 import {
   getPageByPageIdAndType,
   getPageProps,
-} from "@/lib/data/notion/getNotionData";
+} from "@/lib/data/actions/pages/page-action";
+
 import SingleRecords from "@/modules/blog/records/SingleRecords";
 import ErrorComponent from "@/modules/shared/ErrorComponent";
 import { Metadata } from "next";
@@ -20,7 +21,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }): Promise<Metadata> {
   const { engId } = await params;
-  const props = await getPageProps({ paramId: engId, type: "Engineering" });
+  const props = await getPageProps({ pageId: engId, type: "Engineering" });
   const postTitle = props?.post ? props.post : "";
   return {
     title: postTitle,
@@ -35,8 +36,8 @@ export default async function Page({ params }) {
     return <ErrorComponent />;
   }
   const props = await getPageProps({
-    paramId: engId,
-    type: "Devproject",
+    pageId: engId,
+    type: "Project",
   });
 
   if (!props?.post) {

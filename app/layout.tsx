@@ -22,11 +22,10 @@ import { GlobalContextProvider } from "@/context/globalProvider";
 
 import PageNavDrawer from "@/modules/layout/components/navigation-post/PageNavDrawer";
 
-import loadGlobalNotionData from "@/lib/data/load-globalNotionData";
+import loadGlobalNotionData from "@/lib/data/actions/notion/getNotionData";
 import BottomMenuBar from "@/modules/common/components/menu/BottomMenuBar";
 import LoadingCover from "@/modules/common/icons/LoadingCover";
 import TopNavBar from "@/modules/layout/components/navigation-post/TopNavBar";
-import { InitGlobalNotionData } from "@/types/provider.model";
 import { config } from "@fortawesome/fontawesome-svg-core";
 
 import { NorkiveThemeProvider } from "@/context/NorkiveThemeProvider";
@@ -34,7 +33,7 @@ import AuxiliaryBlogComponent from "@/modules/layout/components/AuxiliaryBlogCom
 import LeftNavigationBar from "@/modules/layout/templates/LeftNavigationBar";
 import MainLayoutWrapper from "@/modules/layout/templates/MainLayoutWrapper";
 import RightSlidingDrawer from "@/modules/layout/templates/RightSlidingDrawer";
-import { LayoutProps } from "@/types";
+import { ChildrenProp, InitGlobalNotionData } from "@/types";
 
 config.autoAddCss = false;
 
@@ -93,9 +92,9 @@ export const metadata: Metadata = {
  * 
  * 
  */
-export default async function RootLayout({ children }: LayoutProps) {
+export default async function RootLayout({ children }: ChildrenProp) {
   const initGlobalNotionData: InitGlobalNotionData =
-    await loadGlobalNotionData("index");
+    await loadGlobalNotionData("main");
 
   return (
     <html lang="en" suppressHydrationWarning className={GeistSans.className}>

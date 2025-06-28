@@ -9,7 +9,7 @@ import { MenuItemDrop } from "@/modules/common/components/menu/MenuItemDrop";
 import LogoBar from "@/modules/common/ui/LogoBar";
 import Collapse from "@/modules/shared/Collapse";
 import DarkModeButton from "@/modules/shared/DarkModeButton";
-import { CustomNavList } from "@/types";
+import { OldNavItem } from "@/types";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEllipsisVertical, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { AlignRightIcon, MenuIcon } from "lucide-react";
@@ -23,7 +23,7 @@ const TopNavBar = () => {
   const [isOpen, changeShow] = useState(false);
   const collapseRef = useRef<any>(null);
 
-  const defaultLinks: CustomNavList[] = [
+  const defaultLinks: OldNavItem[] = [
     {
       icon: "fa-solid fa-wand-magic-sparkles",
       name: locale.COMMON.CATEGORY,
@@ -56,7 +56,7 @@ const TopNavBar = () => {
     },
   ];
 
-  let links = customMenu;
+  const links = customMenu;
   const toggleMenuOpen = () => {
     changeShow(!isOpen);
   };

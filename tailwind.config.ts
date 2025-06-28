@@ -1,5 +1,5 @@
 import { BLOG } from "./blog.config";
-import { fontFamilies } from "./lib/font";
+import { fontFamilies } from "./lib/utils/font";
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {

@@ -1,6 +1,6 @@
 "use client";
-import TagItemMini from "@/modules/blog/tag/TagItemMini";
 import { useGlobal } from "@/context/globalProvider";
+import TagItemMini from "@/modules/blog/tag/TagItemMini";
 import { TagIcon } from "lucide-react";
 
 const TagList = () => {

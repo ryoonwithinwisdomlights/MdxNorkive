@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-import { type ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
 import * as Icons from "@fortawesome/free-solid-svg-icons"; // 모든 아이콘을 가져옴
-import { RecommendPost } from "@/types/page.model";
-import { SlugConvertProps } from "@/types";
+import { type ClassValue, clsx } from "clsx";
+import React from "react";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 /**
  * Convert string to json
@@ -43,8 +45,20 @@ export const convertCleanJsonString = (val) => {
   return val.replace(/\s+/g, " ").trim();
 };
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+/**
+ * URL의 마지막 슬래시 이후의 콘텐츠를 가져옵니다.
+ * @param {*} url
+ * @returns
+ */
+export function getLastSegmentFromUrl(url) {
+  if (!url) {
+    return "";
+  }
+  // URL에서 쿼리 매개변수를 제거합니다.
+  const trimmedUrl = url.split("?")[0];
+  // 마지막 슬래시 이후의 콘텐츠를 가져옵니다.
+  const segments = trimmedUrl.split("/");
+  return segments[segments.length - 1];
 }
 
 export const parseIcon = (iconString: string) => {
@@ -64,18 +78,6 @@ export const parseIcon = (iconString: string) => {
   return (
     Icons[`fa${iconKey.charAt(0).toUpperCase()}${iconKey.slice(1)}`] || null
   );
-};
-
-export const exchangeSlugToType = (slug) => {
-  const typeApp: SlugConvertProps[] = [
-    { slug: "devproject", type: "Devproject" },
-    { slug: "engineering", type: "Engineering" },
-  ];
-
-  if (!slug) return null;
-
-  const found = typeApp.find((item) => item.slug === slug);
-  return found ? found.type : null;
 };
 
 /**
@@ -126,7 +128,6 @@ export function loadExternalResource(url, type) {
   });
 }
 
-//#############################Checking Function###############################
 /**
  * Determine whether the client
  * @returns {boolean}
@@ -189,6 +190,15 @@ export function isUrl(str) {
   return str?.indexOf("/") === 0 || isStartWithHttp(str);
 }
 
+export function isEmptyString(str) {
+  if (typeof str == "undefined" || str == null || str == "") return true;
+  else return false;
+}
+export function isEmoji(str) {
+  const emojiRegex =
+    /[\u{1F300}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}\u{1F018}-\u{1F270}]/u;
+  return emojiRegex.test(str);
+}
 // Check if there is an external link
 export function isStartWithHttp(str) {
   // Check if string contains http
@@ -213,8 +223,6 @@ export function isHasKey<T extends object>(
 ): key is keyof T {
   return key in obj;
 }
-
-//#############################Query related Function###############################
 
 /**
  * Query the query parameters in the url
@@ -243,8 +251,6 @@ export function getQueryParam(url, param) {
   const searchParams = new URLSearchParams(url.split("?")[1]);
   return searchParams.get(param);
 }
-
-//############################Merge & Clone Function###############################
 
 /**
  * Deep merge two objects
@@ -326,61 +332,6 @@ function deepCloneGpt(value) {
     `Unsupported type in deepClone: ${Object.prototype.toString.call(value)}`
   );
 }
-//############################Record related Function###############################
-
-/**
- * Get the list of recommended articles associated with the article, currently filtered based on tag relevance
- * @param post
- * @param {*} allPosts
- * @param {*} count
- * @returns
- */
-export function getRecommendPost(
-  post: RecommendPost,
-  allPosts: RecommendPost[],
-  count: number = 6
-): RecommendPost[] {
-  let recommendPosts: RecommendPost[] = []; // 추천 게시물 배열
-  const postIds: string[] = []; // 추천된 게시물 ID 배열
-  const currentTags: string[] = post?.tags || []; // 현재 게시물의 태그
-  for (let i = 0; i < allPosts.length; i++) {
-    const p = allPosts[i];
-    // 현재 게시물과 동일한 게시물이거나 타입이 'Post'가 아니면 건너뜀
-    if (p.id === post.id || p.type.indexOf("Post") < 0) {
-      continue;
-    }
-
-    for (let j = 0; j < currentTags.length; j++) {
-      const t = currentTags[j];
-      // 이미 추천된 게시물인지 확인getAllNotionPageData:
-      if (postIds.indexOf(p.id) > -1) {
-        continue;
-      }
-      // 태그가 일치하면 추천 게시물에 추가
-      if (p.tags && p.tags.indexOf(t) > -1) {
-        recommendPosts.push(p);
-        postIds.push(p.id);
-      }
-    }
-  }
-
-  // 추천 게시물 개수를 제한
-  if (recommendPosts.length > count) {
-    recommendPosts = recommendPosts.slice(0, count);
-  }
-  return recommendPosts;
-}
-
-/**
- * Get articles from page 1 to the specified page number
- * @param pageIndex which page
- * @param list All articles
- * @param pageSize Number of articles per page
- * @returns {*}
- */
-export const getListByPage = function (list, pageIndex, pageSize) {
-  return list.slice(0, pageIndex * pageSize);
-};
 
 /**
  * delay
@@ -406,3 +357,54 @@ export const isNotEmptyObj = (obj) => {
     if (Object.keys(obj).length > 0) return true;
   } else return false;
 };
+
+/**
+ * Format date
+ * @param date
+ * @param local
+ * @returns {string}
+ */
+export function formatDate(date, local) {
+  if (!date || !local) return date || "";
+  const d = new Date(date);
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  };
+  const res = d.toLocaleDateString(local, options);
+  // If the format is Chinese date, it will be converted to a horizontal bar
+  const format =
+    local.slice(0, 2).toLowerCase() === "zh"
+      ? res.replace("年", "-").replace("月", "-").replace("日", "")
+      : res;
+  return format;
+}
+
+export function formatDateFmt(timestamp, fmt) {
+  const date = new Date(timestamp);
+  const o = {
+    "M+": date.getMonth() + 1,
+    "d+": date.getDate(),
+    "h+": date.getHours(),
+    "m+": date.getMinutes(),
+    "s+": date.getSeconds(),
+    "q+": Math.floor((date.getMonth() + 3) / 3), // quarter
+    S: date.getMilliseconds(), // millisecond
+  };
+  if (/(y+)/.test(fmt)) {
+    fmt = fmt.replace(
+      RegExp.$1,
+      (date.getFullYear() + "").substr(4 - RegExp.$1.length)
+    );
+  }
+  for (const k in o) {
+    if (new RegExp("(" + k + ")").test(fmt)) {
+      fmt = fmt.replace(
+        RegExp.$1,
+        RegExp.$1.length === 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length)
+      );
+    }
+  }
+  return fmt.trim();
+}

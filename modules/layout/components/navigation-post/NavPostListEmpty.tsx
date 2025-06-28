@@ -1,6 +1,5 @@
 "use client";
 
-import { useGlobal } from "@/context/globalProvider";
 import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 
 /**

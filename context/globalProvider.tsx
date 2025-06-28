@@ -1,20 +1,7 @@
 "use client";
-import { BLOG } from "@/blog.config";
-import {
-  generateLocaleDict,
-  getFilteredLangListKey,
-  initLocale,
-  saveLangToLocalStorage,
-} from "@/lib/lang";
+import { InitGlobalNotionData, LeftSideBarNavItem } from "@/types";
+import { GlobalValueInferface } from "@/types/provider.model";
 import NextNProgress from "nextjs-progressbar";
-import { toast } from "sonner";
-
-import {
-  AllNavPages,
-  GbP,
-  GlobalValueInferface,
-  InitGlobalNotionData,
-} from "@/types/provider.model";
 import {
   createContext,
   ReactNode,
@@ -55,9 +42,9 @@ export function GlobalContextProvider({
   } = initGlobalNotionData;
 
   const [searchKeyword, setSearchKeyword] = useState<string>(""); //
-  const [filteredNavPages, setFilteredNavPages] = useState<AllNavPages[]>(
-    allNavPagesForLeftSiedBar
-  ); // Fetch article data
+  const [filteredNavPages, setFilteredNavPages] = useState<
+    LeftSideBarNavItem[]
+  >(allNavPagesForLeftSiedBar); // Fetch article data
 
   useEffect(() => {
     setFilteredNavPages(allNavPagesForLeftSiedBar);
@@ -89,7 +76,11 @@ export function GlobalContextProvider({
   );
 }
 
-export const useGlobal = ({ from }: GbP): GlobalValueInferface => {
+export const useGlobal = ({
+  from,
+}: {
+  from?: string;
+}): GlobalValueInferface => {
   const context = useContext(GlobalContext);
   if (!context) {
     throw new Error("useGlobal must be used within a GlobalContext.Provider");

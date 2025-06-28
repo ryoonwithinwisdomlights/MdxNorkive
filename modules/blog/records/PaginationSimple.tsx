@@ -1,5 +1,4 @@
 "use client";
-import { useGlobal } from "@/context/globalProvider";
 import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 import { usePathname, useRouter } from "next/navigation";
 

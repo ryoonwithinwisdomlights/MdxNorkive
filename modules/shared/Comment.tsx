@@ -90,7 +90,7 @@ const Comment = (props) => {
       )}
       {shouldLoad && (
         <Tabs className="px-2">
-          {BLOG.COMMENT_GISCUS_REPONAME && (
+          {BLOG.comment_giscus_reponame && (
             <div key="Giscus">
               <GiscusComponent />
             </div>

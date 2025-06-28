@@ -1,7 +1,6 @@
 "use client";
 /* eslint-disable multiline-ternary */
 import { BLOG } from "@/blog.config";
-import { useGlobal } from "@/context/globalProvider";
 import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";

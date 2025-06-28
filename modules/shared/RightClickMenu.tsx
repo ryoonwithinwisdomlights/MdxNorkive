@@ -1,8 +1,9 @@
 "use client"; // 클라이언트 컴포넌트
 /* eslint-disable multiline-ternary */
 import { BLOG } from "@/blog.config";
-import useWindowSize from "@/lib/hooks/useWindowSize";
 import { useGlobal } from "@/context/globalProvider";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import useWindowSize from "@/lib/hooks/useWindowSize";
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
@@ -26,7 +27,6 @@ import {
 } from "react";
 import { toast } from "sonner";
 import { useCopyToClipboard, useMediaQuery } from "usehooks-ts";
-import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 
 /**
  * Customize right-click menu
@@ -35,9 +35,15 @@ import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
  */
 export default function RightClickMenu() {
   const isMobile = useMediaQuery("(max-width: 768px");
-  const { latestPosts, changeLang, lang, changeOppositeLang, locale } =
-    useGlobal({ from: "index" });
-  const { isDarkMode, handleChangeDarkMode } = useNorkiveTheme();
+  const { latestPosts } = useGlobal({ from: "index" });
+  const {
+    isDarkMode,
+    handleChangeDarkMode,
+    changeLang,
+    lang,
+    changeOppositeLang,
+    locale,
+  } = useNorkiveTheme();
 
   const [position, setPosition] = useState({ x: "0px", y: "0px" });
   const [show, setShow] = useState(false);

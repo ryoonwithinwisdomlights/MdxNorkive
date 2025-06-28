@@ -8,7 +8,7 @@ const ShareBar = ({ post }) => {
   const searchParams = useSearchParams();
 
   if (
-    !JSON.parse(BLOG.RECORD_SHARE_BAR_ENABLE) ||
+    !JSON.parse(BLOG.archive_share_bar_enable) ||
     !post ||
     post?.type === "CONFIG" ||
     post?.type === "Menu" ||

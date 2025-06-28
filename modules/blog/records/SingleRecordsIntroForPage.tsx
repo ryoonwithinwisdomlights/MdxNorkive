@@ -1,10 +1,9 @@
 import { BLOG } from "@/blog.config";
-import { CalendarIcon, EyeIcon, FolderClockIcon } from "lucide-react";
-import Link from "next/link";
+import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 import LazyImage from "@/modules/shared/LazyImage";
 import NotionIcon from "@/modules/shared/NotionIcon";
-import { useGlobal } from "@/context/globalProvider";
-import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import { CalendarIcon, EyeIcon, FolderClockIcon } from "lucide-react";
+import Link from "next/link";
 
 const SingleRecordsIntroForPage = ({ post, siteInfo }) => {
   const { locale } = useNorkiveTheme();

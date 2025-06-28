@@ -1,4 +1,3 @@
-import { useGlobal } from "@/context/globalProvider";
 import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 import { BookOpenTextIcon } from "lucide-react";
 /**

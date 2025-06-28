@@ -1,9 +1,5 @@
 "use client";
-import { siteConfig } from "@/lib/config";
-import {
-  compressImage,
-  mapImgUrl,
-} from "@/lib/data/notion/typescript/mapImage";
+
 import { isBrowser } from "@/lib/utils/utils";
 import mediumZoom from "@fisch0920/medium-zoom";
 import Image from "next/image"; // or import Image from 'next/legacy/image' if you use legacy Image
@@ -13,13 +9,15 @@ import { useEffect, useMemo, useRef } from "react";
 import { NotionRenderer } from "react-notion-x";
 import { useWindowSize } from "usehooks-ts";
 import TweetEmbed from "react-tweet-embed";
+import { getOldsiteConfig } from "@/lib/utils/get-config-value";
+import { compressImage, mapImgUrl } from "@/lib/data/service/notion/utils";
 
 const NotionPage = ({ post }) => {
   // Whether to turn off the click jump of the database and album
-  const RECORD_DISABLE_GALLERY_CLICK = siteConfig({
-    key: "RECORD_DISABLE_GALLERY_CLICK",
+  const archive_disable_gallery_click = getOldsiteConfig({
+    key: "archive_disable_gallery_click",
   });
-  const RECORD_DISABLE_DATABASE_CLICK = siteConfig({
+  const RECORD_DISABLE_DATABASE_CLICK = getOldsiteConfig({
     key: "RECORD_DISABLE_DATABASE_CLICK",
   });
 
@@ -48,7 +46,7 @@ const NotionPage = ({ post }) => {
   // The hook that will be executed when the page article changes
   useEffect(() => {
     // Clicking on the album view prohibits jumping, and you can only enlarge the picture to view it.
-    if (RECORD_DISABLE_GALLERY_CLICK) {
+    if (archive_disable_gallery_click) {
       // For the gallery view on the page, after clicking, whether to enlarge the picture or jump to the internal page of the gallery
       processGalleryImg(zoomRef?.current);
     }
@@ -76,13 +74,19 @@ const NotionPage = ({ post }) => {
               // 해당 요소의 src 속성 가져오기
               const src = target.getAttribute("src");
               // 더 높은 해상도 이미지로 교체
-              target.setAttribute(
-                "src",
-                compressImage(
-                  src,
-                  siteConfig({ key: "IMAGE_ZOOM_IN_WIDTH", defaultVal: 1200 })
-                )
-              );
+              // console.log("src:", src);
+              if (src) {
+                target.setAttribute(
+                  "src",
+                  compressImage({
+                    image: src as string,
+                    width: getOldsiteConfig({
+                      key: "IMAGE_ZOOM_IN_WIDTH",
+                      defaultVal: 1200,
+                    }),
+                  })
+                );
+              }
             }, 800);
           }
         }
@@ -99,7 +103,7 @@ const NotionPage = ({ post }) => {
     return () => {
       observer.disconnect();
     };
-  }, [zoomRef, RECORD_DISABLE_GALLERY_CLICK, RECORD_DISABLE_DATABASE_CLICK]);
+  }, [zoomRef, archive_disable_gallery_click, RECORD_DISABLE_DATABASE_CLICK]);
   return (
     <div id="notion-article" className={`mx-auto overflow-hidden `}>
       <NotionRenderer

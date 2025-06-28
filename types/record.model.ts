@@ -1,29 +1,47 @@
-import { AllPosts } from "./provider.model";
+import { SelectOption } from "notion-types";
+import { LeftSideBarNavItem, NavItem, OldNavItem } from "./layout.model";
+import { NorkiveRecordData } from "./page.model";
+import { SiteInfoModel } from "./siteconfig.model";
 
-interface AllRecordsArchiveItemProps {
-  archiveTitle: string;
-  archiveRecords: [];
-}
+export type BasicRecordPageProps = {
+  type: string;
+  recordList?: NorkiveRecordData[];
+};
 
-interface AllRecordsPostCardProps {
-  post: AllPosts;
-  className: string;
-}
-interface AllRecordsPostListPageProps {
+export type AllRecordsProps = {
+  title: string;
+  recordList: NorkiveRecordData[];
+};
+
+export type AllRecordsListProps = {
   pagenum?: number;
-  posts?: AllPosts[];
+  posts?: NorkiveRecordData[];
   postCount: number;
-}
+};
 
-interface BasicRecordCardInfoItemProps {
-  post: AllPosts;
+export type RecordCardInfoProps = {
+  post: NorkiveRecordData;
   showPreview: boolean;
   showPageCover: boolean;
   showSummary: boolean;
-}
-export type {
-  AllRecordsArchiveItemProps,
-  AllRecordsPostListPageProps,
-  AllRecordsPostCardProps,
-  BasicRecordCardInfoItemProps,
 };
+export type CardProps = {
+  post: NorkiveRecordData;
+};
+
+export interface InitGlobalNotionData {
+  siteInfo: SiteInfoModel;
+  categoryOptions?: SelectOption[];
+  allNavPagesForLeftSiedBar: LeftSideBarNavItem[];
+  subTypeOptions?: [];
+  tagOptions?: SelectOption[];
+  className?: string;
+  oldNav: OldNavItem[];
+  customMenu: NavItem[];
+  notice: any;
+  post: any;
+  allArchive: NorkiveRecordData[];
+  allPages: NorkiveRecordData[];
+  allPageIds: NorkiveRecordData[];
+  latestPosts: [];
+}
