@@ -18,14 +18,15 @@ import {
   getSiteInfo,
   getTagOptions,
   isDatabase,
-} from "../../service/notion/notion-service";
-import { dbDeepClone } from "../../service/notion/utils";
-import { getPageProperties } from "../../service/notion/getPageProperties";
+} from "@/lib/data/service/notion-service";
 import {
   filterPostBlocks,
   getPageWithRetry,
   getPostBlocks,
-} from "../../service/notion/getPostBlocks";
+} from "@/lib/data/service/getPostBlocks";
+import { dbDeepClone } from "@/lib/data/service/utils";
+import { getPageProperties } from "@/lib/data/service/getPageProperties";
+
 import { getDataFromCache, setDataToCache } from "@/lib/cache/cache_manager";
 
 const NOTION_DB_ID = BLOG.NOTION_DATABASE_ID as string;

@@ -2,8 +2,9 @@ import loadGlobalNotionData from "@/lib/data/actions/notion/getNotionData";
 import { BLOG } from "@/blog.config";
 
 import type { MetadataRoute } from "next";
-import formatDate from "@/lib/utils/utils";
+
 import { InitGlobalNotionData } from "@/types";
+import { formatDate } from "@/lib/utils/utils";
 type ChangeFrequency =
   | "always"
   | "hourly"

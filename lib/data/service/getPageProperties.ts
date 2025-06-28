@@ -201,7 +201,7 @@ export function adjustPageProperties(properties, NOTION_CONFIG) {
   if (properties.type === "Record") {
     if (
       getOldsiteConfig({
-        key: "archive_url_prefix",
+        key: BLOG.archive_url_prefix as string,
         defaultVal: "",
         extendConfig: NOTION_CONFIG,
       })
@@ -213,9 +213,9 @@ export function adjustPageProperties(properties, NOTION_CONFIG) {
       });
     }
     properties.href = properties.slug ?? properties.id;
-  } else if (properties.type === "Page") {
-    properties.href = properties.slug ?? properties.id;
-  } else if (properties.type === "Menu" || properties.type === "SubMenu") {
+  } else if (PAGE_TYPE_MENU.includes(properties.type)) {
+    properties.slug = `/intro/${properties.id}`;
+  } else if (GENERAL_TYPE_MENU.includes(properties.type)) {
     // The menu path is empty and used as an expandable menu.
     properties.href = properties.slug ?? "#";
     properties.name = properties.title ?? "";

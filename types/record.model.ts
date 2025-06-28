@@ -27,14 +27,15 @@ export type RecordCardInfoProps = {
 };
 export type CardProps = {
   post: NorkiveRecordData;
+  className?: string;
 };
 
 export interface InitGlobalNotionData {
   siteInfo: SiteInfoModel;
   categoryOptions?: SelectOption[];
-  allNavPagesForLeftSiedBar: LeftSideBarNavItem[];
-  subTypeOptions?: [];
   tagOptions?: SelectOption[];
+  subTypeOptions?: [];
+  allNavPagesForLeftSiedBar: LeftSideBarNavItem[];
   className?: string;
   oldNav: OldNavItem[];
   customMenu: NavItem[];

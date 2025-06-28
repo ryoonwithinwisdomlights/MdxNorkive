@@ -1,13 +1,13 @@
 import { BLOG } from "@/blog.config";
 import { PageBlockDataProps } from "@/types";
-import { getGlobalData } from "../notion/getNotionData";
-import { getPostBlocks } from "../../service/notion/getPostBlocks";
+import { getGlobalData } from "@/lib/data/actions/notion/getNotionData";
+import { getPostBlocks } from "@/lib/data/service/getPostBlocks";
 import {
   getExcludeMenuPages,
   getFilteredArrayByProperty,
   getRecommendPage,
   getArchiveRecords,
-} from "../../service/notion/notion-service";
+} from "@/lib/data/service/notion-service";
 
 /**
  *
@@ -22,7 +22,7 @@ export async function getPageProps({ pageId, from, type }: PageBlockDataProps) {
     pageId: BLOG.NOTION_DATABASE_ID as string,
     from: from,
   });
-  // console.log("props:", props);
+
   // Find article in list
   props.post = props?.allPages?.find((item) => {
     return item.id === pageId;
@@ -39,28 +39,29 @@ export async function getPageByPageIdAndType(props, recordType) {
     });
   }
 
-  if (recordType !== "SubMenuPage") {
-    // Recommended related article processing
-    const allPosts = getExcludeMenuPages({
-      arr: props?.allPages,
-      type: recordType,
-    });
+  // if (recordType !== "SubMenuPage") {
+  // Recommended related article processing
+  const allRecords = getExcludeMenuPages({
+    arr: props?.allPages,
+    type: recordType,
+  });
 
-    if (allPosts && allPosts.length > 0) {
-      const index = allPosts.indexOf(props.post);
-      props.prev = allPosts.slice(index - 1, index)[0] ?? allPosts.slice(-1)[0];
-      props.next = allPosts.slice(index + 1, index + 2)[0] ?? allPosts[0];
-      props.recommendPosts = getRecommendPage(
-        props.post,
-        allPosts,
-        Number(BLOG.archive_recommend_count)
-      );
-    } else {
-      props.prev = null;
-      props.next = null;
-      props.recommendPosts = [];
-    }
+  if (allRecords && allRecords.length > 0) {
+    const index = allRecords.indexOf(props.post);
+    props.prev =
+      allRecords.slice(index - 1, index)[0] ?? allRecords.slice(-1)[0];
+    props.next = allRecords.slice(index + 1, index + 2)[0] ?? allRecords[0];
+    props.recommendRecords = getRecommendPage(
+      props.post,
+      allRecords,
+      Number(BLOG.archive_recommend_count)
+    );
+  } else {
+    props.prev = null;
+    props.next = null;
+    props.recommendRecords = [];
   }
+  // }
 
   return props;
 }

@@ -344,18 +344,6 @@ export function generateLeftSideBarItem(data: NorkiveRecordData) {
 }
 
 export function allArchivesWithSort(arr, counterObj, type, dateSort) {
-  /**
-   * ✅ 참고: 깊은 복사(Deep Copy)까지 필요할까?
-
-만약 post 안에 nested object (예: post.meta.tags 같은 구조)가 있고
-그 내부까지 안전하게 보호해야 한다면,
-lodash.cloneDeep이나 JSON.parse(JSON.stringify(post)) 같은 방법이 필요합니다
-   */
-  // const typeMatchList = [
-  //   "Record",
-  //   "Project",
-  //   "Engineering",
-  // ];
   const filteredArr = arr
     .slice() // Copy-on-Write: 원본 배열 복사
     .map((page) => ({ ...page })) // 내부 post 객체도 얕은 복사

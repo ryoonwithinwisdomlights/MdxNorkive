@@ -5,6 +5,7 @@ import ShareBar from "@/modules/shared/ShareBar";
 import ArticleAround from "@/modules/common/components/article/ArticleAround";
 import CategoryItem from "@/modules/common/components/catalog/CategoryItem";
 import TagItemMini from "../tag/TagItemMini";
+import { EXCLUDED_PAGE_TYPES } from "@/lib/constants/menu.constants";
 
 const SingleRecordsBodyForPage = ({ post, prev, next }) => {
   return (
@@ -27,6 +28,11 @@ const SingleRecordsBodyForPage = ({ post, prev, next }) => {
         </div>
       </div>
 
+      {!EXCLUDED_PAGE_TYPES.includes(post.type) &&
+        post.status === "Published" && (
+          <ArticleAround prev={prev} next={next} />
+        )}
+      {/* 
       {post?.type !== "CONFIG" &&
         post?.type !== "Menu" &&
         post?.type !== "SubMenu" &&
@@ -34,7 +40,7 @@ const SingleRecordsBodyForPage = ({ post, prev, next }) => {
         post?.type !== "Notice" &&
         post?.type !== "Page" &&
         post?.status === "Published" &&
-        post.type === "Project" && <ArticleAround prev={prev} next={next} />}
+        post.type === "Project" && <ArticleAround prev={prev} next={next} />} */}
       {/* <AdSlot /> */}
 
       <Comment frontMatter={post} />

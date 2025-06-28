@@ -1,4 +1,4 @@
-import { CollectionPropertySchema, SelectOption } from "notion-types";
+import { SelectOption } from "notion-types";
 
 export type RecommendPage = {
   id: string;
@@ -25,6 +25,7 @@ export type DateObj = {
   start_date?: string;
   date_format?: string;
 };
+
 export type NorkiveRecordData = {
   id: string;
   date: DateObj;

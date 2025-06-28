@@ -4,14 +4,10 @@ import { SiteInfoModel } from "./siteconfig.model";
 import { SelectOption } from "notion-types";
 
 export interface GlobalValueInferface {
-  searchKeyword: string;
-  setSearchKeyword: Dispatch<SetStateAction<string>>;
   siteInfo: SiteInfoModel;
   categoryOptions?: SelectOption[];
   tagOptions?: SelectOption[];
   subTypeOptions?: [];
-  filteredNavPages: LeftSideBarNavItem[];
-  setFilteredNavPages?: Dispatch<SetStateAction<LeftSideBarNavItem[]>>;
   allNavPagesForLeftSiedBar?: LeftSideBarNavItem[];
   className?: string;
   oldNav: OldNavItem[];
@@ -19,6 +15,10 @@ export interface GlobalValueInferface {
   notice: any;
   post: any;
   latestPosts: [];
+  filteredNavPages: LeftSideBarNavItem[];
+  setFilteredNavPages?: Dispatch<SetStateAction<LeftSideBarNavItem[]>>;
+  searchKeyword: string;
+  setSearchKeyword: Dispatch<SetStateAction<string>>;
 }
 
 export interface NorKiveThemeProviderContext {
