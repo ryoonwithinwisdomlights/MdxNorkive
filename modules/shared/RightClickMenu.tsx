@@ -1,8 +1,8 @@
 "use client"; // 클라이언트 컴포넌트
 /* eslint-disable multiline-ternary */
 import { BLOG } from "@/blog.config";
-import { useGlobal } from "@/context/globalProvider";
-import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
+import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
 import useWindowSize from "@/lib/hooks/useWindowSize";
 import {
   ArrowLeftIcon,
@@ -35,7 +35,7 @@ import { useCopyToClipboard, useMediaQuery } from "usehooks-ts";
  */
 export default function RightClickMenu() {
   const isMobile = useMediaQuery("(max-width: 768px");
-  const { latestPosts } = useGlobal({ from: "index" });
+  const { latestRecords } = useGlobal({ from: "index" });
   const {
     isDarkMode,
     handleChangeDarkMode,
@@ -113,13 +113,13 @@ export default function RightClickMenu() {
   /**
    * Randomly jump to articles
    */
-  function handleJumpToRandomPost(
+  function handleJumpTorandomRecord(
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) {
     event.stopPropagation();
-    const randomIndex = Math.floor(Math.random() * latestPosts.length);
-    const randomPost: any = latestPosts[randomIndex];
-    router.push(`/records/${randomPost?.id}`);
+    const randomIndex = Math.floor(Math.random() * latestRecords.length);
+    const randomRecord: any = latestRecords[randomIndex];
+    router.push(`/records/${randomRecord?.id}`);
   }
 
   function handleBack(event: React.MouseEvent<SVGSVGElement, MouseEvent>) {
@@ -219,7 +219,7 @@ export default function RightClickMenu() {
           <div className="w-full px-2">
             <div
               onClick={(e) => {
-                handleJumpToRandomPost(e);
+                handleJumpTorandomRecord(e);
               }}
               title={locale.MENU.RANDOM_PAGE}
               className="w-full px-2 h-10 flex justify-start items-center flex-nowrap cursor-pointer  hover:text-black dark:hover:bg-[#f1efe9e2]   rounded-lg duration-200 transition-all"

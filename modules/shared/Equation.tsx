@@ -4,7 +4,6 @@ import Katex from "@/modules/shared/KatexReact";
 import { getBlockTitle } from "notion-utils";
 import { BLOG } from "@/blog.config";
 import { getSinlgePost } from "@/lib/data/actions/notion/getNotionData";
-// import { getSinlgePost } from "@/lib/data/notion/typescript";
 
 const katexSettings = {
   throwOnError: false,

@@ -1,4 +1,4 @@
-import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
 import { BookOpenTextIcon } from "lucide-react";
 /**
  * Mobile article navigation buttons

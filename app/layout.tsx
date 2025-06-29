@@ -18,22 +18,21 @@ import "./../styles/prism-theme.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "katex/dist/katex.min.css";
 
-import { GlobalContextProvider } from "@/context/globalProvider";
-
 import PageNavDrawer from "@/modules/layout/components/navigation-post/PageNavDrawer";
 
-import loadGlobalNotionData from "@/lib/data/actions/notion/getNotionData";
+import initGlobalNotionData from "@/lib/data/actions/notion/getNotionData";
 import BottomMenuBar from "@/modules/common/components/menu/BottomMenuBar";
 import LoadingCover from "@/modules/common/icons/LoadingCover";
 import TopNavBar from "@/modules/layout/components/navigation-post/TopNavBar";
 import { config } from "@fortawesome/fontawesome-svg-core";
 
-import { NorkiveThemeProvider } from "@/context/NorkiveThemeProvider";
+import { EssentialNavInfoProvider } from "@/lib/context/EssentialNavInfoProvider";
+import { GeneralSiteSettingsProvider } from "@/lib/context/GeneralSiteSettingsProvider";
 import AuxiliaryBlogComponent from "@/modules/layout/components/AuxiliaryBlogComponent";
 import LeftNavigationBar from "@/modules/layout/templates/LeftNavigationBar";
 import MainLayoutWrapper from "@/modules/layout/templates/MainLayoutWrapper";
 import RightSlidingDrawer from "@/modules/layout/templates/RightSlidingDrawer";
-import { ChildrenProp, InitGlobalNotionData } from "@/types";
+import { ChildrenProp } from "@/types";
 
 config.autoAddCss = false;
 
@@ -81,29 +80,21 @@ export const metadata: Metadata = {
   },
 };
 
-/**
- * 
- * Root Layout (Required)
-  The root layout is defined at the top level of the app directory 
-  and applies to all routes. This layout is required and must contain 
-  html and body tags, allowing you to modify the initial HTML 
-  returned from the server.
- * 
- * 
- * 
- */
 export default async function RootLayout({ children }: ChildrenProp) {
-  const initGlobalNotionData: InitGlobalNotionData =
-    await loadGlobalNotionData("main");
+  const globalNotionData = await initGlobalNotionData("main");
 
   return (
     <html lang="en" suppressHydrationWarning className={GeistSans.className}>
       <body>
-        <GlobalContextProvider
-          initGlobalNotionData={initGlobalNotionData}
+        <EssentialNavInfoProvider
+          globalNotionData={globalNotionData}
           from={"index"}
         >
-          <NorkiveThemeProvider>
+          <GeneralSiteSettingsProvider
+            allNavPagesForLeftSideBar={
+              globalNotionData.allNavPagesForLeftSideBar
+            }
+          >
             <div
               id="gitbook"
               className={`${BLOG.FONT_STYLE}  w-full h-screen justify-center dark:text-neutral-300 scroll-smooth pb-16  md:pb-0 `}
@@ -133,8 +124,8 @@ export default async function RootLayout({ children }: ChildrenProp) {
               {/* Mobile bottom navigation bar */}
               <BottomMenuBar />
             </div>
-          </NorkiveThemeProvider>
-        </GlobalContextProvider>
+          </GeneralSiteSettingsProvider>
+        </EssentialNavInfoProvider>
       </body>
     </html>
   );

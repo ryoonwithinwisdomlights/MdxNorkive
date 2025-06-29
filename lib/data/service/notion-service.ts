@@ -17,10 +17,11 @@ import { CollectionPropertySchemaMap } from "notion-types";
 import { defaultMapImageUrl } from "notion-utils";
 import {
   compressImage,
-  getPostsGroupByDate,
+  getrecordsGroupByDate,
   getSortedPostObject,
   mapImgUrl,
 } from "./utils";
+import { generateCustomizeUrlWithType } from "./getPageProperties";
 
 type CollectionQueryResultView = {
   blockIds?: string[];
@@ -66,7 +67,7 @@ export function getCategoryOptions(schema: CollectionPropertySchemaMap) {
 
 /**
  * Get the Categories or Tags of all Records
- * @param allPosts
+ * @param allrecords
  * @returns {Promise<{}|*[]>}
  */
 export function getAllCategoriesOrTags({
@@ -75,12 +76,12 @@ export function getAllCategoriesOrTags({
   propertyName,
   sliceCount = 0,
 }) {
-  const allPosts = getExcludeMenuPages({ arr: allPages });
-  if (!allPosts || !Array.isArray(propertyOptions)) return [];
+  const allrecords = getExcludeMenuPages({ arr: allPages });
+  if (!allrecords || !Array.isArray(propertyOptions)) return [];
 
   // Step 1: 프로퍼티별 개수 집계
-  const itemCounts = allPosts
-    .flatMap((post) => post[propertyName] || [])
+  const itemCounts = allrecords
+    .flatMap((record) => record[propertyName] || [])
     .reduce((acc, item) => {
       acc[item] = (acc[item] || 0) + 1;
       return acc;
@@ -118,13 +119,14 @@ export function getOldNav({ allPages }) {
 }
 
 export function getCustomMenu({
-  allArchiveRecordData,
+  allArchiveRecordsData,
 }: {
-  allArchiveRecordData: NorkiveRecordData[];
+  allArchiveRecordsData: NorkiveRecordData[];
 }) {
-  const menuPages = allArchiveRecordData.filter(
-    (post) =>
-      post.status === "Published" && INCLUDED_MENU_TYPES.includes(post?.type)
+  const menuPages = allArchiveRecordsData.filter(
+    (record) =>
+      record.status === "Published" &&
+      INCLUDED_MENU_TYPES.includes(record?.type)
   );
   const menus: NavItem[] = [];
   if (menuPages && menuPages.length > 0) {
@@ -143,16 +145,6 @@ export function getCustomMenu({
           }
         }
       }
-      // else if (e.type === "SubMenu") {
-      //   const parentMenu = menus[menus.length - 1];
-      //   if (parentMenu) {
-      //     if (parentMenu.subMenus) {
-      //       parentMenu.subMenus.push(e);
-      //     } else {
-      //       parentMenu.subMenus = [e];
-      //     }
-      //   }
-      // }
     });
   }
   return menus;
@@ -164,15 +156,15 @@ export function getCustomMenu({
  * @param {*}} param0
  * @returns
  */
-export function getLatestPosts({ allPages, from, latestPostCount }) {
-  const allPosts = getExcludeMenuPages({ arr: allPages });
-  const latestPosts = [...allPosts].sort((a, b) => {
+export function getLatestRecords({ allPages, from, latestRecordCount }) {
+  const allrecords = getExcludeMenuPages({ arr: allPages });
+  const latestRecords = [...allrecords].sort((a, b) => {
     const dateA = new Date(a?.lastEditedDate || a?.publishDate);
     const dateB = new Date(b?.lastEditedDate || b?.publishDate);
     return dateB.getTime() - dateA.getTime();
   });
 
-  return latestPosts.slice(0, latestPostCount);
+  return latestRecords.slice(0, latestRecordCount);
 }
 
 /**
@@ -219,7 +211,7 @@ export function getSiteInfo({
   //   }),
   // })
   const collectionIcon = mapImgUrl(collection?.icon, collection, "collection");
-  // console.log("collectionIcon:", collectionIcon);
+
   // Compress all category user avatars
   let icon = compressImage(
     collectionIcon ? { image: collectionIcon } : { image: defaultIcon }
@@ -239,7 +231,7 @@ export function getSiteInfo({
  * Get a reduced list of articles for navigation
  * Used in the gitbook theme, only the title, classification, label and classification information
 of the article are retained, and the summary, password, date and other data are reduced.
- * The conditions for navigation page must be Posts
+ * The conditions for navigation page must be records
  * @param {*} param0
  */
 export function getRecordListForLeftSideBar({ allPages }) {
@@ -285,7 +277,7 @@ export const generateEmpyRecordData = (pageId) => {
         title: `Unable to get Notion data，Please check Notion_ID： \n current ${pageId}`,
         summary: " ",
         status: "Published",
-        type: "Post",
+        type: "Record",
         slug: "13a171332816461db29d50e9f575b00d",
         date: {
           start_date: "2024-11-24",
@@ -307,9 +299,9 @@ export const generateEmpyRecordData = (pageId) => {
     rawMetadata: {},
     oldNav: [],
     customMenu: [],
-    postCount: 1,
+    recordCount: 1,
     pageIds: [],
-    latestPosts: [],
+    latestRecords: [],
   };
   return empty;
 };
@@ -378,20 +370,20 @@ export function allArchivesWithSort(arr, counterObj, type, dateSort) {
 /**
  * Get the list of recommended articles associated with the article, currently filtered based on tag relevance
  * @param post
- * @param {*} allPosts
+ * @param {*} allrecords
  * @param {*} count
  * @returns
  */
 export function getRecommendPage(
   post: RecommendPage,
-  allPosts: RecommendPage[],
+  allrecords: RecommendPage[],
   count: number = 6
 ): RecommendPage[] {
   let RecommendPages: RecommendPage[] = []; // 추천 게시물 배열
   const postIds: string[] = []; // 추천된 게시물 ID 배열
   const currentTags: string[] = post?.tags || []; // 현재 게시물의 태그
-  for (let i = 0; i < allPosts.length; i++) {
-    const p = allPosts[i];
+  for (let i = 0; i < allrecords.length; i++) {
+    const p = allrecords[i];
     // 현재 게시물과 동일한 게시물이거나 타입이 'Post'가 아니면 건너뜀
     if (p.id === post.id || p.type.indexOf("Post") < 0) {
       continue;
@@ -471,10 +463,10 @@ export function getAllPageIds(
 }
 
 export function getArchiveRecords(dateSort, props) {
-  let result = props.posts;
+  let result = props.records;
   if (dateSort === true) {
-    const postsSortByDate = getSortedPostObject(props.posts);
-    const archiveRecords = getPostsGroupByDate(postsSortByDate);
+    const recordsSortByDate = getSortedPostObject(props.records);
+    const archiveRecords = getrecordsGroupByDate(recordsSortByDate);
     result = archiveRecords;
   }
   return result;

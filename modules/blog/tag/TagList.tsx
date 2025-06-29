@@ -1,5 +1,5 @@
 "use client";
-import { useGlobal } from "@/context/globalProvider";
+import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import TagItemMini from "@/modules/blog/tag/TagItemMini";
 import { TagIcon } from "lucide-react";
 

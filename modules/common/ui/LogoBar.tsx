@@ -1,7 +1,7 @@
 "use client"; // 클라이언트 컴포넌트
 import { BLOG } from "@/blog.config";
-import { useGlobal } from "@/context/globalProvider";
-import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
+import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
 import LazyImage from "@/modules/shared/LazyImage";
 import Link from "next/link";
 

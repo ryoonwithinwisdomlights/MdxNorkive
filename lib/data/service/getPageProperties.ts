@@ -11,7 +11,7 @@ import {
 } from "notion-types";
 import { NorkiveRecordData } from "@/types";
 import {
-  ABLE_PAGE_TYPES,
+  AVAILABLE_PAGE_TYPES,
   ARCHIVE_PROPERTIES_STATUS_MAP,
   ARCHIVE_PROPERTIES_TYPE_MAP,
   GENERAL_TYPE_MENU,
@@ -141,37 +141,37 @@ export async function getPageProperties(
     }) || [];
 
   delete properties.content;
-  const isAblePage = ABLE_PAGE_TYPES.includes(properties.type);
-
+  const isAblePage = AVAILABLE_PAGE_TYPES.includes(properties.type);
+  handleRecordsUrl(isAblePage, properties);
   // Handle URL
-  if (isAblePage) {
-    const customedUrl = generateCustomizeUrlWithType({
-      postProperties: properties,
-      type: properties.type,
-    });
-    properties.slug = BLOG.archive_url_prefix
-      ? customedUrl
-      : (properties.slug ?? properties.id);
-  } else if (PAGE_TYPE_MENU.includes(properties.type)) {
-    properties.slug = `/intro/${properties.id}`;
-  } else if (GENERAL_TYPE_MENU.includes(properties.type)) {
-    // The menu path is empty and used as an expandable menu.
-    properties.to = properties.slug ?? "#";
-    properties.name = properties.title ?? "";
-  }
+  // if (isAblePage) {
+  //   const customedUrl = generateCustomizeUrlWithType({
+  //     recordProperties: properties,
+  //     type: properties.type,
+  //   });
+  //   properties.slug = BLOG.archive_url_prefix
+  //     ? customedUrl
+  //     : (properties.slug ?? properties.id);
+  // } else if (PAGE_TYPE_MENU.includes(properties.type)) {
+  //   properties.slug = `/intro/${properties.id}`;
+  // } else if (GENERAL_TYPE_MENU.includes(properties.type)) {
+  //   // The menu path is empty and used as an expandable menu.
+  //   properties.to = properties.slug ?? "#";
+  //   properties.name = properties.title ?? "";
+  // }
 
-  // Enable pseudo-static path
-  if (JSON.parse(BLOG.PSEUDO_STATIC as string)) {
-    if (
-      !properties?.slug?.endsWith(".html") &&
-      !properties?.slug?.startsWith("http")
-    ) {
-      properties.slug += ".html";
-    }
-  }
-  properties.password = properties.password
-    ? md5(properties.slug + properties.password)
-    : "";
+  // // Enable pseudo-static path
+  // if (JSON.parse(BLOG.PSEUDO_STATIC as string)) {
+  //   if (
+  //     !properties?.slug?.endsWith(".html") &&
+  //     !properties?.slug?.startsWith("http")
+  //   ) {
+  //     properties.slug += ".html";
+  //   }
+  // }
+  // properties.password = properties.password
+  //   ? md5(properties.slug + properties.password)
+  //   : "";
   return properties as NorkiveRecordData;
 }
 
@@ -207,7 +207,7 @@ export function adjustPageProperties(properties, NOTION_CONFIG) {
       })
     ) {
       properties.slug = generateCustomizeUrlWithType({
-        postProperties: properties,
+        recordProperties: properties,
         type: "",
         extendConfig: NOTION_CONFIG,
       });
@@ -272,15 +272,15 @@ export function adjustPageProperties(properties, NOTION_CONFIG) {
  * Get custom URL
  * URLs can be generated based on variables
  * support: %year%/%month%/%day%/%slug%
- * @param {*} postProperties
+ * @param {*} recordProperties
  * @returns
  */
-function generateCustomizeUrlWithType({
-  postProperties,
+export function generateCustomizeUrlWithType({
+  recordProperties,
   type,
   extendConfig,
 }: {
-  postProperties: Partial<NorkiveRecordData> & { [key: string]: any };
+  recordProperties: Partial<NorkiveRecordData> & { [key: string]: any };
   type: string;
   extendConfig?: {};
 }) {
@@ -288,20 +288,20 @@ function generateCustomizeUrlWithType({
   const allSlugPatterns = BLOG.archive_url_prefix.split("/");
 
   allSlugPatterns.forEach((pattern, idx) => {
-    if (pattern === "%year%" && postProperties?.publishDay) {
-      const formatPostCreatedDate = new Date(postProperties?.publishDay);
+    if (pattern === "%year%" && recordProperties?.publishDay) {
+      const formatPostCreatedDate = new Date(recordProperties?.publishDay);
       fullPrefix += formatPostCreatedDate.getUTCFullYear();
-    } else if (pattern === "%month%" && postProperties?.publishDay) {
-      const formatPostCreatedDate = new Date(postProperties?.publishDay);
+    } else if (pattern === "%month%" && recordProperties?.publishDay) {
+      const formatPostCreatedDate = new Date(recordProperties?.publishDay);
       fullPrefix += String(formatPostCreatedDate.getUTCMonth() + 1).padStart(
         2,
         "0"
       );
-    } else if (pattern === "%day%" && postProperties?.publishDay) {
-      const formatPostCreatedDate = new Date(postProperties?.publishDay);
+    } else if (pattern === "%day%" && recordProperties?.publishDay) {
+      const formatPostCreatedDate = new Date(recordProperties?.publishDay);
       fullPrefix += String(formatPostCreatedDate.getUTCDate()).padStart(2, "0");
     } else if (pattern === "%slug%") {
-      fullPrefix += postProperties.slug ?? postProperties.id;
+      fullPrefix += recordProperties.slug ?? recordProperties.id;
     } else if (!pattern.includes("%")) {
       fullPrefix += pattern;
     } else {
@@ -322,15 +322,48 @@ function generateCustomizeUrlWithType({
 
   if (type === "Record") {
     res = `${BLOG.archive_url_prefix.toLowerCase()}/${
-      postProperties.slug ?? postProperties.id
+      recordProperties.slug ?? recordProperties.id
     }`;
   } else if (type == "Project" || "Engineering") {
-    res = `/${type.toLowerCase()}/${postProperties.slug ?? postProperties.id}`;
+    res = `${type.toLowerCase()}/${recordProperties.slug ?? recordProperties.id}`;
   } else {
     res = `${fullPrefix.toLowerCase()}/${type.toLowerCase()}/${
-      postProperties.slug ?? postProperties.id
+      recordProperties.slug ?? recordProperties.id
     }`;
   }
 
   return res;
 }
+
+export const handleRecordsUrl = (isAblePage, properties) => {
+  if (isAblePage) {
+    const customedUrl = generateCustomizeUrlWithType({
+      recordProperties: properties,
+      type: properties.type,
+    });
+
+    properties.slug = BLOG.archive_url_prefix
+      ? customedUrl
+      : (properties.slug ?? properties.id);
+  } else if (PAGE_TYPE_MENU.includes(properties.type)) {
+    properties.slug = `/intro/${properties.id}`;
+  } else if (GENERAL_TYPE_MENU.includes(properties.type)) {
+    // The menu path is empty and used as an expandable menu.
+    properties.to = properties.slug ?? "#";
+    properties.name = properties.title ?? "";
+  }
+
+  // Enable pseudo-static path
+  if (JSON.parse(BLOG.PSEUDO_STATIC as string)) {
+    if (
+      !properties?.slug?.endsWith(".html") &&
+      !properties?.slug?.startsWith("http")
+    ) {
+      properties.slug += ".html";
+    }
+  }
+  properties.password = properties.password
+    ? md5(properties.slug + properties.password)
+    : "";
+  // return properties;
+};

@@ -2,26 +2,26 @@ import { deepClone, formatDateFmt } from "@/lib/utils/utils";
 import { BLOG } from "@/blog.config";
 
 export function getSortedPostObject(obj) {
-  const postsSortByDate = Object.create(obj);
+  const recordsSortByDate = Object.create(obj);
 
-  postsSortByDate.sort((a, b) => {
+  recordsSortByDate.sort((a, b) => {
     return b?.publishDate - a?.publishDate;
   });
-  return postsSortByDate;
+  return recordsSortByDate;
 }
 
-export function getPostsGroupByDate(array) {
-  const allPosts = {};
+export function getrecordsGroupByDate(array) {
+  const allrecords = {};
 
-  array.forEach((post) => {
-    const date = formatDateFmt(post.publishDate, "yyyy-MM");
-    if (allPosts[date]) {
-      allPosts[date].push(post);
+  array.forEach((record) => {
+    const date = formatDateFmt(record.publishDate, "yyyy-MM");
+    if (allrecords[date]) {
+      allrecords[date].push(record);
     } else {
-      allPosts[date] = [post];
+      allrecords[date] = [record];
     }
   });
-  return allPosts;
+  return allrecords;
 }
 
 /**
@@ -149,7 +149,7 @@ export const mapImgUrl: any = (img, block, type = "block", from) => {
   return ret;
 };
 
-export function dbDeepClone(data) {
+export function applyDataBaseProcessing(data) {
   const db = deepClone(data);
 
   delete db.block;
@@ -162,6 +162,24 @@ export function dbDeepClone(data) {
   delete db.collectionId;
   delete db.collectionView;
   // Sensitive data not returned
+  // Clean up excess blocks
+  // if (db?.notice) {
+  //   db.notice = cleanBlock(db?.notice)
+  //   delete db.notice?.id
+  // }
+
+  // db.tagOptions = cleanIds(db?.tagOptions)
+  // db.categoryOptions = cleanIds(db?.categoryOptions)
+  // db.customMenu = cleanIds(db?.customMenu)
+
+  // //   db.latestRecords = shortenIds(db?.latestRecords)
+  // db.allNavPages = shortenIds(db?.allNavPages)
+  // //   db.allPages = cleanBlocks(db?.allPages)
+
+  // db.allNavPages = cleanPages(db?.allNavPages, db.tagOptions)
+  // db.allPages = cleanPages(db.allPages, db.tagOptions)
+  // db.latestRecords = cleanPages(db.latestRecords, db.tagOptions)
+
   return db;
 }
 
@@ -213,14 +231,115 @@ export function getShortId(uuid) {
   return uuid.substring(0, index);
 }
 
-function isEmoji(str) {
+export function isEmoji(str) {
   const emojiRegex =
     /[\u{1F300}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}\u{1F018}-\u{1F270}]/u;
   return emojiRegex.test(str);
 }
 
-// function isEmoji2(str: string): boolean {
-//   const emojiRegex =
-//     /[\uD83C\uDF00-\uD83D\uDEFF\uD83C\uDDE0-\uD83C\uDDFF\u2600-\u26FF\u2700-\u27BF\uD83E\uDD00-\uD83E\uDDFF\uD83D\uDC18-\uD83D\uDC70]/;
-//   return emojiRegex.test(str);
-// }
+/**
+ * Handling abnormal data in article lists
+ * @param {Array} allPages - All page data
+ * @param {Array} tagOptions - Label options
+ * @returns {Array} AllPages after processing
+ */
+function cleanPages(allPages, tagOptions) {
+  // All page data
+  if (!Array.isArray(allPages) || !Array.isArray(tagOptions)) {
+    console.warn("Invalid input: allPages and tagOptions should be arrays.");
+    return allPages || []; // Returns an empty array or a primitive value
+  }
+
+  // Extract all valid tag names in tagOptions
+  const validTags = new Set(
+    tagOptions
+      .map((tag) => (typeof tag.name === "string" ? tag.name : null))
+      .filter(Boolean) // Only keep legal strings
+  );
+
+  // Traverse all pages
+  allPages.forEach((page) => {
+    // Make sure tagItems is an array
+    if (Array.isArray(page.tagItems)) {
+      // Filter the tagItems of each page
+      page.tagItems = page.tagItems.filter(
+        (tagItem) =>
+          validTags.has(tagItem?.name) && typeof tagItem.name === "string" // Check if tagItem.name is a string
+      );
+    }
+  });
+
+  return allPages;
+}
+
+/**
+ * 
+Clean up the id of a set of data
+ * @param {*} items
+ * @returns
+ */
+function shortenIds(items) {
+  if (items && Array.isArray(items)) {
+    return deepClone(
+      items.map((item) => {
+        item.short_id = getShortId(item.id);
+        delete item.id;
+        return item;
+      })
+    );
+  }
+  return items;
+}
+
+/**
+ * Clean up the id of a set of data
+ * @param {*} items
+ * @returns
+ */
+function cleanIds(items) {
+  if (items && Array.isArray(items)) {
+    return deepClone(
+      items.map((item) => {
+        delete item.id;
+        return item;
+      })
+    );
+  }
+  return items;
+}
+
+/**
+ * Clean block data
+ */
+function cleanBlock(item) {
+  const record = deepClone(item);
+  const pageBlock = record?.blockMap?.block;
+  //   delete record?.id
+  //   delete record?.blockMap?.collection
+
+  if (pageBlock) {
+    for (const i in pageBlock) {
+      pageBlock[i] = cleanBlock(pageBlock[i]);
+      delete pageBlock[i]?.role;
+      delete pageBlock[i]?.value?.version;
+      delete pageBlock[i]?.value?.created_by_table;
+      delete pageBlock[i]?.value?.created_by_id;
+      delete pageBlock[i]?.value?.last_edited_by_table;
+      delete pageBlock[i]?.value?.last_edited_by_id;
+      delete pageBlock[i]?.value?.space_id;
+      delete pageBlock[i]?.value?.version;
+      delete pageBlock[i]?.value?.format?.copied_from_pointer;
+      delete pageBlock[i]?.value?.format?.block_locked_by;
+      delete pageBlock[i]?.value?.parent_table;
+      delete pageBlock[i]?.value?.copied_from_pointer;
+      delete pageBlock[i]?.value?.copied_from;
+      delete pageBlock[i]?.value?.created_by_table;
+      delete pageBlock[i]?.value?.created_by_id;
+      delete pageBlock[i]?.value?.last_edited_by_table;
+      delete pageBlock[i]?.value?.last_edited_by_id;
+      delete pageBlock[i]?.value?.permissions;
+      delete pageBlock[i]?.value?.alive;
+    }
+  }
+  return record;
+}

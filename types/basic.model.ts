@@ -1,7 +1,6 @@
 import { type ExtendedRecordMap } from "notion-types";
 import { type ParsedUrlQuery } from "node:querystring";
 import { type PageMap } from "notion-types";
-export * from "notion-types";
 
 export type NavigationStyle = "default" | "custom";
 export interface Site {
@@ -73,14 +72,13 @@ export interface Params extends ParsedUrlQuery {
   pageId: string;
 }
 
+export interface CanonicalPageMap {
+  [canonicalPageId: string]: string;
+}
 export interface SiteMap {
   site: Site;
   pageMap: PageMap;
   canonicalPageMap: CanonicalPageMap;
-}
-
-export interface CanonicalPageMap {
-  [canonicalPageId: string]: string;
 }
 
 export interface PageUrlOverridesMap {

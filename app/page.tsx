@@ -1,10 +1,10 @@
-import { getNotionRecordsByType } from "@/lib/data/actions/pages/page-action";
+import { getRecordPageListDataByType } from "@/lib/data/actions/pages/page-action";
 import { isNotEmptyObj } from "@/lib/utils/utils";
 import AllRecords from "@/modules/blog/records/AllRecords";
 import NoRecordFound from "@/modules/blog/records/NoRecordFound";
 
 export default async function Page() {
-  const { props }: any = await getNotionRecordsByType({
+  const props: any = await getRecordPageListDataByType({
     from: "index",
   });
 

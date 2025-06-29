@@ -1,5 +1,5 @@
 "use client";
-import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
 import { useEffect, useRef } from "react";
 
 /**
@@ -60,7 +60,7 @@ const GiscusComponent = () => {
     const iframe = document.querySelector<HTMLIFrameElement>(
       "iframe.giscus-frame"
     );
-    iframe?.contentWindow?.postMessage(
+    iframe?.contentWindow?.recordMessage(
       { giscus: { setConfig: { theme } } },
       "https://giscus.app"
     );

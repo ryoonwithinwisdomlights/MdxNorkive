@@ -15,7 +15,7 @@ import {
   TwitterShareButton,
 } from "react-share";
 
-import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
 import { LinkIcon } from "lucide-react";
 // 사전에 사용할 아이콘 추가
 /**

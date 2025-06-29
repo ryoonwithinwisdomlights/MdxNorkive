@@ -1,9 +1,6 @@
-import loadGlobalNotionData from "@/lib/data/actions/notion/getNotionData";
 import { BLOG } from "@/blog.config";
-
 import type { MetadataRoute } from "next";
-
-import { InitGlobalNotionData } from "@/types";
+import { getGlobalData } from "@/lib/data/actions/notion/getNotionData";
 import { formatDate } from "@/lib/utils/utils";
 type ChangeFrequency =
   | "always"
@@ -22,8 +19,9 @@ type ChangeFrequency =
  *
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const initGlobalNotionData: InitGlobalNotionData =
-    await loadGlobalNotionData("index");
+  const globalData = await getGlobalData({
+    pageId: BLOG.NOTION_DATABASE_ID as string,
+  });
   const dailyVariable: ChangeFrequency = "daily";
 
   const urls = [
@@ -53,16 +51,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
   // Cycle page generation
-  const { allArchive } = initGlobalNotionData;
-  allArchive
+  const { allArchiveRecords } = globalData;
+  allArchiveRecords
     ?.filter((p) => p.status === BLOG.NOTION_PROPERTY_NAME.status_publish)
-    .forEach((post) => {
-      const lmd = post.lastEditedDate
-        ? formatDate(post.date.start_date, BLOG.LANG)
-        : formatDate(post.lastEditedDate, BLOG.LANG);
+    .forEach((record) => {
+      const lmd = record.lastEditedDate
+        ? formatDate(record.date.start_date, BLOG.LANG)
+        : formatDate(record.lastEditedDate, BLOG.LANG);
       // console.log(`lmd: ${lmd}`);
       urls.push({
-        url: `${BLOG.LINK}${post.type.toLowerCase()}/${post.id}`,
+        url: `${BLOG.LINK}${record.type.toLowerCase()}/${record.id}`,
         lastModified: lmd,
         changeFrequency: dailyVariable,
         priority: 1,

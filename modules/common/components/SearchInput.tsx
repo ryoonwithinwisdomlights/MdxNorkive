@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 "use client";
-import { useGlobal } from "@/context/globalProvider";
-import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
 import { deepClone } from "@/lib/utils/utils";
 
 import { SearchIcon, XIcon } from "lucide-react";
@@ -12,13 +11,16 @@ let lock = false;
 const SearchInput = ({ cRef, className }) => {
   const [showClean, setShowClean] = useState(false);
   // 검색 키워드 상태
-  const { searchKeyword, setSearchKeyword } = useGlobal({});
-  const { locale } = useNorkiveTheme();
+  const {
+    locale,
+    searchKeyword,
+    setSearchKeyword,
+    setFilteredNavPages,
+    allNavPagesForLeftSideBar,
+  } = useNorkiveTheme();
+
   // 입력 필드 참조
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const { setFilteredNavPages, allNavPagesForLeftSiedBar } = useGlobal({
-    from: "index",
-  });
 
   useImperativeHandle(cRef, () => {
     return {
@@ -31,15 +33,15 @@ const SearchInput = ({ cRef, className }) => {
   const handleSearch = () => {
     if (searchInputRef?.current) {
       setSearchKeyword(searchInputRef.current.value.trim());
-    } else if (setFilteredNavPages && allNavPagesForLeftSiedBar) {
+    } else if (setFilteredNavPages && allNavPagesForLeftSideBar) {
       // undefined가 아닌 경우에만 실행
-      setFilteredNavPages(allNavPagesForLeftSiedBar);
+      setFilteredNavPages(allNavPagesForLeftSideBar);
     }
-    const filterAllNavPages = deepClone(allNavPagesForLeftSiedBar);
+    const filterAllNavPages = deepClone(allNavPagesForLeftSideBar);
 
     for (let i = filterAllNavPages.length - 1; i >= 0; i--) {
-      const post = filterAllNavPages[i];
-      const articleInfo = post.title + "";
+      const record = filterAllNavPages[i];
+      const articleInfo = record.title + "";
 
       const hit =
         articleInfo.toLowerCase().indexOf(searchKeyword.toLowerCase()) > -1;
@@ -50,7 +52,7 @@ const SearchInput = ({ cRef, className }) => {
     }
 
     // Updated
-    if (setFilteredNavPages && allNavPagesForLeftSiedBar) {
+    if (setFilteredNavPages && allNavPagesForLeftSideBar) {
       setFilteredNavPages(filterAllNavPages);
     }
     // cleanSearch()

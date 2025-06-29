@@ -12,7 +12,7 @@ import TweetEmbed from "react-tweet-embed";
 import { getOldsiteConfig } from "@/lib/utils/get-config-value";
 import { compressImage, mapImgUrl } from "@/lib/data/service/utils";
 
-const NotionPage = ({ post }) => {
+const NotionPage = ({ record }) => {
   // Whether to turn off the click jump of the database and album
   const archive_disable_gallery_click = getOldsiteConfig({
     key: "archive_disable_gallery_click",
@@ -109,7 +109,7 @@ const NotionPage = ({ post }) => {
       <NotionRenderer
         disableHeader // notion 헤더 안보이도록
         // fullPage={true}
-        recordMap={post?.blockMap}
+        recordMap={record?.blockMap}
         mapPageUrl={mapPageUrl}
         mapImageUrl={mapImgUrl}
         components={{
@@ -270,7 +270,7 @@ const autoScrollToHash = () => {
 };
 
 /**
- * Map id to blog post internal link.
+ * Map id to blog record internal link.
  * @param {*} id
  * @returns
  */

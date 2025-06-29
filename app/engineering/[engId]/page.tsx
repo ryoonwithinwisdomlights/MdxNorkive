@@ -1,7 +1,7 @@
 import { BLOG } from "@/blog.config";
 import {
-  getPageByPageIdAndType,
-  getPageProps,
+  setPrevNextRecommendInRecordPage,
+  getRecordPageDataById,
 } from "@/lib/data/actions/pages/page-action";
 
 import SingleRecords from "@/modules/blog/records/SingleRecords";
@@ -21,10 +21,13 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }): Promise<Metadata> {
   const { engId } = await params;
-  const props = await getPageProps({ pageId: engId, type: "Engineering" });
-  const postTitle = props?.post ? props.post : "";
+  const result = await getRecordPageDataById({
+    pageId: engId,
+    from: "Engineering",
+  });
+  const recordTitle = result?.record ? result.record : "";
   return {
-    title: postTitle,
+    title: recordTitle,
     description: BLOG.DESCRIPTION as string,
   };
 }
@@ -35,18 +38,17 @@ export default async function Page({ params }) {
   if (!engId) {
     return <ErrorComponent />;
   }
-  const props = await getPageProps({
+  const result = await getRecordPageDataById({
     pageId: engId,
-    type: "Project",
+    from: "Project",
   });
 
-  if (!props?.post) {
-    // props.post = null;
+  if (!result?.record) {
     return <div>Invalid record ID</div>;
   }
 
-  const page = await getPageByPageIdAndType(props, "Engineering");
-  console.log("Engineering SingleRecords:", props);
+  const page = await setPrevNextRecommendInRecordPage(result);
+
   return (
     <div className="w-full h-full">
       <SingleRecords props={page} />

@@ -30,14 +30,14 @@ const RecordBodyForPage = ({ type, recordList }: BasicRecordPageProps) => {
 
                     {type === "Project" ? (
                       <DevprojectCardInfo
-                        post={item}
+                        record={item}
                         showPageCover={showPageCover}
                         showPreview={true}
                         showSummary={true}
                       />
                     ) : (
                       <RecordCardInfo
-                        post={item}
+                        record={item}
                         showPageCover={showPageCover}
                         showPreview={true}
                         showSummary={true}

@@ -12,8 +12,9 @@ import {
 } from "../../blogsite.config";
 import { BLOG } from "@/blog.config";
 import { convertCleanJsonString, deepClone } from "@/lib/utils/utils";
-import { useGlobal } from "@/context/globalProvider";
+
 import { isUrl } from "@/lib/utils/utils";
+import { useGlobal } from "../context/EssentialNavInfoProvider";
 
 if (!siteConfigInfo) {
   throw new Error(`Config error: invalid site.config.ts`);

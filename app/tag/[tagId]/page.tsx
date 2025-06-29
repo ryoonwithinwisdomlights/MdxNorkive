@@ -2,7 +2,7 @@ import AllRecordsList from "@/modules/blog/records/AllRecordsList";
 import { TotalPageParams } from "@/types";
 
 import ErrorComponent from "@/modules/shared/ErrorComponent";
-import { getCategoryAndTagByPageId } from "@/lib/data/actions/pages/page-action";
+import { getCategoryAndTagById } from "@/lib/data/actions/pages/page-action";
 export async function generateStaticParams() {
   const records = [{ tagId: "기술로그" }, { tagId: "another-Tags" }];
   return records.map((record) => ({
@@ -17,12 +17,12 @@ export default async function Page({ params, searchParams }: TotalPageParams) {
   if (!tagId) {
     <ErrorComponent />;
   }
-  const props = await getCategoryAndTagByPageId(decodedTagId, "tags", pagenum);
+  const props = await getCategoryAndTagById(decodedTagId, "tags", pagenum);
   return (
     <AllRecordsList
       pagenum={pagenum !== undefined ? pagenum : 1}
-      postCount={props.postCount}
-      posts={props.posts}
+      recordCount={props.recordCount}
+      records={props.records}
     />
   );
 }

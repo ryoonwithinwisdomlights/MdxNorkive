@@ -1,7 +1,6 @@
 "use client";
 
-import { useGlobal } from "@/context/globalProvider";
-import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
 import { LoaderIcon } from "lucide-react";
 
 const Loading = () => {

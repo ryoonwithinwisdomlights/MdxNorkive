@@ -15,16 +15,10 @@ export const ARCHIVE_PROPERTIES_STATUS_MAP = {
   [BLOG.NOTION_PROPERTY_NAME.status_invisible]: "Invisible",
 };
 
-export const EXCLUDED_PAGE_TYPES = [
-  "CONFIG",
-  "Menu",
-  "SubMenu",
-  "SubMenuPage",
-  "Notice",
-  "Page",
-];
+export const EXCLUDED_PAGE_TYPES = ["Menu", "SubMenu", "SubMenuPage", "Notice"];
+export const AVAILABLE_PAGE_TYPES = BLOG.NOTION_PROPERTY_NAME.type_able_arr;
 
-export const ABLE_PAGE_TYPES = BLOG.NOTION_PROPERTY_NAME.type_able_arr;
 export const INCLUDED_MENU_TYPES = ["Menu", "SubMenu", "SubMenuPage"];
+
 export const GENERAL_TYPE_MENU = ["Menu", "SubMenu"];
 export const PAGE_TYPE_MENU = ["Page", "SubMenuPage"];

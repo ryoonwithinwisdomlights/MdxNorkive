@@ -4,9 +4,7 @@ import React from "react";
 import InfoCard from "../components/InfoCard";
 import Announcement from "@/modules/announcement/Announcement";
 
-type Props = {};
-
-const RightSlidingDrawer = (props: Props) => {
+const RightSlidingDrawer = () => {
   return (
     <div
       // style={{ width: "32rem" }}
@@ -15,7 +13,7 @@ const RightSlidingDrawer = (props: Props) => {
       }
     >
       <div className="py-14 px-6 sticky top-0">
-        <ArticleInfo />
+        {/* <ArticleInfo /> */}
         <div className="py-4 justify-center">
           <InfoCard />
 

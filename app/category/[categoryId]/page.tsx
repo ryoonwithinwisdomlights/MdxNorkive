@@ -1,7 +1,7 @@
 import AllRecordsList from "@/modules/blog/records/AllRecordsList";
 import { TotalPageParams } from "@/types";
 import ErrorComponent from "@/modules/shared/ErrorComponent";
-import { getCategoryAndTagByPageId } from "@/lib/data/actions/pages/page-action";
+import { getCategoryAndTagById } from "@/lib/data/actions/pages/page-action";
 
 export async function generateStaticParams() {
   const records = [
@@ -21,7 +21,7 @@ export default async function Page({ params, searchParams }: TotalPageParams) {
   if (!categoryId) {
     <ErrorComponent />;
   }
-  const props = await getCategoryAndTagByPageId(
+  const result = await getCategoryAndTagById(
     decodedCategoryId,
     "category",
     pagenum
@@ -30,8 +30,8 @@ export default async function Page({ params, searchParams }: TotalPageParams) {
   return (
     <AllRecordsList
       pagenum={pagenum !== undefined ? pagenum : 1}
-      postCount={props.postCount}
-      posts={props.posts}
+      recordCount={result.recordCount}
+      records={result.records}
     />
   );
 }

@@ -1,11 +1,11 @@
 "use client";
-import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
 import NavPostList from "@/modules/layout/components/navigation-post/NavPostList";
 
 /**
  * Floating drawer in-page navigation
  * @param toc
- * @param post
+ * @param record
  * @returns {JSX.Element}
  * @constructor
  */

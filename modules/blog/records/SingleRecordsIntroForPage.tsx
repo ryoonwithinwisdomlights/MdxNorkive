@@ -1,29 +1,29 @@
 import { BLOG } from "@/blog.config";
-import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
 import LazyImage from "@/modules/shared/LazyImage";
 import NotionIcon from "@/modules/shared/NotionIcon";
 import { CalendarIcon, EyeIcon, FolderClockIcon } from "lucide-react";
 import Link from "next/link";
 
-const SingleRecordsIntroForPage = ({ post, siteInfo }) => {
+const SingleRecordsIntroForPage = ({ record, siteInfo }) => {
   const { locale } = useNorkiveTheme();
   return (
     <>
       {" "}
       <h1 className="text-3xl pt-12  dark:text-neutral-100">
-        <NotionIcon icon={post?.pageIcon} />
-        {post?.title}
+        <NotionIcon icon={record?.pageIcon} />
+        {record?.title}
       </h1>
       <section className="flex-wrap shadow-text-md flex text-sm justify-start mt-4 text-neutral-500 dark:text-neutral-400 font-light py-2 ">
         <div className="flex justify-start dark:text-neutral-200 flex-row items-center ">
           <span className="whitespace-nowrap flex flex-row items-center">
             <CalendarIcon className="mr-1 w-4 h-4" />
-            {locale.COMMON.POST_TIME}: {post?.publishDay}
+            {locale.COMMON.record_TIME}: {record?.publishDay}
           </span>
           <span className="mx-1 ml-2 mr-2"> | </span>
           <span className="whitespace-nowrap mr-2 flex flex-row items-center">
             <FolderClockIcon className="mr-2 w-4 h-4" />
-            {locale.COMMON.LAST_EDITED_TIME}: {post?.lastEditedDay}
+            {locale.COMMON.LAST_EDITED_TIME}: {record?.lastEditedDay}
           </span>
           {/* <span className="mx-1 ml-2 mr-2"> | </span> */}
           <span className="hidden flex-row items-center busuanzi_container_page_pv ">

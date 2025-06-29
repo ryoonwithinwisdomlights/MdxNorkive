@@ -9,7 +9,7 @@ import { useState } from "react";
 library.add(faChevronLeft);
 /**
  * navigation list
- * @param posts
+ * @param records
  * @param tags
  * @returns {JSX.Element}
  * @constructor
@@ -42,9 +42,9 @@ const NavPostItem = (props) => {
           </div>
         </div>
         <Collapse isOpen={isOpen} onHeightChange={props.onHeightChange}>
-          {group?.items?.map((post) => (
-            <div key={post.id} className="ml-3 border-l">
-              <AllRecordsPostCard className="text-sm ml-3" post={post} />
+          {group?.items?.map((record) => (
+            <div key={record.id} className="ml-3 border-l">
+              <AllRecordsPostCard className="text-sm ml-3" record={record} />
             </div>
           ))}
         </Collapse>
@@ -53,9 +53,9 @@ const NavPostItem = (props) => {
   } else {
     return (
       <div>
-        {group?.items?.map((post) => (
-          <div key={post.id}>
-            <AllRecordsPostCard className="text-sm py-2" post={post} />
+        {group?.items?.map((record) => (
+          <div key={record.id}>
+            <AllRecordsPostCard className="text-sm py-2" record={record} />
           </div>
         ))}
       </div>

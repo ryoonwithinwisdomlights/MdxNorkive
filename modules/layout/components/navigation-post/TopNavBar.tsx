@@ -1,8 +1,8 @@
 "use client";
 /* eslint-disable multiline-ternary */
 
-import { useGlobal } from "@/context/globalProvider";
-import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
+import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
 import { MENU_MOBILE } from "@/lib/constants/menu-mobile.constansts";
 import { MenuBarMobile } from "@/modules/common/components/menu/MenuBarMobile";
 import { MenuItemDrop } from "@/modules/common/components/menu/MenuItemDrop";

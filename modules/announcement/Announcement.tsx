@@ -1,5 +1,6 @@
 "use client";
-import { useGlobal } from "@/context/globalProvider";
+
+import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
 import dynamic from "next/dynamic";
@@ -27,7 +28,7 @@ const Announcement = () => {
    
                 공지
               </div> */}
-              <NotionPage post={notice} />
+              <NotionPage record={notice} />
             </div>
           )}
         </section>

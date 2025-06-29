@@ -3,19 +3,19 @@ import { BLOG } from "@/blog.config";
 import { usePathname, useSearchParams } from "next/navigation";
 import ShareButtons from "./ShareButtons";
 
-const ShareBar = ({ post }) => {
+const ShareBar = ({ record }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   if (
     !JSON.parse(BLOG.archive_share_bar_enable) ||
-    !post ||
-    post?.type === "CONFIG" ||
-    post?.type === "Menu" ||
-    post?.type === "SubMenu" ||
-    post?.type === "Notice" ||
-    post?.type === "Page" ||
-    post?.status !== "Published"
+    !record ||
+    record?.type === "CONFIG" ||
+    record?.type === "Menu" ||
+    record?.type === "SubMenu" ||
+    record?.type === "Notice" ||
+    record?.type === "Page" ||
+    record?.status !== "Published"
   ) {
     return <></>;
   }
@@ -27,16 +27,16 @@ const ShareBar = ({ post }) => {
       <div className="flex w-full md:justify-end">
         <ShareButtons
           shareUrl={shareUrl}
-          title={post.title}
-          image={post.pageCover}
+          title={record.title}
+          image={record.pageCover}
           body={
-            post?.title +
+            record?.title +
             " | " +
             BLOG.TITLE +
             " " +
             shareUrl +
             " " +
-            post?.summary
+            record?.summary
           }
         />
       </div>

@@ -1,7 +1,4 @@
-import { SelectOption } from "notion-types";
-import { LeftSideBarNavItem, NavItem, OldNavItem } from "./layout.model";
 import { NorkiveRecordData } from "./page.model";
-import { SiteInfoModel } from "./siteconfig.model";
 
 export type BasicRecordPageProps = {
   type: string;
@@ -15,34 +12,26 @@ export type AllRecordsProps = {
 
 export type AllRecordsListProps = {
   pagenum?: number;
-  posts?: NorkiveRecordData[];
-  postCount: number;
+  records?: NorkiveRecordData[];
+  recordCount: number;
 };
 
 export type RecordCardInfoProps = {
-  post: NorkiveRecordData;
+  record: NorkiveRecordData;
   showPreview: boolean;
   showPageCover: boolean;
   showSummary: boolean;
 };
 export type CardProps = {
-  post: NorkiveRecordData;
+  record: NorkiveRecordData;
   className?: string;
 };
 
-export interface InitGlobalNotionData {
-  siteInfo: SiteInfoModel;
-  categoryOptions?: SelectOption[];
-  tagOptions?: SelectOption[];
-  subTypeOptions?: [];
-  allNavPagesForLeftSiedBar: LeftSideBarNavItem[];
-  className?: string;
-  oldNav: OldNavItem[];
-  customMenu: NavItem[];
-  notice: any;
-  post: any;
-  allArchive: NorkiveRecordData[];
-  allPages: NorkiveRecordData[];
-  allPageIds: NorkiveRecordData[];
-  latestPosts: [];
-}
+export type BlockType = {
+  value?: {
+    id?: string;
+    type?: string;
+    properties?: Record<string, any>;
+    children?: BlockType[];
+  };
+};

@@ -1,9 +1,9 @@
+import { BLOG } from "@/blog.config";
 import { getDataFromCache, setDataToCache } from "@/lib/cache/cache_manager";
 import { deepClone, delay } from "@/lib/utils/utils";
-import { PageBlockDataProps } from "@/types";
+import { BlockMap, PageBlockDataProps } from "@/types";
 import { NotionAPI } from "notion-client";
 
-//캐슁적용필요
 /**
  * Get article content
  * @param {*} id
@@ -11,7 +11,15 @@ import { NotionAPI } from "notion-client";
  * @param {*} slice
  * @returns
  */
-export async function getPostBlocks({
+
+/**
+ * Get Archive content
+ * @param {*} id
+ * @param {*} from
+ * @param {*} slice
+ * @returns
+ */
+export async function getRecordBlockMap({
   pageId,
   from,
   slice,
@@ -38,11 +46,19 @@ export async function getPageWithRetry(id, from, retryAttempts = 3) {
       retryAttempts < 3 ? `Number of retries remaining:${retryAttempts}` : ""
     );
     try {
-      const notion = new NotionAPI({
+      //Notion's API should not be called from client-side browsers due to CORS restrictions. notion-client is compatible with Node.js and Deno.
+
+      const api = new NotionAPI({
         userTimeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       });
-      //Notion's API should not be called from client-side browsers due to CORS restrictions. notion-client is compatible with Node.js and Deno.
-      const pageData = await notion.getPage(id);
+      const start = new Date().getTime();
+      const pageData = await api.getPage(id);
+      const end = new Date().getTime();
+      console.log(
+        "[API<<--response]",
+        `time consuming:${end - start}ms - from:${from}`
+      );
+
       return pageData;
     } catch (e) {
       console.warn("[Abnormal response]:", e);
@@ -60,11 +76,24 @@ export async function getPageWithRetry(id, from, retryAttempts = 3) {
     return null;
   }
 }
+type BlockEntriesItem = [blockId: string, block: BlockType];
+type BlockType = {
+  role: string;
+  value: {
+    id: string;
+    type: string;
+    properties?: Record<string, any>;
+    children?: BlockType[];
+  };
+};
 
 // ExtendedRecordMap
 /**
- * Remove unnecessary fields from the obtained blockMap
- * And perform special processing on page content, such as file URL formatting
+ *
+ * Special processing of the obtained page BLOCK
+ * 1. Delete redundant fields
+ * 2. For example, format files, videos, audios, and URLs
+ * 3. Compatibility with code blocks and other elements
  * @param {*} id Page ID
  * @param {*} pageBlock page elements
  * @param {*} slice interception quantity
@@ -72,15 +101,17 @@ export async function getPageWithRetry(id, from, retryAttempts = 3) {
  */
 export function filterPostBlocks(id, pageBlock) {
   const newPageBlock = deepClone(pageBlock);
-  const blockEntries = Object.entries(newPageBlock?.block || {});
-  const newKeys = Object.keys(newPageBlock.block);
+  const newKeys = Object.keys(newPageBlock.block); //   entries<T>(o: { [s: string]: BlockType; } | ArrayLike<T>): [string, T][];
+  const blockEntries: BlockEntriesItem[] = Object.entries(newPageBlock?.block);
+
   const languageMap = new Map([
     ["C++", "cpp"],
     ["C#", "csharp"],
     ["Assembly", "asm6502"],
   ]);
 
-  const handleSyncBlock = (blockId, b, index) => {
+  const handleSyncBlock = (blockId: string, b: BlockType, index: number) => {
+    if (!b.value?.children) return;
     b.value.children.forEach((childBlock, childIndex) => {
       const newBlockId = `${blockId}_child_${childIndex}`;
       newPageBlock.block[newBlockId] = childBlock;
@@ -89,64 +120,53 @@ export function filterPostBlocks(id, pageBlock) {
     delete newPageBlock.block[blockId];
   };
 
-  const mapCodeLanguage = (b) => {
+  const mapCodeLanguage = (b: BlockType) => {
+    if (!b.value?.properties) return;
     const lang = b.value.properties?.language?.[0]?.[0];
-    if (languageMap.has(lang)) {
-      b.value.properties.language[0][0] = languageMap.get(lang);
+    if (lang && languageMap.has(lang)) {
+      // b.value.properties.language[0][0] = languageMap.get(lang);
+      if (b.value?.properties?.language?.[0]?.[0]) {
+        b.value.properties.language[0][0] = languageMap.get(lang)!;
+      }
     }
   };
 
-  // const limitedBlockEntries = blockEntries.forEach(
-  //   ([blockId, block], index) => {
-  //     const b = block;
-  //     // PageId 블록 내부 민감 정보 삭제
-  //     if (b?.value?.id === id) {
-  //       delete b?.value?.properties;
-  //       return;
-  //     }
+  //Loop through each block of the document
+  if (blockEntries) {
+    blockEntries.forEach(([blockId, block]: BlockEntriesItem, index) => {
+      const b = block;
+      if (b?.value) {
+        // Remove when BlockId is equal to PageId
+        if (b?.value?.id === id) {
+          //This block contains sensitive information
+          delete b?.value?.properties;
+          return;
+        }
 
-  //     // sync_block => 하위 블록으로 교체
-  //     if (b?.value?.type === "sync_block" && Array.isArray(b.value.children)) {
-  //       handleSyncBlock(blockId, b, index);
-  //       return;
-  //     }
-  //     // 코드블록 언어 이름 매핑
-  //     if (b?.value?.type === "code") {
-  //       mapCodeLanguage(b);
-  //     }
+        // sync_block => 하위 블록으로 교체
+        if (
+          b?.value?.type === "sync_block" &&
+          Array.isArray(b.value.children)
+        ) {
+          handleSyncBlock(blockId, b, index);
+          return;
+        }
+        // 코드블록 언어 이름 매핑
+        if (b?.value?.type === "code") {
+          mapCodeLanguage(b);
+        }
 
-  //     // 파일/미디어 링크 변환
-  //     if (
-  //       ["file", "pdf", "video", "audio"].includes(b?.value?.type) &&
-  //       b.value.properties?.source?.[0]?.[0]?.includes("amazonaws.com")
-  //     ) {
-  //       const oldUrl = b.value.properties.source[0][0];
-  //       b.value.properties.source[0][0] = `https://notion.so/signed/${encodeURIComponent(oldUrl)}?table=block&id=${b.value.id}`;
-  //     }
-  //   }
-  // );
+        // 파일/미디어 링크 변환
+        if (
+          ["file", "pdf", "video", "audio"].includes(b?.value?.type) &&
+          b.value.properties?.source?.[0]?.[0]?.includes("amazonaws.com")
+        ) {
+          const oldUrl = b.value.properties.source[0][0];
+          b.value.properties.source[0][0] = `https://notion.so/signed/${encodeURIComponent(oldUrl)}?table=block&id=${b.value.id}`;
+        }
+      }
+    });
+  }
 
   return newPageBlock;
-}
-/**
- * Get article content
- * @param {*} id
- * @param {*} from
- * @param {*} slice
- * @returns
- */
-export async function getPage(id, from) {
-  const cacheKey = "page_block_" + id;
-  let pageBlock = await getDataFromCache(cacheKey);
-  if (pageBlock) {
-    return filterPostBlocks(id, pageBlock);
-  }
-
-  pageBlock = await getPageWithRetry(id, from);
-
-  if (pageBlock) {
-    await setDataToCache(cacheKey, pageBlock);
-    return filterPostBlocks(id, pageBlock);
-  }
-  return pageBlock;
 }

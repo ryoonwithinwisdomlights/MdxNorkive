@@ -1,5 +1,5 @@
 "use client"; // 클라이언트 컴포넌트
-import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
 import { Transition } from "@headlessui/react";
 import React, { Fragment, useEffect, useRef } from "react";
 

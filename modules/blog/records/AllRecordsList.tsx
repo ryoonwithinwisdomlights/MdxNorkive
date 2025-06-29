@@ -1,7 +1,6 @@
 "use client";
 import { BLOG } from "@/blog.config";
-import { useGlobal } from "@/context/globalProvider";
-import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
 import NavPostListEmpty from "@/modules/layout/components/navigation-post/NavPostListEmpty";
 import { AllRecordsListProps } from "@/types";
 import { useRouter } from "next/navigation";
@@ -10,23 +9,22 @@ import PaginationSimple from "./PaginationSimple";
 /**
  * Article list pagination table
  * @param page current page
- * @param posts All articles
+ * @param records All articles
  * @param tags All tags
  * @returns {JSX.Element}
  * @constructor
  */
 const AllRecordsList = ({
   pagenum = 1,
-  posts = [],
-  postCount,
+  records = [],
+  recordCount,
 }: AllRecordsListProps) => {
   const router = useRouter();
-  const { searchKeyword, setSearchKeyword } = useGlobal({});
-  const totalPage = Math.ceil(postCount / BLOG.archive_per_page);
-  const { locale } = useNorkiveTheme();
+  const totalPage = Math.ceil(recordCount / BLOG.archive_per_page);
+  const { locale, searchKeyword } = useNorkiveTheme();
   const currentPage = +pagenum;
   const showNext = currentPage < totalPage;
-  if (!posts || posts.length === 0) {
+  if (!records || records.length === 0) {
     return <NavPostListEmpty searchKeyword={searchKeyword} />;
   }
   const historGoBack = () => {
@@ -40,10 +38,10 @@ const AllRecordsList = ({
       >
         ← {locale.PAGINATION.PREV}
       </div>
-      <div id="posts-wrapper">
+      <div id="records-wrapper">
         {/* Article list */}
-        {posts?.map((post: any) => (
-          <AllRecordsPostCard key={post.id} post={post} />
+        {records?.map((record: any) => (
+          <AllRecordsPostCard key={record.id} record={record} />
         ))}
       </div>
 

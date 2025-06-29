@@ -1,7 +1,6 @@
 "use client"; // 클라이언트 컴포넌트
 
-import { useGlobal } from "@/context/globalProvider";
-import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
 import { Archive } from "lucide-react";
 
 /**

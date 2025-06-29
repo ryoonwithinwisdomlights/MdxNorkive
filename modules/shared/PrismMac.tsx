@@ -10,7 +10,7 @@ import "prismjs/plugins/toolbar/prism-toolbar.min.css";
 import { useEffect } from "react";
 
 import { BLOG } from "@/blog.config";
-import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
 import { loadExternalResource } from "@/lib/utils/utils";
 import { useRouter } from "next/navigation";
 

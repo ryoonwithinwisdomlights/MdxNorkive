@@ -1,10 +1,7 @@
 "use client"; // 클라이언트 컴포넌트
-import React from "react";
-import { MENU_MOBILE } from "@/lib/constants/menu-mobile.constansts";
-import { BLOG } from "@/blog.config";
+import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
+import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
 import { MenuItemCollapse } from "@/modules/common/components/menu/MenuItemCollapse";
-import { useGlobal } from "@/context/globalProvider";
-import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
 
 export const MenuBarMobile = (props) => {
   const { customMenu } = useGlobal({ from: "index" });

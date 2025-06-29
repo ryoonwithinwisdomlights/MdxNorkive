@@ -1,31 +1,28 @@
+import { SelectOption } from "notion-types";
 import { Dispatch, SetStateAction } from "react";
 import { LeftSideBarNavItem, NavItem, OldNavItem } from "./layout.model";
 import { SiteInfoModel } from "./siteconfig.model";
-import { SelectOption } from "notion-types";
 
-export interface GlobalValueInferface {
+export interface EssentialNavInfo {
   siteInfo: SiteInfoModel;
   categoryOptions?: SelectOption[];
   tagOptions?: SelectOption[];
   subTypeOptions?: [];
-  allNavPagesForLeftSiedBar?: LeftSideBarNavItem[];
   className?: string;
   oldNav: OldNavItem[];
   customMenu: NavItem[];
   notice: any;
-  post: any;
-  latestPosts: [];
-  filteredNavPages: LeftSideBarNavItem[];
-  setFilteredNavPages?: Dispatch<SetStateAction<LeftSideBarNavItem[]>>;
-  searchKeyword: string;
-  setSearchKeyword: Dispatch<SetStateAction<string>>;
+  latestRecords: [];
 }
 
-export interface NorKiveThemeProviderContext {
+export interface GeneralSiteSettingsProviderContext {
   onLoading: boolean;
   setOnLoading: Dispatch<SetStateAction<boolean>>;
   searchKeyword: string;
   setSearchKeyword: Dispatch<SetStateAction<string>>;
+  allNavPagesForLeftSideBar: LeftSideBarNavItem[];
+  filteredNavPages: LeftSideBarNavItem[];
+  setFilteredNavPages?: Dispatch<SetStateAction<LeftSideBarNavItem[]>>;
   siteInfo?: SiteInfoModel;
   isDarkMode: boolean;
   pageNavVisible: boolean;
@@ -33,7 +30,7 @@ export interface NorKiveThemeProviderContext {
   handleChangeDarkMode: (boolean) => void;
   locale: any;
   updateLocale: Dispatch<SetStateAction<string>>;
+  lang: string;
   changeLang: (text: string) => void;
   changeOppositeLang: () => void;
-  lang: string;
 }

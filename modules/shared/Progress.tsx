@@ -13,7 +13,7 @@ const Progress = ({ targetRef, showPercent = true }) => {
   const [percent, changePercent] = useState(0);
   const scrollListener = () => {
     const target =
-      currentRef || (isBrowser && document.getElementById("posts-wrapper"));
+      currentRef || (isBrowser && document.getElementById("records-wrapper"));
     if (target) {
       const clientHeight = target.clientHeight;
       const scrollY = window.pageYOffset;

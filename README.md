@@ -26,7 +26,7 @@ Built to turn your Notion workspace into a fully customizable blog ✨
 
 - ✅ Type-safe & Modular Architecture
 - ⚡️ Built with Next.js 15 App Router
-- 📖 Fetch blog posts directly from Notion DB
+- 📖 Fetch blog records directly from Notion DB
 - 🧱 Onion Architecture with clean layering
 - 🧩 Easily extensible with your UI library or state manager (Recoil/Jotai)
 - 🌗 Dark mode ready
@@ -51,7 +51,7 @@ src/
 ├── features/
 │   └── blog/
 │       ├── model/                 # State (Recoil/Jotai etc.)
-│       ├── hooks/                 # Business logic (e.g., useBlogPosts)
+│       ├── hooks/                 # Business logic (e.g., useBlogrecords)
 │       ├── services/              # Use cases / data access layer
 │       └── ui/                    # Pure UI components
 │

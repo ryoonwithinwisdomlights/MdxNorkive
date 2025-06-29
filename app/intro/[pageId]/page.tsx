@@ -1,6 +1,6 @@
 import {
-  getPageByPageIdAndType,
-  getPageProps,
+  setPrevNextRecommendInRecordPage,
+  getRecordPageDataById,
 } from "@/lib/data/actions/pages/page-action";
 import SingleRecords from "@/modules/blog/records/SingleRecords";
 import ErrorComponent from "@/modules/shared/ErrorComponent";
@@ -18,17 +18,18 @@ export default async function Page({ params }) {
   if (!pageId) {
     return <ErrorComponent />;
   }
-  const props = await getPageProps({
+  const result = await getRecordPageDataById({
     pageId: pageId,
-    type: "SubMenuPage",
+    from: "SubMenuPage",
   });
-  if (!props?.post) {
-    // props.post = null;
+  if (!result?.record) {
+    // props.record = null;
     return <div>Invalid record ID</div>;
   }
 
-  const page = await getPageByPageIdAndType(props, "SubMenuPage");
-  // console.log("SubMenuPage SingleRecords:", props);
+  const page = await setPrevNextRecommendInRecordPage(result);
+  // const page = await setPrevNextRecommendInRecordPage(props, "SubMenuPage");
+
   return (
     <div className="w-full h-full">
       <SingleRecords props={page} />

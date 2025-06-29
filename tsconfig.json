@@ -12,7 +12,7 @@
       "@/*": ["./*"],
       "@/lib/*": ["lib/*"],
       // "@/styles/*": ["styles/*"],
-      "@/context/*": ["context/*"],
+      "@/context/*": ["lib/context/*"],
       "@/modules/*": ["modules/*"],
       "@/types/*": ["types/*"],
     },

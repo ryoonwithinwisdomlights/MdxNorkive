@@ -1,5 +1,5 @@
 "use client";
-import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
 
 const NoRecordFound = () => {
   const { locale } = useNorkiveTheme();

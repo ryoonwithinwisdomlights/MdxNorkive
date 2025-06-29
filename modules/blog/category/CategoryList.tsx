@@ -1,5 +1,5 @@
 "use client";
-import { useGlobal } from "@/context/globalProvider";
+import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { FolderIcon, FolderOpen } from "lucide-react";
 import { useRouter } from "next/navigation";
 

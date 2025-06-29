@@ -9,13 +9,14 @@ import SingleRecordsBodyForPage from "./SingleRecordsBodyForPage";
 import SingleRecordsIntroForPage from "./SingleRecordsIntroForPage";
 
 const SingleRecords = ({ props }) => {
-  const { post, prev, next, siteInfo } = props;
+  const { record, prev, next, siteInfo } = props;
   const router = useRouter();
   const pathname = usePathname();
   const params = useParams();
   const isMobile = useMediaQuery("(max-width: 768px");
+
   // Article lock🔐
-  const [lock, setLock] = useState(post?.password && post?.password !== "");
+  const [lock, setLock] = useState(record?.password && record?.password !== "");
   const [isMounted, setIsMounted] = useState(false);
 
   /**
@@ -23,8 +24,8 @@ const SingleRecords = ({ props }) => {
    * @param {*} result
    */
   const validPassword = (passInput) => {
-    const encrypt = md5(post.slug + passInput);
-    if (passInput && encrypt === post.password) {
+    const encrypt = md5(record.slug + passInput);
+    if (passInput && encrypt === record.password) {
       setLock(false);
       return true;
     }
@@ -34,7 +35,7 @@ const SingleRecords = ({ props }) => {
   // Article loading
   useEffect(() => {
     // 404
-    if (!post) {
+    if (!record) {
       setTimeout(() => {
         if (!isMobile) {
           console.warn("Page not found", `${pathname}/${params}`);
@@ -44,18 +45,18 @@ const SingleRecords = ({ props }) => {
     }
 
     // Article encryption
-    if (post?.password && post?.password !== "") {
+    if (record?.password && record?.password !== "") {
       setLock(true);
     } else {
       setLock(false);
-      if (!lock && post?.blockMap?.block) {
-        post.content = Object.keys(post.blockMap.block).filter(
-          (key) => post.blockMap.block[key]?.value?.parent_id === post.id
+      if (!lock && record?.blockMap?.block) {
+        record.content = Object.keys(record.blockMap.block).filter(
+          (key) => record.blockMap.block[key]?.value?.parent_id === record.id
         );
-        post.toc = getPageTableOfContents(post, post.blockMap);
+        record.toc = getPageTableOfContents(record, record.blockMap);
       }
     }
-  }, [post]);
+  }, [record]);
 
   useEffect(() => {
     setIsMounted(true);
@@ -63,17 +64,16 @@ const SingleRecords = ({ props }) => {
   // none of the modals are gonna be rendered unless we are fully on the client side.
   if (!isMounted) return null;
 
-  // console.log("post:::", post);
   return (
     <>
       {lock && <ArticleLock validPassword={validPassword} />}
       {!lock && (
         <div id="container">
           {/* Notion기사 서문 */}
-          <SingleRecordsIntroForPage post={post} siteInfo={siteInfo} />
+          <SingleRecordsIntroForPage record={record} siteInfo={siteInfo} />
           {/* Notion기사 본문 */}
-          {post && (
-            <SingleRecordsBodyForPage post={post} prev={prev} next={next} />
+          {record && (
+            <SingleRecordsBodyForPage record={record} prev={prev} next={next} />
           )}
         </div>
       )}

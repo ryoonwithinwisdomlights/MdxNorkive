@@ -12,7 +12,7 @@ import {
   getCategoryOptions,
   getCustomMenu,
   getExcludeMenuPages,
-  getLatestPosts,
+  getLatestRecords,
   getOldNav,
   getRecordListForLeftSideBar,
   getSiteInfo,
@@ -22,22 +22,22 @@ import {
 import {
   filterPostBlocks,
   getPageWithRetry,
-  getPostBlocks,
+  getRecordBlockMap,
 } from "@/lib/data/service/getPostBlocks";
-import { dbDeepClone } from "@/lib/data/service/utils";
+import { applyDataBaseProcessing } from "@/lib/data/service/utils";
 import { getPageProperties } from "@/lib/data/service/getPageProperties";
 
 import { getDataFromCache, setDataToCache } from "@/lib/cache/cache_manager";
 
 const NOTION_DB_ID = BLOG.NOTION_DATABASE_ID as string;
 
-export default async function loadGlobalNotionData(from: string = "main") {
+export default async function initGlobalNotionData(from: string = "main") {
   const props = await getGlobalData({
     pageId: BLOG.NOTION_DATABASE_ID as string,
     from: from,
   });
 
-  props.allArchive = props.posts?.slice(0, BLOG.archive_per_page);
+  props.allArchive = props.records?.slice(0, BLOG.archive_per_page);
   return props;
 }
 
@@ -46,24 +46,51 @@ export async function getGlobalData({
   from,
   type,
 }: PageBlockDataProps) {
-  const db = await getAllNotionArchiveDB({ pageId, from, type });
-  const props = dbDeepClone(db);
+  // const db = await getDataBaseInfoByNotionAPI({ pageId, from, type });
+  const db = await getAllRecordDataWithCache({ pageId, from, type });
+  const props = applyDataBaseProcessing(db);
   const allPages = getExcludeMenuPages({ arr: props.allPages, type: type });
-  props.posts = allPages;
+  props.records = allPages;
+  props.allArchiveRecords = props.records?.slice(0, BLOG.archive_per_page);
   return props;
+}
+/**
+ * Get the collection data of the specified notation
+ * @param pageId
+ * @param from request source
+ * @returns {Promise<JSX.Element|*|*[]>}
+ */
+export async function getAllRecordDataWithCache({ pageId, from, type }) {
+  // Try to get it from cache
+  const cacheKey = "page_block_" + pageId;
+  let data = await getDataFromCache(cacheKey);
+  if (data && data.pageIds?.length > 0) {
+    console.debug("[API_Request]", `from:${from}`, `root-page-id:${pageId}`);
+    return data;
+  } else {
+    // Read from interface
+    data = await getDataBaseInfoByNotionAPI({ pageId, from });
+    // cache
+    if (data) {
+      await setDataToCache(cacheKey, data);
+    }
+  }
+
+  // Return the data to the front end for processing
+  return data;
 }
 
 /**
  * Call NotionAPI to obtain All Page data
  * @returns {Promise<JSX.Element|null|*>}
  */
-async function getAllNotionArchiveDB({
+async function getDataBaseInfoByNotionAPI({
   pageId = NOTION_DB_ID,
   type,
   from = "main_page",
 }: PageBlockDataProps) {
   //return type ExtendedRecordMap.
-  const pageRecordMap = await getPostBlocks({ pageId: pageId, from: from });
+  const pageRecordMap = await getRecordBlockMap({ pageId: pageId, from: from });
 
   if (!pageRecordMap) {
     console.error("can`t get Notion Data ; Which id is: ", pageId);
@@ -78,17 +105,17 @@ async function getAllNotionArchiveDB({
   if (!isntDB) {
     return generateEmpyRecordData(uuidedRootPageId);
   }
-  const collectionId = rawMetadata?.collection_id;
-  const viewIds = rawMetadata?.view_ids;
-
   const collection =
     (Object.values(pageRecordMap.collection || {})[0] as { value: Collection })
       ?.value || {};
-  const schema: CollectionPropertySchemaMap = collection?.schema;
-  const siteInfo = getSiteInfo({ collection, block });
-
+  const collectionId = rawMetadata?.collection_id;
   const collectionQuery = pageRecordMap.collection_query;
   const collectionView = pageRecordMap.collection_view;
+
+  const viewIds = rawMetadata?.view_ids;
+
+  const schema: CollectionPropertySchemaMap = collection?.schema;
+  const siteInfo = getSiteInfo({ collection, block });
 
   const pageIds = getAllPageIds(
     collectionQuery,
@@ -120,7 +147,7 @@ async function getAllNotionArchiveDB({
   // const fetchedBlocks = await fetchInBatches(blockIdsNeedFetch)
   // block = Object.assign({}, block, fetchedBlocks)
 
-  const allArchiveRecordData = (
+  const allArchiveRecordsData = (
     await Promise.all(
       pageIds.map(async (id) => {
         const value = block[id]?.value;
@@ -148,17 +175,17 @@ async function getAllNotionArchiveDB({
 
   const dateSort = BLOG.archive_sort_by === "date" ? true : false;
   // article count
-  const postCounter = { count: 0 };
+  const recordCounter = { count: 0 };
 
   // Find all Archives and Record
   const allPages = allArchivesWithSort(
-    allArchiveRecordData,
-    postCounter,
+    allArchiveRecordsData,
+    recordCounter,
     type,
     dateSort
   );
 
-  const notice = await getNoticePage(allArchiveRecordData);
+  const notice = await getNoticePage(allArchiveRecordsData);
 
   const categoryOptions = getAllCategoriesOrTags({
     allPages,
@@ -174,21 +201,25 @@ async function getAllNotionArchiveDB({
 
   // old menu
   const oldNav = getOldNav({
-    allPages: (allArchiveRecordData as NorkiveRecordData[]).filter(
-      (post) => post?.type === "Page" && post.status === "Published"
+    allPages: (allArchiveRecordsData as NorkiveRecordData[]).filter(
+      (record) => record?.type === "Page" && record.status === "Published"
     ),
   });
   // new menu
-  const customMenu = await getCustomMenu({ allArchiveRecordData });
-  const latestPosts = getLatestPosts({ allPages, from, latestPostCount: 6 });
+  const customMenu = await getCustomMenu({ allArchiveRecordsData });
+  const latestRecords = getLatestRecords({
+    allPages,
+    from,
+    latestRecordCount: 6,
+  });
 
-  const allNavPagesForLeftSiedBar = getRecordListForLeftSideBar({ allPages });
-  const postCount = postCounter.count;
+  const allNavPagesForLeftSideBar = getRecordListForLeftSideBar({ allPages });
+  const recordCount = recordCounter.count;
   return {
     notice,
     siteInfo,
     allPages,
-    allNavPagesForLeftSiedBar,
+    allNavPagesForLeftSideBar,
     block,
     schema,
     tagOptions,
@@ -196,9 +227,9 @@ async function getAllNotionArchiveDB({
     rawMetadata,
     oldNav,
     customMenu,
-    postCount,
+    recordCount,
     pageIds,
-    latestPosts,
+    latestRecords,
   };
 }
 
@@ -216,7 +247,7 @@ export async function getNoticePage(data) {
     return null;
   }
 
-  notice.blockMap = await getPostBlocks({
+  notice.blockMap = await getRecordBlockMap({
     pageId: notice.id,
     from: "data-notice",
   });

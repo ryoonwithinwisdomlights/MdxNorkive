@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable multiline-ternary */
 import { BLOG } from "@/blog.config";
-import { useNorkiveTheme } from "@/context/NorkiveThemeProvider";
+import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { BugIcon, XIcon } from "lucide-react";

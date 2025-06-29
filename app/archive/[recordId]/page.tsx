@@ -1,13 +1,12 @@
 "use server";
 
 import {
-  getPageByPageIdAndType,
-  getPageProps,
+  setPrevNextRecommendInRecordPage,
+  getRecordPageDataById,
 } from "@/lib/data/actions/pages/page-action";
 import SingleRecords from "@/modules/blog/records/SingleRecords";
 import ErrorComponent from "@/modules/shared/ErrorComponent";
 
-//메두사 참고하여 generateStaticParams/generateMetadata 개정. 아멘.
 //
 export async function generateStaticParams() {
   const records = [{ recordId: "1481eb5c-0337-8087-a304-f2af3275be11" }];
@@ -28,11 +27,15 @@ export default async function Page({
   if (!recordId) {
     return <ErrorComponent />;
   }
-  const props = await getPageProps({
+  const result = await getRecordPageDataById({
     pageId: recordId,
-    type: "Record",
+    from: "Record",
   });
-  const page = await getPageByPageIdAndType(props, "Record");
+  if (!result?.record) {
+    return <div>Invalid record ID</div>;
+  }
+
+  const page = await setPrevNextRecommendInRecordPage(result);
 
   return (
     <div className="w-full h-full">
