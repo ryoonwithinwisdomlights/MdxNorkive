@@ -16,7 +16,10 @@ export const ARCHIVE_PROPERTIES_STATUS_MAP = {
 };
 
 export const EXCLUDED_PAGE_TYPES = ["Menu", "SubMenu", "SubMenuPage", "Notice"];
-export const AVAILABLE_PAGE_TYPES = BLOG.NOTION_PROPERTY_NAME.type_able_arr;
+export const AVAILABLE_PAGE_TYPES = [
+  ...BLOG.NOTION_PROPERTY_NAME.type_able_arr,
+  "Archive",
+];
 
 export const INCLUDED_MENU_TYPES = ["Menu", "SubMenu", "SubMenuPage"];
 

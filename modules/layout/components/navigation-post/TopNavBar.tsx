@@ -45,13 +45,13 @@ const TopNavBar = () => {
     {
       icon: "fa-solid fa-hand-sparkles",
       name: locale.NAV.DEVPROJECT,
-      to: "/devproject",
+      to: "/project",
       show: MENU_MOBILE.MENU_DEVPROJECT,
     },
     {
       icon: "fa-solid fa-hand-sparkles",
       name: locale.NAV.ENGINEERING,
-      to: "/eengineering",
+      to: "/engineering",
       show: MENU_MOBILE.MENU_ENGINEERING,
     },
   ];

@@ -5,6 +5,7 @@ import { RecordCardInfoProps } from "@/types";
 import { CalendarIcon, LockIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import TagItemMini from "../tag/TagItemMini";
+import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 
 /**
  * Portfolio list text content
@@ -17,15 +18,9 @@ const DevprojectCardInfo = ({
   showPageCover,
   showSummary,
 }: RecordCardInfoProps) => {
-  const router = useRouter();
-  const patname = usePathname();
   const { locale } = useNorkiveTheme();
-  // const onClick = (category: string) => {
-  //   router.push(`/category/${category}`);
-  // };
-  const onClick = (recId: string) => {
-    router.push(`${patname}/${recId}`);
-  };
+  const { handleRouter } = useGlobal({});
+
   return (
     <div
       className={`flex flex-col justify-between lg:p-6 p-4   ${
@@ -37,7 +32,7 @@ const DevprojectCardInfo = ({
       <div className="flex flex-col items-start  text-start">
         <div
           onClick={(e) => {
-            onClick(record.id);
+            handleRouter(record);
           }}
           className={`line-clamp-2 flex flex-row replace cursor-pointer text-2xl ${
             showPreview ? "text-center" : ""

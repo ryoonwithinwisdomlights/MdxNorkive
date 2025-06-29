@@ -6,6 +6,7 @@ import { CalendarIcon, FolderClosedIcon, LockIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import TagItemMini from "../tag/TagItemMini";
+import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 
 /**
  *  Records list Card Info
@@ -18,12 +19,8 @@ const RecordCardInfo = ({
   showPageCover,
   showSummary,
 }: RecordCardInfoProps) => {
-  const router = useRouter();
-  const patname = usePathname();
   const { locale } = useNorkiveTheme();
-  const onClick = (recId: string) => {
-    router.push(`${patname}/${recId}`);
-  };
+  const { handleRouter } = useGlobal({});
 
   return (
     <div
@@ -36,7 +33,7 @@ const RecordCardInfo = ({
       <div className="flex flex-col items-start text-start">
         <div
           onClick={(e) => {
-            onClick(record.id);
+            handleRouter(record);
           }}
           className={`line-clamp-2 flex flex-row  replace cursor-pointer text-2xl ${
             showPreview ? "text-center" : ""

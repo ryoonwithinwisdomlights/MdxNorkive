@@ -1,4 +1,5 @@
 "use client";
+import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { AllRecordsProps } from "@/types";
 import { LockIcon } from "lucide-react";
 import Link from "next/link";
@@ -11,8 +12,7 @@ import { useRouter } from "next/navigation";
  * @returns
  */
 export default function AllRecords({ title, recordList }: AllRecordsProps) {
-  const router = useRouter();
-
+  const { handleRouter } = useGlobal({});
   return (
     <div key={title}>
       <div
@@ -48,7 +48,7 @@ export default function AllRecords({ title, recordList }: AllRecordsProps) {
               </Link> */}
               <div
                 onClick={() => {
-                  router.push(`/${record.slug}`);
+                  handleRouter(record);
                 }}
                 className="dark:text-neutral-400
                  hover:text-neutral-400  dark:hover:text-neutral-200 overflow-x-hidden 

@@ -1,13 +1,13 @@
 "use client";
+import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { CardProps } from "@/types";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 const AllRecordsPostCard = ({ record }: CardProps) => {
   const pathname = usePathname();
-  const router = useRouter();
-
   const currentSelected = pathname.split("/")[2] === record.id;
+  const { handleRouter } = useGlobal({});
 
   return (
     <div
@@ -17,12 +17,16 @@ const AllRecordsPostCard = ({ record }: CardProps) => {
       }`}
     >
       <div className="flex flex-col w-full select-none">
-        <Link href={`/${record.slug}`} passHref>
+        <div
+          onClick={() => {
+            handleRouter(record);
+          }}
+        >
           <span className="text-xs pr-1">{record.pageIcon} </span>{" "}
           {record.title.length > 25
             ? record.title.substring(0, 25) + "..."
             : record.title}
-        </Link>
+        </div>
       </div>
     </div>
   );

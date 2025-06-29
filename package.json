@@ -81,7 +81,8 @@
     "typed.js": "^2.0.12",
     "typescript": "^5.6.3",
     "usehooks-ts": "^3.1.0",
-    "vconsole": "^3.15.1"
+    "vconsole": "^3.15.1",
+    "zustand": "^5.0.6"
   },
   "devDependencies": {
     "@types/gtag.js": "^0.0.20",

@@ -13,7 +13,7 @@ const RightSlidingDrawer = () => {
       }
     >
       <div className="py-14 px-6 sticky top-0">
-        {/* <ArticleInfo /> */}
+        <ArticleInfo />
         <div className="py-4 justify-center">
           <InfoCard />
 

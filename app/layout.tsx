@@ -33,6 +33,7 @@ import LeftNavigationBar from "@/modules/layout/templates/LeftNavigationBar";
 import MainLayoutWrapper from "@/modules/layout/templates/MainLayoutWrapper";
 import RightSlidingDrawer from "@/modules/layout/templates/RightSlidingDrawer";
 import { ChildrenProp } from "@/types";
+import { PageObserver } from "@/lib/context/PageObserver";
 
 config.autoAddCss = false;
 
@@ -124,6 +125,7 @@ export default async function RootLayout({ children }: ChildrenProp) {
               {/* Mobile bottom navigation bar */}
               <BottomMenuBar />
             </div>
+            <PageObserver />
           </GeneralSiteSettingsProvider>
         </EssentialNavInfoProvider>
       </body>

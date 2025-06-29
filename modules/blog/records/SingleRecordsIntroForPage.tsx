@@ -35,21 +35,21 @@ const SingleRecordsIntroForPage = ({ record, siteInfo }) => {
           </span>
         </div>
         <span className="mx-1 ml-2 mr-2"> | </span>
-        <Link href="/" passHref>
-          <div className="flex flex-row items-center">
-            <LazyImage
-              src={siteInfo?.icon}
-              className="rounded-full cursor-pointer dark:border dark:border-neutral-300"
-              width={16}
-              height={16}
-              alt={BLOG.AUTHOR}
-            />
+        {/* <Link href="/" passHref> */}
+        <div className="flex flex-row items-center">
+          <LazyImage
+            src={siteInfo?.icon}
+            className="rounded-full cursor-pointer dark:border dark:border-neutral-300"
+            width={16}
+            height={16}
+            alt={BLOG.AUTHOR}
+          />
 
-            <div className="mr-3 ml-2 my-auto text-neutral-400 cursor-pointer">
-              {BLOG.AUTHOR}
-            </div>
+          <div className="mr-3 ml-2 my-auto text-neutral-400 cursor-pointer">
+            {BLOG.AUTHOR}
           </div>
-        </Link>
+        </div>
+        {/* </Link> */}
       </section>
     </>
   );

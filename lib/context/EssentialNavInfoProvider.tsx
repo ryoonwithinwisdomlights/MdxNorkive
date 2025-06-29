@@ -1,8 +1,17 @@
 "use client";
 
-import { EssentialNavInfo } from "@/types/provider.model";
+import { BLOG } from "@/blog.config";
+import { NorkiveRecordData } from "@/types";
+import { EssentialNavInfo, GlobalNotionData } from "@/types/provider.model";
+import { useRouter } from "next/navigation";
 import NextNProgress from "nextjs-progressbar";
-import { createContext, ReactNode, useContext } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 const GlobalContext = createContext<EssentialNavInfo | undefined>(undefined);
 /**
@@ -18,18 +27,31 @@ export function EssentialNavInfoProvider({
 }: {
   children: ReactNode;
   from?: string;
-  globalNotionData: EssentialNavInfo;
+  globalNotionData: GlobalNotionData;
 }) {
   const {
     siteInfo,
     categoryOptions,
     tagOptions,
-    className,
     oldNav,
     customMenu,
     notice,
     latestRecords,
+    allArchive,
   } = globalNotionData;
+
+  const [currentRecordData, setCurrentRecordData] =
+    useState<NorkiveRecordData | null>(null);
+
+  const router = useRouter();
+
+  const handleRouter = (record) => {
+    setCurrentRecordData(record);
+    router.push(`/${record.slug}`);
+  };
+  const cleanCurrentRecordData = () => {
+    setCurrentRecordData(null);
+  };
 
   return (
     <GlobalContext.Provider
@@ -37,11 +59,13 @@ export function EssentialNavInfoProvider({
         siteInfo,
         categoryOptions,
         tagOptions,
-        className,
         oldNav,
         customMenu,
         notice,
         latestRecords,
+        currentRecordData,
+        handleRouter,
+        cleanCurrentRecordData,
       }}
     >
       {children}
