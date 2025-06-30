@@ -89,6 +89,7 @@ export async function getPageProperties(
     }
   }
 
+  // console.log("ddfdfdff:", value);
   // Mapping key: user-defined header name
   const fieldNames = BLOG.NOTION_PROPERTY_NAME;
   if (fieldNames) {
@@ -143,35 +144,7 @@ export async function getPageProperties(
   delete properties.content;
   const isAblePage = AVAILABLE_PAGE_TYPES.includes(properties.type);
   handleRecordsUrl(isAblePage, properties);
-  // Handle URL
-  // if (isAblePage) {
-  //   const customedUrl = generateCustomizeUrlWithType({
-  //     recordProperties: properties,
-  //     type: properties.type,
-  //   });
-  //   properties.slug = BLOG.archive_url_prefix
-  //     ? customedUrl
-  //     : (properties.slug ?? properties.id);
-  // } else if (PAGE_TYPE_MENU.includes(properties.type)) {
-  //   properties.slug = `/intro/${properties.id}`;
-  // } else if (GENERAL_TYPE_MENU.includes(properties.type)) {
-  //   // The menu path is empty and used as an expandable menu.
-  //   properties.to = properties.slug ?? "#";
-  //   properties.name = properties.title ?? "";
-  // }
 
-  // // Enable pseudo-static path
-  // if (JSON.parse(BLOG.PSEUDO_STATIC as string)) {
-  //   if (
-  //     !properties?.slug?.endsWith(".html") &&
-  //     !properties?.slug?.startsWith("http")
-  //   ) {
-  //     properties.slug += ".html";
-  //   }
-  // }
-  // properties.password = properties.password
-  //   ? md5(properties.slug + properties.password)
-  //   : "";
   return properties as NorkiveRecordData;
 }
 
@@ -197,7 +170,7 @@ function mapProperties(
 export function adjustPageProperties(properties, NOTION_CONFIG) {
   // handle URL
   // 1. Convert the slug according to the URL_PREFIX configured by the user
-  // 2. Add an href field to the article to store the final adjusted path
+  // 2. Add an href field to the achive to store the final adjusted path
   if (properties.type === "Record") {
     if (
       getOldsiteConfig({

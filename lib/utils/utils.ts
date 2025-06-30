@@ -358,6 +358,20 @@ export const isNotEmptyObj = (obj) => {
   } else return false;
 };
 
+function formatToKoreanDate(utcDateString: string): string {
+  const date = new Date(utcDateString);
+
+  const koreaTime = new Date(date.getTime() + 9 * 60 * 60 * 1000);
+
+  const year = koreaTime.getFullYear();
+  const month = String(koreaTime.getMonth() + 1).padStart(2, "0");
+  const day = String(koreaTime.getDate()).padStart(2, "0");
+  const hours = String(koreaTime.getHours()).padStart(2, "0");
+  const minutes = String(koreaTime.getMinutes()).padStart(2, "0");
+
+  return `${year}년 ${month}월 ${day}일 ${hours}시 ${minutes}분`;
+}
+
 /**
  * Format date
  * @param date

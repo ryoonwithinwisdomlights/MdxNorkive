@@ -14,7 +14,7 @@ import { useState } from "react";
  * @param {*} param0
  * @returns
  */
-export const MenuItemCollapse = (props) => {
+export const MobileMenuItemDrop = (props) => {
   const { link } = props;
   const pathname = usePathname();
   const [show, changeShow] = useState(false);
@@ -42,7 +42,6 @@ export const MenuItemCollapse = (props) => {
     return null;
   }
 
-  const selected = pathname === link.slug;
   const toggleShow = () => {
     changeShow(!show);
   };
@@ -56,7 +55,7 @@ export const MenuItemCollapse = (props) => {
     return (
       <div
         onClick={toggleOpenSubMenu}
-        className="py-2 font-extralight flex justify-between cursor-pointer  dark:text-neutral-200 no-underline tracking-widest"
+        className="py-2 font-extralight flex justify-between cursor-pointer  no-underline tracking-widest"
       >
         <div>
           <div className={`${link.icon} text-center w-4 mr-4`} />
@@ -64,7 +63,7 @@ export const MenuItemCollapse = (props) => {
         </div>
         <div className="inline-flex items-center ">
           <ChevronRightIcon
-            className={`px-2 transition-all duration-200 text-[#f1efe9e2] ${
+            className={`w-3 h-3 transition-all duration-200 dark:text-[#f1efe9e2] ${
               isOpen ? "rotate-90" : ""
             }`}
           />
@@ -97,8 +96,8 @@ export const MenuItemCollapse = (props) => {
             <div
               key={index}
               className="
-        not:last-child:border-b-0 border-b dark:border-neutral-800  dark:bg-neutral-600 dark:hover:bg-neutral-700 dark:text-neutral-200  py-2 px-14 cursor-pointer
-        font-extralight text-left justify-start bg-neutral-50  text-neutral-600 hover:bg-neutral-100  tracking-widest transition-all duration-200"
+        not:last-child:border-b-0 border-b dark:border-neutral-800  dark:bg-neutral-600   py-2 px-14 cursor-pointer
+        font-extralight text-left justify-start tracking-widest transition-all duration-200"
             >
               <div
                 onClick={() => {
@@ -119,14 +118,9 @@ export const MenuItemCollapse = (props) => {
     );
   };
   return (
-    <>
+    <div className="bg-neutral-50 dark:bg-neutral-800 dark:text-neutral-200  text-neutral-600  ">
       <div
-        className={
-          (selected
-            ? "bg-neutral-500 text-white hover:text-white"
-            : "hover:text-neutral-500") +
-          " px-7 w-full text-left duration-200 dark:bg-neutral-700 dark:border-black"
-        }
+        className={" px-7 w-full text-left duration-200 dark:border-black"}
         onClick={toggleShow}
       >
         {!hasSubMenu && renderMainMenusWithNoSubMenus()}
@@ -136,6 +130,6 @@ export const MenuItemCollapse = (props) => {
 
       {/* Collapse submenu */}
       {hasSubMenu && renderSubmenus()}
-    </>
+    </div>
   );
 };

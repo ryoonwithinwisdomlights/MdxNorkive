@@ -33,7 +33,7 @@ export const ENG_LANG = {
     CATEGORY: "Category",
     SHARE: "Share",
     URL_COPIED: "URL has copied!",
-    TABLE_OF_CONTENTS: "Catalog",
+    TABLE_OF_CONTENTS: "Table Of Contents",
     RELATE_RECORDS: "Relate Records",
     COPYRIGHT: "Copyright",
     AUTHOR: "Author",

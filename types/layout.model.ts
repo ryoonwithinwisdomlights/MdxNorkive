@@ -1,3 +1,5 @@
+import { DateObj } from "./page.model";
+
 export type OldNavItem = {
   icon: string;
   name: any;
@@ -28,6 +30,7 @@ export type LeftSideBarNavItem = {
   summary?: string;
   slug?: string;
   pageIcon?: string;
+  date: DateObj;
   lastEditedDate?: Date;
   type?: string;
   subMenus?: LeftSideBarNavItem[];

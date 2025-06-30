@@ -126,7 +126,7 @@ async function getDataBaseInfoByNotionAPI({
 
   if (pageIds?.length === 0) {
     console.error(
-      "The obtained article list is empty, please check the notification template",
+      "The obtained achive list is empty, please check the notification template",
       collectionQuery,
       collection,
       collectionView,
@@ -174,7 +174,7 @@ async function getDataBaseInfoByNotionAPI({
   // })
 
   const dateSort = BLOG.archive_sort_by === "date" ? true : false;
-  // article count
+  // achive count
   const recordCounter = { count: 0 };
 
   // Find all Archives and Record
@@ -255,7 +255,7 @@ export async function getNoticePage(data) {
 }
 
 /**
- * Get article content
+ * Get achive content
  * @param {*} id
  * @param {*} from
  * @param {*} slice

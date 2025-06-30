@@ -11,11 +11,12 @@ export default function ArticleInfo() {
     return null;
   }
   const modRecord = currentRecordData ? currentRecordData : notice;
+  console.log("modRecord:", modRecord);
 
   return (
     <div className="pt-10 pb-6 text-neutral-400 text-sm border-b flex flex-row items-center">
       <Clock4Icon className="mr-2 w-3 h-3 " />
-      Last update: {modRecord.date?.start_date}
+      Last update: {modRecord.lastEditedDate}
     </div>
   );
 }

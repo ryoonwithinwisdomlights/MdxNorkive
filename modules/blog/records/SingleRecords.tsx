@@ -44,17 +44,20 @@ const SingleRecords = ({ props }) => {
       }, 8 * 1000); // 404 duration 8 seconds
     }
 
-    // Article encryption
+    // // Archive encryption
     if (record?.password && record?.password !== "") {
       setLock(true);
     } else {
       setLock(false);
-      if (!lock && record?.blockMap?.block) {
-        record.content = Object.keys(record.blockMap.block).filter(
-          (key) => record.blockMap.block[key]?.value?.parent_id === record.id
-        );
-        record.toc = getPageTableOfContents(record, record.blockMap);
-      }
+      // if (!lock && record?.blockMap?.block) {
+      //   record.content = Object.keys(record.blockMap.block).filter(
+      //     (key) => record.blockMap.block[key]?.value?.parent_id === record.id
+      //   );
+      //   record.tableOfContents = getPageTableOfContents(
+      //     record,
+      //     record.blockMap
+      //   );
+      // }
     }
   }, [record]);
 

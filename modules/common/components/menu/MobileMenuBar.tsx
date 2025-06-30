@@ -1,9 +1,9 @@
 "use client"; // 클라이언트 컴포넌트
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
-import { MenuItemCollapse } from "@/modules/common/components/menu/MenuItemCollapse";
+import { MobileMenuItemDrop } from "./MobileMenuItemDrop";
 
-export const MenuBarMobile = (props) => {
+export const MobileMenuBar = (props) => {
   const { customMenu } = useGlobal({ from: "index" });
   const { locale } = useNorkiveTheme();
   // let links = [
@@ -35,9 +35,9 @@ export const MenuBarMobile = (props) => {
     return null;
   }
   return (
-    <nav id="nav" className=" text-md">
+    <nav id="top-nav-pc" className=" text-md">
       {links?.map((link, index) => (
-        <MenuItemCollapse
+        <MobileMenuItemDrop
           onHeightChange={props?.onHeightChange}
           key={index}
           link={link}

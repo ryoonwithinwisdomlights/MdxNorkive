@@ -43,6 +43,8 @@ export const GeneralSiteSettingsProvider: React.FC<{
     BLOG.APPEARANCE === "dark"
   );
   const [onLoading, setOnLoading] = useState<boolean>(false);
+  //table_Of_Contents
+  const [tocVisible, setTOCVisible] = useState<boolean>(false);
   const [pageNavVisible, setPageNavVisible] = useState<boolean>(false);
 
   const [searchKeyword, setSearchKeyword] = useState<string>("");
@@ -50,7 +52,9 @@ export const GeneralSiteSettingsProvider: React.FC<{
     LeftSideBarNavItem[]
   >(allNavPagesForLeftSideBar);
 
-  const changePageNavVisible = () => setPageNavVisible(!pageNavVisible);
+  const handleTOCVisible = () => setTOCVisible(!tocVisible);
+
+  const handleLeftNavVisible = () => setPageNavVisible(!pageNavVisible);
 
   function changeLang(lang) {
     if (lang) {
@@ -85,8 +89,10 @@ export const GeneralSiteSettingsProvider: React.FC<{
     filteredNavPages,
     setFilteredNavPages,
     allNavPagesForLeftSideBar,
+    tocVisible,
+    handleTOCVisible,
     pageNavVisible,
-    changePageNavVisible,
+    handleLeftNavVisible,
     isDarkMode,
     handleChangeDarkMode,
     locale,

@@ -36,7 +36,7 @@ export const KOR_LANG = {
     CATEGORY: "Category",
     SHARE: "Share",
     URL_COPIED: "URL이 복사되었습니다",
-    TABLE_OF_CONTENTS: "Catalog",
+    TABLE_OF_CONTENTS: "목차",
     RELATE_RECORDS: "관련된 레코드",
     COPYRIGHT: "저작권",
     AUTHOR: "작성자",

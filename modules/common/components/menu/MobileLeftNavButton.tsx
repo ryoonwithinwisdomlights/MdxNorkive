@@ -3,19 +3,17 @@ import { BookOpenTextIcon } from "lucide-react";
 /**
  * Mobile article navigation buttons
  */
-export default function MobileButtonPageNav() {
-  const { locale, pageNavVisible, changePageNavVisible } = useNorkiveTheme();
+export default function MobileLeftNavButton() {
+  const { handleLeftNavVisible } = useNorkiveTheme();
 
-  const togglePageNavVisible = () => {
-    if (changePageNavVisible) {
-      changePageNavVisible();
-    }
+  const switchVisible = () => {
+    handleLeftNavVisible();
   };
   return (
     <div
-      onClick={togglePageNavVisible}
+      onClick={switchVisible}
       className={
-        "text-black flex justify-center items-center dark:text-gray-200 dark:bg-hexo-black-gray py-2 px-2"
+        "text-black flex justify-center items-center dark:text-gray-200 dark:bg-neutral-700py-2 px-2"
       }
     >
       <a
@@ -25,7 +23,7 @@ export default function MobileButtonPageNav() {
         }
       >
         <BookOpenTextIcon />
-        <span>{locale.COMMON.ARTICLE_LIST}</span>
+        {/* <span>{locale.COMMON.ARTICLE_LIST}</span> */}
       </a>
     </div>
   );

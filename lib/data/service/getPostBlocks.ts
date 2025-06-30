@@ -1,23 +1,14 @@
-import { BLOG } from "@/blog.config";
-import { getDataFromCache, setDataToCache } from "@/lib/cache/cache_manager";
+import { getDataFromCache } from "@/lib/cache/cache_manager";
 import { deepClone, delay } from "@/lib/utils/utils";
-import { BlockMap, PageBlockDataProps } from "@/types";
+import { PageBlockDataProps } from "@/types";
 import { NotionAPI } from "notion-client";
-
-/**
- * Get article content
- * @param {*} id
- * @param {*} from
- * @param {*} slice
- * @returns
- */
 
 /**
  * Get Archive content
  * @param {*} id
  * @param {*} from
  * @param {*} slice
- * @returns
+ * @returns BlockMap
  */
 export async function getRecordBlockMap({
   pageId,

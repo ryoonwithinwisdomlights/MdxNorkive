@@ -13,7 +13,7 @@ const InfoCard = () => {
       <div
         className="hover:scale-105 transform duration-200 cursor-pointer flex justify-center"
         onClick={() => {
-          router.push("/ryoon");
+          router.push("/");
         }}
       >
         <LazyImage

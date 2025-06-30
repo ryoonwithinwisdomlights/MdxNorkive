@@ -18,7 +18,7 @@ import "./../styles/prism-theme.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "katex/dist/katex.min.css";
 
-import PageNavDrawer from "@/modules/layout/components/navigation-post/PageNavDrawer";
+import MobileLeftNavDrawer from "@/modules/layout/components/navigation-post/MobileLeftNavDrawer";
 
 import initGlobalNotionData from "@/lib/data/actions/notion/getNotionData";
 import BottomMenuBar from "@/modules/common/components/menu/BottomMenuBar";
@@ -34,6 +34,8 @@ import MainLayoutWrapper from "@/modules/layout/templates/MainLayoutWrapper";
 import RightSlidingDrawer from "@/modules/layout/templates/RightSlidingDrawer";
 import { ChildrenProp } from "@/types";
 import { PageObserver } from "@/lib/context/PageObserver";
+import MobileTableOfContentsDrawer from "@/modules/common/components/MobileTableOfContentsDrawer";
+import JumpToTopButton from "@/modules/common/components/JumpToTopButton";
 
 config.autoAddCss = false;
 
@@ -102,7 +104,6 @@ export default async function RootLayout({ children }: ChildrenProp) {
             >
               <TopNavBar />
               <AuxiliaryBlogComponent />
-
               <Suspense fallback={<LoadingCover />}>
                 <main
                   id="wrapper"
@@ -117,10 +118,10 @@ export default async function RootLayout({ children }: ChildrenProp) {
                   <RightSlidingDrawer />
                 </main>
               </Suspense>
-              {/* <FloatTocButton /> */}
-
               {/*Mobile navigation drawer*/}
-              <PageNavDrawer />
+              <MobileLeftNavDrawer />
+              {/**Mobile floating directory button */}
+              {/* <MobileTableOfContentsDrawer /> */}
 
               {/* Mobile bottom navigation bar */}
               <BottomMenuBar />

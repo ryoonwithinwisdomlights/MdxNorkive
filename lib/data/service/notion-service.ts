@@ -5,6 +5,7 @@ import {
   EXCLUDED_PAGE_TYPES,
   INCLUDED_MENU_TYPES,
 } from "@/lib/constants/menu.constants";
+import { formatDate } from "@/lib/utils/utils";
 import {
   CategoryItem,
   LeftSideBarNavItem,
@@ -21,7 +22,6 @@ import {
   getSortedPostObject,
   mapImgUrl,
 } from "./utils";
-import { generateCustomizeUrlWithType } from "./getPageProperties";
 
 type CollectionQueryResultView = {
   blockIds?: string[];
@@ -228,15 +228,16 @@ export function getSiteInfo({
 }
 
 /**
- * Get a reduced list of articles for navigation
+ * Get a reduced list of archives for navigation
  * Used in the gitbook theme, only the title, classification, label and classification information
-of the article are retained, and the summary, password, date and other data are reduced.
+of the archives are retained, and the summary, password, date and other data are reduced.
  * The conditions for navigation page must be records
  * @param {*} param0
  */
 export function getRecordListForLeftSideBar({ allPages }) {
   const allNavPages = getExcludeMenuPages({ arr: allPages });
-  return allNavPages.map((item) => generateLeftSideBarItem(item));
+  // return allNavPages.map((item) => generateLeftSideBarItem(item));
+  return allNavPages.map((item) => item);
 }
 
 export function getFilteredArrayByProperty(arr, propertyName, index) {
@@ -329,7 +330,8 @@ export function generateLeftSideBarItem(data: NorkiveRecordData) {
     summary: data.summary || null,
     slug: data.slug,
     pageIcon: data.pageIcon || "",
-    lastEditedDate: data.lastEditedDate,
+    date: data.date,
+    lastEditedDate: formatDate(data.lastEditedDate, BLOG.LANG),
     type: data.type,
   };
   return item;
@@ -411,10 +413,10 @@ export function getRecommendPage(
 }
 
 /**
- * Get articles from page 1 to the specified page number
+ * Get archives from page 1 to the specified page number
  * @param pageIndex which page
- * @param list All articles
- * @param pageSize Number of articles per page
+ * @param list All archives
+ * @param pageSize Number of archives per page
  * @returns {*}
  */
 export const getListByPage = function (list, pageIndex, pageSize) {

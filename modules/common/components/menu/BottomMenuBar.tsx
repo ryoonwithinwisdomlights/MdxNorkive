@@ -1,11 +1,11 @@
 "use client";
 import { BLOG } from "@/blog.config";
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
-import { usePathname } from "next/navigation";
+
 import { useLayoutEffect, useState } from "react";
-import MobileButtonPageNav from "./MobileButtonPageNav";
+
+import MobileBottomMenuBar from "./MobileBottomMenuBar";
 
 // 사전에 사용할 아이콘 추가
 library.add(faBook);
@@ -33,11 +33,6 @@ const BottomMenuBar = () => {
     // the time here. In this example we update it only once
     setTime(new Date());
   }, []);
-  const { pageNavVisible, changePageNavVisible } = useNorkiveTheme();
-  const pathname = usePathname();
-  const togglePageNavVisible = () => {
-    changePageNavVisible();
-  };
   // const d = new Date();
   let copyrightDate;
   if (time) {
@@ -54,7 +49,7 @@ const BottomMenuBar = () => {
   return (
     <div
       className={
-        "sticky z-20 bottom-0 w-full h-12 bg-white dark:bg-neutral-700 block md:hidden"
+        "sticky z-20 bottom-0 w-full h-20 bg-white dark:bg-neutral-800 block md:hidden"
       }
     >
       <div className="flex  justify-between h-full shadow-card">
@@ -75,7 +70,7 @@ const BottomMenuBar = () => {
             Powered By{" "}
             <a
               href={BLOG.CONTACT_GITHUB}
-              className="underline text-gray-500 dark:text-gray-300 font-semibold"
+              className="underline text-neutral-500 dark:text-gray-300 font-semibold"
             >
               Norkive
             </a>
@@ -83,14 +78,7 @@ const BottomMenuBar = () => {
           {/* SEO title */}
           <h1 className="pt-1 hidden">{BLOG.TITLE}</h1>
         </div>
-        <div
-          onClick={togglePageNavVisible}
-          className="flex  items-center justify-end cursor-pointer"
-        >
-          {/* <FontAwesomeIcon icon={faBook} /> */}
-          <MobileButtonPageNav />
-          {/* <MobileButtonCatalog /> */}
-        </div>
+        <MobileBottomMenuBar />
       </div>
     </div>
   );

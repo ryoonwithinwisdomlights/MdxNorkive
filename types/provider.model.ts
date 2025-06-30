@@ -2,7 +2,7 @@ import { SelectOption } from "notion-types";
 import { Dispatch, SetStateAction } from "react";
 import { LeftSideBarNavItem, NavItem, OldNavItem } from "./layout.model";
 import { SiteInfoModel } from "./siteconfig.model";
-import { NorkiveRecordData } from "./page.model";
+import { NorkiveRecordData, RecordPagingData } from "./page.model";
 
 export interface EssentialNavInfo {
   siteInfo: SiteInfoModel;
@@ -14,8 +14,9 @@ export interface EssentialNavInfo {
   customMenu: NavItem[];
   notice: any;
   latestRecords: [];
+  showTocButton: boolean;
   currentRecordData: NorkiveRecordData | null;
-  handleRouter: (record: NorkiveRecordData) => void;
+  handleRouter: (record: RecordPagingData) => void;
   cleanCurrentRecordData: () => void;
 }
 
@@ -41,7 +42,9 @@ export interface GeneralSiteSettingsProviderContext {
   siteInfo?: SiteInfoModel;
   isDarkMode: boolean;
   pageNavVisible: boolean;
-  changePageNavVisible: () => void;
+  handleLeftNavVisible: () => void;
+  tocVisible: boolean;
+  handleTOCVisible: () => void;
   handleChangeDarkMode: (boolean) => void;
   locale: any;
   updateLocale: Dispatch<SetStateAction<string>>;

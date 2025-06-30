@@ -1,4 +1,5 @@
 import { SelectOption } from "notion-types";
+import { TableOfContentsEntry } from "notion-utils";
 
 export type RecommendPage = {
   id: string;
@@ -22,6 +23,7 @@ export interface CategoryItem {
 }
 
 export type DateObj = {
+  type?: string;
   start_date?: string;
   date_format?: string;
 };
@@ -49,4 +51,11 @@ export type NorkiveRecordData = {
   icon?: string;
   results?: any;
   password?: string;
+  tableOfContents?: TableOfContentsEntry[] | [];
 };
+
+export interface RecordPagingData extends NorkiveRecordData {
+  prev?: NorkiveRecordData | null;
+  next?: NorkiveRecordData | null;
+  recommendRecords?: NorkiveRecordData[] | [];
+}

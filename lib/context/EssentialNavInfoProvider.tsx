@@ -1,6 +1,5 @@
 "use client";
 
-import { BLOG } from "@/blog.config";
 import { NorkiveRecordData } from "@/types";
 import { EssentialNavInfo, GlobalNotionData } from "@/types/provider.model";
 import { useRouter } from "next/navigation";
@@ -37,12 +36,12 @@ export function EssentialNavInfoProvider({
     customMenu,
     notice,
     latestRecords,
-    allArchive,
   } = globalNotionData;
 
   const [currentRecordData, setCurrentRecordData] =
     useState<NorkiveRecordData | null>(null);
 
+  const [showTocButton, setShowTocButton] = useState<boolean>(false);
   const router = useRouter();
 
   const handleRouter = (record) => {
@@ -52,6 +51,14 @@ export function EssentialNavInfoProvider({
   const cleanCurrentRecordData = () => {
     setCurrentRecordData(null);
   };
+
+  useEffect(() => {
+    if (currentRecordData?.tableOfContents) {
+      if (currentRecordData.tableOfContents?.length > 1) {
+        setShowTocButton(true);
+      }
+    }
+  }, [currentRecordData]);
 
   return (
     <GlobalContext.Provider
@@ -64,6 +71,7 @@ export function EssentialNavInfoProvider({
         notice,
         latestRecords,
         currentRecordData,
+        showTocButton,
         handleRouter,
         cleanCurrentRecordData,
       }}

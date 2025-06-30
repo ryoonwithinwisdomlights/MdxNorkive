@@ -83,8 +83,8 @@ export const MenuItemDrop = ({ link }) => {
     return (
       <ul
         className={`${
-          show ? "visible opacity-100 top-12 " : "invisible opacity-0 top-10 "
-        } border-neutral-100  bg-white  dark:bg-neutral-600 dark:border-neutral-800 
+          show ? "visible top-12 " : "invisible opacity-0 top-10 "
+        } border-neutral-100 bg-white dark:bg-neutral-700  dark:border-neutral-800 
         transition-all duration-300 z-20 absolute block drop-shadow-lg rounded-lg `}
       >
         {link?.subMenus?.map((sLink, index) => {
@@ -123,7 +123,7 @@ export const MenuItemDrop = ({ link }) => {
 
   return (
     <li
-      className="cursor-pointer list-none flex flex-row justify-center items-center mx-2"
+      className="cursor-pointer list-none hidden md:flex  md:flex-row justify-center items-center mx-2 bg-white dark:bg-neutral-800"
       onMouseOver={() => changeShow(true)}
       onMouseOut={() => changeShow(false)}
     >

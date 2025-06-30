@@ -40,11 +40,11 @@ export const ArticleLock = (props) => {
   }, []);
 
   return (
-    <div className="w-full h-full  flex flex-col justify-center items-center p-24 ">
-      <div
-        id="articlelock_container"
-        className="w-full flex flex-col justify-center items-start "
-      >
+    <div
+      id="container"
+      className="w-full h-full  flex flex-col justify-center items-center p-24 "
+    >
+      <div className="w-full flex flex-col justify-center items-start ">
         <div className="flex flex-col justify-center  w-full">
           {/** pc */}
           <div className="hidden md:flex w-full flex-row items-center justify-center">

@@ -7,22 +7,14 @@ import { useEffect, useRef, useState } from "react";
 import LoadingCover from "../common/icons/LoadingCover";
 import GiscusComponent from "./Giscus";
 
-// const GiscusComponent = dynamic(
-//   () => {
-//     return import("@/modules/red/Giscus");
-//   },
-//   { ssr: false }
-// );
-
 /**
  * Comment component
  * @param {*} param0
  * @returns
  */
-const Comment = (props) => {
-  const { frontMatter } = props;
+const Comment = ({ frontMatter }) => {
+  // console.log("frontMatter:", frontMatter);
   const pathname = usePathname();
-  //devproject/1341eb5c-0337-81ad-a46c-d94c8abcdada
 
   const [shouldLoad, setShouldLoad] = useState(false);
 

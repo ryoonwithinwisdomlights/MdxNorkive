@@ -8,6 +8,7 @@ import {
   getRecommendPage,
   getArchiveRecords,
 } from "@/lib/data/service/notion-service";
+import { getPageTableOfContents } from "notion-utils";
 
 // 각 메뉴의 첫 메인 페이지용 메소드
 // 전체 아카이브에서 인자값으로 전해지는 타입에 해당하는 여러개의 레코드를 가져온다.
@@ -47,7 +48,7 @@ export async function getRecordPageDataById({
     from: from,
   });
 
-  // Find article in list
+  // Find archives in list
   props.record = props?.allPages?.find((item) => {
     return item.id === pageId;
   });
@@ -55,11 +56,12 @@ export async function getRecordPageDataById({
 }
 
 export async function setPrevNextRecommendInRecordPage(props) {
-  if (!props?.records?.blockMap) {
-    props.record.blockMap = await getRecordBlockMap({
-      pageId: props.record.id,
-    });
-  }
+  let lockedRecord = true;
+  // if (!props?.records?.blockMap) {
+  props.record.blockMap = await getRecordBlockMap({
+    pageId: props.record.id,
+  });
+  // }
 
   const recommendRecords = getExcludeMenuPages({
     arr: props?.allPages,
@@ -82,6 +84,28 @@ export async function setPrevNextRecommendInRecordPage(props) {
     props.next = null;
     props.recommendRecords = [];
   }
+
+  if (props.record?.password && props.record?.password !== "") {
+    lockedRecord = true;
+  } else {
+    lockedRecord = false;
+    if (props.record?.blockMap?.block) {
+      props.record.content = Object.keys(props.record.blockMap.block).filter(
+        (key) =>
+          props.record.blockMap.block[key]?.value?.parent_id === props.record.id
+      );
+      props.record.tableOfContents = getPageTableOfContents(
+        props.record,
+        props.record.blockMap
+      );
+    } else {
+      props.record.tableOfContents = [];
+    }
+  }
+
+  // if (!lockedRecord) {
+  //   console.log("props.tableOfContents:", props.record.tableOfContents);
+  // }
 
   return props;
 }

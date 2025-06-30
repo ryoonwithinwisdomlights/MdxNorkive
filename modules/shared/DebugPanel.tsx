@@ -36,12 +36,12 @@ const DebugPanel = () => {
   }
 
   return (
-    <>
+    <div>
       {/* debug button */}
 
       <div
         style={{ writingMode: "vertical-lr" }}
-        className={`bg-black text-xs text-white  shadow-2xl p-1.5 rounded-l-xl cursor-pointer  ${
+        className={`bg-black dark:bg-neutral-800 rounded-l-xl  border-[1px] border-neutral-700  text-xs text-white  shadow-2xl p-1.5  cursor-pointer  ${
           show ? "right-96" : "right-0"
         } fixed bottom-72 duration-200 z-50`}
         onClick={toggleShow}
@@ -62,32 +62,36 @@ const DebugPanel = () => {
       {/* Debugging side pull drawers */}
       <div
         className={` ${
-          show ? "shadow-card w-96 right-0 " : "-right-96 invisible w-0"
-        } overflow-y-scroll h-full p-5 bg-white fixed bottom-0 z-50 duration-200`}
+          show
+            ? "shadow-card md:w-1/2 w-5/6 right-0 "
+            : "-right-96 invisible w-0"
+        } overflow-y-scroll h-5/6 p-5   bg-white dark:bg-neutral-800 rounded-l-xl  border-[1px] dark:border-neutral-700 fixed bottom-0 z-50 duration-200`}
       >
         <div
-          className="flex font-bold  rounded-md  text-neutral-700  justify-between space-x-1  border-b p-2"
+          className="flex font-bold rounded-md  text-neutral-700 dark:text-neutral-200  justify-between space-x-1 p"
           onClick={toggleShow}
         >
-          <div>사이트 구성 [blog.config.js]</div>{" "}
-          <XIcon className="w-5 hover:text-black hover:bg-stone-300 rounded-md py-1" />
+          <div className="mr-2 bg-neutral-100 dark:bg-neutral-700  rounded w-full px-2">
+            사이트 구성 [blog.config.js]
+          </div>
+          <XIcon className="w-5 bg-neutral-100 dark:bg-neutral-700 dark:hover:text-white hover:bg-neutral-300  dark:hover:bg-neutral-600  rounded-md py-1" />
         </div>
 
         <div className="text-xs py-2">
           {siteConfig &&
             Object.keys(siteConfig).map((k) => (
               <div key={k} className="justify-between flex py-1">
-                <span className="bg-blue-500 p-0.5 rounded text-white mr-2">
+                <span className="bg-neutral-200 dark:bg-neutral-700 p-0.5 rounded dark:text-white mr-2 px-1">
                   {k}
                 </span>
-                <span className="whitespace-nowrap">
+                <span className="whitespace-break-spaces">
                   {filterResult(siteConfig[k] + "")}
                 </span>
               </div>
             ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default DebugPanel;
