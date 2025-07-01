@@ -1,8 +1,11 @@
 import {
   setPrevNextRecommendInRecordPage,
   getRecordPageDataById,
+  getPageDataByTypeAndId,
 } from "@/lib/data/actions/pages/page-action";
 import SingleRecords from "@/modules/blog/records/SingleRecords";
+import GeneralRecordTypePageLayout from "@/modules/layout/templates/GeneralRecordTypePageLayout";
+import RightSlidingDrawer from "@/modules/layout/templates/RightSlidingDrawer";
 import ErrorComponent from "@/modules/shared/ErrorComponent";
 export async function generateStaticParams() {
   const records = [{ pageId: "341eb5c0337801da209c34c90bc3377" }];
@@ -18,21 +21,20 @@ export default async function Page({ params }) {
   if (!pageId) {
     return <ErrorComponent />;
   }
-  const result = await getRecordPageDataById({
+
+  const result = await getPageDataByTypeAndId({
     pageId: pageId,
     from: "SubMenuPage",
+    type: "SubMenuPage",
   });
   if (!result?.record) {
-    // props.record = null;
     return <div>Invalid record ID</div>;
   }
 
-  const page = await setPrevNextRecommendInRecordPage(result);
-  // const page = await setPrevNextRecommendInRecordPage(props, "SubMenuPage");
-
   return (
-    <div className="w-full h-full">
-      <SingleRecords props={page} />
-    </div>
+    <GeneralRecordTypePageLayout>
+      <SingleRecords props={result} />
+      <RightSlidingDrawer props={result} />
+    </GeneralRecordTypePageLayout>
   );
 }

@@ -1,12 +1,10 @@
 import CategoryList from "@/modules/blog/category/CategoryList";
-import GeneralPageLayout from "@/modules/layout/templates/GeneralLayout";
-import RightSlidingDrawer from "@/modules/layout/templates/RightSlidingDrawer";
+import NoRecordTypeLayout from "@/modules/layout/templates/NoRecordTypeLayout";
 
 export default async function Page() {
   return (
-    <GeneralPageLayout>
+    <NoRecordTypeLayout>
       <CategoryList />
-      <RightSlidingDrawer props={null} />
-    </GeneralPageLayout>
+    </NoRecordTypeLayout>
   );
 }

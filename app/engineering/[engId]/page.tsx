@@ -6,7 +6,7 @@ import {
 } from "@/lib/data/actions/pages/page-action";
 
 import SingleRecords from "@/modules/blog/records/SingleRecords";
-import GeneralPageLayout from "@/modules/layout/templates/GeneralLayout";
+import GeneralRecordTypePageLayout from "@/modules/layout/templates/GeneralRecordTypePageLayout";
 import RightSlidingDrawer from "@/modules/layout/templates/RightSlidingDrawer";
 import ErrorComponent from "@/modules/shared/ErrorComponent";
 import { Metadata } from "next";
@@ -53,9 +53,9 @@ export default async function Page({ params }) {
   }
 
   return (
-    <GeneralPageLayout>
+    <GeneralRecordTypePageLayout>
       <SingleRecords props={result} />
       <RightSlidingDrawer props={result} />
-    </GeneralPageLayout>
+    </GeneralRecordTypePageLayout>
   );
 }

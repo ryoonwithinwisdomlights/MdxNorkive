@@ -14,8 +14,8 @@ export const ARCHIVE_PROPERTIES_STATUS_MAP = {
   [BLOG.NOTION_PROPERTY_NAME.status_publish]: "Published",
   [BLOG.NOTION_PROPERTY_NAME.status_invisible]: "Invisible",
 };
-
-export const EXCLUDED_PAGE_TYPES = ["Menu", "SubMenu", "SubMenuPage", "Notice"];
+export const EXCLUDED_PAGE_TYPES = ["Menu", "SubMenu", "Notice"];
+// export const EXCLUDED_PAGE_TYPES = ["Menu", "SubMenu", "SubMenuPage", "Notice"];
 export const AVAILABLE_PAGE_TYPES = [
   ...BLOG.NOTION_PROPERTY_NAME.type_able_arr,
   "Archive",

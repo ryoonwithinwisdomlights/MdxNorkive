@@ -1,6 +1,6 @@
 import { getRecordPageListDataByType } from "@/lib/data/actions/pages/page-action";
 import BasicRecordPage from "@/modules/blog/records/BasicRecordPage";
-import GeneralPageLayout from "@/modules/layout/templates/GeneralLayout";
+import GeneralRecordTypePageLayout from "@/modules/layout/templates/GeneralRecordTypePageLayout";
 import RightSlidingDrawer from "@/modules/layout/templates/RightSlidingDrawer";
 
 export default async function Page() {
@@ -13,9 +13,9 @@ export default async function Page() {
   const engineeringList: [] = props.archiveRecords;
 
   return (
-    <GeneralPageLayout>
+    <GeneralRecordTypePageLayout>
       <BasicRecordPage type="Engineering" recordList={engineeringList} />
       <RightSlidingDrawer props={props} />
-    </GeneralPageLayout>
+    </GeneralRecordTypePageLayout>
   );
 }
