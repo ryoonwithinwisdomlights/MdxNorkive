@@ -9,6 +9,7 @@ import TagItemMini from "../tag/TagItemMini";
 import TocDrawerWrapper from "../wrapper/TocDrawerWrapper";
 import CatalogDrawerWrapper from "../wrapper/CatalogDrawerWrapper";
 import { isBrowser } from "@/lib/utils/utils";
+import { isAbleRecordPage } from "@/lib/data/service/notion-service";
 
 const SingleRecordsBodyForPage = ({ props, prev, next }) => {
   const { record } = props;
@@ -32,10 +33,9 @@ const SingleRecordsBodyForPage = ({ props, prev, next }) => {
           </div>
         </div>
 
-        {!EXCLUDED_PAGE_TYPES.includes(record.type) &&
-          record.status === "Published" && (
-            <ArticleAround prev={prev} next={next} />
-          )}
+        {isAbleRecordPage(record.type) && record.status === "Published" && (
+          <ArticleAround prev={prev} next={next} />
+        )}
         <Comment frontMatter={record} />
       </section>
       {/* {!isBrowser && <CatalogDrawerWrapper record={record} />} */}

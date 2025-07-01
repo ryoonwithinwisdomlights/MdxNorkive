@@ -130,12 +130,12 @@ Enter key  // 키 입력 처리 함수
     >
       {searchKeyword === "" && (
         <div
-          className="absolute left-2 flex top-5 flex-row justify-start items-center  text-neutral-500 cursor-pointer float-left"
+          className="absolute left-2 flex top-5 flex-row justify-start items-center   cursor-pointer float-left"
           onClick={() => {
             handleSearch();
           }}
         >
-          <SearchIcon className="w-4 h-4   text-neutral-200  hover:text-neutral-400 dark:hover:text-neutral-400 cursor-pointer " />
+          <SearchIcon className="w-4 h-4  text-neutral-200  hover:text-neutral-400 dark:hover:text-neutral-400 cursor-pointer " />
         </div>
       )}
 
@@ -143,8 +143,11 @@ Enter key  // 키 입력 처리 함수
         name="searchInput"
         ref={searchInputRef}
         type="text"
-        className={`my-3 pl-10 rounded-md border border-neutral-200  outline-none w-full placeholder:text-neutral-400 sm:text-sm
-          transition-all focus:border-neutral-500 focus:ring-4 focus:ring-neutral-200  hover:text-neutral-400 dark:hover:text-neutral-400 cursor-pointer`}
+        className={`my-3 pl-10 rounded-md border border-neutral-200 
+           outline-none w-full placeholder:text-neutral-400 sm:text-sm
+          transition-all focus:border-neutral-500 focus:ring-4 focus:ring-neutral-200 
+           hover:text-neutral-400 dark:hover:text-neutral-400 cursor-pointer
+           dark:bg-neutral-800`}
         onKeyUp={handleKeyUp}
         onFocus={() => {
           if (searchInputRef.current) {
