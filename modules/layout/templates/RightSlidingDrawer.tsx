@@ -15,7 +15,7 @@ const RightSlidingDrawer = ({ props }) => {
     <div
       className="hidden md:w-[20%] md:fixed
 md:right-0 xl:block dark:border-transparent 
-h-screen z-10 border-l  border-neutral-200 px-6 md:flex md:flex-col"
+h-screen z-10  border-neutral-200 px-6 md:flex md:flex-col"
     >
       <div className="">
         <ArticleInfo props={result} />

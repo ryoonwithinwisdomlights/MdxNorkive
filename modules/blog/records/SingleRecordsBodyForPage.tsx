@@ -8,8 +8,10 @@ import ShareBar from "@/modules/shared/ShareBar";
 import TagItemMini from "../tag/TagItemMini";
 import TocDrawerWrapper from "../wrapper/TocDrawerWrapper";
 import CatalogDrawerWrapper from "../wrapper/CatalogDrawerWrapper";
+import { isBrowser } from "@/lib/utils/utils";
 
-const SingleRecordsBodyForPage = ({ record, prev, next }) => {
+const SingleRecordsBodyForPage = ({ props, prev, next }) => {
+  const { record } = props;
   return (
     <div>
       <section className="px-1 dark:text-neutral-200">
@@ -36,7 +38,9 @@ const SingleRecordsBodyForPage = ({ record, prev, next }) => {
           )}
         <Comment frontMatter={record} />
       </section>
+      {/* {!isBrowser && <CatalogDrawerWrapper record={record} />} */}
       <CatalogDrawerWrapper record={record} />
+      {/* <TocDrawerWrapper props={props} /> */}
     </div>
   );
 };

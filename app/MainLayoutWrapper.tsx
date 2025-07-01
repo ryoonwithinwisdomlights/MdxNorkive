@@ -14,7 +14,7 @@ const MainLayoutWrapper = ({ children }: { children: React.ReactNode }) => {
       <div
         id="center-wrapper"
         className="flex flex-row   justify-between 
-        z-20 pt-14  bg-white dark:bg-black  dark:text-neutral-300 "
+        z-20  bg-white dark:bg-black  dark:text-neutral-300 "
       >
         {/* <div
           id="container-inner"

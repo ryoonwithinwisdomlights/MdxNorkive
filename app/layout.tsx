@@ -105,8 +105,8 @@ export default async function RootLayout({ children }: ChildrenProp) {
               <AuxiliaryBlogComponent />
               <Suspense fallback={<LoadingCover />}>
                 {/* <div className="w-full  flex flex-col items-center justify-center"> */}
-                <div className=" w-screen md:flex md:flex-row justify-center">
-                  <div className="w-screen   h-screen    justify-center  ">
+                <div className=" w-screen md:flex md:flex-row justify-center ">
+                  <div className="w-screen h-screen justify-center ">
                     <LeftNavigationBar />
                     <MainLayoutWrapper>{children}</MainLayoutWrapper>
                   </div>

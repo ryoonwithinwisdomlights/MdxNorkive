@@ -2,6 +2,7 @@ import { BLOG } from "@/blog.config";
 import { RecommendPage } from "@/types";
 
 import {
+  AVAILABLE_PAGE_TYPES,
   EXCLUDED_PAGE_TYPES,
   INCLUDED_MENU_TYPES,
 } from "@/lib/constants/menu.constants";
@@ -252,6 +253,8 @@ export function getFilteredArrayByProperty(arr, propertyName, index) {
   return newArr;
 }
 
+export const isAbleRecordPage = (page) =>
+  AVAILABLE_PAGE_TYPES.includes(page.type);
 export const isNotMenuPage = (page) => EXCLUDED_PAGE_TYPES.includes(page.type);
 export const isPublished = (page) => page.status === "Published";
 export const isTypeMatch = (page, type) => (type ? page.type === type : true);
@@ -261,7 +264,7 @@ export function getPageWithOutMenu(page, type) {
   // const isPublished = page.status === "Published";
   // const isTypeMatch = type ? page.type === type : true;
 
-  return !isNotMenuPage(page) && isPublished(page) && isTypeMatch(page, type);
+  return isAbleRecordPage(page) && isPublished(page) && isTypeMatch(page, type);
 }
 export function getPageArrayWithOutMenu({
   arr,

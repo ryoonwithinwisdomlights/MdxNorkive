@@ -13,7 +13,7 @@ export default function MobileLeftNavButton() {
     <div
       onClick={switchVisible}
       className="text-black flex justify-center 
-      items-center dark:text-gray-200
+      items-center dark:text-neutral-200
        dark:bg-neutral-700 py-2 px-2"
     >
       <a

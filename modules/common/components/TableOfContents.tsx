@@ -2,7 +2,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { uuidToId } from "notion-utils";
 import throttle from "lodash.throttle";
-import { isBrowser } from "@/lib/utils/utils";
+import { isBrowser } from "react-notion-x";
+// import { isBrowser } from "@/lib/utils/utils";
 
 const TableOfContents = ({ props }) => {
   if (!props || !props.record) {
@@ -12,7 +13,6 @@ const TableOfContents = ({ props }) => {
   }
 
   const toc = props.record.tableOfContents;
-  console.log("TableOfContents::::,", toc);
   // Synchronize selected directory events
   const [activeSection, setActiveSection] = useState(null);
 
@@ -53,7 +53,7 @@ const TableOfContents = ({ props }) => {
       const tocIds =
         props.record?.tableOfContents?.map((t) => uuidToId(t.id)) || [];
       const index = tocIds.indexOf(currentSectionId) || 0;
-      if (!isBrowser && tocIds?.length > 0) {
+      if (isBrowser && tocIds?.length > 0) {
         for (const tocWrapper of document?.getElementsByClassName(
           "toc-wrapper"
         )) {
@@ -81,14 +81,15 @@ const TableOfContents = ({ props }) => {
               href={`#${id}`}
               className={`${
                 activeSection === id &&
-                "border-amber-500 text-amber-500 font-bold"
-              }  hover:text-amber-500 border-l duration-300   notion-table-of-contents-item  transform font-light dark:text-gray-300
+                "border-neutral-500 text-neutral-500 font-bold"
+              }  hover:text-neutral-500 border-l duration-300 pl-4 block  notion-table-of-contents-item  transform font-light dark:text-neutral-300
               notion-table-of-contents-item-indent-level-${tocItem.indentLevel} catalog-item `}
             >
               <span
                 style={{
                   display: "inline-block",
                   marginLeft: tocItem.indentLevel * 16,
+                  paddingLeft: 10,
                 }}
                 className={`truncate `}
               >

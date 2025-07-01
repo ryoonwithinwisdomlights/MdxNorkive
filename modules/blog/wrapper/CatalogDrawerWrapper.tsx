@@ -21,36 +21,41 @@ const CatalogDrawerWrapper = ({ record }) => {
   const switchVisible = () => {
     handleTOCVisible();
   };
+  // useEffect(() => {
+  //   handleTOCVisible();
+  // }, [router]);
+  const dd = record?.tableOfContents.length > 0;
   useEffect(() => {
-    handleTOCVisible();
-  }, [router]);
-
+    if (dd) {
+      handleTOCVisible();
+    }
+  }, []);
+  console.log("tocVisible:", tocVisible);
   return (
-    record.tableOfContents.length > 0 && (
+    record?.tableOfContents.length > 0 && (
       <>
         <div
           id="gitbook-toc-float"
-          className={"fixed md:top-0 bottom-40 right-0 z-40 hidden md:flex "}
+          className={"fixed top-0 right-0 z-40 md:hidden"}
         >
           {/* side menu */}
+
           <div
             className={
               (tocVisible
                 ? "animate__slideInRight "
                 : " -mr-72 animate__slideOutRight") +
-              " overflow-y-hidden rounded-l-xl rounded-r-xl shadow-card w-60 h-3/6 duration-200 fixed right-1 bottom-16 rounded py-2 bg-white dark:bg-neutral-700"
+              " overflow-y-hidden shadow-card w-60 duration-200 fixed right-1 bottom-20 rounded py-2 bg-white dark:bg-neutral-700"
             }
           >
-            {/* {record && ( */}
-
             <div
-              onClick={handleTOCVisible}
+              onClick={switchVisible}
               className="px-4 pb-2 flex justify-between items-center border-b font-bold"
             >
               <span>{locale.COMMON.TABLE_OF_CONTENTS}</span>
               <XIcon className="p-1 cursor-pointer" />
             </div>
-            <div className="dark:text-gray-400 text-gray-600 px-3">
+            <div className="dark:text-neutral-400 text-neutral-600 px-3">
               <Catalog record={record} />
             </div>
           </div>

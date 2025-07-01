@@ -8,7 +8,7 @@ import { useEffect, useImperativeHandle, useRef, useState } from "react";
 
 let lock = false;
 
-const SearchInput = ({ cRef, className }) => {
+const SearchInput = ({ cRef }) => {
   const [showClean, setShowClean] = useState(false);
   // 검색 키워드 상태
   const {
@@ -123,7 +123,11 @@ Enter key  // 키 입력 처리 함수
   if (!isMounted) return null;
 
   return (
-    <div className={"flex w-full border-neutral-400"}>
+    <div
+      className={
+        "hidden md:flex md:w-52 lg:w-72 relative border-neutral-400 mr-4"
+      }
+    >
       <input
         name="searchInput"
         ref={searchInputRef}

@@ -8,7 +8,8 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 library.add(faTimes);
 
-const TocDrawerWrapper = ({ record }) => {
+const TocDrawerWrapper = ({ props }) => {
+  const { record } = props;
   console.log("TocDrawerWrapper:,", record);
   const { tocVisible, handleTOCVisible, locale } = useNorkiveTheme();
   const router = useRouter();
@@ -19,15 +20,15 @@ const TocDrawerWrapper = ({ record }) => {
     handleTOCVisible();
   }, [router]);
 
-  if (record.tableOfContents.length > 0) {
+  if (record?.tableOfContents.length > 0) {
     console.log("tableOfContents:::::,", record);
   }
   return (
-    record.tableOfContents.length > 0 && (
+    record?.tableOfContents.length > 0 && (
       <>
         <div
           id="gitbook-toc-float"
-          className={"hidden md:flex bg-green-500 w-80"}
+          className={"hidden md:flex bg-amber-500 w-80"}
         >
           {/* side menu */}
           <div
@@ -42,13 +43,13 @@ const TocDrawerWrapper = ({ record }) => {
               <>
                 <div
                   onClick={handleTOCVisible}
-                  className="bg-green-500 w-full px-4 pb-2 flex justify-between items-center border-b font-bold"
+                  className="bg-amber-500 w-full px-4 pb-2 flex justify-between items-center border-b font-bold"
                 >
                   <span>{locale.COMMON.TABLE_OF_CONTENTS}</span>
                   <XIcon className="p-1 cursor-pointer" />
                 </div>
-                <div className="dark:text-gray-400 text-gray-600 px-3">
-                  <TableOfContents record={record} />
+                <div className="dark:text-neutral-400 text-neutral-600 px-3">
+                  <TableOfContents props={props} />
                 </div>
               </>
             )}

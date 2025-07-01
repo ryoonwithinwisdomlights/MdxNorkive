@@ -40,7 +40,7 @@ const Footer = () => {
         Powered By{" "}
         <a
           href={BLOG.CONTACT_GITHUB}
-          className="underline text-neutral-500 dark:text-gray-300 font-semibold"
+          className="underline text-neutral-500 dark:text-neutral-300 font-semibold"
         >
           Norkive
         </a>

@@ -41,7 +41,7 @@ const ShareButtons = ({ shareUrl, title, body, image }) => {
             <FacebookShareButton
               key={singleService}
               url={shareUrl}
-              className="mx-1 text-gray-50"
+              className="mx-1 text-neutral-50"
             >
               <FacebookIcon size={32} round iconFillColor="white" />
             </FacebookShareButton>

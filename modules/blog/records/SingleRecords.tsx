@@ -60,7 +60,7 @@ const SingleRecords = ({ props }) => {
   return (
     <div
       className="dark:bg-black dark:text-neutral-300 pb-20 md:px-20 px-10 py-3 
-    md:w-[60%] flex flex-col overflow-y-auto h-screen  items-center scrollbar-hide overscroll-contain "
+    md:w-[60%] flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain "
     >
       {lock && <ArticleLock validPassword={validPassword} />}
       {!lock && (
@@ -69,7 +69,7 @@ const SingleRecords = ({ props }) => {
           <SingleRecordsIntroForPage record={record} siteInfo={siteInfo} />
           {/* Notion기사 본문 */}
           {record && (
-            <SingleRecordsBodyForPage record={record} prev={prev} next={next} />
+            <SingleRecordsBodyForPage props={props} prev={prev} next={next} />
           )}
         </div>
       )}
