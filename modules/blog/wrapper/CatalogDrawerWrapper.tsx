@@ -1,5 +1,4 @@
 "use client";
-import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
 import Catalog from "@/modules/common/components/Catalog";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -31,7 +30,7 @@ const CatalogDrawerWrapper = ({ record }) => {
       <>
         <div
           id="gitbook-toc-float"
-          className={"fixed bottom-40 right-0 z-40 md:hidden"}
+          className={"fixed md:top-0 bottom-40 right-0 z-40 hidden md:flex "}
         >
           {/* side menu */}
           <div
@@ -39,7 +38,7 @@ const CatalogDrawerWrapper = ({ record }) => {
               (tocVisible
                 ? "animate__slideInRight "
                 : " -mr-72 animate__slideOutRight") +
-              " overflow-y-hidden shadow-card w-60 duration-200 fixed right-1 bottom-16 rounded py-2 bg-white dark:bg-neutral-700"
+              " overflow-y-hidden rounded-l-xl rounded-r-xl shadow-card w-60 h-3/6 duration-200 fixed right-1 bottom-16 rounded py-2 bg-white dark:bg-neutral-700"
             }
           >
             {/* {record && ( */}
@@ -54,8 +53,6 @@ const CatalogDrawerWrapper = ({ record }) => {
             <div className="dark:text-gray-400 text-gray-600 px-3">
               <Catalog record={record} />
             </div>
-
-            {/* // )} */}
           </div>
         </div>
         <div

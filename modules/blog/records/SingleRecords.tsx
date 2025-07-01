@@ -71,7 +71,10 @@ const SingleRecords = ({ props }) => {
     <>
       {lock && <ArticleLock validPassword={validPassword} />}
       {!lock && (
-        <div id="container">
+        <div
+          id="container"
+          className="pl-7 pr-7 w-full  max-w-3xl justify-center flex flex-col "
+        >
           {/* Notion기사 서문 */}
           <SingleRecordsIntroForPage record={record} siteInfo={siteInfo} />
           {/* Notion기사 본문 */}

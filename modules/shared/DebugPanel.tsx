@@ -37,12 +37,10 @@ const DebugPanel = () => {
 
   return (
     <div>
-      {/* debug button */}
-
       <div
         style={{ writingMode: "vertical-lr" }}
-        className={`bg-black dark:bg-neutral-800 rounded-l-xl  border-[1px] border-neutral-700  text-xs text-white  shadow-2xl p-1.5  cursor-pointer  ${
-          show ? "right-96" : "right-0"
+        className={`bg-black dark:bg-neutral-800 rounded-l-xl  border-[1px] border-neutral-700 dark:border-white text-xs text-white  shadow-2xl p-1.5  cursor-pointer  ${
+          show ? "md:right-1/2 right-0 " : "right-0"
         } fixed bottom-72 duration-200 z-50`}
         onClick={toggleShow}
       >
@@ -63,8 +61,8 @@ const DebugPanel = () => {
       <div
         className={` ${
           show
-            ? "shadow-card md:w-1/2 w-5/6 right-0 "
-            : "-right-96 invisible w-0"
+            ? "shadow-card md:w-1/2 w-5/6 right-0"
+            : "-right-1/2 invisible w-0"
         } overflow-y-scroll h-5/6 p-5   bg-white dark:bg-neutral-800 rounded-l-xl  border-[1px] dark:border-neutral-700 fixed bottom-0 z-50 duration-200`}
       >
         <div

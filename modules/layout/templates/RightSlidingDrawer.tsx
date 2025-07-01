@@ -1,30 +1,34 @@
 "use client";
-import ArticleInfo from "@/modules/common/components/article/ArticleInfo";
-import React from "react";
-import InfoCard from "../components/InfoCard";
 import Announcement from "@/modules/announcement/Announcement";
-import Catalog from "@/modules/common/components/Catalog";
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
-import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
-import CatalogDrawerWrapper from "@/modules/blog/wrapper/CatalogDrawerWrapper";
+import InfoCard from "../components/InfoCard";
 
-const RightSlidingDrawer = () => {
-  const { currentRecordData } = useGlobal({});
-  console.log("currentRecordData::::", currentRecordData);
+import ArticleInfo from "@/modules/common/components/article/ArticleInfo";
+import TableOfContents from "@/modules/common/components/TableOfContents";
+import { useEffect, useState } from "react";
+
+const RightSlidingDrawer = ({ props }) => {
+  let result = props;
+  if (!props) {
+    result = null;
+  }
+
+  const [isMounted, setIsMounted] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  if (!isMounted) return null;
   return (
     <div
       className={
-        "hidden w-3/12 xl:block dark:border-transparent relative z-10 border-l border-neutral-200"
+        "hidden w-3/12 xl:block dark:border-transparent relative z-10 border-l h-full border-neutral-200"
       }
     >
-      <div className="py-14 px-6 sticky top-0">
-        <ArticleInfo />
-
+      <div className="px-6 sticky top-0">
+        <ArticleInfo props={result} />
         <div className="">
-          <div>
-            {/* {currentRecordData && <Catalog record={currentRecordData} />} */}
-          </div>
-          {/* <Catalog record={currentRecordData} /> */}
+          <TableOfContents props={props} />
+
           <InfoCard />
           <Announcement />
         </div>

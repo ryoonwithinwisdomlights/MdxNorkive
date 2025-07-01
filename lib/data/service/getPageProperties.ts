@@ -30,9 +30,11 @@ import {
   isStartWithHttp,
 } from "@/lib/utils/utils";
 import { extractLangPrefix, mapImgUrl } from "./utils";
-
+import { getRecordBlockMap } from "./getPostBlocks";
+const NOTION_DB_ID = BLOG.NOTION_DATABASE_ID as string;
 export async function getPageProperties(
   id: string,
+  pageId: string,
   block: BlockMap,
   schema: CollectionPropertySchemaMap,
   authToken: string | null,
@@ -144,7 +146,12 @@ export async function getPageProperties(
   delete properties.content;
   const isAblePage = AVAILABLE_PAGE_TYPES.includes(properties.type);
   handleRecordsUrl(isAblePage, properties);
-
+  if (id === pageId && pageId !== NOTION_DB_ID) {
+    const blockMap = await getRecordBlockMap({
+      pageId: pageId,
+    });
+    properties.blockMap = blockMap;
+  }
   return properties as NorkiveRecordData;
 }
 

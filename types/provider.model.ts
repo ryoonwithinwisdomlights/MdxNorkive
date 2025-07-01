@@ -15,7 +15,7 @@ export interface EssentialNavInfo {
   notice: any;
   latestRecords: [];
   showTocButton: boolean;
-  currentRecordData: NorkiveRecordData | null;
+  // currentRecordData: NorkiveRecordData | null;
   handleRouter: (record: RecordPagingData) => void;
   cleanCurrentRecordData: () => void;
 }

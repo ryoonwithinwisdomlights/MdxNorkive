@@ -2,9 +2,12 @@ import { BLOG } from "@/blog.config";
 import {
   setPrevNextRecommendInRecordPage,
   getRecordPageDataById,
+  getPageDataByTypeAndId,
 } from "@/lib/data/actions/pages/page-action";
 
 import SingleRecords from "@/modules/blog/records/SingleRecords";
+import GeneralPageLayout from "@/modules/layout/templates/GeneralLayout";
+import RightSlidingDrawer from "@/modules/layout/templates/RightSlidingDrawer";
 import ErrorComponent from "@/modules/shared/ErrorComponent";
 import { Metadata } from "next";
 
@@ -38,20 +41,21 @@ export default async function Page({ params }) {
   if (!engId) {
     return <ErrorComponent />;
   }
-  const result = await getRecordPageDataById({
+
+  const result = await getPageDataByTypeAndId({
     pageId: engId,
-    from: "Project",
+    from: "Engineering",
+    type: "Engineering",
   });
 
   if (!result?.record) {
     return <div>Invalid record ID</div>;
   }
 
-  const page = await setPrevNextRecommendInRecordPage(result);
-
   return (
-    <div className="w-full h-full">
-      <SingleRecords props={page} />
-    </div>
+    <GeneralPageLayout>
+      <SingleRecords props={result} />
+      <RightSlidingDrawer props={result} />
+    </GeneralPageLayout>
   );
 }

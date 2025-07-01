@@ -2,6 +2,8 @@ import AllRecordsList from "@/modules/blog/records/AllRecordsList";
 import { TotalPageParams } from "@/types";
 import ErrorComponent from "@/modules/shared/ErrorComponent";
 import { getCategoryAndTagById } from "@/lib/data/actions/pages/page-action";
+import GeneralPageLayout from "@/modules/layout/templates/GeneralLayout";
+import RightSlidingDrawer from "@/modules/layout/templates/RightSlidingDrawer";
 
 export async function generateStaticParams() {
   const records = [
@@ -28,10 +30,13 @@ export default async function Page({ params, searchParams }: TotalPageParams) {
   );
 
   return (
-    <AllRecordsList
-      pagenum={pagenum !== undefined ? pagenum : 1}
-      recordCount={result.recordCount}
-      records={result.records}
-    />
+    <GeneralPageLayout>
+      <AllRecordsList
+        pagenum={pagenum !== undefined ? pagenum : 1}
+        recordCount={result.recordCount}
+        records={result.records}
+      />
+      <RightSlidingDrawer props={null} />
+    </GeneralPageLayout>
   );
 }

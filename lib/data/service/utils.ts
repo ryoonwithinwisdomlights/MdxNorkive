@@ -1,5 +1,24 @@
 import { deepClone, formatDateFmt } from "@/lib/utils/utils";
 import { BLOG } from "@/blog.config";
+import { getPageTableOfContents } from "notion-utils";
+import { isNotMenuPage } from "./notion-service";
+
+export function setPageTableOfContentsByRecord(props) {
+  const isAblePage = isNotMenuPage(props?.record);
+  console.log();
+  if (props?.record?.blockMap?.block && !isAblePage) {
+    props.record.content = Object.keys(props?.record.blockMap.block).filter(
+      (key) =>
+        props?.record.blockMap.block[key]?.value?.parent_id === props?.record.id
+    );
+    props.record.tableOfContents = getPageTableOfContents(
+      props?.record,
+      props?.record.blockMap
+    );
+  } else {
+    props.record.tableOfContents = [];
+  }
+}
 
 export function getSortedPostObject(obj) {
   const recordsSortByDate = Object.create(obj);

@@ -1,4 +1,4 @@
-import { SelectOption } from "notion-types";
+import { ExtendedRecordMap, SelectOption } from "notion-types";
 import { TableOfContentsEntry } from "notion-utils";
 
 export type RecommendPage = {
@@ -52,6 +52,7 @@ export type NorkiveRecordData = {
   results?: any;
   password?: string;
   tableOfContents?: TableOfContentsEntry[] | [];
+  blockMap?: ExtendedRecordMap | null;
 };
 
 export interface RecordPagingData extends NorkiveRecordData {

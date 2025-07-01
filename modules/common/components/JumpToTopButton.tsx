@@ -18,7 +18,7 @@ const JumpToTopButton = () => {
       data-aos-duration="300"
       data-aos-once="false"
       data-aos-anchor-placement="top-center"
-      className="fixed xl:right-80 right-2 mr-10 bottom-28 z-20 "
+      className="fixed xl:right-96 xl:mr-20 right-2 bottom-24 z-20 "
     >
       <ChevronUpIcon
         onClick={() => {
@@ -26,7 +26,8 @@ const JumpToTopButton = () => {
             window.scrollTo({ top: 0, behavior: "smooth" });
           }
         }}
-        className="hover:scale-110 duration-150 cursor-pointer p-1 w-8 h-8 text-sm rounded-full border text-white  bg-neutral-700 dark:border-white"
+        className="shadow  hover:scale-110 duration-150 cursor-pointer p-2 w-8 h-8 text-sm'
+         rounded-full border text-white  bg-neutral-700 dark:border-white"
       />
     </div>
   );

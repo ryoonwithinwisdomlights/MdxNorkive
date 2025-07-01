@@ -36,6 +36,7 @@ import { ChildrenProp } from "@/types";
 import { PageObserver } from "@/lib/context/PageObserver";
 import MobileTableOfContentsDrawer from "@/modules/common/components/MobileTableOfContentsDrawer";
 import JumpToTopButton from "@/modules/common/components/JumpToTopButton";
+import Samplelayout from "./Samplelayout";
 
 config.autoAddCss = false;
 
@@ -105,24 +106,23 @@ export default async function RootLayout({ children }: ChildrenProp) {
               <TopNavBar />
               <AuxiliaryBlogComponent />
               <Suspense fallback={<LoadingCover />}>
-                <main
+                <Samplelayout>{children}</Samplelayout>
+                {/* <main
                   id="wrapper"
                   className={
                     "relative flex justify-between w-full min-h-screen  mx-auto"
                   }
                 >
-                  {/* left navigation bar */}
+           
                   <LeftNavigationBar />
                   <MainLayoutWrapper> {children}</MainLayoutWrapper>
-                  {/*  right sliding drawer */}
+                
                   <RightSlidingDrawer />
-                </main>
+                </main> */}
               </Suspense>
+              <JumpToTopButton />
               {/*Mobile navigation drawer*/}
               <MobileLeftNavDrawer />
-              {/**Mobile floating directory button */}
-              {/* <MobileTableOfContentsDrawer /> */}
-
               {/* Mobile bottom navigation bar */}
               <BottomMenuBar />
             </div>

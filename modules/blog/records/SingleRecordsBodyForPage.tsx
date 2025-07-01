@@ -1,16 +1,17 @@
 import { MENU_MOBILE } from "@/lib/constants/menu-mobile.constansts";
+import { EXCLUDED_PAGE_TYPES } from "@/lib/constants/menu.constants";
+import ArticleAround from "@/modules/common/components/article/ArticleAround";
+import CategoryItem from "@/modules/common/components/catalog/CategoryItem";
 import Comment from "@/modules/shared/Comment";
 import NotionPage from "@/modules/shared/NotionPage";
 import ShareBar from "@/modules/shared/ShareBar";
-import ArticleAround from "@/modules/common/components/article/ArticleAround";
-import CategoryItem from "@/modules/common/components/catalog/CategoryItem";
 import TagItemMini from "../tag/TagItemMini";
-import { EXCLUDED_PAGE_TYPES } from "@/lib/constants/menu.constants";
+import TocDrawerWrapper from "../wrapper/TocDrawerWrapper";
 import CatalogDrawerWrapper from "../wrapper/CatalogDrawerWrapper";
 
 const SingleRecordsBodyForPage = ({ record, prev, next }) => {
   return (
-    <div id="container">
+    <div>
       <section className="px-1 dark:text-neutral-200">
         <div id="archive-wrapper">
           <NotionPage record={record} />

@@ -33,6 +33,7 @@ export const KOR_LANG = {
     LATEST_RECORDS: "최근 레코드",
     TAGS: "Tags",
     NO_TAG: "NoTag",
+    TOC: "목차",
     CATEGORY: "Category",
     SHARE: "Share",
     URL_COPIED: "URL이 복사되었습니다",

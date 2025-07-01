@@ -38,27 +38,27 @@ export function EssentialNavInfoProvider({
     latestRecords,
   } = globalNotionData;
 
-  const [currentRecordData, setCurrentRecordData] =
+  const [currentRecordId, setCurrentRecordId] =
     useState<NorkiveRecordData | null>(null);
 
   const [showTocButton, setShowTocButton] = useState<boolean>(false);
   const router = useRouter();
 
   const handleRouter = (record) => {
-    setCurrentRecordData(record);
+    setCurrentRecordId(record);
     router.push(`/${record.slug}`);
   };
   const cleanCurrentRecordData = () => {
-    setCurrentRecordData(null);
+    // setCurrentRecordData(null);
   };
 
-  useEffect(() => {
-    if (currentRecordData?.tableOfContents) {
-      if (currentRecordData.tableOfContents?.length > 1) {
-        setShowTocButton(true);
-      }
-    }
-  }, [currentRecordData]);
+  // useEffect(() => {
+  //   if (currentRecordData?.tableOfContents) {
+  //     if (currentRecordData.tableOfContents?.length > 1) {
+  //       setShowTocButton(true);
+  //     }
+  //   }
+  // }, [currentRecordData]);
 
   return (
     <GlobalContext.Provider
@@ -70,7 +70,7 @@ export function EssentialNavInfoProvider({
         customMenu,
         notice,
         latestRecords,
-        currentRecordData,
+        // currentRecordData,
         showTocButton,
         handleRouter,
         cleanCurrentRecordData,

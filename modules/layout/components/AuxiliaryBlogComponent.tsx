@@ -1,4 +1,5 @@
 import { BLOG } from "@/blog.config";
+import MobileTOCButton from "@/modules/common/components/menu/MobileTOCButton";
 import Busuanzi from "@/modules/shared/Busuanzi";
 import DebugPanel from "@/modules/shared/DebugPanel";
 import DisableCopy from "@/modules/shared/DisableCopy";
@@ -13,6 +14,7 @@ const AuxiliaryBlogComponent = (props: Props) => {
       {!BLOG.isProd && <DebugPanel />}
       {!BLOG.CAN_COPY && <DisableCopy />}
       {BLOG.analytics_busuanzi_enable && <Busuanzi />}
+      <MobileTOCButton />
       <VConsoleTs />
     </div>
   );

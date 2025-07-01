@@ -3,7 +3,7 @@ import * as React from "react";
 import Katex from "@/modules/shared/KatexReact";
 import { getBlockTitle } from "notion-utils";
 import { BLOG } from "@/blog.config";
-import { getSinlgePost } from "@/lib/data/actions/notion/getNotionData";
+import { getPureRecordMap } from "@/lib/data/actions/notion/getNotionData";
 
 const katexSettings = {
   throwOnError: false,
@@ -22,7 +22,7 @@ export async function Equation({
   className,
   ...rest
 }) {
-  const recordMap = await getSinlgePost({
+  const recordMap = await getPureRecordMap({
     id: BLOG.NOTION_DATABASE_ID as string,
     from: "equation",
   });

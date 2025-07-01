@@ -5,29 +5,36 @@ import { NorkiveRecordData, PageBlockDataProps } from "@/types";
 import { Collection, CollectionPropertySchemaMap } from "notion-types";
 import { idToUuid } from "notion-utils";
 import {
-  allArchivesWithSort,
-  generateEmpyRecordData,
+  setAllRecordsWithSort,
+  generateEmptyGloabalData,
   getAllCategoriesOrTags,
   getAllPageIds,
   getCategoryOptions,
   getCustomMenu,
-  getExcludeMenuPages,
+  getPageArrayWithOutMenu,
   getLatestRecords,
   getOldNav,
   getRecordListForLeftSideBar,
   getSiteInfo,
   getTagOptions,
   isDatabase,
+  isNotMenuPage,
+  getRecord,
 } from "@/lib/data/service/notion-service";
 import {
   filterPostBlocks,
   getPageWithRetry,
   getRecordBlockMap,
 } from "@/lib/data/service/getPostBlocks";
-import { applyDataBaseProcessing } from "@/lib/data/service/utils";
+import {
+  applyDataBaseProcessing,
+  setPageTableOfContentsByRecord,
+} from "@/lib/data/service/utils";
 import { getPageProperties } from "@/lib/data/service/getPageProperties";
 
 import { getDataFromCache, setDataToCache } from "@/lib/cache/cache_manager";
+import { getDataForRightSlidingDrawer } from "../pages/page-action";
+import { isObjectNotEmpty } from "@/lib/utils/utils";
 
 const NOTION_DB_ID = BLOG.NOTION_DATABASE_ID as string;
 
@@ -49,11 +56,42 @@ export async function getGlobalData({
   // const db = await getDataBaseInfoByNotionAPI({ pageId, from, type });
   const db = await getAllRecordDataWithCache({ pageId, from, type });
   const props = applyDataBaseProcessing(db);
-  const allPages = getExcludeMenuPages({ arr: props.allPages, type: type });
-  props.records = allPages;
-  props.allArchiveRecords = props.records?.slice(0, BLOG.archive_per_page);
+  const allPages = getPageArrayWithOutMenu({ arr: props.allPages, type: type });
+  // console.log("props.allPagesallPages:", props.allPages);
+  // console.log("allPagesallPages:", allPages);
+  // props.records = allPages;
+  props.records = allPages?.slice(0, BLOG.archive_per_page);
+  props.allArchiveRecords = props.allPages?.slice(0, BLOG.archive_per_page);
   return props;
 }
+
+/**
+ *
+ * @param pageId
+ * @param from request source
+ * @returns {Promise<JSX.Element|*|*[]>}
+ */
+export async function getOneRecordDataWithCache({
+  pageId,
+  from,
+  type,
+}: PageBlockDataProps) {
+  const cacheKey = "page_block_" + pageId;
+  let data = await getDataFromCache(cacheKey);
+  if (data && data.pageIds?.length > 0) {
+    console.debug("[API_Request]", `from:${from}`, `record-page-id:${pageId}`);
+    return data;
+  } else {
+    data = await getOneRecordPageData({ pageId, type });
+
+    if (data) {
+      await setDataToCache(cacheKey, data);
+    }
+  }
+
+  return data;
+}
+
 /**
  * Get the collection data of the specified notation
  * @param pageId
@@ -80,6 +118,98 @@ export async function getAllRecordDataWithCache({ pageId, from, type }) {
   return data;
 }
 
+//type으로 전체 가져온다음
+//id로 sort.
+/**
+ * @returns {Promise<JSX.Element|null|*>}
+ */
+export async function getOneRecordPageData({
+  pageId,
+  type,
+}: PageBlockDataProps) {
+  console.debug("[API_Request]", `record-page-id:${pageId}`);
+  //전체 글로벌데이터.
+  const allRecordsPageMap = await getRecordBlockMap({ pageId: NOTION_DB_ID });
+
+  if (!allRecordsPageMap) {
+    console.error("can`t get Notion Data ; Which id is: ", NOTION_DB_ID);
+    return {};
+  }
+
+  const block = allRecordsPageMap.block || {};
+  const uuidedRootPageId = idToUuid(NOTION_DB_ID);
+
+  const rawMetadata = block[uuidedRootPageId]?.value;
+
+  const isntDB = isDatabase(rawMetadata, uuidedRootPageId);
+  if (!isntDB) {
+    return null;
+  }
+  const collection =
+    (
+      Object.values(allRecordsPageMap.collection || {})[0] as {
+        value: Collection;
+      }
+    )?.value || {};
+  const collectionId = rawMetadata?.collection_id;
+  const collectionQuery = allRecordsPageMap.collection_query;
+  const collectionView = allRecordsPageMap.collection_view;
+  const viewIds = rawMetadata?.view_ids;
+  const schema: CollectionPropertySchemaMap = collection?.schema;
+  const allpageIds = getAllPageIds(
+    collectionQuery,
+    collectionId,
+    collectionView,
+    viewIds
+  );
+
+  if (allpageIds?.length === 0) {
+    console.error(
+      "The obtained achive list is empty, please check the notification template",
+      collectionQuery,
+      collection,
+      collectionView,
+      viewIds,
+      allRecordsPageMap
+    );
+  }
+
+  const allRecordsPagePropetis = (
+    await Promise.all(
+      allpageIds.map(async (id) => {
+        const value = block[id]?.value;
+        if (!value) return null;
+
+        const properties = await getPageProperties(
+          id,
+          pageId,
+          block,
+          schema,
+          null,
+          getTagOptions(schema)
+        );
+        return properties;
+      })
+    )
+  ).filter((item): item is NorkiveRecordData => item !== null);
+
+  const dateSort = BLOG.archive_sort_by === "date" ? true : false;
+  // achive count
+  const allRecordCounter = { count: 0 };
+
+  // 특정타입인 전체 레코드
+  const allRecords = setAllRecordsWithSort(
+    allRecordsPagePropetis,
+    allRecordCounter,
+    type,
+    dateSort
+  );
+
+  return {
+    allRecords,
+  };
+}
+
 /**
  * Call NotionAPI to obtain All Page data
  * @returns {Promise<JSX.Element|null|*>}
@@ -99,11 +229,12 @@ async function getDataBaseInfoByNotionAPI({
 
   const block = pageRecordMap.block || {};
   const uuidedRootPageId = idToUuid(pageId);
+
   const rawMetadata = block[uuidedRootPageId]?.value;
 
   const isntDB = isDatabase(rawMetadata, uuidedRootPageId);
   if (!isntDB) {
-    return generateEmpyRecordData(uuidedRootPageId);
+    return generateEmptyGloabalData(uuidedRootPageId);
   }
   const collection =
     (Object.values(pageRecordMap.collection || {})[0] as { value: Collection })
@@ -155,6 +286,7 @@ async function getDataBaseInfoByNotionAPI({
 
         const properties = await getPageProperties(
           id,
+          pageId,
           block,
           schema,
           null,
@@ -175,12 +307,12 @@ async function getDataBaseInfoByNotionAPI({
 
   const dateSort = BLOG.archive_sort_by === "date" ? true : false;
   // achive count
-  const recordCounter = { count: 0 };
+  const allRecordCounter = { count: 0 };
 
   // Find all Archives and Record
-  const allPages = allArchivesWithSort(
+  const allPages = setAllRecordsWithSort(
     allArchiveRecordsData,
-    recordCounter,
+    allRecordCounter,
     type,
     dateSort
   );
@@ -214,7 +346,7 @@ async function getDataBaseInfoByNotionAPI({
   });
 
   const allNavPagesForLeftSideBar = getRecordListForLeftSideBar({ allPages });
-  const recordCount = recordCounter.count;
+  const recordCount = allRecordCounter.count;
   return {
     notice,
     siteInfo,
@@ -230,6 +362,7 @@ async function getDataBaseInfoByNotionAPI({
     recordCount,
     pageIds,
     latestRecords,
+    // rightSlidingDrawerInfo,
   };
 }
 
@@ -255,13 +388,13 @@ export async function getNoticePage(data) {
 }
 
 /**
- * Get achive content
+ * Get archive content
  * @param {*} id
  * @param {*} from
  * @param {*} slice
  * @returns
  */
-export async function getSinlgePost({
+export async function getPureRecordMap({
   id,
   from,
 }: {
@@ -274,7 +407,7 @@ export async function getSinlgePost({
     return filterPostBlocks(id, pageBlock);
   }
 
-  pageBlock = await getPageWithRetry(id, from);
+  pageBlock = await getPageWithRetry({ pageId: id, from });
 
   if (pageBlock) {
     await setDataToCache(cacheKey, pageBlock);

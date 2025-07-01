@@ -36,15 +36,15 @@ const JumpToBackButton = () => {
       data-aos-duration="300"
       data-aos-once="false"
       data-aos-anchor-placement="top-center"
-      className="fixed xl:right-80 right-2 mr-20 bottom-40 z-20 "
+      className="hidden md:flex fixed xl:right-80 -right-20  bottom-56 z-20 "
     >
       <div
         onClick={handleBack}
         className="flex flex-row item-center justify-center text-center hover:scale-110 
-        duration-150 cursor-pointer p-2 rounded-full border text-white font-bold  bg-neutral-600 dark:border-white"
+        duration-150 cursor-pointer p-2 rounded-full border-[1px] bg-white dark:bg-neutral-700 text-black  dark:text-white  border-neutral-800   dark:border-white"
       >
-        <MoveLeftIcon className="w-4 " />
-        <span className="text-sm "> &nbsp; {locale.RECORD.BACK} &nbsp;</span>
+        <MoveLeftIcon className="w-4 mr-1" />
+        <span className="text-sm "> {locale.RECORD.BACK} &nbsp;</span>
       </div>
     </div>
   );

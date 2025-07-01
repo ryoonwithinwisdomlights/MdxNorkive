@@ -5,7 +5,7 @@ import {
   EXCLUDED_PAGE_TYPES,
   INCLUDED_MENU_TYPES,
 } from "@/lib/constants/menu.constants";
-import { formatDate } from "@/lib/utils/utils";
+import { formatDate, isObjectNotEmpty } from "@/lib/utils/utils";
 import {
   CategoryItem,
   LeftSideBarNavItem,
@@ -21,7 +21,10 @@ import {
   getrecordsGroupByDate,
   getSortedPostObject,
   mapImgUrl,
+  setPageTableOfContentsByRecord,
 } from "./utils";
+
+const NOTION_DB_ID = BLOG.NOTION_DATABASE_ID as string;
 
 type CollectionQueryResultView = {
   blockIds?: string[];
@@ -76,7 +79,7 @@ export function getAllCategoriesOrTags({
   propertyName,
   sliceCount = 0,
 }) {
-  const allrecords = getExcludeMenuPages({ arr: allPages });
+  const allrecords = getPageArrayWithOutMenu({ arr: allPages });
   if (!allrecords || !Array.isArray(propertyOptions)) return [];
 
   // Step 1: 프로퍼티별 개수 집계
@@ -157,7 +160,7 @@ export function getCustomMenu({
  * @returns
  */
 export function getLatestRecords({ allPages, from, latestRecordCount }) {
-  const allrecords = getExcludeMenuPages({ arr: allPages });
+  const allrecords = getPageArrayWithOutMenu({ arr: allPages });
   const latestRecords = [...allrecords].sort((a, b) => {
     const dateA = new Date(a?.lastEditedDate || a?.publishDate);
     const dateB = new Date(b?.lastEditedDate || b?.publishDate);
@@ -235,7 +238,7 @@ of the archives are retained, and the summary, password, date and other data are
  * @param {*} param0
  */
 export function getRecordListForLeftSideBar({ allPages }) {
-  const allNavPages = getExcludeMenuPages({ arr: allPages });
+  const allNavPages = getPageArrayWithOutMenu({ arr: allPages });
   // return allNavPages.map((item) => generateLeftSideBarItem(item));
   return allNavPages.map((item) => item);
 }
@@ -249,7 +252,18 @@ export function getFilteredArrayByProperty(arr, propertyName, index) {
   return newArr;
 }
 
-export function getExcludeMenuPages({
+export const isNotMenuPage = (page) => EXCLUDED_PAGE_TYPES.includes(page.type);
+export const isPublished = (page) => page.status === "Published";
+export const isTypeMatch = (page, type) => (type ? page.type === type : true);
+// export function getExcludeMenuPage
+export function getPageWithOutMenu(page, type) {
+  // const isExcluded = EXCLUDED_PAGE_TYPES.includes(page.type);
+  // const isPublished = page.status === "Published";
+  // const isTypeMatch = type ? page.type === type : true;
+
+  return !isNotMenuPage(page) && isPublished(page) && isTypeMatch(page, type);
+}
+export function getPageArrayWithOutMenu({
   arr,
   type,
 }: {
@@ -258,17 +272,45 @@ export function getExcludeMenuPages({
 }) {
   const copy = arr.slice();
   const newArr = copy.filter((page) => {
-    const isExcluded = EXCLUDED_PAGE_TYPES.includes(page.type);
-    const isPublished = page.status === "Published";
-    const isTypeMatch = type ? page.type === type : true;
+    // const isExcluded = EXCLUDED_PAGE_TYPES.includes(page.type);
+    // const isPublished = page.status === "Published";
+    // const isTypeMatch = type ? page.type === type : true;
 
-    return !isExcluded && isPublished && isTypeMatch;
+    // return !isExcluded && isPublished && isTypeMatch;
+    return getPageWithOutMenu(page, type);
   });
   return newArr;
 }
 
+export const generateEmptyRecordData = () => {
+  return {
+    id: "21f1eb5c-0337-80ba-b3df-c71cca861aab",
+    date: [Object],
+    type: "Record",
+    category: "TIL",
+    사람: [Array],
+    sub_type: [Array],
+    tags: [Array],
+    title: "[TIL] www",
+    status: "Published",
+    comment: "",
+    publishDate: 1750982400000,
+    publishDay: "Jun 27, 2025",
+    lastEditedDate: "2025-06-28T18:37:36.409Z",
+    lastEditedDay: "Jun 29, 2025",
+    fullWidth: false,
+    pageIcon: "👩‍💻",
+    pageCover:
+      "https://images.unsplash.com/photo-1593062096033-9a26b09da705?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&t=21f1eb5c-0337-80ba-b3df-c71cca861aab",
+    pageCoverThumbnail:
+      "https://images.unsplash.com/photo-1593062096033-9a26b09da705?ixlib=rb-4.0.3&q=50&fm=webp&crop=entropy&cs=srgb&t=21f1eb5c-0337-80ba-b3df-c71cca861aab&width=800&fmt=webp",
+    tagItems: [Array],
+    slug: "archive/21f1eb5c-0337-80ba-b3df-c71cca861aab",
+    password: "",
+  };
+};
 // Return when there is no data
-export const generateEmpyRecordData = (pageId) => {
+export const generateEmptyGloabalData = (pageId) => {
   const empty = {
     notice: null,
     siteInfo: getSiteInfo({}),
@@ -337,7 +379,7 @@ export function generateLeftSideBarItem(data: NorkiveRecordData) {
   return item;
 }
 
-export function allArchivesWithSort(arr, counterObj, type, dateSort) {
+export function setAllRecordsWithSort(arr, counterObj, type, dateSort) {
   const filteredArr = arr
     .slice() // Copy-on-Write: 원본 배열 복사
     .map((page) => ({ ...page })) // 내부 post 객체도 얕은 복사
@@ -464,6 +506,11 @@ export function getAllPageIds(
   return pageIds;
 }
 
+//if pageId !==NOTION_DB_ID && record type is not Menu
+export function getRecord(allRecords, pageId) {
+  const record = allRecords.find((item) => item.id === pageId);
+  return record;
+}
 export function getArchiveRecords(dateSort, props) {
   let result = props.records;
   if (dateSort === true) {

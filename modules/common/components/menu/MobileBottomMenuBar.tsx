@@ -4,9 +4,9 @@ import MobileTOCButton from "./MobileTOCButton";
 
 const MobileBottomMenuBar = () => {
   return (
-    <div className="flex items-center justify-end cursor-pointer">
+    <div className="flex  flex-row items-center justify-center  cursor-pointer bg-red-200">
       <MobileLeftNavButton />
-      <MobileTOCButton />
+      {/* <MobileTOCButton /> */}
     </div>
   );
 };

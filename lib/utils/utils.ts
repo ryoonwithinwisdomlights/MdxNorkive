@@ -352,13 +352,26 @@ export const getLazyComponent = (componentImportFn: Function) =>
     return typeof obj.default === "function" ? obj : obj.default;
   });
 
-export const isNotEmptyObj = (obj) => {
-  if (obj) {
-    if (Object.keys(obj).length > 0) return true;
-  } else return false;
+export const isObjectNotEmpty = (obj) => {
+  if (!obj) {
+    return false;
+  } else {
+    if (typeof obj !== "undefined") {
+      if (Object.keys(obj).length == 0 && obj.constructor === Object) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  }
+
+  // if (obj) {
+  //   if (Object.keys(obj).length > 0) return true;
+  // } else return false;
+  // Object.keys(obj).length == 0 && obj.constructor === Object
 };
 
-function formatToKoreanDate(utcDateString: string): string {
+export function formatToKoreanDate(utcDateString): string {
   const date = new Date(utcDateString);
 
   const koreaTime = new Date(date.getTime() + 9 * 60 * 60 * 1000);

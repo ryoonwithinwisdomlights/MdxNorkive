@@ -4,7 +4,7 @@ import { PageBlockDataProps } from "@/types";
 import { NotionAPI } from "notion-client";
 
 /**
- * Get Archive content
+ * \
  * @param {*} id
  * @param {*} from
  * @param {*} slice
@@ -15,7 +15,7 @@ export async function getRecordBlockMap({
   from,
   slice,
 }: PageBlockDataProps) {
-  const pageBlock = await getPageWithRetry(pageId, from);
+  const pageBlock = await getPageWithRetry({ pageId });
   if (pageBlock) {
     return filterPostBlocks(pageId, pageBlock);
   }
@@ -28,12 +28,20 @@ export async function getRecordBlockMap({
  * @param {*} retryAttempts
  */
 //notion.getPage
-export async function getPageWithRetry(id, from, retryAttempts = 3) {
+export async function getPageWithRetry({
+  pageId,
+  from,
+  retryAttempts = 3,
+}: {
+  pageId: string;
+  from?: string;
+  retryAttempts?: number;
+}) {
   if (retryAttempts && retryAttempts > 0) {
     console.log(
       "[Request API]",
       `from:${from}`,
-      `id:${id}`,
+      `id:${pageId}`,
       retryAttempts < 3 ? `Number of retries remaining:${retryAttempts}` : ""
     );
     try {
@@ -43,7 +51,7 @@ export async function getPageWithRetry(id, from, retryAttempts = 3) {
         userTimeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       });
       const start = new Date().getTime();
-      const pageData = await api.getPage(id);
+      const pageData = await api.getPage(pageId);
       const end = new Date().getTime();
       console.log(
         "[API<<--response]",
@@ -54,16 +62,20 @@ export async function getPageWithRetry(id, from, retryAttempts = 3) {
     } catch (e) {
       console.warn("[Abnormal response]:", e);
       await delay(1000);
-      const cacheKey = "page_block_" + id;
+      const cacheKey = "page_block_" + pageId;
       const pageBlock = await getDataFromCache(cacheKey);
       if (pageBlock) {
-        console.log("[Retry caching]", `from:${from}`, `id:${id}`);
+        console.log("[Retry caching]", `from:${from}`, `id:${pageId}`);
         return pageBlock;
       }
-      return await getPageWithRetry(id, from, retryAttempts - 1);
+      return await getPageWithRetry({
+        pageId: pageId,
+        from: from,
+        retryAttempts: retryAttempts - 1,
+      });
     }
   } else {
-    console.error("[Request failed]:", `from:${from}`, `id:${id}`);
+    console.error("[Request failed]:", `from:${from}`, `id:${pageId}`);
     return null;
   }
 }
