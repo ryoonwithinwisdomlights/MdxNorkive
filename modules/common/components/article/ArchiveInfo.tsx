@@ -8,7 +8,7 @@ import {
 } from "@/lib/utils/utils";
 import { Clock4Icon } from "lucide-react";
 
-export default function ArticleInfo({ props }) {
+export default function ArchiveInfo({ props }) {
   const { notice } = useGlobal({ from: "index" });
   const modRecord = props?.record ? props?.record : notice;
   if (!modRecord) {

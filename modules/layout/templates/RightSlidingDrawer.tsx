@@ -2,7 +2,7 @@
 import Announcement from "@/modules/announcement/Announcement";
 import InfoCard from "../components/InfoCard";
 
-import ArticleInfo from "@/modules/common/components/article/ArticleInfo";
+import ArchiveInfo from "@/modules/common/components/article/ArchiveInfo";
 import TableOfContents from "@/modules/common/components/TableOfContents";
 
 const RightSlidingDrawer = ({ props }) => {
@@ -18,7 +18,7 @@ md:right-0 xl:block dark:border-transparent
 h-screen z-10  border-neutral-200 px-6 md:flex md:flex-col"
     >
       <div className="">
-        <ArticleInfo props={result} />
+        <ArchiveInfo props={result} />
 
         <TableOfContents props={props} />
 

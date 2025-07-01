@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 export default function AllRecords({ title, recordList }: AllRecordsProps) {
   const { handleRouter } = useGlobal({});
   return (
-    <div key={title}>
+    <div key={title} className="w-full flex flex-col items-center">
       <div
         id={title}
         className="pt-10  text-[#cbcac4e2] font-semibold pb-4 text-2xl  "
@@ -33,19 +33,6 @@ export default function AllRecords({ title, recordList }: AllRecordsProps) {
               id={record?.publishDay}
               className="flex flex-row items-start justify-start  "
             >
-              {/* <Link
-                href={`/${record.slug}`}
-                className="dark:text-neutral-400
-                 hover:text-neutral-400  dark:hover:text-neutral-200 overflow-x-hidden 
-                 hover:underline cursor-pointer text-neutral-600"
-              >
-                <span className="text-[#cbcac4e2] dark:hover:text-neutral-300 ">
-                  {record.date?.start_date}
-                </span>
-
-                <span className="pl-2 pr-3 text-xs  ">{record.pageIcon}</span>
-                <span className=" ">{record.title}</span>
-              </Link> */}
               <div
                 onClick={() => {
                   handleRouter(record);

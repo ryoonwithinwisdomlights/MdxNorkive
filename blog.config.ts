@@ -151,23 +151,22 @@ export const BLOG = {
     process.env.NEXT_PUBLIC_archive_disable_gallery_click || false, // Clicking is prohibited in the picture album view, making it easier to insert links into the picture album on the friend link page.
 
   // giscus @see https://giscus.app/
-  comment_giscus_reponame: process.env.NEXT_PUBLIC_comment_giscus_reponame, // Your Github repository name e.g 'ryoonwithinwisdomlights/norkive'
-  comment_giscus_repo_id: process.env.NEXT_PUBLIC_comment_giscus_repo_id, // Your Github Repo ID e.g (you can see it after setting up giscus)
-  comment_giscus_category_id:
-    process.env.NEXT_PUBLIC_comment_giscus_category_id,
-  comment_giscus_category_id_ID:
-    process.env.NEXT_PUBLIC_comment_giscus_category_id_ID, // Category ID in your Github Discussions (you can see it after setting up giscus)
-  comment_giscus_mapping: process.env.NEXT_PUBLIC_comment_giscus_mapping, // Which method does your Github Discussions use to demarcate datas? Default is 'pathname'
+  comment_giscus_reponame: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPONAME, // Your Github repository name e.g 'ryoonwithinwisdomlights/norkive'
+  comment_giscus_repo_id: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPO_ID, // Your Github Repo ID e.g (you can see it after setting up giscus)
+  NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY:
+    process.env.NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY,
+  NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY_ID:
+    process.env.NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY_ID, // Category ID in your Github Discussions (you can see it after setting up giscus)
+  comment_giscus_mapping: process.env.NEXT_PUBLIC_COMMENT_GISCUS_MAPPING, // Which method does your Github Discussions use to demarcate datas? Default is 'pathname'
   comment_giscus_reactions_enabled:
-    process.env.NEXT_PUBLIC_comment_giscus_reactions_enabled, // Does your Giscus enable data emoticons? '1' is on "0" is off and is on by default.
-  comment_giscus_emit_data: process.env.NEXT_PUBLIC_comment_giscus_emit_data, // Whether your Giscus extracts Metadata '1' On '0' Off The default is off
+    process.env.NEXT_PUBLIC_COMMENT_GISCUS_REACTIONS_ENABLED, // Does your Giscus enable data emoticons? '1' is on "0" is off and is on by default.
+  comment_giscus_emit_data:
+    process.env.NEXT_PUBLIC_COMMENT_GISCUS_EMIT_METADATA, // Whether your Giscus extracts Metadata '1' On '0' Off The default is off
   comment_giscus_input_position:
-    process.env.NEXT_PUBLIC_comment_giscus_input_position, // Your Giscus comment position 'bottom' tail 'top' top, default 'bottom'
-  comment_giscus_lang: "ko", // Your Giscus language e.g 'en', 'zh-TW', 'zh-CN', default 'en'
-  comment_giscus_loading:
-    process.env.NEXT_PUBLIC_comment_giscus_loading || "lazy", // Whether your Giscus load is progressive, default is 'lazy'
-  comment_giscus_crossorigin:
-    process.env.NEXT_PUBLIC_comment_giscus_crossorigin || "anonymous", // Your Giscus can be cross-domain, default 'anonymous'
+    process.env.NEXT_PUBLIC_COMMENT_GISCUS_INPUT_POSITION, // Your Giscus comment position 'bottom' tail 'top' top, default 'bottom'
+  comment_giscus_lang: process.env.NEXT_PUBLIC_COMMENT_GISCUS_LANG, // Your Giscus language e.g 'en', 'zh-TW', 'zh-CN', default 'en'
+  comment_giscus_loading: process.env.NEXT_PUBLIC_COMMENT_GISCUS_LOADING, // Whether your Giscus load is progressive, default is 'lazy'
+  comment_giscus_crossorigin: "anonymous", // Your Giscus can be cross-domain, default 'anonymous'
 
   // ----> Site statistics
   analytics_google_id: process.env.NEXT_PUBLIC_analytics_google_id || false,

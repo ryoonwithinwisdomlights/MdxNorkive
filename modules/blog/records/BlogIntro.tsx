@@ -7,10 +7,10 @@ const BlogIntro = ({ archiveRecords }) => {
   const isAble = isObjectNotEmpty(archiveRecords);
   return (
     <div
-      className=" dark:bg-black dark:text-neutral-300 pb-20  px-10 py-3 
+      className=" dark:bg-black dark:text-neutral-300 pb-20 items-center  px-10 py-10 
     md:w-[60%] flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain "
     >
-      <div className="flex flex-col justify-end  pt-4 ">
+      <div className="flex flex-col w-full items-center pt-4  ">
         <div
           className="
         flex flex-col justify-end  break-words overflow "
@@ -32,8 +32,8 @@ const BlogIntro = ({ archiveRecords }) => {
         </div>
       </div>
       {isAble ? (
-        <div className="flex flex-row justify-end ">
-          <div className="w-8/12 mt-20 flex flex-col justify-end  items-end gap-10 bg-opacity-30 rounded-lg md:pl-10 dark:bg-black dark:bg-opacity-70 bg-white">
+        <div className="flex flex-row items-center w-full ">
+          <div className="w-full mt-20 flex flex-col justify-center  items-center gap-10 bg-opacity-30 rounded-lg md:pl-10 dark:bg-black dark:bg-opacity-70 ">
             {Object.keys(archiveRecords)?.map((title, index) => (
               <AllRecords
                 key={index}

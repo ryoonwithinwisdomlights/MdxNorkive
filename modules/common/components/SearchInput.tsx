@@ -41,10 +41,10 @@ const SearchInput = ({ cRef }) => {
 
     for (let i = filterAllNavPages.length - 1; i >= 0; i--) {
       const record = filterAllNavPages[i];
-      const articleInfo = record.title + "";
+      const ArchiveInfo = record.title + "";
 
       const hit =
-        articleInfo.toLowerCase().indexOf(searchKeyword.toLowerCase()) > -1;
+        ArchiveInfo.toLowerCase().indexOf(searchKeyword.toLowerCase()) > -1;
       if (!hit) {
         // delete
         filterAllNavPages.splice(i, 1);

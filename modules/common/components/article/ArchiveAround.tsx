@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
  * @param {prev,next} param0
  * @returns
  */
-export default function ArticleAround({ prev, next }) {
+export default function ArchiveAround({ prev, next }) {
   if (!prev || !next) {
     return <></>;
   }

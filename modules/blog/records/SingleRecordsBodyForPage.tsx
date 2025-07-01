@@ -1,15 +1,12 @@
 import { MENU_MOBILE } from "@/lib/constants/menu-mobile.constansts";
-import { EXCLUDED_PAGE_TYPES } from "@/lib/constants/menu.constants";
-import ArticleAround from "@/modules/common/components/article/ArticleAround";
+import { isAbleRecordPage } from "@/lib/data/service/notion-service";
+import ArchiveAround from "@/modules/common/components/article/ArchiveAround";
 import CategoryItem from "@/modules/common/components/catalog/CategoryItem";
 import Comment from "@/modules/shared/Comment";
 import NotionPage from "@/modules/shared/NotionPage";
 import ShareBar from "@/modules/shared/ShareBar";
 import TagItemMini from "../tag/TagItemMini";
-import TocDrawerWrapper from "../wrapper/TocDrawerWrapper";
 import CatalogDrawerWrapper from "../wrapper/CatalogDrawerWrapper";
-import { isBrowser } from "@/lib/utils/utils";
-import { isAbleRecordPage } from "@/lib/data/service/notion-service";
 
 const SingleRecordsBodyForPage = ({ props, prev, next }) => {
   const { record } = props;
@@ -34,7 +31,7 @@ const SingleRecordsBodyForPage = ({ props, prev, next }) => {
         </div>
 
         {isAbleRecordPage(record.type) && record.status === "Published" && (
-          <ArticleAround prev={prev} next={next} />
+          <ArchiveAround prev={prev} next={next} />
         )}
         <Comment frontMatter={record} />
       </section>

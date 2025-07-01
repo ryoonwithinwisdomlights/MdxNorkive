@@ -11,7 +11,7 @@ import React, { useEffect, useRef, useState } from "react";
  * @param validPassword(bool) Callback function, verify that the correct callback input parameter is true
  * @returns
  */
-export const ArticleLock = (props) => {
+export const ArchiveLock = (props) => {
   const { validPassword } = props;
   const { locale } = useNorkiveTheme();
   const router = useRouter();

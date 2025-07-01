@@ -1,5 +1,5 @@
 "use client";
-import { ArticleLock } from "@/modules/common/components/article/ArticleLock";
+import { ArchiveLock } from "@/modules/common/components/article/ArchiveLock";
 import md5 from "js-md5";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -62,7 +62,7 @@ const SingleRecords = ({ props }) => {
       className="dark:bg-black dark:text-neutral-300 pb-20 md:px-20 px-10 py-3 
     md:w-[60%] flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain "
     >
-      {lock && <ArticleLock validPassword={validPassword} />}
+      {lock && <ArchiveLock validPassword={validPassword} />}
       {!lock && (
         <div id="container" className=" justify-center flex flex-col w-full">
           {/* Notion기사 서문 */}
