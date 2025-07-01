@@ -2,6 +2,7 @@ import { isObjectNotEmpty } from "@/lib/utils/utils";
 import React from "react";
 import AllRecords from "./AllRecords";
 import NoRecordFound from "./NoRecordFound";
+import HeaderSearch from "@/modules/common/components/HeaderSearch";
 
 const BlogIntro = ({ archiveRecords }) => {
   const isAble = isObjectNotEmpty(archiveRecords);

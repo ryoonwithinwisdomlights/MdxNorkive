@@ -1,3 +1,4 @@
+import HeaderSearch from "@/modules/common/components/HeaderSearch";
 import { MenuItemDrop } from "@/modules/common/components/menu/MenuItemDrop";
 import SearchInput from "@/modules/common/components/SearchInput";
 import LogoBar from "@/modules/common/ui/LogoBar";
@@ -7,9 +8,10 @@ import React, { useRef } from "react";
 const PCTopNav = ({ links }) => {
   const cRef = useRef<HTMLInputElement>(null);
   return (
-    <div className="hidden md:flex w-full h-14 shadow bg-white dark:bg-neutral-800 px-7 items-between">
+    <div className="hidden md:flex w-full h-16 shadow bg-white dark:bg-neutral-800 px-7 items-between">
       <LogoBar />
-      <SearchInput cRef={cRef} />
+      {/* <SearchInput cRef={cRef} /> */}
+      <HeaderSearch />
       <div
         id="top-nav-pc"
         className="hidden md:flex md:flex-row justify-center py-2 bg-white dark:bg-neutral-800"
