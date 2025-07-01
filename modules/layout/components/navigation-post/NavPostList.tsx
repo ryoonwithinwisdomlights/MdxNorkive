@@ -67,7 +67,7 @@ const NavPostList = (props) => {
     return <NavPostListEmpty searchKeyword={searchKeyword} />;
   } else {
     return (
-      <div id="records-wrapper" className="flex-grow w-full h-full  ">
+      <div id="records-wrapper" className="flex-grow w-full h-full ">
         {/* Article list */}
         {groupedArray?.map((group, index) => (
           <NavPostItem

@@ -125,14 +125,26 @@ Enter key  // 키 입력 처리 함수
   return (
     <div
       className={
-        "hidden md:flex md:w-52 lg:w-72 relative border-neutral-400 mr-4"
+        "hidden md:flex w-full md:max-w-sm  h-full relative border-neutral-400 mr-4"
       }
     >
+      {searchKeyword === "" && (
+        <div
+          className="absolute left-2 flex top-5 flex-row justify-start items-center  text-neutral-500 cursor-pointer float-left"
+          onClick={() => {
+            handleSearch();
+          }}
+        >
+          <SearchIcon className="w-4 h-4   text-neutral-200  hover:text-neutral-400 dark:hover:text-neutral-400 cursor-pointer " />
+        </div>
+      )}
+
       <input
         name="searchInput"
         ref={searchInputRef}
         type="text"
-        className={`my-3 rounded-md border border-[#f1efe9e2] dark:border-none outline-none w-full text-sm pl-2 transition focus:shadow-lg font-light leading-10 text-black bg-[#f1efe9e2] dark:bg-neutral-700  dark:text-white`}
+        className={`my-3 pl-10 rounded-md border border-neutral-200  outline-none w-full placeholder:text-neutral-400 sm:text-sm
+          transition-all focus:border-neutral-500 focus:ring-4 focus:ring-neutral-200  hover:text-neutral-400 dark:hover:text-neutral-400 cursor-pointer`}
         onKeyUp={handleKeyUp}
         onFocus={() => {
           if (searchInputRef.current) {
@@ -147,34 +159,28 @@ Enter key  // 키 입력 처리 함수
             // 포커스 잃었을 때 비어있으면 placeholder 복구
           }
         }}
-        // onCompositionStart={lockSearchInput}
-        // onCompositionUpdate={lockSearchInput}
-        // onCompositionEnd={unLockSearchInput}
+        //       onChange={(e) => {
+        //   onChange(e.target.value);
+        //   debounced(e.target.value);
+        // }}
         onChange={(e) => updateSearchKey(e.target.value)}
         defaultValue={""}
         placeholder={locale.COMMON.ENTER_SEARCH_TERM}
+        autoCapitalize="none"
       />
-      {searchKeyword === "" && (
-        <div
-          className="flex -ml-8 cursor-pointer float-right items-center justify-center py-2"
-          onClick={() => {
-            handleSearch();
-          }}
-        >
-          <SearchIcon className=" w-4 hover:text-neutral-400 transform duration-200 text-neutral-200  dark:hover:text-neutral-400 cursor-pointer " />
-        </div>
-      )}
 
       {searchKeyword !== "" && (
-        <div
+        <button
           onClick={() => {
             cleanSearch();
             // handleSearch();
+            //  onChange("");
+            //   onChangeDebounced?.("");
           }}
-          className="flex -ml-8 cursor-pointer float-right justify-center items-center py-4"
+          className="pointer-events-auto absolute inset-y-0 right-0 flex items-center pr-4"
         >
-          <XIcon className="w-4 hover:text-neutral-400 transform duration-200 text-neutral-200  dark:hover:text-neutral-400 cursor-pointer " />
-        </div>
+          <XIcon className="h-4 w-4 text-neutral-600" />
+        </button>
       )}
     </div>
   );

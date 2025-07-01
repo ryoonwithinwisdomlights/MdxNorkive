@@ -24,13 +24,13 @@ const CatalogDrawerWrapper = ({ record }) => {
   // useEffect(() => {
   //   handleTOCVisible();
   // }, [router]);
-  const dd = record?.tableOfContents.length > 0;
+  const tocAble = record?.tableOfContents.length > 0;
   useEffect(() => {
-    if (dd) {
+    if (tocAble) {
       handleTOCVisible();
     }
   }, []);
-  console.log("tocVisible:", tocVisible);
+
   return (
     record?.tableOfContents.length > 0 && (
       <>

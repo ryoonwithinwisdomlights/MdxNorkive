@@ -16,11 +16,9 @@ md:fixed  md:left-0
     md:block md:w-[20%] border-r  
      dark:bg-neutral-900 dark:border-transparent z-10"
     >
-      {/* Search and list all articles */}
       <div className="h-screen overflow-y-auto scrollbar-hide overscroll-contain">
-        {/* <SearchInput cRef={cRef} className="my-3 rounded-md" /> */}
-        <div className="md:w-full px-6 py-2 ">
-          <div className="mb-20">
+        <div className="md:w-full px-6  ">
+          <div className="mb-20 mt-10 pb-10">
             <NavPostList />
           </div>
         </div>
