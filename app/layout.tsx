@@ -29,14 +29,12 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import { EssentialNavInfoProvider } from "@/lib/context/EssentialNavInfoProvider";
 import { GeneralSiteSettingsProvider } from "@/lib/context/GeneralSiteSettingsProvider";
 import AuxiliaryBlogComponent from "@/modules/layout/components/AuxiliaryBlogComponent";
-import LeftNavigationBar from "@/modules/layout/templates/LeftNavigationBar";
-import MainLayoutWrapper from "@/modules/layout/templates/MainLayoutWrapper";
-import RightSlidingDrawer from "@/modules/layout/templates/RightSlidingDrawer";
-import { ChildrenProp } from "@/types";
+
 import { PageObserver } from "@/lib/context/PageObserver";
-import MobileTableOfContentsDrawer from "@/modules/common/components/MobileTableOfContentsDrawer";
 import JumpToTopButton from "@/modules/common/components/JumpToTopButton";
-import Samplelayout from "./Samplelayout";
+import { ChildrenProp } from "@/types";
+import MainLayoutWrapper from "./MainLayoutWrapper";
+import LeftNavigationBar from "@/modules/layout/templates/LeftNavigationBar";
 
 config.autoAddCss = false;
 
@@ -101,24 +99,20 @@ export default async function RootLayout({ children }: ChildrenProp) {
           >
             <div
               id="gitbook"
-              className={`${BLOG.FONT_STYLE}  w-full h-screen justify-center dark:text-neutral-300 scroll-smooth pb-16  md:pb-0 `}
+              className={`${BLOG.FONT_STYLE}  w-screen h-screen justify-center dark:text-neutral-300  pb-16  md:pb-0 `}
             >
               <TopNavBar />
               <AuxiliaryBlogComponent />
               <Suspense fallback={<LoadingCover />}>
-                <Samplelayout>{children}</Samplelayout>
-                {/* <main
-                  id="wrapper"
-                  className={
-                    "relative flex justify-between w-full min-h-screen  mx-auto"
-                  }
-                >
-           
-                  <LeftNavigationBar />
-                  <MainLayoutWrapper> {children}</MainLayoutWrapper>
-                
-                  <RightSlidingDrawer />
-                </main> */}
+                {/* <div className="w-full  flex flex-col items-center justify-center"> */}
+                <div className=" w-screen md:flex md:flex-row justify-center">
+                  <div className="w-screen   h-screen    justify-center  ">
+                    <LeftNavigationBar />
+                    <MainLayoutWrapper>{children}</MainLayoutWrapper>
+                  </div>
+                </div>
+
+                {/* </div> */}
               </Suspense>
               <JumpToTopButton />
               {/*Mobile navigation drawer*/}

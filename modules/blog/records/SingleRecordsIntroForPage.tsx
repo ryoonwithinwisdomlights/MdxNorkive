@@ -8,7 +8,7 @@ import Link from "next/link";
 const SingleRecordsIntroForPage = ({ record, siteInfo }) => {
   const { locale } = useNorkiveTheme();
   return (
-    <div className="w-full h-full items-start">
+    <div className="w-full h-full items-start ">
       {" "}
       <h1 className="text-3xl pt-12  dark:text-neutral-100">
         <NotionIcon icon={record?.pageIcon} />

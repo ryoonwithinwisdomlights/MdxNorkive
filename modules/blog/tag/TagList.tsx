@@ -6,7 +6,10 @@ import { TagIcon } from "lucide-react";
 const TagList = () => {
   const { tagOptions } = useGlobal({});
   return (
-    <div className=" px-10 py-10">
+    <div
+      className="dark:bg-black dark:text-neutral-300 
+  w-full  flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain "
+    >
       <div className=" items-center  flex flex-row dark:hover:text-white dark:text-neutral-200 mb-5  ">
         <TagIcon className="w-5 text-neutral-700  mr-2 dark:text-neutral-200 fill-stone-900" />
         <span className="text-xl ">Tags</span>

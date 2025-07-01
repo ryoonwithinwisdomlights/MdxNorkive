@@ -7,7 +7,10 @@ export default function BasicRecordPage({
   recordList,
 }: BasicRecordPageProps) {
   return (
-    <div className="mb-10 pb-20 md:py-10 w-full py-3 pr-10 flex flex-col min-h-full">
+    <div
+      className="dark:bg-black dark:text-neutral-300  md:px-20 px-10 pt-10 pb-40
+   md:w-[60%]  flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain "
+    >
       <RecordIntroForPage type={type} />
       <RecordBodyForPage type={type} recordList={recordList} />
     </div>

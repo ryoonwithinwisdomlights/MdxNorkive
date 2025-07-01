@@ -2,7 +2,6 @@
 import { ArticleLock } from "@/modules/common/components/article/ArticleLock";
 import md5 from "js-md5";
 import { useParams, usePathname, useRouter } from "next/navigation";
-import { getPageTableOfContents } from "notion-utils";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import SingleRecordsBodyForPage from "./SingleRecordsBodyForPage";
@@ -49,15 +48,6 @@ const SingleRecords = ({ props }) => {
       setLock(true);
     } else {
       setLock(false);
-      // if (!lock && record?.blockMap?.block) {
-      //   record.content = Object.keys(record.blockMap.block).filter(
-      //     (key) => record.blockMap.block[key]?.value?.parent_id === record.id
-      //   );
-      //   record.tableOfContents = getPageTableOfContents(
-      //     record,
-      //     record.blockMap
-      //   );
-      // }
     }
   }, [record]);
 
@@ -68,13 +58,13 @@ const SingleRecords = ({ props }) => {
   if (!isMounted) return null;
 
   return (
-    <>
+    <div
+      className="dark:bg-black dark:text-neutral-300 pb-20 md:px-20 px-10 py-3 
+    md:w-[60%] flex flex-col overflow-y-auto h-screen  items-center scrollbar-hide overscroll-contain "
+    >
       {lock && <ArticleLock validPassword={validPassword} />}
       {!lock && (
-        <div
-          id="container"
-          className="pl-7 pr-7 w-full  max-w-3xl justify-center flex flex-col "
-        >
+        <div id="container" className=" justify-center flex flex-col w-full">
           {/* Notion기사 서문 */}
           <SingleRecordsIntroForPage record={record} siteInfo={siteInfo} />
           {/* Notion기사 본문 */}
@@ -83,7 +73,7 @@ const SingleRecords = ({ props }) => {
           )}
         </div>
       )}
-    </>
+    </div>
   );
 };
 

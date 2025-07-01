@@ -105,7 +105,7 @@ const NotionPage = ({ record }) => {
     };
   }, [zoomRef, archive_disable_gallery_click, RECORD_DISABLE_DATABASE_CLICK]);
   return (
-    <div id="notion-article" className={`mx-auto overflow-hidden `}>
+    <div id="notion-article" className={`mx-auto overflow-hidden w-full`}>
       <NotionRenderer
         disableHeader // notion 헤더 안보이도록
         // fullPage={true}

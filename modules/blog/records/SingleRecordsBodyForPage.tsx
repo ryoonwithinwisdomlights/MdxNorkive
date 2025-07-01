@@ -13,9 +13,8 @@ const SingleRecordsBodyForPage = ({ record, prev, next }) => {
   return (
     <div>
       <section className="px-1 dark:text-neutral-200">
-        <div id="archive-wrapper">
-          <NotionPage record={record} />
-        </div>
+        <NotionPage record={record} />
+
         {/* share */}
         <ShareBar record={record} />
         {/* Article classification and tag information */}

@@ -33,7 +33,7 @@ const Footer = () => {
   // none of the modals are gonna be rendered unless we are fully on the client side.
   if (!isMounted) return null;
   return (
-    <footer className="z-20 py-2 bg-white  dark:bg-neutral-900 dark:text-neutral-300 justify-center text-center w-full text-sm relative">
+    <footer className="z-20 py-2 bg-white  dark:bg-neutral-900 dark:text-neutral-300 justify-center text-center  text-sm ">
       <hr className="pb-2" />
 
       <div className="text-xs font-sans">

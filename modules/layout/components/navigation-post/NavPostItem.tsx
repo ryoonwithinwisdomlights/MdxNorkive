@@ -29,7 +29,8 @@ const NavPostItem = (props) => {
       <div>
         <div
           onClick={toggleOpenSubMenu}
-          className="select-none flex justify-between text-sm hover:dark:text-white   font-sans cursor-pointer p-2 hover:bg-neutral-100 rounded-md dark:hover:bg-neutral-600"
+          className="select-none flex justify-between text-sm hover:dark:text-white 
+           font-sans cursor-pointer p-2 hover:bg-neutral-100 rounded-md dark:hover:bg-neutral-600"
           key={group?.category}
         >
           <span>{group?.category}</span>

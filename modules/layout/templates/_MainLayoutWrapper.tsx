@@ -1,7 +1,4 @@
-import { ModalProvider } from "@/lib/context/ModalProvider";
 import CustomedTransitonWrapper from "@/modules/blog/wrapper/CustomedTransitonWrapper";
-import JumpToBackButton from "@/modules/common/components/JumpToBackButton";
-import JumpToTopButton from "@/modules/common/components/JumpToTopButton";
 import React from "react";
 
 const MainLayoutWrapper: React.FC<{

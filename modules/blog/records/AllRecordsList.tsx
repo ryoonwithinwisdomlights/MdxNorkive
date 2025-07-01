@@ -31,7 +31,7 @@ const AllRecordsList = ({
     router.back();
   };
   return (
-    <div className="w-full justify-center gap-2">
+    <div className="md:w-[60%]  justify-center gap-2">
       <div
         onClick={historGoBack}
         className={` ${!+showNext && "font-bold"} text-center w-2/5 mt-4 mb-10  duration-200 p-2 hover:border-neutral-200 border-b-2 hover:font-bold `}

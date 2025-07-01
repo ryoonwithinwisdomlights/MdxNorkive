@@ -6,9 +6,11 @@ export default function GeneralRecordTypePageLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="w-full h-full flex flex-row justify-between items-start  pl-10 ">
+    <div
+      className="w-full h-screen flex flex-row justify-between
+     items-start "
+    >
       {children}
-      {/* <RightSlidingDrawer result={result} /> */}
     </div>
   );
 }
