@@ -5,7 +5,7 @@ import {
   AVAILABLE_PAGE_TYPES,
   EXCLUDED_PAGE_TYPES,
   INCLUDED_MENU_TYPES,
-} from "@/lib/constants/menu.constants";
+} from "@/constants/menu.constants";
 import { formatDate, isObjectNotEmpty } from "@/lib/utils/utils";
 import {
   CategoryItem,

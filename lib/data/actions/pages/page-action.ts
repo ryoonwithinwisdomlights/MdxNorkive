@@ -79,7 +79,7 @@ export async function getPageDataByTypeAndId({
     props.recommendRecords = getRecommendPage(
       props.record,
       recommendRecords,
-      Number(BLOG.archive_recommend_count)
+      Number(BLOG.RECORD_RECOMMEND_COUNT)
     );
   } else {
     props.prev = null;
@@ -153,7 +153,7 @@ export async function getRecordPageDataById({
     props.recommendRecords = getRecommendPage(
       props.record,
       recommendRecords,
-      Number(BLOG.archive_recommend_count)
+      Number(BLOG.RECORD_RECOMMEND_COUNT)
     );
   } else {
     props.prev = null;
@@ -204,7 +204,7 @@ export async function setPrevNextRecommendInRecordPage(props) {
     props.recommendRecords = getRecommendPage(
       props.record,
       recommendRecords,
-      Number(BLOG.archive_recommend_count)
+      Number(BLOG.RECORD_RECOMMEND_COUNT)
     );
   } else {
     props.prev = null;
@@ -250,7 +250,7 @@ export async function getCategoryAndTagById(
   );
   // Process Archive page count
   props.recordCount = props.records.length;
-  const records_PER_PAGE = BLOG.archive_per_page;
+  const records_PER_PAGE = BLOG.RECORD_PER_PAGE;
 
   // Handle pagination
 

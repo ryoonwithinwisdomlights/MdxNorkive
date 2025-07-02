@@ -125,56 +125,56 @@ export const BLOG = {
   BACKGROUND_DARK: "#000000", // use hex value, don't forget '#'
   SUB_PATH: "", // leave this empty unless you want to deploy in a folder
 
-  archive_share_bar_enable: process.env.NEXT_PUBLIC_RECORD_SHARE_BAR || "true", // Record Archive sharing function, a sharing bar will be displayed at the bottom
-  archive_share_service:
+  RECORD_SHARE_BAR_ENABLE: process.env.NEXT_PUBLIC_RECORD_SHARE_BAR || "true", // Record Archive sharing function, a sharing bar will be displayed at the bottom
+  RECORD_SHARE_SERVICE:
     process.env.NEXT_PUBLIC_RECORD_SHARE_SERVICES || "email,twitter,link", // Shared services, displayed in order, separated by commas
   // All supported sharing services: link (copy link), email (mail),facebook,twitter,telegram,messenger,line,reddit,whatsapp,linkedin,instapaper
 
-  archive_url_prefix: process.env.NEXT_PUBLIC_archive_url_prefix || "archive",
+  RECORD_URL_PREFIX: process.env.NEXT_PUBLIC_RECORD_URL_PREFIX || "archive",
   //The default path prefix for RECORD type Archives, for example, the default RECORD type path is /records/[slug]
   // If this item is configured as '' empty, the Archive will have no prefix path
   // Supports functions similar to WP's customizable Archive link format: https://wordpress.org/documentation/archive/customize-permalinks/, currently only %year%/%month%/%day% is implemented first
   //Example: If you want to change the link to the prefix Archive + timestamp, you can change it to: 'archive/%year%/%month%/%day%'
 
-  archive_list_stye: "page", // ['page','scroll] Archive list style: page number paging, single page scrolling loading
-  archive_recommend_count: 6, // Number of recommended datas
-  archive_per_page: 12, // record counts per page
-  archive_sort_by: process.env.NEXT_PUBLIC_RECORD_SORT_BY || "notion", //Sorting method 'date' is by time, 'notion' is controlled by notification
+  RECORD_LIST_STYLE: "page", // ['page','scroll] Archive list style: page number paging, single page scrolling loading
+  RECORD_RECOMMEND_COUNT: 6, // Number of recommended datas
+  RECORD_PER_PAGE: 12, // record counts per page
+  RECORD_SORT_BY: process.env.NEXT_PUBLIC_RECORD_SORT_BY || "notion", //Sorting method 'date' is by time, 'notion' is controlled by notification
 
-  archive_waiting_time_for_404:
-    process.env.NEXT_PUBLIC_archive_waiting_time_for_404 || "8",
+  RECORD_WAITING_TIME_FOR_404:
+    process.env.NEXT_PUBLIC_RECORD_WAITING_TIME_FOR_404 || "8",
 
   PREVIEW_CATEGORY_COUNT: 16, // The maximum number of categories displayed on the homepage, 0 means no limit
   PREVIEW_TAG_COUNT: 16, // The maximum number of tags displayed on the homepage, 0 means no limit
 
-  archive_disable_gallery_click:
-    process.env.NEXT_PUBLIC_archive_disable_gallery_click || false, // Clicking is prohibited in the picture album view, making it easier to insert links into the picture album on the friend link page.
+  RECORD_DISABLE_GALLERY_CLICK:
+    process.env.NEXT_PUBLIC_RECORD_DISABLE_GALLERY_CLICK || false, // Clicking is prohibited in the picture album view, making it easier to insert links into the picture album on the friend link page.
 
   // giscus @see https://giscus.app/
-  comment_giscus_reponame: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPONAME, // Your Github repository name e.g 'ryoonwithinwisdomlights/norkive'
-  comment_giscus_repo_id: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPO_ID, // Your Github Repo ID e.g (you can see it after setting up giscus)
+  COMMENT_GISCUS_REPONAME: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPONAME, // Your Github repository name e.g 'ryoonwithinwisdomlights/norkive'
+  COMMENT_GISCUS_REPO_ID: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPO_ID, // Your Github Repo ID e.g (you can see it after setting up giscus)
   NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY:
     process.env.NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY,
   NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY_ID:
     process.env.NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY_ID, // Category ID in your Github Discussions (you can see it after setting up giscus)
-  comment_giscus_mapping: process.env.NEXT_PUBLIC_COMMENT_GISCUS_MAPPING, // Which method does your Github Discussions use to demarcate datas? Default is 'pathname'
-  comment_giscus_reactions_enabled:
+  COMMENT_GISCUS_MAPPING: process.env.NEXT_PUBLIC_COMMENT_GISCUS_MAPPING, // Which method does your Github Discussions use to demarcate datas? Default is 'pathname'
+  COMMENT_GISCUS_REACTIONS_ENABLED:
     process.env.NEXT_PUBLIC_COMMENT_GISCUS_REACTIONS_ENABLED, // Does your Giscus enable data emoticons? '1' is on "0" is off and is on by default.
-  comment_giscus_emit_data:
+  COMMENT_GISCUS_EMIT_METADATA:
     process.env.NEXT_PUBLIC_COMMENT_GISCUS_EMIT_METADATA, // Whether your Giscus extracts Metadata '1' On '0' Off The default is off
-  comment_giscus_input_position:
+  COMMENT_GISCUS_INPUT_POSITION:
     process.env.NEXT_PUBLIC_COMMENT_GISCUS_INPUT_POSITION, // Your Giscus comment position 'bottom' tail 'top' top, default 'bottom'
-  comment_giscus_lang: process.env.NEXT_PUBLIC_COMMENT_GISCUS_LANG, // Your Giscus language e.g 'en', 'zh-TW', 'zh-CN', default 'en'
-  comment_giscus_loading: process.env.NEXT_PUBLIC_COMMENT_GISCUS_LOADING, // Whether your Giscus load is progressive, default is 'lazy'
-  comment_giscus_crossorigin: "anonymous", // Your Giscus can be cross-domain, default 'anonymous'
+  COMMENT_GISCUS_LANG: process.env.NEXT_PUBLIC_COMMENT_GISCUS_LANG, // Your Giscus language e.g 'en', 'zh-TW', 'zh-CN', default 'en'
+  COMMENT_GISCUS_LOADING: process.env.NEXT_PUBLIC_COMMENT_GISCUS_LOADING, // Whether your Giscus load is progressive, default is 'lazy'
+  COMMENT_GISCUS_CROSSORIGIN: "anonymous", // Your Giscus can be cross-domain, default 'anonymous'
 
   // ----> Site statistics
-  analytics_google_id: process.env.NEXT_PUBLIC_analytics_google_id || false,
+  ANAYLTICS_GOOGLE_ID: process.env.NEXT_PUBLIC_ANAYLTICS_GOOGLE_ID || false,
   ANALYTICS_VERCEL: process.env.NEXT_PUBLIC_ANALYTICS_VERCEL || false, //
-  analytics_busuanzi_enable:
-    process.env.NEXT_PUBLIC_analytics_busuanzi_enable || true, // Display website reading volume and number of visits see http://busuanzi.ibruce.info/
-  seo_google_verification:
-    process.env.NEXT_PUBLIC_seo_google_verification || "", // Remove the value or replace it with your own google site verification code
+  ANALYTICS_BUSUANZI_ENABLE:
+    process.env.NEXT_PUBLIC_ANALYTICS_BUSUANZI_ENABLE || true, // Display website reading volume and number of visits see http://busuanzi.ibruce.info/
+  SEO_GOOGLE_VERIFICATION:
+    process.env.NEXT_PUBLIC_SEO_GOOGLE_VERIFICATION || "", // Remove the value or replace it with your own google site verification code
 
   // Custom configuration notification database field name
   NOTION_PROPERTY_NAME: {

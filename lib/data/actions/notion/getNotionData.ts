@@ -44,7 +44,7 @@ export default async function initGlobalNotionData(from: string = "main") {
     from: from,
   });
 
-  props.allArchive = props.records?.slice(0, BLOG.archive_per_page);
+  props.allArchive = props.records?.slice(0, BLOG.RECORD_PER_PAGE);
   return props;
 }
 
@@ -60,8 +60,8 @@ export async function getGlobalData({
   // console.log("props.allPagesallPages:", props.allPages);
   // console.log("allPagesallPages:", allPages);
   // props.records = allPages;
-  props.records = allPages?.slice(0, BLOG.archive_per_page);
-  props.allArchiveRecords = props.allPages?.slice(0, BLOG.archive_per_page);
+  props.records = allPages?.slice(0, BLOG.RECORD_PER_PAGE);
+  props.allArchiveRecords = props.allPages?.slice(0, BLOG.RECORD_PER_PAGE);
   return props;
 }
 
@@ -193,7 +193,7 @@ export async function getOneRecordPageData({
     )
   ).filter((item): item is NorkiveRecordData => item !== null);
 
-  const dateSort = BLOG.archive_sort_by === "date" ? true : false;
+  const dateSort = BLOG.RECORD_SORT_BY === "date" ? true : false;
   // achive count
   const allRecordCounter = { count: 0 };
 
@@ -305,7 +305,7 @@ async function getDataBaseInfoByNotionAPI({
   //   adjustPageProperties(element, NOTION_CONFIG)
   // })
 
-  const dateSort = BLOG.archive_sort_by === "date" ? true : false;
+  const dateSort = BLOG.RECORD_SORT_BY === "date" ? true : false;
   // achive count
   const allRecordCounter = { count: 0 };
 

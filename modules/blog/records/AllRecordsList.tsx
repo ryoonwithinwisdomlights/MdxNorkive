@@ -20,7 +20,7 @@ const AllRecordsList = ({
   recordCount,
 }: AllRecordsListProps) => {
   const router = useRouter();
-  const totalPage = Math.ceil(recordCount / BLOG.archive_per_page);
+  const totalPage = Math.ceil(recordCount / BLOG.RECORD_PER_PAGE);
   const { locale, searchKeyword } = useGeneralSiteSettings();
   const currentPage = +pagenum;
   const showNext = currentPage < totalPage;

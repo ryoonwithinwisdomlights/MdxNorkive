@@ -16,7 +16,7 @@ import {
   ARCHIVE_PROPERTIES_TYPE_MAP,
   GENERAL_TYPE_MENU,
   PAGE_TYPE_MENU,
-} from "@/lib/constants/menu.constants";
+} from "@/constants/menu.constants";
 
 import md5 from "js-md5";
 import { NotionAPI } from "notion-client";
@@ -181,7 +181,7 @@ export function adjustPageProperties(properties, NOTION_CONFIG) {
   if (properties.type === "Record") {
     if (
       getOldsiteConfig({
-        key: BLOG.archive_url_prefix as string,
+        key: BLOG.RECORD_URL_PREFIX as string,
         defaultVal: "",
         extendConfig: NOTION_CONFIG,
       })
@@ -265,7 +265,7 @@ export function generateCustomizeUrlWithType({
   extendConfig?: {};
 }) {
   let fullPrefix = "";
-  const allSlugPatterns = BLOG.archive_url_prefix.split("/");
+  const allSlugPatterns = BLOG.RECORD_URL_PREFIX.split("/");
 
   allSlugPatterns.forEach((pattern, idx) => {
     if (pattern === "%year%" && recordProperties?.publishDay) {
@@ -301,7 +301,7 @@ export function generateCustomizeUrlWithType({
   let res;
 
   if (type === "Record") {
-    res = `${BLOG.archive_url_prefix.toLowerCase()}/${
+    res = `${BLOG.RECORD_URL_PREFIX.toLowerCase()}/${
       recordProperties.slug ?? recordProperties.id
     }`;
   } else if (type == "Project" || "Engineering") {
@@ -322,7 +322,7 @@ export const handleRecordsUrl = (isAblePage, properties) => {
       type: properties.type,
     });
 
-    properties.slug = BLOG.archive_url_prefix
+    properties.slug = BLOG.RECORD_URL_PREFIX
       ? customedUrl
       : (properties.slug ?? properties.id);
   } else if (PAGE_TYPE_MENU.includes(properties.type)) {

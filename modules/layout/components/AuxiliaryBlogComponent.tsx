@@ -13,7 +13,7 @@ const AuxiliaryBlogComponent = (props: Props) => {
     <div>
       {!BLOG.isProd && <DebugPanel />}
       {!BLOG.CAN_COPY && <DisableCopy />}
-      {BLOG.analytics_busuanzi_enable && <Busuanzi />}
+      {BLOG.ANALYTICS_BUSUANZI_ENABLE && <Busuanzi />}
       <MobileTOCButton />
       <VConsoleTs />
     </div>

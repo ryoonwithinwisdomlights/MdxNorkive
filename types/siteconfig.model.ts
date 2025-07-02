@@ -82,18 +82,18 @@ export interface SiteConfigModel {
   background_dark?: string;
 
   sub_path: string;
-  archive_share_bar_enable?: boolean;
-  archive_share_service?: string;
-  archive_url_prefix?: string;
-  archive_list_stye?: string;
-  archive_recommend_count?: number;
-  archive_per_page?: number;
-  archive_sort_by?: string;
-  archive_waiting_time_for_404?: string;
+  RECORD_SHARE_BAR_ENABLE?: boolean;
+  RECORD_SHARE_SERVICE?: string;
+  RECORD_URL_PREFIX?: string;
+  RECORD_LIST_STYLE?: string;
+  RECORD_RECOMMEND_COUNT?: number;
+  RECORD_PER_PAGE?: number;
+  RECORD_SORT_BY?: string;
+  RECORD_WAITING_TIME_FOR_404?: string;
 
   preview_category_count?: number;
   preview_tag_count?: number;
-  archive_disable_gallery_click?: boolean;
+  RECORD_DISABLE_GALLERY_CLICK?: boolean;
 
   tag_sort_by_count: boolean;
   is_tag_color_distinguised?: boolean;
@@ -148,9 +148,9 @@ export interface externalLibModel {
   code_collapse?: boolean;
   code_collapse_expand_default?: boolean;
   memaid_cdn?: string;
-  analytics_google_id?: boolean;
+  ANAYLTICS_GOOGLE_ID?: boolean;
 
-  analytics_busuanzi_enable?: boolean;
-  seo_google_verification?: string;
+  ANALYTICS_BUSUANZI_ENABLE?: boolean;
+  SEO_GOOGLE_VERIFICATION?: string;
   animate_css_url?: string;
 }

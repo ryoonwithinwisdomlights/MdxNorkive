@@ -24,7 +24,7 @@ import { LinkIcon } from "lucide-react";
  * @returns
  */
 const ShareButtons = ({ shareUrl, title, body, image }) => {
-  const services = BLOG.archive_share_service.split(",");
+  const services = BLOG.RECORD_SHARE_SERVICE.split(",");
   const titleWithSiteInfo = title + " | " + BLOG.TITLE;
   const { locale } = useGeneralSiteSettings();
 

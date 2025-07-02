@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { useGlobal } from "./EssentialNavInfoProvider";
-import { AVAILABLE_PAGE_TYPES } from "../constants/menu.constants";
+import { AVAILABLE_PAGE_TYPES } from "../../constants/menu.constants";
 
 function noCleanup(segments: string[]) {
   const flag = AVAILABLE_PAGE_TYPES.map((item) => item.toLocaleLowerCase());

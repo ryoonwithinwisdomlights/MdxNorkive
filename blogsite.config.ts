@@ -106,20 +106,20 @@ export const siteConfigInfo = siteConfigObj({
   background_dark: "#000000", // use hex value, don't forget '#'
   sub_path: "", // leave this empty unless you want to deploy in a folder
 
-  archive_share_bar_enable: true, // Record Archive sharing function, a sharing bar will be displayed at the bottom
-  archive_share_service:
+  RECORD_SHARE_BAR_ENABLE: true, // Record Archive sharing function, a sharing bar will be displayed at the bottom
+  RECORD_SHARE_SERVICE:
     process.env.NEXT_PUBLIC_RECORD_SHARE_SERVICES || "email,twitter,link", // Shared services, displayed in order, separated by commas
 
-  archive_url_prefix: process.env.NEXT_PUBLIC_archive_url_prefix || "archive",
+  RECORD_URL_PREFIX: process.env.NEXT_PUBLIC_RECORD_URL_PREFIX || "archive",
   //Example: If you want to change the link to the prefix Archive + timestamp, you can change it to: 'Archive/%year%/%month%/%day%'
 
-  archive_list_stye: "page", // ['page','scroll] Article list style: page number paging, single page scrolling loading
-  archive_recommend_count: 6, // Number of recommended datas
-  archive_per_page: 12, // record counts per page
-  archive_sort_by: process.env.NEXT_PUBLIC_RECORD_SORT_BY || "notion", //Sorting method 'date' is by time, 'notion' is controlled by notification
-  archive_waiting_time_for_404:
-    process.env.NEXT_PUBLIC_archive_waiting_time_for_404 || "8",
-  archive_disable_gallery_click: false, // Clicking is prohibited in the picture album view, making it easier to insert links into the picture album on the friend link page.
+  RECORD_LIST_STYLE: "page", // ['page','scroll] Article list style: page number paging, single page scrolling loading
+  RECORD_RECOMMEND_COUNT: 6, // Number of recommended datas
+  RECORD_PER_PAGE: 12, // record counts per page
+  RECORD_SORT_BY: process.env.NEXT_PUBLIC_RECORD_SORT_BY || "notion", //Sorting method 'date' is by time, 'notion' is controlled by notification
+  RECORD_WAITING_TIME_FOR_404:
+    process.env.NEXT_PUBLIC_RECORD_WAITING_TIME_FOR_404 || "8",
+  RECORD_DISABLE_GALLERY_CLICK: false, // Clicking is prohibited in the picture album view, making it easier to insert links into the picture album on the friend link page.
 
   preview_category_count: 16, // The maximum number of categories displayed on the homepage, 0 means no limit
   preview_tag_count: 16, // The maximum number of tags displayed on the homepage, 0 means no limit
@@ -242,10 +242,10 @@ export const externalLibraryInfo: externalLibModel = {
     "https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.2.4/mermaid.min.js", // CDN
 
   // ----> Site statistics
-  analytics_google_id: false,
-  analytics_busuanzi_enable: true, // Display website reading volume and number of visits see http://busuanzi.ibruce.info/
-  seo_google_verification:
-    process.env.NEXT_PUBLIC_seo_google_verification || "", // Remove the value or replace it with your own google site verification code
+  ANAYLTICS_GOOGLE_ID: false,
+  ANALYTICS_BUSUANZI_ENABLE: true, // Display website reading volume and number of visits see http://busuanzi.ibruce.info/
+  SEO_GOOGLE_VERIFICATION:
+    process.env.NEXT_PUBLIC_SEO_GOOGLE_VERIFICATION || "", // Remove the value or replace it with your own google site verification code
 
   // Obsolete configuration
 
@@ -257,16 +257,16 @@ export const externalLibraryInfo: externalLibModel = {
 
 // giscus @see https://giscus.app/
 export const giscusOptionConfigInfo = {
-  reponame: process.env.NEXT_PUBLIC_comment_giscus_reponame, // Your Github repository name e.g 'ryoonwithinwisdomlights/norkive'
-  repo_id: process.env.NEXT_PUBLIC_comment_giscus_repo_id, // Your Github Repo ID e.g (you can see it after setting up giscus)
+  reponame: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPONAME, // Your Github repository name e.g 'ryoonwithinwisdomlights/norkive'
+  repo_id: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPO_ID, // Your Github Repo ID e.g (you can see it after setting up giscus)
   category: process.env.NEXT_PUBLIC_comment_giscus_category,
   category_id: process.env.NEXT_PUBLIC_comment_giscus_category_id, // Category ID in your Github Discussions (you can see it after setting up giscus)
-  mapping: process.env.NEXT_PUBLIC_comment_giscus_mapping, // Which method does your Github Discussions use to demarcate datas? Default is 'pathname'
-  reactions_enabled: process.env.NEXT_PUBLIC_comment_giscus_reactions_enabled, // Does your Giscus enable data emoticons? '1' is on "0" is off and is on by default.
-  emit_data: process.env.NEXT_PUBLIC_comment_giscus_emit_data, // Whether your Giscus extracts Metadata '1' On '0' Off The default is off
-  input_position: process.env.NEXT_PUBLIC_comment_giscus_input_position, // Your Giscus comment position 'bottom' tail 'top' top, default 'bottom'
+  mapping: process.env.NEXT_PUBLIC_COMMENT_GISCUS_MAPPING, // Which method does your Github Discussions use to demarcate datas? Default is 'pathname'
+  reactions_enabled: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REACTIONS_ENABLED, // Does your Giscus enable data emoticons? '1' is on "0" is off and is on by default.
+  emit_data: process.env.NEXT_PUBLIC_COMMENT_GISCUS_EMIT_METADATA, // Whether your Giscus extracts Metadata '1' On '0' Off The default is off
+  input_position: process.env.NEXT_PUBLIC_COMMENT_GISCUS_INPUT_POSITION, // Your Giscus comment position 'bottom' tail 'top' top, default 'bottom'
   lang: "ko", // Your Giscus language e.g 'en', 'zh-TW', 'zh-CN', default 'en'
-  loading: process.env.NEXT_PUBLIC_comment_giscus_loading || "lazy", // Whether your Giscus load is progressive, default is 'lazy'
+  loading: process.env.NEXT_PUBLIC_COMMENT_GISCUS_LOADING || "lazy", // Whether your Giscus load is progressive, default is 'lazy'
   crossorigin:
-    process.env.NEXT_PUBLIC_comment_giscus_crossorigin || "anonymous", // Your Giscus can be cross-domain, default 'anonymous'
+    process.env.NEXT_PUBLIC_COMMENT_GISCUS_CROSSORIGIN || "anonymous", // Your Giscus can be cross-domain, default 'anonymous'
 };

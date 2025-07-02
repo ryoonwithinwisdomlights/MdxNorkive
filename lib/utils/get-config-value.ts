@@ -111,16 +111,16 @@ export const getOldsiteConfig = ({
   }
   switch (key) {
     case "NEXT_REVALIDATE_SECOND":
-    case "archive_recommend_count":
+    case "RECORD_RECOMMEND_COUNT":
     case "IMAGE_COMPRESS_WIDTH":
     case "PSEUDO_STATIC":
-    case "archive_sort_by":
-    case "archive_per_page":
+    case "RECORD_SORT_BY":
+    case "RECORD_PER_PAGE":
     case "RECORD_PREVIEW_LINES":
-    case "archive_url_prefix":
-    case "archive_list_stye":
+    case "RECORD_URL_PREFIX":
+    case "RECORD_LIST_STYLE":
     case "RECORD_LIST_PREVIEW":
-    case "archive_url_prefix_MAPPING_CATEGORY":
+    case "RECORD_URL_PREFIX_MAPPING_CATEGORY":
     case "IS_TAG_COLOR_DISTINGUISHED":
     case "TAG_SORT_BY_COUNT":
       return convertVal(extendConfig[key] || defaultVal || BLOG[key]);

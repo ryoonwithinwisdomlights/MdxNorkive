@@ -9,11 +9,11 @@ const CommonScript = () => {
   return (
     <>
       {/* Google Statistics */}
-      {BLOG.analytics_google_id && (
+      {BLOG.ANAYLTICS_GOOGLE_ID && (
         <>
           <script
             async
-            src={`https://www.googletagmanager.com/gtag/js?id=${BLOG.analytics_google_id}`}
+            src={`https://www.googletagmanager.com/gtag/js?id=${BLOG.ANAYLTICS_GOOGLE_ID}`}
           />
           <script
             async
@@ -22,7 +22,7 @@ const CommonScript = () => {
                     window.dataLayer = window.dataLayer || [];
                     function gtag(){dataLayer.push(arguments);}
                     gtag('js', new Date());
-                    gtag('config', '${BLOG.analytics_google_id}', {
+                    gtag('config', '${BLOG.ANAYLTICS_GOOGLE_ID}', {
                       page_path: window.location.pathname,
                     });
                   `,

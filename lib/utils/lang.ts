@@ -1,5 +1,5 @@
-import { ENG_LANG } from "@/lib/constants/en-lang.constants";
-import { KOR_LANG } from "@/lib/constants/kr-lang.constants";
+import { ENG_LANG } from "@/constants/en-lang.constants";
+import { KOR_LANG } from "@/constants/kr-lang.constants";
 import { getQueryVariable, isBrowser, mergeDeep } from "./utils";
 
 /**

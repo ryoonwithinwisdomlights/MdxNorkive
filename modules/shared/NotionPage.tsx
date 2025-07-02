@@ -14,8 +14,8 @@ import { compressImage, mapImgUrl } from "@/lib/data/service/utils";
 
 const NotionPage = ({ record }) => {
   // Whether to turn off the click jump of the database and album
-  const archive_disable_gallery_click = getOldsiteConfig({
-    key: "archive_disable_gallery_click",
+  const RECORD_DISABLE_GALLERY_CLICK = getOldsiteConfig({
+    key: "RECORD_DISABLE_GALLERY_CLICK",
   });
   const RECORD_DISABLE_DATABASE_CLICK = getOldsiteConfig({
     key: "RECORD_DISABLE_DATABASE_CLICK",
@@ -46,7 +46,7 @@ const NotionPage = ({ record }) => {
   // The hook that will be executed when the page article changes
   useEffect(() => {
     // Clicking on the album view prohibits jumping, and you can only enlarge the picture to view it.
-    if (archive_disable_gallery_click) {
+    if (RECORD_DISABLE_GALLERY_CLICK) {
       // For the gallery view on the page, after clicking, whether to enlarge the picture or jump to the internal page of the gallery
       processGalleryImg(zoomRef?.current);
     }
@@ -103,7 +103,7 @@ const NotionPage = ({ record }) => {
     return () => {
       observer.disconnect();
     };
-  }, [zoomRef, archive_disable_gallery_click, RECORD_DISABLE_DATABASE_CLICK]);
+  }, [zoomRef, RECORD_DISABLE_GALLERY_CLICK, RECORD_DISABLE_DATABASE_CLICK]);
   return (
     <div id="notion-article" className={`mx-auto overflow-hidden w-full`}>
       <NotionRenderer

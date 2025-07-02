@@ -82,7 +82,7 @@ const Comment = ({ frontMatter }) => {
       )}
       {shouldLoad && (
         <Tabs className="px-2">
-          {BLOG.comment_giscus_reponame && (
+          {BLOG.COMMENT_GISCUS_REPONAME && (
             <div key="Giscus">
               <GiscusComponent />
             </div>
