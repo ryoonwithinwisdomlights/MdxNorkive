@@ -1,5 +1,5 @@
 "use client";
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import TableOfContents from "@/modules/common/components/TableOfContents";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -11,7 +11,7 @@ library.add(faTimes);
 const TocDrawerWrapper = ({ props }) => {
   const { record } = props;
   console.log("TocDrawerWrapper:,", record);
-  const { tocVisible, handleTOCVisible, locale } = useNorkiveTheme();
+  const { tocVisible, handleTOCVisible, locale } = useGeneralSiteSettings();
   const router = useRouter();
   const switchVisible = () => {
     handleTOCVisible();

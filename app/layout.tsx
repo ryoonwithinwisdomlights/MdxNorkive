@@ -35,6 +35,7 @@ import JumpToTopButton from "@/modules/common/components/JumpToTopButton";
 import { ChildrenProp } from "@/types";
 import MainLayoutWrapper from "./MainLayoutWrapper";
 import LeftNavigationBar from "@/modules/layout/templates/LeftNavigationBar";
+import { ModalProvider } from "@/lib/context/ModalProvider";
 
 config.autoAddCss = false;
 
@@ -119,6 +120,7 @@ export default async function RootLayout({ children }: ChildrenProp) {
               <MobileLeftNavDrawer />
               {/* Mobile bottom navigation bar */}
               <BottomMenuBar />
+              <ModalProvider />
             </div>
             <PageObserver />
           </GeneralSiteSettingsProvider>

@@ -2,7 +2,7 @@ import { BLOG } from "@/blog.config";
 
 export const ARCHIVE_PROPERTIES_TYPE_MAP = {
   [BLOG.NOTION_PROPERTY_NAME.type_record]: "Record",
-  [BLOG.NOTION_PROPERTY_NAME.type_devproject]: "Project",
+  [BLOG.NOTION_PROPERTY_NAME.type_project]: "Project",
   [BLOG.NOTION_PROPERTY_NAME.type_engineering]: "Engineering",
   [BLOG.NOTION_PROPERTY_NAME.type_page]: "Page",
   [BLOG.NOTION_PROPERTY_NAME.type_notice]: "Notice",

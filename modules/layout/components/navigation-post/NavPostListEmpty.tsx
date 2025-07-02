@@ -1,6 +1,6 @@
 "use client";
 
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 
 /**
  * Blank Blog List
@@ -12,7 +12,7 @@ const NavPostListEmpty = ({
 }: {
   searchKeyword?: string;
 }) => {
-  const { locale } = useNorkiveTheme();
+  const { locale } = useGeneralSiteSettings();
   return (
     <div className="text-neutral-500 dark:text-neutral-300 flex flex-col w-full items-center justify-center min-h-screen mx-auto md:-mt-20">
       {searchKeyword && (

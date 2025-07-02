@@ -51,4 +51,6 @@ export interface GeneralSiteSettingsProviderContext {
   lang: string;
   changeLang: (text: string) => void;
   changeOppositeLang: () => void;
+  setting: boolean;
+  handleSettings: () => void;
 }

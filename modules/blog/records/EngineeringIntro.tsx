@@ -1,8 +1,8 @@
 "use client";
 
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 const EngineeringIntro = () => {
-  const { lang } = useNorkiveTheme();
+  const { lang } = useGeneralSiteSettings();
   return (
     <div className="mb-4  mr-4 flex flex-col justify-end">
       <div className="flex flex-row justify-end text-xs  text-neutral-600 font-extralight dark:text-neutral-200 hover:text-neutral-800 ">

@@ -1,6 +1,6 @@
 "use client";
 import { BLOG } from "@/blog.config";
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import NavPostListEmpty from "@/modules/layout/components/navigation-post/NavPostListEmpty";
 import { AllRecordsListProps } from "@/types";
 import { useRouter } from "next/navigation";
@@ -21,7 +21,7 @@ const AllRecordsList = ({
 }: AllRecordsListProps) => {
   const router = useRouter();
   const totalPage = Math.ceil(recordCount / BLOG.archive_per_page);
-  const { locale, searchKeyword } = useNorkiveTheme();
+  const { locale, searchKeyword } = useGeneralSiteSettings();
   const currentPage = +pagenum;
   const showNext = currentPage < totalPage;
   if (!records || records.length === 0) {

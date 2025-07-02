@@ -3,6 +3,7 @@ import { MenuItemDrop } from "@/modules/common/components/menu/MenuItemDrop";
 import SearchInput from "@/modules/common/components/SearchInput";
 import LogoBar from "@/modules/common/ui/LogoBar";
 import DarkModeButton from "@/modules/shared/DarkModeButton";
+import SettingButton from "@/modules/shared/SettingButton";
 import React, { useRef } from "react";
 
 const PCTopNav = ({ links }) => {
@@ -16,7 +17,8 @@ const PCTopNav = ({ links }) => {
       >
         {links &&
           links?.map((link, index) => <MenuItemDrop key={index} link={link} />)}
-        <DarkModeButton className="flex flex-col justify-center items-center " />
+        {/* <DarkModeButton className="flex flex-col justify-center items-center " /> */}
+        <SettingButton />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import Fuse from "fuse.js";
 import debounce from "lodash.debounce";
 import { Search, XIcon } from "lucide-react";
@@ -10,7 +10,7 @@ import Link from "next/link";
 
 export default function HeaderSearch() {
   // 검색 키워드 상태
-  const { locale, allNavPagesForLeftSideBar } = useNorkiveTheme();
+  const { locale, allNavPagesForLeftSideBar } = useGeneralSiteSettings();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<{ title: string; url: string }[]>([]);
   const [loading, setLoading] = useState(false);

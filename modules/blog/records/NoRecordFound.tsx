@@ -1,8 +1,8 @@
 "use client";
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 
 const NoRecordFound = () => {
-  const { locale } = useNorkiveTheme();
+  const { locale } = useGeneralSiteSettings();
   return (
     <div
       className="text-neutral-500 dark:text-neutral-300 flex flex-col w-full 

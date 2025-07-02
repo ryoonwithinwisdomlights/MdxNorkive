@@ -1,5 +1,5 @@
 "use client";
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import NotionPage from "@/modules/shared/NotionPage";
 import { RecordCardInfoProps } from "@/types";
 import { CalendarIcon, FolderClosedIcon, LockIcon } from "lucide-react";
@@ -19,7 +19,7 @@ const RecordCardInfo = ({
   showPageCover,
   showSummary,
 }: RecordCardInfoProps) => {
-  const { locale } = useNorkiveTheme();
+  const { locale } = useGeneralSiteSettings();
   const { handleRouter } = useGlobal({});
 
   return (

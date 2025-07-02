@@ -1,10 +1,10 @@
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { BookOpenTextIcon } from "lucide-react";
 /**
  * Mobile article navigation buttons
  */
 export default function MobileLeftNavButton() {
-  const { handleLeftNavVisible } = useNorkiveTheme();
+  const { handleLeftNavVisible } = useGeneralSiteSettings();
 
   const switchVisible = () => {
     handleLeftNavVisible();

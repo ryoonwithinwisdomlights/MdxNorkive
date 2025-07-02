@@ -1,5 +1,5 @@
 "use client";
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import NavPostList from "@/modules/layout/components/navigation-post/NavPostList";
 
 /**
@@ -9,7 +9,7 @@ import NavPostList from "@/modules/layout/components/navigation-post/NavPostList
  * @constructor
  */
 const MobileLeftNavDrawer = () => {
-  const { pageNavVisible, handleLeftNavVisible } = useNorkiveTheme();
+  const { pageNavVisible, handleLeftNavVisible } = useGeneralSiteSettings();
   const switchVisible = () => {
     handleLeftNavVisible();
   };

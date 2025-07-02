@@ -6,6 +6,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { useRouter } from "next/router";
 import { BLOG } from "@/blog.config";
 import {
   LeftSideBarNavItem,
@@ -15,7 +16,7 @@ import {
 import { initDarkMode, setThemeByLocalStorage } from "@/lib/utils/theme";
 import {
   generateLocaleDict,
-  getFilteredLangListKey,
+  getFilteredDictionaryListKey,
   initLocale,
   saveLangToLocalStorage,
 } from "@/lib/utils/lang";
@@ -37,13 +38,13 @@ export const GeneralSiteSettingsProvider: React.FC<{
   allNavPagesForLeftSideBar: LeftSideBarNavItem[];
 }> = ({ children, allNavPagesForLeftSideBar }) => {
   const [lang, updateLang] = useState<string>(BLOG.LANG); // default language
-  const [locale, updateLocale] = useState<any>(generateLocaleDict(BLOG.LANG)); // default language
-
+  const [locale, updateLocale] = useState<any>(generateLocaleDict(BLOG.LANG)); // 로케일은 사용자 인터페이스에서 사용되는 언어, 지역 설정, 출력 형식 등을 정의하는 문자열
+  const [setting, SetSettingState] = useState<boolean>(false);
   const [isDarkMode, updateDarkMode] = useState<boolean>(
     BLOG.APPEARANCE === "dark"
   );
   const [onLoading, setOnLoading] = useState<boolean>(false);
-  //table_Of_Contents
+
   const [tocVisible, setTOCVisible] = useState<boolean>(false);
   const [pageNavVisible, setPageNavVisible] = useState<boolean>(false);
 
@@ -63,9 +64,10 @@ export const GeneralSiteSettingsProvider: React.FC<{
       updateLocale(generateLocaleDict(lang));
     }
   }
+
   function changeOppositeLang() {
-    const resLang = getFilteredLangListKey(locale.LOCALE);
-    // console.log("changeOppositeLang[locale]:", resLang);
+    const resLang = getFilteredDictionaryListKey(locale.LOCALE);
+
     if (resLang) {
       saveLangToLocalStorage(resLang);
       updateLang(resLang);
@@ -80,7 +82,9 @@ export const GeneralSiteSettingsProvider: React.FC<{
     htmlElement.classList?.remove(newStatus ? "light" : "dark");
     htmlElement.classList?.add(newStatus ? "dark" : "light");
   };
-
+  const handleSettings = () => {
+    SetSettingState((prev) => !prev);
+  };
   const value: GeneralSiteSettingsProviderContext = {
     onLoading,
     setOnLoading,
@@ -100,27 +104,34 @@ export const GeneralSiteSettingsProvider: React.FC<{
     lang,
     changeLang,
     changeOppositeLang,
+    setting,
+    handleSettings,
   };
-  useEffect(() => {
-    initLocale(lang, locale, updateLang, updateLocale);
-  }, []);
+
   useEffect(() => {
     initDarkMode(updateDarkMode);
     initLocale(lang, locale, updateLang, updateLocale);
+    setOnLoading(false);
+  }, []);
+
+  useEffect(() => {
+    initLocale(lang, locale, updateLang, updateLocale);
+    setOnLoading(false);
+    toast.success(`${locale.SITE.LANG_CHANGE_SUCCESS_MSG} `);
   }, [lang]);
 
-  useEffect(() => {}, []);
   return (
     <NorKiveTheme.Provider value={value}>{children}</NorKiveTheme.Provider>
   );
 };
 
-export const useNorkiveTheme = (): GeneralSiteSettingsProviderContext => {
-  const context = useContext(NorKiveTheme);
-  if (!context) {
-    throw new Error(
-      "useNorkiveTheme must be used within a GeneralSiteSettingsProvider"
-    );
-  }
-  return context;
-};
+export const useGeneralSiteSettings =
+  (): GeneralSiteSettingsProviderContext => {
+    const context = useContext(NorKiveTheme);
+    if (!context) {
+      throw new Error(
+        "useGeneralSiteSettings must be used within a GeneralSiteSettingsProvider"
+      );
+    }
+    return context;
+  };

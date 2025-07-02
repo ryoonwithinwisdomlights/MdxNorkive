@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 "use client";
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { deepClone } from "@/lib/utils/utils";
 
 import { SearchIcon, XIcon } from "lucide-react";
@@ -17,7 +17,7 @@ const SearchInput = ({ cRef }) => {
     setSearchKeyword,
     setFilteredNavPages,
     allNavPagesForLeftSideBar,
-  } = useNorkiveTheme();
+  } = useGeneralSiteSettings();
 
   // 입력 필드 참조
   const searchInputRef = useRef<HTMLInputElement>(null);

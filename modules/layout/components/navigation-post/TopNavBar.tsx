@@ -2,7 +2,7 @@
 /* eslint-disable multiline-ternary */
 
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEllipsisVertical, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useRef, useState } from "react";
@@ -13,7 +13,7 @@ library.add(faEllipsisVertical, faTimes);
 
 const TopNavBar = () => {
   const { oldNav, customMenu } = useGlobal({ from: "index" });
-  const { locale } = useNorkiveTheme();
+  const { locale } = useGeneralSiteSettings();
   const [isOpen, changeShow] = useState(false);
   const collapseRef = useRef<any>(null);
 
@@ -38,9 +38,9 @@ const TopNavBar = () => {
   //   },
   //   {
   //     icon: "fa-solid fa-hand-sparkles",
-  //     name: locale.NAV.DEVPROJECT,
+  //     name: locale.NAV.PROJECT,
   //     to: "/project",
-  //     show: MENU_MOBILE.MENU_DEVPROJECT,
+  //     show: MENU_MOBILE.MENU_PROJECT,
   //   },
   //   {
   //     icon: "fa-solid fa-hand-sparkles",

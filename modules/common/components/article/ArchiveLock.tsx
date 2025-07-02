@@ -1,5 +1,5 @@
 "use client";
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { KeyRoundIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
@@ -13,7 +13,7 @@ import React, { useEffect, useRef, useState } from "react";
  */
 export const ArchiveLock = (props) => {
   const { validPassword } = props;
-  const { locale } = useNorkiveTheme();
+  const { locale } = useGeneralSiteSettings();
   const router = useRouter();
   const [tempPassword, setTempPassword] = useState<string>("");
   const submitPassword = () => {
@@ -52,8 +52,8 @@ export const ArchiveLock = (props) => {
               <div className="font-semibold text-lg p-0 mr-4 ">
                 {locale.COMMON.PASSWORD_SUBMIT}
               </div>
-              {/* <p className="text-sm">{locale.COMMON.ARTICLE_LOCK_TIPS}</p> */}
-              <p className="text-sm">{locale.COMMON.ARTICLE_LOCK_TIPS}</p>
+              {/* <p className="text-sm">{locale.COMMON.ARCHIVE_LOCK_TIPS}</p> */}
+              <p className="text-sm">{locale.COMMON.ARCHIVE_LOCK_TIPS}</p>
             </div>
             <div className="flex ">
               <input
@@ -91,7 +91,7 @@ export const ArchiveLock = (props) => {
                 입력하세요. */}
                 {locale.COMMON.PASSWORD_SUBMIT}
               </div>
-              <p className="text-sm">{locale.COMMON.ARTICLE_LOCK_TIPS}</p>
+              <p className="text-sm">{locale.COMMON.ARCHIVE_LOCK_TIPS}</p>
             </div>
             <div className="flex w-full pt-4">
               <input
@@ -131,7 +131,7 @@ export const ArchiveLock = (props) => {
           className="pt-4 flex flex-row text-stone-700 items-start justify-start text-right md:w-2/5 
            md:my-20 duration-200  hover:border-stone-200 border-b-2 border-stone-100 hover:font-semibold "
         >
-          {locale.RECORD.BACK}
+          {locale.SITE.BACK}
         </div>
       </div>
     </div>

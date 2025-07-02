@@ -1,5 +1,6 @@
 "use client";
 
+import SettingModal from "@/modules/common/components/modals/SettingModal";
 import { useEffect, useState } from "react";
 import { Toaster } from "sonner";
 
@@ -13,6 +14,9 @@ export const ModalProvider = () => {
   if (!isMounted) return null;
 
   return (
-    <Toaster position="bottom-right" style={{ border: "1px solid black" }} />
+    <>
+      <SettingModal />
+      <Toaster position="bottom-right" style={{ border: "1px solid black" }} />
+    </>
   );
 };

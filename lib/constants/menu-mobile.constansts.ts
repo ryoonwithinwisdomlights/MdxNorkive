@@ -7,7 +7,7 @@ export const MENU_MOBILE = {
   MENU_CATEGORY: true, // Show categories
   MENU_TAG: true, // show label
   MENU_RECORDS: true, // show archive
-  MENU_DEVPROJECT: true, // show devproject
+  MENU_PROJECT: true, // show PROJECT
   MENU_ENGINEERING: true, // show engineering
   MENU_SEARCH: true, // show search
   RECORD_DETAIL_CATEGORY: true, // Article display category

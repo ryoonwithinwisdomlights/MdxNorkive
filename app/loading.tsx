@@ -1,10 +1,10 @@
 "use client";
 
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { LoaderIcon } from "lucide-react";
 
 const Loading = () => {
-  const { locale } = useNorkiveTheme();
+  const { locale } = useGeneralSiteSettings();
   return (
     <div className=" w-screen h-screen flex flex-col justify-center items-center">
       <div

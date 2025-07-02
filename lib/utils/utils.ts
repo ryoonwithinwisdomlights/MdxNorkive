@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars */
+import { BLOG } from "@/blog.config";
 import * as Icons from "@fortawesome/free-solid-svg-icons"; // 모든 아이콘을 가져옴
 import { type ClassValue, clsx } from "clsx";
 import React from "react";
 import { twMerge } from "tailwind-merge";
+import { extractLangPrefix } from "../data/service/utils";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -435,3 +437,23 @@ export function formatDateFmt(timestamp, fmt) {
   }
   return fmt.trim();
 }
+
+// const locales = (function () {
+//   // Check how many languages ​​are supported based on NOTION_DATABASE_ID.
+//   // Supports configuring multiple language page ids in the following format: xxx,zh:xxx,en:xxx
+//   const langs = [BLOG.LANG];
+//   if ((BLOG.NOTION_DATABASE_ID as string).indexOf(",") > 0) {
+//     const siteIds = (BLOG.NOTION_DATABASE_ID as string).split(",");
+//     for (let index = 0; index < siteIds.length; index++) {
+//       const siteId = siteIds[index];
+//       const prefix = extractLangPrefix(siteId);
+//       //If it contains a prefix such as zh , en etc.
+//       if (prefix) {
+//         if (!langs.includes(prefix)) {
+//           langs.push(prefix);
+//         }
+//       }
+//     }
+//   }
+//   return langs;
+// })();

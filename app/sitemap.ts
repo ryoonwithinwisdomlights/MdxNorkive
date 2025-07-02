@@ -38,7 +38,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     {
-      url: `${BLOG.LINK}devproject`,
+      url: `${BLOG.LINK}project`,
       lastModified: new Date().toISOString().split("T")[0],
       changeFrequency: dailyVariable,
       priority: 1,

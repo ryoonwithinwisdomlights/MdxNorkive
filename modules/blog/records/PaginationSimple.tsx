@@ -1,5 +1,5 @@
 "use client";
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { usePathname, useRouter } from "next/navigation";
 
 /**
@@ -10,7 +10,7 @@ import { usePathname, useRouter } from "next/navigation";
  * @constructor
  */
 const PaginationSimple = ({ pagenum, totalPage }) => {
-  const { locale } = useNorkiveTheme();
+  const { locale } = useGeneralSiteSettings();
   const router = useRouter();
   const pathname = usePathname();
   // const param = useSearchParams()

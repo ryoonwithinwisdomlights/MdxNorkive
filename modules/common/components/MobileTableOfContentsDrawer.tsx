@@ -1,14 +1,14 @@
 "use client";
 
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 
 /**
  * Mobile TableOfContents button
  */
 export default function MobileTableOfContentsDrawer() {
   const { showTocButton } = useGlobal({ from: "index" });
-  const { tocVisible, handleTOCVisible, locale } = useNorkiveTheme();
+  const { tocVisible, handleTOCVisible, locale } = useGeneralSiteSettings();
 
   const toggleToc = () => {
     if (tocVisible) {

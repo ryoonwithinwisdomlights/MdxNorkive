@@ -15,7 +15,7 @@ import {
   TwitterShareButton,
 } from "react-share";
 
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { LinkIcon } from "lucide-react";
 // 사전에 사용할 아이콘 추가
 /**
@@ -26,7 +26,7 @@ import { LinkIcon } from "lucide-react";
 const ShareButtons = ({ shareUrl, title, body, image }) => {
   const services = BLOG.archive_share_service.split(",");
   const titleWithSiteInfo = title + " | " + BLOG.TITLE;
-  const { locale } = useNorkiveTheme();
+  const { locale } = useGeneralSiteSettings();
 
   const copyUrl = () => {
     copy(shareUrl);

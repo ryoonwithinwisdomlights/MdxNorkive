@@ -1,7 +1,7 @@
 import { BasicRecordPageProps } from "@/types";
 import NoRecordFound from "./NoRecordFound";
 import LazyImage from "@/modules/shared/LazyImage";
-import DevprojectCardInfo from "./DevprojectCardInfo";
+import ProjectCardInfo from "./ProjectCardInfo";
 import RecordCardInfo from "./RecordCardInfo";
 
 const RecordBodyForPage = ({ type, recordList }: BasicRecordPageProps) => {
@@ -29,7 +29,7 @@ const RecordBodyForPage = ({ type, recordList }: BasicRecordPageProps) => {
                     {/* Text content */}
 
                     {type === "Project" ? (
-                      <DevprojectCardInfo
+                      <ProjectCardInfo
                         record={item}
                         showPageCover={showPageCover}
                         showPreview={true}

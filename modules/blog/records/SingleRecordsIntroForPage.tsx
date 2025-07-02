@@ -1,12 +1,12 @@
 import { BLOG } from "@/blog.config";
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import LazyImage from "@/modules/shared/LazyImage";
 import NotionIcon from "@/modules/shared/NotionIcon";
 import { CalendarIcon, EyeIcon, FolderClockIcon } from "lucide-react";
 import Link from "next/link";
 
 const SingleRecordsIntroForPage = ({ record, siteInfo }) => {
-  const { locale } = useNorkiveTheme();
+  const { locale } = useGeneralSiteSettings();
   return (
     <div className="w-full h-full items-start ">
       {" "}

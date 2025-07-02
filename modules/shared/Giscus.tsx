@@ -1,5 +1,5 @@
 "use client";
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { useEffect, useRef } from "react";
 
 /**
@@ -10,7 +10,7 @@ import { useEffect, useRef } from "react";
  */
 const GiscusComponent = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const { isDarkMode, lang, locale } = useNorkiveTheme();
+  const { isDarkMode, lang, locale } = useGeneralSiteSettings();
   const theme = isDarkMode ? "dark" : "light";
   const giscusLang = lang === "kr-KR" ? "ko" : "en";
   useEffect(() => {
@@ -28,9 +28,9 @@ const GiscusComponent = () => {
       console.log("Giscus not found");
       return;
     } else {
-      console.log(
-        `repo::${repo}, repoId:${repoId}, category: ${category}, categoryId:${categoryId}`
-      );
+      // console.log(
+      //   `repo::${repo}, repoId:${repoId}, category: ${category}, categoryId:${categoryId}`
+      // );
     }
 
     const scriptElem = document.createElement("script");

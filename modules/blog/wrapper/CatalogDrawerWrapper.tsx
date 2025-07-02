@@ -1,5 +1,5 @@
 "use client";
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import Catalog from "@/modules/common/components/Catalog";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -16,7 +16,7 @@ library.add(faTimes);
  * @constructor
  */
 const CatalogDrawerWrapper = ({ record }) => {
-  const { tocVisible, handleTOCVisible, locale } = useNorkiveTheme();
+  const { tocVisible, handleTOCVisible, locale } = useGeneralSiteSettings();
   const router = useRouter();
   const switchVisible = () => {
     handleTOCVisible();

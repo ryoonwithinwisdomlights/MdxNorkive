@@ -2,7 +2,7 @@
 /* eslint-disable multiline-ternary */
 import { BLOG } from "@/blog.config";
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import useWindowSize from "@/lib/hooks/useWindowSize";
 import {
   ArrowLeftIcon,
@@ -43,7 +43,7 @@ export default function RightClickMenu() {
     lang,
     changeOppositeLang,
     locale,
-  } = useNorkiveTheme();
+  } = useGeneralSiteSettings();
 
   const [position, setPosition] = useState({ x: "0px", y: "0px" });
   const [show, setShow] = useState(false);

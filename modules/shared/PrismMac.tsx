@@ -10,13 +10,13 @@ import "prismjs/plugins/toolbar/prism-toolbar.min.css";
 import { useEffect } from "react";
 
 import { BLOG } from "@/blog.config";
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { loadExternalResource } from "@/lib/utils/utils";
 import { useRouter } from "next/navigation";
 
 const PrismMac = (): JSX.Element => {
   const router = useRouter();
-  const { isDarkMode } = useNorkiveTheme();
+  const { isDarkMode } = useGeneralSiteSettings();
 
   useEffect(() => {
     if (BLOG.CODE_MAC_BAR) {

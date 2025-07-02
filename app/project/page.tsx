@@ -9,10 +9,10 @@ export default async function Page() {
     type: "Project",
     dateSort: false,
   });
-  const devProjectList: [] = props.archiveRecords;
+  const projectList: [] = props.archiveRecords;
   return (
     <GeneralRecordTypePageLayout>
-      <BasicRecordPage type="Project" recordList={devProjectList} />
+      <BasicRecordPage type="Project" recordList={projectList} />
       <RightSlidingDrawer props={props} />
     </GeneralRecordTypePageLayout>
   );

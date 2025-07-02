@@ -1,7 +1,6 @@
 export const ENG_LANG = {
   LOCALE: "en-US",
   MENU: {
-    RANDOM_PAGE: "Go to Random Page",
     CATEGORY: "Category",
     TAGS: "Tags",
     COPY_URL: "Copy URL",
@@ -15,14 +14,11 @@ export const ENG_LANG = {
     SEARCH: "Search",
     ABOUT: "About",
     MAIL: "E-Mail",
-    RECORDS: "RECORDS",
-    DEVPROJECT: "Dev Project",
+    RECORDS: "All Archive",
+    PROJECT: "Project",
     ENGINEERING: "Engineering",
   },
-  PAGE: {
-    DEVPROJECT: `<span className="font-semibold ">Archive</span> of
-          <span className="font-semibold "> Dev</span> projects connected by small and big learnings`,
-  },
+
   LOADING: "Loading...",
   COMMON: {
     MORE: "More",
@@ -44,14 +40,14 @@ export const ENG_LANG = {
     VIEWS: "Views",
     COPYRIGHT_NOTICE:
       "All articles in this blog, except for special statements, adopt BY-NC-SA agreement. Please indicate the source!",
-    ARTICLE_DETAIL: "Article Details",
+    ARCHIVE_DETAIL: "Article Details",
     PASSWORD_SUBMIT: "Please enter your password",
     PASSWORD_ERROR: "Password does not match",
-    ARTICLE_LOCK_TIPS: "This is a private post.",
+    ARCHIVE_LOCK_TIPS: "This is a private post.",
     SUBMIT: "Submit",
-    RECORD_TIME: "Post on",
+    RECORD_TIME: "Record on",
     LAST_EDITED_TIME: "Last edited",
-    VIEW: "view",
+    VIEW: "View",
     COMMENTS: "Comments",
     RECENT_COMMENTS: "Recent Comments",
     DEBUG_OPEN: "Debug",
@@ -63,7 +59,7 @@ export const ENG_LANG = {
     LOCKED: "private",
     SEARCH_TERM: "Search term",
     NO_RECORD_FOUND: "No relevant archive records have been created.",
-    ENTER_SEARCH_TERM: "Search term...",
+    ENTER_SEARCH_TERM: "Search archive...",
     INVALID_RECORD: "Invalid Record",
   },
   PAGINATION: {
@@ -72,10 +68,15 @@ export const ENG_LANG = {
   },
   SEARCH: {
     ARTICLES: "Search Articles",
-    TAGS: "Search in",
+    TAGS: "Search in Tags",
+    CATEGORY: "Search in Category",
   },
-  RECORD: {
+  SITE: {
     BACK: "Back",
     TOP: "Top",
+    SETTINGS: "Site Settings",
+    LOCALE: "Language settings",
+    DISPLAY_LIGHT: "Display brightness settings",
+    LANG_CHANGE_SUCCESS_MSG: "The Site Language has been changed",
   },
 };

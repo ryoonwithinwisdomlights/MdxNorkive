@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import NavPostItem from "@/modules/layout/components/navigation-post/NavPostItem";
 import NavPostListEmpty from "@/modules/layout/components/navigation-post/NavPostListEmpty";
 import NoRecordFound from "@/modules/blog/records/NoRecordFound";
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 
 /**
  * Blog list scrolling paging
@@ -14,7 +14,7 @@ import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
  * @constructor
  */
 const NavPostList = (props) => {
-  const { searchKeyword, filteredNavPages } = useNorkiveTheme();
+  const { searchKeyword, filteredNavPages } = useGeneralSiteSettings();
   if (filteredNavPages !== undefined) {
     if (filteredNavPages.length < 0) {
       return <NoRecordFound />;

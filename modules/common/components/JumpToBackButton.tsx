@@ -1,6 +1,6 @@
 "use client";
 
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { MoveLeftIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -17,7 +17,7 @@ import { useEffect, useState } from "react";
  */
 const JumpToBackButton = () => {
   const router = useRouter();
-  const { locale } = useNorkiveTheme();
+  const { locale } = useGeneralSiteSettings();
   const handleBack = () => {
     router.back();
   };
@@ -44,7 +44,7 @@ const JumpToBackButton = () => {
         duration-150 cursor-pointer p-2 rounded-full border-[1px] bg-white dark:bg-neutral-700 text-black  dark:text-white  border-neutral-800   dark:border-white"
       >
         <MoveLeftIcon className="w-4 mr-1" />
-        <span className="text-sm "> {locale.RECORD.BACK} &nbsp;</span>
+        <span className="text-sm "> {locale.SITE.BACK} &nbsp;</span>
       </div>
     </div>
   );

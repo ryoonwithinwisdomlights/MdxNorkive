@@ -1,24 +1,23 @@
 "use client";
-import { useNorkiveTheme } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import NotionPage from "@/modules/shared/NotionPage";
 import { RecordCardInfoProps } from "@/types";
 import { CalendarIcon, LockIcon } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
 import TagItemMini from "../tag/TagItemMini";
-import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 
 /**
  * Portfolio list text content
  * @param {*} param0
  * @returns
  */
-const DevprojectCardInfo = ({
+const ProjectCardInfo = ({
   record,
   showPreview,
   showPageCover,
   showSummary,
 }: RecordCardInfoProps) => {
-  const { locale } = useNorkiveTheme();
+  const { locale } = useGeneralSiteSettings();
   const { handleRouter } = useGlobal({});
 
   return (
@@ -97,4 +96,4 @@ const DevprojectCardInfo = ({
   );
 };
 
-export default DevprojectCardInfo;
+export default ProjectCardInfo;
