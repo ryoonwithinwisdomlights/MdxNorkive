@@ -106,12 +106,12 @@ export const siteConfigInfo = siteConfigObj({
   background_dark: "#000000", // use hex value, don't forget '#'
   sub_path: "", // leave this empty unless you want to deploy in a folder
 
-  archive_share_bar_enable: true, // Record Article sharing function, a sharing bar will be displayed at the bottom
+  archive_share_bar_enable: true, // Record Archive sharing function, a sharing bar will be displayed at the bottom
   archive_share_service:
     process.env.NEXT_PUBLIC_RECORD_SHARE_SERVICES || "email,twitter,link", // Shared services, displayed in order, separated by commas
 
   archive_url_prefix: process.env.NEXT_PUBLIC_archive_url_prefix || "archive",
-  //Example: If you want to change the link to the prefix article + timestamp, you can change it to: 'article/%year%/%month%/%day%'
+  //Example: If you want to change the link to the prefix Archive + timestamp, you can change it to: 'Archive/%year%/%month%/%day%'
 
   archive_list_stye: "page", // ['page','scroll] Article list style: page number paging, single page scrolling loading
   archive_recommend_count: 6, // Number of recommended datas

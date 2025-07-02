@@ -1,34 +1,9 @@
 "use client"; // 클라이언트 컴포넌트
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { MobileMenuItemDrop } from "./MobileMenuItemDrop";
 
 export const MobileMenuBar = (props) => {
   const { customMenu } = useGlobal({ from: "index" });
-  const { locale } = useGeneralSiteSettings();
-  // let links = [
-  //   {
-  //     name: locale.COMMON.CATEGORY,
-  //     to: "/category",
-  //     show: MENU_MOBILE.MENU_CATEGORY,
-  //   },
-  //   { name: locale.COMMON.TAGS, to: "/tag", show: MENU_MOBILE.MENU_TAG },
-  //   { name: locale.NAV.RECORD, to: "/records", show: MENU_MOBILE.MENU_RECORDS },
-  //   {
-  //     name: locale.NAV.PROJECT,
-  //     to: "/PROJECT",
-  //     show: MENU_MOBILE.MENU_PROJECT,
-  //   },
-  //   {
-  //     name: locale.NAV.ENGINEERING,
-  //     to: "/eengineering",
-  //     show: MENU_MOBILE.MENU_ENGINEERING,
-  //   },
-  //   // { name: locale.NAV.SEARCH, to: '/search', show: MENU_MOBILE.MENU_SEARCH }
-  // ];
-
-  //   links = BLOG.CUSTOM_MENU ? customMenu || [] : [];
-  // }
 
   const links = customMenu;
   if (!links || links.length === 0) {

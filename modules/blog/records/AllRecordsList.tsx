@@ -7,9 +7,9 @@ import { useRouter } from "next/navigation";
 import AllRecordsPostCard from "./AllRecordsPostCard";
 import PaginationSimple from "./PaginationSimple";
 /**
- * Article list pagination table
+ * Archive list pagination table
  * @param page current page
- * @param records All articles
+ * @param records All Archives
  * @param tags All tags
  * @returns {JSX.Element}
  * @constructor
@@ -39,7 +39,7 @@ const AllRecordsList = ({
         ← {locale.PAGINATION.PREV}
       </div>
       <div id="records-wrapper">
-        {/* Article list */}
+        {/* Archive list */}
         {records?.map((record: any) => (
           <AllRecordsPostCard key={record.id} record={record} />
         ))}

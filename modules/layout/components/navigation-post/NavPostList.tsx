@@ -1,11 +1,10 @@
 "use client";
-import { MENU_MOBILE } from "@/lib/constants/menu-mobile.constansts";
-import { usePathname } from "next/navigation";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { ARCHIVE_CONFIG } from "@/lib/utils/archive-config";
+import NoRecordFound from "@/modules/blog/records/NoRecordFound";
 import NavPostItem from "@/modules/layout/components/navigation-post/NavPostItem";
 import NavPostListEmpty from "@/modules/layout/components/navigation-post/NavPostListEmpty";
-import NoRecordFound from "@/modules/blog/records/NoRecordFound";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-
+import { usePathname } from "next/navigation";
 /**
  * Blog list scrolling paging
  * @param records All articles
@@ -28,7 +27,7 @@ const NavPostList = (props) => {
 
     let existingGroup: any = null;
     // Turn on automatic group sorting
-    if (JSON.parse(MENU_MOBILE.AUTO_SORT.toString())) {
+    if (JSON.parse(ARCHIVE_CONFIG.AUTO_SORT.toString())) {
       existingGroup = groups.find(
         (group: any) => group.category === categoryName
       ); // Search for the last group with the same name

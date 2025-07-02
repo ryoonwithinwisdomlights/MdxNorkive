@@ -248,7 +248,7 @@ export async function getCategoryAndTagById(
     pageProperty,
     decodedPropertyId
   );
-  // Process article page count
+  // Process Archive page count
   props.recordCount = props.records.length;
   const records_PER_PAGE = BLOG.archive_per_page;
 

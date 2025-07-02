@@ -1,24 +1,5 @@
 export const ENG_LANG = {
   LOCALE: "en-US",
-  MENU: {
-    CATEGORY: "Category",
-    TAGS: "Tags",
-    COPY_URL: "Copy URL",
-    DARK_MODE: "Dark Mode",
-    LIGHT_MODE: "Light Mode",
-    LANG_CHANGE: "Language => Kor",
-  },
-  NAV: {
-    INDEX: "Home",
-    RSS: "RSS",
-    SEARCH: "Search",
-    ABOUT: "About",
-    MAIL: "E-Mail",
-    RECORDS: "All Archive",
-    PROJECT: "Project",
-    ENGINEERING: "Engineering",
-  },
-
   LOADING: "Loading...",
   COMMON: {
     MORE: "More",
@@ -35,12 +16,11 @@ export const ENG_LANG = {
     AUTHOR: "Author",
     URL: "URL",
     RECORDS: "Records",
-    ARTICLE: "Article",
     VISITORS: "Visitors",
     VIEWS: "Views",
     COPYRIGHT_NOTICE:
       "All articles in this blog, except for special statements, adopt BY-NC-SA agreement. Please indicate the source!",
-    ARCHIVE_DETAIL: "Article Details",
+    ARCHIVE_DETAIL: "Archive Details",
     PASSWORD_SUBMIT: "Please enter your password",
     PASSWORD_ERROR: "Password does not match",
     ARCHIVE_LOCK_TIPS: "This is a private post.",

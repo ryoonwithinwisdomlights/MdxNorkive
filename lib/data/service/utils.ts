@@ -159,7 +159,7 @@ export const mapImgUrl: any = (img, block, type = "block", from) => {
     ret = `${ret.trim()}${separator}t=${block.id}`;
   }
 
-  // Article cover
+  // Archive cover
 
   if (from === "pageCoverThumbnail") {
     ret = compressImage({ image: ret });
@@ -257,7 +257,7 @@ export function isEmoji(str) {
 }
 
 /**
- * Handling abnormal data in article lists
+ * Handling abnormal data in Archive lists
  * @param {Array} allPages - All page data
  * @param {Array} tagOptions - Label options
  * @returns {Array} AllPages after processing

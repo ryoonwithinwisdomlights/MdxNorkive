@@ -13,42 +13,8 @@ library.add(faEllipsisVertical, faTimes);
 
 const TopNavBar = () => {
   const { oldNav, customMenu } = useGlobal({ from: "index" });
-  const { locale } = useGeneralSiteSettings();
   const [isOpen, changeShow] = useState(false);
   const collapseRef = useRef<any>(null);
-
-  // const defaultLinks: OldNavItem[] = [
-  //   {
-  //     icon: "fa-solid fa-wand-magic-sparkles",
-  //     name: locale.COMMON.CATEGORY,
-  //     to: "/category",
-  //     show: MENU_MOBILE.MENU_CATEGORY,
-  //   },
-  //   {
-  //     icon: "fas fa-tag",
-  //     name: locale.COMMON.TAGS,
-  //     to: "/tag",
-  //     show: MENU_MOBILE.MENU_TAG,
-  //   },
-  //   {
-  //     icon: "fa-solid fa-folder-closed",
-  //     name: locale.NAV.RECORD,
-  //     to: "/records",
-  //     show: MENU_MOBILE.MENU_RECORDS,
-  //   },
-  //   {
-  //     icon: "fa-solid fa-hand-sparkles",
-  //     name: locale.NAV.PROJECT,
-  //     to: "/project",
-  //     show: MENU_MOBILE.MENU_PROJECT,
-  //   },
-  //   {
-  //     icon: "fa-solid fa-hand-sparkles",
-  //     name: locale.NAV.ENGINEERING,
-  //     to: "/engineering",
-  //     show: MENU_MOBILE.MENU_ENGINEERING,
-  //   },
-  // ];
 
   const links = customMenu;
   const toggleMenuOpen = () => {

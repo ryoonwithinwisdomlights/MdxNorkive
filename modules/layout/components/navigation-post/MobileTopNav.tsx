@@ -4,6 +4,7 @@ import { MobileMenuBar } from "@/modules/common/components/menu/MobileMenuBar";
 import LogoBar from "@/modules/common/ui/LogoBar";
 import Collapse from "@/modules/shared/Collapse";
 import DarkModeButton from "@/modules/shared/DarkModeButton";
+import SettingButton from "@/modules/shared/SettingButton";
 import { AlignRightIcon, MenuIcon } from "lucide-react";
 
 const MobileTopNav = ({ collapseRef, isOpen, toggleMenuOpen }) => {
@@ -28,7 +29,8 @@ const MobileTopNav = ({ collapseRef, isOpen, toggleMenuOpen }) => {
       <div className="md:hidden flex w-full h-14 shadow  px-7 items-between  bg-neutral-50 dark:bg-neutral-800">
         <LogoBar />
         <div className="mr-1 flex justify-end items-center space-x-4 font-serif dark:text-neutral-200">
-          <DarkModeButton className="flex text-md items-center h-full" />
+          {/* <DarkModeButton className="flex text-md items-center h-full" /> */}
+          <SettingButton />
           <div
             onClick={toggleMenuOpen}
             className="cursor-pointer text-lg hover:scale-110 duration-150"

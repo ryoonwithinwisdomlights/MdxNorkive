@@ -3,7 +3,7 @@ export const BLOG = {
   NOTION_DATABASE_ID: process.env.NOTION_DATABASE_ID,
   NOTION_ACTIVE_USER: process.env.NOTION_ACTIVE_USER || "",
   NOTION_ACCESS_TOKEN: process.env.NOTION_TOKEN_V2 || "", // Useful if you prefer not to make your database public
-  PSEUDO_STATIC: process.env.NEXT_PUBLIC_PSEUDO_STATIC || false, //Pseudo-static path, after it is turned on, all article URLs will end with .html.
+  PSEUDO_STATIC: process.env.NEXT_PUBLIC_PSEUDO_STATIC || false, //Pseudo-static path, after it is turned on, all archive URLs will end with .html.
   LANG: process.env.NEXT_PUBLIC_LANG || "kr-KR", // e.g ,'en-US'  see /lib/constants for more.
   APPEARANCE: process.env.NEXT_PUBLIC_APPEARANCE || "light",
   APPEARANCE_DARK_TIME: process.env.NEXT_PUBLIC_APPEARANCE_DARK_TIME || [18, 6], //Night mode start time, false to disable automatic switching of night mode based on time
@@ -35,7 +35,7 @@ export const BLOG = {
   IMAGE_COMPRESS_WIDTH: process.env.NEXT_PUBLIC_IMAGE_COMPRESS_WIDTH || 800, // Default image compression width, applied to blog cover and data content
   IMAGE_ZOOM_IN_WIDTH: process.env.NEXT_PUBLIC_IMAGE_ZOOM_IN_WIDTH || 1200, // The image quality width after clicking on the data image to enlarge it does not represent the actual display width on the web page.
 
-  RANDOM_IMAGE_URL: process.env.NEXT_PUBLIC_RANDOM_IMAGE_URL || "", //Random picture API, if the following keywords are not configured, the homepage cover, avatar, and article cover image will be replaced with random pictures.
+  RANDOM_IMAGE_URL: process.env.NEXT_PUBLIC_RANDOM_IMAGE_URL || "", //Random picture API, if the following keywords are not configured, the homepage cover, avatar, and Archive cover image will be replaced with random pictures.
   RANDOM_IMAGE_REPLACE_TEXT:
     process.env.NEXT_PUBLIC_RANDOM_IMAGE_NOT_REPLACE_TEXT ||
     "images.unsplash.com",
@@ -125,18 +125,18 @@ export const BLOG = {
   BACKGROUND_DARK: "#000000", // use hex value, don't forget '#'
   SUB_PATH: "", // leave this empty unless you want to deploy in a folder
 
-  archive_share_bar_enable: process.env.NEXT_PUBLIC_RECORD_SHARE_BAR || "true", // Record Article sharing function, a sharing bar will be displayed at the bottom
+  archive_share_bar_enable: process.env.NEXT_PUBLIC_RECORD_SHARE_BAR || "true", // Record Archive sharing function, a sharing bar will be displayed at the bottom
   archive_share_service:
     process.env.NEXT_PUBLIC_RECORD_SHARE_SERVICES || "email,twitter,link", // Shared services, displayed in order, separated by commas
   // All supported sharing services: link (copy link), email (mail),facebook,twitter,telegram,messenger,line,reddit,whatsapp,linkedin,instapaper
 
   archive_url_prefix: process.env.NEXT_PUBLIC_archive_url_prefix || "archive",
-  //The default path prefix for RECORD type articles, for example, the default RECORD type path is /records/[slug]
-  // If this item is configured as '' empty, the article will have no prefix path
-  // Supports functions similar to WP's customizable article link format: https://wordpress.org/documentation/article/customize-permalinks/, currently only %year%/%month%/%day% is implemented first
-  //Example: If you want to change the link to the prefix article + timestamp, you can change it to: 'article/%year%/%month%/%day%'
+  //The default path prefix for RECORD type Archives, for example, the default RECORD type path is /records/[slug]
+  // If this item is configured as '' empty, the Archive will have no prefix path
+  // Supports functions similar to WP's customizable Archive link format: https://wordpress.org/documentation/archive/customize-permalinks/, currently only %year%/%month%/%day% is implemented first
+  //Example: If you want to change the link to the prefix Archive + timestamp, you can change it to: 'archive/%year%/%month%/%day%'
 
-  archive_list_stye: "page", // ['page','scroll] Article list style: page number paging, single page scrolling loading
+  archive_list_stye: "page", // ['page','scroll] Archive list style: page number paging, single page scrolling loading
   archive_recommend_count: 6, // Number of recommended datas
   archive_per_page: 12, // record counts per page
   archive_sort_by: process.env.NEXT_PUBLIC_RECORD_SORT_BY || "notion", //Sorting method 'date' is by time, 'notion' is controlled by notification

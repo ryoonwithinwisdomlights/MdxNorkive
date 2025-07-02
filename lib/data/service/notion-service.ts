@@ -415,7 +415,7 @@ export function setAllRecordsWithSort(arr, counterObj, type, dateSort) {
 }
 
 /**
- * Get the list of recommended articles associated with the article, currently filtered based on tag relevance
+ * Get the list of recommended Archives associated with the Archive, currently filtered based on tag relevance
  * @param post
  * @param {*} allrecords
  * @param {*} count

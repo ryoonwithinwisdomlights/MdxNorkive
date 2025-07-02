@@ -1,5 +1,5 @@
-import { MENU_MOBILE } from "@/lib/constants/menu-mobile.constansts";
 import { isAbleRecordPage } from "@/lib/data/service/notion-service";
+import { ARCHIVE_CONFIG } from "@/lib/utils/archive-config";
 import ArchiveAround from "@/modules/common/components/article/ArchiveAround";
 import CategoryItem from "@/modules/common/components/catalog/CategoryItem";
 import Comment from "@/modules/shared/Comment";
@@ -7,7 +7,6 @@ import NotionPage from "@/modules/shared/NotionPage";
 import ShareBar from "@/modules/shared/ShareBar";
 import TagItemMini from "../tag/TagItemMini";
 import CatalogDrawerWrapper from "../wrapper/CatalogDrawerWrapper";
-
 const SingleRecordsBodyForPage = ({ props, prev, next }) => {
   const { record } = props;
   return (
@@ -17,13 +16,13 @@ const SingleRecordsBodyForPage = ({ props, prev, next }) => {
 
         {/* share */}
         <ShareBar record={record} />
-        {/* Article classification and tag information */}
+        {/* Archive classification and tag information */}
         <div className="mt-6 flex justify-between">
-          {MENU_MOBILE.RECORD_DETAIL_CATEGORY && record?.category && (
+          {ARCHIVE_CONFIG.RECORD_DETAIL_CATEGORY && record?.category && (
             <CategoryItem category={record.category} />
           )}
           <div>
-            {MENU_MOBILE.RECORD_DETAIL_TAG &&
+            {ARCHIVE_CONFIG.RECORD_DETAIL_TAG &&
               record?.tagItems?.map((tag) => (
                 <TagItemMini key={tag.name} tag={tag} />
               ))}
