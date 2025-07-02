@@ -6,23 +6,14 @@ import debounce from "lodash.debounce";
 import { Search, XIcon } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import SearchResultSkeleton from "../ui/skeleton/search-result-skeleton";
+import Link from "next/link";
 
 export default function HeaderSearch() {
+  // 검색 키워드 상태
+  const { locale, allNavPagesForLeftSideBar } = useNorkiveTheme();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<{ title: string; url: string }[]>([]);
   const [loading, setLoading] = useState(false);
-
-  // 검색 키워드 상태
-  const { locale, allNavPagesForLeftSideBar } = useNorkiveTheme();
-
-  const dummyData = [
-    { title: "Introduction", url: "/docs/introduction" },
-    { title: "Getting Started", url: "/docs/getting-started" },
-    { title: "API Reference", url: "/docs/api-reference" },
-    { title: "Deployment", url: "/docs/deployment" },
-    { title: "Customization", url: "/docs/customization" },
-    { title: "yes", url: "/engineering" },
-  ];
 
   const groupedArray = allNavPagesForLeftSideBar?.map((item: any) => {
     return {
@@ -32,11 +23,7 @@ export default function HeaderSearch() {
       url: item.slug,
     };
   });
-  console.log("groupedArray:", groupedArray);
-  //   const groupedArray = allNavPagesForLeftSideBar.map((item) => {
-  //     console.log("item::", item);
-  //     // 카테고리아이템은 뱃지처럼 나오게, 타이틀, id.,slug 이렇게.
-  //   });
+
   /**
    * 
    * 
@@ -112,7 +99,6 @@ export default function HeaderSearch() {
             focus:ring-2 focus:ring-neutral-400
             transition
             hover:bg-neutral-200
-
             dark:bg-neutral-700 dark:text-neutral-100
             dark:placeholder-neutral-500
             dark:focus:ring-neutral-600
@@ -139,14 +125,14 @@ export default function HeaderSearch() {
           <ul className="divide-y divide-neutral-200 dark:divide-neutral-700 overflow-y-auto max-h-56">
             {results.map((item, idx) => (
               <li key={idx}>
-                <a
+                <Link
                   href={item.url}
                   className="block px-3 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition"
                 >
                   {item.title.length > 30
                     ? item.title.substring(0, 30) + "..."
                     : item.title}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

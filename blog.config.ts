@@ -23,11 +23,11 @@ export const BLOG = {
     process.env.NEXT_PUBLIC_KEYWORD ||
     "Norkive, Gitbook Themed-Static Website, with Notion API", // Website keywords separated by English commas
 
-  CONTACT_EMAIL: process.env.NEXT_PUBLIC_CONTACT_EMAIL || " ",
-  CONTACT_TWITTER: process.env.NEXT_PUBLIC_CONTACT_TWITTER || " ",
-  CONTACT_GITHUB: process.env.NEXT_PUBLIC_CONTACT_GITHUB || " ",
-  CONTACT_INSTAGRAM: process.env.NEXT_PUBLIC_CONTACT_INSTAGRAM || " ",
-  CONTACT_LINKEDIN: process.env.NEXT_PUBLIC_CONTACT_LINKEDIN || " ",
+  CONTACT_EMAIL: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "",
+  CONTACT_TWITTER: process.env.NEXT_PUBLIC_CONTACT_TWITTER || "",
+  CONTACT_GITHUB: process.env.NEXT_PUBLIC_CONTACT_GITHUB || "",
+  CONTACT_INSTAGRAM: process.env.NEXT_PUBLIC_CONTACT_INSTAGRAM || "",
+  CONTACT_LINKEDIN: process.env.NEXT_PUBLIC_CONTACT_LINKEDIN || "",
 
   NOTION_HOST: process.env.NEXT_PUBLIC_NOTION_HOST || "https://www.notion.so", // Notion domain name, you can choose to use your own domain name for reverse proxy. If you do not know what a reverse proxy is, please do not modify this item.
 

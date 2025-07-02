@@ -71,7 +71,7 @@ const Comment = ({ frontMatter }) => {
       key={frontMatter?.id}
       id="comment"
       ref={commentRef}
-      className={`comment mt-5 text-neutral-800 dark:text-neutral-300 
+      className={`comment mt-5 text-neutral-800 dark:text-neutral-300 w-full
       }`}
     >
       {/* Lazy loading of comment area */}

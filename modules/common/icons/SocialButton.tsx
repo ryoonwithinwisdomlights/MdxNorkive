@@ -32,7 +32,7 @@ import { TwitterShareButton } from "react-share";
 const SocialButton = () => {
   return (
     <div className="space-x-3 text-xl text-neutral-600 dark:text-neutral-400 flex-wrap flex justify-center ">
-      {(BLOG.CONTACT_TWITTER as string) && (
+      {(BLOG.CONTACT_TWITTER as string).length > 0 && (
         <a
           target="_blank"
           rel="noreferrer"
@@ -42,7 +42,7 @@ const SocialButton = () => {
           <TwitterIcon className="transform hover:scale-125 duration-150 hover:text-neutral-400" />
         </a>
       )}
-      {(BLOG.CONTACT_LINKEDIN as string) && (
+      {(BLOG.CONTACT_LINKEDIN as string).length > 0 && (
         <a
           target="_blank"
           rel="noreferrer"
@@ -52,7 +52,7 @@ const SocialButton = () => {
           <LinkedinIcon className="transform hover:scale-125 duration-150 hover:text-neutral-400" />
         </a>
       )}
-      {(BLOG.CONTACT_INSTAGRAM as string) && (
+      {(BLOG.CONTACT_INSTAGRAM as string).length > 0 && (
         <a
           target="_blank"
           rel="noreferrer"
@@ -62,7 +62,7 @@ const SocialButton = () => {
           <InstagramIcon className="transform hover:scale-125 duration-150 hover:text-neutral-400" />
         </a>
       )}
-      {(BLOG.CONTACT_EMAIL as string) && (
+      {(BLOG.CONTACT_EMAIL as string).length > 0 && (
         <a
           target="_blank"
           rel="noreferrer"
@@ -72,7 +72,7 @@ const SocialButton = () => {
           <MailPlusIcon className="transform hover:scale-125 duration-150 hover:text-neutral-400" />
         </a>
       )}
-      {(BLOG.CONTACT_GITHUB as string) && (
+      {(BLOG.CONTACT_GITHUB as string).length > 0 && (
         <a
           target="_blank"
           rel="noreferrer"

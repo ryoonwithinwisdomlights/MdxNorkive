@@ -6,11 +6,9 @@ import DarkModeButton from "@/modules/shared/DarkModeButton";
 import React, { useRef } from "react";
 
 const PCTopNav = ({ links }) => {
-  const cRef = useRef<HTMLInputElement>(null);
   return (
     <div className="hidden md:flex w-full h-16 shadow bg-white dark:bg-neutral-800 px-7 items-between">
       <LogoBar />
-      {/* <SearchInput cRef={cRef} /> */}
       <HeaderSearch />
       <div
         id="top-nav-pc"

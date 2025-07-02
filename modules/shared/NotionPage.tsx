@@ -132,7 +132,7 @@ const NotionPage = ({ record }) => {
 const Code = dynamic(() =>
   import("react-notion-x/build/third-party/code").then(async (m) => {
     // additional prism syntaxes
-    await Promise.all([
+    await Promise.allSettled([
       import("prismjs/components/prism-markup-templating.js"),
       import("prismjs/components/prism-markup.js"),
       import("prismjs/components/prism-bash.js"),
@@ -180,15 +180,6 @@ const Collection = dynamic(
   }
 );
 
-// const Equation = dynamic(
-//   () =>
-//     import("@/modules/shared/Equation").then(async (m) => {
-//       // chemical equation
-//       await import("@/lib/plugins/mhchem");
-//       return m.Equation;
-//     }),
-//   { ssr: false }
-// );
 const Equation = dynamic(() =>
   import("react-notion-x/build/third-party/equation").then((m) => m.Equation)
 );

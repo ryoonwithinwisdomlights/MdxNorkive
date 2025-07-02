@@ -6,7 +6,7 @@ import { LoaderIcon } from "lucide-react";
 const Loading = () => {
   const { locale } = useNorkiveTheme();
   return (
-    <div className="  w-full h-screen flex flex-col justify-center items-center">
+    <div className=" w-screen h-screen flex flex-col justify-center items-center">
       <div
         id="cover-loading"
         className="z-50 opacity-50pointer-events-none transition-all 
