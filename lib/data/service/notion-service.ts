@@ -275,11 +275,6 @@ export function getPageArrayWithOutMenu({
 }) {
   const copy = arr.slice();
   const newArr = copy.filter((page) => {
-    // const isExcluded = EXCLUDED_PAGE_TYPES.includes(page.type);
-    // const isPublished = page.status === "Published";
-    // const isTypeMatch = type ? page.type === type : true;
-
-    // return !isExcluded && isPublished && isTypeMatch;
     return getPageWithOutMenu(page, type);
   });
   return newArr;

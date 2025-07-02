@@ -301,14 +301,12 @@ export function generateCustomizeUrlWithType({
   let res;
 
   if (type === "Record") {
-    res = `${BLOG.RECORD_URL_PREFIX.toLowerCase()}/${
-      recordProperties.slug ?? recordProperties.id
-    }`;
+    res = `${BLOG.RECORD_URL_PREFIX.toLowerCase()}/${recordProperties.id}`;
   } else if (type == "Project" || "Engineering") {
-    res = `${type.toLowerCase()}/${recordProperties.slug ?? recordProperties.id}`;
+    res = `${type.toLowerCase()}/${recordProperties.id}`;
   } else {
     res = `${fullPrefix.toLowerCase()}/${type.toLowerCase()}/${
-      recordProperties.slug ?? recordProperties.id
+      recordProperties.id
     }`;
   }
 
