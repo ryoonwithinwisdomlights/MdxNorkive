@@ -8,7 +8,7 @@ const BlogIntro = ({ archiveRecords }) => {
   const isAble = isObjectNotEmpty(archiveRecords);
   return (
     <div
-      className=" dark:bg-black dark:text-neutral-300 pb-20 items-center  px-10 py-10 
+      className=" dark:bg-black dark:text-neutral-300 pb-40  items-center  px-10 py-10 
     md:w-[60%] flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain "
     >
       <div className="flex flex-col w-full items-center pt-4  ">
