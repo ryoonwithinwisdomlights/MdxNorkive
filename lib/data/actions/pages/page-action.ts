@@ -250,17 +250,17 @@ export async function getCategoryAndTagById(
   );
   // Process Archive page count
   props.recordCount = props.records.length;
-  const records_PER_PAGE = BLOG.RECORD_PER_PAGE;
+  const RECORDS_PER_PAGE = BLOG.RECORD_PER_PAGE;
 
   // Handle pagination
 
   props.records =
     pagenum !== undefined
       ? props.records.slice(
-          records_PER_PAGE * (pagenum - 1),
-          records_PER_PAGE * pagenum
+          RECORDS_PER_PAGE * (pagenum - 1),
+          RECORDS_PER_PAGE * pagenum
         )
-      : props.records?.slice(0, records_PER_PAGE);
+      : props.records?.slice(0, RECORDS_PER_PAGE);
 
   delete props.allPages;
 

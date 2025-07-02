@@ -44,7 +44,7 @@ export default async function initGlobalNotionData(from: string = "main") {
     from: from,
   });
 
-  props.allArchive = props.records?.slice(0, BLOG.RECORD_PER_PAGE);
+  // props.allArchive = props.records?.slice(0, BLOG.RECORD_PER_PAGE);
   return props;
 }
 
@@ -57,11 +57,8 @@ export async function getGlobalData({
   const db = await getAllRecordDataWithCache({ pageId, from, type });
   const props = applyDataBaseProcessing(db);
   const allPages = getPageArrayWithOutMenu({ arr: props.allPages, type: type });
-  // console.log("props.allPagesallPages:", props.allPages);
-  // console.log("allPagesallPages:", allPages);
-  // props.records = allPages;
-  props.records = allPages?.slice(0, BLOG.RECORD_PER_PAGE);
-  props.allArchiveRecords = props.allPages?.slice(0, BLOG.RECORD_PER_PAGE);
+  props.records = allPages;
+  props.allArchiveRecords = props.allPages;
   return props;
 }
 

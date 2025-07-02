@@ -23,6 +23,9 @@ const AllRecordsList = ({
   const totalPage = Math.ceil(recordCount / BLOG.RECORD_PER_PAGE);
   const { locale, searchKeyword } = useGeneralSiteSettings();
   const currentPage = +pagenum;
+
+  console.log("totalPage::", totalPage);
+  console.log("currentPage::", currentPage);
   const showNext = currentPage < totalPage;
   if (!records || records.length === 0) {
     return <NavPostListEmpty searchKeyword={searchKeyword} />;
