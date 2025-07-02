@@ -8,6 +8,7 @@ const ArchiveIntro = ({ archiveRecords }) => {
   const isAble = isObjectNotEmpty(archiveRecords);
   return (
     <div
+      id="main-scroll-container"
       className=" dark:bg-black dark:text-neutral-300 pb-40  items-center  px-10 py-10 
     md:w-[60%] flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain "
     >

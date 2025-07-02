@@ -59,6 +59,7 @@ const SingleRecords = ({ props }) => {
 
   return (
     <div
+      id="main-scroll-container"
       className="dark:bg-black dark:text-neutral-300 pb-20 md:px-20 px-10 py-3 
     md:w-[60%] flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain "
     >
