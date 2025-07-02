@@ -18,23 +18,23 @@ import "./../styles/prism-theme.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "katex/dist/katex.min.css";
 
-import MobileLeftNavDrawer from "@/modules/layout/components/navigation-post/MobileLeftNavDrawer";
+import MobileLeftNavDrawer from "@/modules/layout/components/MobileLeftNavDrawer";
 
 import initGlobalNotionData from "@/lib/data/actions/notion/getNotionData";
-import BottomMenuBar from "@/modules/common/components/menu/BottomMenuBar";
-import LoadingCover from "@/modules/common/icons/LoadingCover";
-import TopNavBar from "@/modules/layout/components/navigation-post/TopNavBar";
+import BottomMenuBar from "@/modules/layout/components/menu/BottomMenuBar";
+import LoadingCover from "@/modules/common/ui/LoadingCover";
+import TopNavBar from "@/modules/layout/components/TopNavBar";
 import { config } from "@fortawesome/fontawesome-svg-core";
 
 import { EssentialNavInfoProvider } from "@/lib/context/EssentialNavInfoProvider";
 import { GeneralSiteSettingsProvider } from "@/lib/context/GeneralSiteSettingsProvider";
-import AuxiliaryBlogComponent from "@/modules/layout/components/AuxiliaryBlogComponent";
+import AuxiliaryBlogComponent from "@/modules/layout/components/AuxiliaryComponent";
 
 import { PageObserver } from "@/lib/context/PageObserver";
 import JumpToTopButton from "@/modules/common/components/JumpToTopButton";
 import { ChildrenProp } from "@/types";
-import MainLayoutWrapper from "./MainLayoutWrapper";
-import LeftNavigationBar from "@/modules/layout/templates/LeftNavigationBar";
+import MainLayoutWrapper from "../modules/layout/templates/MainLayoutWrapper";
+import LeftNavigationBar from "@/modules/layout/components/LeftNavigationBar";
 import { ModalProvider } from "@/lib/context/ModalProvider";
 
 config.autoAddCss = false;

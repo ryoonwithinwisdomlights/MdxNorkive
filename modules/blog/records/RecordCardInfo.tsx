@@ -1,6 +1,6 @@
 "use client";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import NotionPage from "@/modules/shared/NotionPage";
+import NotionPage from "@/modules/common/components/shared/NotionPage";
 import { RecordCardInfoProps } from "@/types";
 import { CalendarIcon, FolderClosedIcon, LockIcon } from "lucide-react";
 import Link from "next/link";

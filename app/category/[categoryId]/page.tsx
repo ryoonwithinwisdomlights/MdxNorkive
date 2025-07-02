@@ -1,7 +1,7 @@
 import { getCategoryAndTagById } from "@/lib/data/actions/pages/page-action";
 import AllRecordsList from "@/modules/blog/records/AllRecordsList";
-import NoRecordTypeLayout from "@/modules/layout/templates/NoRecordTypeLayout";
-import ErrorComponent from "@/modules/shared/ErrorComponent";
+import NoRecordTypePageWrapper from "@/modules/layout/templates/NoRecordTypePageWrapper";
+import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
 import { TotalPageParams } from "@/types";
 
 export async function generateStaticParams() {
@@ -29,12 +29,12 @@ export default async function Page({ params, searchParams }: TotalPageParams) {
   );
   console.log("result.recordCount:", result.recordCount);
   return (
-    <NoRecordTypeLayout>
+    <NoRecordTypePageWrapper>
       <AllRecordsList
         pagenum={pagenum !== undefined ? pagenum : 1}
         recordCount={result.recordCount}
         records={result.records}
       />
-    </NoRecordTypeLayout>
+    </NoRecordTypePageWrapper>
   );
 }

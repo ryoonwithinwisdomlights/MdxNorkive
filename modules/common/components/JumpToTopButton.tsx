@@ -22,9 +22,9 @@ const JumpToTopButton = () => {
     >
       <ChevronUpIcon
         onClick={() => {
-          if (typeof window !== "undefined") {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }
+          console.log("typeof window::", typeof window);
+
+          window.scrollTo({ top: 0, behavior: "smooth" });
         }}
         className="shadow  hover:scale-110 duration-150 cursor-pointer p-2 w-8 h-8 text-sm'
          rounded-full border text-white  bg-neutral-700 dark:border-white"

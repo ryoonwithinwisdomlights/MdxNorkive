@@ -5,7 +5,7 @@ import Fuse from "fuse.js";
 import debounce from "lodash.debounce";
 import { Search, XIcon } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import SearchResultSkeleton from "../ui/skeleton/search-result-skeleton";
+import SearchResultSkeleton from "../ui/search-result-skeleton";
 import Link from "next/link";
 
 export default function HeaderSearch() {
@@ -105,7 +105,7 @@ export default function HeaderSearch() {
             dark:hover:bg-neutral-700
           "
         />
-        {(results.length > 0 || query.trim().length > 0) && (
+        {results.length > 0 || query.trim().length > 0 ? (
           <button
             onClick={() => {
               cleanSearch();
@@ -114,6 +114,10 @@ export default function HeaderSearch() {
           >
             <XIcon size={16} className="h-4 w-4 text-neutral-600" />
           </button>
+        ) : (
+          <kbd className="ml-auto absolute right-3 pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+            <span className="text-xs">⌘</span>K
+          </kbd>
         )}
       </div>
 

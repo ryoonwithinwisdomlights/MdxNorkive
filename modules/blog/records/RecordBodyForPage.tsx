@@ -1,6 +1,6 @@
 import { BasicRecordPageProps } from "@/types";
 import NoRecordFound from "./NoRecordFound";
-import LazyImage from "@/modules/shared/LazyImage";
+import LazyImage from "@/modules/common/components/shared/LazyImage";
 import ProjectCardInfo from "./ProjectCardInfo";
 import RecordCardInfo from "./RecordCardInfo";
 

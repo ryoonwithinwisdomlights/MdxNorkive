@@ -1,8 +1,7 @@
 "use client";
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { CardProps } from "@/types";
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const AllRecordsPostCard = ({ record }: CardProps) => {
   const pathname = usePathname();

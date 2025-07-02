@@ -1,6 +1,6 @@
 "use client";
 
-import ErrorComponent from "@/modules/shared/ErrorComponent";
+import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
 
 const error = () => {
   return <ErrorComponent />;

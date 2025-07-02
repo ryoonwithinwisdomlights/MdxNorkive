@@ -1,16 +1,16 @@
 import { BLOG } from "@/blog.config";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import LazyImage from "@/modules/shared/LazyImage";
-import NotionIcon from "@/modules/shared/NotionIcon";
+import LazyImage from "@/modules/common/components/shared/LazyImage";
+import NotionIcon from "@/modules/common/components/shared/NotionIcon";
+import { Skeleton } from "@/modules/common/ui/Skeleton";
 import { CalendarIcon, EyeIcon, FolderClockIcon } from "lucide-react";
 import Link from "next/link";
 
 const SingleRecordsIntroForPage = ({ record, siteInfo }) => {
   const { locale } = useGeneralSiteSettings();
   return (
-    <div className="w-full h-full items-start ">
-      {" "}
-      <h1 className="text-3xl pt-12  dark:text-neutral-100">
+    <div className="w-full h-full items-start mt-12">
+      <h1 className="text-3xl   dark:text-neutral-100 ">
         <NotionIcon icon={record?.pageIcon} />
         {record?.title}
       </h1>
@@ -55,4 +55,8 @@ const SingleRecordsIntroForPage = ({ record, siteInfo }) => {
   );
 };
 
+const SingleRecordsIntroForPageSkeleton = () => {
+  return <Skeleton className="h-9 w-full rounded-md" />;
+};
 export default SingleRecordsIntroForPage;
+SingleRecordsIntroForPage.Skeleton = SingleRecordsIntroForPageSkeleton;

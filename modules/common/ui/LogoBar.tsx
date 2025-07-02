@@ -2,7 +2,7 @@
 import { BLOG } from "@/blog.config";
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import LazyImage from "@/modules/shared/LazyImage";
+import LazyImage from "@/modules/common/components/shared/LazyImage";
 import Link from "next/link";
 
 /**

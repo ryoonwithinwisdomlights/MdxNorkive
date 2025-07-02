@@ -1,7 +1,7 @@
 "use client";
 import { BLOG } from "@/blog.config";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import NavPostListEmpty from "@/modules/layout/components/navigation-post/NavPostListEmpty";
+import NavPostListEmpty from "@/modules/layout/components/NavPostListEmpty";
 import { AllRecordsListProps } from "@/types";
 import { useRouter } from "next/navigation";
 import AllRecordsPostCard from "./AllRecordsPostCard";

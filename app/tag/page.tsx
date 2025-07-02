@@ -1,10 +1,10 @@
 import TagList from "@/modules/blog/tag/TagList";
-import NoRecordTypeLayout from "@/modules/layout/templates/NoRecordTypeLayout";
+import NoRecordTypePageWrapper from "@/modules/layout/templates/NoRecordTypePageWrapper";
 
 export default async function Page() {
   return (
-    <NoRecordTypeLayout>
+    <NoRecordTypePageWrapper>
       <TagList />
-    </NoRecordTypeLayout>
+    </NoRecordTypePageWrapper>
   );
 }

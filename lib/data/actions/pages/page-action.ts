@@ -58,6 +58,7 @@ export async function getPageDataByTypeAndId({
     return null;
   }
   const record = getRecord(props.allRecords, pageId);
+  // const siteInfo = props.siteInfo
   const isAble = isObjectNotEmpty(record);
   if (!isAble) {
     return null;

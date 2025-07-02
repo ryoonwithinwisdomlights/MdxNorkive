@@ -1,5 +1,5 @@
 "use client";
-import { ArchiveLock } from "@/modules/common/components/article/ArchiveLock";
+import { ArchiveLock } from "@/modules/blog/records/ArchiveLock";
 import md5 from "js-md5";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -68,9 +68,8 @@ const SingleRecords = ({ props }) => {
           {/* Notion기사 서문 */}
           <SingleRecordsIntroForPage record={record} siteInfo={siteInfo} />
           {/* Notion기사 본문 */}
-          {record && (
-            <SingleRecordsBodyForPage props={props} prev={prev} next={next} />
-          )}
+
+          <SingleRecordsBodyForPage props={props} prev={prev} next={next} />
         </div>
       )}
     </div>

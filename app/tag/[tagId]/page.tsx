@@ -1,11 +1,11 @@
 import AllRecordsList from "@/modules/blog/records/AllRecordsList";
 import { TotalPageParams } from "@/types";
 
-import ErrorComponent from "@/modules/shared/ErrorComponent";
+import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
 import { getCategoryAndTagById } from "@/lib/data/actions/pages/page-action";
-import GeneralRecordTypePageLayout from "@/modules/layout/templates/GeneralRecordTypePageLayout";
-import RightSlidingDrawer from "@/modules/layout/templates/RightSlidingDrawer";
-import NoRecordTypeLayout from "@/modules/layout/templates/NoRecordTypeLayout";
+import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
+import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
+import NoRecordTypePageWrapper from "@/modules/layout/templates/NoRecordTypePageWrapper";
 export async function generateStaticParams() {
   const records = [{ tagId: "기술로그" }, { tagId: "another-Tags" }];
   return records.map((record) => ({
@@ -22,12 +22,12 @@ export default async function Page({ params, searchParams }: TotalPageParams) {
   }
   const props = await getCategoryAndTagById(decodedTagId, "tags", pagenum);
   return (
-    <NoRecordTypeLayout>
+    <NoRecordTypePageWrapper>
       <AllRecordsList
         pagenum={pagenum !== undefined ? pagenum : 1}
         recordCount={props.recordCount}
         records={props.records}
       />
-    </NoRecordTypeLayout>
+    </NoRecordTypePageWrapper>
   );
 }

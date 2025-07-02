@@ -1,10 +1,10 @@
 import CategoryList from "@/modules/blog/category/CategoryList";
-import NoRecordTypeLayout from "@/modules/layout/templates/NoRecordTypeLayout";
+import NoRecordTypePageWrapper from "@/modules/layout/templates/NoRecordTypePageWrapper";
 
 export default async function Page() {
   return (
-    <NoRecordTypeLayout>
+    <NoRecordTypePageWrapper>
       <CategoryList />
-    </NoRecordTypeLayout>
+    </NoRecordTypePageWrapper>
   );
 }

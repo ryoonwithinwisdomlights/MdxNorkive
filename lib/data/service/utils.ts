@@ -5,7 +5,7 @@ import { isNotMenuPage } from "./notion-service";
 
 export function setPageTableOfContentsByRecord(props) {
   const isAblePage = isNotMenuPage(props?.record);
-  console.log();
+
   if (props?.record?.blockMap?.block && !isAblePage) {
     props.record.content = Object.keys(props?.record.blockMap.block).filter(
       (key) =>

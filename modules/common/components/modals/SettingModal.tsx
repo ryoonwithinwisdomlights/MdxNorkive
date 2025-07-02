@@ -7,8 +7,8 @@ import {
   DialogHeader,
 } from "@/modules/common/ui/dialog";
 import { Label } from "@/modules/common/ui/label";
-import SwitchLanguage from "@/modules/shared/SwitchLanguage";
-import ToggleDarkModeButton from "@/modules/shared/ToggleDarkModeButton";
+import SwitchLanguage from "@/modules/common/components/SwitchLanguage";
+import ToggleDarkModeButton from "@/modules/common/components/ToggleDarkModeButton";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 

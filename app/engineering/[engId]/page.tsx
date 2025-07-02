@@ -6,9 +6,9 @@ import {
 } from "@/lib/data/actions/pages/page-action";
 
 import SingleRecords from "@/modules/blog/records/SingleRecords";
-import GeneralRecordTypePageLayout from "@/modules/layout/templates/GeneralRecordTypePageLayout";
-import RightSlidingDrawer from "@/modules/layout/templates/RightSlidingDrawer";
-import ErrorComponent from "@/modules/shared/ErrorComponent";
+import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
+import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
+import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
 import { Metadata } from "next";
 
 export async function generateStaticParams() {
@@ -53,9 +53,9 @@ export default async function Page({ params }) {
   }
 
   return (
-    <GeneralRecordTypePageLayout>
+    <GeneralRecordTypePageWrapper>
       <SingleRecords props={result} />
       <RightSlidingDrawer props={result} />
-    </GeneralRecordTypePageLayout>
+    </GeneralRecordTypePageWrapper>
   );
 }

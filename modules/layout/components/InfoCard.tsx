@@ -1,8 +1,8 @@
 "use client";
 /* eslint-disable no-unused-vars */
 import { BLOG } from "@/blog.config";
-import SocialButton from "@/modules/common/icons/SocialButton";
-import LazyImage from "@/modules/shared/LazyImage";
+import SocialButton from "@/modules/common/ui/SocialButton";
+import LazyImage from "@/modules/common/components/shared/LazyImage";
 import { useRouter } from "next/navigation";
 
 const InfoCard = () => {

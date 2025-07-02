@@ -153,6 +153,7 @@ export async function getOneRecordPageData({
   const collectionView = allRecordsPageMap.collection_view;
   const viewIds = rawMetadata?.view_ids;
   const schema: CollectionPropertySchemaMap = collection?.schema;
+  const siteInfo = getSiteInfo({ collection, block });
   const allpageIds = getAllPageIds(
     collectionQuery,
     collectionId,
@@ -204,6 +205,7 @@ export async function getOneRecordPageData({
 
   return {
     allRecords,
+    siteInfo,
   };
 }
 
