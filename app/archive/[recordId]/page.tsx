@@ -1,14 +1,15 @@
 "use server";
 
 import { BLOG } from "@/blog.config";
+import { getOneRecordPageData } from "@/lib/data/interface";
 import {
   getPageDataByTypeAndId,
   getRecordPageDataById,
-} from "@/lib/data/actions/pages/page-action";
+} from "@/lib/data/service";
 import SingleRecords from "@/modules/blog/records/SingleRecords";
-import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
-import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
 import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
+import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
+import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
 import { Metadata } from "next";
 
 //
@@ -49,7 +50,7 @@ export default async function Page({
     from: "archive",
     type: "Record",
   });
-  if (!result?.record) {
+  if (!result) {
     return <div>Invalid record ID</div>;
   }
 

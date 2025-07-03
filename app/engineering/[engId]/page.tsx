@@ -3,7 +3,7 @@ import {
   setPrevNextRecommendInRecordPage,
   getRecordPageDataById,
   getPageDataByTypeAndId,
-} from "@/lib/data/actions/pages/page-action";
+} from "@/lib/data/service";
 
 import SingleRecords from "@/modules/blog/records/SingleRecords";
 import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
@@ -48,7 +48,7 @@ export default async function Page({ params }) {
     type: "Engineering",
   });
 
-  if (!result?.record) {
+  if (!result) {
     return <div>Invalid record ID</div>;
   }
 

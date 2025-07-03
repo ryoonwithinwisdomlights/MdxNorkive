@@ -1,4 +1,4 @@
-import { getRecordPageListDataByType } from "@/lib/data/actions/pages/page-action";
+import { getRecordPageListDataByType } from "@/lib/data/service";
 import BasicRecordPage from "@/modules/blog/records/BasicRecordPage";
 import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
 import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";

@@ -4,3 +4,4 @@ export * from "./utils.model";
 export * from "./provider.model";
 export * from "./layout.model";
 export * from "./record.model";
+export * from "./block.model";

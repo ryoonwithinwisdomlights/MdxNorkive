@@ -1,40 +1,31 @@
 /* eslint-disable no-unused-vars */
 import { BLOG } from "@/blog.config";
-import { NorkiveRecordData, PageBlockDataProps } from "@/types";
-
-import { Collection, CollectionPropertySchemaMap } from "notion-types";
-import { idToUuid } from "notion-utils";
 import {
-  setAllRecordsWithSort,
+  NorkiveRecordData,
+  PageBlockDataProps,
+  RecordPagingData,
+} from "@/types";
+
+import { getRecordBlockMapWithRetry, getPageProperties } from "@/lib/data/data";
+import {
   generateEmptyGloabalData,
+  generateEmptyRecordData,
   getAllCategoriesOrTags,
   getAllPageIds,
+  getAllRecords,
   getCategoryOptions,
   getCustomMenu,
-  getPageArrayWithOutMenu,
   getLatestRecords,
   getOldNav,
+  getPageArrayWithOutMenu,
   getRecordListForLeftSideBar,
   getSiteInfo,
   getTagOptions,
-  isDatabase,
-  isNotMenuPage,
-  getRecord,
-} from "@/lib/data/service/notion-service";
-import {
-  filterPostBlocks,
-  getPageWithRetry,
-  getRecordBlockMap,
-} from "@/lib/data/service/getPostBlocks";
-import {
-  applyDataBaseProcessing,
-  setPageTableOfContentsByRecord,
-} from "@/lib/data/service/utils";
-import { getPageProperties } from "@/lib/data/service/getPageProperties";
-
-import { getDataFromCache, setDataToCache } from "@/lib/cache/cache_manager";
-import { getDataForRightSlidingDrawer } from "../pages/page-action";
-import { isObjectNotEmpty } from "@/lib/utils/utils";
+  setAllRecordsWithSort,
+} from "@/lib/data/function";
+import { setDataBaseProcessing, isDatabase } from "@/lib/data/utils";
+import { Collection, CollectionPropertySchemaMap } from "notion-types";
+import { idToUuid } from "notion-utils";
 
 const NOTION_DB_ID = BLOG.NOTION_DATABASE_ID as string;
 
@@ -43,8 +34,6 @@ export default async function initGlobalNotionData(from: string = "main") {
     pageId: BLOG.NOTION_DATABASE_ID as string,
     from: from,
   });
-
-  // props.allArchive = props.records?.slice(0, BLOG.RECORD_PER_PAGE);
   return props;
 }
 
@@ -53,40 +42,16 @@ export async function getGlobalData({
   from,
   type,
 }: PageBlockDataProps) {
-  // const db = await getDataBaseInfoByNotionAPI({ pageId, from, type });
   const db = await getAllRecordDataWithCache({ pageId, from, type });
-  const props = applyDataBaseProcessing(db);
+  if (!db) {
+    console.error("can`t get Notion Data ; Which id is: ", pageId);
+    return {};
+  }
+  const props = setDataBaseProcessing(db);
   const allPages = getPageArrayWithOutMenu({ arr: props.allPages, type: type });
   props.records = allPages;
   props.allArchiveRecords = props.allPages;
   return props;
-}
-
-/**
- *
- * @param pageId
- * @param from request source
- * @returns {Promise<JSX.Element|*|*[]>}
- */
-export async function getOneRecordDataWithCache({
-  pageId,
-  from,
-  type,
-}: PageBlockDataProps) {
-  const cacheKey = "page_block_" + pageId;
-  let data = await getDataFromCache(cacheKey);
-  if (data && data.pageIds?.length > 0) {
-    console.debug("[API_Request]", `from:${from}`, `record-page-id:${pageId}`);
-    return data;
-  } else {
-    data = await getOneRecordPageData({ pageId, type });
-
-    if (data) {
-      await setDataToCache(cacheKey, data);
-    }
-  }
-
-  return data;
 }
 
 /**
@@ -96,22 +61,7 @@ export async function getOneRecordDataWithCache({
  * @returns {Promise<JSX.Element|*|*[]>}
  */
 export async function getAllRecordDataWithCache({ pageId, from, type }) {
-  // Try to get it from cache
-  const cacheKey = "page_block_" + pageId;
-  let data = await getDataFromCache(cacheKey);
-  if (data && data.pageIds?.length > 0) {
-    console.debug("[API_Request]", `from:${from}`, `root-page-id:${pageId}`);
-    return data;
-  } else {
-    // Read from interface
-    data = await getDataBaseInfoByNotionAPI({ pageId, from });
-    // cache
-    if (data) {
-      await setDataToCache(cacheKey, data);
-    }
-  }
-
-  // Return the data to the front end for processing
+  const data = await getDataBaseInfoByNotionAPI({ pageId, from });
   return data;
 }
 
@@ -123,34 +73,41 @@ export async function getAllRecordDataWithCache({ pageId, from, type }) {
 export async function getOneRecordPageData({
   pageId,
   type,
+  from = "main_page",
 }: PageBlockDataProps) {
-  console.debug("[API_Request]", `record-page-id:${pageId}`);
+  // console.debug("[API_Request]", `record-page-id:${pageId}`);
   //전체 글로벌데이터.
-  const allRecordsPageMap = await getRecordBlockMap({ pageId: NOTION_DB_ID });
+  const allRecordPageBlockMap = await getRecordBlockMapWithRetry({
+    pageId: NOTION_DB_ID,
+    retryAttempts: 3,
+  });
 
-  if (!allRecordsPageMap) {
+  if (!allRecordPageBlockMap) {
     console.error("can`t get Notion Data ; Which id is: ", NOTION_DB_ID);
-    return {};
+    return null;
   }
 
-  const block = allRecordsPageMap.block || {};
+  const block = allRecordPageBlockMap.block || {};
+  // const uuidedRootPageId = idToUuid(pageId);
+  console.log("block:", block);
+  console.log("block[pageId]?.value::", block[pageId]?.value);
+  // const rawMetadata = block[pageId]?.value;
   const uuidedRootPageId = idToUuid(NOTION_DB_ID);
 
   const rawMetadata = block[uuidedRootPageId]?.value;
-
   const isntDB = isDatabase(rawMetadata, uuidedRootPageId);
   if (!isntDB) {
     return null;
   }
   const collection =
     (
-      Object.values(allRecordsPageMap.collection || {})[0] as {
+      Object.values(allRecordPageBlockMap.collection || {})[0] as {
         value: Collection;
       }
     )?.value || {};
   const collectionId = rawMetadata?.collection_id;
-  const collectionQuery = allRecordsPageMap.collection_query;
-  const collectionView = allRecordsPageMap.collection_view;
+  const collectionQuery = allRecordPageBlockMap.collection_query;
+  const collectionView = allRecordPageBlockMap.collection_view;
   const viewIds = rawMetadata?.view_ids;
   const schema: CollectionPropertySchemaMap = collection?.schema;
   const siteInfo = getSiteInfo({ collection, block });
@@ -168,11 +125,11 @@ export async function getOneRecordPageData({
       collection,
       collectionView,
       viewIds,
-      allRecordsPageMap
+      allRecordPageBlockMap
     );
   }
 
-  const allRecordsPagePropetis = (
+  const allRecordPageBlockMapPagePropetis: RecordPagingData[] = (
     await Promise.all(
       allpageIds.map(async (id) => {
         const value = block[id]?.value;
@@ -189,23 +146,24 @@ export async function getOneRecordPageData({
         return properties;
       })
     )
-  ).filter((item): item is NorkiveRecordData => item !== null);
+  ).filter((item): item is RecordPagingData => item !== null);
 
   const dateSort = BLOG.RECORD_SORT_BY === "date" ? true : false;
   // achive count
   const allRecordCounter = { count: 0 };
 
   // 특정타입인 전체 레코드
-  const allRecords = setAllRecordsWithSort(
-    allRecordsPagePropetis,
+  const allRecords: RecordPagingData[] = setAllRecordsWithSort(
+    allRecordPageBlockMapPagePropetis,
     allRecordCounter,
     type,
     dateSort
   );
-
+  const record = allRecords.find((item) => item.id === pageId);
   return {
-    allRecords,
-    siteInfo,
+    allRecords: allRecords,
+    record: record,
+    siteInfo: siteInfo,
   };
 }
 
@@ -218,8 +176,12 @@ async function getDataBaseInfoByNotionAPI({
   type,
   from = "main_page",
 }: PageBlockDataProps) {
-  //return type ExtendedRecordMap.
-  const pageRecordMap = await getRecordBlockMap({ pageId: pageId, from: from });
+  console.debug("[API_Request]", `record-page-id:${pageId}, type:${type}`);
+
+  const pageRecordMap = await getRecordBlockMapWithRetry({
+    pageId: pageId,
+    from: from,
+  });
 
   if (!pageRecordMap) {
     console.error("can`t get Notion Data ; Which id is: ", pageId);
@@ -379,38 +341,9 @@ export async function getNoticePage(data) {
     return null;
   }
 
-  notice.blockMap = await getRecordBlockMap({
+  notice.blockMap = await getRecordBlockMapWithRetry({
     pageId: notice.id,
     from: "data-notice",
   });
   return notice;
-}
-
-/**
- * Get archive content
- * @param {*} id
- * @param {*} from
- * @param {*} slice
- * @returns
- */
-export async function getPureRecordMap({
-  id,
-  from,
-}: {
-  id: string;
-  from?: string;
-}) {
-  const cacheKey = "page_block_" + id;
-  let pageBlock = await getDataFromCache(cacheKey);
-  if (pageBlock) {
-    return filterPostBlocks(id, pageBlock);
-  }
-
-  pageBlock = await getPageWithRetry({ pageId: id, from });
-
-  if (pageBlock) {
-    await setDataToCache(cacheKey, pageBlock);
-    return filterPostBlocks(id, pageBlock);
-  }
-  return pageBlock;
 }

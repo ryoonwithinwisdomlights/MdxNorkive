@@ -20,7 +20,7 @@ import "katex/dist/katex.min.css";
 
 import MobileLeftNavDrawer from "@/modules/layout/components/MobileLeftNavDrawer";
 
-import initGlobalNotionData from "@/lib/data/actions/notion/getNotionData";
+import initGlobalNotionData from "@/lib/data/service";
 import BottomMenuBar from "@/modules/layout/components/menu/BottomMenuBar";
 import LoadingCover from "@/modules/common/ui/LoadingCover";
 import TopNavBar from "@/modules/layout/components/TopNavBar";

@@ -41,6 +41,8 @@ export type PageBlockDataProps = {
   from?: string;
   type?: string;
   slice?: number;
+  retryAttempts?: number;
+  recordMap?: ExtendedRecordMap;
 };
 
 export type ClassNameProp = {

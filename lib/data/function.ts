@@ -1,12 +1,16 @@
 import { BLOG } from "@/blog.config";
-import { RecommendPage } from "@/types";
-
+import md5 from "js-md5";
+import { getOldsiteConfig } from "@/lib/utils/get-config-value";
+import { SiteInfoModel } from "@/types/siteconfig.model";
 import {
   AVAILABLE_PAGE_TYPES,
+  ARCHIVE_PROPERTIES_STATUS_MAP,
+  ARCHIVE_PROPERTIES_TYPE_MAP,
+  GENERAL_TYPE_MENU,
+  PAGE_TYPE_MENU,
   EXCLUDED_PAGE_TYPES,
   INCLUDED_MENU_TYPES,
 } from "@/constants/menu.constants";
-import { formatDate, isObjectNotEmpty } from "@/lib/utils/utils";
 import {
   CategoryItem,
   LeftSideBarNavItem,
@@ -14,25 +18,28 @@ import {
   NorkiveRecordData,
   OldNavItem,
   TagItem,
+  RecommendPage,
+  BlockEntriesItem,
+  CollectionQueryResultView,
+  FlterBlockType,
+  RecordPagingData,
 } from "@/types";
 import { CollectionPropertySchemaMap } from "notion-types";
-import { defaultMapImageUrl } from "notion-utils";
+import { defaultMapImageUrl, getPageTableOfContents } from "notion-utils";
+import {
+  convertUrlStartWithOneSlash,
+  deepClone,
+  formatDate,
+  getLastSegmentFromUrl,
+  isStartWithHttp,
+} from "@/lib/utils/utils";
 import {
   compressImage,
+  extractLangPrefix,
   getrecordsGroupByDate,
   getSortedPostObject,
   mapImgUrl,
-  setPageTableOfContentsByRecord,
 } from "./utils";
-
-const NOTION_DB_ID = BLOG.NOTION_DATABASE_ID as string;
-
-type CollectionQueryResultView = {
-  blockIds?: string[];
-  collection_group_results?: {
-    blockIds?: string[];
-  };
-};
 
 export function getPageCover(postInfo) {
   const pageCover = postInfo.format?.page_cover;
@@ -183,7 +190,7 @@ export function getSiteInfo({
 }: {
   collection?: any;
   block?: any;
-}) {
+}): SiteInfoModel {
   const defaultTitle = BLOG.TITLE;
   const defaultDescription = BLOG.DESCRIPTION;
   const defaultPageCover = BLOG.HOME_BANNER_IMAGE;
@@ -258,6 +265,7 @@ export const isAbleRecordPage = (page) =>
 export const isNotMenuPage = (page) => EXCLUDED_PAGE_TYPES.includes(page.type);
 export const isPublished = (page) => page.status === "Published";
 export const isTypeMatch = (page, type) => (type ? page.type === type : true);
+
 // export function getExcludeMenuPage
 export function getPageWithOutMenu(page, type) {
   // const isExcluded = EXCLUDED_PAGE_TYPES.includes(page.type);
@@ -266,6 +274,7 @@ export function getPageWithOutMenu(page, type) {
 
   return isAbleRecordPage(page) && isPublished(page) && isTypeMatch(page, type);
 }
+
 export function getPageArrayWithOutMenu({
   arr,
   type,
@@ -283,12 +292,12 @@ export function getPageArrayWithOutMenu({
 export const generateEmptyRecordData = () => {
   return {
     id: "21f1eb5c-0337-80ba-b3df-c71cca861aab",
-    date: [Object],
+    date: [],
     type: "Record",
     category: "TIL",
-    사람: [Array],
-    sub_type: [Array],
-    tags: [Array],
+    people: [],
+    sub_type: [],
+    tags: [],
     title: "[TIL] www",
     status: "Published",
     comment: "",
@@ -302,11 +311,12 @@ export const generateEmptyRecordData = () => {
       "https://images.unsplash.com/photo-1593062096033-9a26b09da705?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&t=21f1eb5c-0337-80ba-b3df-c71cca861aab",
     pageCoverThumbnail:
       "https://images.unsplash.com/photo-1593062096033-9a26b09da705?ixlib=rb-4.0.3&q=50&fm=webp&crop=entropy&cs=srgb&t=21f1eb5c-0337-80ba-b3df-c71cca861aab&width=800&fmt=webp",
-    tagItems: [Array],
+    tagItems: [],
     slug: "archive/21f1eb5c-0337-80ba-b3df-c71cca861aab",
     password: "",
   };
 };
+
 // Return when there is no data
 export const generateEmptyGloabalData = (pageId) => {
   const empty = {
@@ -452,17 +462,6 @@ export function getRecommendPage(
   return RecommendPages;
 }
 
-/**
- * Get archives from page 1 to the specified page number
- * @param pageIndex which page
- * @param list All archives
- * @param pageSize Number of archives per page
- * @returns {*}
- */
-export const getListByPage = function (list, pageIndex, pageSize) {
-  return list.slice(0, pageIndex * pageSize);
-};
-
 export function getAllPageIds(
   collectionQuery: { [collectionId: string]: { [viewId: string]: unknown } },
   collectionId: string,
@@ -505,11 +504,12 @@ export function getAllPageIds(
 }
 
 //if pageId !==NOTION_DB_ID && record type is not Menu
-export function getRecord(allRecords, pageId) {
+export function getAllRecords(allRecords, pageId): RecordPagingData {
   const record = allRecords.find((item) => item.id === pageId);
   return record;
 }
-export function getArchiveRecords(dateSort, props) {
+
+export function getAllSortedAndGroupedRecords(dateSort, props) {
   let result = props.records;
   if (dateSort === true) {
     const recordsSortByDate = getSortedPostObject(props.records);
@@ -519,13 +519,297 @@ export function getArchiveRecords(dateSort, props) {
   return result;
 }
 
-export function isDatabase(rawMetadata, uuidedRootPageId) {
-  if (
-    rawMetadata?.type !== "collection_view_page" &&
-    rawMetadata?.type !== "collection_view"
-  ) {
-    console.error(`rootPageId -"${uuidedRootPageId}" is not a database`);
-    return false;
+/**
+ * Mapping user-defined headers
+ */
+export function mapProperties(
+  properties: Partial<NorkiveRecordData> & { [key: string]: any }
+) {
+  if (properties?.type && ARCHIVE_PROPERTIES_TYPE_MAP[properties.type]) {
+    properties.type = ARCHIVE_PROPERTIES_TYPE_MAP[properties.type];
   }
-  return true;
+
+  if (properties?.status && ARCHIVE_PROPERTIES_STATUS_MAP[properties.status]) {
+    properties.status = ARCHIVE_PROPERTIES_STATUS_MAP[properties.status];
+  }
+}
+
+/**
+ * Filter and process page data
+ * The filtering process will use the configuration in NOTION_CONFIG
+ */
+export function adjustPageProperties(properties, NOTION_CONFIG) {
+  // handle URL
+  // 1. Convert the slug according to the URL_PREFIX configured by the user
+  // 2. Add an href field to the achive to store the final adjusted path
+  if (properties.type === "Record") {
+    if (
+      getOldsiteConfig({
+        key: BLOG.RECORD_URL_PREFIX as string,
+        defaultVal: "",
+        extendConfig: NOTION_CONFIG,
+      })
+    ) {
+      properties.slug = generateCustomizeUrlWithType({
+        recordProperties: properties,
+        type: "",
+        extendConfig: NOTION_CONFIG,
+      });
+    }
+    properties.href = properties.slug ?? properties.id;
+  } else if (PAGE_TYPE_MENU.includes(properties.type)) {
+    properties.slug = `/intro/${properties.id}`;
+  } else if (GENERAL_TYPE_MENU.includes(properties.type)) {
+    // The menu path is empty and used as an expandable menu.
+    properties.href = properties.slug ?? "#";
+    properties.name = properties.title ?? "";
+  }
+
+  // Anything starting with http or https is considered an external link
+  if (isStartWithHttp(properties?.href)) {
+    properties.href = properties?.slug;
+    properties.target = "_blank";
+  } else {
+    properties.target = "_self";
+    // Pseudo-static path splicing on the right side.html
+
+    if (
+      getOldsiteConfig({
+        key: "PSEUDO_STATIC",
+        defaultVal: false,
+        extendConfig: NOTION_CONFIG,
+      })
+    ) {
+      if (
+        !properties?.href?.endsWith(".html") &&
+        properties?.href !== "" &&
+        properties?.href !== "#" &&
+        properties?.href !== "/"
+      ) {
+        properties.href += ".html";
+      }
+    }
+
+    // Convert the path to an absolute path: Splice the left side of the url /
+    properties.href = convertUrlStartWithOneSlash(properties?.href);
+  }
+
+  // If the jump link is multi-lingual, it will open in a new window
+  if ((BLOG.NOTION_DATABASE_ID as string).indexOf(",") > 0) {
+    const siteIds = (BLOG.NOTION_DATABASE_ID as string).split(",");
+    for (let index = 0; index < siteIds.length; index++) {
+      const siteId = siteIds[index];
+      const prefix = extractLangPrefix(siteId);
+      if (getLastSegmentFromUrl(properties.href) === prefix) {
+        properties.target = "_blank";
+      }
+    }
+  }
+
+  // Password field md5
+  properties.password = properties.password
+    ? md5(properties.slug + properties.password)
+    : "";
+}
+
+/**
+ * Get custom URL
+ * URLs can be generated based on variables
+ * support: %year%/%month%/%day%/%slug%
+ * @param {*} recordProperties
+ * @returns
+ */
+export function generateCustomizeUrlWithType({
+  recordProperties,
+  type,
+  extendConfig,
+}: {
+  recordProperties: Partial<NorkiveRecordData> & { [key: string]: any };
+  type: string;
+  extendConfig?: {};
+}) {
+  let fullPrefix = "";
+  const allSlugPatterns = BLOG.RECORD_URL_PREFIX.split("/");
+
+  allSlugPatterns.forEach((pattern, idx) => {
+    if (pattern === "%year%" && recordProperties?.publishDay) {
+      const formatPostCreatedDate = new Date(recordProperties?.publishDay);
+      fullPrefix += formatPostCreatedDate.getUTCFullYear();
+    } else if (pattern === "%month%" && recordProperties?.publishDay) {
+      const formatPostCreatedDate = new Date(recordProperties?.publishDay);
+      fullPrefix += String(formatPostCreatedDate.getUTCMonth() + 1).padStart(
+        2,
+        "0"
+      );
+    } else if (pattern === "%day%" && recordProperties?.publishDay) {
+      const formatPostCreatedDate = new Date(recordProperties?.publishDay);
+      fullPrefix += String(formatPostCreatedDate.getUTCDate()).padStart(2, "0");
+    } else if (pattern === "%slug%") {
+      fullPrefix += recordProperties.slug ?? recordProperties.id;
+    } else if (!pattern.includes("%")) {
+      fullPrefix += pattern;
+    } else {
+      return;
+    }
+    if (idx !== allSlugPatterns.length - 1) {
+      fullPrefix += "/";
+    }
+  });
+  if (fullPrefix.startsWith("/")) {
+    fullPrefix = fullPrefix.substring(1); // head removed('/')
+  }
+  if (fullPrefix.endsWith("/")) {
+    fullPrefix = fullPrefix.substring(0, fullPrefix.length - 1); // Remove the tail "/"
+  }
+
+  let res;
+
+  if (type === "Record") {
+    res = `${BLOG.RECORD_URL_PREFIX.toLowerCase()}/${recordProperties.id}`;
+  } else if (type == "Project" || "Engineering") {
+    res = `${type.toLowerCase()}/${recordProperties.id}`;
+  } else {
+    res = `${fullPrefix.toLowerCase()}/${type.toLowerCase()}/${
+      recordProperties.id
+    }`;
+  }
+
+  return res;
+}
+
+export const handleRecordsUrl = (isAblePage, properties) => {
+  if (isAblePage) {
+    const customedUrl = generateCustomizeUrlWithType({
+      recordProperties: properties,
+      type: properties.type,
+    });
+
+    properties.slug = BLOG.RECORD_URL_PREFIX
+      ? customedUrl
+      : (properties.slug ?? properties.id);
+  } else if (PAGE_TYPE_MENU.includes(properties.type)) {
+    properties.slug = `/intro/${properties.id}`;
+  } else if (GENERAL_TYPE_MENU.includes(properties.type)) {
+    // The menu path is empty and used as an expandable menu.
+    properties.to = properties.slug ?? "#";
+    properties.name = properties.title ?? "";
+  }
+
+  // Enable pseudo-static path
+  if (JSON.parse(BLOG.PSEUDO_STATIC as string)) {
+    if (
+      !properties?.slug?.endsWith(".html") &&
+      !properties?.slug?.startsWith("http")
+    ) {
+      properties.slug += ".html";
+    }
+  }
+  properties.password = properties.password
+    ? md5(properties.slug + properties.password)
+    : "";
+  // return properties;
+};
+
+/**
+ *
+ * Special processing of the obtained page BLOCK
+ * 1. Delete redundant fields
+ * 2. For example, format files, videos, audios, and URLs
+ * 3. Compatibility with code blocks and other elements
+ * @param {*} id Page ID
+ * @param {*} pageBlock page elements
+ * @param {*} slice interception quantity
+ * @returns
+ */
+export function filterPostBlocks(id, pageBlock) {
+  const newPageBlock = deepClone(pageBlock);
+  const newKeys = Object.keys(newPageBlock.block); //   entries<T>(o: { [s: string]: BlockType; } | ArrayLike<T>): [string, T][];
+  const blockEntries: BlockEntriesItem[] = Object.entries(newPageBlock?.block);
+
+  const languageMap = new Map([
+    ["C++", "cpp"],
+    ["C#", "csharp"],
+    ["Assembly", "asm6502"],
+  ]);
+
+  const handleSyncBlock = (
+    blockId: string,
+    b: FlterBlockType,
+    index: number
+  ) => {
+    if (!b.value?.children) return;
+    b.value.children.forEach((childBlock, childIndex) => {
+      const newBlockId = `${blockId}_child_${childIndex}`;
+      newPageBlock.block[newBlockId] = childBlock;
+      newKeys.splice(index + childIndex + 1, 0, newBlockId);
+    });
+    delete newPageBlock.block[blockId];
+  };
+
+  const mapCodeLanguage = (b: FlterBlockType) => {
+    if (!b.value?.properties) return;
+    const lang = b.value.properties?.language?.[0]?.[0];
+    if (lang && languageMap.has(lang)) {
+      // b.value.properties.language[0][0] = languageMap.get(lang);
+      if (b.value?.properties?.language?.[0]?.[0]) {
+        b.value.properties.language[0][0] = languageMap.get(lang)!;
+      }
+    }
+  };
+
+  //Loop through each block of the document
+  if (blockEntries) {
+    blockEntries.forEach(([blockId, block]: BlockEntriesItem, index) => {
+      const b = block;
+      if (b?.value) {
+        // Remove when BlockId is equal to PageId
+        if (b?.value?.id === id) {
+          //This block contains sensitive information
+          delete b?.value?.properties;
+          return;
+        }
+
+        // sync_block => 하위 블록으로 교체
+        if (
+          b?.value?.type === "sync_block" &&
+          Array.isArray(b.value.children)
+        ) {
+          handleSyncBlock(blockId, b, index);
+          return;
+        }
+        // 코드블록 언어 이름 매핑
+        if (b?.value?.type === "code") {
+          mapCodeLanguage(b);
+        }
+
+        // 파일/미디어 링크 변환
+        if (
+          ["file", "pdf", "video", "audio"].includes(b?.value?.type) &&
+          b.value.properties?.source?.[0]?.[0]?.includes("amazonaws.com")
+        ) {
+          const oldUrl = b.value.properties.source[0][0];
+          b.value.properties.source[0][0] = `https://notion.so/signed/${encodeURIComponent(oldUrl)}?table=block&id=${b.value.id}`;
+        }
+      }
+    });
+  }
+
+  return newPageBlock;
+}
+
+export function setPageTableOfContentsByRecord(props) {
+  const isAblePage = isNotMenuPage(props?.record);
+
+  if (props?.record?.blockMap?.block && !isAblePage) {
+    props.record.content = Object.keys(props?.record.blockMap.block).filter(
+      (key) =>
+        props?.record.blockMap.block[key]?.value?.parent_id === props?.record.id
+    );
+    props.record.tableOfContents = getPageTableOfContents(
+      props?.record,
+      props?.record.blockMap
+    );
+  } else {
+    props.record.tableOfContents = [];
+  }
 }

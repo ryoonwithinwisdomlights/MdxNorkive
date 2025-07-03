@@ -1,9 +1,7 @@
-import * as React from "react";
-
+import { BLOG } from "@/blog.config";
+import { getRecordBlockMapWithRetry } from "@/lib/data/data";
 import Katex from "@/modules/common/components/shared/KatexReact";
 import { getBlockTitle } from "notion-utils";
-import { BLOG } from "@/blog.config";
-import { getPureRecordMap } from "@/lib/data/actions/notion/getNotionData";
 
 const katexSettings = {
   throwOnError: false,
@@ -22,11 +20,14 @@ export async function Equation({
   className,
   ...rest
 }) {
-  const recordMap = await getPureRecordMap({
-    id: BLOG.NOTION_DATABASE_ID as string,
+  const recordMap = await getRecordBlockMapWithRetry({
+    pageId: BLOG.NOTION_DATABASE_ID as string,
     from: "equation",
   });
-  math = math || getBlockTitle(block, recordMap?.blockMap);
+  if (!recordMap) {
+    return null;
+  }
+  math = math || getBlockTitle(block, recordMap);
   if (!math) return null;
 
   return (

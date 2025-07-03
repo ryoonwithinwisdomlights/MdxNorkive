@@ -1,6 +1,6 @@
 import { BLOG } from "@/blog.config";
 import type { MetadataRoute } from "next";
-import { getGlobalData } from "@/lib/data/actions/notion/getNotionData";
+import { getGlobalData } from "@/lib/data/interface";
 import { formatDate } from "@/lib/utils/utils";
 type ChangeFrequency =
   | "always"

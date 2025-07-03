@@ -26,12 +26,3 @@ export type CardProps = {
   record: NorkiveRecordData;
   className?: string;
 };
-
-export type BlockType = {
-  value?: {
-    id?: string;
-    type?: string;
-    properties?: Record<string, any>;
-    children?: BlockType[];
-  };
-};

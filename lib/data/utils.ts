@@ -1,23 +1,15 @@
-import { deepClone, formatDateFmt } from "@/lib/utils/utils";
 import { BLOG } from "@/blog.config";
-import { getPageTableOfContents } from "notion-utils";
-import { isNotMenuPage } from "./notion-service";
+import { deepClone, formatDateFmt } from "@/lib/utils/utils";
 
-export function setPageTableOfContentsByRecord(props) {
-  const isAblePage = isNotMenuPage(props?.record);
-
-  if (props?.record?.blockMap?.block && !isAblePage) {
-    props.record.content = Object.keys(props?.record.blockMap.block).filter(
-      (key) =>
-        props?.record.blockMap.block[key]?.value?.parent_id === props?.record.id
-    );
-    props.record.tableOfContents = getPageTableOfContents(
-      props?.record,
-      props?.record.blockMap
-    );
-  } else {
-    props.record.tableOfContents = [];
+export function isDatabase(rawMetadata, uuidedRootPageId) {
+  if (
+    rawMetadata?.type !== "collection_view_page" &&
+    rawMetadata?.type !== "collection_view"
+  ) {
+    console.error(`rootPageId -"${uuidedRootPageId}" is not a database`);
+    return false;
   }
+  return true;
 }
 
 export function getSortedPostObject(obj) {
@@ -168,7 +160,7 @@ export const mapImgUrl: any = (img, block, type = "block", from) => {
   return ret;
 };
 
-export function applyDataBaseProcessing(data) {
+export function setDataBaseProcessing(data) {
   const db = deepClone(data);
 
   delete db.block;
@@ -203,8 +195,7 @@ export function applyDataBaseProcessing(data) {
 }
 
 /**
-
-* Intercept the language prefix of page-id
+ * Intercept the language prefix of page-id
  * The format of notionPageId can be en:xxxxx
  * @param {*} str
  * @returns en|kr|xx
@@ -219,11 +210,10 @@ export function extractLangPrefix(str) {
 }
 
 /**
-  
-  * Intercept the id of page-id
-   * The format of notionPageId can be en:xxxxx   * @param {*} str
-   * @returns xxxxx
-   */
+ * Intercept the id of page-id
+ * The format of notionPageId can be en:xxxxx   * @param {*} str
+ * @returns xxxxx
+ */
 export function extractLangId(str) {
   // If the match is successful, return the matched content
   const match = str.match(/:\s*(.+)/);
@@ -239,7 +229,6 @@ export function extractLangId(str) {
 /**
  * To distinguish pages in the list, only the end ID is enough.
  */
-
 export function getShortId(uuid) {
   if (!uuid || uuid.indexOf("-") < 0) {
     return uuid;
