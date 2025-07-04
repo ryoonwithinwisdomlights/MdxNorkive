@@ -86,7 +86,7 @@ export function getAllCategoriesOrTags({
   propertyName,
   sliceCount = 0,
 }) {
-  const allrecords = getPageArrayWithOutMenu({ arr: allPages });
+  const allrecords = getAllPagesWithoutMenu({ arr: allPages });
   if (!allrecords || !Array.isArray(propertyOptions)) return [];
 
   // Step 1: 프로퍼티별 개수 집계
@@ -129,11 +129,11 @@ export function getOldNav({ allPages }) {
 }
 
 export function getCustomMenu({
-  allArchivedPagesData,
+  allArchivedPageList,
 }: {
-  allArchivedPagesData: BaseArchivePageBlock[];
+  allArchivedPageList: BaseArchivePageBlock[];
 }) {
-  const menuPages = allArchivedPagesData.filter(
+  const menuPages = allArchivedPageList.filter(
     (record) =>
       record.status === "Published" &&
       INCLUDED_MENU_TYPES.includes(record?.type)
@@ -167,7 +167,7 @@ export function getCustomMenu({
  * @returns
  */
 export function getLatestRecords({ allPages, from, latestRecordCount }) {
-  const allrecords = getPageArrayWithOutMenu({ arr: allPages });
+  const allrecords = getAllPagesWithoutMenu({ arr: allPages });
   const latestRecords = [...allrecords].sort((a, b) => {
     const dateA = new Date(a?.lastEditedDate || a?.publishDate);
     const dateB = new Date(b?.lastEditedDate || b?.publishDate);
@@ -245,7 +245,7 @@ of the archives are retained, and the summary, password, date and other data are
  * @param {*} param0
  */
 export function getRecordListForLeftSideBar({ allPages }) {
-  const allNavPages = getPageArrayWithOutMenu({ arr: allPages });
+  const allNavPages = getAllPagesWithoutMenu({ arr: allPages });
   // return allNavPages.map((item) => generateLeftSideBarItem(item));
   return allNavPages.map((item) => item);
 }
@@ -259,8 +259,9 @@ export function getFilteredArrayByProperty(arr, propertyName, index) {
   return newArr;
 }
 
-export const isAbleRecordPage = (page) =>
-  AVAILABLE_PAGE_TYPES.includes(page.type);
+export const isAbleRecordPage = (page) => {
+  return AVAILABLE_PAGE_TYPES.includes(page?.type);
+};
 export const isNotMenuPage = (page) => EXCLUDED_PAGE_TYPES.includes(page.type);
 export const isPublished = (page) => page.status === "Published";
 export const isTypeMatch = (page, type) => (type ? page.type === type : true);
@@ -269,17 +270,31 @@ export function getPageWithOutMenu(page, type) {
   return isAbleRecordPage(page) && isPublished(page) && isTypeMatch(page, type);
 }
 
-export function getPageArrayWithOutMenu({
+export function getAllPagesWithoutMenu({
   arr,
   type,
 }: {
   arr: any[];
   type?: string;
 }) {
-  const copy = arr.slice();
-  const newArr = copy.filter((page) => {
-    return getPageWithOutMenu(page, type);
+  return getCopiedArrayWithFunction({
+    arr: arr,
+    func: (arr) => {
+      return arr.filter((item) => getPageWithOutMenu(item, type));
+    },
   });
+}
+export function getCopiedArrayWithFunction({
+  arr,
+  type,
+  func,
+}: {
+  arr: any[];
+  type?: string;
+  func: Function;
+}) {
+  const copy = arr.slice();
+  const newArr = func(copy);
   return newArr;
 }
 
@@ -381,7 +396,12 @@ export function generateLeftSideBarItem(data: BaseArchivePageBlock) {
   return item;
 }
 
-export function setAllRecordsWithSort(arr, counterObj, type, dateSort) {
+export function processingAllPagesWithTypeAndSort(
+  arr,
+  counterObj,
+  type,
+  dateSort
+) {
   const filteredArr = arr
     .slice() // Copy-on-Write: 원본 배열 복사
     .map((page) => ({ ...page })) // 내부 post 객체도 얕은 복사
@@ -502,10 +522,10 @@ export function getAllPageIds(
 //   return record;
 // }
 
-export function setPageAllSortedAndGroupedByDate(dateSort, props) {
-  let result = props.allArchivedPages;
+export function setAllPagesGetSortedGroupedByDate(dateSort, props) {
+  let result = props.allArchivedPageList;
   if (dateSort === true) {
-    const pageSortedByDate = setPageSortedByDate(props.allArchivedPages);
+    const pageSortedByDate = setPageSortedByDate(props.allArchivedPageList);
     const pageGroupedByDate = setPageGroupedByDate(pageSortedByDate);
     result = pageGroupedByDate;
   }
@@ -791,18 +811,18 @@ export function filterPostBlocks(id, pageBlock) {
 }
 
 export function setPageTableOfContentsByRecord(props) {
-  const isAblePage = isNotMenuPage(props?.record);
+  const isAblePage = isNotMenuPage(props?.page);
 
-  if (props?.record?.blockMap?.block && !isAblePage) {
-    props.record.content = Object.keys(props?.record.blockMap.block).filter(
+  if (props?.page?.blockMap?.block && !isAblePage) {
+    props.page.content = Object.keys(props?.page.blockMap.block).filter(
       (key) =>
-        props?.record.blockMap.block[key]?.value?.parent_id === props?.record.id
+        props?.page.blockMap.block[key]?.value?.parent_id === props?.page.id
     );
-    props.record.tableOfContents = getPageTableOfContents(
-      props?.record,
-      props?.record.blockMap
+    props.page.tableOfContents = getPageTableOfContents(
+      props?.page,
+      props?.page.blockMap
     );
   } else {
-    props.record.tableOfContents = [];
+    props.page.tableOfContents = [];
   }
 }

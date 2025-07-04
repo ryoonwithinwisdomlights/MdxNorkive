@@ -86,9 +86,9 @@ export interface SiteConfigModel {
   RECORD_SHARE_SERVICE?: string;
   RECORD_URL_PREFIX?: string;
   RECORD_LIST_STYLE?: string;
-  RECORD_RECOMMEND_COUNT?: number;
+  PAGE_RECOMMEND_COUNT?: number;
   RECORD_PER_PAGE?: number;
-  RECORD_SORT_BY?: string;
+  PAGE_SORT_BY?: string;
   RECORD_WAITING_TIME_FOR_404?: string;
 
   preview_category_count?: number;

@@ -1,25 +1,21 @@
 /* eslint-disable no-unused-vars */
 import { BLOG } from "@/blog.config";
-import {
-  BaseArchivePageBlock,
-  PageBlockDataProps,
-  RecordPagingData,
-} from "@/types";
+import { BaseArchivePageBlock, PageBlockDataProps } from "@/types";
 
 import { getPageProperties, getRecordBlockMapWithRetry } from "@/lib/data/data";
 import {
   generateEmptyGloabalData,
   getAllCategoriesOrTags,
   getAllPageIds,
+  getAllPagesWithoutMenu,
   getCategoryOptions,
   getCustomMenu,
   getLatestRecords,
   getOldNav,
-  getPageArrayWithOutMenu,
   getRecordListForLeftSideBar,
   getSiteInfo,
   getTagOptions,
-  setAllRecordsWithSort,
+  processingAllPagesWithTypeAndSort,
 } from "@/lib/data/function";
 import { isDatabase, setDataBaseProcessing } from "@/lib/data/utils";
 import { Collection, CollectionPropertySchemaMap } from "notion-types";
@@ -38,9 +34,12 @@ export async function getGlobalData({
     return {};
   }
   const props = setDataBaseProcessing(db);
-  const allPages = getPageArrayWithOutMenu({ arr: props.allPages, type: type });
-  props.records = allPages;
-  props.allArchivedPages = props.allPages;
+  const allPages = getAllPagesWithoutMenu({
+    arr: props.allPages,
+    type: type,
+  });
+  // props.records = allPages;
+  props.allArchivedPageList = allPages;
   return props;
 }
 
@@ -65,18 +64,18 @@ export async function getOneRecordPageData({
 }: PageBlockDataProps) {
   // console.debug("[API_Request]", `record-page-id:${pageId}`);
   //전체 글로벌데이터.
-  const allRecordPageBlockMap = await getRecordBlockMapWithRetry({
+  const allPageBlockMap = await getRecordBlockMapWithRetry({
     pageId: NOTION_DB_ID,
     retryAttempts: 3,
     from,
   });
 
-  if (!allRecordPageBlockMap) {
+  if (!allPageBlockMap) {
     console.error("can`t get Notion Data ; Which id is: ", NOTION_DB_ID);
     return null;
   }
 
-  const block = allRecordPageBlockMap.block || {};
+  const block = allPageBlockMap.block || {};
   const uuidedRootPageId = idToUuid(NOTION_DB_ID);
 
   const rawMetadata = block[uuidedRootPageId]?.value;
@@ -86,16 +85,15 @@ export async function getOneRecordPageData({
   }
   const collection =
     (
-      Object.values(allRecordPageBlockMap.collection || {})[0] as {
+      Object.values(allPageBlockMap.collection || {})[0] as {
         value: Collection;
       }
     )?.value || {};
   const collectionId = rawMetadata?.collection_id;
-  const collectionQuery = allRecordPageBlockMap.collection_query;
-  const collectionView = allRecordPageBlockMap.collection_view;
+  const collectionQuery = allPageBlockMap.collection_query;
+  const collectionView = allPageBlockMap.collection_view;
   const viewIds = rawMetadata?.view_ids;
   const schema: CollectionPropertySchemaMap = collection?.schema;
-  const siteInfo = getSiteInfo({ collection, block });
   const allpageIds = getAllPageIds(
     collectionQuery,
     collectionId,
@@ -110,11 +108,11 @@ export async function getOneRecordPageData({
       collection,
       collectionView,
       viewIds,
-      allRecordPageBlockMap
+      allPageBlockMap
     );
   }
 
-  const allRecordPageBlockMapPagePropetis: RecordPagingData[] = (
+  const allPageBlockMapWithProperties: BaseArchivePageBlock[] = (
     await Promise.all(
       allpageIds.map(async (id) => {
         const value = block[id]?.value;
@@ -131,24 +129,23 @@ export async function getOneRecordPageData({
         return properties;
       })
     )
-  ).filter((item): item is RecordPagingData => item !== null);
+  ).filter((item): item is BaseArchivePageBlock => item !== null);
 
-  const dateSort = BLOG.RECORD_SORT_BY === "date" ? true : false;
+  const dateSort = BLOG.PAGE_SORT_BY === "date" ? true : false;
   // achive count
   const allRecordCounter = { count: 0 };
 
   // 특정타입인 전체 레코드
-  const allRecords: RecordPagingData[] = setAllRecordsWithSort(
-    allRecordPageBlockMapPagePropetis,
+  const allPages: BaseArchivePageBlock[] = processingAllPagesWithTypeAndSort(
+    allPageBlockMapWithProperties,
     allRecordCounter,
     type,
     dateSort
   );
-  const record = allRecords.find((item) => item.id === pageId);
+  const page = allPages.find((item) => item.id === pageId);
   return {
-    allRecords: allRecords,
-    record: record,
-    siteInfo: siteInfo,
+    allPages: allPages,
+    page: page,
   };
 }
 
@@ -219,7 +216,7 @@ export async function getDataBaseInfoByNotionAPI({
   // const fetchedBlocks = await fetchInBatches(blockIdsNeedFetch)
   // block = Object.assign({}, block, fetchedBlocks)
 
-  const allArchivedPagesData = (
+  const allArchivedPageList = (
     await Promise.all(
       pageIds.map(async (id) => {
         const value = block[id]?.value;
@@ -246,19 +243,19 @@ export async function getDataBaseInfoByNotionAPI({
   //   adjustPageProperties(element, NOTION_CONFIG)
   // })
 
-  const dateSort = BLOG.RECORD_SORT_BY === "date" ? true : false;
+  const dateSort = BLOG.PAGE_SORT_BY === "date" ? true : false;
   // achive count
   const allRecordCounter = { count: 0 };
 
   // Find all Archives and Record
-  const allPages = setAllRecordsWithSort(
-    allArchivedPagesData,
+  const allPages = processingAllPagesWithTypeAndSort(
+    allArchivedPageList,
     allRecordCounter,
     type,
     dateSort
   );
 
-  const notice = await getNoticePage(allArchivedPagesData);
+  const notice = await getNoticePage(allArchivedPageList);
 
   const categoryOptions = getAllCategoriesOrTags({
     allPages,
@@ -274,12 +271,12 @@ export async function getDataBaseInfoByNotionAPI({
 
   // old menu
   const oldNav = getOldNav({
-    allPages: (allArchivedPagesData as BaseArchivePageBlock[]).filter(
+    allPages: (allArchivedPageList as BaseArchivePageBlock[]).filter(
       (record) => record?.type === "Page" && record.status === "Published"
     ),
   });
   // new menu
-  const customMenu = await getCustomMenu({ allArchivedPagesData });
+  const customMenu = await getCustomMenu({ allArchivedPageList });
   const latestRecords = getLatestRecords({
     allPages,
     from,

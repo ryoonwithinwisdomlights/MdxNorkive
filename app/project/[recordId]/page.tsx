@@ -1,59 +1,59 @@
 import { BLOG } from "@/blog.config";
 import {
-  setPrevNextRecommendInRecordPage,
-  getRecordPageDataById,
   getPageDataByTypeAndId,
+  getRecordPageDataById,
 } from "@/lib/data/business-action";
 
 import SingleRecords from "@/modules/blog/records/SingleRecords";
-import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
-import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
 import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
+import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
+import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
 import { Metadata } from "next";
 
 export async function generateStaticParams() {
   const records = [
-    { recordId: "1341eb5c-0337-81ad-a46c-d94c8abcdada" },
-    { recordId: "another-record-id" },
+    { pageId: "1341eb5c-0337-81ad-a46c-d94c8abcdada" },
+    { pageId: "another-record-id" },
   ];
   return records.map((record) => ({
-    recordId: record.recordId,
+    pageId: record.pageId,
   }));
 }
 
 export async function generateMetadata({ params }): Promise<Metadata> {
-  const { recordId } = await params;
-  const props = await getRecordPageDataById({
-    pageId: recordId,
+  const { pageId } = await params;
+  const props = await getPageDataByTypeAndId({
+    pageId: pageId,
     from: "Project",
   });
-  const recordTitle = props?.record ? props.record : "";
+  const title = props?.page?.title;
+  const pageTitle = title ? title : "";
   return {
-    title: recordTitle,
+    title: pageTitle,
     description: BLOG.DESCRIPTION as string,
   };
 }
 
 // `generateStaticParams`가 반환한 `params`를 사용하여 이 페이지의 여러 버전이 정적으로 생성됩니다.
 export default async function Page({ params }) {
-  const { recordId } = await params;
+  const { pageId } = await params;
 
-  if (!recordId) {
+  if (!pageId) {
     return <ErrorComponent />;
   }
   // const result = await getRecordPageDataById({
-  //   pageId: recordId,
+  //   pageId: pageId,
   //   from: "Project",
   // });
 
   const result = await getPageDataByTypeAndId({
-    pageId: recordId,
+    pageId: pageId,
     from: "Project",
     type: "Project",
   });
 
-  if (!result?.record) {
-    return <div>Invalid record ID</div>;
+  if (!result?.page) {
+    return <div>Invalid Page Id</div>;
   }
 
   // const page = await setPrevNextRecommendInRecordPage(result);

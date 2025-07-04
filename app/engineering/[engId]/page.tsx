@@ -1,14 +1,13 @@
 import { BLOG } from "@/blog.config";
 import {
-  setPrevNextRecommendInRecordPage,
-  getRecordPageDataById,
   getPageDataByTypeAndId,
+  getRecordPageDataById,
 } from "@/lib/data/business-action";
 
 import SingleRecords from "@/modules/blog/records/SingleRecords";
-import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
-import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
 import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
+import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
+import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
 import { Metadata } from "next";
 
 export async function generateStaticParams() {
@@ -24,13 +23,14 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }): Promise<Metadata> {
   const { engId } = await params;
-  const result = await getRecordPageDataById({
+  const props = await getPageDataByTypeAndId({
     pageId: engId,
     from: "Engineering",
   });
-  const recordTitle = result?.record ? result.record : "";
+  const title = props?.page?.title;
+  const pageTitle = title ? title : "";
   return {
-    title: recordTitle,
+    title: pageTitle,
     description: BLOG.DESCRIPTION as string,
   };
 }
@@ -49,7 +49,7 @@ export default async function Page({ params }) {
   });
 
   if (!result) {
-    return <div>Invalid record ID</div>;
+    return <div>Invalid Page Id</div>;
   }
 
   return (

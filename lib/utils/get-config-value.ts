@@ -51,10 +51,10 @@ export const getOldsiteConfig = ({
   }
   switch (key) {
     case "NEXT_REVALIDATE_SECOND":
-    case "RECORD_RECOMMEND_COUNT":
+    case "PAGE_RECOMMEND_COUNT":
     case "IMAGE_COMPRESS_WIDTH":
     case "PSEUDO_STATIC":
-    case "RECORD_SORT_BY":
+    case "PAGE_SORT_BY":
     case "RECORD_PER_PAGE":
     case "RECORD_PREVIEW_LINES":
     case "RECORD_URL_PREFIX":

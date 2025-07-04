@@ -38,14 +38,14 @@ export function EssentialNavInfoProvider({
     latestRecords,
   } = globalNotionData;
 
-  const [currentRecordId, setCurrentRecordId] =
+  const [currentpageId, setCurrentpageId] =
     useState<BaseArchivePageBlock | null>(null);
 
   const [showTocButton, setShowTocButton] = useState<boolean>(false);
   const router = useRouter();
 
   const handleRouter = (record) => {
-    // setCurrentRecordId(record);
+    // setCurrentpageId(record);
     router.push(`/${record.slug}`);
   };
   const cleanCurrentRecordData = () => {

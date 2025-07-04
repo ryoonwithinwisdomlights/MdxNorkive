@@ -10,6 +10,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export function substringStrWithdots(str, number) {
+  const result = str.length > number ? str.substring(0, number) + "..." : str;
+  return result;
+}
 /**
  * Convert string to json
  * @param {*} str

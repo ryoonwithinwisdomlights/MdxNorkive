@@ -6,16 +6,18 @@ import { useEffect, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import SingleRecordsBodyForPage from "./SingleRecordsBodyForPage";
 import SingleRecordsIntroForPage from "./SingleRecordsIntroForPage";
+import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 
 const SingleRecords = ({ props }) => {
-  const { record, prev, next, siteInfo } = props;
+  const { page } = props;
+  const { siteInfo } = useGlobal({ from: "SingleRecords" });
   const router = useRouter();
   const pathname = usePathname();
   const params = useParams();
   const isMobile = useMediaQuery("(max-width: 768px");
 
   // Article lock🔐
-  const [lock, setLock] = useState(record?.password && record?.password !== "");
+  const [lock, setLock] = useState(page?.password && page?.password !== "");
   const [isMounted, setIsMounted] = useState(false);
 
   /**
@@ -23,8 +25,8 @@ const SingleRecords = ({ props }) => {
    * @param {*} result
    */
   const validPassword = (passInput) => {
-    const encrypt = md5(record.slug + passInput);
-    if (passInput && encrypt === record.password) {
+    const encrypt = md5(page.slug + passInput);
+    if (passInput && encrypt === page.password) {
       setLock(false);
       return true;
     }
@@ -34,7 +36,7 @@ const SingleRecords = ({ props }) => {
   // Article loading
   useEffect(() => {
     // 404
-    if (!record) {
+    if (!page) {
       setTimeout(() => {
         if (!isMobile) {
           console.warn("Page not found", `${pathname}/${params}`);
@@ -44,12 +46,12 @@ const SingleRecords = ({ props }) => {
     }
 
     // // Archive encryption
-    if (record?.password && record?.password !== "") {
+    if (page?.password && page?.password !== "") {
       setLock(true);
     } else {
       setLock(false);
     }
-  }, [record]);
+  }, [page]);
 
   useEffect(() => {
     setIsMounted(true);
@@ -67,10 +69,14 @@ const SingleRecords = ({ props }) => {
       {!lock && (
         <div id="container" className=" justify-center flex flex-col w-full">
           {/* Notion기사 서문 */}
-          <SingleRecordsIntroForPage record={record} siteInfo={siteInfo} />
+          <SingleRecordsIntroForPage record={page} siteInfo={siteInfo} />
           {/* Notion기사 본문 */}
 
-          <SingleRecordsBodyForPage props={props} prev={prev} next={next} />
+          <SingleRecordsBodyForPage
+            page={page}
+            // prev={page.prev}
+            // next={page.next}
+          />
         </div>
       )}
     </div>

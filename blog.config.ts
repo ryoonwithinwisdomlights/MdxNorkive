@@ -137,9 +137,9 @@ export const BLOG = {
   //Example: If you want to change the link to the prefix Archive + timestamp, you can change it to: 'archive/%year%/%month%/%day%'
 
   RECORD_LIST_STYLE: "page", // ['page','scroll] Archive list style: page number paging, single page scrolling loading
-  RECORD_RECOMMEND_COUNT: 6, // Number of recommended datas
+  PAGE_RECOMMEND_COUNT: 6, // Number of recommended datas
   RECORD_PER_PAGE: 12, // record counts per page
-  RECORD_SORT_BY: process.env.NEXT_PUBLIC_RECORD_SORT_BY || "notion", //Sorting method 'date' is by time, 'notion' is controlled by notification
+  PAGE_SORT_BY: process.env.NEXT_PUBLIC_PAGE_SORT_BY || "notion", //Sorting method 'date' is by time, 'notion' is controlled by notification
 
   RECORD_WAITING_TIME_FOR_404:
     process.env.NEXT_PUBLIC_RECORD_WAITING_TIME_FOR_404 || "8",

@@ -1,22 +1,21 @@
 import { SelectOption } from "notion-types";
 import { Dispatch, SetStateAction } from "react";
 import { LeftSideBarNavItem, NavItem, OldNavItem } from "./layout.model";
+import { BaseArchivePageBlock } from "./page.model";
 import { SiteInfoModel } from "./siteconfig.model";
-import { BaseArchivePageBlock, RecordPagingData } from "./page.model";
 
 export interface EssentialNavInfo {
   siteInfo: SiteInfoModel;
   categoryOptions?: SelectOption[];
   tagOptions?: SelectOption[];
   subTypeOptions?: [];
-  // className?: string;
   oldNav: OldNavItem[];
   customMenu: NavItem[];
   notice: any;
   latestRecords: [];
   showTocButton: boolean;
   // currentRecordData: BaseArchivePageBlock | null;
-  handleRouter: (record: RecordPagingData) => void;
+  handleRouter: (page: BaseArchivePageBlock) => void;
   cleanCurrentRecordData: () => void;
 }
 

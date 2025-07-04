@@ -1,15 +1,14 @@
 import { BLOG } from "@/blog.config";
 import { getRecordBlockMapWithRetry } from "@/lib/data/data";
 import {
-  setPageAllSortedAndGroupedByDate,
+  getAllPagesWithoutMenu,
   getFilteredArrayByProperty,
-  getPageArrayWithOutMenu,
   getRecommendPage,
+  setAllPagesGetSortedGroupedByDate,
   setPageTableOfContentsByRecord,
 } from "@/lib/data/function";
 import { getGlobalData, getOneRecordPageData } from "@/lib/data/interface";
 import { PageBlockDataProps } from "@/types";
-import { getPageTableOfContents } from "notion-utils";
 
 export default async function initGlobalNotionData(from: string = "main") {
   const props = await getGlobalData({
@@ -35,7 +34,7 @@ export async function getAllPageDataListByType({
     type: type,
   });
 
-  const archivedPages = setPageAllSortedAndGroupedByDate(dateSort, props);
+  const archivedPages = setAllPagesGetSortedGroupedByDate(dateSort, props);
   props.archivedPages = archivedPages;
   delete props.allPages;
   return props;
@@ -55,33 +54,33 @@ export async function getPageDataByTypeAndId({
   if (!props) {
     return null;
   }
-  if (!props.record) {
+  if (!props.page) {
     return null;
   }
   setPageTableOfContentsByRecord(props);
 
-  const recommendRecords = getPageArrayWithOutMenu({
-    arr: props?.allRecords,
+  const recommendPages = getAllPagesWithoutMenu({
+    arr: props?.allPages,
   });
 
-  if (recommendRecords && recommendRecords.length > 0) {
-    const index = recommendRecords.indexOf(props.record);
-    props["prev"] =
-      recommendRecords.slice(index - 1, index)[0] ??
-      recommendRecords.slice(-1)[0];
-    props["next"] =
-      recommendRecords.slice(index + 1, index + 2)[0] ?? recommendRecords[0];
-    props["recommendRecords"] = getRecommendPage(
-      props.record,
-      recommendRecords,
-      Number(BLOG.RECORD_RECOMMEND_COUNT)
+  console.log("recommendPages::", recommendPages);
+  if (recommendPages && recommendPages.length > 0) {
+    const index = recommendPages.indexOf(props.page);
+    props.page.prev =
+      recommendPages.slice(index - 1, index)[0] ?? recommendPages.slice(-1)[0];
+    props.page.next =
+      recommendPages.slice(index + 1, index + 2)[0] ?? recommendPages[0];
+    props.page.recommendPages = getRecommendPage(
+      props.page,
+      recommendPages,
+      Number(BLOG.PAGE_RECOMMEND_COUNT)
     );
   } else {
-    props["prev"] = null;
-    props["next"] = null;
-    props["recommendRecords"] = [];
+    props.page.prev = null;
+    props.page.next = null;
+    props.page.recommendPages = [];
   }
-
+  console.log("props.page::::", props.page);
   return props;
 }
 
@@ -109,74 +108,76 @@ export async function getRecordPageDataById({
     pageId: props.record.id,
   });
 
-  const recommendRecords = getPageArrayWithOutMenu({
+  const recommendPages = getAllPagesWithoutMenu({
     arr: props?.allPages,
   });
 
-  if (recommendRecords && recommendRecords.length > 0) {
-    const index = recommendRecords.indexOf(props.record);
+  if (recommendPages && recommendPages.length > 0) {
+    const index = recommendPages.indexOf(props.record);
     props.prev =
-      recommendRecords.slice(index - 1, index)[0] ??
-      recommendRecords.slice(-1)[0];
+      recommendPages.slice(index - 1, index)[0] ?? recommendPages.slice(-1)[0];
     props.next =
-      recommendRecords.slice(index + 1, index + 2)[0] ?? recommendRecords[0];
-    props.recommendRecords = getRecommendPage(
+      recommendPages.slice(index + 1, index + 2)[0] ?? recommendPages[0];
+    props.recommendPages = getRecommendPage(
       props.record,
-      recommendRecords,
-      Number(BLOG.RECORD_RECOMMEND_COUNT)
+      recommendPages,
+      Number(BLOG.PAGE_RECOMMEND_COUNT)
     );
   } else {
     props.prev = null;
     props.next = null;
-    props.recommendRecords = [];
+    props.recommendPages = [];
   }
   return props;
 }
 
-export async function setPrevNextRecommendInRecordPage(props) {
-  props.record.blockMap = await getRecordBlockMapWithRetry({
-    pageId: props.record.id,
-  });
-  const recommendRecords = getPageArrayWithOutMenu({
-    arr: props?.allPages,
-  });
+// export async function setPrevNextRecommendInRecordPage(props) {
+//   props.record.blockMap = await getRecordBlockMapWithRetry({
+//     pageId: props.record.id,
+//   });
+//   const recommendPages = getAllPagesWithoutMenu({
+//     arr: props?.allPages,
+//         func: (arr) => {
+//           return arr.filter((item) => getPageWithOutMenu(item, type));
+//         },
+//   });
 
-  if (recommendRecords && recommendRecords.length > 0) {
-    const index = recommendRecords.indexOf(props.record);
-    props.prev =
-      recommendRecords.slice(index - 1, index)[0] ??
-      recommendRecords.slice(-1)[0];
-    props.next =
-      recommendRecords.slice(index + 1, index + 2)[0] ?? recommendRecords[0];
-    props.recommendRecords = getRecommendPage(
-      props.record,
-      recommendRecords,
-      Number(BLOG.RECORD_RECOMMEND_COUNT)
-    );
-  } else {
-    props.prev = null;
-    props.next = null;
-    props.recommendRecords = [];
-  }
+//   if (recommendPages && recommendPages.length > 0) {
+//     const index = recommendPages.indexOf(props.record);
+//     props.prev =
+//       recommendPages.slice(index - 1, index)[0] ??
+//       recommendPages.slice(-1)[0];
+//     props.next =
+//       recommendPages.slice(index + 1, index + 2)[0] ?? recommendPages[0];
+//     props.recommendPages = getRecommendPage(
+//       props.record,
+//       recommendPages,
+//       Number(BLOG.PAGE_RECOMMEND_COUNT)
+//     );
+//   } else {
+//     props.prev = null;
+//     props.next = null;
+//     props.recommendPages = [];
+//   }
 
-  if (props.record?.password && props.record?.password !== "") {
-  } else {
-    if (props.record?.blockMap?.block) {
-      props.record.content = Object.keys(props.record.blockMap.block).filter(
-        (key) =>
-          props.record.blockMap.block[key]?.value?.parent_id === props.record.id
-      );
-      props.record.tableOfContents = getPageTableOfContents(
-        props.record,
-        props.record.blockMap
-      );
-    } else {
-      props.record.tableOfContents = [];
-    }
-  }
+//   if (props.record?.password && props.record?.password !== "") {
+//   } else {
+//     if (props.record?.blockMap?.block) {
+//       props.record.content = Object.keys(props.record.blockMap.block).filter(
+//         (key) =>
+//           props.record.blockMap.block[key]?.value?.parent_id === props.record.id
+//       );
+//       props.record.tableOfContents = getPageTableOfContents(
+//         props.record,
+//         props.record.blockMap
+//       );
+//     } else {
+//       props.record.tableOfContents = [];
+//     }
+//   }
 
-  return props;
-}
+//   return props;
+// }
 
 export async function getCategoryAndTagById(
   decodedPropertyId,

@@ -10,7 +10,7 @@ import { Clock4Icon } from "lucide-react";
 
 export default function ArchiveInfo({ props }) {
   const { notice } = useGlobal({ from: "index" });
-  const modRecord = props?.record ? props?.record : notice;
+  const modRecord = props?.page ? props?.page : notice;
   if (!modRecord) {
     return null;
   }

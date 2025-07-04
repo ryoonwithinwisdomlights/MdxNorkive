@@ -53,10 +53,13 @@ export type BaseArchivePageBlock = {
   password?: string;
   tableOfContents?: TableOfContentsEntry[] | [];
   blockMap?: ExtendedRecordMap | null;
-};
-
-export interface RecordPagingData extends BaseArchivePageBlock {
   prev?: BaseArchivePageBlock | null;
   next?: BaseArchivePageBlock | null;
-  recommendRecords?: BaseArchivePageBlock[] | [];
-}
+  recommendPages?: RecommendPage[] | [];
+};
+
+// export interface RecordPagingData extends BaseArchivePageBlock {
+//   prev?: BaseArchivePageBlock | null;
+//   next?: BaseArchivePageBlock | null;
+//   recommendPages?: BaseArchivePageBlock[] | [];
+// }

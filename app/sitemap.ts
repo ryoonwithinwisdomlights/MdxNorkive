@@ -51,8 +51,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
   // Cycle page generation
-  const { allArchivedPages } = globalData;
-  allArchivedPages
+  const { allArchivedPageList } = globalData;
+  allArchivedPageList
     ?.filter((p) => p.status === BLOG.NOTION_PROPERTY_NAME.status_publish)
     .forEach((record) => {
       const lmd = record.lastEditedDate

@@ -1,12 +1,8 @@
-import {
-  setPrevNextRecommendInRecordPage,
-  getRecordPageDataById,
-  getPageDataByTypeAndId,
-} from "@/lib/data/business-action";
+import { getPageDataByTypeAndId } from "@/lib/data/business-action";
 import SingleRecords from "@/modules/blog/records/SingleRecords";
-import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
-import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
 import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
+import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
+import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
 export async function generateStaticParams() {
   const records = [{ pageId: "341eb5c0337801da209c34c90bc3377" }];
   return records.map((record) => ({
@@ -28,7 +24,7 @@ export default async function Page({ params }) {
     type: "SubMenuPage",
   });
   if (!result) {
-    return <div>Invalid record ID</div>;
+    return <div>Invalid Page Id</div>;
   }
 
   return (
