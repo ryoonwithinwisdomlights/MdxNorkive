@@ -2,7 +2,7 @@ import { SelectOption } from "notion-types";
 import { Dispatch, SetStateAction } from "react";
 import { LeftSideBarNavItem, NavItem, OldNavItem } from "./layout.model";
 import { SiteInfoModel } from "./siteconfig.model";
-import { NorkiveRecordData, RecordPagingData } from "./page.model";
+import { BaseArchivePageBlock, RecordPagingData } from "./page.model";
 
 export interface EssentialNavInfo {
   siteInfo: SiteInfoModel;
@@ -15,7 +15,7 @@ export interface EssentialNavInfo {
   notice: any;
   latestRecords: [];
   showTocButton: boolean;
-  // currentRecordData: NorkiveRecordData | null;
+  // currentRecordData: BaseArchivePageBlock | null;
   handleRouter: (record: RecordPagingData) => void;
   cleanCurrentRecordData: () => void;
 }
@@ -29,7 +29,7 @@ export interface GlobalNotionData {
   oldNav: OldNavItem[];
   customMenu: NavItem[];
   latestRecords: [];
-  allArchive: NorkiveRecordData[];
+  allArchive: BaseArchivePageBlock[];
 }
 export interface GeneralSiteSettingsProviderContext {
   onLoading: boolean;

@@ -1,18 +1,18 @@
-import { getRecordPageListDataByType } from "@/lib/data/service";
+import { getAllPageDataListByType } from "@/lib/data/business-action";
 import ArchiveIntro from "@/modules/blog/records/ArchiveIntro";
 import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
 import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
 
 export default async function Page() {
-  const props: any = await getRecordPageListDataByType({
-    from: "index",
+  const props: any = await getAllPageDataListByType({
+    from: "main-page",
   });
 
-  const { archiveRecords } = props;
+  const { archivedPages } = props;
 
   return (
     <GeneralRecordTypePageWrapper>
-      <ArchiveIntro archiveRecords={archiveRecords} />
+      <ArchiveIntro archivedPages={archivedPages} />
       <RightSlidingDrawer props={props} />
     </GeneralRecordTypePageWrapper>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { NorkiveRecordData } from "@/types";
+import { BaseArchivePageBlock } from "@/types";
 import { EssentialNavInfo, GlobalNotionData } from "@/types/provider.model";
 import { useRouter } from "next/navigation";
 import NextNProgress from "nextjs-progressbar";
@@ -39,7 +39,7 @@ export function EssentialNavInfoProvider({
   } = globalNotionData;
 
   const [currentRecordId, setCurrentRecordId] =
-    useState<NorkiveRecordData | null>(null);
+    useState<BaseArchivePageBlock | null>(null);
 
   const [showTocButton, setShowTocButton] = useState<boolean>(false);
   const router = useRouter();

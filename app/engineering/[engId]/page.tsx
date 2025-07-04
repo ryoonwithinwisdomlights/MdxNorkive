@@ -3,7 +3,7 @@ import {
   setPrevNextRecommendInRecordPage,
   getRecordPageDataById,
   getPageDataByTypeAndId,
-} from "@/lib/data/service";
+} from "@/lib/data/business-action";
 
 import SingleRecords from "@/modules/blog/records/SingleRecords";
 import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";

@@ -1,31 +1,14 @@
 import { BLOG } from "@/blog.config";
-import md5 from "js-md5";
-import { getOldsiteConfig } from "@/lib/utils/get-config-value";
-import { SiteInfoModel } from "@/types/siteconfig.model";
 import {
-  AVAILABLE_PAGE_TYPES,
   ARCHIVE_PROPERTIES_STATUS_MAP,
   ARCHIVE_PROPERTIES_TYPE_MAP,
-  GENERAL_TYPE_MENU,
-  PAGE_TYPE_MENU,
+  AVAILABLE_PAGE_TYPES,
   EXCLUDED_PAGE_TYPES,
+  GENERAL_TYPE_MENU,
   INCLUDED_MENU_TYPES,
+  PAGE_TYPE_MENU,
 } from "@/constants/menu.constants";
-import {
-  CategoryItem,
-  LeftSideBarNavItem,
-  NavItem,
-  NorkiveRecordData,
-  OldNavItem,
-  TagItem,
-  RecommendPage,
-  BlockEntriesItem,
-  CollectionQueryResultView,
-  FlterBlockType,
-  RecordPagingData,
-} from "@/types";
-import { CollectionPropertySchemaMap } from "notion-types";
-import { defaultMapImageUrl, getPageTableOfContents } from "notion-utils";
+import { getOldsiteConfig } from "@/lib/utils/get-config-value";
 import {
   convertUrlStartWithOneSlash,
   deepClone,
@@ -34,11 +17,27 @@ import {
   isStartWithHttp,
 } from "@/lib/utils/utils";
 import {
+  BlockEntriesItem,
+  CategoryItem,
+  CollectionQueryResultView,
+  FlterBlockType,
+  LeftSideBarNavItem,
+  NavItem,
+  BaseArchivePageBlock,
+  OldNavItem,
+  RecommendPage,
+  TagItem,
+} from "@/types";
+import { SiteInfoModel } from "@/types/siteconfig.model";
+import md5 from "js-md5";
+import { CollectionPropertySchemaMap } from "notion-types";
+import { defaultMapImageUrl, getPageTableOfContents } from "notion-utils";
+import {
   compressImage,
   extractLangPrefix,
-  getrecordsGroupByDate,
-  getSortedPostObject,
   mapImgUrl,
+  setPageGroupedByDate,
+  setPageSortedByDate,
 } from "./utils";
 
 export function getPageCover(postInfo) {
@@ -130,11 +129,11 @@ export function getOldNav({ allPages }) {
 }
 
 export function getCustomMenu({
-  allArchiveRecordsData,
+  allArchivedPagesData,
 }: {
-  allArchiveRecordsData: NorkiveRecordData[];
+  allArchivedPagesData: BaseArchivePageBlock[];
 }) {
-  const menuPages = allArchiveRecordsData.filter(
+  const menuPages = allArchivedPagesData.filter(
     (record) =>
       record.status === "Published" &&
       INCLUDED_MENU_TYPES.includes(record?.type)
@@ -266,12 +265,7 @@ export const isNotMenuPage = (page) => EXCLUDED_PAGE_TYPES.includes(page.type);
 export const isPublished = (page) => page.status === "Published";
 export const isTypeMatch = (page, type) => (type ? page.type === type : true);
 
-// export function getExcludeMenuPage
 export function getPageWithOutMenu(page, type) {
-  // const isExcluded = EXCLUDED_PAGE_TYPES.includes(page.type);
-  // const isPublished = page.status === "Published";
-  // const isTypeMatch = type ? page.type === type : true;
-
   return isAbleRecordPage(page) && isPublished(page) && isTypeMatch(page, type);
 }
 
@@ -357,7 +351,7 @@ export const generateEmptyGloabalData = (pageId) => {
   return empty;
 };
 
-export function generateMenuItem(data: NorkiveRecordData) {
+export function generateMenuItem(data: BaseArchivePageBlock) {
   const item: NavItem = {
     icon: data.icon,
     name: data.title,
@@ -370,7 +364,7 @@ export function generateMenuItem(data: NorkiveRecordData) {
   return item;
 }
 
-export function generateLeftSideBarItem(data: NorkiveRecordData) {
+export function generateLeftSideBarItem(data: BaseArchivePageBlock) {
   const item: LeftSideBarNavItem = {
     id: data.id,
     title: data.title || "",
@@ -503,18 +497,17 @@ export function getAllPageIds(
   return pageIds;
 }
 
-//if pageId !==NOTION_DB_ID && record type is not Menu
-export function getAllRecords(allRecords, pageId): RecordPagingData {
-  const record = allRecords.find((item) => item.id === pageId);
-  return record;
-}
+// export function getAllRecords(allRecords, pageId): RecordPagingData {
+//   const record = allRecords.find((item) => item.id === pageId);
+//   return record;
+// }
 
-export function getAllSortedAndGroupedRecords(dateSort, props) {
-  let result = props.records;
+export function setPageAllSortedAndGroupedByDate(dateSort, props) {
+  let result = props.allArchivedPages;
   if (dateSort === true) {
-    const recordsSortByDate = getSortedPostObject(props.records);
-    const archiveRecords = getrecordsGroupByDate(recordsSortByDate);
-    result = archiveRecords;
+    const pageSortedByDate = setPageSortedByDate(props.allArchivedPages);
+    const pageGroupedByDate = setPageGroupedByDate(pageSortedByDate);
+    result = pageGroupedByDate;
   }
   return result;
 }
@@ -523,7 +516,7 @@ export function getAllSortedAndGroupedRecords(dateSort, props) {
  * Mapping user-defined headers
  */
 export function mapProperties(
-  properties: Partial<NorkiveRecordData> & { [key: string]: any }
+  properties: Partial<BaseArchivePageBlock> & { [key: string]: any }
 ) {
   if (properties?.type && ARCHIVE_PROPERTIES_TYPE_MAP[properties.type]) {
     properties.type = ARCHIVE_PROPERTIES_TYPE_MAP[properties.type];
@@ -624,7 +617,7 @@ export function generateCustomizeUrlWithType({
   type,
   extendConfig,
 }: {
-  recordProperties: Partial<NorkiveRecordData> & { [key: string]: any };
+  recordProperties: Partial<BaseArchivePageBlock> & { [key: string]: any };
   type: string;
   extendConfig?: {};
 }) {

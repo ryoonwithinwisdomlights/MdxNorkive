@@ -1,7 +1,7 @@
 import { BLOG } from "@/blog.config";
 import { getRecordBlockMapWithRetry } from "@/lib/data/data";
 import {
-  getAllSortedAndGroupedRecords,
+  setPageAllSortedAndGroupedByDate,
   getFilteredArrayByProperty,
   getPageArrayWithOutMenu,
   getRecommendPage,
@@ -19,10 +19,9 @@ export default async function initGlobalNotionData(from: string = "main") {
   return props;
 }
 
-// 각 메뉴의 첫 메인 페이지용 메소드
-// 전체 아카이브에서 인자값으로 전해지는 타입에 해당하는 여러개의 레코드를 가져온다.
-export async function getRecordPageListDataByType({
-  from = "records",
+//전체페이지
+export async function getAllPageDataListByType({
+  from,
   type,
   dateSort = true,
 }: {
@@ -31,16 +30,18 @@ export async function getRecordPageListDataByType({
   dateSort?: boolean;
 }) {
   const props = await getGlobalData({
+    from,
     pageId: BLOG.NOTION_DATABASE_ID as string,
     type: type,
   });
 
-  const archiveRecords = getAllSortedAndGroupedRecords(dateSort, props);
-  props.archiveRecords = archiveRecords;
+  const archivedPages = setPageAllSortedAndGroupedByDate(dateSort, props);
+  props.archivedPages = archivedPages;
   delete props.allPages;
   return props;
 }
 
+//1개페이지
 export async function getPageDataByTypeAndId({
   pageId,
   type,

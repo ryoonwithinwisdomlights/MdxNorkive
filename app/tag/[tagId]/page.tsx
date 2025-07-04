@@ -1,7 +1,7 @@
 import AllRecordsList from "@/modules/blog/records/AllRecordsList";
 import { TotalPageParams } from "@/types";
 
-import { getCategoryAndTagById } from "@/lib/data/service";
+import { getCategoryAndTagById } from "@/lib/data/business-action";
 import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
 import NoRecordTypePageWrapper from "@/modules/layout/templates/NoRecordTypePageWrapper";
 export async function generateStaticParams() {

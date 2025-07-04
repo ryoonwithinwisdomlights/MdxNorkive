@@ -1,66 +1,6 @@
-import {
-  // externalLibModel,
-  // GeneralSiteInfoModel,
-  // notionPropertyStatusModel,
-  type SiteConfigModel,
-} from "@/types/siteconfig.model";
-import {
-  siteConfigInfo,
-  // generalSiteInfo,
-  // notionPropertyStatusInfo,
-  // externalLibraryInfo,
-} from "../../blogsite.config";
 import { BLOG } from "@/blog.config";
-import { convertCleanJsonString, deepClone } from "@/lib/utils/utils";
-
-import { isUrl } from "@/lib/utils/utils";
+import { convertCleanJsonString, deepClone, isUrl } from "@/lib/utils/utils";
 import { useGlobal } from "../context/EssentialNavInfoProvider";
-
-if (!siteConfigInfo) {
-  throw new Error(`Config error: invalid site.config.ts`);
-}
-// const generalSiteConfig: GeneralSiteInfoModel = generalSiteInfo;
-// const notionPropertyStatusConfig: notionPropertyStatusModel =
-//   notionPropertyStatusInfo;
-// const externalLibraryConfig: externalLibModel = externalLibraryInfo;
-
-const siteConfigObj: SiteConfigModel = siteConfigInfo;
-
-export function getSettingsConfig<T, TDefault>(
-  key: string,
-  defaultValue?: TDefault
-): TDefault extends undefined ? T | undefined : T {
-  const value = siteConfigObj[key as keyof SiteConfigModel];
-
-  if (value !== undefined) {
-    return value as T;
-  }
-
-  return defaultValue as TDefault extends undefined ? T | undefined : T;
-}
-
-export function getSiteConfig<T, TDefault>(
-  key: string,
-  defaultValue?: TDefault
-): TDefault extends undefined ? T | undefined : T {
-  const value = siteConfigObj[key as keyof SiteConfigModel];
-
-  if (value !== undefined) {
-    return value as T;
-  }
-
-  return defaultValue as TDefault extends undefined ? T | undefined : T;
-}
-
-export function getRequiredSiteConfig<T>(key: string): T {
-  const value = siteConfigObj[key as keyof SiteConfigModel];
-
-  if (value !== undefined) {
-    return value as T;
-  }
-
-  throw new Error(`Config error: missing required site config value "${key}"`);
-}
 
 export const isServer = typeof window === "undefined";
 

@@ -28,7 +28,7 @@ export type DateObj = {
   date_format?: string;
 };
 
-export type NorkiveRecordData = {
+export type BaseArchivePageBlock = {
   id: string;
   date: DateObj;
   type: string;
@@ -55,8 +55,8 @@ export type NorkiveRecordData = {
   blockMap?: ExtendedRecordMap | null;
 };
 
-export interface RecordPagingData extends NorkiveRecordData {
-  prev?: NorkiveRecordData | null;
-  next?: NorkiveRecordData | null;
-  recommendRecords?: NorkiveRecordData[] | [];
+export interface RecordPagingData extends BaseArchivePageBlock {
+  prev?: BaseArchivePageBlock | null;
+  next?: BaseArchivePageBlock | null;
+  recommendRecords?: BaseArchivePageBlock[] | [];
 }

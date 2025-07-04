@@ -1,16 +1,12 @@
 /* eslint-disable no-unused-vars */
 import { BLOG } from "@/blog.config";
 import {
-  NorkiveRecordData,
+  BaseArchivePageBlock,
   PageBlockDataProps,
   RecordPagingData,
 } from "@/types";
 
-import {
-  getPageProperties,
-  getRecordBlockMapWithRetry,
-  getRecordPageWithRetry,
-} from "@/lib/data/data";
+import { getPageProperties, getRecordBlockMapWithRetry } from "@/lib/data/data";
 import {
   generateEmptyGloabalData,
   getAllCategoriesOrTags,
@@ -31,14 +27,6 @@ import { idToUuid } from "notion-utils";
 
 const NOTION_DB_ID = BLOG.NOTION_DATABASE_ID as string;
 
-export default async function initGlobalNotionData(from: string = "main") {
-  const props = await getGlobalData({
-    pageId: BLOG.NOTION_DATABASE_ID as string,
-    from: from,
-  });
-  return props;
-}
-
 export async function getGlobalData({
   pageId,
   from,
@@ -52,7 +40,7 @@ export async function getGlobalData({
   const props = setDataBaseProcessing(db);
   const allPages = getPageArrayWithOutMenu({ arr: props.allPages, type: type });
   props.records = allPages;
-  props.allArchiveRecords = props.allPages;
+  props.allArchivedPages = props.allPages;
   return props;
 }
 
@@ -67,8 +55,6 @@ export async function getAllRecordDataWithCache({ pageId, from, type }) {
   return data;
 }
 
-//type으로 전체 가져온다음
-//id로 sort.
 /**
  * @returns {Promise<JSX.Element|null|*>}
  */
@@ -166,11 +152,7 @@ export async function getOneRecordPageData({
   };
 }
 
-/**
- * Call NotionAPI to obtain All Page data
- * @returns {Promise<JSX.Element|null|*>}
- */
-async function getDataBaseInfoByNotionAPI({
+export async function getDataBaseInfoByNotionAPI({
   pageId = NOTION_DB_ID,
   type,
   from = "main_page",
@@ -237,7 +219,7 @@ async function getDataBaseInfoByNotionAPI({
   // const fetchedBlocks = await fetchInBatches(blockIdsNeedFetch)
   // block = Object.assign({}, block, fetchedBlocks)
 
-  const allArchiveRecordsData = (
+  const allArchivedPagesData = (
     await Promise.all(
       pageIds.map(async (id) => {
         const value = block[id]?.value;
@@ -254,7 +236,7 @@ async function getDataBaseInfoByNotionAPI({
         return properties;
       })
     )
-  ).filter((item): item is NorkiveRecordData => item !== null);
+  ).filter((item): item is BaseArchivePageBlock => item !== null);
 
   //   // 사이트 구성은 먼저 구성 테이블을 읽고, 그렇지 않으면 blog.config.js 파일을 읽습니다.
   // const NOTION_CONFIG = (await getConfigMapFromConfigPage(collectionData)) || {}
@@ -270,13 +252,13 @@ async function getDataBaseInfoByNotionAPI({
 
   // Find all Archives and Record
   const allPages = setAllRecordsWithSort(
-    allArchiveRecordsData,
+    allArchivedPagesData,
     allRecordCounter,
     type,
     dateSort
   );
 
-  const notice = await getNoticePage(allArchiveRecordsData);
+  const notice = await getNoticePage(allArchivedPagesData);
 
   const categoryOptions = getAllCategoriesOrTags({
     allPages,
@@ -292,12 +274,12 @@ async function getDataBaseInfoByNotionAPI({
 
   // old menu
   const oldNav = getOldNav({
-    allPages: (allArchiveRecordsData as NorkiveRecordData[]).filter(
+    allPages: (allArchivedPagesData as BaseArchivePageBlock[]).filter(
       (record) => record?.type === "Page" && record.status === "Published"
     ),
   });
   // new menu
-  const customMenu = await getCustomMenu({ allArchiveRecordsData });
+  const customMenu = await getCustomMenu({ allArchivedPagesData });
   const latestRecords = getLatestRecords({
     allPages,
     from,

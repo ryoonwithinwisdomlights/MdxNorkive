@@ -4,7 +4,7 @@ import { BLOG } from "@/blog.config";
 import {
   getPageDataByTypeAndId,
   getRecordPageDataById,
-} from "@/lib/data/service";
+} from "@/lib/data/business-action";
 import SingleRecords from "@/modules/blog/records/SingleRecords";
 import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
 import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";

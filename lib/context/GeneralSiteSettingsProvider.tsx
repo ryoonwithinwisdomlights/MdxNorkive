@@ -22,9 +22,8 @@ import {
 } from "@/lib/utils/lang";
 import { toast } from "sonner";
 
-const NorKiveTheme = createContext<GeneralSiteSettingsProviderContext | null>(
-  null
-);
+const GeneralSiteSettings =
+  createContext<GeneralSiteSettingsProviderContext | null>(null);
 
 /**
  * Global Theme variable Provider
@@ -121,13 +120,15 @@ export const GeneralSiteSettingsProvider: React.FC<{
   }, [lang]);
 
   return (
-    <NorKiveTheme.Provider value={value}>{children}</NorKiveTheme.Provider>
+    <GeneralSiteSettings.Provider value={value}>
+      {children}
+    </GeneralSiteSettings.Provider>
   );
 };
 
 export const useGeneralSiteSettings =
   (): GeneralSiteSettingsProviderContext => {
-    const context = useContext(NorKiveTheme);
+    const context = useContext(GeneralSiteSettings);
     if (!context) {
       throw new Error(
         "useGeneralSiteSettings must be used within a GeneralSiteSettingsProvider"

@@ -1,28 +1,28 @@
-import { NorkiveRecordData } from "./page.model";
+import { BaseArchivePageBlock } from "./page.model";
 
 export type BasicRecordPageProps = {
   type: string;
-  recordList?: NorkiveRecordData[];
+  recordList?: BaseArchivePageBlock[];
 };
 
 export type AllRecordsProps = {
   title: string;
-  recordList: NorkiveRecordData[];
+  recordList: BaseArchivePageBlock[];
 };
 
 export type AllRecordsListProps = {
   pagenum?: number;
-  records?: NorkiveRecordData[];
+  records?: BaseArchivePageBlock[];
   recordCount: number;
 };
 
 export type RecordCardInfoProps = {
-  record: NorkiveRecordData;
+  record: BaseArchivePageBlock;
   showPreview: boolean;
   showPageCover: boolean;
   showSummary: boolean;
 };
 export type CardProps = {
-  record: NorkiveRecordData;
+  record: BaseArchivePageBlock;
   className?: string;
 };

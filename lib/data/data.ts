@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { BLOG } from "@/blog.config";
 import { AVAILABLE_PAGE_TYPES } from "@/constants/menu.constants";
-import { NorkiveRecordData } from "@/types";
+import { BaseArchivePageBlock } from "@/types";
 import {
   BlockMap,
   CollectionPropertySchemaMap,
@@ -27,11 +27,11 @@ export async function getPageProperties(
   schema: CollectionPropertySchemaMap,
   authToken: string | null,
   tagOptions: SelectOption[]
-): Promise<NorkiveRecordData | null> {
+): Promise<BaseArchivePageBlock | null> {
   const rawProperties = Object.entries(block?.[id]?.value?.properties || []);
   const excludeProperties = ["date", "select", "multi_select", "person"];
   const value = block[id]?.value;
-  const properties: Partial<NorkiveRecordData> & {
+  const properties: Partial<BaseArchivePageBlock> & {
     id: string;
     [key: string]: any;
   } = { id };
@@ -140,7 +140,7 @@ export async function getPageProperties(
     });
     properties.blockMap = blockMap;
   }
-  return properties as NorkiveRecordData;
+  return properties as BaseArchivePageBlock;
 }
 
 export async function getRecordBlockMapWithRetry({
@@ -211,7 +211,7 @@ export async function getRecordPageWithRetry({
   retryAttempts: number;
 }) {
   const cacheKey = `page_block_${pageId}`;
-  console.log("retryAttempts::", retryAttempts);
+  // console.log("retryAttempts::", retryAttempts);
 
   const cached = await tryGetNotionCachedData(cacheKey, pageId, from);
   if (cached) {

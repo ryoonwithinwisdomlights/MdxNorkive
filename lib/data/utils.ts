@@ -12,7 +12,7 @@ export function isDatabase(rawMetadata, uuidedRootPageId) {
   return true;
 }
 
-export function getSortedPostObject(obj) {
+export function setPageSortedByDate(obj) {
   const recordsSortByDate = Object.create(obj);
 
   recordsSortByDate.sort((a, b) => {
@@ -21,7 +21,7 @@ export function getSortedPostObject(obj) {
   return recordsSortByDate;
 }
 
-export function getrecordsGroupByDate(array) {
+export function setPageGroupedByDate(array) {
   const allrecords = {};
 
   array.forEach((record) => {
