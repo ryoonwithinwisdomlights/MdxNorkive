@@ -1,10 +1,8 @@
 import AllRecordsList from "@/modules/blog/records/AllRecordsList";
 import { TotalPageParams } from "@/types";
 
-import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
 import { getCategoryAndTagById } from "@/lib/data/service";
-import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
-import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
+import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
 import NoRecordTypePageWrapper from "@/modules/layout/templates/NoRecordTypePageWrapper";
 export async function generateStaticParams() {
   const records = [{ tagId: "기술로그" }, { tagId: "another-Tags" }];

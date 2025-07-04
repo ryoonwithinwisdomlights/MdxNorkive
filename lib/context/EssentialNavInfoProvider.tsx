@@ -45,7 +45,7 @@ export function EssentialNavInfoProvider({
   const router = useRouter();
 
   const handleRouter = (record) => {
-    setCurrentRecordId(record);
+    // setCurrentRecordId(record);
     router.push(`/${record.slug}`);
   };
   const cleanCurrentRecordData = () => {

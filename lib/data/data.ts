@@ -149,12 +149,144 @@ export async function getRecordBlockMapWithRetry({
   retryAttempts,
 }: PageBlockDataProps) {
   const pageBlock = retryAttempts
-    ? await getRecordPage({ pageId: pageId, from })
-    : await getRecordPageWithRetry({ pageId });
+    ? await getRecordPageWithRetry({ pageId: pageId, from, retryAttempts })
+    : await getRecordPage({ pageId: pageId, from });
   if (pageBlock) {
     return filterPostBlocks(pageId, pageBlock);
   }
   return pageBlock;
+}
+
+export const tryGetNotionCachedData = async (cacheKey, pageId, from) => {
+  const cached = await getDataFromCache(cacheKey);
+  if (cached) {
+    console.log(`[Cache hit] ${from} - ${pageId}`);
+    return cached;
+  }
+  return false;
+};
+export const tryFetchNotionRemoteData = async ({
+  from,
+  pageId,
+  retryAttempts,
+  cacheKey,
+}: {
+  from?: string;
+  pageId: string;
+  retryAttempts?: number;
+  cacheKey: string;
+}): Promise<ExtendedRecordMap> => {
+  console.log(`[Cache miss] ${from} - fetching from Notion`);
+  console.log(
+    "[Request API]",
+    `from: ${from}`,
+    `id: ${pageId}`,
+    `retries left: ${retryAttempts}`
+  );
+  const notion = new NotionAPI({
+    userTimeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+  });
+
+  const start = Date.now();
+  const pageData = await notion.getPage(pageId);
+  const end = Date.now();
+  await setDataToCache(cacheKey, pageData);
+  console.log(`[Notion fetch done] ${from} - ${end - start}ms`);
+  return pageData;
+};
+/**
+ *  Call the interface and try again if it fails.
+ *  실패에도 끈질기게 데이터를 가져와야 하는 중요 fetch 작업에 사용.
+    단일 포스트 fetch 중요한 단건 요청.
+ * @param {*} pageId
+ * @param {*} retryAttempts
+ */
+export async function getRecordPageWithRetry({
+  pageId,
+  from,
+  retryAttempts,
+}: {
+  pageId: string;
+  from?: string;
+  retryAttempts: number;
+}) {
+  const cacheKey = `page_block_${pageId}`;
+  console.log("retryAttempts::", retryAttempts);
+
+  const cached = await tryGetNotionCachedData(cacheKey, pageId, from);
+  if (cached) {
+    return cached;
+  } else {
+    console.log("cache failed");
+
+    if (retryAttempts && retryAttempts > 0) {
+      try {
+        return await tryFetchNotionRemoteData({
+          from: from,
+          pageId: pageId,
+          retryAttempts: retryAttempts,
+          cacheKey: cacheKey,
+        });
+      } catch (error) {
+        console.warn("[Fetch failed]", `from: ${from}`, `id: ${pageId}`, error);
+
+        if (retryAttempts <= 1) {
+          console.error(
+            "[All retries failed]",
+            `from: ${from}`,
+            `id: ${pageId}`
+          );
+          return null;
+        }
+
+        await delay(1000);
+
+        const cached = await getDataFromCache(cacheKey);
+        if (cached) {
+          console.log("[Retry with cache]", `from: ${from}`, `id: ${pageId}`);
+          return cached;
+        }
+
+        // 재귀 호출로 재시도
+        return await getRecordPageWithRetry({
+          pageId,
+          from,
+          retryAttempts: retryAttempts - 1,
+        });
+      }
+    } else {
+      console.error("[Request failed]:", `from:${from}`, `id:${pageId}`);
+      return null;
+    }
+  }
+
+  // try {
+  //   return await tryFetchNotionRemoteData();
+  // } catch (error) {
+  //   console.warn("[Fetch failed]", `from: ${from}`, `id: ${pageId}`, error);
+
+  //   if (retryAttempts <= 1) {
+  //     console.error("[All retries failed]", `from: ${from}`, `id: ${pageId}`);
+  //     return null;
+  //   }
+
+  //   await delay(1000);
+
+  //   const cached = await getDataFromCache(cacheKey);
+  //   if (cached) {
+  //     console.log("[Retry with cache]", `from: ${from}`, `id: ${pageId}`);
+  //     return cached;
+  //   }
+
+  //   // 재귀 호출로 재시도
+  //   return await getRecordPageWithRetry({
+  //     pageId,
+  //     from,
+  //     retryAttempts: retryAttempts - 1,
+  //   });
+  // }
+
+  //캐쉬에서 먼저가져오고 그다음 저거로 해야하는거 아닌가?
 }
 
 /**
@@ -170,99 +302,23 @@ export async function getRecordPage({
   pageId: string;
   from?: string;
 }): Promise<ExtendedRecordMap | null> {
-  const cacheKey = `page_content_${pageId}`;
+  const cacheKey = `page_block_${pageId}`;
 
   // 1. 캐시에서 먼저 시도
-  const cached = await getDataFromCache(cacheKey);
+  const cached = await tryGetNotionCachedData(cacheKey, pageId, from);
   if (cached) {
-    console.log(`[Cache hit] ${from} - ${pageId}`);
     return cached;
-  }
-
-  // 2. 캐시 miss → Notion API fetch
-  try {
-    console.log(`[Cache miss] ${from} - fetching from Notion`);
-    const notion = new NotionAPI({
-      userTimeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-    });
-
-    const start = Date.now();
-    const data = await notion.getPage(pageId);
-    const end = Date.now();
-    console.log(`[Notion fetch done] ${from} - ${end - start}ms`);
-
-    // 3. 캐시에 저장
-    await setDataToCache(cacheKey, data);
-    return data;
-  } catch (err) {
-    console.error(`[Notion fetch failed] ${from} - ${err}`);
-    return null;
-  }
-}
-
-/**
- *  Call the interface and try again if it fails.
- *  실패에도 끈질기게 데이터를 가져와야 하는 중요 fetch 작업에 사용.
-    단일 포스트 fetch 중요한 단건 요청.
- * @param {*} pageId
- * @param {*} retryAttempts
- */
-export async function getRecordPageWithRetry({
-  pageId,
-  from = "unknown",
-  retryAttempts = 3,
-}: {
-  pageId: string;
-  from?: string;
-  retryAttempts?: number;
-}) {
-  const cacheKey = "page_block_" + pageId;
-  const tryFetch = async (): Promise<ExtendedRecordMap> => {
-    //tryFetch() 내부 함수로 API fetch 책임 분리
-    console.log(
-      "[Request API]",
-      `from: ${from}`,
-      `id: ${pageId}`,
-      `retries left: ${retryAttempts}`
-    );
-    const notion = new NotionAPI({
-      userTimeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-    });
-
-    const start = Date.now();
-    const pageData = await notion.getPage(pageId);
-    const end = Date.now();
-    console.log(
-      "[API<<--response]",
-      `duration: ${end - start}ms`,
-      `from: ${from}`
-    );
-    return pageData;
-  };
-
-  try {
-    return await tryFetch();
-  } catch (error) {
-    console.warn("[Fetch failed]", `from: ${from}`, `id: ${pageId}`, error);
-
-    if (retryAttempts <= 1) {
-      console.error("[All retries failed]", `from: ${from}`, `id: ${pageId}`);
+  } else {
+    // 2. 캐시 miss → Notion API fetch
+    try {
+      return await tryFetchNotionRemoteData({
+        from: from,
+        pageId: pageId,
+        cacheKey: cacheKey,
+      });
+    } catch (err) {
+      console.error(`[Notion fetch failed] ${from} - ${err}`);
       return null;
     }
-
-    await delay(1000);
-
-    const cached = await getDataFromCache(cacheKey);
-    if (cached) {
-      console.log("[Retry with cache]", `from: ${from}`, `id: ${pageId}`);
-      return cached;
-    }
-
-    // 재귀 호출로 재시도
-    return await getRecordPageWithRetry({
-      pageId,
-      from,
-      retryAttempts: retryAttempts - 1,
-    });
   }
 }

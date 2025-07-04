@@ -57,12 +57,6 @@ export async function getPageDataByTypeAndId({
   if (!props.record) {
     return null;
   }
-  // const siteInfo = props.siteInfo
-  // const isAble = isObjectNotEmpty(record);
-  // if (!isAble) {
-  //   return null;
-  // }
-  // props["record"] = record;
   setPageTableOfContentsByRecord(props);
 
   const recommendRecords = getPageArrayWithOutMenu({

@@ -6,13 +6,15 @@ import {
   RecordPagingData,
 } from "@/types";
 
-import { getRecordBlockMapWithRetry, getPageProperties } from "@/lib/data/data";
+import {
+  getPageProperties,
+  getRecordBlockMapWithRetry,
+  getRecordPageWithRetry,
+} from "@/lib/data/data";
 import {
   generateEmptyGloabalData,
-  generateEmptyRecordData,
   getAllCategoriesOrTags,
   getAllPageIds,
-  getAllRecords,
   getCategoryOptions,
   getCustomMenu,
   getLatestRecords,
@@ -23,7 +25,7 @@ import {
   getTagOptions,
   setAllRecordsWithSort,
 } from "@/lib/data/function";
-import { setDataBaseProcessing, isDatabase } from "@/lib/data/utils";
+import { isDatabase, setDataBaseProcessing } from "@/lib/data/utils";
 import { Collection, CollectionPropertySchemaMap } from "notion-types";
 import { idToUuid } from "notion-utils";
 
@@ -42,7 +44,7 @@ export async function getGlobalData({
   from,
   type,
 }: PageBlockDataProps) {
-  const db = await getAllRecordDataWithCache({ pageId, from, type });
+  const db = await getDataBaseInfoByNotionAPI({ pageId, from, type });
   if (!db) {
     console.error("can`t get Notion Data ; Which id is: ", pageId);
     return {};
@@ -73,13 +75,14 @@ export async function getAllRecordDataWithCache({ pageId, from, type }) {
 export async function getOneRecordPageData({
   pageId,
   type,
-  from = "main_page",
+  from,
 }: PageBlockDataProps) {
   // console.debug("[API_Request]", `record-page-id:${pageId}`);
   //전체 글로벌데이터.
   const allRecordPageBlockMap = await getRecordBlockMapWithRetry({
     pageId: NOTION_DB_ID,
     retryAttempts: 3,
+    from,
   });
 
   if (!allRecordPageBlockMap) {
@@ -88,10 +91,6 @@ export async function getOneRecordPageData({
   }
 
   const block = allRecordPageBlockMap.block || {};
-  // const uuidedRootPageId = idToUuid(pageId);
-  console.log("block:", block);
-  console.log("block[pageId]?.value::", block[pageId]?.value);
-  // const rawMetadata = block[pageId]?.value;
   const uuidedRootPageId = idToUuid(NOTION_DB_ID);
 
   const rawMetadata = block[uuidedRootPageId]?.value;
@@ -176,21 +175,20 @@ async function getDataBaseInfoByNotionAPI({
   type,
   from = "main_page",
 }: PageBlockDataProps) {
+  const uuidedRootPageId = idToUuid(pageId);
   console.debug("[API_Request]", `record-page-id:${pageId}, type:${type}`);
-
   const pageRecordMap = await getRecordBlockMapWithRetry({
-    pageId: pageId,
+    pageId: uuidedRootPageId,
     from: from,
+    retryAttempts: 3,
   });
 
   if (!pageRecordMap) {
-    console.error("can`t get Notion Data ; Which id is: ", pageId);
+    console.error("can`t get Notion Data ; Which id is: ", uuidedRootPageId);
     return {};
   }
 
   const block = pageRecordMap.block || {};
-  const uuidedRootPageId = idToUuid(pageId);
-
   const rawMetadata = block[uuidedRootPageId]?.value;
 
   const isntDB = isDatabase(rawMetadata, uuidedRootPageId);

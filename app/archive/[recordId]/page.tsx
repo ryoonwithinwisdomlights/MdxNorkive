@@ -1,7 +1,6 @@
 "use server";
 
 import { BLOG } from "@/blog.config";
-import { getOneRecordPageData } from "@/lib/data/interface";
 import {
   getPageDataByTypeAndId,
   getRecordPageDataById,
