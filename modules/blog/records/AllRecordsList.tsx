@@ -2,7 +2,7 @@
 import { BLOG } from "@/blog.config";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import NavPostListEmpty from "@/modules/layout/components/NavPostListEmpty";
-import { AllRecordsListProps } from "@/types";
+import { PaginationDivProps } from "@/types";
 import { useRouter } from "next/navigation";
 import AllRecordsPostCard from "./AllRecordsPostCard";
 import PaginationSimple from "./PaginationSimple";
@@ -19,7 +19,7 @@ const AllRecordsList = ({
   pagenum = 1,
   allPages = [],
   pageCount,
-}: AllRecordsListProps) => {
+}: PaginationDivProps) => {
   const router = useRouter();
   const totalPage = Math.ceil(pageCount / BLOG.RECORD_PER_PAGE);
   const { locale, searchKeyword } = useGeneralSiteSettings();

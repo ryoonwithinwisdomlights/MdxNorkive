@@ -35,7 +35,7 @@ export const MenuItemDrop = ({ link }) => {
         className={
           "px-2 h-full whitespace-nowrap duration-300 text-sm justify-between text-neutral-700  dark:text-neutral-300 cursor-pointer flex flex-nowrap items-center " +
           (selected
-            ? "bg-[#f1efe9e2] rounded-lg h-4/5 text-neutral-700 hover:text-neutral-700 dark:text-neutral-700  dark:hover:text-black "
+            ? "bg-norkive-light rounded-lg h-4/5 text-neutral-700 hover:text-neutral-700 dark:text-neutral-700  dark:hover:text-black "
             : "hover:text-black dark:hover:text-[#ffffff]")
         }
       >
@@ -62,7 +62,7 @@ export const MenuItemDrop = ({ link }) => {
         className={
           "px-2 h-full  whitespace-nowrap duration-300 text-sm justify-between text-neutral-700  dark:text-neutral-300 cursor-pointer flex flex-nowrap items-center " +
           (selected
-            ? "bg-[#f1efe9e2] rounded-lg h-4/5 text-neutral-700 hover:text-neutral-900 dark:text-neutral-700 dark:hover:text-black "
+            ? "bg-norkive-light rounded-lg h-4/5 text-neutral-700 hover:text-neutral-900 dark:text-neutral-700 dark:hover:text-black "
             : " hover:text-black  dark:hover:text-[#ffffff]")
         }
       >
@@ -98,7 +98,7 @@ export const MenuItemDrop = ({ link }) => {
             tracking-widest transition-all duration-200  dark:border-neutral-800 py-3 pr-6 pl-3"
               >
                 <div
-                  className="hover:bg-[#f1efe9e2]  px-2 hover:rounded-lg hover:h-4/5 w-full"
+                  className="hover:bg-norkive-light  px-2 hover:rounded-lg hover:h-4/5 w-full"
                   onClick={() => {
                     onClickUrl(sLink);
                   }}

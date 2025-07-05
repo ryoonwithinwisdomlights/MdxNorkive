@@ -11,7 +11,7 @@ const ProjectIntro = () => {
         built based on small and big learnings.
       </div>
       <div className="text-4xl  dark:text-neutral-100 flex flex-row justify-end ">
-        Dev Projects<span className="text-[#f1efe9e2]">.</span>
+        Dev Projects<span className="text-norkive-light">.</span>
       </div>
       <div className=" dark:text-neutral-200 md:px-2 text-neutral-700 mt-1 text-right my-2  ">
         {lang === "kr-KR" ? (

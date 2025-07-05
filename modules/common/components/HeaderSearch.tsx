@@ -96,14 +96,14 @@ export default function HeaderSearch() {
             w-full
             pl-9 pr-3 py-2
             rounded-md
-            bg-neutral-100 
+            bg-norkive-light
             placeholder-neutral-500
             focus:outline-none
             focus:ring-2 focus:ring-neutral-400
             transition
            dark:text-white/50
             text-neutral-700 
-            hover:bg-neutral-200
+           hover:ring-2 hover:ring-neutral-400
             dark:bg-neutral-700/50 
             dark:placeholder-neutral-500
             dark:focus:ring-neutral-600

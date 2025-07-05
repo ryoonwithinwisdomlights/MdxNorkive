@@ -1,4 +1,4 @@
-import { DateObj } from "./page.model";
+import { DateObj } from "./record.model";
 
 export type OldNavItem = {
   icon: string;

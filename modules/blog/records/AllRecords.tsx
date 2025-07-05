@@ -1,6 +1,6 @@
 "use client";
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
-import { AllRecordsProps } from "@/types";
+import { BasicPageDivProps } from "@/types";
 import { LockIcon } from "lucide-react";
 
 /**
@@ -9,13 +9,13 @@ import { LockIcon } from "lucide-react";
  * @param {*} param0
  * @returns
  */
-export default function AllRecords({ title, recordList }: AllRecordsProps) {
+export default function AllRecords({ title, recordList }: BasicPageDivProps) {
   const { handleRouter } = useGlobal({});
   return (
     <div key={title} className="w-full flex flex-col items-center">
       <div
         id={title}
-        className="pt-10  text-[#cbcac4e2] font-semibold pb-4 text-2xl  "
+        className="pt-10  text-norkive-medium font-semibold pb-4 text-2xl  "
       >
         {title}
       </div>
@@ -23,7 +23,7 @@ export default function AllRecords({ title, recordList }: AllRecordsProps) {
         {recordList[title]?.map((page) => (
           <li
             key={page.id}
-            className="border-l-4 border-[#f1efe9e2]  hover:border-[#cbcac4e2] 
+            className="border-l-4 border-norkive-light  hover:border-norkive-medium 
              p-2 text-xs md:text-base 
              text-justify  hover:scale-x-105  dark:hover:border-neutral-400 dark:border-neutral-400/30 transform duration-500"
           >
@@ -39,7 +39,7 @@ export default function AllRecords({ title, recordList }: AllRecordsProps) {
                  hover:text-neutral-400  dark:hover:text-neutral-200 overflow-x-hidden 
                  hover:underline cursor-pointer text-neutral-600"
               >
-                <span className="text-[#cbcac4e2] dark:hover:text-neutral-300 ">
+                <span className="text-norkive-medium dark:hover:text-neutral-300 ">
                   {page.date?.start_date}
                 </span>
 

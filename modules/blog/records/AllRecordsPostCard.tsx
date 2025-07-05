@@ -1,10 +1,10 @@
 "use client";
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { substringWithNumberDots } from "@/lib/utils/utils";
-import { CardProps } from "@/types";
+import { NavListDivProps } from "@/types";
 import { usePathname } from "next/navigation";
 
-const AllRecordsPostCard = ({ record }: CardProps) => {
+const AllRecordsPostCard = ({ record, className }: NavListDivProps) => {
   const pathname = usePathname();
   const currentSelected = pathname.split("/")[2] === record.id;
   const { handleRouter } = useGlobal({});
@@ -12,8 +12,8 @@ const AllRecordsPostCard = ({ record }: CardProps) => {
   return (
     <div
       key={record.id}
-      className={`py-1 cursor-pointer px-2 hover:bg-neutral-100 hover:dark:text-white rounded-md dark:hover:bg-neutral-500  ${
-        currentSelected ? " text-neutral-500" : ""
+      className={`${className} cursor-pointer px-2 hover:bg-norkive-light hover:dark:text-white rounded-md dark:hover:bg-neutral-500  ${
+        currentSelected ? "  bg-norkive-light" : ""
       }`}
     >
       <div className="flex flex-col w-full select-none">

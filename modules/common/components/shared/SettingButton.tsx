@@ -8,7 +8,7 @@ const SettingButton = (props: Props) => {
   const { handleSettings } = useGeneralSiteSettings();
   return (
     <button data-tooltip={"Settings"} onClick={handleSettings}>
-      <Settings2Icon className="w-6 h-6 dark:text-[#f1efe9e2] text-neutral-600" />
+      <Settings2Icon className="w-6 h-6 dark:text-norkive-light text-neutral-600" />
     </button>
   );
 };

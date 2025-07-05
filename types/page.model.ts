@@ -1,65 +1,74 @@
-import { ExtendedRecordMap, SelectOption } from "notion-types";
-import { TableOfContentsEntry } from "notion-utils";
+import { ParsedUrlQuery } from "querystring";
+import { BaseArchivePageBlock } from "./record.model";
 
-export type RecommendPage = {
-  id: string;
-  type: string;
-  tags?: string[];
-};
-
-export interface TagItem {
-  color: string;
-  name?: string;
-  id?: string;
-  options?: SelectOption[];
-  count?: number;
-}
-export interface CategoryItem {
-  color: string;
-  name?: string;
-  id?: string;
-  options?: SelectOption[];
-  count?: number;
+export interface ChildrenProp {
+  children: React.ReactNode;
 }
 
-export type DateObj = {
-  type?: string;
-  start_date?: string;
-  date_format?: string;
+export type ClassNameProp = {
+  className: string;
 };
 
-export type BaseArchivePageBlock = {
-  id: string;
-  date: DateObj;
-  type: string;
-  category: string;
-  sub_type?: string[];
-  tags?: string[];
-  title: string;
-  status: string;
-  publishDate: number;
-  publishDay: string;
-  lastEditedDate?: Date;
-  lastEditedDay?: string;
-  fullWidth?: boolean;
-  pageIcon?: string;
-  pageCover?: string;
-  pageCoverThumbnail?: string;
-  tagItems?: TagItem[];
-  summary?: any;
+export interface PageError {
+  message?: string;
+  statusCode: number;
+}
+
+export interface Params extends ParsedUrlQuery {
+  pageId: string;
+}
+
+export type PageParams = Promise<{ [key: string]: string }>;
+
+export type PageSearchParams = Promise<{
+  [key: string]: number | undefined;
+}>;
+
+export type TotalPageParams = {
+  params: PageParams;
+  searchParams: PageSearchParams;
+};
+
+export type SlugConvertProps = {
   slug: string;
-  icon?: string;
-  results?: any;
-  password?: string;
-  tableOfContents?: TableOfContentsEntry[] | [];
-  blockMap?: ExtendedRecordMap | null;
-  prev?: BaseArchivePageBlock | null;
-  next?: BaseArchivePageBlock | null;
-  recommendPages?: RecommendPage[] | [];
+  type: string;
 };
 
-// export interface RecordPagingData extends BaseArchivePageBlock {
-//   prev?: BaseArchivePageBlock | null;
-//   next?: BaseArchivePageBlock | null;
-//   recommendPages?: BaseArchivePageBlock[] | [];
-// }
+export type CardInfoPageDivProps = {
+  type: string;
+  recordList?: BaseArchivePageBlock[];
+};
+
+export type BasicPageDivProps = {
+  title: string;
+  recordList: BaseArchivePageBlock[];
+};
+
+export type PaginationDivProps = {
+  pagenum?: number;
+  allPages?: BaseArchivePageBlock[];
+  pageCount: number;
+};
+
+export type CardInfoDivProps = {
+  record: BaseArchivePageBlock;
+  showPreview: boolean;
+  showPageCover: boolean;
+  showSummary: boolean;
+};
+export type NavListDivProps = {
+  record: BaseArchivePageBlock;
+  className?: string;
+};
+
+export interface PageUrlOverridesMap {
+  // maps from a URL path to the notion page id the page should be resolved to
+  // (this overrides the built-in URL path generation for these pages)
+  [pagePath: string]: string;
+}
+
+export interface PageUrlOverridesInverseMap {
+  // maps from a notion page id to the URL path the page should be resolved to
+  // (this overrides the built-in URL path generation for these pages)
+  [pageId: string]: string;
+}

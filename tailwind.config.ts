@@ -34,6 +34,11 @@ module.exports = {
         night: {
           DEFAULT: BLOG.BACKGROUND_DARK || "#111827",
         },
+        norkive: {
+          light: "#f1efe9e2",
+          medium: "#cbcac4e2",
+        },
+
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

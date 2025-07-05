@@ -1,8 +1,9 @@
 import { SelectOption } from "notion-types";
 import { Dispatch, SetStateAction } from "react";
 import { LeftSideBarNavItem, NavItem, OldNavItem } from "./layout.model";
-import { BaseArchivePageBlock } from "./page.model";
-import { SiteInfoModel } from "./siteconfig.model";
+
+import { BaseArchivePageBlock } from "./record.model";
+import { SiteInfoModel } from "./index";
 
 export interface EssentialNavInfo {
   siteInfo: SiteInfoModel;
@@ -14,7 +15,6 @@ export interface EssentialNavInfo {
   notice: any;
   latestRecords: [];
   showTocButton: boolean;
-  // currentRecordData: BaseArchivePageBlock | null;
   handleRouter: (page: BaseArchivePageBlock) => void;
   cleanCurrentRecordData: () => void;
 }

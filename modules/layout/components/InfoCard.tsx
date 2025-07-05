@@ -29,7 +29,7 @@ const InfoCard = () => {
          dark:text-neutral-100 dark:hover:text-white px-2 
          hover:rounded-lg hover:h-4/5 transform duration-200 flex justify-center
          hover:underline 
-         decoration-[#f1efe9e2]
+         decoration-norkive-light
          "
       >
         {BLOG.AUTHOR}

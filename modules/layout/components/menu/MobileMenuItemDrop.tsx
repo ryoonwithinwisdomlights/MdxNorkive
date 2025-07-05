@@ -63,7 +63,7 @@ export const MobileMenuItemDrop = (props) => {
         </div>
         <div className="inline-flex items-center ">
           <ChevronRightIcon
-            className={`w-3 h-3 transition-all duration-200 dark:text-[#f1efe9e2] ${
+            className={`w-3 h-3 transition-all duration-200 dark:text-norkive-light ${
               isOpen ? "rotate-90" : ""
             }`}
           />

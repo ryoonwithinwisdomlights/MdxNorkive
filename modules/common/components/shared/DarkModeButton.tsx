@@ -23,7 +23,7 @@ const DarkModeButton = (props) => {
         className="w-6 h-6 flex flex-col  justify-center items-center   hover:scale-110 cursor-pointer transform duration-200 "
       >
         {isDarkMode ? (
-          <Settings2Icon className=" text-[#f1efe9e2]  " />
+          <Settings2Icon className=" text-norkive-light  " />
         ) : (
           <Settings2Icon className="text-neutral-600" />
         )}

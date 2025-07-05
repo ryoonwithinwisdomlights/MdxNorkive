@@ -1,10 +1,10 @@
-import { BasicRecordPageProps } from "@/types";
+import { BasicPageDivProps, CardInfoPageDivProps } from "@/types";
 import NoRecordFound from "./NoRecordFound";
 import LazyImage from "@/modules/common/components/shared/LazyImage";
 import ProjectCardInfo from "./ProjectCardInfo";
 import RecordCardInfo from "./RecordCardInfo";
 
-const RecordBodyForPage = ({ type, recordList }: BasicRecordPageProps) => {
+const RecordBodyForPage = ({ type, recordList }: CardInfoPageDivProps) => {
   return (
     <div className="flex flex-row justify-end">
       <div className="space-y-6 w-full px-2">

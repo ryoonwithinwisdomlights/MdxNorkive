@@ -2,7 +2,7 @@
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import NotionPage from "@/modules/common/components/shared/NotionPage";
-import { RecordCardInfoProps } from "@/types";
+import { CardInfoDivProps } from "@/types";
 import { CalendarIcon, LockIcon } from "lucide-react";
 import TagItemMini from "../tag/TagItemMini";
 
@@ -16,7 +16,7 @@ const ProjectCardInfo = ({
   showPreview,
   showPageCover,
   showSummary,
-}: RecordCardInfoProps) => {
+}: CardInfoDivProps) => {
   const { locale } = useGeneralSiteSettings();
   const { handleRouter } = useGlobal({});
 

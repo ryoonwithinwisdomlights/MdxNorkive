@@ -9,7 +9,7 @@ const EngineeringIntro = () => {
         browsing all the engineering related records you have learned
       </div>
       <div className="text-4xl  dark:text-neutral-100 flex flex-row justify-end ">
-        Software Engineering <span className="text-[#f1efe9e2]">.</span>
+        Software Engineering <span className="text-norkive-light">.</span>
       </div>
       {lang === "kr-KR" ? (
         <div className=" dark:text-neutral-200 md:px-2 text-neutral-700 mt-1 text-right my-2 mr-4 ">

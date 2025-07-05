@@ -1,30 +1,5 @@
 import type * as types from "@/types";
 
-export interface SiteInfoModel {
-  title: string;
-  description?: string;
-  home_banner_image?: string;
-  icon?: any;
-  pageCover?: any;
-  avatar?: string;
-  link?: string;
-  author?: string;
-}
-// title: string;
-// description?: string;
-// home_banner_image?: string;
-// icon?: any;
-// pageCover?: any;
-// avatar?: string;
-// link?: string;
-// author?: string;
-// export interface GeneralSiteInfoModel {
-//   defaultPageIcon?: string | null;
-//   defaultTitle: string;
-//   defaultPageCover?: string | null;
-//   defaultDescription: string;
-//   defaultPageCoverPosition?: number | null;
-// }
 export interface SiteConfigModel {
   app_name: string;
   since?: string | number;

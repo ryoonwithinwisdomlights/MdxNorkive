@@ -1,7 +1,7 @@
 "use client";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import NotionPage from "@/modules/common/components/shared/NotionPage";
-import { RecordCardInfoProps } from "@/types";
+import { CardInfoDivProps } from "@/types";
 import { CalendarIcon, FolderClosedIcon, LockIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -18,7 +18,7 @@ const RecordCardInfo = ({
   showPreview,
   showPageCover,
   showSummary,
-}: RecordCardInfoProps) => {
+}: CardInfoDivProps) => {
   const { locale } = useGeneralSiteSettings();
   const { handleRouter } = useGlobal({});
 

@@ -1,9 +1,8 @@
-import React from "react";
-import ProjectIntro from "./ProjectIntro";
+import { CardInfoPageDivProps } from "@/types";
 import EngineeringIntro from "./EngineeringIntro";
-import { BasicRecordPageProps } from "@/types";
+import ProjectIntro from "./ProjectIntro";
 
-const RecordIntroForPage = ({ type }: BasicRecordPageProps) => {
+const RecordIntroForPage = ({ type }: CardInfoPageDivProps) => {
   return (
     <div className="mb-4  mr-4 flex flex-col justify-end">
       {type === "Project" ? <ProjectIntro /> : <EngineeringIntro />}

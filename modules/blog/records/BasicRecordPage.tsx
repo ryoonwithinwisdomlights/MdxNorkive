@@ -1,11 +1,11 @@
-import { BasicRecordPageProps } from "@/types";
+import { CardInfoPageDivProps } from "@/types";
 import RecordBodyForPage from "./RecordBodyForPage";
 import RecordIntroForPage from "./RecordIntroForPage";
 
 export default function BasicRecordPage({
   type,
   recordList,
-}: BasicRecordPageProps) {
+}: CardInfoPageDivProps) {
   return (
     <div
       id="main-scroll-container"

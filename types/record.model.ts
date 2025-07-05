@@ -1,28 +1,68 @@
-import { BaseArchivePageBlock } from "./page.model";
+import { ExtendedRecordMap, SelectOption } from "notion-types";
+import { TableOfContentsEntry } from "notion-utils";
 
-export type BasicRecordPageProps = {
+export type PageBlockDataProps = {
+  pageId: string;
+  from?: string;
+  type?: string;
+  slice?: number;
+  retryAttempts?: number;
+  recordMap?: ExtendedRecordMap;
+};
+
+export type RecommendPage = {
+  id: string;
   type: string;
-  recordList?: BaseArchivePageBlock[];
+  tags?: string[];
 };
 
-export type AllRecordsProps = {
+export interface TagItem {
+  color: string;
+  name?: string;
+  id?: string;
+  options?: SelectOption[];
+  count?: number;
+}
+export interface CategoryItem {
+  color: string;
+  name?: string;
+  id?: string;
+  options?: SelectOption[];
+  count?: number;
+}
+
+export type DateObj = {
+  type?: string;
+  start_date?: string;
+  date_format?: string;
+};
+
+export type BaseArchivePageBlock = {
+  id: string;
+  date: DateObj;
+  type: string;
+  category: string;
+  sub_type?: string[];
+  tags?: string[];
   title: string;
-  recordList: BaseArchivePageBlock[];
-};
-
-export type AllRecordsListProps = {
-  pagenum?: number;
-  allPages?: BaseArchivePageBlock[];
-  pageCount: number;
-};
-
-export type RecordCardInfoProps = {
-  record: BaseArchivePageBlock;
-  showPreview: boolean;
-  showPageCover: boolean;
-  showSummary: boolean;
-};
-export type CardProps = {
-  record: BaseArchivePageBlock;
-  className?: string;
+  status: string;
+  publishDate: number;
+  publishDay: string;
+  lastEditedDate?: Date;
+  lastEditedDay?: string;
+  fullWidth?: boolean;
+  pageIcon?: string;
+  pageCover?: string;
+  pageCoverThumbnail?: string;
+  tagItems?: TagItem[];
+  summary?: any;
+  slug: string;
+  icon?: string;
+  results?: any;
+  password?: string;
+  tableOfContents?: TableOfContentsEntry[] | [];
+  blockMap?: ExtendedRecordMap | null;
+  prev?: BaseArchivePageBlock | null;
+  next?: BaseArchivePageBlock | null;
+  recommendPages?: RecommendPage[] | [];
 };

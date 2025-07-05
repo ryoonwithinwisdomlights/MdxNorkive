@@ -1,4 +1,4 @@
-export * from "./basic.model";
+export * from "./general.model";
 export * from "./page.model";
 export * from "./utils.model";
 export * from "./provider.model";

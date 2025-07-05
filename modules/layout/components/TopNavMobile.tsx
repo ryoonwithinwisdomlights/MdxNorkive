@@ -36,9 +36,9 @@ const TopNavMobile = ({ collapseRef, isOpen, toggleMenuOpen }) => {
             className="cursor-pointer text-lg hover:scale-110 duration-150"
           >
             {isOpen ? (
-              <AlignRightIcon className="dark:text-[#f1efe9e2]" />
+              <AlignRightIcon className="dark:text-norkive-light" />
             ) : (
-              <MenuIcon className="dark:text-[#f1efe9e2]" />
+              <MenuIcon className="dark:text-norkive-light" />
             )}
           </div>
         </div>

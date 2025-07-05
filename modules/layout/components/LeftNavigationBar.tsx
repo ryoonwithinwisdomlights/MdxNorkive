@@ -13,7 +13,7 @@ const LeftNavigationBar = () => {
         </div>
       </div>
 
-      <div className="fixed md:w-[20%] bottom-0 z-20 bg-white border-rdark:bg-neutral-900">
+      <div className="fixed md:w-[20%] bottom-0 z-20 border-r bg-white border-rdark:bg-neutral-900">
         <Footer />
       </div>
     </div>

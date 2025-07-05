@@ -33,7 +33,7 @@ const SingleRecords = ({ props }) => {
     return false;
   };
 
-  // Article loading
+  // Page loading
   useEffect(() => {
     // 404
     if (!page) {
