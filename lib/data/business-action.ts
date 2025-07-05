@@ -197,7 +197,7 @@ export async function getCategoryAndTagById({
     pageProperty,
     decodedName
   );
-  console.log("newArr:", props.allArchivedPageList);
+
   // Process Archive page count
   props.pageCount = props.allArchivedPageList.length;
   const RECORDS_PER_PAGE = BLOG.RECORD_PER_PAGE;

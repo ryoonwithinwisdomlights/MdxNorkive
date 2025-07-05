@@ -1,4 +1,5 @@
 "use client";
+import { BLOG } from "@/blog.config";
 import AllRecordsPostCard from "@/modules/blog/records/AllRecordsPostCard";
 import Collapse from "@/modules/common/components/shared/Collapse";
 import { ChevronLeftIcon } from "lucide-react";
@@ -52,6 +53,8 @@ const NavPostItem = (props) => {
                   <AllRecordsPostCard
                     record={record}
                     className="text-sm ml-1 py-1"
+                    substr={true}
+                    substrNumber={BLOG.RECORD_SUBSTR_NAVBAR_NUMBER}
                   />
                 </div>
               </div>

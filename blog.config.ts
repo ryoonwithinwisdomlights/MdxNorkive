@@ -144,6 +144,9 @@ export const BLOG = {
   RECORD_WAITING_TIME_FOR_404:
     process.env.NEXT_PUBLIC_RECORD_WAITING_TIME_FOR_404 || "8",
 
+  RECORD_SUBSTR_BASIC_NUMBER: 80,
+  RECORD_SUBSTR_TITLE_NUMBER: 40,
+  RECORD_SUBSTR_NAVBAR_NUMBER: 24,
   PREVIEW_CATEGORY_COUNT: 16, // The maximum number of categories displayed on the homepage, 0 means no limit
   PREVIEW_TAG_COUNT: 16, // The maximum number of tags displayed on the homepage, 0 means no limit
 

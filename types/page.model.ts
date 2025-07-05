@@ -59,6 +59,8 @@ export type CardInfoDivProps = {
 export type NavListDivProps = {
   record: BaseArchivePageBlock;
   className?: string;
+  substr?: boolean;
+  substrNumber?: number;
 };
 
 export interface PageUrlOverridesMap {

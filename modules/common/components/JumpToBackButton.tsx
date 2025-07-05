@@ -36,7 +36,7 @@ const JumpToBackButton = () => {
       data-aos-duration="300"
       data-aos-once="false"
       data-aos-anchor-placement="top-center"
-      className="hidden md:flex fixed xl:right-80 -right-20  bottom-56 z-20 "
+      className="hidden md:flex fixed xl:right-80 right-10 bottom-56 z-20 "
     >
       <div
         onClick={handleBack}

@@ -48,7 +48,12 @@ const AllRecordsList = ({
       </div>
       <div id="records-wrapper ">
         {allPages?.map((record: any) => (
-          <AllRecordsPostCard key={record.id} record={record} />
+          <AllRecordsPostCard
+            key={record.id}
+            record={record}
+            substr={true}
+            substrNumber={BLOG.RECORD_SUBSTR_BASIC_NUMBER}
+          />
         ))}
       </div>
 

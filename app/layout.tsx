@@ -38,6 +38,7 @@ import LeftNavigationBar from "@/modules/layout/components/LeftNavigationBar";
 import { ModalProvider } from "@/lib/context/ModalProvider";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
+import JumpToBackButton from "@/modules/common/components/JumpToBackButton";
 config.autoAddCss = false;
 
 export const viewport: Viewport = {
@@ -115,6 +116,7 @@ export default async function RootLayout({ children }: ChildrenProp) {
                 {/* </div> */}
               </Suspense>
               <JumpToTopButton />
+              <JumpToBackButton />
               {/*Mobile navigation drawer*/}
               <MobileLeftNavDrawer />
               {/* Mobile bottom navigation bar */}

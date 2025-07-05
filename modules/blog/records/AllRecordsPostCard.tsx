@@ -4,7 +4,12 @@ import { substringWithNumberDots } from "@/lib/utils/utils";
 import { NavListDivProps } from "@/types";
 import { usePathname } from "next/navigation";
 
-const AllRecordsPostCard = ({ record, className }: NavListDivProps) => {
+const AllRecordsPostCard = ({
+  record,
+  className,
+  substr,
+  substrNumber,
+}: NavListDivProps) => {
   const pathname = usePathname();
   const currentSelected = pathname.split("/")[2] === record.id;
   const { handleRouter } = useGlobal({});
@@ -22,7 +27,9 @@ const AllRecordsPostCard = ({ record, className }: NavListDivProps) => {
           }}
         >
           <span className="text-xs pr-1">{record.pageIcon} </span>
-          {substringWithNumberDots(record.title, 25)}
+          {substr
+            ? substringWithNumberDots(record.title, substrNumber)
+            : record.title}
         </div>
       </div>
     </div>
