@@ -9,13 +9,12 @@ import SearchResultSkeleton from "../ui/search-result-skeleton";
 import Link from "next/link";
 
 export default function HeaderSearch() {
-  // 검색 키워드 상태
-  const { locale, allNavPagesForLeftSideBar } = useGeneralSiteSettings();
+  const { locale, allPagesForLeftNavBar } = useGeneralSiteSettings();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<{ title: string; url: string }[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const groupedArray = allNavPagesForLeftSideBar?.map((item: any) => {
+  const groupedArray = allPagesForLeftNavBar?.map((item: any) => {
     return {
       id: item.id,
       category: item.category,
@@ -136,7 +135,7 @@ export default function HeaderSearch() {
               <li key={idx}>
                 <Link
                   href={item.url}
-                  className="block px-3 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition"
+                  className="block px-3 py-2 rounded-md  hover:bg-neutral-100 dark:hover:bg-neutral-800 transition"
                 >
                   {item.title.length > 30
                     ? item.title.substring(0, 30) + "..."

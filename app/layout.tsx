@@ -95,9 +95,7 @@ export default async function RootLayout({ children }: ChildrenProp) {
           from={"index"}
         >
           <GeneralSiteSettingsProvider
-            allNavPagesForLeftSideBar={
-              globalNotionData.allNavPagesForLeftSideBar
-            }
+            allPagesForLeftNavBar={globalNotionData.allPagesForLeftNavBar}
           >
             <div
               id="gitbook"

@@ -14,7 +14,7 @@ import {
 
 const GlobalContext = createContext<EssentialNavInfo | undefined>(undefined);
 /**
- * Global variable Provider, including language localization, style theme, search terms
+ *A Global provider that initializes the site with essential values.
  * @param children
  * @returns {JSX.Element}
  * @constructor
@@ -41,24 +41,14 @@ export function EssentialNavInfoProvider({
   const [currentpageId, setCurrentpageId] =
     useState<BaseArchivePageBlock | null>(null);
 
-  const [showTocButton, setShowTocButton] = useState<boolean>(false);
   const router = useRouter();
 
   const handleRouter = (page) => {
-    // setCurrentpageId(record);
     router.push(`/${page.slug}`);
   };
   const cleanCurrentRecordData = () => {
     // setCurrentRecordData(null);
   };
-
-  // useEffect(() => {
-  //   if (currentRecordData?.tableOfContents) {
-  //     if (currentRecordData.tableOfContents?.length > 1) {
-  //       setShowTocButton(true);
-  //     }
-  //   }
-  // }, [currentRecordData]);
 
   return (
     <GlobalContext.Provider
@@ -71,7 +61,6 @@ export function EssentialNavInfoProvider({
         notice,
         latestRecords,
         // currentRecordData,
-        showTocButton,
         handleRouter,
         cleanCurrentRecordData,
       }}

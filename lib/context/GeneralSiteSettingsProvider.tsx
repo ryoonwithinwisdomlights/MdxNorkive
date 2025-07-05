@@ -4,6 +4,7 @@ import {
   ReactNode,
   useContext,
   useEffect,
+  useRef,
   useState,
 } from "react";
 import { useRouter } from "next/router";
@@ -26,7 +27,7 @@ const GeneralSiteSettings =
   createContext<GeneralSiteSettingsProviderContext | null>(null);
 
 /**
- * Global Theme variable Provider
+ * Global variable Provider, including language localization, style theme, search terms
  * @param children
  * @returns {JSX.Element}
  * @constructor
@@ -34,10 +35,10 @@ const GeneralSiteSettings =
 
 export const GeneralSiteSettingsProvider: React.FC<{
   children: ReactNode;
-  allNavPagesForLeftSideBar: LeftSideBarNavItem[];
-}> = ({ children, allNavPagesForLeftSideBar }) => {
+  allPagesForLeftNavBar: LeftSideBarNavItem[];
+}> = ({ children, allPagesForLeftNavBar }) => {
   const [lang, updateLang] = useState<string>(BLOG.LANG); // default language
-  const [locale, updateLocale] = useState<any>(generateLocaleDict(BLOG.LANG)); // 로케일은 사용자 인터페이스에서 사용되는 언어, 지역 설정, 출력 형식 등을 정의하는 문자열
+  const [locale, updateLocale] = useState<any>(generateLocaleDict(BLOG.LANG));
   const [setting, SetSettingState] = useState<boolean>(false);
   const [isDarkMode, updateDarkMode] = useState<boolean>(
     BLOG.APPEARANCE === "dark"
@@ -50,7 +51,8 @@ export const GeneralSiteSettingsProvider: React.FC<{
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [filteredNavPages, setFilteredNavPages] = useState<
     LeftSideBarNavItem[]
-  >(allNavPagesForLeftSideBar);
+  >(allPagesForLeftNavBar);
+  const isFirstRender = useRef(true);
 
   const handleTOCVisible = () => setTOCVisible(!tocVisible);
 
@@ -71,7 +73,6 @@ export const GeneralSiteSettingsProvider: React.FC<{
       saveLangToLocalStorage(resLang);
       updateLang(resLang);
       updateLocale(generateLocaleDict(resLang));
-      toast.success(`Language set to be ${resLang} `);
     }
   }
   const handleChangeDarkMode = (newStatus = !isDarkMode) => {
@@ -91,7 +92,7 @@ export const GeneralSiteSettingsProvider: React.FC<{
     setSearchKeyword,
     filteredNavPages,
     setFilteredNavPages,
-    allNavPagesForLeftSideBar,
+    allPagesForLeftNavBar,
     tocVisible,
     handleTOCVisible,
     pageNavVisible,
@@ -114,6 +115,11 @@ export const GeneralSiteSettingsProvider: React.FC<{
   }, []);
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
     initLocale(lang, locale, updateLang, updateLocale);
     setOnLoading(false);
     toast.success(`${locale.SITE.LANG_CHANGE_SUCCESS_MSG} `);

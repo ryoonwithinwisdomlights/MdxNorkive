@@ -290,13 +290,13 @@ export async function getDataBaseInfoByNotionAPI({
     latestpageCount: 6,
   });
 
-  const allNavPagesForLeftSideBar = getRecordListForLeftSideBar({ allPages });
+  const allPagesForLeftNavBar = getRecordListForLeftSideBar({ allPages });
   const pageCount = allpageCounter.count;
   return {
     notice,
     siteInfo,
     allPages,
-    allNavPagesForLeftSideBar,
+    allPagesForLeftNavBar,
     block,
     schema,
     tagOptions,

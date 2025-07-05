@@ -16,7 +16,7 @@ const SearchInput = ({ cRef }) => {
     searchKeyword,
     setSearchKeyword,
     setFilteredNavPages,
-    allNavPagesForLeftSideBar,
+    allPagesForLeftNavBar,
   } = useGeneralSiteSettings();
 
   // 입력 필드 참조
@@ -33,11 +33,11 @@ const SearchInput = ({ cRef }) => {
   const handleSearch = () => {
     if (searchInputRef?.current) {
       setSearchKeyword(searchInputRef.current.value.trim());
-    } else if (setFilteredNavPages && allNavPagesForLeftSideBar) {
+    } else if (setFilteredNavPages && allPagesForLeftNavBar) {
       // undefined가 아닌 경우에만 실행
-      setFilteredNavPages(allNavPagesForLeftSideBar);
+      setFilteredNavPages(allPagesForLeftNavBar);
     }
-    const filterAllNavPages = deepClone(allNavPagesForLeftSideBar);
+    const filterAllNavPages = deepClone(allPagesForLeftNavBar);
 
     for (let i = filterAllNavPages.length - 1; i >= 0; i--) {
       const record = filterAllNavPages[i];
@@ -52,7 +52,7 @@ const SearchInput = ({ cRef }) => {
     }
 
     // Updated
-    if (setFilteredNavPages && allNavPagesForLeftSideBar) {
+    if (setFilteredNavPages && allPagesForLeftNavBar) {
       setFilteredNavPages(filterAllNavPages);
     }
     // cleanSearch()

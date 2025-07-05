@@ -14,7 +14,6 @@ export interface EssentialNavInfo {
   customMenu: NavItem[];
   notice: any;
   latestRecords: [];
-  showTocButton: boolean;
   handleRouter: (page: BaseArchivePageBlock) => void;
   cleanCurrentRecordData: () => void;
 }
@@ -35,7 +34,7 @@ export interface GeneralSiteSettingsProviderContext {
   setOnLoading: Dispatch<SetStateAction<boolean>>;
   searchKeyword: string;
   setSearchKeyword: Dispatch<SetStateAction<string>>;
-  allNavPagesForLeftSideBar: LeftSideBarNavItem[];
+  allPagesForLeftNavBar: LeftSideBarNavItem[];
   filteredNavPages: LeftSideBarNavItem[];
   setFilteredNavPages?: Dispatch<SetStateAction<LeftSideBarNavItem[]>>;
   siteInfo?: SiteInfoModel;
