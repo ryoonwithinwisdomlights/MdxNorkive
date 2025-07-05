@@ -1,19 +1,14 @@
 "use client";
 import { BLOG } from "@/blog.config";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
-// 사전에 사용할 아이콘 추가
-library.add(faBullhorn);
 
 import {
-  Github,
-  InstagramIcon,
-  LinkedinIcon,
-  MailPlusIcon,
-  TwitterIcon,
-} from "lucide-react";
-//fas fa-envelope
-//fab fa-linkedin
+  EnvelopeClosedIcon,
+  GitHubLogoIcon,
+  InstagramLogoIcon,
+  LinkedInLogoIcon,
+  TwitterLogoIcon,
+} from "@radix-ui/react-icons";
+
 /**
  * Social contact button set
  * @returns {JSX.Element}
@@ -29,7 +24,7 @@ const SocialButton = () => {
           title={"twitter"}
           href={BLOG.CONTACT_TWITTER}
         >
-          <TwitterIcon className="transform hover:scale-125 duration-150 hover:text-neutral-400" />
+          <TwitterLogoIcon className="w-5 h-5    transform hover:scale-125 duration-150 hover:text-neutral-400" />
         </a>
       )}
       {(BLOG.CONTACT_LINKEDIN as string).length > 0 && (
@@ -39,7 +34,7 @@ const SocialButton = () => {
           href={BLOG.CONTACT_LINKEDIN}
           title={"linkedIn"}
         >
-          <LinkedinIcon className="transform hover:scale-125 duration-150 hover:text-neutral-400" />
+          <LinkedInLogoIcon className="w-5 h-5    transform hover:scale-125 duration-150 hover:text-neutral-400" />
         </a>
       )}
       {(BLOG.CONTACT_INSTAGRAM as string).length > 0 && (
@@ -49,7 +44,7 @@ const SocialButton = () => {
           title={"instagram"}
           href={BLOG.CONTACT_INSTAGRAM}
         >
-          <InstagramIcon className="transform hover:scale-125 duration-150 hover:text-neutral-400" />
+          <InstagramLogoIcon className="w-5 h-5    transform hover:scale-125 duration-150 hover:text-neutral-400" />
         </a>
       )}
       {(BLOG.CONTACT_EMAIL as string).length > 0 && (
@@ -59,7 +54,7 @@ const SocialButton = () => {
           title={"email"}
           href={`mailto:${BLOG.CONTACT_EMAIL}`}
         >
-          <MailPlusIcon className="transform hover:scale-125 duration-150 hover:text-neutral-400" />
+          <EnvelopeClosedIcon className="w-5 h-5   transform hover:scale-125 duration-150 hover:text-neutral-400" />
         </a>
       )}
       {(BLOG.CONTACT_GITHUB as string).length > 0 && (
@@ -69,7 +64,7 @@ const SocialButton = () => {
           title={"github"}
           href={BLOG.CONTACT_GITHUB}
         >
-          <Github className="transform hover:scale-125 duration-150 hover:text-neutral-400" />
+          <GitHubLogoIcon className="w-5 h-5  transform hover:scale-125 duration-150 hover:text-neutral-400" />
         </a>
       )}
     </div>

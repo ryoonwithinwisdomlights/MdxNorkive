@@ -22,7 +22,7 @@ const AllRecordsPostCard = ({ record }: CardProps) => {
             handleRouter(record);
           }}
         >
-          <span className="text-xs pr-1">{record.pageIcon} </span>{" "}
+          <span className="text-xs pr-1">{record.pageIcon} </span>
           {substringWithNumberDots(record.title, 25)}
         </div>
       </div>

@@ -20,29 +20,15 @@ const PaginationSimple = ({ pagenum, totalPage }) => {
 
   return (
     <div
-      className={`my-10 flex w-full justify-end font-medium text-black dark:text-neutral-100 space-x-2`}
+      className={` flex w-full justify-end font-medium text-black dark:text-neutral-100 space-x-2`}
     >
-      {/* <div
-        onClick={() => {
-          router.push(
-            currentPage === 2
-              ? `${pagePrefix}/`
-              : `${pagePrefix}?pagenum=${currentPage + 1}`
-          );
-        }}
-        className={`${
-          currentPage === 1 ? "invisible" : "block"
-        } text-center w-full duration-200 px-4 py-2 hover:border-neutral-300 border-b-2 hover:font-bold`}
-      >
-        ←{locale.PAGINATION.PREV}
-      </div> */}
       <div
         onClick={() => {
           router.push(`${pagePrefix}?pagenum=${currentPage + 1}`);
         }}
         className={`${
           +showNext ? "block" : "invisible"
-        } text-center w-1/2 duration-200 px-4 py-2 hover:border-neutral-300 border-b-2 hover:font-bold`}
+        } text-center w-1/2 duration-200 p-2 hover:border-neutral-300 border-b-2 hover:font-bold`}
       >
         {locale.PAGINATION.NEXT}→
       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronUpIcon } from "lucide-react";
+import { ChevronUpIcon, CornerLeftUp } from "lucide-react";
 
 /**
  * Jump to top of page
@@ -28,10 +28,10 @@ const JumpToTopButton = () => {
       data-aos-anchor-placement="top-center"
       className="fixed xl:right-96 xl:mr-20 right-2 bottom-24 z-20 "
     >
-      <ChevronUpIcon
+      <CornerLeftUp
         onClick={handleScrollToTop}
         className="shadow  hover:scale-110 duration-150 cursor-pointer p-2 w-8 h-8 text-sm'
-         rounded-full border text-white  bg-neutral-700 dark:border-white"
+         rounded-full border dark:text-neutral-200 text-neutral-300 border-neutral-200 bg-neutral-100 dark:bg-neutral-500 dark:border-white"
       />
     </div>
   );

@@ -6,6 +6,7 @@ import { AllRecordsListProps } from "@/types";
 import { useRouter } from "next/navigation";
 import AllRecordsPostCard from "./AllRecordsPostCard";
 import PaginationSimple from "./PaginationSimple";
+import { ChevronLeft } from "lucide-react";
 /**
  * Archive list pagination table
  * @param page current page
@@ -34,15 +35,18 @@ const AllRecordsList = ({
     router.back();
   };
   return (
-    <div className="md:w-[60%]  justify-center gap-2">
+    <div className=" justify-center flex flex-col gap-y-12">
       <div
         onClick={historGoBack}
-        className={` ${!+showNext && "font-bold"} text-center w-2/5 mt-4 mb-10  duration-200 p-2 hover:border-neutral-200 border-b-2 hover:font-bold `}
+        className={` ${!+showNext && "font-bold"} group w-2/5 py-2 px-4 gap-x-2 text-start flex flex-row items-center  dark:hover:text-neutral-100  hover:border-neutral-200 rounded-sm bg-neutral-100`}
       >
-        ← {locale.PAGINATION.PREV}
+        <ChevronLeft className="w-4 h-4 text-neutral-300 dark:text-neutral-700 group-hover:font-bold group-hover:text-neutral-500" />
+
+        <span className="text-neutral-500 dark:text-neutral-400  tracking-tight group-hover:font-bold group-hover:text-neutral-500">
+          {locale.PAGINATION.PREV}
+        </span>
       </div>
-      <div id="records-wrapper">
-        {/* Archive list */}
+      <div id="records-wrapper ">
         {allPages?.map((record: any) => (
           <AllRecordsPostCard key={record.id} record={record} />
         ))}
