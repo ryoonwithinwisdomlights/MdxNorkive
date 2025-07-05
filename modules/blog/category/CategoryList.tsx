@@ -30,7 +30,7 @@ const CategoryList = () => {
             >
               <div
                 className={
-                  " flex flex-row items-center hover:text-black text-neutral-700 dark:hover:text-white dark:text-neutral-300 dark:hover:bg-neutral-600 px-5 cursor-pointer py-2 hover:bg-neutral-100"
+                  " rounded-xl flex flex-row items-center hover:text-black text-neutral-700 dark:hover:text-white dark:text-neutral-300 dark:hover:bg-neutral-600 px-5 cursor-pointer py-2 hover:bg-neutral-100"
                 }
               >
                 <FolderIcon

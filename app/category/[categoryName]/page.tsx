@@ -17,25 +17,25 @@ export async function generateStaticParams() {
 export default async function Page({ params, searchParams }: TotalPageParams) {
   const { categoryName } = await params;
   const { pagenum } = await searchParams;
-  const decodedCategoryName = decodeURIComponent(categoryName);
+  const decodedName = decodeURIComponent(categoryName);
 
-  console.log("categoryId:", categoryName);
-  console.log("decodedCategoryName:", decodedCategoryName);
+  console.log("categoryName:", categoryName);
+  console.log("decodedName:", decodedName);
   if (!categoryName) {
     <ErrorComponent />;
   }
-  const result = await getCategoryAndTagById(
-    decodedCategoryName,
-    "category",
-    pagenum
-  );
-  console.log("result.recordCount:", result.recordCount);
+  const result = await getCategoryAndTagById({
+    decodedName: decodedName,
+    pageProperty: "category",
+    pagenum: pagenum !== undefined ? pagenum : 1,
+  });
+
   return (
     <NoRecordTypePageWrapper>
       <AllRecordsList
         pagenum={pagenum !== undefined ? pagenum : 1}
-        recordCount={result.recordCount}
-        records={result.records}
+        pageCount={result.pageCount}
+        allPages={result.allArchivedPageList}
       />
     </NoRecordTypePageWrapper>
   );

@@ -166,7 +166,7 @@ export function getCustomMenu({
  * @param {*}} param0
  * @returns
  */
-export function getLatestRecords({ allPages, from, latestRecordCount }) {
+export function getLatestRecords({ allPages, from, latestpageCount }) {
   const allrecords = getAllPagesWithoutMenu({ arr: allPages });
   const latestRecords = [...allrecords].sort((a, b) => {
     const dateA = new Date(a?.lastEditedDate || a?.publishDate);
@@ -174,7 +174,7 @@ export function getLatestRecords({ allPages, from, latestRecordCount }) {
     return dateB.getTime() - dateA.getTime();
   });
 
-  return latestRecords.slice(0, latestRecordCount);
+  return latestRecords.slice(0, latestpageCount);
 }
 
 /**
@@ -264,7 +264,13 @@ export const isAbleRecordPage = (page) => {
 };
 export const isNotMenuPage = (page) => EXCLUDED_PAGE_TYPES.includes(page.type);
 export const isPublished = (page) => page.status === "Published";
-export const isTypeMatch = (page, type) => (type ? page.type === type : true);
+export const isTypeMatch = (page, type) => {
+  if (type) {
+    return page.type === type;
+  } else {
+    return true;
+  }
+};
 
 export function getPageWithOutMenu(page, type) {
   return isAbleRecordPage(page) && isPublished(page) && isTypeMatch(page, type);
@@ -286,15 +292,14 @@ export function getAllPagesWithoutMenu({
 }
 export function getCopiedArrayWithFunction({
   arr,
-  type,
   func,
 }: {
   arr: any[];
-  type?: string;
   func: Function;
 }) {
   const copy = arr.slice();
   const newArr = func(copy);
+
   return newArr;
 }
 
@@ -359,7 +364,7 @@ export const generateEmptyGloabalData = (pageId) => {
     rawMetadata: {},
     oldNav: [],
     customMenu: [],
-    recordCount: 1,
+    pageCount: 1,
     pageIds: [],
     latestRecords: [],
   };

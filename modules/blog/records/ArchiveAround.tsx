@@ -44,7 +44,7 @@ export default function ArchiveAround({ prev, next }) {
     //     <ChevronsRightIcon className="mr-1 my-1 " />
     //   </div>
     // </section>
-    <section className="w-full rounded-2xl flex bg-neutral-50/80 dark:bg-neutral-800 p-1 text-sm my-16">
+    <section className="w-full rounded-2xl flex bg-neutral-50/90 dark:bg-neutral-800 p-1 text-sm my-16">
       <div
         onClick={(e) => {
           onClick(prev.slug);

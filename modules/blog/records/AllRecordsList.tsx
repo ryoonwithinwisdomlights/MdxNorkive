@@ -16,18 +16,18 @@ import PaginationSimple from "./PaginationSimple";
  */
 const AllRecordsList = ({
   pagenum = 1,
-  records = [],
-  recordCount,
+  allPages = [],
+  pageCount,
 }: AllRecordsListProps) => {
   const router = useRouter();
-  const totalPage = Math.ceil(recordCount / BLOG.RECORD_PER_PAGE);
+  const totalPage = Math.ceil(pageCount / BLOG.RECORD_PER_PAGE);
   const { locale, searchKeyword } = useGeneralSiteSettings();
   const currentPage = +pagenum;
 
   console.log("totalPage::", totalPage);
   console.log("currentPage::", currentPage);
   const showNext = currentPage < totalPage;
-  if (!records || records.length === 0) {
+  if (!allPages || allPages.length === 0) {
     return <NavPostListEmpty searchKeyword={searchKeyword} />;
   }
   const historGoBack = () => {
@@ -43,7 +43,7 @@ const AllRecordsList = ({
       </div>
       <div id="records-wrapper">
         {/* Archive list */}
-        {records?.map((record: any) => (
+        {allPages?.map((record: any) => (
           <AllRecordsPostCard key={record.id} record={record} />
         ))}
       </div>

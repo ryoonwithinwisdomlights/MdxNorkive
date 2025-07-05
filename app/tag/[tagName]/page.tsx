@@ -14,17 +14,21 @@ export async function generateStaticParams() {
 export default async function Page({ params, searchParams }: TotalPageParams) {
   const { tagName } = await params;
   const { pagenum } = await searchParams;
-  const decodedTagName = decodeURIComponent(tagName);
+  const decodedName = decodeURIComponent(tagName);
   if (!tagName) {
     <ErrorComponent />;
   }
-  const props = await getCategoryAndTagById(decodedTagName, "tags", pagenum);
+  const result = await getCategoryAndTagById({
+    decodedName: decodedName,
+    pageProperty: "tags",
+    pagenum: pagenum !== undefined ? pagenum : 1,
+  });
   return (
     <NoRecordTypePageWrapper>
       <AllRecordsList
         pagenum={pagenum !== undefined ? pagenum : 1}
-        recordCount={props.recordCount}
-        records={props.records}
+        pageCount={result.pageCount}
+        allPages={result.allArchivedPageList}
       />
     </NoRecordTypePageWrapper>
   );

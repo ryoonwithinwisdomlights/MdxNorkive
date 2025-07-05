@@ -34,11 +34,12 @@ export async function getGlobalData({
     return {};
   }
   const props = setDataBaseProcessing(db);
+
   const allPages = getAllPagesWithoutMenu({
     arr: props.allPages,
     type: type,
   });
-  // props.records = allPages;
+  props.allPages = allPages;
   props.allArchivedPageList = allPages;
   return props;
 }
@@ -136,12 +137,12 @@ export async function getOneRecordPageData({
 
   const dateSort = BLOG.PAGE_SORT_BY === "date" ? true : false;
   // achive count
-  const allRecordCounter = { count: 0 };
+  const allpageCounter = { count: 0 };
 
   // 특정타입인 전체 레코드
   const allPages: BaseArchivePageBlock[] = processingAllPagesWithTypeAndSort(
     allPageBlockMapWithProperties,
-    allRecordCounter,
+    allpageCounter,
     type,
     dateSort
   );
@@ -251,12 +252,12 @@ export async function getDataBaseInfoByNotionAPI({
 
   const dateSort = BLOG.PAGE_SORT_BY === "date" ? true : false;
   // achive count
-  const allRecordCounter = { count: 0 };
+  const allpageCounter = { count: 0 };
 
   // Find all Archives and Record
   const allPages = processingAllPagesWithTypeAndSort(
     allArchivedPageList,
-    allRecordCounter,
+    allpageCounter,
     type,
     dateSort
   );
@@ -286,11 +287,11 @@ export async function getDataBaseInfoByNotionAPI({
   const latestRecords = getLatestRecords({
     allPages,
     from,
-    latestRecordCount: 6,
+    latestpageCount: 6,
   });
 
   const allNavPagesForLeftSideBar = getRecordListForLeftSideBar({ allPages });
-  const recordCount = allRecordCounter.count;
+  const pageCount = allpageCounter.count;
   return {
     notice,
     siteInfo,
@@ -303,7 +304,7 @@ export async function getDataBaseInfoByNotionAPI({
     rawMetadata,
     oldNav,
     customMenu,
-    recordCount,
+    pageCount,
     pageIds,
     latestRecords,
     // rightSlidingDrawerInfo,

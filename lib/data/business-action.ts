@@ -178,11 +178,15 @@ export async function getRecordPageDataById({
 //   return props;
 // }
 
-export async function getCategoryAndTagById(
-  decodedPropertyId,
+export async function getCategoryAndTagById({
+  decodedName,
   pageProperty,
-  pagenum
-) {
+  pagenum,
+}: {
+  decodedName: string;
+  pageProperty: string;
+  pagenum: number;
+}) {
   const props = await getGlobalData({
     pageId: BLOG.NOTION_DATABASE_ID as string,
     from: `${pageProperty}-props`,
@@ -191,10 +195,11 @@ export async function getCategoryAndTagById(
   props.allArchivedPageList = getFilteredArrayByProperty(
     props.allArchivedPageList,
     pageProperty,
-    decodedPropertyId
+    decodedName
   );
+  console.log("newArr:", props.allArchivedPageList);
   // Process Archive page count
-  props.recordCount = props.allArchivedPageList.length;
+  props.pageCount = props.allArchivedPageList.length;
   const RECORDS_PER_PAGE = BLOG.RECORD_PER_PAGE;
 
   // Handle pagination
@@ -206,8 +211,6 @@ export async function getCategoryAndTagById(
           RECORDS_PER_PAGE * pagenum
         )
       : props.allArchivedPageList?.slice(0, RECORDS_PER_PAGE);
-
-  delete props.allArchivedPageList;
 
   return props;
 }

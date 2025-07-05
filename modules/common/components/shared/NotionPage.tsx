@@ -107,7 +107,7 @@ const NotionPage = ({ record }) => {
   return (
     <div
       id="notion-article"
-      className={`mx-auto dark:text-neutral-300 text-neutral-700 overflow-hidden w-full px-5 rounded-2xl  bg-neutral-50/80 dark:bg-neutral-800`}
+      className={`mx-auto dark:text-neutral-300 text-neutral-700 overflow-hidden w-full px-5 rounded-2xl  bg-neutral-50/90 dark:bg-neutral-800`}
     >
       <NotionRenderer
         disableHeader // notion 헤더 안보이도록

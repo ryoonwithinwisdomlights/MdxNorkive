@@ -12,8 +12,8 @@ export type AllRecordsProps = {
 
 export type AllRecordsListProps = {
   pagenum?: number;
-  records?: BaseArchivePageBlock[];
-  recordCount: number;
+  allPages?: BaseArchivePageBlock[];
+  pageCount: number;
 };
 
 export type RecordCardInfoProps = {
