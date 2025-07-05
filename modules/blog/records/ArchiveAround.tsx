@@ -1,6 +1,12 @@
 "use client";
 import { substringWithNumberDots } from "@/lib/utils/utils";
-import { ChevronsLeftIcon, ChevronsRightIcon } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeftIcon,
+  ChevronsRight,
+  ChevronsRightIcon,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 
 /**
@@ -17,25 +23,63 @@ export default function ArchiveAround({ prev, next }) {
     router.push(`/${slug}`);
   };
   return (
-    <section className="text-neutral-800 dark:text-neutral-400 h-12 flex items-center justify-between space-x-5 my-4">
+    // <section className="text-neutral-800 dark:text-neutral-400 h-12 flex items-center justify-between space-x-5 my-4">
+    //   <div
+    //     onClick={(e) => {
+    //       onClick(prev.slug);
+    //     }}
+    //     className="text-sm cursor-pointer justify-start items-center flex hover:underline duration-300"
+    //   >
+    //     <ChevronsLeftIcon className="mr-1" />
+    //     {substringWithNumberDots(prev.title, 30)}
+    //   </div>
+    //   <div
+    //     onClick={(e) => {
+    //       onClick(next.slug);
+    //     }}
+    //     className="text-sm cursor-pointer justify-end items-center flex hover:underline duration-300"
+    //   >
+    //     {" "}
+    //     {substringWithNumberDots(next.title, 30)}
+    //     <ChevronsRightIcon className="mr-1 my-1 " />
+    //   </div>
+    // </section>
+    <section className="w-full rounded-2xl flex bg-neutral-50/80 dark:bg-neutral-800 p-1 text-sm my-16">
       <div
         onClick={(e) => {
           onClick(prev.slug);
         }}
-        className="text-sm cursor-pointer justify-start items-center flex hover:underline duration-300"
+        className="group flex items-center justify-between pl-3 pr-6 space-x-1.5"
       >
-        <ChevronsLeftIcon className="mr-1" />
-        {substringWithNumberDots(prev.title, 30)}
+        <ChevronLeft className="w-6 h-6  text-neutral-300 dark:text-neutral-700 group-hover:text-neutral-600 dark:group-hover:text-neutral-400" />
+        {/* {substringWithNumberDots(prev.title, 30)} */}
+        <span className="text-neutral-500 dark:text-neutral-400 font-medium tracking-tight group-hover:text-neutral-800 dark:group-hover:text-neutral-100">
+          Previous
+        </span>
       </div>
       <div
         onClick={(e) => {
           onClick(next.slug);
         }}
-        className="text-sm cursor-pointer justify-end items-center flex hover:underline duration-300"
+        className="group w-full "
       >
-        {" "}
-        {substringWithNumberDots(next.title, 30)}
-        <ChevronsRightIcon className="mr-1 my-1 " />
+        <div className=" bg-white dark:bg-neutral-700 flex-1 flex items-center justify-end h-16 bg-background-light dark:bg-background-dark hover:ring-1 hover:ring-neutral-200 dark:hover:ring-neutral-800 rounded-xl">
+          <div className="flex flex-col items-end justify-center px-5 min-w-0">
+            <span className="font-semibold text-neutral-700 dark:text-neutral-200 text-right ">
+              {next.type}
+            </span>
+            <span className="hidden text-right text-neutral-500 dark:text-neutral-400 lg:block w-full truncate lg:w-72">
+              {substringWithNumberDots(next.title, 30)}
+            </span>
+          </div>
+          <div className="w-px h-8 bg-neutral-100 dark:bg-white/5"></div>
+          <div className="pl-5 pr-3 text-neutral-600 dark:text-neutral-400 flex items-center space-x-1.5">
+            <span className="text-neutral-500 dark:text-neutral-400 font-medium tracking-tight group-hover:text-neutral-800 dark:group-hover:text-neutral-100">
+              Next
+            </span>
+            <ChevronRight className="mr-1 my-1  w-6 h-6 text-neutral-300 dark:text-neutral-700 group-hover:text-neutral-600 dark:group-hover:text-neutral-400" />
+          </div>
+        </div>
       </div>
     </section>
   );
