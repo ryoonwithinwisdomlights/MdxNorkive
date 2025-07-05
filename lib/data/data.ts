@@ -137,6 +137,7 @@ export async function getPageProperties(
   if (id === pageId && pageId !== NOTION_DB_ID) {
     const blockMap = await getRecordBlockMapWithRetry({
       pageId: pageId,
+      retryAttempts: 3,
     });
     properties.blockMap = blockMap;
   }

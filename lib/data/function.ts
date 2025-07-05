@@ -564,7 +564,7 @@ export function adjustPageProperties(properties, NOTION_CONFIG) {
       })
     ) {
       properties.slug = generateCustomizeUrlWithType({
-        recordProperties: properties,
+        pageProperties: properties,
         type: "",
         extendConfig: NOTION_CONFIG,
       });
@@ -629,15 +629,15 @@ export function adjustPageProperties(properties, NOTION_CONFIG) {
  * Get custom URL
  * URLs can be generated based on variables
  * support: %year%/%month%/%day%/%slug%
- * @param {*} recordProperties
+ * @param {*} pageProperties
  * @returns
  */
 export function generateCustomizeUrlWithType({
-  recordProperties,
+  pageProperties,
   type,
   extendConfig,
 }: {
-  recordProperties: Partial<BaseArchivePageBlock> & { [key: string]: any };
+  pageProperties: Partial<BaseArchivePageBlock> & { [key: string]: any };
   type: string;
   extendConfig?: {};
 }) {
@@ -645,20 +645,20 @@ export function generateCustomizeUrlWithType({
   const allSlugPatterns = BLOG.RECORD_URL_PREFIX.split("/");
 
   allSlugPatterns.forEach((pattern, idx) => {
-    if (pattern === "%year%" && recordProperties?.publishDay) {
-      const formatPostCreatedDate = new Date(recordProperties?.publishDay);
+    if (pattern === "%year%" && pageProperties?.publishDay) {
+      const formatPostCreatedDate = new Date(pageProperties?.publishDay);
       fullPrefix += formatPostCreatedDate.getUTCFullYear();
-    } else if (pattern === "%month%" && recordProperties?.publishDay) {
-      const formatPostCreatedDate = new Date(recordProperties?.publishDay);
+    } else if (pattern === "%month%" && pageProperties?.publishDay) {
+      const formatPostCreatedDate = new Date(pageProperties?.publishDay);
       fullPrefix += String(formatPostCreatedDate.getUTCMonth() + 1).padStart(
         2,
         "0"
       );
-    } else if (pattern === "%day%" && recordProperties?.publishDay) {
-      const formatPostCreatedDate = new Date(recordProperties?.publishDay);
+    } else if (pattern === "%day%" && pageProperties?.publishDay) {
+      const formatPostCreatedDate = new Date(pageProperties?.publishDay);
       fullPrefix += String(formatPostCreatedDate.getUTCDate()).padStart(2, "0");
     } else if (pattern === "%slug%") {
-      fullPrefix += recordProperties.slug ?? recordProperties.id;
+      fullPrefix += pageProperties.slug ?? pageProperties.id;
     } else if (!pattern.includes("%")) {
       fullPrefix += pattern;
     } else {
@@ -678,12 +678,12 @@ export function generateCustomizeUrlWithType({
   let res;
 
   if (type === "Record") {
-    res = `${BLOG.RECORD_URL_PREFIX.toLowerCase()}/${recordProperties.id}`;
+    res = `${BLOG.RECORD_URL_PREFIX.toLowerCase()}/${pageProperties.id}`;
   } else if (type == "Project" || "Engineering") {
-    res = `${type.toLowerCase()}/${recordProperties.id}`;
+    res = `${type.toLowerCase()}/${pageProperties.id}`;
   } else {
     res = `${fullPrefix.toLowerCase()}/${type.toLowerCase()}/${
-      recordProperties.id
+      pageProperties.id
     }`;
   }
 
@@ -693,7 +693,7 @@ export function generateCustomizeUrlWithType({
 export const handleRecordsUrl = (isAblePage, properties) => {
   if (isAblePage) {
     const customedUrl = generateCustomizeUrlWithType({
-      recordProperties: properties,
+      pageProperties: properties,
       type: properties.type,
     });
 
@@ -811,9 +811,8 @@ export function filterPostBlocks(id, pageBlock) {
 }
 
 export function setPageTableOfContentsByRecord(props) {
-  const isAblePage = isNotMenuPage(props?.page);
-
-  if (props?.page?.blockMap?.block && !isAblePage) {
+  if (props?.page?.blockMap?.block) {
+    console.log();
     props.page.content = Object.keys(props?.page.blockMap.block).filter(
       (key) =>
         props?.page.blockMap.block[key]?.value?.parent_id === props?.page.id

@@ -4,15 +4,15 @@ import throttle from "lodash.throttle";
 import { uuidToId } from "notion-utils";
 import { useCallback, useEffect, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
-
+import { isBrowser } from "react-notion-x";
 /**
- * Directory Navigation Component
  * @param toc
  * @returns {JSX.Element}
  * @constructor
  */
-const Catalog = ({ record }) => {
-  const toc = record.tableOfContents;
+const Catalog = ({ page }) => {
+  const toc = page?.tableOfContents;
+
   if (toc.length < 1) {
     return null;
   }
@@ -28,7 +28,7 @@ const Catalog = ({ record }) => {
     return () => {
       window.removeEventListener("scroll", actionSectionScrollSpy);
     };
-  }, [record]);
+  }, [page]);
 
   const throttleMs = 200;
   const actionSectionScrollSpy = useCallback(
@@ -55,23 +55,23 @@ const Catalog = ({ record }) => {
         break;
       }
       setActiveSection(currentSectionId);
-      const tocIds = record?.tableOfContents?.map((t) => uuidToId(t.id)) || [];
+      const tocIds = page?.tableOfContents?.map((t) => uuidToId(t.id)) || [];
       const index = tocIds.indexOf(currentSectionId) || 0;
-      if (!isMobile && tocIds?.length > 0) {
+      if (tocIds?.length > 0) {
         for (const tocWrapper of document?.getElementsByClassName(
-          "toc-wrapper"
+          "toc-wrapper-mobile"
         )) {
           tocWrapper?.scrollTo({ top: 28 * index, behavior: "smooth" });
         }
       }
     }, throttleMs),
-    [record]
+    [page]
   );
 
   return (
     <div
-      id="toc-wrapper"
-      className="toc-wrapper overflow-y-auto my-2 max-h-80 overscroll-none scroll-hidden"
+      id="toc-wrapper-mobile"
+      className="toc-wrapper-mobile overflow-y-auto my-2 max-h-80 overscroll-none scroll-hidden"
     >
       <nav className="h-full  ">
         {toc.map((tocItem) => {

@@ -3,16 +3,15 @@ import { useCallback, useEffect, useState } from "react";
 import { uuidToId } from "notion-utils";
 import throttle from "lodash.throttle";
 import { isBrowser } from "react-notion-x";
-// import { isBrowser } from "@/lib/utils/utils";
 
-const TableOfContents = ({ props }) => {
-  if (!props || !props.record) {
+const TableOfContents = ({ page }) => {
+  if (!page) {
     return null;
-  } else if (props.record?.tableOfContents?.length === 0) {
+  } else if (page?.tableOfContents?.length === 0) {
     return null;
   }
 
-  const toc = props.record.tableOfContents;
+  const toc = page.tableOfContents;
   // Synchronize selected directory events
   const [activeSection, setActiveSection] = useState(null);
 
@@ -23,7 +22,7 @@ const TableOfContents = ({ props }) => {
     return () => {
       window.removeEventListener("scroll", actionSectionScrollSpy);
     };
-  }, [props.record]);
+  }, [page]);
 
   const throttleMs = 200;
   const actionSectionScrollSpy = useCallback(
@@ -50,18 +49,17 @@ const TableOfContents = ({ props }) => {
         break;
       }
       setActiveSection(currentSectionId);
-      const tocIds =
-        props.record?.tableOfContents?.map((t) => uuidToId(t.id)) || [];
+      const tocIds = page?.tableOfContents?.map((t) => uuidToId(t.id)) || [];
       const index = tocIds.indexOf(currentSectionId) || 0;
-      if (isBrowser && tocIds?.length > 0) {
+      if (tocIds?.length > 0) {
         for (const tocWrapper of document?.getElementsByClassName(
-          "toc-wrapper"
+          "toc-wrapper-pc"
         )) {
-          tocWrapper?.scrollTo({ top: 28 * index, behavior: "smooth" });
+          tocWrapper?.scrollTo({ top: 10 * index, behavior: "smooth" });
         }
       }
     }, throttleMs),
-    [props.record]
+    [page]
   );
   if (!toc || toc?.length < 1) {
     return <></>;
@@ -69,10 +67,10 @@ const TableOfContents = ({ props }) => {
 
   return (
     <div
-      id="toc-wrapper"
-      className="toc-wrapper overflow-y-auto my-2 max-h-80 overscroll-none scroll-hidden"
+      id="toc-wrapper-pc"
+      className="toc-wrapper-pc overflow-y-auto overscroll-none scroll-hidden "
     >
-      <nav className="h-full text-black ">
+      <nav className="h-full">
         {toc.map((tocItem) => {
           const id = uuidToId(tocItem.id);
           return (
@@ -81,8 +79,8 @@ const TableOfContents = ({ props }) => {
               href={`#${id}`}
               className={`${
                 activeSection === id &&
-                "border-neutral-500 text-neutral-500 font-bold"
-              }  hover:text-neutral-500 border-l duration-300 pl-4 block  notion-table-of-contents-item  transform font-light dark:text-neutral-300
+                "pl-4 border-l border-neutral-400 text-neutral-500  font-bold"
+              }  hover:text-neutral-500  duration-300 notion-table-of-contents-item  transform  dark:text-neutral-300
               notion-table-of-contents-item-indent-level-${tocItem.indentLevel} catalog-item `}
             >
               <span
@@ -91,7 +89,11 @@ const TableOfContents = ({ props }) => {
                   marginLeft: tocItem.indentLevel * 16,
                   paddingLeft: 10,
                 }}
-                className={`truncate `}
+                className={`truncate ${
+                  activeSection === id
+                    ? " text-neutral-800 dark:text-white underline"
+                    : "text-neutral-500 dark:text-neutral-200"
+                }`}
               >
                 {tocItem.text}
               </span>

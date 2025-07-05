@@ -10,7 +10,7 @@ import {
 import { getGlobalData, getOneRecordPageData } from "@/lib/data/interface";
 import { PageBlockDataProps } from "@/types";
 
-export default async function initGlobalNotionData(from: string = "main") {
+export default async function initArchiveGlobalData(from: string = "main") {
   const props = await getGlobalData({
     pageId: BLOG.NOTION_DATABASE_ID as string,
     from: from,
@@ -63,7 +63,6 @@ export async function getPageDataByTypeAndId({
     arr: props?.allPages,
   });
 
-  console.log("recommendPages::", recommendPages);
   if (recommendPages && recommendPages.length > 0) {
     const index = recommendPages.indexOf(props.page);
     props.page.prev =
@@ -80,7 +79,7 @@ export async function getPageDataByTypeAndId({
     props.page.next = null;
     props.page.recommendPages = [];
   }
-  console.log("props.page::::", props.page);
+  // console.log("tableOfContents::::", props.page.tableOfContents);
   return props;
 }
 

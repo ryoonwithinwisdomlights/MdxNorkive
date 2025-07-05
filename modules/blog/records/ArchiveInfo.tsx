@@ -16,10 +16,9 @@ export default function ArchiveInfo({ props }) {
   }
 
   return (
-    <div className="pt-10 pb-6 text-neutral-400 text-sm border-b flex flex-row items-center">
+    <div className="pt-10  text-neutral-400  flex flex-row items-center">
       <Clock4Icon className="mr-2 w-3 h-3 " />
-      <span className="text-xs">
-        {" "}
+      <span className="text-sm">
         Last update: {formatToKoreanDate(modRecord.lastEditedDate)}
       </span>
     </div>

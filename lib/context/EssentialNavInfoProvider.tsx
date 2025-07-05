@@ -44,9 +44,9 @@ export function EssentialNavInfoProvider({
   const [showTocButton, setShowTocButton] = useState<boolean>(false);
   const router = useRouter();
 
-  const handleRouter = (record) => {
+  const handleRouter = (page) => {
     // setCurrentpageId(record);
-    router.push(`/${record.slug}`);
+    router.push(`/${page.slug}`);
   };
   const cleanCurrentRecordData = () => {
     // setCurrentRecordData(null);

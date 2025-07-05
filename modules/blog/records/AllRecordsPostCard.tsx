@@ -1,5 +1,6 @@
 "use client";
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
+import { substringWithNumberDots } from "@/lib/utils/utils";
 import { CardProps } from "@/types";
 import { usePathname } from "next/navigation";
 
@@ -22,9 +23,7 @@ const AllRecordsPostCard = ({ record }: CardProps) => {
           }}
         >
           <span className="text-xs pr-1">{record.pageIcon} </span>{" "}
-          {record.title.length > 25
-            ? record.title.substring(0, 25) + "..."
-            : record.title}
+          {substringWithNumberDots(record.title, 25)}
         </div>
       </div>
     </div>

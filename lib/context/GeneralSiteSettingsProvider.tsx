@@ -44,7 +44,7 @@ export const GeneralSiteSettingsProvider: React.FC<{
   );
   const [onLoading, setOnLoading] = useState<boolean>(false);
 
-  const [tocVisible, setTOCVisible] = useState<boolean>(false);
+  const [tocVisible, setTOCVisible] = useState<boolean>(true);
   const [pageNavVisible, setPageNavVisible] = useState<boolean>(false);
 
   const [searchKeyword, setSearchKeyword] = useState<string>("");

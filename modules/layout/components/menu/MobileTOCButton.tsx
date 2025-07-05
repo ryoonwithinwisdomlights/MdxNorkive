@@ -11,8 +11,8 @@ library.add(faListOl);
  * Mobile directory button
  */
 export default function MobileTOCButton() {
-  const { handleTOCVisible, locale } = useGeneralSiteSettings();
-  // const { showTocButton } = useGlobal({ from: "index" });
+  const { handleTOCVisible } = useGeneralSiteSettings();
+
   const switchVisible = () => {
     handleTOCVisible();
   };

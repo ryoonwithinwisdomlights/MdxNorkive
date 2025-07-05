@@ -1,31 +1,27 @@
-import { BLOG } from "@/blog.config";
-import {
-  getPageDataByTypeAndId,
-  getRecordPageDataById,
-} from "@/lib/data/business-action";
+"use server";
 
+import { BLOG } from "@/blog.config";
+import { getPageDataByTypeAndId } from "@/lib/data/business-action";
 import SingleRecords from "@/modules/blog/records/SingleRecords";
 import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
 import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
 import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
 import { Metadata } from "next";
 
+//
 export async function generateStaticParams() {
-  const records = [
-    { engId: "1341eb5c-0337-81be-960b-c573287179cc" },
-    { engId: "another-record-id" },
-  ];
+  const records = [{ pageId: "1481eb5c-0337-8087-a304-f2af3275be11" }];
 
   return records.map((record) => ({
-    engId: record.engId,
+    pageId: record.pageId,
   }));
 }
 
 export async function generateMetadata({ params }): Promise<Metadata> {
-  const { engId } = await params;
+  const { pageId } = await params;
   const props = await getPageDataByTypeAndId({
-    pageId: engId,
-    from: "Engineering",
+    pageId: pageId,
+    from: "Record",
   });
   const title = props?.page?.title;
   const pageTitle = title ? title : "";
@@ -36,18 +32,22 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 }
 
 // `generateStaticParams`가 반환한 `params`를 사용하여 이 페이지의 여러 버전이 정적으로 생성됩니다.
-export default async function Page({ params }) {
-  const { engId } = await params;
-  if (!engId) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ pageId: string }>;
+}) {
+  console.log("params::::", params);
+  const { pageId } = await params;
+
+  if (!pageId) {
     return <ErrorComponent />;
   }
-
   const result = await getPageDataByTypeAndId({
-    pageId: engId,
-    from: "Engineering",
-    type: "Engineering",
+    pageId: pageId,
+    from: "archive",
+    type: "Record",
   });
-
   if (!result) {
     return <div>Invalid Page Id</div>;
   }

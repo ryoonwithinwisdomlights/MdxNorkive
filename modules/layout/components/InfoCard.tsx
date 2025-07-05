@@ -9,7 +9,7 @@ const InfoCard = () => {
   const router = useRouter();
 
   return (
-    <div className="py-4 items-center justify-center flex flex-col">
+    <div className=" items-center justify-center flex flex-col">
       <div
         className="hover:scale-105 transform duration-200 cursor-pointer flex justify-center"
         onClick={() => {

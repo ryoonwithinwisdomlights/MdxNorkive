@@ -20,7 +20,7 @@ import "katex/dist/katex.min.css";
 
 import MobileLeftNavDrawer from "@/modules/layout/components/MobileLeftNavDrawer";
 
-import initGlobalNotionData from "@/lib/data/business-action";
+import initArchiveGlobalData from "@/lib/data/business-action";
 import BottomMenuBar from "@/modules/layout/components/menu/BottomMenuBar";
 import LoadingCover from "@/modules/common/ui/LoadingCover";
 import TopNavBar from "@/modules/layout/components/TopNavBar";
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: ChildrenProp) {
-  const globalNotionData = await initGlobalNotionData("main");
+  const globalNotionData = await initArchiveGlobalData("main");
 
   return (
     <html lang="en" suppressHydrationWarning className={GeistSans.className}>

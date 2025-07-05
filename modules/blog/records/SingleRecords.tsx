@@ -71,12 +71,7 @@ const SingleRecords = ({ props }) => {
           {/* Notion기사 서문 */}
           <SingleRecordsIntroForPage record={page} siteInfo={siteInfo} />
           {/* Notion기사 본문 */}
-
-          <SingleRecordsBodyForPage
-            page={page}
-            // prev={page.prev}
-            // next={page.next}
-          />
+          <SingleRecordsBodyForPage page={page} />
         </div>
       )}
     </div>

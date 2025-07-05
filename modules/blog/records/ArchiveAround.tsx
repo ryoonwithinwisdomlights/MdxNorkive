@@ -1,5 +1,5 @@
 "use client";
-import { substringStrWithdots } from "@/lib/utils/utils";
+import { substringWithNumberDots } from "@/lib/utils/utils";
 import { ChevronsLeftIcon, ChevronsRightIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -25,7 +25,7 @@ export default function ArchiveAround({ prev, next }) {
         className="text-sm cursor-pointer justify-start items-center flex hover:underline duration-300"
       >
         <ChevronsLeftIcon className="mr-1" />
-        {substringStrWithdots(prev.title, 30)}
+        {substringWithNumberDots(prev.title, 30)}
       </div>
       <div
         onClick={(e) => {
@@ -34,7 +34,7 @@ export default function ArchiveAround({ prev, next }) {
         className="text-sm cursor-pointer justify-end items-center flex hover:underline duration-300"
       >
         {" "}
-        {substringStrWithdots(next.title, 30)}
+        {substringWithNumberDots(next.title, 30)}
         <ChevronsRightIcon className="mr-1 my-1 " />
       </div>
     </section>

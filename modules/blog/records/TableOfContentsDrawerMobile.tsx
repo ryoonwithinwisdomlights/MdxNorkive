@@ -4,8 +4,8 @@ import Catalog from "@/modules/blog/records/Catalog";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { XIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { useMediaQuery } from "usehooks-ts";
 library.add(faTimes);
 
 /**
@@ -15,44 +15,40 @@ library.add(faTimes);
  * @returns {JSX.Element}
  * @constructor
  */
-const CatalogDrawerWrapper = ({ record }) => {
-  const { tocVisible, handleTOCVisible, locale } = useGeneralSiteSettings();
-  const router = useRouter();
-  const switchVisible = () => {
-    handleTOCVisible();
-  };
+const TableOfContentsDrawerMobile = ({ page }) => {
+  const { locale, handleTOCVisible, tocVisible } = useGeneralSiteSettings();
+  const isMobile = useMediaQuery("(max-width: 768px");
+  // const [tocOn, setTocOn] = useState<boolean>(false);
 
-  const tocAble = record?.tableOfContents?.length > 0;
   useEffect(() => {
-    if (tocAble) {
+    const tocAble = page?.tableOfContents?.length > 0;
+    if (!tocAble) {
       handleTOCVisible();
     }
   }, []);
 
   return (
-    record?.tableOfContents?.length > 0 && (
+    page?.tableOfContents?.length > 0 &&
+    isMobile && (
       <>
-        <div
-          id="gitbook-toc-float"
-          className={"fixed top-0 right-0 z-40 md:hidden"}
-        >
+        <div id="toc-float" className={"md:hidden fixed top-0 right-0  "}>
           <div
             className={
               (tocVisible
                 ? "animate__slideInRight "
                 : " -mr-72 animate__slideOutRight") +
-              " overflow-y-hidden shadow-card w-60 duration-200 fixed right-1 bottom-20 rounded py-2 bg-white dark:bg-neutral-700"
+              " overflow-y-hidden shadow-card w-60 duration-200 h-2/5 fixed right-1 bottom-24 rounded py-2 bg-white dark:bg-neutral-700"
             }
           >
             <div
-              onClick={switchVisible}
+              onClick={handleTOCVisible}
               className="px-4 pb-2 flex justify-between items-center border-b font-bold"
             >
               <span>{locale.COMMON.TABLE_OF_CONTENTS}</span>
               <XIcon className="p-1 cursor-pointer" />
             </div>
             <div className="dark:text-neutral-400 text-neutral-600 px-3">
-              <Catalog record={record} />
+              <Catalog page={page} />
             </div>
           </div>
         </div>
@@ -60,12 +56,12 @@ const CatalogDrawerWrapper = ({ record }) => {
           id="right-drawer-background"
           className={
             (tocVisible ? "block" : "hidden") +
-            " fixed top-0 left-0 z-30 w-full h-full"
+            " fixed top-0 left-0 z-40 w-full h-full "
           }
-          onClick={switchVisible}
+          onClick={handleTOCVisible}
         />
       </>
     )
   );
 };
-export default CatalogDrawerWrapper;
+export default TableOfContentsDrawerMobile;
