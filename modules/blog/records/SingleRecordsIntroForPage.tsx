@@ -3,7 +3,12 @@ import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvide
 import LazyImage from "@/modules/common/components/shared/LazyImage";
 import NotionIcon from "@/modules/common/components/shared/NotionIcon";
 import { Skeleton } from "@/modules/common/ui/Skeleton";
-import { CalendarIcon, EyeIcon, FolderClockIcon } from "lucide-react";
+import {
+  CalendarIcon,
+  EyeIcon,
+  FolderClockIcon,
+  TelescopeIcon,
+} from "lucide-react";
 import Link from "next/link";
 
 const SingleRecordsIntroForPage = ({ record, siteInfo }) => {
@@ -25,31 +30,29 @@ const SingleRecordsIntroForPage = ({ record, siteInfo }) => {
             <FolderClockIcon className="mr-2 w-4 h-4" />
             {locale.COMMON.LAST_EDITED_TIME}: {record?.lastEditedDay}
           </span>
-          {/* <span className="mx-1 ml-2 mr-2"> | </span> */}
-          <span className="hidden flex-row items-center busuanzi_container_page_pv ">
+
+          <span className=" flex-row items-center busuanzi_container_page_pv">
             <div className="flex flex-row items-center">
-              <EyeIcon className="mr-2 font-light whitespace-nowrap w-4 h-4 " />
+              <TelescopeIcon className="mr-2 font-light whitespace-nowrap w-4 h-4 " />
               <span className="busuanzi_value_page_pv"></span>
               <span className="ml-1">{locale.COMMON.VIEW}</span>
             </div>
           </span>
-        </div>
-        <span className="mx-1 ml-2 mr-2"> | </span>
-        {/* <Link href="/" passHref> */}
-        <div className="flex flex-row items-center">
-          <LazyImage
-            src={siteInfo?.icon}
-            className="rounded-full cursor-pointer dark:border dark:border-neutral-300"
-            width={16}
-            height={16}
-            alt={BLOG.AUTHOR}
-          />
+          <span className="mx-1 ml-2 mr-2"> | </span>
+          <div className="flex flex-row items-center">
+            <LazyImage
+              src={siteInfo?.icon}
+              className="rounded-full cursor-pointer dark:border dark:border-neutral-300"
+              width={16}
+              height={16}
+              alt={BLOG.AUTHOR}
+            />
 
-          <div className="mr-3 ml-2 my-auto text-neutral-400 cursor-pointer">
-            {BLOG.AUTHOR}
+            <div className="mr-3 ml-2 my-auto text-neutral-400 cursor-pointer">
+              {BLOG.AUTHOR}
+            </div>
           </div>
         </div>
-        {/* </Link> */}
       </section>
     </div>
   );

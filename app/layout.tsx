@@ -2,6 +2,7 @@ import { BLOG } from "@/blog.config";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import "./../styles/animate.css"; // @see https://animate.style/
 import "./../styles/globals.css";
 import "./../styles/utility-patterns.css";
@@ -15,7 +16,7 @@ import "./../styles/notion.css";
 // global style overrides for prism theme (optional)
 import "./../styles/prism-theme.css";
 // used for rendering equations (optional)
-import "@fortawesome/fontawesome-svg-core/styles.css";
+
 import "katex/dist/katex.min.css";
 
 import MobileLeftNavDrawer from "@/modules/layout/components/MobileLeftNavDrawer";
@@ -24,7 +25,6 @@ import initArchiveGlobalData from "@/lib/data/business-action";
 import BottomMenuBar from "@/modules/layout/components/menu/BottomMenuBar";
 import LoadingCover from "@/modules/common/ui/LoadingCover";
 import TopNavBar from "@/modules/layout/components/TopNavBar";
-import { config } from "@fortawesome/fontawesome-svg-core";
 
 import { EssentialNavInfoProvider } from "@/lib/context/EssentialNavInfoProvider";
 import { GeneralSiteSettingsProvider } from "@/lib/context/GeneralSiteSettingsProvider";
@@ -37,6 +37,7 @@ import MainLayoutWrapper from "../modules/layout/templates/MainLayoutWrapper";
 import LeftNavigationBar from "@/modules/layout/components/LeftNavigationBar";
 import { ModalProvider } from "@/lib/context/ModalProvider";
 
+import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
 export const viewport: Viewport = {
