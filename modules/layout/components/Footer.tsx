@@ -1,10 +1,7 @@
 "use client";
 import { BLOG } from "@/blog.config";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faEye, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 
-library.add(faEye, faUsers);
 function toBlogNumber(a: any) {
   let tempVal: any;
   if (typeof a === "string") {

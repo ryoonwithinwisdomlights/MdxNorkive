@@ -1,14 +1,7 @@
 "use client";
 import { BLOG } from "@/blog.config";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faBook } from "@fortawesome/free-solid-svg-icons";
-
 import { useLayoutEffect, useState } from "react";
-
 import BottomMenuBarMobile from "./BottomMenuBarMobile";
-
-// 사전에 사용할 아이콘 추가
-library.add(faBook);
 
 function toBlogNumber(a: any) {
   let tempVal: any;

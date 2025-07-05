@@ -2,11 +2,9 @@
 /* eslint-disable multiline-ternary */
 import { BLOG } from "@/blog.config";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { BugIcon, XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-library.add(faTimes);
+
 /**
  *
  * @returns Debug panel

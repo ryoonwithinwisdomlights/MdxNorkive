@@ -2,14 +2,9 @@
 /* eslint-disable multiline-ternary */
 
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faEllipsisVertical, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useRef, useState } from "react";
 import TopNavMobile from "./TopNavMobile";
 import TopNavPC from "./TopNavPC";
-
-library.add(faEllipsisVertical, faTimes);
 
 const TopNavBar = () => {
   const { oldNav, customMenu } = useGlobal({ from: "index" });

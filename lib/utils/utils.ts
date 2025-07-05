@@ -1,10 +1,8 @@
 /* eslint-disable no-unused-vars */
-import { BLOG } from "@/blog.config";
 import * as Icons from "@fortawesome/free-solid-svg-icons"; // 모든 아이콘을 가져옴
 import { type ClassValue, clsx } from "clsx";
 import React from "react";
 import { twMerge } from "tailwind-merge";
-import { extractLangPrefix } from "../data/utils";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

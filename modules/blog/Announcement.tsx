@@ -1,12 +1,7 @@
 "use client";
 
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
 import dynamic from "next/dynamic";
-
-// 사전에 사용할 아이콘 추가
-library.add(faBullhorn);
 
 const NotionPage = dynamic(
   () => import("@/modules/common/components/shared/NotionPage"),

@@ -1,12 +1,8 @@
 "use client";
-import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faListOl } from "@fortawesome/free-solid-svg-icons";
 import { ListIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
-library.add(faListOl);
 /**
  * Mobile directory button
  */
