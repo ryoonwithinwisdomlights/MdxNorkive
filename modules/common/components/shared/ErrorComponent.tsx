@@ -7,7 +7,7 @@ import { Button } from "@/modules/common/ui/button";
 
 export default function ErrorComponent(): JSX.Element {
   return (
-    <div className="h-screen flex flex-col items-center justify-center ">
+    <div className="h-screen w-full flex flex-col items-center justify-center pl-40 ">
       <Image
         src="/images/error.png"
         height={300}
