@@ -6,7 +6,7 @@ import { LoaderIcon } from "lucide-react";
 const Loading = () => {
   const { locale } = useGeneralSiteSettings();
   return (
-    <div className=" w-screen h-screen flex flex-col justify-center items-center">
+    <div className="md:w-2/3 h-screen flex flex-col justify-center items-center  px-20">
       <div
         id="cover-loading"
         className="z-50 opacity-50pointer-events-none transition-all 
