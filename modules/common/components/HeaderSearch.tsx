@@ -23,18 +23,6 @@ export default function HeaderSearch() {
     };
   });
 
-  /**
-   * 
-   * 
-	•뭐야?
-        React에서 특정 값이나 객체를 메모이제이션(캐시) 해서,
-        렌더링마다 새로 생성되는 걸 방지하는 훅.	
-    •여기서 왜 씀?
-        Fuse 인스턴스를 매번 새로 만들지 않기 위해.
-        const fuse = useMemo(() => new Fuse(데이터), []);
-        이거 없으면 매 렌더링마다 새로 Fuse 인스턴스 생성됨. 성능 저하.
-   */
-  //
   const fuse = useMemo(
     () =>
       new Fuse(groupedArray, {
@@ -54,7 +42,7 @@ export default function HeaderSearch() {
           setLoading(false);
           return;
         }
-
+        // setLoading(true);
         const searchResults = fuse.search(text).map((res) => res.item);
         setResults(searchResults);
         setLoading(false);
@@ -69,6 +57,11 @@ export default function HeaderSearch() {
   };
 
   useEffect(() => {
+    if (query.trim().length === 0) {
+      setLoading(false); // 명확하게 초기화
+      return;
+    }
+
     setLoading(true);
     handleSearch(query);
     return () => {
