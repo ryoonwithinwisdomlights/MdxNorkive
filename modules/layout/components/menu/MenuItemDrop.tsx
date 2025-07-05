@@ -35,7 +35,7 @@ export const MenuItemDrop = ({ link }) => {
         className={
           "px-2 h-full whitespace-nowrap duration-300 text-sm justify-between text-neutral-700  dark:text-neutral-300 cursor-pointer flex flex-nowrap items-center " +
           (selected
-            ? "bg-norkive-light rounded-lg h-4/5 text-neutral-700 hover:text-neutral-700 dark:text-neutral-700  dark:hover:text-black "
+            ? "bg-neutral-100 rounded-lg h-4/5 text-neutral-700 hover:text-neutral-700 dark:text-neutral-700  dark:hover:text-black "
             : "hover:text-black dark:hover:text-[#ffffff]")
         }
       >
@@ -62,7 +62,7 @@ export const MenuItemDrop = ({ link }) => {
         className={
           "px-2 h-full  whitespace-nowrap duration-300 text-sm justify-between text-neutral-700  dark:text-neutral-300 cursor-pointer flex flex-nowrap items-center " +
           (selected
-            ? "bg-norkive-light rounded-lg h-4/5 text-neutral-700 hover:text-neutral-900 dark:text-neutral-700 dark:hover:text-black "
+            ? "bg-neutral-100 rounded-lg h-4/5 text-neutral-700 hover:text-neutral-900 dark:text-neutral-700 dark:hover:text-black "
             : " hover:text-black  dark:hover:text-[#ffffff]")
         }
       >
@@ -84,7 +84,7 @@ export const MenuItemDrop = ({ link }) => {
       <ul
         className={`${
           show ? "visible top-12 " : "invisible opacity-0 top-10 "
-        } border-neutral-100 bg-white dark:bg-neutral-700  dark:border-neutral-800 
+        } border-neutral-100 bg-white dark:bg-neutral-700  dark:border-neutral-900 
         transition-all duration-300 z-20 absolute block drop-shadow-lg rounded-lg `}
       >
         {link?.subMenus?.map((sLink, index) => {
@@ -98,7 +98,7 @@ export const MenuItemDrop = ({ link }) => {
             tracking-widest transition-all duration-200  dark:border-neutral-800 py-3 pr-6 pl-3"
               >
                 <div
-                  className="hover:bg-norkive-light  px-2 hover:rounded-lg hover:h-4/5 w-full"
+                  className="hover:bg-neutral-100  px-2 hover:rounded-lg hover:h-4/5 w-full"
                   onClick={() => {
                     onClickUrl(sLink);
                   }}
@@ -123,7 +123,7 @@ export const MenuItemDrop = ({ link }) => {
 
   return (
     <li
-      className="cursor-pointer list-none hidden md:flex  md:flex-row justify-center items-center mx-2 bg-white dark:bg-neutral-800"
+      className="cursor-pointer list-none hidden md:flex  md:flex-row justify-center items-center mx-2 bg-white dark:bg-neutral-900"
       onMouseOver={() => changeShow(true)}
       onMouseOut={() => changeShow(false)}
     >

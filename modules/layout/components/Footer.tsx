@@ -35,7 +35,7 @@ const Footer = () => {
   if (!isMounted) return null;
 
   return (
-    <footer className="z-20 py-2 bg-white  dark:bg-neutral-900 dark:text-neutral-300 justify-center text-center  text-sm ">
+    <footer className="z-20 py-2  dark:text-neutral-300 justify-center text-center  text-sm ">
       <hr className="pb-2" />
 
       <div className="text-xs font-sans">

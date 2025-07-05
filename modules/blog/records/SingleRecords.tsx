@@ -62,7 +62,7 @@ const SingleRecords = ({ props }) => {
   return (
     <div
       id="main-scroll-container"
-      className="dark:bg-black dark:text-neutral-200 text-neutral-800 md:px-20 
+      className="dark:bg-black dark:text-neutral-100 text-neutral-800 md:px-20 
     md:w-[60%] flex flex-col overflow-y-auto h-full  scrollbar-hide overscroll-contain "
     >
       {lock && <ArchiveLock validPassword={validPassword} />}

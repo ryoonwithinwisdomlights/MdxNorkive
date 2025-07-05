@@ -23,7 +23,7 @@ export default function ArchiveAround({ prev, next }) {
     router.push(`/${slug}`);
   };
   return (
-    <section className="w-full rounded-2xl flex bg-norkive-light dark:bg-neutral-800 p-1 text-sm my-16">
+    <section className="w-full rounded-2xl flex bg-neutral-100 dark:bg-neutral-800 p-1 text-sm ">
       <div
         onClick={(e) => {
           onClick(prev.slug);

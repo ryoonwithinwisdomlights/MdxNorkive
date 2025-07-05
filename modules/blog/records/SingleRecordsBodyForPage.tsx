@@ -10,7 +10,7 @@ import TagItemMini from "../tag/TagItemMini";
 import TableOfContentsDrawerMobile from "./TableOfContentsDrawerMobile";
 const SingleRecordsBodyForPage = ({ page }) => {
   return (
-    <section className="px-1 dark:text-neutral-200 flex flex-col gap-y-6">
+    <section className="px-1 dark:text-neutral-100 flex flex-col gap-y-6">
       <NotionPage record={page} />
 
       {/* share */}

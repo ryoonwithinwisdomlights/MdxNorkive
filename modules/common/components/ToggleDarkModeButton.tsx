@@ -15,7 +15,7 @@ const ToggleDarkModeButton = () => {
 
   if (!mounted) {
     return (
-      <div className="h-8 w-14 rounded-full bg-norkive-light animate-pulse" />
+      <div className="h-8 w-14 rounded-full bg-neutral-100 animate-pulse" />
     );
   }
 
@@ -24,7 +24,7 @@ const ToggleDarkModeButton = () => {
       checked={isDarkMode}
       onChange={handleChangeDarkMode}
       className="relative inline-flex h-8 w-14 items-center rounded-sm
-       transition-colors duration-300 focus:outline-none bg-norkive-light dark:bg-neutral-600"
+       transition-colors duration-300 focus:outline-none bg-neutral-100 dark:bg-neutral-600"
     >
       <span
         className={`absolute top-1 left-1 flex h-6 w-6 items-center justify-center rounded-sm bg-white shadow-md transform transition duration-300 ease-in-out ${

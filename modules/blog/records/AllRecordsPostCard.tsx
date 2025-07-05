@@ -12,8 +12,7 @@ const AllRecordsPostCard = ({ record, className }: NavListDivProps) => {
   return (
     <div
       key={record.id}
-      className={`${className} cursor-pointer px-2 hover:bg-norkive-light hover:dark:text-white rounded-md dark:hover:bg-neutral-500  ${
-        currentSelected ? "  bg-norkive-light dark:bg-neutral-500" : ""
+      className={`${className} cursor-pointer px-2    hover:dark:text-white 
       }`}
     >
       <div className="flex flex-col w-full select-none">

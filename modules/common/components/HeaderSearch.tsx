@@ -96,7 +96,7 @@ export default function HeaderSearch() {
             w-full
             pl-9 pr-3 py-2
             rounded-md
-            bg-norkive-light
+            bg-neutral-100
             placeholder-neutral-500
             focus:outline-none
             focus:ring-2 focus:ring-neutral-400

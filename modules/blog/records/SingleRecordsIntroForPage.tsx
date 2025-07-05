@@ -13,10 +13,13 @@ import Link from "next/link";
 
 const SingleRecordsIntroForPage = ({ record, siteInfo }) => {
   const { locale } = useGeneralSiteSettings();
+  // p-5 rounded-2xl bg-neutral-100 dark:bg-neutral-800
+
+  //bg-white dark:bg-neutral-700 rounded-2xl
   return (
-    <div className="w-full h-full p-5 items-center rounded-2xl flex flex-col justify-center bg-norkive-light dark:bg-neutral-800 gap-y-3">
+    <div className="p-5 w-full h-full items-center flex flex-col justify-center gap-y-6">
       <div
-        className="mt-0.5 space-y-2.5 w-full p-5 bg-white dark:bg-neutral-700 rounded-2xl
+        className="mt-0.5 space-y-2.5 w-full 
        dark:text-neutral-300 text-neutral-700"
       >
         <div className="eyebrow h-5  text-sm font-semibold">{record.type}</div>
@@ -31,7 +34,7 @@ const SingleRecordsIntroForPage = ({ record, siteInfo }) => {
         </div>
       </div>
 
-      <section className=" w-full flex-wrap flex flex-row text-sm justify-center items-center text-neutral-500 dark:text-neutral-400 font-light ">
+      <section className=" w-full flex-wrap flex flex-row text-sm justify-start items-center text-neutral-500 dark:text-neutral-400 font-light ">
         <span className="whitespace-nowrap flex flex-row items-center">
           <CalendarIcon className="mr-1 w-4 h-4" />
           {locale.COMMON.record_TIME}: {record?.publishDay}

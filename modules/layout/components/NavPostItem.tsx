@@ -1,13 +1,10 @@
 "use client";
 import AllRecordsPostCard from "@/modules/blog/records/AllRecordsPostCard";
 import Collapse from "@/modules/common/components/shared/Collapse";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { ChevronLeftIcon } from "lucide-react";
-import { useParams, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
-// 사전에 사용할 아이콘 추가
-library.add(faChevronLeft);
+
 /**
  * navigation list
  * @param records
@@ -17,14 +14,8 @@ library.add(faChevronLeft);
  */
 const NavPostItem = (props) => {
   const { group } = props;
-  // const [isOpen, changeIsOpen] = useState(false);
+  const pathname = usePathname();
   const [isOpen, changeIsOpen] = useState(group?.selected);
-
-  const params = useParams();
-  const currPageId = params?.pageId ? (params?.pageId as string) : "";
-  // console.log("params:", params);
-  // 언제나 접어져있는 상태로 유지
-
   const toggleOpenSubMenu = () => {
     changeIsOpen(!isOpen);
   };
@@ -34,8 +25,8 @@ const NavPostItem = (props) => {
       <div>
         <div
           onClick={toggleOpenSubMenu}
-          className="select-none flex justify-between text-sm hover:dark:text-white 
-           font-sans cursor-pointer p-2 hover:bg-norkive-light rounded-md dark:hover:bg-neutral-600"
+          className="select-none flex  justify-between text-sm hover:dark:text-white 
+           font-sans cursor-pointer p-2 hover:bg-neutral-100/50  rounded-md dark:hover:bg-neutral-800/50"
           key={group?.category}
         >
           <span>{group?.category}</span>
@@ -48,14 +39,24 @@ const NavPostItem = (props) => {
           </div>
         </div>
         <Collapse isOpen={isOpen} onHeightChange={props.onHeightChange}>
-          {group?.items?.map((record) => (
-            <div key={record.id} className="pl-2 ml-3 border-l flex flex-col ">
-              <AllRecordsPostCard
-                record={record}
-                className="text-sm ml-1 py-1"
-              />
-            </div>
-          ))}
+          {group?.items?.map((record) => {
+            const currentSelected = pathname.split("/")[2] === record.id;
+            return (
+              <div
+                key={record.id}
+                className={`${currentSelected ? "bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-100 text-neutral-600 font-semibold" : "hover:bg-neutral-200/40  dark:hover:bg-neutral-800/50"} rounded-lg pl-3  flex flex-col `}
+              >
+                <div
+                  className={`border-l py-1 ${currentSelected ? "border-neutral-600" : ""}`}
+                >
+                  <AllRecordsPostCard
+                    record={record}
+                    className="text-sm ml-1 py-1"
+                  />
+                </div>
+              </div>
+            );
+          })}
         </Collapse>
       </div>
     );
