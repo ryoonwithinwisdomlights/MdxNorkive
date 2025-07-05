@@ -105,7 +105,10 @@ const NotionPage = ({ record }) => {
     };
   }, [zoomRef, RECORD_DISABLE_GALLERY_CLICK, RECORD_DISABLE_DATABASE_CLICK]);
   return (
-    <div id="notion-article" className={`mx-auto overflow-hidden w-full`}>
+    <div
+      id="notion-article"
+      className={`mx-auto dark:text-neutral-300 text-neutral-700 overflow-hidden w-full px-5 rounded-2xl  bg-neutral-50/80 dark:bg-neutral-800`}
+    >
       <NotionRenderer
         disableHeader // notion 헤더 안보이도록
         // fullPage={true}

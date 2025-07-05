@@ -14,12 +14,24 @@ import Link from "next/link";
 const SingleRecordsIntroForPage = ({ record, siteInfo }) => {
   const { locale } = useGeneralSiteSettings();
   return (
-    <div className="w-full h-full items-start mt-12">
-      <h1 className="text-3xl   dark:text-neutral-100 ">
-        <NotionIcon icon={record?.pageIcon} />
-        {record?.title}
-      </h1>
-      <section className="flex-wrap shadow-text-md flex text-sm justify-start mt-4 text-neutral-500 dark:text-neutral-400 font-light py-2 ">
+    <div className="w-full h-full p-5 items-start mt-12 mb-4 rounded-2xl flex flex-col bg-neutral-50/80 dark:bg-neutral-800">
+      <div
+        className="mt-0.5 space-y-2.5 w-full p-5 bg-white dark:bg-neutral-700 rounded-2xl
+       dark:text-neutral-300 text-neutral-700"
+      >
+        <div className="eyebrow h-5  text-sm font-semibold">{record.type}</div>
+        <div className="flex items-center relative gap-2">
+          <h1
+            id="page-title"
+            className="inline-block text-2xl sm:text-3xl tracking-tight  "
+          >
+            {/* <NotionIcon icon={record?.pageIcon} /> */}
+            {record?.title}
+          </h1>
+        </div>
+      </div>
+
+      <section className="px-5 flex-wrap shadow-text-md flex text-sm justify-start mt-4 text-neutral-500 dark:text-neutral-400 font-light py-2 ">
         <div className="flex justify-start dark:text-neutral-200 flex-row items-center ">
           <span className="whitespace-nowrap flex flex-row items-center">
             <CalendarIcon className="mr-1 w-4 h-4" />
