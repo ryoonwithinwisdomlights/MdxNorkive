@@ -22,16 +22,18 @@ const SettingModal = () => {
           <DialogTitle></DialogTitle>
         </VisuallyHidden>
         <DialogHeader className="border-b pb-3">
-          <h2 className="text-lg font-medium">{locale.SITE.SETTINGS}</h2>
+          <h2 className="text-lg font-medium text-neutral-800 dark:text-neutral-200">
+            {locale.SITE.SETTINGS}
+          </h2>
         </DialogHeader>
         <div className="flex items-center justify-between">
-          <div className="flex flex-col gap-y-1">
+          <div className="flex flex-col gap-y-1 text-neutral-800 dark:text-neutral-200">
             <Label>{locale.SITE.DISPLAY_LIGHT}</Label>
           </div>
           <ToggleDarkModeButton />
         </div>
         <div className="flex items-center justify-between">
-          <div className="flex flex-col gap-y-1">
+          <div className="flex flex-col gap-y-1 text-neutral-800 dark:text-neutral-200">
             <Label>{locale.SITE.LOCALE}</Label>
           </div>
           <SwitchLanguage />

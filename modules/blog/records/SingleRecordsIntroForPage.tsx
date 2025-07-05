@@ -14,7 +14,7 @@ import Link from "next/link";
 const SingleRecordsIntroForPage = ({ record, siteInfo }) => {
   const { locale } = useGeneralSiteSettings();
   return (
-    <div className="w-full h-full p-5 items-center rounded-2xl flex flex-col justify-center bg-neutral-50/90 dark:bg-neutral-800 gap-y-3">
+    <div className="w-full h-full p-5 items-center rounded-2xl flex flex-col justify-center bg-norkive-light dark:bg-neutral-800 gap-y-3">
       <div
         className="mt-0.5 space-y-2.5 w-full p-5 bg-white dark:bg-neutral-700 rounded-2xl
        dark:text-neutral-300 text-neutral-700"
