@@ -188,26 +188,26 @@ export async function getCategoryAndTagById(
     from: `${pageProperty}-props`,
   });
 
-  props.records = getFilteredArrayByProperty(
-    props.records,
+  props.allArchivedPageList = getFilteredArrayByProperty(
+    props.allArchivedPageList,
     pageProperty,
     decodedPropertyId
   );
   // Process Archive page count
-  props.recordCount = props.records.length;
+  props.recordCount = props.allArchivedPageList.length;
   const RECORDS_PER_PAGE = BLOG.RECORD_PER_PAGE;
 
   // Handle pagination
 
-  props.records =
+  props.allArchivedPageList =
     pagenum !== undefined
-      ? props.records.slice(
+      ? props.allArchivedPageList.slice(
           RECORDS_PER_PAGE * (pagenum - 1),
           RECORDS_PER_PAGE * pagenum
         )
-      : props.records?.slice(0, RECORDS_PER_PAGE);
+      : props.allArchivedPageList?.slice(0, RECORDS_PER_PAGE);
 
-  delete props.allPages;
+  delete props.allArchivedPageList;
 
   return props;
 }

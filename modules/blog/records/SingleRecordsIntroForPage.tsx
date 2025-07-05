@@ -14,7 +14,7 @@ import Link from "next/link";
 const SingleRecordsIntroForPage = ({ record, siteInfo }) => {
   const { locale } = useGeneralSiteSettings();
   return (
-    <div className="w-full h-full p-5 items-start mt-12 mb-4 rounded-2xl flex flex-col bg-neutral-50/80 dark:bg-neutral-800">
+    <div className="w-full h-full p-5 items-start rounded-2xl flex flex-col bg-neutral-50/80 dark:bg-neutral-800">
       <div
         className="mt-0.5 space-y-2.5 w-full p-5 bg-white dark:bg-neutral-700 rounded-2xl
        dark:text-neutral-300 text-neutral-700"
@@ -31,7 +31,7 @@ const SingleRecordsIntroForPage = ({ record, siteInfo }) => {
         </div>
       </div>
 
-      <section className="px-5 flex-wrap shadow-text-md flex text-sm justify-start mt-4 text-neutral-500 dark:text-neutral-400 font-light py-2 ">
+      <section className="px-5 pt-5 flex-wrap shadow-text-md flex text-sm justify-start  text-neutral-500 dark:text-neutral-400 font-light ">
         <div className="flex justify-start dark:text-neutral-200 flex-row items-center ">
           <span className="whitespace-nowrap flex flex-row items-center">
             <CalendarIcon className="mr-1 w-4 h-4" />

@@ -20,22 +20,17 @@ const Announcement = () => {
   const { notice } = useGlobal({ from: "index" });
   if (notice?.blockMap) {
     return (
-      <div className="justify-center">
-        <section
-          id="announcement-wrapper"
-          className="dark:text-neutral-300 rounded-xl px-2 py-4"
-        >
-          {notice && (
-            <div id="announcement-content ">
-              {/* <div>
-   
-                공지
-              </div> */}
-              <NotionPage record={notice} />
-            </div>
-          )}
-        </section>
-      </div>
+      notice.status === "Published" && (
+        <div className="justify-center">
+          <section id="announcement-wrapper" className="rounded-xl px-2 py-4">
+            {
+              <div id="announcement-content ">
+                <NotionPage record={notice} />
+              </div>
+            }
+          </section>
+        </div>
+      )
     );
   } else {
     return <></>;

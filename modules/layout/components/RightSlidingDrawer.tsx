@@ -16,10 +16,10 @@ const RightSlidingDrawer = ({ props }) => {
     <div
       className="hidden md:w-[20%] md:fixed
 md:right-0 xl:block dark:border-transparent 
-h-screen z-10  border-neutral-200 px-6 md:flex md:flex-col"
+h-screen z-10 border-neutral-200 px-6 md:flex md:flex-col"
     >
-      <ArchiveInfo props={result} />
-      <TableOfContentsDrawerPC page={result.page} />
+      <ArchiveInfo props={props} />
+      {props && <TableOfContentsDrawerPC page={props?.page} />}
       <InfoCard />
       <Announcement />
     </div>

@@ -62,12 +62,15 @@ const SingleRecords = ({ props }) => {
   return (
     <div
       id="main-scroll-container"
-      className="dark:bg-black dark:text-neutral-300 pb-20 md:px-20 px-10 py-3 
+      className="dark:bg-black dark:text-neutral-200 text-neutral-800 pb-20 md:px-20 px-10 py-12
     md:w-[60%] flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain "
     >
       {lock && <ArchiveLock validPassword={validPassword} />}
       {!lock && (
-        <div id="container" className=" justify-center flex flex-col w-full">
+        <div
+          id="container"
+          className="justify-center flex flex-col w-full gap-y-6"
+        >
           {/* Notion기사 서문 */}
           <SingleRecordsIntroForPage record={page} siteInfo={siteInfo} />
           {/* Notion기사 본문 */}

@@ -12,13 +12,13 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params, searchParams }: TotalPageParams) {
-  const { tagId } = await params;
+  const { tagName } = await params;
   const { pagenum } = await searchParams;
-  const decodedTagId = decodeURIComponent(tagId);
-  if (!tagId) {
+  const decodedTagName = decodeURIComponent(tagName);
+  if (!tagName) {
     <ErrorComponent />;
   }
-  const props = await getCategoryAndTagById(decodedTagId, "tags", pagenum);
+  const props = await getCategoryAndTagById(decodedTagName, "tags", pagenum);
   return (
     <NoRecordTypePageWrapper>
       <AllRecordsList

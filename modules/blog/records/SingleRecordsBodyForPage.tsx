@@ -10,13 +10,13 @@ import TagItemMini from "../tag/TagItemMini";
 import TableOfContentsDrawerMobile from "./TableOfContentsDrawerMobile";
 const SingleRecordsBodyForPage = ({ page }) => {
   return (
-    <section className="px-1 dark:text-neutral-200">
+    <section className="px-1 dark:text-neutral-200 flex flex-col gap-y-6">
       <NotionPage record={page} />
 
       {/* share */}
       <ShareBar record={page} />
       {/* Archive classification and tag information */}
-      <div className="mt-6 flex justify-between">
+      <div className="flex justify-between">
         {ARCHIVE_CONFIG.RECORD_DETAIL_CATEGORY && page?.category && (
           <CategoryItem category={page.category} />
         )}

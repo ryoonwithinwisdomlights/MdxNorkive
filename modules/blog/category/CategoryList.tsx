@@ -7,7 +7,7 @@ const CategoryList = () => {
   const { categoryOptions } = useGlobal({});
   const router = useRouter();
   const onClickHandler = (categoryId) => {
-    router.push(`/category/${encodeURIComponent(categoryId)}`);
+    router.push(`/category/${categoryId}`);
   };
   return (
     <div

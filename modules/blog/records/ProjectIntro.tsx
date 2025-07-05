@@ -3,7 +3,7 @@ import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvide
 const ProjectIntro = () => {
   const { lang } = useGeneralSiteSettings();
   return (
-    <div className="mb-4 mr-4 flex flex-col justify-end">
+    <>
       <div className="flex flex-row justify-end text-xs  text-neutral-600 font-extralight dark:text-neutral-200 hover:text-neutral-800 pr-3">
         Take a look at the Dev Projects LEGOs
       </div>
@@ -30,7 +30,7 @@ const ProjectIntro = () => {
           </>
         )}
       </div>
-    </div>
+    </>
   );
 };
 

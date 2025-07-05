@@ -15,15 +15,17 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params, searchParams }: TotalPageParams) {
-  const { categoryId } = await params;
+  const { categoryName } = await params;
   const { pagenum } = await searchParams;
-  const decodedCategoryId = decodeURIComponent(categoryId);
+  const decodedCategoryName = decodeURIComponent(categoryName);
 
-  if (!categoryId) {
+  console.log("categoryId:", categoryName);
+  console.log("decodedCategoryName:", decodedCategoryName);
+  if (!categoryName) {
     <ErrorComponent />;
   }
   const result = await getCategoryAndTagById(
-    decodedCategoryId,
+    decodedCategoryName,
     "category",
     pagenum
   );
