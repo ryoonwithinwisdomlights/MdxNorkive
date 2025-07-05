@@ -1,5 +1,6 @@
 "use client";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { ChevronRight } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
 /**
@@ -19,18 +20,19 @@ const PaginationSimple = ({ pagenum, totalPage }) => {
   const pagePrefix = pathname.replace(/\/page\/[1-9]\d*/, "");
 
   return (
-    <div
-      className={` flex w-full justify-end font-medium text-black dark:text-neutral-100 space-x-2`}
-    >
+    <div className={` flex w-full justify-end  space-x-2`}>
       <div
         onClick={() => {
           router.push(`${pagePrefix}?pagenum=${currentPage + 1}`);
         }}
         className={`${
           +showNext ? "block" : "invisible"
-        } text-center w-1/2 duration-200 p-2 hover:border-neutral-300 border-b-2 hover:font-bold`}
+        } rounded-md transform hover:scale-105 duration-300 text-end group w-3/5 py-2 px-4 gap-x-2 flex flex-row items-center  dark:hover:text-neutral-100  hover:border-neutral-200 dark:bg-neutral-700 bg-neutral-100`}
       >
-        {locale.PAGINATION.NEXT}→
+        <span className="dark:text-neutral-300 text-neutral-700   tracking-tight group-hover:font-bold ">
+          {locale.PAGINATION.NEXT}
+        </span>
+        <ChevronRight className="w-4 h-4 dark:text-neutral-300 text-neutral-700 group-hover:font-bold " />
       </div>
     </div>
   );

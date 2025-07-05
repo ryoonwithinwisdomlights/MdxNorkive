@@ -38,11 +38,11 @@ const AllRecordsList = ({
     <div className=" justify-center flex flex-col gap-y-12">
       <div
         onClick={historGoBack}
-        className={` ${!+showNext && "font-bold"} group w-2/5 py-2 px-4 gap-x-2 text-start flex flex-row items-center  dark:hover:text-neutral-100  hover:border-neutral-200 rounded-sm bg-neutral-100`}
+        className={` ${!+showNext && "font-bold"} rounded-md transform hover:scale-110 duration-300 group w-1/5 py-2 px-4 gap-x-2 text-start flex flex-row items-center  dark:hover:text-neutral-100  hover:border-neutral-200 dark:bg-neutral-700 bg-neutral-100`}
       >
-        <ChevronLeft className="w-4 h-4 text-neutral-300 dark:text-neutral-700 group-hover:font-bold group-hover:text-neutral-500" />
+        <ChevronLeft className="w-4 h-4 dark:text-neutral-300 text-neutral-700 group-hover:font-bold " />
 
-        <span className="text-neutral-500 dark:text-neutral-400  tracking-tight group-hover:font-bold group-hover:text-neutral-500">
+        <span className="dark:text-neutral-300 text-neutral-700   tracking-tight group-hover:font-bold ">
           {locale.PAGINATION.PREV}
         </span>
       </div>

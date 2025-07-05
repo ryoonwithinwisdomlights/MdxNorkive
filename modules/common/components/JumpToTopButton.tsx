@@ -31,7 +31,7 @@ const JumpToTopButton = () => {
       <CornerLeftUp
         onClick={handleScrollToTop}
         className="shadow  hover:scale-110 duration-150 cursor-pointer p-2 w-8 h-8 text-sm'
-         rounded-full border dark:text-neutral-200 text-neutral-300 border-neutral-200 bg-neutral-100 dark:bg-neutral-500 dark:border-white"
+         rounded-full border dark:text-neutral-200 text-neutral-300 border-neutral-200 bg-black  dark:border-white"
       />
     </div>
   );
