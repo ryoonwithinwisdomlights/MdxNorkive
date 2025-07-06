@@ -10,7 +10,7 @@ import { NotionRenderer } from "react-notion-x";
 import { useWindowSize } from "usehooks-ts";
 import TweetEmbed from "react-tweet-embed";
 import { getOldsiteConfig } from "@/lib/utils/get-config-value";
-import { compressImage, mapImgUrl } from "@/lib/data/utils";
+import { compressImage, mapImgUrl } from "@/lib/notion/utils";
 
 const NotionPage = ({ record }) => {
   // Whether to turn off the click jump of the database and album

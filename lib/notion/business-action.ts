@@ -1,14 +1,14 @@
 import { BLOG } from "@/blog.config";
-import { getRecordBlockMapWithRetry } from "@/lib/data/data";
 import {
   getAllPagesWithoutMenu,
   getFilteredArrayByProperty,
   getRecommendPage,
   setAllPagesGetSortedGroupedByDate,
   setPageTableOfContentsByRecord,
-} from "@/lib/data/function";
-import { getGlobalData, getOneRecordPageData } from "@/lib/data/interface";
+} from "@/lib/notion/function";
+import { getGlobalData, getOneRecordPageData } from "@/lib/notion/interface";
 import { PageBlockDataProps } from "@/types";
+import { getRecordBlockMapWithRetry } from "./data/getPageWithRetry";
 
 export default async function initArchiveGlobalData(from: string = "main") {
   const props = await getGlobalData({
@@ -130,54 +130,6 @@ export async function getRecordPageDataById({
   return props;
 }
 
-// export async function setPrevNextRecommendInRecordPage(props) {
-//   props.record.blockMap = await getRecordBlockMapWithRetry({
-//     pageId: props.record.id,
-//   });
-//   const recommendPages = getAllPagesWithoutMenu({
-//     arr: props?.allPages,
-//         func: (arr) => {
-//           return arr.filter((item) => getPageWithOutMenu(item, type));
-//         },
-//   });
-
-//   if (recommendPages && recommendPages.length > 0) {
-//     const index = recommendPages.indexOf(props.record);
-//     props.prev =
-//       recommendPages.slice(index - 1, index)[0] ??
-//       recommendPages.slice(-1)[0];
-//     props.next =
-//       recommendPages.slice(index + 1, index + 2)[0] ?? recommendPages[0];
-//     props.recommendPages = getRecommendPage(
-//       props.record,
-//       recommendPages,
-//       Number(BLOG.PAGE_RECOMMEND_COUNT)
-//     );
-//   } else {
-//     props.prev = null;
-//     props.next = null;
-//     props.recommendPages = [];
-//   }
-
-//   if (props.record?.password && props.record?.password !== "") {
-//   } else {
-//     if (props.record?.blockMap?.block) {
-//       props.record.content = Object.keys(props.record.blockMap.block).filter(
-//         (key) =>
-//           props.record.blockMap.block[key]?.value?.parent_id === props.record.id
-//       );
-//       props.record.tableOfContents = getPageTableOfContents(
-//         props.record,
-//         props.record.blockMap
-//       );
-//     } else {
-//       props.record.tableOfContents = [];
-//     }
-//   }
-
-//   return props;
-// }
-
 export async function getCategoryAndTagById({
   decodedName,
   pageProperty,
@@ -192,25 +144,25 @@ export async function getCategoryAndTagById({
     from: `${pageProperty}-props`,
   });
 
-  props.allArchivedPageList = getFilteredArrayByProperty(
-    props.allArchivedPageList,
+  props.allPages = getFilteredArrayByProperty(
+    props.allPages,
     pageProperty,
     decodedName
   );
 
   // Process Archive page count
-  props.pageCount = props.allArchivedPageList.length;
+  props.pageCount = props.allPages.length;
   const RECORDS_PER_PAGE = BLOG.RECORD_PER_PAGE;
 
   // Handle pagination
 
-  props.allArchivedPageList =
+  props.allPages =
     pagenum !== undefined
-      ? props.allArchivedPageList.slice(
+      ? props.allPages.slice(
           RECORDS_PER_PAGE * (pagenum - 1),
           RECORDS_PER_PAGE * pagenum
         )
-      : props.allArchivedPageList?.slice(0, RECORDS_PER_PAGE);
+      : props.allPages?.slice(0, RECORDS_PER_PAGE);
 
   return props;
 }

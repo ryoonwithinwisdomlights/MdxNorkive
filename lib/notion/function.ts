@@ -29,7 +29,6 @@ import {
   TagItem,
   SiteInfoModel,
 } from "@/types";
-// import { SiteInfoModel } from "@/types/siteconfig.model";
 import md5 from "js-md5";
 import { CollectionPropertySchemaMap } from "notion-types";
 import { defaultMapImageUrl, getPageTableOfContents } from "notion-utils";
@@ -41,6 +40,7 @@ import {
   setPageGroupedByDate,
   setPageSortedByDate,
 } from "./utils";
+import { getRecordBlockMapWithRetry } from "./data/getPageWithRetry";
 
 export function getPageCover(postInfo) {
   const pageCover = postInfo.format?.page_cover;
@@ -131,11 +131,11 @@ export function getOldNav({ allPages }) {
 }
 
 export function getCustomMenu({
-  allArchivedPageList,
+  allPages,
 }: {
-  allArchivedPageList: BaseArchivePageBlock[];
+  allPages: BaseArchivePageBlock[];
 }) {
-  const menuPages = allArchivedPageList.filter(
+  const menuPages = allPages.filter(
     (record) =>
       record.status === "Published" &&
       INCLUDED_MENU_TYPES.includes(record?.type)
@@ -179,6 +179,27 @@ export function getLatestRecords({ allPages, from, latestpageCount }) {
   return latestRecords.slice(0, latestpageCount);
 }
 
+export async function getNoticePage(data) {
+  const notice = data.filter((page) => {
+    return (
+      page &&
+      page?.type &&
+      page?.type === "Notice" &&
+      page.status === "Published"
+    );
+  })?.[0];
+
+  if (!notice) {
+    return null;
+  }
+
+  notice.blockMap = await getRecordBlockMapWithRetry({
+    pageId: notice.id,
+    from: "data-notice",
+  });
+  return notice;
+}
+
 /**
  * Site Information
  * @param notionPageData
@@ -215,13 +236,7 @@ export function getSiteInfo({
   const pageCover = collection?.cover
     ? mapImgUrl(collection?.cover, collection, "collection")
     : defaultPageCover;
-  // compressImage({
-  //   image: src as string,
-  //   width: getOldsiteConfig({
-  //     key: "IMAGE_ZOOM_IN_WIDTH",
-  //     defaultVal: 1200,
-  //   }),
-  // })
+
   const collectionIcon = mapImgUrl(collection?.icon, collection, "collection");
 
   // Compress all category user avatars
@@ -239,13 +254,6 @@ export function getSiteInfo({
   return { title, description, pageCover, icon, link };
 }
 
-/**
- * Get a reduced list of archives for navigation
- * Used in the gitbook theme, only the title, classification, label and classification information
-of the archives are retained, and the summary, password, date and other data are reduced.
- * The conditions for navigation page must be records
- * @param {*} param0
- */
 export function getRecordListForLeftSideBar({ allPages }) {
   const allNavPages = getAllPagesWithoutMenu({ arr: allPages });
   // return allNavPages.map((item) => generateLeftSideBarItem(item));
@@ -525,9 +533,9 @@ export function getAllPageIds(
 }
 
 export function setAllPagesGetSortedGroupedByDate(dateSort, props) {
-  let result = props.allArchivedPageList;
+  let result = props.allPages;
   if (dateSort === true) {
-    const pageSortedByDate = setPageSortedByDate(props.allArchivedPageList);
+    const pageSortedByDate = setPageSortedByDate(props.allPages);
     const pageGroupedByDate = setPageGroupedByDate(pageSortedByDate);
     result = pageGroupedByDate;
   }
@@ -553,7 +561,7 @@ export function mapProperties(
  * Filter and process page data
  * The filtering process will use the configuration in NOTION_CONFIG
  */
-export function adjustPageProperties(properties, NOTION_CONFIG) {
+export function adjustPageProperties(properties) {
   // handle URL
   // 1. Convert the slug according to the URL_PREFIX configured by the user
   // 2. Add an href field to the achive to store the final adjusted path
@@ -562,13 +570,11 @@ export function adjustPageProperties(properties, NOTION_CONFIG) {
       getOldsiteConfig({
         key: BLOG.RECORD_URL_PREFIX as string,
         defaultVal: "",
-        extendConfig: NOTION_CONFIG,
       })
     ) {
       properties.slug = generateCustomizeUrlWithType({
         pageProperties: properties,
         type: "",
-        extendConfig: NOTION_CONFIG,
       });
     }
     properties.href = properties.slug ?? properties.id;
@@ -592,7 +598,6 @@ export function adjustPageProperties(properties, NOTION_CONFIG) {
       getOldsiteConfig({
         key: "PSEUDO_STATIC",
         defaultVal: false,
-        extendConfig: NOTION_CONFIG,
       })
     ) {
       if (
@@ -637,11 +642,9 @@ export function adjustPageProperties(properties, NOTION_CONFIG) {
 export function generateCustomizeUrlWithType({
   pageProperties,
   type,
-  extendConfig,
 }: {
   pageProperties: Partial<BaseArchivePageBlock> & { [key: string]: any };
   type: string;
-  extendConfig?: {};
 }) {
   let fullPrefix = "";
   const allSlugPatterns = BLOG.RECORD_URL_PREFIX.split("/");

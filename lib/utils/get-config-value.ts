@@ -40,11 +40,9 @@ export function getEnv<T>(
 export const getOldsiteConfig = ({
   key,
   defaultVal = null,
-  extendConfig = {},
 }: {
   key: string;
   defaultVal?: any;
-  extendConfig?: {};
 }) => {
   if (!key) {
     return null;
@@ -63,7 +61,7 @@ export const getOldsiteConfig = ({
     case "RECORD_URL_PREFIX_MAPPING_CATEGORY":
     case "IS_TAG_COLOR_DISTINGUISHED":
     case "TAG_SORT_BY_COUNT":
-      return convertVal(extendConfig[key] || defaultVal || BLOG[key]);
+      return defaultVal || BLOG[key];
     default:
   }
   let global: any = {};
@@ -96,11 +94,6 @@ export const getOldsiteConfig = ({
     case "DESCRIPTION":
       val = siteInfo?.description; // The DESCRIPTION takes the DESCRIPTION in Notion
       break;
-  }
-
-  // Secondly, if there is an incoming configuration reference, try to read
-  if (!val && extendConfig) {
-    val = extendConfig[key];
   }
 
   // Secondly, if NOTION does not find the configuration, it will read the blog.config.js file.

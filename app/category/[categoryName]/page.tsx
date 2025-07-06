@@ -1,4 +1,4 @@
-import { getCategoryAndTagById } from "@/lib/data/business-action";
+import { getCategoryAndTagById } from "@/lib/notion/business-action";
 import AllRecordsList from "@/modules/blog/records/AllRecordsList";
 import NoRecordTypePageWrapper from "@/modules/layout/templates/NoRecordTypePageWrapper";
 import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
@@ -35,7 +35,7 @@ export default async function Page({ params, searchParams }: TotalPageParams) {
       <AllRecordsList
         pagenum={pagenum !== undefined ? pagenum : 1}
         pageCount={result.pageCount}
-        allPages={result.allArchivedPageList}
+        allPages={result.allPages}
       />
     </NoRecordTypePageWrapper>
   );

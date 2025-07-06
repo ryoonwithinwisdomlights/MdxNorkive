@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { BLOG } from "@/blog.config";
 import { BaseArchivePageBlock, PageBlockDataProps } from "@/types";
-
-import { getPageProperties, getRecordBlockMapWithRetry } from "@/lib/data/data";
 import {
+  adjustPageProperties,
   generateEmptyGloabalData,
   getAllCategoriesOrTags,
   getAllPageIds,
@@ -11,17 +10,20 @@ import {
   getCategoryOptions,
   getCustomMenu,
   getLatestRecords,
+  getNoticePage,
   getOldNav,
   getRecordListForLeftSideBar,
   getSiteInfo,
   getTagOptions,
   processingAllPagesWithTypeAndSort,
-} from "@/lib/data/function";
-import { isDatabase, setDataBaseProcessing } from "@/lib/data/utils";
+} from "@/lib/notion/function";
+import { isDatabase, setDataBaseProcessing } from "@/lib/notion/utils";
 import { Collection, CollectionPropertySchemaMap } from "notion-types";
 import { idToUuid } from "notion-utils";
-
-const NOTION_DB_ID = BLOG.NOTION_DATABASE_ID as string;
+import { getRecordBlockMapWithRetry } from "@/lib/notion/data/getPageWithRetry";
+import { getPageProperties } from "./data/getPageProperties";
+import { NOTION_DB_ID } from "@/lib/notion/data/db";
+import { fetchInBatches } from "./data/getBatchedBlocks";
 
 export async function getGlobalData({
   pageId,
@@ -33,26 +35,15 @@ export async function getGlobalData({
     console.error("can`t get Notion Data ; Which id is: ", pageId);
     return {};
   }
-  const props = setDataBaseProcessing(db);
+  const result = setDataBaseProcessing(db);
 
   const allPages = getAllPagesWithoutMenu({
-    arr: props.allPages,
+    arr: result.allPages,
     type: type,
   });
-  props.allPages = allPages;
-  props.allArchivedPageList = allPages;
-  return props;
-}
-
-/**
- * Get the collection data of the specified notation
- * @param pageId
- * @param from request source
- * @returns {Promise<JSX.Element|*|*[]>}
- */
-export async function getAllRecordDataWithCache({ pageId, from, type }) {
-  const data = await getDataBaseInfoByNotionAPI({ pageId, from });
-  return data;
+  // result.allPages = allPages;
+  result.allPages = allPages;
+  return result;
 }
 
 /**
@@ -63,10 +54,7 @@ export async function getOneRecordPageData({
   type,
   from,
 }: PageBlockDataProps) {
-  console.debug(
-    "[getOneRecordPageData][API_Request]",
-    `record-page-id:${pageId}, type:${type}`
-  );
+  console.debug("[API_Request]", `page-id:${pageId}, type:${type}`);
   const uuidedRootPageId = idToUuid(NOTION_DB_ID);
   const allPageBlockMap = await getRecordBlockMapWithRetry({
     pageId: NOTION_DB_ID,
@@ -136,7 +124,7 @@ export async function getOneRecordPageData({
   ).filter((item): item is BaseArchivePageBlock => item !== null);
 
   const dateSort = BLOG.PAGE_SORT_BY === "date" ? true : false;
-  // achive count
+
   const allpageCounter = { count: 0 };
 
   // 특정타입인 전체 레코드
@@ -174,7 +162,7 @@ export async function getDataBaseInfoByNotionAPI({
     return {};
   }
 
-  const block = pageRecordMap.block || {};
+  let block = pageRecordMap.block || {};
   const parentBlockValue = block[uuidedRootPageId]?.value;
 
   const isntDB = isDatabase(parentBlockValue, uuidedRootPageId);
@@ -211,17 +199,18 @@ export async function getDataBaseInfoByNotionAPI({
     );
   }
 
-  // 메인 데이터베이스에서 캡처할 수 있는 최대 블록 수는 1000개입니다. 넘치는 블록은 여기에서 통합된 방식으로 캡처됩니다.
-  // const blockIdsNeedFetch = []
-  // for (let i = 0; i < pageIds.length; i++) {
-  //   const id = pageIds[i]
-  //   const value = block[id]?.value
-  //   if (!value) {
-  //     blockIdsNeedFetch.push(id)
-  //   }
-  // }
-  // const fetchedBlocks = await fetchInBatches(blockIdsNeedFetch)
-  // block = Object.assign({}, block, fetchedBlocks)
+  // Crawl the main database and crawl up to 1000 blocks. The overflowed blocks will be crawled here all at once.
+  const blockIdsNeedFetch: string[] = [];
+  pageIds.forEach((item, index) => {
+    const id = pageIds[index];
+    const value = block[id]?.value;
+    if (!value) {
+      blockIdsNeedFetch.push(id);
+    }
+  });
+
+  const fetchedBlocks = await fetchInBatches(blockIdsNeedFetch);
+  block = Object.assign({}, block, fetchedBlocks);
 
   const allArchivedPageList = (
     await Promise.all(
@@ -242,13 +231,10 @@ export async function getDataBaseInfoByNotionAPI({
     )
   ).filter((item): item is BaseArchivePageBlock => item !== null);
 
-  //   // 사이트 구성은 먼저 구성 테이블을 읽고, 그렇지 않으면 blog.config.js 파일을 읽습니다.
-  // const NOTION_CONFIG = (await getConfigMapFromConfigPage(collectionData)) || {}
-
   // // 각 데이터 필드를 처리합니다
-  // collectionData.forEach(function (element) {
-  //   adjustPageProperties(element, NOTION_CONFIG)
-  // })
+  allArchivedPageList.forEach(function (element) {
+    adjustPageProperties(element);
+  });
 
   const dateSort = BLOG.PAGE_SORT_BY === "date" ? true : false;
   // achive count
@@ -262,7 +248,7 @@ export async function getDataBaseInfoByNotionAPI({
     dateSort
   );
 
-  const notice = await getNoticePage(allArchivedPageList);
+  const notice = await getNoticePage(allPages);
 
   const categoryOptions = getAllCategoriesOrTags({
     allPages,
@@ -283,7 +269,7 @@ export async function getDataBaseInfoByNotionAPI({
     ),
   });
   // new menu
-  const customMenu = await getCustomMenu({ allArchivedPageList });
+  const customMenu = await getCustomMenu({ allPages });
   const latestRecords = getLatestRecords({
     allPages,
     from,
@@ -309,25 +295,4 @@ export async function getDataBaseInfoByNotionAPI({
     latestRecords,
     // rightSlidingDrawerInfo,
   };
-}
-
-export async function getNoticePage(data) {
-  const notice = data.filter((page) => {
-    return (
-      page &&
-      page?.type &&
-      page?.type === "Notice" &&
-      page.status === "Published"
-    );
-  })?.[0];
-
-  if (!notice) {
-    return null;
-  }
-
-  notice.blockMap = await getRecordBlockMapWithRetry({
-    pageId: notice.id,
-    from: "data-notice",
-  });
-  return notice;
 }

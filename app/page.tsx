@@ -1,4 +1,4 @@
-import { getAllPageDataListByType } from "@/lib/data/business-action";
+import { getAllPageDataListByType } from "@/lib/notion/business-action";
 import ArchiveIntro from "@/modules/blog/records/ArchiveIntro";
 import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
 import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";

@@ -2,15 +2,11 @@
 import { NextResponse } from "next/server";
 // import { getPostBlocks } from "@/lib/notion/getPostBlocks";
 import { getDataFromCache, setDataToCache } from "@/lib/cache/cache_manager";
-import { getAllPageIds2, getRecordBlockMapWithRetry } from "@/lib/data/data";
-import { BLOG } from "@/blog.config";
 
-// const targetPageIds = [
-//   "abc123xyz456", // 예시: 전체 블로그 DB ID
-//   "def789ghi000", // 예시: About 페이지
-//   // 필요한 Notion 페이지 ID들 추가,
-//   // ...추가 페이지
-// ];
+import { BLOG } from "@/blog.config";
+import { getRecordBlockMapWithRetry } from "@/lib/notion/data/getPageWithRetry";
+import { getAllPageIds2 } from "@/lib/notion/data/getAllPageIdForCache";
+
 function extractLastEditedTime(
   recordMap: any,
   pageId: string

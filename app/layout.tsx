@@ -21,7 +21,7 @@ import "katex/dist/katex.min.css";
 
 import MobileLeftNavDrawer from "@/modules/layout/components/MobileLeftNavDrawer";
 
-import initArchiveGlobalData from "@/lib/data/business-action";
+import initArchiveGlobalData from "@/lib/notion/business-action";
 import BottomMenuBar from "@/modules/layout/components/menu/BottomMenuBar";
 import LoadingCover from "@/modules/common/ui/LoadingCover";
 import TopNavBar from "@/modules/layout/components/TopNavBar";

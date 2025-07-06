@@ -1,4 +1,4 @@
-import { getPageDataByTypeAndId } from "@/lib/data/business-action";
+import { getPageDataByTypeAndId } from "@/lib/notion/business-action";
 import SingleRecords from "@/modules/blog/records/SingleRecords";
 import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
 import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";

@@ -2,7 +2,7 @@ import { BLOG } from "@/blog.config";
 import {
   getPageDataByTypeAndId,
   getRecordPageDataById,
-} from "@/lib/data/business-action";
+} from "@/lib/notion/business-action";
 
 import SingleRecords from "@/modules/blog/records/SingleRecords";
 import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";

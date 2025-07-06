@@ -1,5 +1,5 @@
 import { BLOG } from "@/blog.config";
-import { getRecordBlockMapWithRetry } from "@/lib/data/data";
+import { getRecordBlockMapWithRetry } from "@/lib/notion/data";
 import Katex from "@/modules/common/components/shared/KatexReact";
 import { getBlockTitle } from "notion-utils";
 

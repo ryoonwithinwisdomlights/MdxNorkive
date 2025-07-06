@@ -1,6 +1,6 @@
 import { BLOG } from "@/blog.config";
 import type { MetadataRoute } from "next";
-import { getGlobalData } from "@/lib/data/interface";
+import { getGlobalData } from "@/lib/notion/interface";
 import { formatDate } from "@/lib/utils/utils";
 type ChangeFrequency =
   | "always"
@@ -51,14 +51,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
   // Cycle page generation
-  const { allArchivedPageList } = globalData;
-  allArchivedPageList
+  const { allPages } = globalData;
+  allPages
     ?.filter((p) => p.status === BLOG.NOTION_PROPERTY_NAME.status_publish)
     .forEach((record) => {
       const lmd = record.lastEditedDate
         ? formatDate(record.date.start_date, BLOG.LANG)
         : formatDate(record.lastEditedDate, BLOG.LANG);
-      // console.log(`lmd: ${lmd}`);
       urls.push({
         url: `${BLOG.LINK}${record.type.toLowerCase()}/${record.id}`,
         lastModified: lmd,

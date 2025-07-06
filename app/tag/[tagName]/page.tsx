@@ -1,7 +1,7 @@
 import AllRecordsList from "@/modules/blog/records/AllRecordsList";
 import { TotalPageParams } from "@/types";
 
-import { getCategoryAndTagById } from "@/lib/data/business-action";
+import { getCategoryAndTagById } from "@/lib/notion/business-action";
 import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
 import NoRecordTypePageWrapper from "@/modules/layout/templates/NoRecordTypePageWrapper";
 export async function generateStaticParams() {
@@ -28,7 +28,7 @@ export default async function Page({ params, searchParams }: TotalPageParams) {
       <AllRecordsList
         pagenum={pagenum !== undefined ? pagenum : 1}
         pageCount={result.pageCount}
-        allPages={result.allArchivedPageList}
+        allPages={result.allPages}
       />
     </NoRecordTypePageWrapper>
   );
