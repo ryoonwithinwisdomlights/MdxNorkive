@@ -130,8 +130,8 @@ export const BLOG = {
     process.env.NEXT_PUBLIC_RECORD_SHARE_SERVICES || "email,twitter,link", // Shared services, displayed in order, separated by commas
   // All supported sharing services: link (copy link), email (mail),facebook,twitter,telegram,messenger,line,reddit,whatsapp,linkedin,instapaper
 
-  RECORD_URL_PREFIX: process.env.NEXT_PUBLIC_RECORD_URL_PREFIX || "archive",
-  //The default path prefix for RECORD type Archives, for example, the default RECORD type path is /records/[slug]
+  RECORD_URL_PREFIX: process.env.NEXT_PUBLIC_RECORD_URL_PREFIX || "general",
+  //The default path prefix for General type Archives, for example, the default RECORD type path is /records/[slug]
   // If this item is configured as '' empty, the Archive will have no prefix path
   // Supports functions similar to WP's customizable Archive link format: https://wordpress.org/documentation/archive/customize-permalinks/, currently only %year%/%month%/%day% is implemented first
   //Example: If you want to change the link to the prefix Archive + timestamp, you can change it to: 'archive/%year%/%month%/%day%'
@@ -183,7 +183,9 @@ export const BLOG = {
   NOTION_PROPERTY_NAME: {
     password: process.env.NEXT_PUBLIC_NOTION_PROPERTY_PASSWORD || "password",
     type: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE || "type", // data type
-    type_able_arr: ["Record", "Project", "Engineering"],
+    type_able_arr: ["Record", "General", "Project", "Engineering"],
+    type_general:
+      process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_POST || "General", // When the data type is the same as this value, it is all the general record.
     type_record: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_POST || "Record", // When the data type is the same as this value, it is all the general record.
     type_page: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_PAGE || "Page", // When the type data type is the same as this value, it is a single page.
     type_notice:

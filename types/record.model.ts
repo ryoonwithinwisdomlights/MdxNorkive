@@ -43,6 +43,7 @@ export type BaseArchivePageBlock = {
   type: string;
   category: string;
   sub_type?: string[];
+  favorite?: boolean;
   tags?: string[];
   title: string;
   status: string;

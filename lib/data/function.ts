@@ -27,8 +27,9 @@ import {
   OldNavItem,
   RecommendPage,
   TagItem,
+  SiteInfoModel,
 } from "@/types";
-import { SiteInfoModel } from "@/types/siteconfig.model";
+// import { SiteInfoModel } from "@/types/siteconfig.model";
 import md5 from "js-md5";
 import { CollectionPropertySchemaMap } from "notion-types";
 import { defaultMapImageUrl, getPageTableOfContents } from "notion-utils";

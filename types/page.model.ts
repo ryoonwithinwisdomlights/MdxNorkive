@@ -36,7 +36,7 @@ export type SlugConvertProps = {
 
 export type CardInfoPageDivProps = {
   type: string;
-  recordList?: BaseArchivePageBlock[];
+  recordList: BaseArchivePageBlock[];
 };
 
 export type BasicPageDivProps = {

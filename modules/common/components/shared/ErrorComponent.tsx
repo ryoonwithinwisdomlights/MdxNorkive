@@ -4,10 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/modules/common/ui/button";
+import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 
 export default function ErrorComponent(): JSX.Element {
+  const { locale } = useGeneralSiteSettings();
   return (
-    <div className="h-screen w-full flex flex-col items-center justify-center md:px-40 ">
+    <div className="h-screen md:w-3/5 pl-40 flex flex-col items-center justify-center  ">
       <Image
         src="/images/error.png"
         height={300}
@@ -22,9 +25,11 @@ export default function ErrorComponent(): JSX.Element {
         alt="Error"
         className="hidden dark:block"
       />
-      <h2 className="text-xl font-medium mb-6">Something went wrong!</h2>
+      <h2 className="text-xl font-medium mb-6">
+        {locale.COMMON.INVALID_RECORD}
+      </h2>
       <Button asChild>
-        <Link href={"/"}> Go Back</Link>
+        <Link href={"/"}>{locale.SITE.BACK}</Link>
       </Button>
     </div>
   );
