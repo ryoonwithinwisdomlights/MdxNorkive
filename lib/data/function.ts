@@ -34,6 +34,7 @@ import md5 from "js-md5";
 import { CollectionPropertySchemaMap } from "notion-types";
 import { defaultMapImageUrl, getPageTableOfContents } from "notion-utils";
 import {
+  CodeLanguages,
   compressImage,
   extractLangPrefix,
   mapImgUrl,
@@ -523,11 +524,6 @@ export function getAllPageIds(
   return pageIds;
 }
 
-// export function getAllRecords(allRecords, pageId): RecordPagingData {
-//   const record = allRecords.find((item) => item.id === pageId);
-//   return record;
-// }
-
 export function setAllPagesGetSortedGroupedByDate(dateSort, props) {
   let result = props.allArchivedPageList;
   if (dateSort === true) {
@@ -745,12 +741,6 @@ export function filterPostBlocks(id, pageBlock) {
   const newKeys = Object.keys(newPageBlock.block); //   entries<T>(o: { [s: string]: BlockType; } | ArrayLike<T>): [string, T][];
   const blockEntries: BlockEntriesItem[] = Object.entries(newPageBlock?.block);
 
-  const languageMap = new Map([
-    ["C++", "cpp"],
-    ["C#", "csharp"],
-    ["Assembly", "asm6502"],
-  ]);
-
   const handleSyncBlock = (
     blockId: string,
     b: FlterBlockType,
@@ -768,10 +758,10 @@ export function filterPostBlocks(id, pageBlock) {
   const mapCodeLanguage = (b: FlterBlockType) => {
     if (!b.value?.properties) return;
     const lang = b.value.properties?.language?.[0]?.[0];
-    if (lang && languageMap.has(lang)) {
-      // b.value.properties.language[0][0] = languageMap.get(lang);
+    if (lang && CodeLanguages[lang]) {
+      // b.value.properties.language[0][0] = oldlanguageMap.get(lang);
       if (b.value?.properties?.language?.[0]?.[0]) {
-        b.value.properties.language[0][0] = languageMap.get(lang)!;
+        b.value.properties.language[0][0] = CodeLanguages[lang]!; // non-null assertion operator (!)
       }
     }
   };
@@ -797,9 +787,9 @@ export function filterPostBlocks(id, pageBlock) {
           return;
         }
         // 코드블록 언어 이름 매핑
-        if (b?.value?.type === "code") {
-          mapCodeLanguage(b);
-        }
+        // if (b?.value?.type === "code") {
+        //   mapCodeLanguage(b);
+        // }
 
         // 파일/미디어 링크 변환
         if (

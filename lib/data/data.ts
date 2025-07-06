@@ -11,7 +11,7 @@ import {
 } from "notion-types";
 
 import { NotionAPI } from "notion-client";
-import { getDateValue, getTextContent } from "notion-utils";
+import { getDateValue, getTextContent, idToUuid } from "notion-utils";
 import { getDataFromCache, setDataToCache } from "@/lib/cache/cache_manager";
 import { mapImgUrl } from "@/lib/data/utils";
 import { delay, formatDate } from "@/lib/utils/utils";
@@ -19,6 +19,75 @@ import { PageBlockDataProps } from "@/types";
 import { ExtendedRecordMap } from "notion-types";
 import { filterPostBlocks, handleRecordsUrl, mapProperties } from "./function";
 const NOTION_DB_ID = BLOG.NOTION_DATABASE_ID as string;
+
+export const notion_api = new NotionAPI({
+  userTimeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+});
+
+export async function getAllPageIds2(
+  databasePageId: string
+): Promise<string[]> {
+  const uuidedPageId = idToUuid(databasePageId);
+  const recordMap = await notion_api.getPage(databasePageId);
+  const blockMap = recordMap.block || {};
+  const rootBlock = blockMap[uuidedPageId]?.value;
+
+  if (!rootBlock) {
+    console.error(`[getAllPageIds] No root block found for ${databasePageId}`);
+    return [];
+  }
+
+  if (
+    rootBlock.type !== "collection_view_page" &&
+    rootBlock.type !== "collection_view"
+  ) {
+    console.error(`[getAllPageIds] Page ${databasePageId} is not a collection`);
+    return [];
+  }
+
+  const collectionId = rootBlock.collection_id;
+  const viewIds = rootBlock.view_ids;
+  const collectionQuery = recordMap.collection_query;
+
+  if (!collectionId || !viewIds || !collectionQuery?.[collectionId]) {
+    console.error(
+      `[getAllPageIds] Missing collection data for ${databasePageId}`
+    );
+    return [];
+  }
+
+  const pageSet = new Set<string>();
+
+  // First attempt: preferred View's blockIds
+  // for (const viewId of viewIds) {
+  //   const viewQuery = collectionQuery[collectionId]?.[viewId];
+  //   if (!viewQuery) continue;
+
+  //   const groupResults = (viewQuery as any)?.collection_group_results?.blockIds;
+  //   const normalBlocks = (viewQuery as any)?.blockIds;
+
+  //   if (groupResults?.length) {
+  //     groupResults.forEach((id: string) => pageSet.add(id));
+  //   }
+  //   if (normalBlocks?.length) {
+  //     normalBlocks.forEach((id: string) => pageSet.add(id));
+  //   }
+  // }
+  // 1. 모든 block 중 type === 'page'인 애들만 대상
+  Object.entries(blockMap).forEach(([id, block]) => {
+    const value = (block as any).value;
+    if (value?.type !== "page") return;
+
+    const properties = value.properties || {};
+    const statusRaw = properties["status"] || properties["Status"];
+    const status = getTextContent(statusRaw);
+
+    if (status?.toLowerCase() === "published") {
+      pageSet.add(id);
+    }
+  });
+  return [...pageSet];
+}
 
 export async function getPageProperties(
   id: string,
@@ -59,12 +128,12 @@ export async function getPageProperties(
         case "person": {
           const rawUsers = (val as Decoration[]).flat();
           const users: User[] = [];
-          const api = new NotionAPI({});
+          // const api = new NotionAPI({});
 
           for (let i = 0; i < rawUsers.length; i++) {
             if (rawUsers[i][0][1]) {
               const userArr = rawUsers[i][0];
-              const userList = await api.getUsers(userArr as string[]);
+              const userList = await notion_api.getUsers(userArr as string[]);
               const userResult: any[] = userList.results;
               const userValue: User = userResult[1].value;
               users.push(userValue);
@@ -79,7 +148,6 @@ export async function getPageProperties(
     }
   }
 
-  // console.log("ddfdfdff:", value);
   // Mapping key: user-defined header name
   const fieldNames = BLOG.NOTION_PROPERTY_NAME;
   if (fieldNames) {
@@ -152,9 +220,14 @@ export async function getRecordBlockMapWithRetry({
   const pageBlock = retryAttempts
     ? await getRecordPageWithRetry({ pageId: pageId, from, retryAttempts })
     : await getRecordPage({ pageId: pageId, from });
+
+  // console.log("pageBlock:::::", pageBlock);
   if (pageBlock) {
-    return filterPostBlocks(pageId, pageBlock);
+    const res = filterPostBlocks(pageId, pageBlock);
+    // console.log("pageBlock2:::::", res);
+    return res;
   }
+
   return pageBlock;
 }
 
@@ -184,17 +257,18 @@ export const tryFetchNotionRemoteData = async ({
     `id: ${pageId}`,
     `retries left: ${retryAttempts}`
   );
-  const notion = new NotionAPI({
-    userTimeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-  });
+  // const notion = new NotionAPI({
+  //   userTimeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+  // });
 
   const start = Date.now();
-  const pageData = await notion.getPage(pageId);
+  const pageData = await notion_api.getPage(pageId);
   const end = Date.now();
   await setDataToCache(cacheKey, pageData);
   console.log(`[Notion fetch done] ${from} - ${end - start}ms`);
   return pageData;
 };
+
 /**
  *  Call the interface and try again if it fails.
  *  실패에도 끈질기게 데이터를 가져와야 하는 중요 fetch 작업에 사용.
@@ -210,7 +284,7 @@ export async function getRecordPageWithRetry({
   pageId: string;
   from?: string;
   retryAttempts: number;
-}) {
+}): Promise<ExtendedRecordMap | null> {
   const cacheKey = `page_block_${pageId}`;
   // console.log("retryAttempts::", retryAttempts);
 
@@ -260,34 +334,6 @@ export async function getRecordPageWithRetry({
       return null;
     }
   }
-
-  // try {
-  //   return await tryFetchNotionRemoteData();
-  // } catch (error) {
-  //   console.warn("[Fetch failed]", `from: ${from}`, `id: ${pageId}`, error);
-
-  //   if (retryAttempts <= 1) {
-  //     console.error("[All retries failed]", `from: ${from}`, `id: ${pageId}`);
-  //     return null;
-  //   }
-
-  //   await delay(1000);
-
-  //   const cached = await getDataFromCache(cacheKey);
-  //   if (cached) {
-  //     console.log("[Retry with cache]", `from: ${from}`, `id: ${pageId}`);
-  //     return cached;
-  //   }
-
-  //   // 재귀 호출로 재시도
-  //   return await getRecordPageWithRetry({
-  //     pageId,
-  //     from,
-  //     retryAttempts: retryAttempts - 1,
-  //   });
-  // }
-
-  //캐쉬에서 먼저가져오고 그다음 저거로 해야하는거 아닌가?
 }
 
 /**

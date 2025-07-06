@@ -79,24 +79,24 @@ export async function getOneRecordPageData({
     return null;
   }
 
-  const block = allPageBlockMap.block || {};
-
-  const rawMetadata = block[uuidedRootPageId]?.value;
-  // console.log("rawMetadata::", rawMetadata);
-  const isntDB = isDatabase(rawMetadata, uuidedRootPageId);
+  const entireBlocksObject = allPageBlockMap.block || {}; //전체 블록들의 집합
+  const rootBlockObjectValue = entireBlocksObject[uuidedRootPageId]?.value; //Notion_DB id값에 해당하는 블록 밸류
+  const isntDB = isDatabase(rootBlockObjectValue, uuidedRootPageId);
   if (!isntDB) {
     return null;
   }
+
+  const collectionId = rootBlockObjectValue?.collection_id;
+  const viewIds = rootBlockObjectValue?.view_ids;
+  const collectionQuery = allPageBlockMap.collection_query;
+  const collectionView = allPageBlockMap.collection_view;
+
   const collection =
     (
       Object.values(allPageBlockMap.collection || {})[0] as {
         value: Collection;
       }
     )?.value || {};
-  const collectionId = rawMetadata?.collection_id;
-  const collectionQuery = allPageBlockMap.collection_query;
-  const collectionView = allPageBlockMap.collection_view;
-  const viewIds = rawMetadata?.view_ids;
   const schema: CollectionPropertySchemaMap = collection?.schema;
   const allpageIds = getAllPageIds(
     collectionQuery,
@@ -119,13 +119,13 @@ export async function getOneRecordPageData({
   const allPageBlockMapWithProperties: BaseArchivePageBlock[] = (
     await Promise.all(
       allpageIds.map(async (id) => {
-        const value = block[id]?.value;
+        const value = entireBlocksObject[id]?.value;
         if (!value) return null;
 
         const properties = await getPageProperties(
           id,
           pageId,
-          block,
+          entireBlocksObject,
           schema,
           null,
           getTagOptions(schema)
@@ -161,7 +161,7 @@ export async function getDataBaseInfoByNotionAPI({
   const uuidedRootPageId = idToUuid(pageId);
   console.debug(
     "[getDataBaseInfoByNotionAPI][API_Request]",
-    `record-page-id:${pageId}, type:${type}`
+    `page-id:${pageId}, type:${type}`
   );
   const pageRecordMap = await getRecordBlockMapWithRetry({
     pageId: uuidedRootPageId,
@@ -175,20 +175,20 @@ export async function getDataBaseInfoByNotionAPI({
   }
 
   const block = pageRecordMap.block || {};
-  const rawMetadata = block[uuidedRootPageId]?.value;
+  const parentBlockValue = block[uuidedRootPageId]?.value;
 
-  const isntDB = isDatabase(rawMetadata, uuidedRootPageId);
+  const isntDB = isDatabase(parentBlockValue, uuidedRootPageId);
   if (!isntDB) {
     return generateEmptyGloabalData(uuidedRootPageId);
   }
   const collection =
     (Object.values(pageRecordMap.collection || {})[0] as { value: Collection })
       ?.value || {};
-  const collectionId = rawMetadata?.collection_id;
+  const collectionId = parentBlockValue?.collection_id;
   const collectionQuery = pageRecordMap.collection_query;
   const collectionView = pageRecordMap.collection_view;
 
-  const viewIds = rawMetadata?.view_ids;
+  const viewIds = parentBlockValue?.view_ids;
 
   const schema: CollectionPropertySchemaMap = collection?.schema;
   const siteInfo = getSiteInfo({ collection, block });
@@ -301,7 +301,7 @@ export async function getDataBaseInfoByNotionAPI({
     schema,
     tagOptions,
     categoryOptions,
-    rawMetadata,
+    parentBlockValue,
     oldNav,
     customMenu,
     pageCount,

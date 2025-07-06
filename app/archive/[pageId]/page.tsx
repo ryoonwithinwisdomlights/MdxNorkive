@@ -8,7 +8,6 @@ import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
 import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
 import { Metadata } from "next";
 
-//
 export async function generateStaticParams() {
   const records = [{ pageId: "1481eb5c-0337-8087-a304-f2af3275be11" }];
 
@@ -32,12 +31,12 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 }
 
 // `generateStaticParams`가 반환한 `params`를 사용하여 이 페이지의 여러 버전이 정적으로 생성됩니다.
+
 export default async function Page({
   params,
 }: {
   params: Promise<{ pageId: string }>;
 }) {
-  console.log("params::::", params);
   const { pageId } = await params;
 
   if (!pageId) {
