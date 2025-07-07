@@ -4,13 +4,7 @@ import { BaseArchivePageBlock } from "@/types";
 import { EssentialNavInfo, GlobalNotionData } from "@/types/provider.model";
 import { useRouter } from "next/navigation";
 import NextNProgress from "nextjs-progressbar";
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 
 const GlobalContext = createContext<EssentialNavInfo | undefined>(undefined);
 /**
@@ -26,7 +20,7 @@ export function EssentialNavInfoProvider({
 }: {
   children: ReactNode;
   from?: string;
-  globalNotionData: GlobalNotionData;
+  globalNotionData;
 }) {
   const {
     siteInfo,

@@ -1,7 +1,7 @@
 "use server";
 
 import { BLOG } from "@/blog.config";
-import { getPageDataByTypeAndId } from "@/lib/notion/business-action";
+import { getSingleRecordPageByPageId } from "@/lib/db/controller";
 import SingleRecords from "@/modules/blog/records/SingleRecords";
 import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
 import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
@@ -18,8 +18,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }): Promise<Metadata> {
-  const { pageId } = await params;
-  const props = await getPageDataByTypeAndId({
+  const { pageId } = params;
+  const props = await getSingleRecordPageByPageId({
     pageId: pageId,
     from: "General",
   });
@@ -43,7 +43,7 @@ export default async function Page({
   if (!pageId) {
     return <ErrorComponent />;
   }
-  const result = await getPageDataByTypeAndId({
+  const result = await getSingleRecordPageByPageId({
     pageId: pageId,
     from: "General",
     type: "General",

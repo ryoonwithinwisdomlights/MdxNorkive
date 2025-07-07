@@ -4,8 +4,8 @@ import AllRecords from "./AllRecords";
 import NoRecordFound from "./NoRecordFound";
 import HeaderSearch from "@/modules/common/components/HeaderSearch";
 
-const GeneralRecordPage = ({ archivedPages }) => {
-  const isAble = isObjectNotEmpty(archivedPages);
+const GeneralRecordPage = ({ allPages }) => {
+  const isAble = isObjectNotEmpty(allPages);
   return (
     <div
       id="main-scroll-container"
@@ -36,12 +36,8 @@ const GeneralRecordPage = ({ archivedPages }) => {
       {isAble ? (
         <div className="flex flex-row items-center w-full ">
           <div className="w-full  flex flex-col justify-center  items-center gap-10 bg-opacity-30 rounded-lg md:pl-10 dark:bg-black dark:bg-opacity-70 ">
-            {Object.keys(archivedPages)?.map((title, index) => (
-              <AllRecords
-                key={index}
-                title={title}
-                recordList={archivedPages}
-              />
+            {Object.keys(allPages)?.map((title, index) => (
+              <AllRecords key={index} title={title} recordList={allPages} />
             ))}
           </div>
         </div>

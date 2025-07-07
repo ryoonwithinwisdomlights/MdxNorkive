@@ -1,12 +1,13 @@
 "use server";
 
 import { BLOG } from "@/blog.config";
-import { getPageDataByTypeAndId } from "@/lib/notion/business-action";
+import { getSingleRecordPageByPageId } from "@/lib/db/controller";
 import SingleRecords from "@/modules/blog/records/SingleRecords";
 import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
 import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
 import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
   const records = [{ pageId: "1481eb5c-0337-8087-a304-f2af3275be11" }];
@@ -17,11 +18,16 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }): Promise<Metadata> {
-  const { pageId } = await params;
-  const props = await getPageDataByTypeAndId({
+  const { pageId } = params;
+  const props = await getSingleRecordPageByPageId({
     pageId: pageId,
-    from: "Record",
+    from: "archive-page-metadata",
+    type: "Record",
   });
+  if (!props) {
+    notFound();
+  }
+
   const title = props?.page?.title;
   const pageTitle = title ? title : "";
   return {
@@ -42,9 +48,9 @@ export default async function Page({
   if (!pageId) {
     return <ErrorComponent />;
   }
-  const result = await getPageDataByTypeAndId({
+  const result = await getSingleRecordPageByPageId({
     pageId: pageId,
-    from: "archive",
+    from: "archive-page",
     type: "Record",
   });
   if (!result) {

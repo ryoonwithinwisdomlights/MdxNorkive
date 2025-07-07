@@ -1,5 +1,20 @@
 import { BLOG } from "@/blog.config";
 import {
+  BaseArchivePageBlock,
+  BlockEntriesItem,
+  CategoryItem,
+  CollectionQueryResultView,
+  FlterBlockType,
+  LeftSideBarNavItem,
+  NavItem,
+  OldNavItem,
+  RecommendPage,
+  SiteInfoModel,
+  TagItem,
+} from "@/types";
+import md5 from "js-md5";
+import { CollectionPropertySchemaMap } from "notion-types";
+import {
   ARCHIVE_PROPERTIES_STATUS_MAP,
   ARCHIVE_PROPERTIES_TYPE_MAP,
   AVAILABLE_PAGE_TYPES,
@@ -16,31 +31,15 @@ import {
   getLastSegmentFromUrl,
   isStartWithHttp,
 } from "@/lib/utils/utils";
-import {
-  BlockEntriesItem,
-  CategoryItem,
-  CollectionQueryResultView,
-  FlterBlockType,
-  LeftSideBarNavItem,
-  NavItem,
-  BaseArchivePageBlock,
-  OldNavItem,
-  RecommendPage,
-  TagItem,
-  SiteInfoModel,
-} from "@/types";
-import md5 from "js-md5";
-import { CollectionPropertySchemaMap } from "notion-types";
 import { defaultMapImageUrl, getPageTableOfContents } from "notion-utils";
 import {
-  CodeLanguages,
   compressImage,
   extractLangPrefix,
   mapImgUrl,
   setPageGroupedByDate,
   setPageSortedByDate,
-} from "./utils";
-import { getRecordBlockMapWithRetry } from "./data/getPageWithRetry";
+} from "@/lib/db/utils";
+import { CodeLanguages } from "@/constants/code.languge";
 
 export function getPageCover(postInfo) {
   const pageCover = postInfo.format?.page_cover;
@@ -130,7 +129,7 @@ export function getOldNav({ allPages }) {
   return oldNav;
 }
 
-export function getCustomMenu({
+export function getCustomNav({
   allPages,
 }: {
   allPages: BaseArchivePageBlock[];
@@ -193,19 +192,14 @@ export async function getNoticePage(data) {
     return null;
   }
 
-  notice.blockMap = await getRecordBlockMapWithRetry({
-    pageId: notice.id,
-    from: "data-notice",
-  });
+  // notice.blockMap = await getRecordBlockMapWithRetry({
+  //   pageId: notice.id,
+  //   from: "data-notice",
+  // });
+
   return notice;
 }
 
-/**
- * Site Information
- * @param notionPageData
- * @param from
- * @returns {Promise<{title,description,pageCover,icon}>}
- */
 export function getSiteInfo({
   collection,
   block,
@@ -362,16 +356,9 @@ export const generateEmptyGloabalData = (pageId) => {
       },
     ],
     allNavPages: [],
-    collection: [],
-    collectionQuery: {},
-    collectionId: null,
-    collectionView: {},
-    viewIds: [],
     block: {},
-    schema: {},
     tagOptions: [],
     categoryOptions: [],
-    rawMetadata: {},
     oldNav: [],
     customMenu: [],
     pageCount: 1,
@@ -449,7 +436,7 @@ export function processingAllPagesWithTypeAndSort(
 }
 
 /**
- * Get the list of recommended Archives associated with the Archive, currently filtered based on tag relevance
+ * Get the list of recommended Records associated with the Archive, currently filtered based on tag relevance
  * @param post
  * @param {*} allrecords
  * @param {*} count
@@ -491,17 +478,16 @@ export function getRecommendPage(
   return RecommendPages;
 }
 
-export function getAllPageIds(
+export function getAllBlockIds(
   collectionQuery: { [collectionId: string]: { [viewId: string]: unknown } },
   collectionId: string,
-  collectionView: unknown,
   viewIds: string[]
 ) {
-  if (!collectionQuery && !collectionView) {
+  if (!collectionId || !viewIds || !collectionQuery?.[collectionId]) {
     return [];
   }
   // Sort by first view first
-  let pageIds: string[] = [];
+  let blockIds: string[] = [];
   try {
     if (viewIds && viewIds.length > 0) {
       const ids = (
@@ -509,7 +495,7 @@ export function getAllPageIds(
       ).collection_group_results?.blockIds;
       if (ids) {
         for (const id of ids) {
-          pageIds.push(id);
+          blockIds.push(id);
         }
       }
     }
@@ -517,7 +503,7 @@ export function getAllPageIds(
 
   // Otherwise, according to the original sorting of the database
   if (
-    pageIds.length === 0 &&
+    blockIds.length === 0 &&
     collectionQuery &&
     Object.values(collectionQuery).length > 0
   ) {
@@ -527,9 +513,53 @@ export function getAllPageIds(
       v?.blockIds?.forEach((id) => pageSet.add(id)); // group view
       v?.collection_group_results?.blockIds?.forEach((id) => pageSet.add(id)); // table view
     });
-    pageIds = [...pageSet];
+    blockIds = [...pageSet];
   }
-  return pageIds;
+  return blockIds;
+}
+
+export function getAllBlockIds2({
+  collectionQuery,
+  collectionId,
+  viewIds,
+}: {
+  collectionQuery: { [collectionId: string]: { [viewId: string]: unknown } };
+  collectionId?: string;
+  viewIds: string[];
+}) {
+  if (!collectionId || !viewIds || !collectionQuery?.[collectionId]) {
+    return [];
+  }
+  // Sort by first view first
+  let blockIds: string[] = [];
+  try {
+    if (viewIds && viewIds.length > 0) {
+      const ids = (
+        collectionQuery[collectionId]?.[viewIds[0]] as CollectionQueryResultView
+      ).collection_group_results?.blockIds;
+      if (ids) {
+        for (const id of ids) {
+          blockIds.push(id);
+        }
+      }
+    }
+  } catch (error) {}
+
+  // Otherwise, according to the original sorting of the database
+  if (
+    blockIds.length === 0 &&
+    collectionQuery &&
+    Object.values(collectionQuery).length > 0
+  ) {
+    const pageSet = new Set<string>();
+    Object.values(collectionQuery[collectionId] || {}).forEach((view) => {
+      const v = view as CollectionQueryResultView; //타입 단언
+      v?.blockIds?.forEach((id) => pageSet.add(id)); // group view
+      v?.collection_group_results?.blockIds?.forEach((id) => pageSet.add(id)); // table view
+    });
+    blockIds = [...pageSet];
+  }
+  return blockIds;
 }
 
 export function setAllPagesGetSortedGroupedByDate(dateSort, props) {
@@ -562,22 +592,19 @@ export function mapProperties(
  * The filtering process will use the configuration in NOTION_CONFIG
  */
 export function adjustPageProperties(properties) {
+  const isAblePage = AVAILABLE_PAGE_TYPES.includes(properties.type);
   // handle URL
   // 1. Convert the slug according to the URL_PREFIX configured by the user
   // 2. Add an href field to the achive to store the final adjusted path
-  if (properties.type === "Record") {
-    if (
-      getOldsiteConfig({
-        key: BLOG.RECORD_URL_PREFIX as string,
-        defaultVal: "",
-      })
-    ) {
-      properties.slug = generateCustomizeUrlWithType({
-        pageProperties: properties,
-        type: "",
-      });
-    }
-    properties.href = properties.slug ?? properties.id;
+  if (isAblePage) {
+    const customedUrl = generateCustomizeUrlWithType({
+      pageProperties: properties,
+      type: properties.type,
+    });
+
+    properties.slug = BLOG.RECORD_URL_PREFIX
+      ? customedUrl
+      : (properties.slug ?? properties.id);
   } else if (PAGE_TYPE_MENU.includes(properties.type)) {
     properties.slug = `/intro/${properties.id}`;
   } else if (GENERAL_TYPE_MENU.includes(properties.type)) {
@@ -602,6 +629,7 @@ export function adjustPageProperties(properties) {
     ) {
       if (
         !properties?.href?.endsWith(".html") &&
+        !properties?.slug?.startsWith("http") &&
         properties?.href !== "" &&
         properties?.href !== "#" &&
         properties?.href !== "/"
@@ -623,6 +651,16 @@ export function adjustPageProperties(properties) {
       if (getLastSegmentFromUrl(properties.href) === prefix) {
         properties.target = "_blank";
       }
+    }
+  }
+
+  // Enable pseudo-static path
+  if (JSON.parse(BLOG.PSEUDO_STATIC as string)) {
+    if (
+      !properties?.slug?.endsWith(".html") &&
+      !properties?.slug?.startsWith("http")
+    ) {
+      properties.slug += ".html";
     }
   }
 
@@ -695,38 +733,38 @@ export function generateCustomizeUrlWithType({
   return res;
 }
 
-export const handleRecordsUrl = (isAblePage, properties) => {
-  if (isAblePage) {
-    const customedUrl = generateCustomizeUrlWithType({
-      pageProperties: properties,
-      type: properties.type,
-    });
+// export const handleRecordsUrl = (isAblePage, properties) => {
+//   if (isAblePage) {
+//     const customedUrl = generateCustomizeUrlWithType({
+//       pageProperties: properties,
+//       type: properties.type,
+//     });
 
-    properties.slug = BLOG.RECORD_URL_PREFIX
-      ? customedUrl
-      : (properties.slug ?? properties.id);
-  } else if (PAGE_TYPE_MENU.includes(properties.type)) {
-    properties.slug = `/intro/${properties.id}`;
-  } else if (GENERAL_TYPE_MENU.includes(properties.type)) {
-    // The menu path is empty and used as an expandable menu.
-    properties.to = properties.slug ?? "#";
-    properties.name = properties.title ?? "";
-  }
+//     properties.slug = BLOG.RECORD_URL_PREFIX
+//       ? customedUrl
+//       : (properties.slug ?? properties.id);
+//   } else if (PAGE_TYPE_MENU.includes(properties.type)) {
+//     properties.slug = `/intro/${properties.id}`;
+//   } else if (GENERAL_TYPE_MENU.includes(properties.type)) {
+//     // The menu path is empty and used as an expandable menu.
+//     properties.to = properties.slug ?? "#";
+//     properties.name = properties.title ?? "";
+//   }
 
-  // Enable pseudo-static path
-  if (JSON.parse(BLOG.PSEUDO_STATIC as string)) {
-    if (
-      !properties?.slug?.endsWith(".html") &&
-      !properties?.slug?.startsWith("http")
-    ) {
-      properties.slug += ".html";
-    }
-  }
-  properties.password = properties.password
-    ? md5(properties.slug + properties.password)
-    : "";
-  // return properties;
-};
+//   // Enable pseudo-static path
+//   if (JSON.parse(BLOG.PSEUDO_STATIC as string)) {
+//     if (
+//       !properties?.slug?.endsWith(".html") &&
+//       !properties?.slug?.startsWith("http")
+//     ) {
+//       properties.slug += ".html";
+//     }
+//   }
+//   properties.password = properties.password
+//     ? md5(properties.slug + properties.password)
+//     : "";
+//   // return properties;
+// };
 
 /**
  *
@@ -739,7 +777,7 @@ export const handleRecordsUrl = (isAblePage, properties) => {
  * @param {*} slice interception quantity
  * @returns
  */
-export function filterPostBlocks(id, pageBlock) {
+export function filterRecordBlocks(id, pageBlock) {
   const newPageBlock = deepClone(pageBlock);
   const newKeys = Object.keys(newPageBlock.block); //   entries<T>(o: { [s: string]: BlockType; } | ArrayLike<T>): [string, T][];
   const blockEntries: BlockEntriesItem[] = Object.entries(newPageBlock?.block);
@@ -811,7 +849,6 @@ export function filterPostBlocks(id, pageBlock) {
 
 export function setPageTableOfContentsByRecord(props) {
   if (props?.page?.blockMap?.block) {
-    console.log();
     props.page.content = Object.keys(props?.page.blockMap.block).filter(
       (key) =>
         props?.page.blockMap.block[key]?.value?.parent_id === props?.page.id
@@ -822,5 +859,24 @@ export function setPageTableOfContentsByRecord(props) {
     );
   } else {
     props.page.tableOfContents = [];
+  }
+}
+
+export function setPrevNextPages(recommendPages, props) {
+  if (recommendPages && recommendPages.length > 0) {
+    const index = recommendPages.indexOf(props.page);
+    props.page.prev =
+      recommendPages.slice(index - 1, index)[0] ?? recommendPages.slice(-1)[0];
+    props.page.next =
+      recommendPages.slice(index + 1, index + 2)[0] ?? recommendPages[0];
+    props.page.recommendPages = getRecommendPage(
+      props.page,
+      recommendPages,
+      Number(BLOG.PAGE_RECOMMEND_COUNT)
+    );
+  } else {
+    props.page.prev = null;
+    props.page.next = null;
+    props.page.recommendPages = [];
   }
 }

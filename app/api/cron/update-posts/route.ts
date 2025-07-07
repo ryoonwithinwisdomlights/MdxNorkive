@@ -1,11 +1,12 @@
 // src/app/api/cron/update-posts/route.ts
 import { NextResponse } from "next/server";
-// import { getPostBlocks } from "@/lib/notion/getPostBlocks";
 import { getDataFromCache, setDataToCache } from "@/lib/cache/cache_manager";
 
 import { BLOG } from "@/blog.config";
-import { getRecordBlockMapWithRetry } from "@/lib/notion/data/getPageWithRetry";
-import { getAllPageIds2 } from "@/lib/notion/data/getAllPageIdForCache";
+// import { getRecordBlockMapWithRetry } from "@/lib/db/data/getPageWithRetry";
+import { getAllPageIdForCache } from "@/lib/db/notion/getAllPageIdForCache";
+import { getRecordBlockMapWithRetry } from "@/lib/db/notion/getPageWithRetry";
+// import { getAllPageIdForCache } from "@/lib/db/data/getAllPageIdForCache";
 
 function extractLastEditedTime(
   recordMap: any,
@@ -23,7 +24,9 @@ type fecthRes = {
   error?: string;
 };
 export async function GET() {
-  const targetPageIds = await getAllPageIds2(BLOG.NOTION_DATABASE_ID as string); // status === "Published"만
+  const targetPageIds = await getAllPageIdForCache(
+    BLOG.NOTION_DATABASE_ID as string
+  ); // status === "Published"만
 
   if (!targetPageIds.length) {
     return NextResponse.json({ status: "no page ids found" }, { status: 500 });

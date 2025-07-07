@@ -1,5 +1,6 @@
 import { BLOG } from "@/blog.config";
-import { getRecordBlockMapWithRetry } from "@/lib/notion/data";
+import { getRecordPageWithRetry } from "@/lib/db/notion/getPageWithRetry";
+
 import Katex from "@/modules/common/components/shared/KatexReact";
 import { getBlockTitle } from "notion-utils";
 
@@ -20,9 +21,10 @@ export async function Equation({
   className,
   ...rest
 }) {
-  const recordMap = await getRecordBlockMapWithRetry({
+  const recordMap = await getRecordPageWithRetry({
     pageId: BLOG.NOTION_DATABASE_ID as string,
     from: "equation",
+    retryAttempts: 3,
   });
   if (!recordMap) {
     return null;

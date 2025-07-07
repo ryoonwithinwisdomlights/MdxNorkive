@@ -44,6 +44,7 @@ export type BaseArchivePageBlock = {
   category: string;
   sub_type?: string[];
   favorite?: boolean;
+  comment?: string;
   tags?: string[];
   title: string;
   status: string;
@@ -62,6 +63,7 @@ export type BaseArchivePageBlock = {
   results?: any;
   password?: string;
   tableOfContents?: TableOfContentsEntry[] | [];
+  RecordMap?: ExtendedRecordMap | null;
   blockMap?: ExtendedRecordMap | null;
   prev?: BaseArchivePageBlock | null;
   next?: BaseArchivePageBlock | null;

@@ -1,7 +1,7 @@
 import { BLOG } from "@/blog.config";
-import type { MetadataRoute } from "next";
-import { getGlobalData } from "@/lib/notion/interface";
+import { getGlobalRecordPageData } from "@/lib/db/serviceImpl";
 import { formatDate } from "@/lib/utils/utils";
+import type { MetadataRoute } from "next";
 type ChangeFrequency =
   | "always"
   | "hourly"
@@ -19,7 +19,7 @@ type ChangeFrequency =
  *
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const globalData = await getGlobalData({
+  const globalData = await getGlobalRecordPageData({
     pageId: BLOG.NOTION_DATABASE_ID as string,
   });
   const dailyVariable: ChangeFrequency = "daily";

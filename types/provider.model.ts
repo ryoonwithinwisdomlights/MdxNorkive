@@ -10,7 +10,7 @@ export interface EssentialNavInfo {
   categoryOptions?: SelectOption[];
   tagOptions?: SelectOption[];
   subTypeOptions?: [];
-  oldNav: OldNavItem[];
+  oldNav?: OldNavItem[];
   customMenu: NavItem[];
   notice: any;
   latestRecords: [];
@@ -24,10 +24,11 @@ export interface GlobalNotionData {
   categoryOptions?: SelectOption[];
   tagOptions?: SelectOption[];
   subTypeOptions?: [];
-  oldNav: OldNavItem[];
+  oldNav?: OldNavItem[];
   customMenu: NavItem[];
-  latestRecords: [];
-  allArchive: BaseArchivePageBlock[];
+  latestRecords?: [];
+  allPagesForLeftNavBar: LeftSideBarNavItem[];
+  allPages?: BaseArchivePageBlock[];
 }
 export interface GeneralSiteSettingsProviderContext {
   onLoading: boolean;

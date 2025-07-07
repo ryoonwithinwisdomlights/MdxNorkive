@@ -1,8 +1,9 @@
-import { getPageDataByTypeAndId } from "@/lib/notion/business-action";
+import { getSingleRecordPageByPageId } from "@/lib/db/controller";
 import SingleRecords from "@/modules/blog/records/SingleRecords";
 import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
 import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
 import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
+
 export async function generateStaticParams() {
   const records = [{ pageId: "341eb5c0337801da209c34c90bc3377" }];
   return records.map((record) => ({
@@ -18,7 +19,7 @@ export default async function Page({ params }) {
     return <ErrorComponent />;
   }
 
-  const result = await getPageDataByTypeAndId({
+  const result = await getSingleRecordPageByPageId({
     pageId: pageId,
     from: "SubMenuPage",
     type: "SubMenuPage",

@@ -1,4 +1,4 @@
-import { notion_api } from "./db";
+import { notion_api } from "@/lib/db/notion/notion-api";
 
 /**
 

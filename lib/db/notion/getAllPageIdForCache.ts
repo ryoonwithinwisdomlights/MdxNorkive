@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars */
-import { getTextContent, idToUuid } from "notion-utils";
-import { notion_api } from "@/lib/notion/data/db";
 
-export async function getAllPageIds2(
+import { CollectionQueryResult } from "notion-types";
+import { getTextContent, idToUuid } from "notion-utils";
+import { notion_api } from "@/lib/db/notion/notion-api";
+
+export async function getAllPageIdForCache(
   databasePageId: string
 ): Promise<string[]> {
   const uuidedPageId = idToUuid(databasePageId);
@@ -34,14 +36,14 @@ export async function getAllPageIds2(
     return [];
   }
 
+  //const numSet = new Set([1, 2, 3]); // Set(3) {1, 2, 3} 집합 리턴.
   const pageSet = new Set<string>();
 
-  pageSetOnlyPageType(blockMap, pageSet);
+  setOnlyPageTypeBlockMap(blockMap, pageSet);
   return [...pageSet];
 }
 
-// 모든 block 중 type === 'page'인 애들만 대상
-function pageSetOnlyPageType(blockMap, pageSet) {
+function setOnlyPageTypeBlockMap(blockMap, pageSet) {
   Object.entries(blockMap).forEach(([id, block]) => {
     const value = (block as any).value;
     if (value?.type !== "page") return;
@@ -55,15 +57,17 @@ function pageSetOnlyPageType(blockMap, pageSet) {
     }
   });
 }
-// 모든 block 대상
-function pageSetAll(viewIds, collectionQuery, collectionId, pageSet) {
+
+function setAllBlockMap(viewIds, collectionQuery, collectionId, pageSet) {
   // First attempt: preferred View's blockIds
   for (const viewId of viewIds) {
-    const viewQuery = collectionQuery[collectionId]?.[viewId];
+    const viewQuery: CollectionQueryResult =
+      collectionQuery[collectionId]?.[viewId];
     if (!viewQuery) continue;
 
-    const groupResults = (viewQuery as any)?.collection_group_results?.blockIds;
-    const normalBlocks = (viewQuery as any)?.blockIds;
+    const groupResults = (viewQuery as CollectionQueryResult)
+      ?.collection_group_results?.blockIds;
+    const normalBlocks = (viewQuery as CollectionQueryResult)?.blockIds;
 
     if (groupResults?.length) {
       groupResults.forEach((id: string) => pageSet.add(id));

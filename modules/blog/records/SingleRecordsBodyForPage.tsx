@@ -1,4 +1,4 @@
-import { isAbleRecordPage } from "@/lib/notion/function";
+import { isAbleRecordPage } from "@/lib/db/function";
 import { ARCHIVE_CONFIG } from "@/lib/utils/archive-config";
 import CategoryItem from "@/modules/blog/category/CategoryItem";
 import ArchiveAround from "@/modules/blog/records/ArchiveAround";
