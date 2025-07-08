@@ -1,12 +1,9 @@
 // src/app/api/cron/update-posts/route.ts
 import { NextResponse } from "next/server";
 import { getDataFromCache, setDataToCache } from "@/lib/cache/cache_manager";
-
 import { BLOG } from "@/blog.config";
-// import { getRecordBlockMapWithRetry } from "@/lib/db/data/getPageWithRetry";
 import { getAllPageIdForCache } from "@/lib/db/notion/getAllPageIdForCache";
 import { getRecordBlockMapWithRetry } from "@/lib/db/notion/getPageWithRetry";
-// import { getAllPageIdForCache } from "@/lib/db/data/getAllPageIdForCache";
 
 function extractLastEditedTime(
   recordMap: any,

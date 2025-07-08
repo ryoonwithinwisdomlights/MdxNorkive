@@ -19,8 +19,8 @@ export default async function Page({ params, searchParams }: TotalPageParams) {
   const { pagenum } = await searchParams;
   const decodedName = decodeURIComponent(categoryName);
 
-  console.log("categoryName:", categoryName);
-  console.log("decodedName:", decodedName);
+  // console.log("categoryName:", categoryName);
+  // console.log("decodedName:", decodedName);
   if (!categoryName) {
     <ErrorComponent />;
   }

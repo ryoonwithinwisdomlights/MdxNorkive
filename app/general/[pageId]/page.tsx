@@ -37,7 +37,6 @@ export default async function Page({
 }: {
   params: Promise<{ pageId: string }>;
 }) {
-  console.log("params::::", params);
   const { pageId } = await params;
 
   if (!pageId) {
