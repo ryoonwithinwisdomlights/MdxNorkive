@@ -19,12 +19,22 @@ const PrismMac = (): JSX.Element => {
   const router = useRouter();
   const { isDarkMode } = useGeneralSiteSettings();
 
+  const prismThemeSwitch = BLOG.PRISM_THEME_SWITCH;
+  const prismThemeDarkPath = BLOG.PRISM_THEME_DARK_PATH;
+  const prismThemeLightPath = BLOG.PRISM_THEME_LIGHT_PATH;
+  const prismThemePrefixPath = BLOG.PRISM_THEME_PREFIX_PATH;
   useEffect(() => {
     if (BLOG.CODE_MAC_BAR) {
-      loadExternalResource("/css/prism-mac-style.css", "css");
+      loadExternalResource("/css/prism/prism-mac-style.css", "css");
     }
 
-    loadPrismThemeCSS(isDarkMode);
+    loadPrismThemeCSS(
+      isDarkMode,
+      prismThemeSwitch,
+      prismThemeDarkPath,
+      prismThemeLightPath,
+      prismThemePrefixPath
+    );
 
     loadExternalResource(BLOG.PRISM_JS_AUTO_LOADER, "js").then(() => {
       if (window?.Prism?.plugins?.autoloader) {
@@ -40,10 +50,38 @@ const PrismMac = (): JSX.Element => {
   return <></>;
 };
 
-const loadPrismThemeCSS = (isDarkMode: boolean): void => {
-  loadExternalResource(BLOG.PRISM_THEME_PREFIX_PATH, "css");
+const loadPrismThemeCSS = (
+  isDarkMode,
+  prismThemeSwitch,
+  prismThemeDarkPath,
+  prismThemeLightPath,
+  prismThemePrefixPath
+) => {
+  let PRISM_THEME;
+  let PRISM_PREVIOUS;
+  if (prismThemeSwitch) {
+    if (isDarkMode) {
+      PRISM_THEME = prismThemeDarkPath;
+      PRISM_PREVIOUS = prismThemeLightPath;
+    } else {
+      PRISM_THEME = prismThemeLightPath;
+      PRISM_PREVIOUS = prismThemeDarkPath;
+    }
+    const previousTheme = document.querySelector(
+      `link[href="${PRISM_PREVIOUS}"]`
+    );
+    if (
+      previousTheme &&
+      previousTheme.parentNode &&
+      previousTheme.parentNode.contains(previousTheme)
+    ) {
+      previousTheme.parentNode.removeChild(previousTheme);
+    }
+    loadExternalResource(PRISM_THEME, "css");
+  } else {
+    loadExternalResource(prismThemePrefixPath, "css");
+  }
 };
-
 const renderCollapseCode = (): void => {
   if (!BLOG.CODE_COLLAPSE) return;
 

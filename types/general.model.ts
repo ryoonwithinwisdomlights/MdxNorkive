@@ -3,8 +3,8 @@ import { type PageMap } from "notion-types";
 export type NavigationStyle = "default" | "custom";
 export interface Site {
   name: string;
-  link: string;
-
+  link?: string;
+  domain?: string;
   rootNotionPageId: string;
   rootNotionSpaceId: string | null;
 
