@@ -4,7 +4,6 @@ import LazyImage from "@/modules/common/components/shared/LazyImage";
 import SubTypeCarousel from "@/modules/common/components/SubTypeCarousel";
 import { usePathname } from "next/navigation";
 import NoRecordFound from "./NoRecordFound";
-import ProjectCardInfo from "./ProjectCardInfo";
 import RecordCardInfo from "./RecordCardInfo";
 
 const submenuItems = [
@@ -14,17 +13,21 @@ const submenuItems = [
   { id: "4", title: "Next.js", href: "/category/nextjs" },
   { id: "5", title: "CSS", href: "/category/css" },
   { id: "6", title: "Tailwind", href: "/category/tailwind" },
-  { id: "7", title: "Redux", href: "/category/redux" },
+  { id: "7", title: "Network", href: "/category/redux" },
+  { id: "8", title: "Database", href: "/category/redux" },
+  { id: "9", title: "Redux", href: "/category/redux" },
 ];
 
 const RecordBodyForPage = () => {
   const pathname = usePathname();
   const type = pathname.split("/")[1];
   const { allPages } = useGlobal({ from: type });
-  const recordList = getFilteredRecordList(allPages, type);
+  const recordList = getFilteredRecordList(allPages, type.toUpperCase());
+
+  console.log("recordList:", recordList);
   return (
     <div className="flex flex-col">
-      <SubTypeCarousel items={submenuItems} />
+      {/* <SubTypeCarousel items={submenuItems} /> */}
       <div className="flex flex-row justify-end">
         <div className="space-y-6 w-full px-2">
           {recordList && recordList.length > 0 ? (
@@ -41,35 +44,23 @@ const RecordBodyForPage = () => {
                       data-aos-once="false"
                       data-aos-anchor-placement="top-bottom"
                       id="notion-page-card"
-                      className={`group w-full max-md:h-72  flex py-2 justify-between md:flex-row flex-col-reverse ${
+                      className={`group w-full max-md:h-72  flex p-2 justify-between md:flex-row flex-col-reverse ${
                         index % 2 === 1 ? "md:flex-row-reverse" : ""
                       }overflow-hidden border dark:border-black rounded-xl bg-white dark:bg-neutral-100`}
                     >
                       {/* Text content */}
-
-                      {type === "Project" ? (
-                        <ProjectCardInfo
-                          record={item}
-                          showPageCover={showPageCover}
-                          showPreview={true}
-                          showSummary={true}
-                        />
-                      ) : (
-                        <RecordCardInfo
-                          record={item}
-                          showPageCover={showPageCover}
-                          showPreview={true}
-                          showSummary={true}
-                        />
-                      )}
+                      <RecordCardInfo
+                        item={item}
+                        showPageCover={showPageCover}
+                      />
                       {/* Picture cover */}
                       {showPageCover && (
-                        <div className="md:w-5/12 overflow-hidden">
+                        <div className="md:w-5/12 rounded-xl overflow-hidden">
                           <LazyImage
                             alt=""
                             priority={index === 1}
                             src={item?.pageCoverThumbnail}
-                            className="h-56 w-full object-cover object-center group-hover:scale-110 duration-500"
+                            className="h-56 w-full rounded-xl object-cover object-center group-hover:scale-110 duration-500"
                           />
                         </div>
                       )}

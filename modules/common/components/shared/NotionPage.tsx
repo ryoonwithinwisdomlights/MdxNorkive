@@ -83,13 +83,19 @@ const Equation = dynamic(() =>
   import("react-notion-x/build/third-party/equation").then((m) => m.Equation)
 );
 
+// const Pdf = dynamic(
+//   () => import("react-notion-x/build/third-party/pdf").then((m) => m.Pdf),
+//   {
+//     ssr: false,
+//   }
+// );
+
 const Pdf = dynamic(
-  () => import("react-notion-x/build/third-party/pdf").then((m) => m.Pdf),
+  () => import("@/modules/common/components/shared/Pdf").then((m) => m.Pdf),
   {
     ssr: false,
   }
 );
-
 const PrismMac = dynamic(
   () => import("@/modules/common/components/shared/PrismMac"),
   {

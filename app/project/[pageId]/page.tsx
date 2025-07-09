@@ -23,8 +23,8 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 
   const props = await getARecordPageById({
     pageId: pageId,
-    from: "project-page-metadata",
-    type: "Project",
+    from: "PROJECT-page-metadata",
+    type: "PROJECT",
   });
   if (!props) {
     notFound();
@@ -47,8 +47,8 @@ export default async function Page({ params }) {
 
   const result = await getARecordPageById({
     pageId: pageId,
-    from: "project-page",
-    type: "Project",
+    from: "PROJECT-page",
+    type: "PROJECT",
   });
 
   if (!result?.page) {

@@ -122,7 +122,7 @@ export async function getGlobalRecordPageData({
     adjustPageProperties(element);
   });
 
-  const dateSort = BLOG.PAGE_SORT_BY === "date" ? true : false;
+  const dateSort = BLOG.MENU_SORT_BY === "date" ? true : false;
   // achive count
   const allpageCounter = { count: 0 };
 

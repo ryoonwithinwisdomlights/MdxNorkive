@@ -43,8 +43,8 @@ import { CodeLanguages } from "@/constants/code.languge";
 
 export function getFilteredRecordList(allPages, type) {
   const allpageCounter = { count: 0 };
-  const dateSort = BLOG.PAGE_SORT_BY === "date" ? true : false;
-  const recordList = processingAllPagesWithTypeAndSort(
+  const dateSort = true;
+  const recordList = processingTypedPagesWithSort(
     allPages,
     allpageCounter,
     type,
@@ -424,8 +424,7 @@ export function processingAllPagesWithTypeAndSort(
         return false;
       }
 
-      const isVisible =
-        page.status === "Invisible" || page.status === "Published";
+      const isVisible = page.status === "Published";
 
       const isTypeMatched = !EXCLUDED_PAGE_TYPES.includes(type)
         ? page.type === type && page.status === "Published"
@@ -436,6 +435,35 @@ export function processingAllPagesWithTypeAndSort(
       }
 
       return isVisible;
+    });
+
+  if (dateSort) {
+    filteredArr.sort((a, b) => {
+      return b?.publishDate - a?.publishDate;
+    });
+  }
+
+  return filteredArr;
+}
+
+export function processingTypedPagesWithSort(arr, counterObj, type, dateSort) {
+  const filteredArr = arr
+    .slice() // Copy-on-Write: 원본 배열 복사
+    .map((page) => ({ ...page })) // 내부 post 객체도 얕은 복사
+    .filter((page) => {
+      if (!page || !page.slug || page.slug.startsWith("http")) {
+        return false;
+      }
+
+      const isVisible = page.status === "Published";
+
+      const isTypeMatched =
+        AVAILABLE_PAGE_TYPES.includes(type) && page.type === type;
+
+      if (isVisible && isTypeMatched) {
+        counterObj.count++;
+        return page;
+      }
     });
 
   if (dateSort) {
@@ -734,7 +762,7 @@ export function generateCustomizeUrlWithType({
 
   if (type === "Record") {
     res = `${BLOG.RECORD_URL_PREFIX.toLowerCase()}/${pageProperties.id}`;
-  } else if (type == "Project" || "Engineering") {
+  } else if (type == "PROJECT" || "ENGINEERING" || "GENERAL") {
     res = `${type.toLowerCase()}/${pageProperties.id}`;
   } else {
     res = `${fullPrefix.toLowerCase()}/${type.toLowerCase()}/${

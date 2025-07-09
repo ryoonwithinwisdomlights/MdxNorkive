@@ -8,7 +8,7 @@ const RecordIntroForPage = () => {
   const type = pathname.split("/")[1];
   return (
     <div className="mb-4  mr-4 flex flex-col justify-end">
-      {type === "Project" ? <ProjectIntro /> : <EngineeringIntro />}
+      {type === "project" ? <ProjectIntro /> : <EngineeringIntro />}
     </div>
   );
 };

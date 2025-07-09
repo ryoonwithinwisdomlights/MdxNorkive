@@ -63,7 +63,7 @@ export interface SiteConfigModel {
   RECORD_LIST_STYLE?: string;
   PAGE_RECOMMEND_COUNT?: number;
   RECORD_PER_PAGE?: number;
-  PAGE_SORT_BY?: string;
+  MENU_SORT_BY?: string;
   RECORD_WAITING_TIME_FOR_404?: string;
 
   preview_category_count?: number;

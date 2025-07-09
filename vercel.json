@@ -3,7 +3,7 @@
   "trailingSlash": false,
   "crons": [
     {
-      "path": "/api/cron",
+      "path": "/api/cron/update-records",
       "schedule": "0 10 * * *"
     }
   ]

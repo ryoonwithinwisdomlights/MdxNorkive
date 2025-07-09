@@ -1,11 +1,9 @@
 "use client";
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { Button } from "@/modules/common/ui/button";
-import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { Button } from "@/modules/common/ui/button";
 
 export default function ErrorComponent(): JSX.Element {
   const { locale } = useGeneralSiteSettings();

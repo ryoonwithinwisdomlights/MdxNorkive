@@ -139,8 +139,7 @@ export const BLOG = {
   RECORD_LIST_STYLE: "page", // ['page','scroll] Archive list style: page number paging, single page scrolling loading
   PAGE_RECOMMEND_COUNT: 6, // Number of recommended datas
   RECORD_PER_PAGE: 12, // record counts per page
-  PAGE_SORT_BY: process.env.NEXT_PUBLIC_PAGE_SORT_BY || "notion", //Sorting method 'date' is by time, 'notion' is controlled by notification
-
+  MENU_SORT_BY: process.env.NEXT_PUBLIC_MENU_SORT_BY || "notion", //Sorting method 'date' is by time, 'notion' is controlled by notification
   RECORD_WAITING_TIME_FOR_404:
     process.env.NEXT_PUBLIC_RECORD_WAITING_TIME_FOR_404 || "8",
 
@@ -183,10 +182,10 @@ export const BLOG = {
   NOTION_PROPERTY_NAME: {
     password: process.env.NEXT_PUBLIC_NOTION_PROPERTY_PASSWORD || "password",
     type: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE || "type", // data type
-    type_able_arr: ["Record", "General", "Project", "Engineering"],
+    type_able_arr: ["RECORD", "GENERAL", "PROJECT", "ENGINEERING"],
     type_general:
-      process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_POST || "General", // When the data type is the same as this value, it is all the general record.
-    type_record: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_POST || "Record", // When the data type is the same as this value, it is all the general record.
+      process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_POST || "GENERAL", // When the data type is the same as this value, it is all the general record.
+    type_record: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_POST || "RECORD", // When the data type is the same as this value, it is all the general record.
     type_page: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_PAGE || "Page", // When the type data type is the same as this value, it is a single page.
     type_notice:
       process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_NOTICE || "Notice", // When the type data type is the same as this value, it is an announcement.
@@ -197,9 +196,9 @@ export const BLOG = {
       process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_SUB_MENU_PAGE ||
       "SubMenuPage", // When the type data type is the same as this value, it is a submenu but presenting page, simultaenousely.
     type_project:
-      process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_PROJECT || "Project", // When the data type is the same as this value, it is specially for all project.
+      process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_PROJECT || "PROJECT", // When the data type is the same as this value, it is specially for all project.
     type_engineering:
-      process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_ENGINEERING || "Engineering", // When the data type is the same as this value, it is all the record  pecifically for Software engineering.
+      process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_ENGINEERING || "ENGINEERING", // When the data type is the same as this value, it is all the record  pecifically for Software engineering.
     title: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TITLE || "title", // data title
     status: process.env.NEXT_PUBLIC_NOTION_PROPERTY_STATUS || "status",
     status_publish:

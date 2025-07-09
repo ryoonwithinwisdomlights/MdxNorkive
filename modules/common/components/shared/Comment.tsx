@@ -13,7 +13,6 @@ import GiscusComponent from "./Giscus";
  * @returns
  */
 const Comment = ({ frontMatter }) => {
-  // console.log("frontMatter:", frontMatter);
   const pathname = usePathname();
 
   const [shouldLoad, setShouldLoad] = useState(false);
@@ -51,7 +50,6 @@ const Comment = ({ frontMatter }) => {
   ) {
     setTimeout(() => {
       const newurl = url.replace("?target=comment", "");
-      // console.log("newurlnewurl:", newurl);
       history.replaceState({}, "", newurl);
       document
         ?.getElementById("comment")

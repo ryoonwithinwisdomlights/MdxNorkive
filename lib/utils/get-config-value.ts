@@ -52,7 +52,7 @@ export const getOldsiteConfig = ({
     case "PAGE_RECOMMEND_COUNT":
     case "IMAGE_COMPRESS_WIDTH":
     case "PSEUDO_STATIC":
-    case "PAGE_SORT_BY":
+    case "MENU_SORT_BY":
     case "RECORD_PER_PAGE":
     case "RECORD_PREVIEW_LINES":
     case "RECORD_URL_PREFIX":

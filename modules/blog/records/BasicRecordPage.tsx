@@ -7,7 +7,7 @@ export default function BasicRecordPage() {
     <div
       id="main-scroll-container"
       className="
-   md:w-[60%]  md:px-20 px-10 flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain "
+   md:w-[60%]  md:px-20 px-10 flex flex-col overflow-y-auto h-screen pb-60 scrollbar-hide overscroll-contain "
     >
       <RecordIntroForPage />
       <RecordBodyForPage />

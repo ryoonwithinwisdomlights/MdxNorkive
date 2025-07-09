@@ -24,8 +24,8 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 
   const props = await getARecordPageById({
     pageId: pageId,
-    from: "Engineering-page-metadata",
-    type: "Engineering",
+    from: "ENGINEERING-page-metadata",
+    type: "ENGINEERING",
   });
   if (!props) {
     notFound();

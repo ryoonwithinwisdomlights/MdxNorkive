@@ -1,9 +1,10 @@
 import { BLOG } from "@/blog.config";
 
 export const ARCHIVE_PROPERTIES_TYPE_MAP = {
-  [BLOG.NOTION_PROPERTY_NAME.type_record]: "Record",
-  [BLOG.NOTION_PROPERTY_NAME.type_project]: "Project",
-  [BLOG.NOTION_PROPERTY_NAME.type_engineering]: "Engineering",
+  [BLOG.NOTION_PROPERTY_NAME.type_record]: "RECORD",
+  [BLOG.NOTION_PROPERTY_NAME.type_project]: "PROJECT",
+  [BLOG.NOTION_PROPERTY_NAME.type_general]: "ENGINEERING",
+  [BLOG.NOTION_PROPERTY_NAME.type_engineering]: "GENERAL",
   [BLOG.NOTION_PROPERTY_NAME.type_page]: "Page",
   [BLOG.NOTION_PROPERTY_NAME.type_notice]: "Notice",
   [BLOG.NOTION_PROPERTY_NAME.type_menu]: "Menu",

@@ -1,4 +1,4 @@
-// src/app/api/cron/update-posts/route.ts
+// src/app/api/cron/update-records/route.ts
 import { NextResponse } from "next/server";
 import { getDataFromCache, setDataToCache } from "@/lib/cache/cache_manager";
 import { BLOG } from "@/blog.config";
@@ -21,6 +21,11 @@ type fecthRes = {
   error?: string;
 };
 export async function GET() {
+  console.log(
+    "🛎️ [CRON PING] /api/cron/update-records 호출됨 -",
+    new Date().toISOString()
+  );
+
   const targetPageIds = await getAllPageIdForCache(
     BLOG.NOTION_DATABASE_ID as string
   );
@@ -67,6 +72,7 @@ export async function GET() {
     status: "cron complete",
     updatedCount: result.filter((r) => r.status === "updated").length,
     total: result.length,
+    ping: new Date().toISOString(), // 실행 시각 기록
     result,
   });
 }

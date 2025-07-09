@@ -99,16 +99,36 @@ const renderCollapseCode = (): void => {
 
     const panelWrapper = document.createElement("div");
     panelWrapper.className =
-      "border dark:border-neutral-600 rounded-md hover:border-neutral-500 duration-200 transition-colors";
+      "border dark:border-neutral-600 rounded-md duration-200 transition-colors bg-neutral-50 dark:bg-neutral-800";
 
     const header = document.createElement("div");
     header.className =
-      "flex justify-between items-center px-4 py-2 cursor-pointer select-none";
-    header.innerHTML = `<h3 class="text-lg font-medium">${language}</h3><svg class="transition-all duration-200 w-5 h-5 transform rotate-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.293 6.293a1 1 0 0 1 1.414 0L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414l-3 3a1 1 0 0 1-1.414 0l-3-3a1 1 0 0 1 0-1.414z" clip-rule="evenodd"/></svg>`;
+      "flex flex-row text-neutral-400 text-xs rounded-t-[14px] leading-6 font-medium pl-4 pr-2.5 py-1 justify-between ";
+    header.innerHTML = `
+    <div class="flex-none flex items-center gap-1.5  text-neutral-700 dark:text-neutral-300">${language}</div>
+    <div class="flex-1 flex items-center justify-end gap-1.5">
 
+      <div id="collapse_prismac_code">
+        <svg class="transition-all duration-200 w-5 h-5 transform rotate-0" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M6.293 6.293a1 1 0 0 1 1.414 0L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414l-3 3a1 1 0 0 1-1.414 0l-3-3a1 1 0 0 1 0-1.414z" clip-rule="evenodd"/>
+        </svg>
+      </div>
+    </div>
+   `;
+
+    // <div class="z-10 relative">
+    //   <button class="h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur peer group/copy-button" class="copy-to-clipboard-button" type="button" data-copy-state="copy" aria-label="Copy the contents from the code block">
+    //     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-neutral-400 group-hover/copy-button:text-neutral-500 dark:text-white/40 dark:group-hover/copy-button:text-white/60">
+    //     <path d="M14.25 5.25H7.25C6.14543 5.25 5.25 6.14543 5.25 7.25V14.25C5.25 15.3546 6.14543 16.25 7.25 16.25H14.25C15.3546 16.25 16.25 15.3546 16.25 14.25V7.25C16.25 6.14543 15.3546 5.25 14.25 5.25Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    //     <path d="M2.80103 11.998L1.77203 5.07397C1.61003 3.98097 2.36403 2.96397 3.45603 2.80197L10.38 1.77297C11.313 1.63397 12.19 2.16297 12.528 3.00097" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    //     </svg>
+    //   </button>
+    //   <div aria-hidden="true" class="absolute top-11 left-1/2 transform whitespace-nowrap -translate-x-1/2 -translate-y-1/2 peer-hover:opacity-100 opacity-0 text-white rounded-lg px-1.5 py-0.5 text-xs bg-neutral-800">
+    //   Copy
+    //   </div>
+    // </div>
     const panel = document.createElement("div");
-    panel.className =
-      "invisible h-0 transition-transform duration-200 border-t border-neutral-300";
+    panel.className = "invisible h-0 transition-transform duration-200 ";
 
     panelWrapper.appendChild(header);
     panelWrapper.appendChild(panel);
@@ -125,10 +145,11 @@ const renderCollapseCode = (): void => {
       panelWrapper.classList.toggle("border-neutral-300");
     };
 
-    header.addEventListener("click", collapseCode);
-
+    // header.addEventListener("click", collapseCode);
+    const collapseDiv = document.getElementById("collapse_prismac_code")!;
+    collapseDiv.addEventListener("click", collapseCode);
     if (BLOG.CODE_COLLAPSE_EXPAND_DEFAULT) {
-      header.click();
+      collapseDiv.click();
     }
   });
 };
@@ -207,6 +228,7 @@ const renderPrismMac = (): void => {
     }
   });
 
+  const justToolBars = container?.getElementsByClassName("toolbar");
   if (BLOG.CODE_LINE_NUMBERS) {
     fixCodeLineStyle();
   }
