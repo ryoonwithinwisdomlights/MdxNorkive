@@ -67,7 +67,7 @@
     "nextjs-progressbar": "^0.0.16",
     "notion-client": "^7.0.1",
     "notion-types": "^7.0.1",
-    "notion-utils": "^7.0.1",
+    "notion-utils": "^7.4.2",
     "nprogress": "^0.2.0",
     "posthog-js": "^1.20.2",
     "preact": "^10.5.15",

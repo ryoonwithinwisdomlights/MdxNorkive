@@ -86,22 +86,22 @@ export async function getGlobalRecordPageData({
 
   // Crawl the main database and crawl up to 1000 blocks.
   // The overflowed blocks will be crawled here all at once.
-  const blockIdsNeedFetch: string[] = [];
-  pageIds.forEach((item, index) => {
-    const id = pageIds[index];
-    const value = entireBlocks[id]?.value;
-    if (!value) {
-      blockIdsNeedFetch.push(id);
-    }
-  });
+  // const blockIdsNeedFetch: string[] = [];
+  // pageIds.forEach((item, index) => {
+  //   const id = pageIds[index];
+  //   const value = entireBlocks[id]?.value;
+  //   if (!value) {
+  //     blockIdsNeedFetch.push(id);
+  //   }
+  // });
 
-  const fetchedBlocks = await fetchInBatches(blockIdsNeedFetch);
-  entireBlocks = Object.assign({}, entireBlocks, fetchedBlocks);
+  // const fetchedBlocks = await fetchInBatches(blockIdsNeedFetch);
+  // entireBlocks = Object.assign({}, entireBlocks, fetchedBlocks);
 
   const allArchivedPageList = (
     await Promise.all(
       pageIds.map(async (id) => {
-        const value = entireBlocks || fetchedBlocks;
+        const value = entireBlocks;
         if (!value) return null;
 
         const properties = await getPageProperties(
