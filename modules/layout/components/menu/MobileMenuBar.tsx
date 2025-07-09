@@ -3,7 +3,7 @@ import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { MobileMenuItemDrop } from "./MobileMenuItemDrop";
 
 export const MobileMenuBar = (props) => {
-  const { customMenu } = useGlobal({ from: "index" });
+  const { customMenu } = useGlobal({ from: "MobileMenuBar" });
 
   const links = customMenu;
   if (!links || links.length === 0) {

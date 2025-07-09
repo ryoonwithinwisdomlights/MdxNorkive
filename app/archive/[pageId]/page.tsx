@@ -1,7 +1,8 @@
 "use server";
 
 import { BLOG } from "@/blog.config";
-import { getSingleRecordPageByPageId } from "@/lib/db/controller";
+import { getARecordPageById } from "@/lib/notion/controller";
+
 import SingleRecords from "@/modules/blog/records/SingleRecords";
 import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
 import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
@@ -19,7 +20,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }): Promise<Metadata> {
   const { pageId } = params;
-  const props = await getSingleRecordPageByPageId({
+  const props = await getARecordPageById({
     pageId: pageId,
     from: "archive-page-metadata",
     type: "Record",
@@ -48,7 +49,7 @@ export default async function Page({
   if (!pageId) {
     return <ErrorComponent />;
   }
-  const result = await getSingleRecordPageByPageId({
+  const result = await getARecordPageById({
     pageId: pageId,
     from: "archive-page",
     type: "Record",

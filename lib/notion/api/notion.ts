@@ -4,4 +4,3 @@ import { NotionAPI } from "notion-client";
 export const notion_api = new NotionAPI({
   userTimeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
 });
-export const NOTION_DB_ID = BLOG.NOTION_DATABASE_ID as string;

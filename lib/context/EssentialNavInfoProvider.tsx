@@ -30,6 +30,7 @@ export function EssentialNavInfoProvider({
     customMenu,
     notice,
     latestRecords,
+    allPages,
   } = globalNotionData;
 
   const [currentpageId, setCurrentpageId] =
@@ -54,6 +55,7 @@ export function EssentialNavInfoProvider({
         customMenu,
         notice,
         latestRecords,
+        allPages,
         // currentRecordData,
         handleRouter,
         cleanCurrentRecordData,

@@ -1,4 +1,4 @@
-import { getCategoryAndTagById } from "@/lib/db/controller";
+import { getCategoryAndTagPageById } from "@/lib/notion/controller";
 import AllRecordsList from "@/modules/blog/records/AllRecordsList";
 import NoRecordTypePageWrapper from "@/modules/layout/templates/NoRecordTypePageWrapper";
 import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
@@ -24,7 +24,7 @@ export default async function Page({ params, searchParams }: TotalPageParams) {
   if (!categoryName) {
     <ErrorComponent />;
   }
-  const result = await getCategoryAndTagById({
+  const result = await getCategoryAndTagPageById({
     decodedName: decodedName,
     pageProperty: "category",
     pagenum: pagenum !== undefined ? pagenum : 1,

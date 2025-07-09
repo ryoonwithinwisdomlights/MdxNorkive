@@ -7,7 +7,7 @@ import TopNavMobile from "./TopNavMobile";
 import TopNavPC from "./TopNavPC";
 
 const TopNavBar = () => {
-  const { oldNav, customMenu } = useGlobal({ from: "index" });
+  const { oldNav, customMenu } = useGlobal({ from: "TopNavBar" });
   const [isOpen, changeShow] = useState(false);
   const collapseRef = useRef<any>(null);
 

@@ -1,20 +1,15 @@
-import { getAllRecordPageListByType } from "@/lib/db/controller";
+"use client";
 import ArchiveIntro from "@/modules/blog/records/ArchiveIntro";
-import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
 import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
+import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
 
-export const revalidate = 600;
-//// 10분 지난 뒤 누군가 방문하면 백그라운드 regenerate
-export default async function Page() {
-  const props: any = await getAllRecordPageListByType({
-    from: "main-page",
-  });
-
-  const { allPages } = props;
-
+// export const revalidate = 600;
+// 10분 지난 뒤 누군가 방문하면 백그라운드 regenerate
+export default function Page() {
+  const props = null;
   return (
     <GeneralRecordTypePageWrapper>
-      <ArchiveIntro allPages={allPages} />
+      <ArchiveIntro />
       <RightSlidingDrawer props={props} />
     </GeneralRecordTypePageWrapper>
   );

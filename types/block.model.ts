@@ -1,4 +1,6 @@
-import { BaseContentBlock, ExtendedRecordMap } from "notion-types";
+import { ExtendedRecordMap } from "notion-types";
+
+type ID = string;
 
 export type CollectionQueryResultView = {
   blockIds: string[];
@@ -11,18 +13,6 @@ export type CollectionQueryResultView = {
   recordMap?: ExtendedRecordMap;
 };
 
-export interface CollectionViewBlock extends BaseContentBlock {
-  type: "collection_view" | "collection_view_page";
-  collection_id?: string;
-  view_ids: string[];
-  format?: BaseContentBlock["format"] & {
-    collection_pointer?: {
-      id: string;
-      spaceId: string;
-      table: string;
-    };
-  };
-}
 export type BlockEntriesItem = [blockId: string, block: BlockType];
 export type BlockType = {
   role?: string;

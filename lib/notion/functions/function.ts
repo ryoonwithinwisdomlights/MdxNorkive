@@ -38,8 +38,20 @@ import {
   mapImgUrl,
   setPageGroupedByDate,
   setPageSortedByDate,
-} from "@/lib/db/utils";
+} from "@/lib/notion/functions/utils";
 import { CodeLanguages } from "@/constants/code.languge";
+
+export function getFilteredRecordList(allPages, type) {
+  const allpageCounter = { count: 0 };
+  const dateSort = BLOG.PAGE_SORT_BY === "date" ? true : false;
+  const recordList = processingAllPagesWithTypeAndSort(
+    allPages,
+    allpageCounter,
+    type,
+    dateSort
+  );
+  return recordList;
+}
 
 export function getPageCover(postInfo) {
   const pageCover = postInfo.format?.page_cover;
@@ -562,10 +574,10 @@ export function getAllBlockIds2({
   return blockIds;
 }
 
-export function setAllPagesGetSortedGroupedByDate(dateSort, props) {
-  let result = props.allPages;
+export function setAllPagesGetSortedGroupedByDate(dateSort, allPages) {
+  let result = allPages;
   if (dateSort === true) {
-    const pageSortedByDate = setPageSortedByDate(props.allPages);
+    const pageSortedByDate = setPageSortedByDate(allPages);
     const pageGroupedByDate = setPageGroupedByDate(pageSortedByDate);
     result = pageGroupedByDate;
   }

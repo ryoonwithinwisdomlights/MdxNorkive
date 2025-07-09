@@ -1,15 +1,10 @@
 "use client";
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
-import {
-  formatDate,
-  formatDateFmt,
-  formatToKoreanDate,
-  isObjectNotEmpty,
-} from "@/lib/utils/utils";
+import { formatToKoreanDate } from "@/lib/utils/utils";
 import { Clock4Icon } from "lucide-react";
 
 export default function ArchiveInfo({ props }) {
-  const { notice } = useGlobal({ from: "index" });
+  const { notice } = useGlobal({ from: "ArchiveInfo" });
   const modRecord = props?.page ? props?.page : notice;
   if (!modRecord) {
     return null;

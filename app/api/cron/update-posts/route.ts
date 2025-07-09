@@ -2,8 +2,8 @@
 import { NextResponse } from "next/server";
 import { getDataFromCache, setDataToCache } from "@/lib/cache/cache_manager";
 import { BLOG } from "@/blog.config";
-import { getAllPageIdForCache } from "@/lib/db/notion/getAllPageIdForCache";
-import { getRecordBlockMapWithRetry } from "@/lib/db/notion/getPageWithRetry";
+import { getAllPageIdForCache } from "@/lib/notion/api/getAllPageIdForCache";
+import { getRecordBlockMapWithRetry } from "@/lib/notion/api/getPageWithRetry";
 
 function extractLastEditedTime(
   recordMap: any,
@@ -23,7 +23,7 @@ type fecthRes = {
 export async function GET() {
   const targetPageIds = await getAllPageIdForCache(
     BLOG.NOTION_DATABASE_ID as string
-  ); // status === "Published"만
+  );
 
   if (!targetPageIds.length) {
     return NextResponse.json({ status: "no page ids found" }, { status: 500 });
@@ -36,24 +36,24 @@ export async function GET() {
 
     try {
       const cached = await getDataFromCache(cacheKey);
-      const fresh = await getRecordBlockMapWithRetry({
+      const recordMap = await getRecordBlockMapWithRetry({
         pageId: pageId,
         from: "cron-refresh",
         retryAttempts: 3,
       });
 
-      if (!fresh) {
+      if (!recordMap) {
         result.push({ pageId, status: "notion fetch failed" });
         continue;
       }
 
-      const freshTime = extractLastEditedTime(fresh, pageId);
+      const freshTime = extractLastEditedTime(recordMap, pageId);
       const cachedTime = extractLastEditedTime(cached, pageId);
 
       const changed = !cachedTime || freshTime !== cachedTime;
 
       if (changed) {
-        await setDataToCache(cacheKey, fresh);
+        await setDataToCache(cacheKey, recordMap);
         result.push({ pageId, status: "updated", freshTime });
       } else {
         result.push({ pageId, status: "unchanged" });

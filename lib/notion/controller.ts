@@ -3,31 +3,13 @@ import {
   getFilteredArrayByProperty,
   setAllPagesGetSortedGroupedByDate,
   setPageTableOfContentsByRecord,
-} from "@/lib/db/function";
+} from "@/lib/notion/functions/function";
 import {
   getGlobalRecordPageData,
   getSingleRecordPageData,
-} from "@/lib/db/serviceImpl";
+} from "@/lib/notion/serviceImpl";
 import { PageBlockDataProps } from "@/types";
-import { applyDataBaseProcessing } from "./utils";
-
-//page.tsx에서 요청하는 함수들
-//layout init용
-export default async function initArchiveGlobalData(from: string = "main") {
-  const db = await getGlobalRecordPageData({
-    pageId: BLOG.NOTION_DATABASE_ID as string,
-    from,
-  });
-  if (!db) {
-    console.error(
-      "can`t get Notion Data ; Which id is: ",
-      BLOG.NOTION_DATABASE_ID as string
-    );
-    return {};
-  }
-  const modDB = applyDataBaseProcessing(db);
-  return modDB;
-}
+import { applyDataBaseProcessing } from "@/lib/notion/functions/utils";
 
 //디렉토리별 전체글 페이지
 export async function getAllRecordPageListByType({
@@ -39,19 +21,26 @@ export async function getAllRecordPageListByType({
   type?: string;
   dateSort?: boolean;
 }) {
-  const props = await getGlobalRecordPageData({
+  const data = await getGlobalRecordPageData({
     from,
     pageId: BLOG.NOTION_DATABASE_ID as string,
     type: type,
   });
+  // if (!data) {
+  //   console.error(
+  //     "can`t get Notion Data ; id is: ",
+  //     BLOG.NOTION_DATABASE_ID as string
+  //   );
+  //   return {};
+  // }
+  const resolvedData = applyDataBaseProcessing(data);
 
-  const allPages = setAllPagesGetSortedGroupedByDate(dateSort, props);
-  props.allPages = allPages;
-  return props;
+  // resolvedData.allPages = allPages;
+  return resolvedData;
 }
 
 //레코드글 한 개 페이지
-export async function getSingleRecordPageByPageId({
+export async function getARecordPageById({
   pageId,
   type,
   from,
@@ -78,7 +67,7 @@ export async function getSingleRecordPageByPageId({
 }
 
 //태그 & 카테고리 레코드 리스트 페이지
-export async function getCategoryAndTagById({
+export async function getCategoryAndTagPageById({
   decodedName,
   pageProperty,
   pagenum,

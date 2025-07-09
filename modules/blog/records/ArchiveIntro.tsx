@@ -3,9 +3,21 @@ import React from "react";
 import AllRecords from "./AllRecords";
 import NoRecordFound from "./NoRecordFound";
 import HeaderSearch from "@/modules/common/components/HeaderSearch";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
+import { usePathname } from "next/navigation";
+import { setAllPagesGetSortedGroupedByDate } from "@/lib/notion/functions/function";
 
-const ArchiveIntro = ({ allPages }) => {
+const ArchiveIntro = () => {
+  const pathname = usePathname();
+  const type = pathname.split("/")[1];
+  const { allPages } = useGlobal({ from: type });
   const isAble = isObjectNotEmpty(allPages);
+
+  // console.log("allPages:::", allPages);
+  const modAllPages = isAble
+    ? setAllPagesGetSortedGroupedByDate(true, allPages)
+    : {};
   return (
     <div
       id="main-scroll-container"
@@ -36,8 +48,8 @@ const ArchiveIntro = ({ allPages }) => {
       {isAble ? (
         <div className="flex flex-row items-center w-full ">
           <div className="w-full mt-20 flex flex-col justify-center  items-center gap-10 bg-opacity-30 rounded-lg md:pl-10 dark:bg-black dark:bg-opacity-70 ">
-            {Object.keys(allPages)?.map((title, index) => (
-              <AllRecords key={index} title={title} recordList={allPages} />
+            {Object.keys(modAllPages)?.map((title, index) => (
+              <AllRecords key={index} title={title} recordList={modAllPages} />
             ))}
           </div>
         </div>

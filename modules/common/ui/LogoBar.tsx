@@ -11,7 +11,7 @@ import Link from "next/link";
  * @returns
  */
 export default function LogoBar(props) {
-  const { siteInfo } = useGlobal({ from: "index" });
+  const { siteInfo } = useGlobal({ from: "LogoBar" });
 
   return (
     <div id="top-wrapper" className="w-full flex  flex-row items-center   ">

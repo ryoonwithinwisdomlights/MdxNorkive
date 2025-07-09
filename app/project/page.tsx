@@ -1,18 +1,13 @@
-import { getAllRecordPageListByType } from "@/lib/db/controller";
+"use client";
 import BasicRecordPage from "@/modules/blog/records/BasicRecordPage";
-import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
 import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
+import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
 
-export default async function Page() {
-  const props: any = await getAllRecordPageListByType({
-    from: "project-list-page",
-    type: "Project",
-    dateSort: false,
-  });
-  const projectList: [] = props.allPages;
+export default function Page() {
+  const props = null;
   return (
     <GeneralRecordTypePageWrapper>
-      <BasicRecordPage type="Project" recordList={projectList} />
+      <BasicRecordPage />
       <RightSlidingDrawer props={props} />
     </GeneralRecordTypePageWrapper>
   );

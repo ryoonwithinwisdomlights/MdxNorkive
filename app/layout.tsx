@@ -21,7 +21,7 @@ import "katex/dist/katex.min.css";
 
 import MobileLeftNavDrawer from "@/modules/layout/components/MobileLeftNavDrawer";
 
-import initArchiveGlobalData from "@/lib/db/controller";
+// import initArchiveGlobalData from "@/lib/notion/controller";
 import BottomMenuBar from "@/modules/layout/components/menu/BottomMenuBar";
 import LoadingCover from "@/modules/common/ui/LoadingCover";
 import TopNavBar from "@/modules/layout/components/TopNavBar";
@@ -39,6 +39,7 @@ import { ModalProvider } from "@/lib/context/ModalProvider";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
 import JumpToBackButton from "@/modules/common/components/JumpToBackButton";
+import { getAllRecordPageListByType } from "@/lib/notion/controller";
 config.autoAddCss = false;
 
 export const viewport: Viewport = {
@@ -86,7 +87,9 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: ChildrenProp) {
-  const globalNotionData = await initArchiveGlobalData("main");
+  const globalNotionData = await getAllRecordPageListByType({
+    from: "main-layout",
+  });
   const { allPagesForLeftNavBar } = globalNotionData;
   return (
     <html lang="en" suppressHydrationWarning className={GeistSans.className}>
@@ -105,15 +108,12 @@ export default async function RootLayout({ children }: ChildrenProp) {
               <TopNavBar />
               <AuxiliaryBlogComponent />
               <Suspense fallback={<LoadingCover />}>
-                {/* <div className="w-full  flex flex-col items-center justify-center"> */}
                 <div className=" w-screen md:flex md:flex-row justify-center ">
                   <div className="w-screen h-screen justify-center ">
                     <LeftNavigationBar />
                     <MainLayoutWrapper>{children}</MainLayoutWrapper>
                   </div>
                 </div>
-
-                {/* </div> */}
               </Suspense>
               <JumpToTopButton />
               <JumpToBackButton />

@@ -1,12 +1,12 @@
 "use server";
-
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { BLOG } from "@/blog.config";
-import { getSingleRecordPageByPageId } from "@/lib/db/controller";
+import { getARecordPageById } from "@/lib/notion/controller";
 import SingleRecords from "@/modules/blog/records/SingleRecords";
 import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
 import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
 import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
-import { Metadata } from "next";
 
 //
 export async function generateStaticParams() {
@@ -18,11 +18,16 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }): Promise<Metadata> {
-  const { pageId } = params;
-  const props = await getSingleRecordPageByPageId({
+  const { pageId } = await params;
+
+  const props = await getARecordPageById({
     pageId: pageId,
     from: "General",
+    type: "General",
   });
+  if (!props) {
+    notFound();
+  }
   const title = props?.page?.title;
   const pageTitle = title ? title : "";
   return {
@@ -42,7 +47,7 @@ export default async function Page({
   if (!pageId) {
     return <ErrorComponent />;
   }
-  const result = await getSingleRecordPageByPageId({
+  const result = await getARecordPageById({
     pageId: pageId,
     from: "General",
     type: "General",

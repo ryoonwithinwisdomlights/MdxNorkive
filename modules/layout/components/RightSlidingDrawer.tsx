@@ -3,7 +3,6 @@ import Announcement from "@/modules/blog/Announcement";
 import InfoCard from "./InfoCard";
 
 import ArchiveInfo from "@/modules/blog/records/ArchiveInfo";
-import TableOfContents from "@/modules/blog/records/TableOfContents";
 import TableOfContentsDrawerPC from "@/modules/blog/records/TableOfContentsDrawerPC";
 
 const RightSlidingDrawer = ({ props }) => {

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { BLOG } from "@/blog.config";
-import { notion_api } from "@/lib/db/notion/notion-api";
+import { notion_api } from "@/lib/notion/api/notion";
 
 import {
   BlockMap,
@@ -10,12 +10,16 @@ import {
   User,
 } from "notion-types";
 
-import { BaseArchivePageBlock } from "@/types";
-import { mapImgUrl } from "@/lib/db/utils";
+import {
+  adjustPageProperties,
+  mapProperties,
+} from "@/lib/notion/functions/function";
+import { getRecordBlockMapWithRetry } from "@/lib/notion/api/getPageWithRetry";
+import { mapImgUrl } from "@/lib/notion/functions/utils";
+import { getUsers } from "@/lib/notion/api/getUsers";
 import { formatDate } from "@/lib/utils/utils";
+import { BaseArchivePageBlock } from "@/types";
 import { getDateValue, getPageTitle, getTextContent } from "notion-utils";
-import { getRecordBlockMapWithRetry } from "@/lib/db/notion/getPageWithRetry";
-import { adjustPageProperties, mapProperties } from "@/lib/db/function";
 
 export async function getPageProperties(
   id: string,
@@ -58,7 +62,7 @@ export async function getPageProperties(
           for (let i = 0; i < rawUsers.length; i++) {
             if (rawUsers[i][0][1]) {
               const userArr = rawUsers[i][0];
-              const userList = await notion_api.getUsers(userArr as string[]);
+              const userList = await getUsers(pageId, userArr as string[]);
               const userResult: any[] = userList.results;
               const userValue: User = userResult[1].value;
               users.push(userValue);

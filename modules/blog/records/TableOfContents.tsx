@@ -24,6 +24,22 @@ const TableOfContents = ({ page }) => {
     };
   }, [page]);
 
+  function scrollTo(id) {
+    id = id.replaceAll("-", "");
+    const target = document.querySelector(`.notion-block-${id}`);
+    if (!target) return;
+    // `65` is the height of expanded nav
+    // TODO: Remove the magic number
+    const top =
+      document.documentElement.scrollTop +
+      target.getBoundingClientRect().top -
+      65;
+    document.documentElement.scrollTo({
+      top,
+      behavior: "smooth",
+    });
+  }
+
   const throttleMs = 200;
   const actionSectionScrollSpy = useCallback(
     throttle(() => {
@@ -77,6 +93,8 @@ const TableOfContents = ({ page }) => {
             <a
               key={id}
               href={`#${id}`}
+              data-target-id={id}
+              // onClick={() => scrollTo(id)}
               className={`${
                 activeSection === id &&
                 "pl-4 border-l border-neutral-400 text-neutral-500  font-bold"

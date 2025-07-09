@@ -1,21 +1,13 @@
-import { getAllRecordPageListByType } from "@/lib/db/controller";
-import BasicRecordPage from "@/modules/blog/records/BasicRecordPage";
-import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
-import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
+"use client";
 import GeneralRecordPage from "@/modules/blog/records/GeneralRecordPage";
+import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
+import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
 
-export default async function Page() {
-  const props: any = await getAllRecordPageListByType({
-    from: "general-page",
-    type: "General",
-    dateSort: true,
-  });
-
-  const { allPages } = props;
-
+export default function Page() {
+  const props = null;
   return (
     <GeneralRecordTypePageWrapper>
-      <GeneralRecordPage allPages={allPages} />
+      <GeneralRecordPage />
       <RightSlidingDrawer props={props} />
     </GeneralRecordTypePageWrapper>
   );

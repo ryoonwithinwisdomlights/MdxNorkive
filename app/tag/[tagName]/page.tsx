@@ -1,7 +1,7 @@
 import AllRecordsList from "@/modules/blog/records/AllRecordsList";
 import { TotalPageParams } from "@/types";
 
-import { getCategoryAndTagById } from "@/lib/db/controller";
+import { getCategoryAndTagPageById } from "@/lib/notion/controller";
 import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
 import NoRecordTypePageWrapper from "@/modules/layout/templates/NoRecordTypePageWrapper";
 export async function generateStaticParams() {
@@ -18,7 +18,7 @@ export default async function Page({ params, searchParams }: TotalPageParams) {
   if (!tagName) {
     <ErrorComponent />;
   }
-  const result = await getCategoryAndTagById({
+  const result = await getCategoryAndTagPageById({
     decodedName: decodedName,
     pageProperty: "tags",
     pagenum: pagenum !== undefined ? pagenum : 1,

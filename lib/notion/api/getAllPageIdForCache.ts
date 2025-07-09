@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 
+import { notion_api } from "@/lib/notion/api/notion";
 import { CollectionQueryResult } from "notion-types";
 import { getTextContent, idToUuid } from "notion-utils";
-import { notion_api } from "@/lib/db/notion/notion-api";
 
 export async function getAllPageIdForCache(
   databasePageId: string

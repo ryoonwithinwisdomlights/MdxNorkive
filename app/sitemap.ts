@@ -1,5 +1,5 @@
 import { BLOG } from "@/blog.config";
-import { getGlobalRecordPageData } from "@/lib/db/serviceImpl";
+import { getGlobalRecordPageData } from "@/lib/notion/serviceImpl";
 import { formatDate } from "@/lib/utils/utils";
 import type { MetadataRoute } from "next";
 type ChangeFrequency =

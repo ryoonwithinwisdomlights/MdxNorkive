@@ -22,7 +22,7 @@ export default function TableOfContentsDrawerPC({ page }) {
   return (
     page?.tableOfContents?.length > 0 &&
     !isMobile && (
-      <div className="hidden md:flex border-l dark:border-neutral-800 my-8 ">
+      <div className="hidden left-full  md:flex border-l dark:border-neutral-800 my-8 ">
         <TableOfContents page={page} />
       </div>
     )

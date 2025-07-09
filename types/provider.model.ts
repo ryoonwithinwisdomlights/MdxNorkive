@@ -14,6 +14,7 @@ export interface EssentialNavInfo {
   customMenu: NavItem[];
   notice: any;
   latestRecords: [];
+  allPages: BaseArchivePageBlock[];
   handleRouter: (page: BaseArchivePageBlock) => void;
   cleanCurrentRecordData: () => void;
 }

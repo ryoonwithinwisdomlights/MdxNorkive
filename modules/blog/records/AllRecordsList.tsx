@@ -25,8 +25,6 @@ const AllRecordsList = ({
   const { locale, searchKeyword } = useGeneralSiteSettings();
   const currentPage = +pagenum;
 
-  console.log("totalPage::", totalPage);
-  console.log("currentPage::", currentPage);
   const showNext = currentPage < totalPage;
   if (!allPages || allPages.length === 0) {
     return <NavPostListEmpty searchKeyword={searchKeyword} />;

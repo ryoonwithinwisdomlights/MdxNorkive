@@ -1,32 +1,64 @@
-/* eslint-disable no-unused-vars */
-
 import { getDataFromCache, setDataToCache } from "@/lib/cache/cache_manager";
-import { filterRecordBlocks } from "@/lib/db/function";
+import { getPage } from "@/lib/notion/api/getPage";
 import { delay } from "@/lib/utils/utils";
 import { PageBlockDataProps } from "@/types";
 import { ExtendedRecordMap } from "notion-types";
-import { notion_api } from "@/lib/db/notion/notion-api";
 
 export async function getRecordBlockMapWithRetry({
   pageId,
   from,
   retryAttempts,
 }: PageBlockDataProps) {
-  console.log("getSingleRecordPageByPageId:3");
-  console.log("getRecordBlockMapWithRetry pageId:", pageId);
-  const pageBlock = retryAttempts
-    ? await getRecordPageWithRetry({ pageId: pageId, from, retryAttempts })
-    : await getRecordPage({ pageId: pageId, from });
+  console.log("🪵 getRecordBlockMapWithRetry() pageId:", pageId);
 
-  if (pageBlock) {
-    return filterRecordBlocks(pageId, pageBlock);
+  const recordMap = await getPageWithRetry({
+    pageId,
+    from,
+    retryAttempts,
+  });
+
+  return recordMap;
+}
+
+export async function getPageWithRetry({
+  pageId,
+  from = "unknown",
+  retryAttempts = 3,
+}: {
+  pageId: string;
+  from?: string;
+  retryAttempts?: number;
+}): Promise<ExtendedRecordMap | null> {
+  const cacheKey = `page_block_${pageId}`;
+
+  const cached = await getDataFromCache(cacheKey);
+  if (cached) {
+    console.log(`[✅ Cache Hit] ${from} - ${pageId}`);
+    return cached;
   }
 
-  return pageBlock;
+  console.warn(`[🌀 Cache Miss] ${from} - ${pageId}, retry: ${retryAttempts}`);
+  if (retryAttempts && retryAttempts > 0) {
+    try {
+      const pageData = await getPage(pageId);
+      await setDataToCache(cacheKey, pageData);
+      return pageData;
+    } catch (err) {
+      console.error(`[❌ Fetch Error] ${from} - ${pageId} : ${err}`);
+      await delay(1000);
+      return await getPageWithRetry({
+        pageId,
+        from,
+        retryAttempts: retryAttempts - 1,
+      });
+    }
+  }
+
+  console.error(`[🚫 All Retries Failed] ${from} - ${pageId}`);
+  return null;
 }
 
 export const tryGetNotionCachedData = async (cacheKey, pageId, from) => {
-  console.log("getSingleRecordPageByPageId:5");
   const cached = await getDataFromCache(cacheKey);
   if (cached) {
     console.log(`[Cache hit] ${from} - ${pageId}`);
@@ -46,14 +78,13 @@ export const tryFetchNotionRemoteData = async ({
   retryAttempts?: number;
   cacheKey: string;
 }): Promise<ExtendedRecordMap> => {
-  console.log("getSingleRecordPageByPageId:6");
   console.log(
     `[Cache miss] ${from} - fetching from Notion`,
     `id: ${pageId}`,
     `retries left: ${retryAttempts}`
   );
   const start = Date.now();
-  const pageData = await notion_api.getPage(pageId);
+  const pageData = await getPage(pageId);
   await setDataToCache(cacheKey, pageData);
   const end = Date.now();
   console.log(`[Notion fetch done] ${from} - id: ${pageId} ${end - start}ms`);
@@ -74,7 +105,6 @@ export async function getRecordPageWithRetry({
   from?: string;
   retryAttempts: number;
 }): Promise<ExtendedRecordMap | null> {
-  console.log("getSingleRecordPageByPageId:4");
   const cacheKey = `page_block_${pageId}`;
 
   const cached = await tryGetNotionCachedData(cacheKey, pageId, from);
@@ -91,7 +121,6 @@ export async function getRecordPageWithRetry({
           cacheKey: cacheKey,
         });
       } finally {
-        console.log("getSingleRecordPageByPageId:7");
         console.warn("[Fetch failed]", `from: ${from}`, `id: ${pageId}`);
 
         if (retryAttempts <= 1) {
@@ -138,7 +167,6 @@ export async function getRecordPage({
   pageId: string;
   from?: string;
 }): Promise<ExtendedRecordMap | null> {
-  console.log("getSingleRecordPageByPageId:4");
   const cacheKey = `page_block_${pageId}`;
 
   // 1. 캐시에서 먼저 시도

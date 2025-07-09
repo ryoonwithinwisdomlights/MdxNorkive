@@ -1,9 +1,11 @@
-import { BasicPageDivProps, CardInfoPageDivProps } from "@/types";
-import NoRecordFound from "./NoRecordFound";
+import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
+import { getFilteredRecordList } from "@/lib/notion/functions/function";
 import LazyImage from "@/modules/common/components/shared/LazyImage";
+import SubTypeCarousel from "@/modules/common/components/SubTypeCarousel";
+import { usePathname } from "next/navigation";
+import NoRecordFound from "./NoRecordFound";
 import ProjectCardInfo from "./ProjectCardInfo";
 import RecordCardInfo from "./RecordCardInfo";
-import SubTypeCarousel from "@/modules/common/components/SubTypeCarousel";
 
 const submenuItems = [
   { id: "1", title: "JavaScript", href: "/category/javascript" },
@@ -15,7 +17,11 @@ const submenuItems = [
   { id: "7", title: "Redux", href: "/category/redux" },
 ];
 
-const RecordBodyForPage = ({ type, recordList }: CardInfoPageDivProps) => {
+const RecordBodyForPage = () => {
+  const pathname = usePathname();
+  const type = pathname.split("/")[1];
+  const { allPages } = useGlobal({ from: type });
+  const recordList = getFilteredRecordList(allPages, type);
   return (
     <div className="flex flex-col">
       <SubTypeCarousel items={submenuItems} />

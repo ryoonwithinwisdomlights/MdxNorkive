@@ -1,15 +1,11 @@
 /* eslint-disable no-unused-vars */
 import { BLOG } from "@/blog.config";
-import { fetchInBatches } from "@/lib/db/notion/getBatchedBlocks";
+import { fetchInBatches } from "@/lib/notion/api/getBatchedBlocks";
 import {
   getPageProperties,
   getSinglePageProperties,
-} from "@/lib/db/notion/getPageProperties";
-import { NOTION_DB_ID } from "@/lib/db/notion/notion-api";
-import {
-  getRecordBlockMapWithRetry,
-  getRecordPageWithRetry,
-} from "@/lib/db/notion/getPageWithRetry";
+} from "@/lib/notion/api/getPageProperties";
+import { getRecordBlockMapWithRetry } from "@/lib/notion/api/getPageWithRetry";
 import {
   adjustPageProperties,
   generateEmptyGloabalData,
@@ -24,21 +20,27 @@ import {
   getSiteInfo,
   getTagOptions,
   processingAllPagesWithTypeAndSort,
-} from "@/lib/db/function";
-import { isDatabase } from "@/lib/db/utils";
+} from "@/lib/notion/functions/function";
+import { isDatabase } from "@/lib/notion/functions/utils";
 import { BaseArchivePageBlock, PageBlockDataProps } from "@/types";
-import { Collection, CollectionPropertySchemaMap } from "notion-types";
+import {
+  Collection,
+  CollectionPropertySchemaMap,
+  CollectionViewBlock,
+  CollectionViewPageBlock,
+} from "notion-types";
 import { parsePageId } from "notion-utils";
+import { getPageWithRetry } from "./api/getPageWithRetry";
+export const NOTION_DB_ID = BLOG.NOTION_DATABASE_ID as string;
 
 export async function getGlobalRecordPageData({
   pageId = NOTION_DB_ID,
   type,
   from = "main_page",
 }: PageBlockDataProps) {
+  const parsedId = parsePageId(pageId)!;
   console.debug("[API_Request]", `page-id:${pageId}, type:${type}`);
 
-  // const uuidedRootPageId = idToUuid(pageId);
-  const parsedId = parsePageId(pageId)!;
   const pageRecordMap = await getRecordBlockMapWithRetry({
     pageId: parsedId,
     from: from,
@@ -51,7 +53,11 @@ export async function getGlobalRecordPageData({
   }
 
   let entireBlocks = pageRecordMap.block || {};
-  const parentBlockValue = entireBlocks[parsedId]?.value;
+  const blockType = entireBlocks[parsedId]?.value?.type;
+  const parentBlockValue =
+    blockType === "collection_view_page"
+      ? (entireBlocks[parsedId]?.value as CollectionViewPageBlock)
+      : (entireBlocks[parsedId]?.value as CollectionViewBlock);
 
   const isntDB = isDatabase(parentBlockValue, parsedId);
   if (!isntDB) {
@@ -60,7 +66,7 @@ export async function getGlobalRecordPageData({
   const collection =
     (Object.values(pageRecordMap.collection || {})[0] as { value: Collection })
       ?.value || {};
-  const collectionId = parentBlockValue?.collection_id;
+  const collectionId = parentBlockValue?.collection_id!;
   const collectionQuery = pageRecordMap.collection_query;
 
   const viewIds = parentBlockValue?.view_ids;
@@ -96,7 +102,6 @@ export async function getGlobalRecordPageData({
     await Promise.all(
       pageIds.map(async (id) => {
         const value = entireBlocks || fetchedBlocks;
-        // const value = entireBlocks[id]?.value;
         if (!value) return null;
 
         const properties = await getPageProperties(
@@ -185,7 +190,7 @@ export async function getSingleRecordPageData({
   );
   const parsedId = parsePageId(pageId)!;
 
-  const recordMap = await getRecordPageWithRetry({
+  const recordMap = await getPageWithRetry({
     pageId: parsedId,
     retryAttempts: 3,
     from,

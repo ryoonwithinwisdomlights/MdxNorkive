@@ -11,7 +11,7 @@ import { NotionRenderer } from "react-notion-x";
 import { useWindowSize } from "usehooks-ts";
 import TweetEmbed from "react-tweet-embed";
 import { getOldsiteConfig } from "@/lib/utils/get-config-value";
-import { compressImage, mapImgUrl } from "@/lib/db/utils";
+import { compressImage, mapImgUrl } from "@/lib/notion/functions/utils";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { Site } from "@/types";
 import { BLOG } from "@/blog.config";
@@ -82,9 +82,7 @@ const Collection = dynamic(
 const Equation = dynamic(() =>
   import("react-notion-x/build/third-party/equation").then((m) => m.Equation)
 );
-// const Pdf = dynamic(() => import("@/modules/shared/Pdf").then((m) => m.Pdf), {
-//   ssr: false,
-// });
+
 const Pdf = dynamic(
   () => import("react-notion-x/build/third-party/pdf").then((m) => m.Pdf),
   {
@@ -199,13 +197,10 @@ const NotionPage = ({ record }) => {
   const { isDarkMode } = useGeneralSiteSettings();
   const keys = Object.keys(record?.blockMap?.block || {});
   const block = record?.blockMap?.block?.[keys[0]!]?.value;
-  console.log("block:::", block?.type);
-  console.log("block?.parent_table:::", block?.parent_table);
   const isBlogPost =
     block?.type === "page" && block?.parent_table === "collection";
 
   const showTableOfContents = !!isBlogPost;
-  console.log("showTableOfContents::", showTableOfContents);
   const minTableOfContentsItems = 3;
   const RECORD_DISABLE_GALLERY_CLICK = getOldsiteConfig({
     key: "RECORD_DISABLE_GALLERY_CLICK",
@@ -305,7 +300,7 @@ const NotionPage = ({ record }) => {
     >
       {isDarkMode && <BodyClassName className="dark-mode" />}
       <NotionRenderer
-        // disableHeader // notion 헤더 안보이도록
+        disableHeader // notion 헤더 안보이도록
         darkMode={isDarkMode}
         components={{
           Code,
