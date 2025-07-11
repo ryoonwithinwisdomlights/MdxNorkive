@@ -2,7 +2,7 @@ export const BLOG = {
   APP_NAME: "Norkive",
   NOTION_DATABASE_ID: process.env.NOTION_DATABASE_ID,
   NOTION_ACTIVE_USER: process.env.NOTION_ACTIVE_USER || "",
-  NOTION_ACCESS_TOKEN: process.env.NOTION_TOKEN_V2 || "", // Useful if you prefer not to make your database public
+  NOTION_ACCESS_TOKEN: process.env.NOTION_ACCESS_TOKEN, // Useful if you prefer not to make your database public
   PSEUDO_STATIC: process.env.NEXT_PUBLIC_PSEUDO_STATIC || false, //Pseudo-static path, after it is turned on, all archive URLs will end with .html.
   LANG: process.env.NEXT_PUBLIC_LANG || "kr-KR", // e.g ,'en-US'  see /lib/constants for more.
   APPEARANCE: process.env.NEXT_PUBLIC_APPEARANCE || "light",

@@ -40,6 +40,8 @@ import { ModalProvider } from "@/lib/context/ModalProvider";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import JumpToBackButton from "@/modules/common/components/JumpToBackButton";
 import { getAllRecordPageListByType } from "@/lib/notion/controller";
+import { fetchPublishedPostsFromNotion } from "@/lib/notion/api/getPosts";
+import { getPageDetailAndBlocks } from "@/lib/notion/api/getPageDetailAndBlocks";
 config.autoAddCss = false;
 
 export const viewport: Viewport = {
@@ -90,6 +92,12 @@ export default async function RootLayout({ children }: ChildrenProp) {
   const globalNotionData = await getAllRecordPageListByType({
     from: "main-layout",
   });
+  const dd = await fetchPublishedPostsFromNotion();
+  // console.log("dd::::", dd);
+  //2251eb5c-0337-802f-8f44-c164859f1b33
+  const singlePage = await getPageDetailAndBlocks(
+    "2251eb5c-0337-802f-8f44-c164859f1b33"
+  );
   const { allPagesForLeftNavBar } = globalNotionData;
   return (
     <html lang="en" suppressHydrationWarning className={GeistSans.className}>

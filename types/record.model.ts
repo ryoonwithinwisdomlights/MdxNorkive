@@ -39,7 +39,9 @@ export type DateObj = {
 
 export type BaseArchivePageBlock = {
   id: string;
-  date: DateObj;
+  description?: string;
+  author?: string;
+  date?: DateObj;
   type: string;
   category: string;
   sub_type?: string[];
@@ -47,6 +49,7 @@ export type BaseArchivePageBlock = {
   comment?: string;
   tags?: string[];
   title: string;
+  content?: string | string[];
   status: string;
   publishDate: number;
   publishDay: string;
