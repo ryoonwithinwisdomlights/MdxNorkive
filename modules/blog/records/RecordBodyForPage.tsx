@@ -21,6 +21,7 @@ const submenuItems = [
 const RecordBodyForPage = () => {
   const pathname = usePathname();
   const type = pathname.split("/")[1];
+  console.log("type::", type.toUpperCase());
   const { allPages } = useGlobal({ from: type });
   const recordList = getFilteredRecordList(allPages, type.toUpperCase());
 

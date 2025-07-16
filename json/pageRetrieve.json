@@ -1,0 +1,149 @@
+{
+  "object": "page",
+  "id": "2231eb5c-0337-804e-adfc-e7368b604088",
+  "created_time": "2025-07-01T03:14:00.000Z",
+  "last_edited_time": "2025-07-11T05:15:00.000Z",
+  "created_by": {
+    "object": "user",
+    "id": "30708e8c-2c07-4fb5-b90b-a1962d0f00bb"
+  },
+  "last_edited_by": {
+    "object": "user",
+    "id": "30708e8c-2c07-4fb5-b90b-a1962d0f00bb"
+  },
+  "cover": {
+    "type": "external",
+    "external": {
+      "url": "https://images.unsplash.com/photo-1593062096033-9a26b09da705?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb"
+    }
+  },
+  "icon": {
+    "type": "emoji",
+    "emoji": "👩‍💻"
+  },
+  "parent": {
+    "type": "database_id",
+    "database_id": "21a1eb5c-0337-8057-b4e5-d3be1fd96dce"
+  },
+  "archived": false,
+  "in_trash": false,
+  "properties": {
+    "password": {
+      "id": "%40NcA",
+      "type": "rich_text",
+      "rich_text": []
+    },
+    "icon": {
+      "id": "Dj%5Dh",
+      "type": "rich_text",
+      "rich_text": []
+    },
+    "date": {
+      "id": "NX%5CQ",
+      "type": "date",
+      "date": {
+        "start": "2025-07-01",
+        "end": null,
+        "time_zone": null
+      }
+    },
+    "type": {
+      "id": "%60gQ~",
+      "type": "select",
+      "select": {
+        "id": "041a211e-28b9-4d7a-8ec8-091f76ee54e2",
+        "name": "ENGINEERING",
+        "color": "purple"
+      }
+    },
+    "category": {
+      "id": "bB%7BM",
+      "type": "select",
+      "select": {
+        "id": "76803751-cb94-46fb-bf27-780126e58906",
+        "name": "TIL",
+        "color": "orange"
+      }
+    },
+    "slug": {
+      "id": "d%5Dhq",
+      "type": "rich_text",
+      "rich_text": []
+    },
+    "사람": {
+      "id": "obL%7B",
+      "type": "people",
+      "people": []
+    },
+    "sub_type": {
+      "id": "qRB%3F",
+      "type": "select",
+      "select": {
+        "id": "e3fb9810-2daa-4e0e-8f4d-cba01899ba20",
+        "name": "TIL",
+        "color": "gray"
+      }
+    },
+    "favorite": {
+      "id": "q~qH",
+      "type": "checkbox",
+      "checkbox": false
+    },
+    "tags": {
+      "id": "sD%5Em",
+      "type": "multi_select",
+      "multi_select": [
+        {
+          "id": "48cca1ea-492f-4b15-9d6a-81967e14a1f6",
+          "name": "개발TIL",
+          "color": "gray"
+        },
+        {
+          "id": "3ef0217d-514f-4103-be4f-0dec4311c857",
+          "name": "기술로그",
+          "color": "red"
+        }
+      ]
+    },
+    "summary": {
+      "id": "wz%7CS",
+      "type": "rich_text",
+      "rich_text": []
+    },
+    "title": {
+      "id": "title",
+      "type": "title",
+      "title": [
+        {
+          "type": "text",
+          "text": {
+            "content": "[TIL] Refactoring SearchInput.",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "[TIL] Refactoring SearchInput.",
+          "href": null
+        }
+      ]
+    },
+    "status": {
+      "id": "f211bdc0-ee00-4186-9a7d-f68c055ec2ee",
+      "type": "select",
+      "select": {
+        "id": "7abc61d4-b405-480d-b699-12588755fa65",
+        "name": "Published",
+        "color": "red"
+      }
+    }
+  },
+  "url": "https://www.notion.so/TIL-Refactoring-SearchInput-2231eb5c0337804eadfce7368b604088",
+  "public_url": "https://ryoonwithwisdomtrees.notion.site/TIL-Refactoring-SearchInput-2231eb5c0337804eadfce7368b604088",
+  "request_id": "ae05dcce-9fb5-4d12-936c-ef5db9890bf8"
+}

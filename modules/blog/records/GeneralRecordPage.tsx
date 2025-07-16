@@ -9,6 +9,7 @@ import NoRecordFound from "./NoRecordFound";
 const GeneralRecordPage = () => {
   const pathname = usePathname();
   const type = pathname.split("/")[1];
+
   const { allPages } = useGlobal({ from: type });
   const isAble = isObjectNotEmpty(allPages);
   const modAllPages = isAble

@@ -456,9 +456,9 @@ export function processingTypedPagesWithSort(arr, counterObj, type, dateSort) {
       }
 
       const isVisible = page.status === "Published";
-
-      const isTypeMatched =
-        AVAILABLE_PAGE_TYPES.includes(type) && page.type === type;
+      const isTypeMatched = type
+        ? AVAILABLE_PAGE_TYPES.includes(type) && page.type === type
+        : true;
 
       if (isVisible && isTypeMatched) {
         counterObj.count++;
@@ -760,9 +760,9 @@ export function generateCustomizeUrlWithType({
 
   let res;
 
-  if (type === "Record") {
+  if (type === "RECORD" || "GENERAL") {
     res = `${BLOG.RECORD_URL_PREFIX.toLowerCase()}/${pageProperties.id}`;
-  } else if (type == "PROJECT" || "ENGINEERING" || "GENERAL") {
+  } else if (type == "PROJECT" || "ENGINEERING") {
     res = `${type.toLowerCase()}/${pageProperties.id}`;
   } else {
     res = `${fullPrefix.toLowerCase()}/${type.toLowerCase()}/${

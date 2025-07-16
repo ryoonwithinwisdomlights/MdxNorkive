@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { withContentCollections } from "@content-collections/next";
 import { BLOG } from "./blog.config";
 const path = require("path");
 
@@ -6,13 +7,11 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: BLOG.BUNDLE_ANALYZER,
 });
 
-const nextConfig: NextConfig = {
+const baseConfig: NextConfig = {
   reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // output: process.env.EXPORT ? "export" : undefined,
-  // for self-hosting
   output: "standalone",
   staticPageGenerationTimeout: 120,
   images: {
@@ -46,6 +45,10 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "abs.twimg.com" },
       { protocol: "https", hostname: "pbs.twimg.com" },
       { protocol: "https", hostname: "s3.us-west-2.amazonaws.com" },
+      {
+        protocol: "https",
+        hostname: "prod-files-secure.s3.us-west-2.amazonaws.com",
+      },
     ],
   },
   async rewrites() {
@@ -108,4 +111,10 @@ const nextConfig: NextConfig = {
   },
 };
 
-module.exports = withBundleAnalyzer(nextConfig);
+// withContentCollections must be the outermost wrapper
+// withContentCollections Content Collections 문서 생성 및 Markdown 콘텐츠 처리
+//withBundleAnalyzer 번들 분석 도구 활성화
+
+const composedConfig = withContentCollections(withBundleAnalyzer(baseConfig));
+
+export default composedConfig;

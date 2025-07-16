@@ -336,6 +336,11 @@ function deepCloneGpt(value) {
     `Unsupported type in deepClone: ${Object.prototype.toString.call(value)}`
   );
 }
+export function calculateReadingTime(wordCount: number): string {
+  const WORDS_PER_MINUTE = 225; // Average adult reading speed
+  const minutes = Math.ceil(wordCount / WORDS_PER_MINUTE);
+  return `${minutes} min read`;
+}
 
 /**
  * delay
