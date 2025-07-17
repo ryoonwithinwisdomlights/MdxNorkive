@@ -1,5 +1,6 @@
 // components/mdx/InlineCode.tsx
 /// 인라인 코드
+
 export default function InlineCode({
   children,
 }: {
