@@ -1,4 +1,5 @@
 // content-collections.ts
+import { rehypePrettyCode } from "rehype-pretty-code";
 import { defineCollection, defineConfig } from "@content-collections/core";
 import { compileMDX } from "@content-collections/mdx";
 import { z } from "zod";
