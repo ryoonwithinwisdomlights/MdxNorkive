@@ -14,7 +14,7 @@
   },
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev",
-    "generate:mdx": "tsx scripts/notion-to-mdx.ts",
+    "generate:mdx": "npx tsx scripts/notion-to-mdx.ts",
     "build": "rm -rf .next && npm run generate:mdx && next build",
     "start": "NODE_OPTIONS='--inspect' next build && next start",
     "prettier": "prettier --write --ignore-unknown .",
