@@ -2,6 +2,7 @@
 import { BLOG } from "@/blog.config";
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { getSiteInfo2 } from "@/lib/notion/functions/function";
 import LazyImage from "@/modules/common/components/shared/LazyImage";
 import Link from "next/link";
 
@@ -11,8 +12,8 @@ import Link from "next/link";
  * @returns
  */
 export default function LogoBar(props) {
-  const { siteInfo } = useGlobal({ from: "LogoBar" });
-
+  // const { siteInfo } = useGlobal({ from: "LogoBar" });
+  const siteInfo = getSiteInfo2({});
   return (
     <div id="top-wrapper" className="w-full flex  flex-row items-center   ">
       <Link

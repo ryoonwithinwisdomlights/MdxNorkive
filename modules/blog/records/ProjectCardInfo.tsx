@@ -1,7 +1,6 @@
 "use client";
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import NotionPage from "@/modules/common/components/shared/NotionPage";
 import { CardInfoDivProps } from "@/types";
 import { CalendarIcon, LockIcon } from "lucide-react";
 import TagItemMini from "../tag/TagItemMini";
@@ -71,7 +70,7 @@ const ProjectCardInfo = ({
         {/* Preview */}
         {showPreview && (
           <div className="overflow-ellipsis truncate">
-            <NotionPage record={record} />
+            {/* <NotionPage record={record} /> */}
           </div>
         )}
       </div>

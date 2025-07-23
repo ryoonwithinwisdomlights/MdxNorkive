@@ -7,16 +7,19 @@ import { Search, XIcon } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import SearchResultSkeleton from "../ui/search-result-skeleton";
 import Link from "next/link";
+import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
+import { useNav } from "@/lib/context/NavInfoProvider";
 
 export default function HeaderSearch() {
-  const { locale, allPagesForLeftNavBar } = useGeneralSiteSettings();
+  const { locale } = useGeneralSiteSettings();
+  const { recordList } = useNav({ from: "header-search" });
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<{ title: string; url: string }[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const groupedArray = allPagesForLeftNavBar?.map((item: any) => {
+  const groupedArray = recordList?.map((item: any) => {
     return {
-      id: item.id,
+      id: item.notionId,
       category: item.category,
       title: item.title,
       url: item.slug,

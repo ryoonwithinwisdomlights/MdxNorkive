@@ -1,11 +1,6 @@
 import type { NextConfig } from "next";
-import { withContentCollections } from "@content-collections/next";
 import { BLOG } from "./blog.config";
 const path = require("path");
-
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: BLOG.BUNDLE_ANALYZER,
-});
 
 const baseConfig: NextConfig = {
   reactStrictMode: true,
@@ -115,6 +110,6 @@ const baseConfig: NextConfig = {
 // withContentCollections Content Collections 문서 생성 및 Markdown 콘텐츠 처리
 //withBundleAnalyzer 번들 분석 도구 활성화
 
-const composedConfig = withContentCollections(withBundleAnalyzer(baseConfig));
+// const composedConfig = withContentCollections(withBundleAnalyzer(baseConfig));
 
-export default composedConfig;
+export default baseConfig;

@@ -35,8 +35,7 @@ const GeneralSiteSettings =
 
 export const GeneralSiteSettingsProvider: React.FC<{
   children: ReactNode;
-  allPagesForLeftNavBar: LeftSideBarNavItem[];
-}> = ({ children, allPagesForLeftNavBar }) => {
+}> = ({ children }) => {
   const [lang, updateLang] = useState<string>(BLOG.LANG); // default language
   const [locale, updateLocale] = useState<any>(generateLocaleDict(BLOG.LANG));
   const [setting, SetSettingState] = useState<boolean>(false);
@@ -49,9 +48,6 @@ export const GeneralSiteSettingsProvider: React.FC<{
   const [pageNavVisible, setPageNavVisible] = useState<boolean>(false);
 
   const [searchKeyword, setSearchKeyword] = useState<string>("");
-  const [filteredNavPages, setFilteredNavPages] = useState<
-    LeftSideBarNavItem[]
-  >(allPagesForLeftNavBar);
   const isFirstRender = useRef(true);
 
   const handleTOCVisible = () => setTOCVisible(!tocVisible);
@@ -90,9 +86,6 @@ export const GeneralSiteSettingsProvider: React.FC<{
     setOnLoading,
     searchKeyword,
     setSearchKeyword,
-    filteredNavPages,
-    setFilteredNavPages,
-    allPagesForLeftNavBar,
     tocVisible,
     handleTOCVisible,
     pageNavVisible,

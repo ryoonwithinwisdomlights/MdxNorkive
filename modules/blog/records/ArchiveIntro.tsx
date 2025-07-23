@@ -7,17 +7,17 @@ import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvide
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { usePathname } from "next/navigation";
 import { setAllPagesGetSortedGroupedByDate } from "@/lib/notion/functions/function";
+import { useNav } from "@/lib/context/NavInfoProvider";
 
 const ArchiveIntro = () => {
   const pathname = usePathname();
   const type = pathname.split("/")[1];
-  const { allPages } = useGlobal({ from: type });
-  const isAble = isObjectNotEmpty(allPages);
-
-  // console.log("allPages:::", allPages);
+  const { recordList } = useNav({ from: type });
+  const isAble = isObjectNotEmpty(recordList);
   const modAllPages = isAble
-    ? setAllPagesGetSortedGroupedByDate(true, allPages)
+    ? setAllPagesGetSortedGroupedByDate(true, recordList)
     : {};
+  console.log("modAllPages:", modAllPages);
   return (
     <div
       id="main-scroll-container"

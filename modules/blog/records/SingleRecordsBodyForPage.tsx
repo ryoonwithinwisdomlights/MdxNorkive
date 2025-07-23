@@ -3,7 +3,6 @@ import { ARCHIVE_CONFIG } from "@/lib/utils/archive-config";
 import CategoryItem from "@/modules/blog/category/CategoryItem";
 import ArchiveAround from "@/modules/blog/records/ArchiveAround";
 import Comment from "@/modules/common/components/shared/Comment";
-import NotionPage from "@/modules/common/components/shared/NotionPage";
 import ShareBar from "@/modules/common/components/shared/ShareBar";
 import { Skeleton } from "@/modules/common/ui/Skeleton";
 import TagItemMini from "../tag/TagItemMini";
@@ -11,7 +10,7 @@ import TableOfContentsDrawerMobile from "./TableOfContentsDrawerMobile";
 const SingleRecordsBodyForPage = ({ page }) => {
   return (
     <section className="px-1 dark:text-neutral-100 flex flex-col gap-y-6">
-      <NotionPage record={page} />
+      {/* <NotionPage record={page} /> */}
 
       {/* share */}
       <ShareBar record={page} />

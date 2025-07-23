@@ -4,6 +4,7 @@ import { MenuItemDrop } from "@/modules/layout/components/menu/MenuItemDrop";
 import SettingButton from "@/modules/common/components/shared/SettingButton";
 
 const TopNavPC = ({ links }) => {
+  // console.log("TopNavPC links:::", links);
   return (
     <div className="hidden md:flex w-full h-16 shadow bg-white dark:bg-neutral-900 px-7 items-between dark:border-b-2 dark:border-neutral-800">
       <LogoBar />

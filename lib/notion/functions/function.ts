@@ -40,6 +40,7 @@ import {
   setPageSortedByDate,
 } from "@/lib/notion/functions/utils";
 import { CodeLanguages } from "@/constants/code.languge";
+import { RecordItem } from "@/app/api/types";
 
 export function getFilteredRecordList(allPages, type) {
   const allpageCounter = { count: 0 };
@@ -212,6 +213,48 @@ export async function getNoticePage(data) {
   return notice;
 }
 
+export function getSiteInfo2({
+  recordItem,
+}: {
+  recordItem?: RecordItem;
+}): SiteInfoModel {
+  const defaultTitle = BLOG.TITLE;
+  const defaultDescription = BLOG.DESCRIPTION;
+  const defaultPageCover = BLOG.HOME_BANNER_IMAGE;
+  const defaultIcon = BLOG.AVATAR;
+  const defaultLink = BLOG.LINK;
+  if (!recordItem) {
+    return {
+      title: defaultTitle,
+      description: defaultDescription,
+      pageCover: defaultPageCover,
+      icon: defaultIcon,
+      link: defaultLink,
+    };
+  }
+
+  const title = recordItem.title || defaultTitle;
+  const description = recordItem?.description || defaultDescription;
+
+  const pageCover = recordItem?.pageCover || defaultPageCover;
+
+  const collectionIcon = recordItem?.icon || defaultIcon;
+
+  // Compress all category user avatars
+  let icon = compressImage(
+    collectionIcon ? { image: collectionIcon } : { image: defaultIcon }
+  );
+  // Site URL
+  const link = recordItem.slug || defaultLink;
+
+  // Site icon cannot be emoji
+  const emojiPattern = /\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g;
+  if (!icon || emojiPattern.test(icon)) {
+    icon = defaultIcon;
+  }
+  return { title, description, pageCover, icon, link } as SiteInfoModel;
+}
+
 export function getSiteInfo({
   collection,
   block,
@@ -224,40 +267,46 @@ export function getSiteInfo({
   const defaultPageCover = BLOG.HOME_BANNER_IMAGE;
   const defaultIcon = BLOG.AVATAR;
   const defaultLink = BLOG.LINK;
-  if (!collection && !block) {
-    return {
-      title: defaultTitle,
-      description: defaultDescription,
-      pageCover: defaultPageCover,
-      icon: defaultIcon,
-      link: defaultLink,
-    };
-  }
+  // if (!collection && !block) {
+  //   return {
+  //     title: defaultTitle,
+  //     description: defaultDescription,
+  //     pageCover: defaultPageCover,
+  //     icon: defaultIcon,
+  //     link: defaultLink,
+  //   };
+  // }
+  return {
+    title: defaultTitle,
+    description: defaultDescription,
+    pageCover: defaultPageCover,
+    icon: defaultIcon,
+    link: defaultLink,
+  };
+  // const title = collection?.name?.[0][0] || defaultTitle;
+  // const description = collection?.description
+  //   ? Object.assign(collection).description[0][0]
+  //   : defaultDescription;
 
-  const title = collection?.name?.[0][0] || defaultTitle;
-  const description = collection?.description
-    ? Object.assign(collection).description[0][0]
-    : defaultDescription;
+  // const pageCover = collection?.cover
+  //   ? mapImgUrl(collection?.cover, collection, "collection")
+  //   : defaultPageCover;
 
-  const pageCover = collection?.cover
-    ? mapImgUrl(collection?.cover, collection, "collection")
-    : defaultPageCover;
+  // const collectionIcon = mapImgUrl(collection?.icon, collection, "collection");
 
-  const collectionIcon = mapImgUrl(collection?.icon, collection, "collection");
+  // // Compress all category user avatars
+  // let icon = compressImage(
+  //   collectionIcon ? { image: collectionIcon } : { image: defaultIcon }
+  // );
+  // // Site URL
+  // const link = defaultLink;
 
-  // Compress all category user avatars
-  let icon = compressImage(
-    collectionIcon ? { image: collectionIcon } : { image: defaultIcon }
-  );
-  // Site URL
-  const link = defaultLink;
-
-  // Site icon cannot be emoji
-  const emojiPattern = /\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g;
-  if (!icon || emojiPattern.test(icon)) {
-    icon = defaultIcon;
-  }
-  return { title, description, pageCover, icon, link };
+  // // Site icon cannot be emoji
+  // const emojiPattern = /\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g;
+  // if (!icon || emojiPattern.test(icon)) {
+  //   icon = defaultIcon;
+  // }
+  // return { title, description, pageCover, icon, link };
 }
 
 export function getRecordListForLeftSideBar({ allPages }) {
@@ -382,6 +431,7 @@ export const generateEmptyGloabalData = (pageId) => {
 
 export function generateMenuItem(data: BaseArchivePageBlock) {
   const item: NavItem = {
+    id: data.id,
     icon: data.icon,
     name: data.title,
     show: true,

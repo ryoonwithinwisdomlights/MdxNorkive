@@ -1,42 +1,42 @@
-import { getCategoryAndTagPageById } from "@/lib/notion/controller";
-import AllRecordsList from "@/modules/blog/records/AllRecordsList";
-import NoRecordTypePageWrapper from "@/modules/layout/templates/NoRecordTypePageWrapper";
-import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
-import { TotalPageParams } from "@/types";
+// import { getCategoryAndTagPageById } from "@/lib/notion/controller";
+// import AllRecordsList from "@/modules/blog/records/AllRecordsList";
+// import NoRecordTypePageWrapper from "@/modules/layout/templates/NoRecordTypePageWrapper";
+// import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
+// import { TotalPageParams } from "@/types";
 
-export async function generateStaticParams() {
-  const records = [
-    { categoryId: "tailwindcss" },
-    { categoryId: "another-category" },
-  ];
-  return records.map((record) => ({
-    categoryId: record.categoryId,
-  }));
-}
+// export async function generateStaticParams() {
+//   const records = [
+//     { categoryId: "tailwindcss" },
+//     { categoryId: "another-category" },
+//   ];
+//   return records.map((record) => ({
+//     categoryId: record.categoryId,
+//   }));
+// }
 
-export default async function Page({ params, searchParams }: TotalPageParams) {
-  const { categoryName } = await params;
-  const { pagenum } = await searchParams;
-  const decodedName = decodeURIComponent(categoryName);
+// export default async function Page({ params, searchParams }: TotalPageParams) {
+//   const { categoryName } = await params;
+//   const { pagenum } = await searchParams;
+//   const decodedName = decodeURIComponent(categoryName);
 
-  // console.log("categoryName:", categoryName);
-  // console.log("decodedName:", decodedName);
-  if (!categoryName) {
-    <ErrorComponent />;
-  }
-  const result = await getCategoryAndTagPageById({
-    decodedName: decodedName,
-    pageProperty: "category",
-    pagenum: pagenum !== undefined ? pagenum : 1,
-  });
+//   // console.log("categoryName:", categoryName);
+//   // console.log("decodedName:", decodedName);
+//   if (!categoryName) {
+//     <ErrorComponent />;
+//   }
+//   const result = await getCategoryAndTagPageById({
+//     decodedName: decodedName,
+//     pageProperty: "category",
+//     pagenum: pagenum !== undefined ? pagenum : 1,
+//   });
 
-  return (
-    <NoRecordTypePageWrapper>
-      <AllRecordsList
-        pagenum={pagenum !== undefined ? pagenum : 1}
-        pageCount={result.pageCount!}
-        allPages={result.allPages}
-      />
-    </NoRecordTypePageWrapper>
-  );
-}
+//   return (
+//     <NoRecordTypePageWrapper>
+//       <AllRecordsList
+//         pagenum={pagenum !== undefined ? pagenum : 1}
+//         pageCount={result.pageCount!}
+//         allPages={result.allPages}
+//       />
+//     </NoRecordTypePageWrapper>
+//   );
+// }

@@ -2,7 +2,7 @@ import { ExtendedRecordMap, SelectOption } from "notion-types";
 import { TableOfContentsEntry } from "notion-utils";
 type TextRequest = string;
 type IdRequest = string | string;
-type EmojiRequest =
+export type EmojiRequest =
   | "😀"
   | "😃"
   | "😄"

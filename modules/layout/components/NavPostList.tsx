@@ -1,4 +1,5 @@
 "use client";
+import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { ARCHIVE_CONFIG } from "@/lib/utils/archive-config";
 import NoRecordFound from "@/modules/blog/records/NoRecordFound";
@@ -13,7 +14,8 @@ import { usePathname } from "next/navigation";
  * @constructor
  */
 const NavPostList = (props) => {
-  const { searchKeyword, filteredNavPages } = useGeneralSiteSettings();
+  const { searchKeyword } = useGeneralSiteSettings();
+  const { filteredNavPages } = useGlobal({ from: "NavPostList" });
   if (filteredNavPages !== undefined) {
     if (filteredNavPages.length < 0) {
       return <NoRecordFound />;

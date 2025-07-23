@@ -10,7 +10,7 @@ export default function Page() {
   return (
     <GeneralRecordTypePageWrapper>
       <ArchiveIntro />
-      <RightSlidingDrawer props={props} />
+      {/* <RightSlidingDrawer props={props} /> */}
     </GeneralRecordTypePageWrapper>
   );
 }

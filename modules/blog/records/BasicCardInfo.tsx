@@ -1,7 +1,6 @@
 "use client";
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import NotionPage from "@/modules/common/components/shared/NotionPage";
 import { CardInfoDivProps } from "@/types";
 import { CalendarIcon, FolderClosedIcon, LockIcon } from "lucide-react";
 import Link from "next/link";
@@ -84,7 +83,7 @@ const BasicCardInfo = ({
         {/* Preview */}
         {showPreview && (
           <div className="overflow-ellipsis truncate ">
-            <NotionPage record={record} />
+            {/* <NotionPage record={record} /> */}
           </div>
         )}
       </div>

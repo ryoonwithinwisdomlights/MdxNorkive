@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 "use client";
+import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { deepClone } from "@/lib/utils/utils";
 
@@ -11,14 +12,10 @@ let lock = false;
 const SearchInput = ({ cRef }) => {
   const [showClean, setShowClean] = useState(false);
   // 검색 키워드 상태
-  const {
-    locale,
-    searchKeyword,
-    setSearchKeyword,
-    setFilteredNavPages,
-    allPagesForLeftNavBar,
-  } = useGeneralSiteSettings();
-
+  const { locale, searchKeyword, setSearchKeyword } = useGeneralSiteSettings();
+  const { setFilteredNavPages, allPagesForLeftNavBar } = useGlobal({
+    from: "header-search",
+  });
   // 입력 필드 참조
   const searchInputRef = useRef<HTMLInputElement>(null);
 

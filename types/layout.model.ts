@@ -10,6 +10,7 @@ export type OldNavItem = {
 };
 
 export type NavItem = {
+  id?: string;
   icon?: string;
   name?: string;
   href?: string;

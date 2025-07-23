@@ -1,6 +1,6 @@
 "use client";
 
-import { BaseArchivePageBlock } from "@/types";
+import { BaseArchivePageBlock, LeftSideBarNavItem } from "@/types";
 import { EssentialNavInfo, GlobalNotionData } from "@/types/provider.model";
 import { useRouter } from "next/navigation";
 import NextNProgress from "nextjs-progressbar";
@@ -26,15 +26,17 @@ export function EssentialNavInfoProvider({
     siteInfo,
     categoryOptions,
     tagOptions,
-    oldNav,
-    customMenu,
     notice,
     latestRecords,
     allPages,
+    allPagesForLeftNavBar,
   } = globalNotionData;
 
   const [currentpageId, setCurrentpageId] =
     useState<BaseArchivePageBlock | null>(null);
+  const [filteredNavPages, setFilteredNavPages] = useState<
+    LeftSideBarNavItem[]
+  >(allPagesForLeftNavBar);
 
   const router = useRouter();
 
@@ -51,14 +53,16 @@ export function EssentialNavInfoProvider({
         siteInfo,
         categoryOptions,
         tagOptions,
-        oldNav,
-        customMenu,
         notice,
         latestRecords,
         allPages,
         // currentRecordData,
+
         handleRouter,
         cleanCurrentRecordData,
+        allPagesForLeftNavBar,
+        filteredNavPages,
+        setFilteredNavPages,
       }}
     >
       {children}

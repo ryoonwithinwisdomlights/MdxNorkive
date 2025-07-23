@@ -5,13 +5,14 @@ import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { useRef, useState } from "react";
 import TopNavMobile from "./TopNavMobile";
 import TopNavPC from "./TopNavPC";
+import { useMenu } from "@/lib/context/MenuProvider";
 
 const TopNavBar = () => {
-  const { oldNav, customMenu } = useGlobal({ from: "TopNavBar" });
+  const { menuData } = useMenu({ from: "TopNavBar" });
   const [isOpen, changeShow] = useState(false);
   const collapseRef = useRef<any>(null);
 
-  const links = customMenu;
+  const links = menuData;
   const toggleMenuOpen = () => {
     changeShow(!isOpen);
   };

@@ -3,21 +3,7 @@ import { GeistSans } from "geist/font/sans";
 import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import "./../styles/animate.css"; // @see https://animate.style/
 import "./../styles/globals.css";
-import "./../styles/utility-patterns.css";
-
-// used for code syntax highlighting (optional)
-import "prismjs/themes/prism-tomorrow.css";
-// core styles shared by all of react-notion-x (required)
-import "react-notion-x/src/styles.css";
-// global style overrides for notion
-import "./../styles/notion.css";
-// global style overrides for prism theme (optional)
-import "./../styles/prism-theme.css";
-// used for rendering equations (optional)
-
-import "katex/dist/katex.min.css";
 
 import MobileLeftNavDrawer from "@/modules/layout/components/MobileLeftNavDrawer";
 
@@ -40,6 +26,9 @@ import { ModalProvider } from "@/lib/context/ModalProvider";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import JumpToBackButton from "@/modules/common/components/JumpToBackButton";
 import { getAllRecordPageListByType } from "@/lib/notion/controller";
+import { MenuProvider } from "@/lib/context/MenuProvider";
+import { fetchAllRecordList, fetchMenuList } from "./api/fetcher";
+import { NavInfoProvider } from "@/lib/context/NavInfoProvider";
 
 config.autoAddCss = false;
 
@@ -88,51 +77,50 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: ChildrenProp) {
-  // const globalNotionData = await getAllRecordPageListByType({
-  //   from: "main-layout",
-  // });
-  // const dd = await fetchPublishedPostsFromNotion();
-  // console.log("dd::::", dd);
-  //2251eb5c-0337-802f-8f44-c164859f1b33
-  // const singlePage = await getPageDetailAndBlocks(
-  //   "2251eb5c-0337-802f-8f44-c164859f1b33"
-  // );
-  // const { allPagesForLeftNavBar } = globalNotionData;
+  /**
+   * 메뉴데이터
+   * globalNotionData 따로
+   */
+  const menuData = await fetchMenuList();
+  const recordList = await fetchAllRecordList();
   return (
     <html lang="en" suppressHydrationWarning className={GeistSans.className}>
       <body>
-        {/* <EssentialNavInfoProvider
-          globalNotionData={globalNotionData}
-          from={"index"}
-        >
-          <GeneralSiteSettingsProvider
-            allPagesForLeftNavBar={allPagesForLeftNavBar}
-          >
-            <div
-              id="gitbook"
-              className={`${BLOG.FONT_STYLE}  w-screen h-screen justify-center dark:text-neutral-300  pb-16  md:pb-0 `}
-            >
-              <TopNavBar />
-              <AuxiliaryBlogComponent />
-              <Suspense fallback={<LoadingCover />}>
+        <MenuProvider menuData={menuData}>
+          {/* <EssentialNavInfoProvider
+            globalNotionData={globalNotionData}
+            from={"index"}
+          > */}
+          <NavInfoProvider recordList={recordList}>
+            <GeneralSiteSettingsProvider>
+              <div
+                id="gitbook"
+                className={`${BLOG.FONT_STYLE}  w-screen h-screen justify-center dark:text-neutral-300  pb-16  md:pb-0 `}
+              >
+                <TopNavBar />
+                {/* <AuxiliaryBlogComponent /> */}
+                {/* <Suspense fallback={<LoadingCover />}> */}
                 <div className=" w-screen md:flex md:flex-row justify-center ">
                   <div className="w-screen h-screen justify-center ">
-                    <LeftNavigationBar /> */}
-        <MainLayoutWrapper>{children}</MainLayoutWrapper>
-        {/* </div>
+                    {/* <LeftNavigationBar /> */}
+                    <MainLayoutWrapper>{children}</MainLayoutWrapper>
+                  </div>
                 </div>
-              </Suspense>
-              <JumpToTopButton />
-              <JumpToBackButton />
-        
-              <MobileLeftNavDrawer />
-     
-              <BottomMenuBar />
-              <ModalProvider />
-            </div>
-            <PageObserver />
-          </GeneralSiteSettingsProvider>
-        </EssentialNavInfoProvider> */}
+                {/* </Suspense> */}
+                <JumpToTopButton />
+                <JumpToBackButton />
+
+                {/* <MobileLeftNavDrawer /> */}
+
+                {/* <BottomMenuBar />
+                 */}
+                <ModalProvider />
+              </div>
+              {/* <PageObserver /> */}
+            </GeneralSiteSettingsProvider>
+          </NavInfoProvider>
+          {/* </EssentialNavInfoProvider> */}
+        </MenuProvider>
       </body>
     </html>
   );

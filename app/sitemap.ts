@@ -2,6 +2,7 @@ import { BLOG } from "@/blog.config";
 import { getGlobalRecordPageData } from "@/lib/notion/serviceImpl";
 import { formatDate } from "@/lib/utils/utils";
 import type { MetadataRoute } from "next";
+import { fetchAllRecordList } from "./api/fetcher";
 type ChangeFrequency =
   | "always"
   | "hourly"
@@ -19,9 +20,7 @@ type ChangeFrequency =
  *
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const globalData = await getGlobalRecordPageData({
-    pageId: BLOG.NOTION_DATABASE_ID as string,
-  });
+  const allRecordList = await fetchAllRecordList();
   const dailyVariable: ChangeFrequency = "daily";
 
   const urls = [
@@ -51,20 +50,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
   // Cycle page generation
-  const { allPages } = globalData;
-  allPages
-    ?.filter((p) => p.status === BLOG.NOTION_PROPERTY_NAME.status_publish)
-    .forEach((record) => {
-      const lmd = record.lastEditedDate
-        ? formatDate(record.date.start_date, BLOG.LANG)
-        : formatDate(record.lastEditedDate, BLOG.LANG);
-      urls.push({
-        url: `${BLOG.LINK}${record.type.toLowerCase()}/${record.id}`,
-        lastModified: lmd,
-        changeFrequency: dailyVariable,
-        priority: 1,
-      });
-    });
+  // const { allPages } = globalData;
+  // allPages
+  //   ?.filter((p) => p.status === BLOG.NOTION_PROPERTY_NAME.status_publish)
+  //   .forEach((record) => {
+  //     const lmd = record.lastEditedDat
+  //       ? formatDate(record.date, BLOG.LANG)
+  //       : formatDate(record.lastEditedDate, BLOG.LANG);
+  //     urls.push({
+  //       url: `${BLOG.LINK}${record.type.toLowerCase()}/${record.id}`,
+  //       lastModified: lmd,
+  //       changeFrequency: dailyVariable,
+  //       priority: 1,
+  //     });
+  //   });
 
+  allRecordList.forEach((record) => {
+    const lmd = record.lastEditedDate
+      ? formatDate(record.date, BLOG.LANG)
+      : formatDate(record.lastEditedDate, BLOG.LANG);
+    urls.push({
+      url: `${BLOG.LINK}${record.type.toLowerCase()}/${record.notionId}`,
+      lastModified: lmd,
+      changeFrequency: dailyVariable,
+      priority: 1,
+    });
+  });
   return urls;
 }

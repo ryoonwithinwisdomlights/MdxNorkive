@@ -9,12 +9,12 @@ import { useState } from "react";
 export const MenuItemDrop = ({ link }) => {
   const [show, changeShow] = useState(false);
   const pathname = usePathname();
-
-  if (!link || !link.show) {
+  // console.log("link:::", link);
+  if (!link) {
     return null;
   }
   const hasSubMenu = link?.subMenus?.length > 0;
-  const selected = pathname === link.to;
+  const selected = pathname === link.url;
   const router = useRouter();
   const onClickUrl = (sLink) => {
     if (sLink) {
@@ -29,6 +29,7 @@ export const MenuItemDrop = ({ link }) => {
   };
 
   const renderMainMenus = () => {
+    // console.log("renderMainMenus:::", link);
     const icon = parseIcon(link.icon);
     return (
       <div
@@ -56,7 +57,7 @@ export const MenuItemDrop = ({ link }) => {
 
   const renderMainMenusWithNoSubMenus = () => {
     const icon = parseIcon(link.icon);
-
+    // console.log("renderMainMenusWithNoSubMenus:::", link);
     return (
       <div
         className={
@@ -80,6 +81,7 @@ export const MenuItemDrop = ({ link }) => {
     /* 하위 메뉴 */
   }
   const renderSubmenus = () => {
+    // console.log("renderSubmenus:::", link);
     return (
       <ul
         className={`${

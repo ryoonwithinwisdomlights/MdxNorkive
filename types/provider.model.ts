@@ -4,19 +4,26 @@ import { LeftSideBarNavItem, NavItem, OldNavItem } from "./layout.model";
 
 import { BaseArchivePageBlock } from "./record.model";
 import { SiteInfoModel } from "./index";
+import { MenuItem } from "@/app/api/types";
+
+export interface EssentialMenuInfo {
+  menuData: MenuItem[];
+}
 
 export interface EssentialNavInfo {
   siteInfo: SiteInfoModel;
   categoryOptions?: SelectOption[];
   tagOptions?: SelectOption[];
   subTypeOptions?: [];
-  oldNav?: OldNavItem[];
-  customMenu: NavItem[];
+
   notice: any;
   latestRecords: [];
   allPages: BaseArchivePageBlock[];
   handleRouter: (page: BaseArchivePageBlock) => void;
   cleanCurrentRecordData: () => void;
+  allPagesForLeftNavBar: LeftSideBarNavItem[];
+  filteredNavPages: LeftSideBarNavItem[];
+  setFilteredNavPages?: Dispatch<SetStateAction<LeftSideBarNavItem[]>>;
 }
 
 export interface GlobalNotionData {
@@ -36,9 +43,6 @@ export interface GeneralSiteSettingsProviderContext {
   setOnLoading: Dispatch<SetStateAction<boolean>>;
   searchKeyword: string;
   setSearchKeyword: Dispatch<SetStateAction<string>>;
-  allPagesForLeftNavBar: LeftSideBarNavItem[];
-  filteredNavPages: LeftSideBarNavItem[];
-  setFilteredNavPages?: Dispatch<SetStateAction<LeftSideBarNavItem[]>>;
   siteInfo?: SiteInfoModel;
   isDarkMode: boolean;
   pageNavVisible: boolean;
