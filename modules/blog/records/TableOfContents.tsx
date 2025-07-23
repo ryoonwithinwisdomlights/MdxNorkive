@@ -1,9 +1,9 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { uuidToId } from "notion-utils";
-import throttle from "lodash.throttle";
-import { isBrowser } from "react-notion-x";
 
+import throttle from "lodash.throttle";
+
+import { uuidToId, isBrowser } from "@/lib/utils/utils";
 const TableOfContents = ({ page }) => {
   if (!page) {
     return null;

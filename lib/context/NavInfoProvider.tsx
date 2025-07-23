@@ -1,16 +1,13 @@
 "use client";
 
 import { RecordItem } from "@/app/api/types";
-import { BaseArchivePageBlock, LeftSideBarNavItem } from "@/types";
-import { EssentialNavInfo, GlobalNotionData } from "@/types/provider.model";
-import { useRouter } from "next/navigation";
 import NextNProgress from "nextjs-progressbar";
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext } from "react";
 
 const GlobalContext = createContext<{ recordList: RecordItem[] } | undefined>(
   undefined
 );
-type dd = { recordList: RecordItem[] };
+type NavInfo = { recordList: RecordItem[] };
 /**
  *A Global provider that initializes the site with essential values.
  * @param children
@@ -38,7 +35,7 @@ export function NavInfoProvider({
   );
 }
 
-export const useNav = ({ from }: { from?: string }): dd => {
+export const useNav = ({ from }: { from?: string }): NavInfo => {
   const context = useContext(GlobalContext);
   if (!context) {
     throw new Error("useGlobal must be used within a GlobalContext.Provider");

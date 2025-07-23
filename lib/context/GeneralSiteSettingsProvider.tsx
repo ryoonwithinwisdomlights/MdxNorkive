@@ -1,4 +1,6 @@
 "use client";
+import { BLOG } from "@/blog.config";
+import { GeneralSiteSettingsProviderContext } from "@/types";
 import {
   createContext,
   ReactNode,
@@ -7,20 +9,14 @@ import {
   useRef,
   useState,
 } from "react";
-import { useRouter } from "next/router";
-import { BLOG } from "@/blog.config";
-import {
-  LeftSideBarNavItem,
-  GeneralSiteSettingsProviderContext,
-} from "@/types";
 
-import { initDarkMode, setThemeByLocalStorage } from "@/lib/utils/theme";
 import {
   generateLocaleDict,
   getFilteredDictionaryListKey,
   initLocale,
   saveLangToLocalStorage,
 } from "@/lib/utils/lang";
+import { initDarkMode, setThemeByLocalStorage } from "@/lib/utils/theme";
 import { toast } from "sonner";
 
 const GeneralSiteSettings =

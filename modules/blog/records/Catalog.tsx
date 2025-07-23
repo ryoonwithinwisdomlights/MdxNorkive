@@ -1,10 +1,11 @@
 "use client";
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import throttle from "lodash.throttle";
-import { uuidToId } from "notion-utils";
+// import { uuidToId } from "notion-utils";
 import { useCallback, useEffect, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
-import { isBrowser } from "react-notion-x";
+// import { isBrowser } from "react-notion-x";
+import { uuidToId, isBrowser } from "@/lib/utils/utils";
 /**
  * @param toc
  * @returns {JSX.Element}

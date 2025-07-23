@@ -5,6 +5,9 @@ import { TagIcon } from "lucide-react";
 
 const TagList = () => {
   const { tagOptions } = useGlobal({});
+  if (!tagOptions) {
+    return <div>No tag options</div>;
+  }
   return (
     <div
       className="dark:bg-black dark:text-neutral-300 

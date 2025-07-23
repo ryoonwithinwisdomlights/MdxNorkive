@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
-import { BLOG } from "./blog.config";
-const path = require("path");
+
+import path from "path";
 
 const baseConfig: NextConfig = {
   reactStrictMode: true,
@@ -46,27 +46,10 @@ const baseConfig: NextConfig = {
       },
     ],
   },
-  async rewrites() {
-    return [
-      {
-        source: "/:path*.html",
-        destination: "/:path*",
-      },
-    ];
-  },
-  async redirects() {
-    return [
-      {
-        source: "/records",
-        destination: "/records",
-        permanent: true,
-      },
-    ];
-  },
   async headers() {
     return [
       {
-        source: "/:path*{/}?",
+        source: "/api/:path*",
         headers: [
           { key: "Access-Control-Allow-Credentials", value: "true" },
           { key: "Access-Control-Allow-Origin", value: "*" },
@@ -93,10 +76,7 @@ const baseConfig: NextConfig = {
       config.resolve.fallback = {
         fs: false, // 클라이언트 번들에서 fs 제거
       };
-      config.externals = {
-        ...config.externals,
-        "@headlessui/react": "@headlessui/react", // 서버 번들에서 제외
-      };
+      // externals에서 @headlessui/react 제거
     }
 
     return config;
@@ -105,11 +85,5 @@ const baseConfig: NextConfig = {
     scrollRestoration: true,
   },
 };
-
-// withContentCollections must be the outermost wrapper
-// withContentCollections Content Collections 문서 생성 및 Markdown 콘텐츠 처리
-//withBundleAnalyzer 번들 분석 도구 활성화
-
-// const composedConfig = withContentCollections(withBundleAnalyzer(baseConfig));
 
 export default baseConfig;

@@ -12,7 +12,7 @@ export type LazyImageProps = {
   style?: any;
 };
 export type ImgProps = {
-  ref: React.RefObject<HTMLImageElement>;
+  ref: React.RefObject<HTMLImageElement | null>;
   src: string;
   alt: string;
   onLoad: () => void;

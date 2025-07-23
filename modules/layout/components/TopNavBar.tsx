@@ -1,11 +1,10 @@
 "use client";
 /* eslint-disable multiline-ternary */
 
-import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
+import { useMenu } from "@/lib/context/MenuProvider";
 import { useRef, useState } from "react";
 import TopNavMobile from "./TopNavMobile";
 import TopNavPC from "./TopNavPC";
-import { useMenu } from "@/lib/context/MenuProvider";
 
 const TopNavBar = () => {
   const { menuData } = useMenu({ from: "TopNavBar" });

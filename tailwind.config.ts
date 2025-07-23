@@ -1,7 +1,5 @@
 import { BLOG } from "./blog.config";
-import { fontFamilies } from "./lib/utils/font";
 import scrollbarHide from "tailwind-scrollbar-hide";
-// import plugin from "tailwindcss-animate";
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
@@ -15,7 +13,6 @@ module.exports = {
     "./styles/**/*.{js,ts,jsx,tsx,css}",
   ],
   theme: {
-    fontFamily: fontFamilies,
     screens: {
       sm: "540px",
       // => @media (min-width: 576px) { ... }

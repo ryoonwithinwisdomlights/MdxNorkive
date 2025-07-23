@@ -1,21 +1,13 @@
-import "dotenv/config";
 import { Client } from "@notionhq/client";
 import {
   DatabaseObjectResponse,
   PageObjectResponse,
-  PartialDatabaseObjectResponse,
-  PartialPageObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
-import { NotionToMarkdown } from "notion-to-md";
+import "dotenv/config";
 import fs from "fs/promises";
 import matter from "gray-matter";
-import slugify from "slugify";
+import { NotionToMarkdown } from "notion-to-md";
 import path from "path";
-import {
-  convertUnsafeTags,
-  enhanceContent,
-  generateUserFriendlySlug,
-} from "../lib/mdx-utils";
 type QueryDatabaseResponseArray = Array<
   PageObjectResponse | DatabaseObjectResponse
 >;

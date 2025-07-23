@@ -1,4 +1,4 @@
-import { ExtendedRecordMap } from "notion-types";
+// import { ExtendedRecordMap } from "notion-types";
 
 type ID = string;
 
@@ -10,7 +10,7 @@ export type CollectionQueryResultView = {
     hasMore: boolean;
   };
   collectionIds?: string[];
-  recordMap?: ExtendedRecordMap;
+  recordMap?: any;
 };
 
 export type BlockEntriesItem = [blockId: string, block: BlockType];

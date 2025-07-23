@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { Button } from "@/modules/common/ui/button";
 
-export default function ErrorComponent(): JSX.Element {
+export default function ErrorComponent() {
   const { locale } = useGeneralSiteSettings();
   return (
     <div className="h-screen md:w-3/5 pl-40 flex flex-col items-center justify-center  ">

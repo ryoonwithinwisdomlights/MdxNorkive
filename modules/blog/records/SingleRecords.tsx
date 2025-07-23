@@ -7,8 +7,12 @@ import { useMediaQuery } from "usehooks-ts";
 import SingleRecordsBodyForPage from "./SingleRecordsBodyForPage";
 import SingleRecordsIntroForPage from "./SingleRecordsIntroForPage";
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
+import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
 
 const SingleRecords = ({ props }) => {
+  if (!props) {
+    return <ErrorComponent />;
+  }
   const { page } = props;
   const { siteInfo } = useGlobal({ from: "SingleRecords" });
   const router = useRouter();

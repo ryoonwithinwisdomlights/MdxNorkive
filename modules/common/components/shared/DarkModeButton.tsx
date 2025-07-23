@@ -1,7 +1,7 @@
 "use client"; // 클라이언트 컴포넌트
 
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { Archive, Settings2Icon } from "lucide-react";
+import { Settings2Icon } from "lucide-react";
 
 /**
  * dark mode button

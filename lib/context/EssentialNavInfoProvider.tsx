@@ -1,7 +1,7 @@
 "use client";
 
 import { BaseArchivePageBlock, LeftSideBarNavItem } from "@/types";
-import { EssentialNavInfo, GlobalNotionData } from "@/types/provider.model";
+import { EssentialNavInfo } from "@/types/provider.model";
 import { useRouter } from "next/navigation";
 import NextNProgress from "nextjs-progressbar";
 import { createContext, ReactNode, useContext, useState } from "react";

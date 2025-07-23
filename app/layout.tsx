@@ -1,34 +1,24 @@
 import { BLOG } from "@/blog.config";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata, Viewport } from "next";
-import { Suspense } from "react";
-import "@fortawesome/fontawesome-svg-core/styles.css";
 import "./../styles/globals.css";
 
-import MobileLeftNavDrawer from "@/modules/layout/components/MobileLeftNavDrawer";
-
 // import initArchiveGlobalData from "@/lib/notion/controller";
-import BottomMenuBar from "@/modules/layout/components/menu/BottomMenuBar";
-import LoadingCover from "@/modules/common/ui/LoadingCover";
 import TopNavBar from "@/modules/layout/components/TopNavBar";
 
-import { EssentialNavInfoProvider } from "@/lib/context/EssentialNavInfoProvider";
 import { GeneralSiteSettingsProvider } from "@/lib/context/GeneralSiteSettingsProvider";
-import AuxiliaryBlogComponent from "@/modules/layout/components/AuxiliaryComponent";
 
-import { PageObserver } from "@/lib/context/PageObserver";
+import { ModalProvider } from "@/lib/context/ModalProvider";
 import JumpToTopButton from "@/modules/common/components/JumpToTopButton";
 import { ChildrenProp } from "@/types";
 import MainLayoutWrapper from "../modules/layout/templates/MainLayoutWrapper";
-import LeftNavigationBar from "@/modules/layout/components/LeftNavigationBar";
-import { ModalProvider } from "@/lib/context/ModalProvider";
 
-import { config } from "@fortawesome/fontawesome-svg-core";
-import JumpToBackButton from "@/modules/common/components/JumpToBackButton";
-import { getAllRecordPageListByType } from "@/lib/notion/controller";
 import { MenuProvider } from "@/lib/context/MenuProvider";
-import { fetchAllRecordList, fetchMenuList } from "./api/fetcher";
 import { NavInfoProvider } from "@/lib/context/NavInfoProvider";
+import JumpToBackButton from "@/modules/common/components/JumpToBackButton";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import { fetchAllRecordList, fetchMenuList } from "./api/fetcher";
 
 config.autoAddCss = false;
 

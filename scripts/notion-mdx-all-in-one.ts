@@ -44,7 +44,7 @@ type QueryDatabaseResponseArray = Array<
 >;
 
 // === ✅ 환경변수 및 설정 ===
-const NOTION_TOKEN = process.env.NOTION_TOKEN!;
+const NOTION_TOKEN = process.env.NOTION_ACCESS_TOKEN!;
 const DATABASE_ID = process.env.NOTION_DATABASE_ID!;
 const BASE_OUTPUT_DIR = path.join(process.cwd(), "content");
 const notion = new Client({ auth: NOTION_TOKEN });

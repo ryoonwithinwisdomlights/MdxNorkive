@@ -2,7 +2,6 @@ import { BLOG } from "@/blog.config";
 import {
   BaseArchivePageBlock,
   BlockEntriesItem,
-  CategoryItem,
   CollectionQueryResultView,
   FlterBlockType,
   LeftSideBarNavItem,
@@ -10,7 +9,6 @@ import {
   OldNavItem,
   RecommendPage,
   SiteInfoModel,
-  TagItem,
 } from "@/types";
 import md5 from "js-md5";
 // import { CollectionPropertySchemaMap } from "notion-types";
@@ -32,15 +30,14 @@ import {
   isStartWithHttp,
 } from "@/lib/utils/utils";
 // import { defaultMapImageUrl, getPageTableOfContents } from "notion-utils";
+import { RecordItem } from "@/app/api/types";
+import { CodeLanguages } from "@/constants/code.languge";
 import {
   compressImage,
   extractLangPrefix,
-  mapImgUrl,
   setPageGroupedByDate,
   setPageSortedByDate,
 } from "@/lib/notion/functions/utils";
-import { CodeLanguages } from "@/constants/code.languge";
-import { RecordItem } from "@/app/api/types";
 
 export function getFilteredRecordList(allPages, type) {
   const allpageCounter = { count: 0 };

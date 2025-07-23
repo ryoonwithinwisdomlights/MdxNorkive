@@ -4,6 +4,8 @@ import { type ClassValue, clsx } from "clsx";
 import React from "react";
 import { twMerge } from "tailwind-merge";
 
+export const uuidToId = (uuid: string) => uuid.replaceAll("-", "");
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }

@@ -1,5 +1,3 @@
-import { type PageMap } from "notion-types";
-
 export type NavigationStyle = "default" | "custom";
 export interface Site {
   name: string;
@@ -37,9 +35,4 @@ export type ConfirmModalProps = {
 
 export interface CanonicalPageMap {
   [canonicalPageId: string]: string;
-}
-export interface SiteMap {
-  site: Site;
-  pageMap: PageMap;
-  canonicalPageMap: CanonicalPageMap;
 }

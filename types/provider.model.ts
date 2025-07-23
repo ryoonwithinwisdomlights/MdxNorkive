@@ -1,10 +1,9 @@
-import { SelectOption } from "notion-types";
 import { Dispatch, SetStateAction } from "react";
 import { LeftSideBarNavItem, NavItem, OldNavItem } from "./layout.model";
 
-import { BaseArchivePageBlock } from "./record.model";
-import { SiteInfoModel } from "./index";
 import { MenuItem } from "@/app/api/types";
+import { SiteInfoModel } from "./index";
+import { BaseArchivePageBlock } from "./record.model";
 
 export interface EssentialMenuInfo {
   menuData: MenuItem[];
@@ -12,8 +11,8 @@ export interface EssentialMenuInfo {
 
 export interface EssentialNavInfo {
   siteInfo: SiteInfoModel;
-  categoryOptions?: SelectOption[];
-  tagOptions?: SelectOption[];
+  categoryOptions?: any[];
+  tagOptions?: any[];
   subTypeOptions?: [];
 
   notice: any;
@@ -29,8 +28,8 @@ export interface EssentialNavInfo {
 export interface GlobalNotionData {
   notice: any;
   siteInfo: SiteInfoModel;
-  categoryOptions?: SelectOption[];
-  tagOptions?: SelectOption[];
+  categoryOptions?: any[];
+  tagOptions?: any[];
   subTypeOptions?: [];
   oldNav?: OldNavItem[];
   customMenu: NavItem[];

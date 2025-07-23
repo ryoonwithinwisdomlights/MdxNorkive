@@ -5,6 +5,9 @@ import { useRouter } from "next/navigation";
 
 const CategoryList = () => {
   const { categoryOptions } = useGlobal({});
+  if (!categoryOptions) {
+    return <div>No category options</div>;
+  }
   const router = useRouter();
   const onClickHandler = (categoryId) => {
     router.push(`/category/${categoryId}`);
