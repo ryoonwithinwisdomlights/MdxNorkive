@@ -1,7 +1,7 @@
 import { BLOG } from "./blog.config";
 import { fontFamilies } from "./lib/utils/font";
 import scrollbarHide from "tailwind-scrollbar-hide";
-import plugin from "tailwindcss-animate";
+// import plugin from "tailwindcss-animate";
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
@@ -35,11 +35,6 @@ module.exports = {
         night: {
           DEFAULT: BLOG.BACKGROUND_DARK || "#111827",
         },
-        norkive: {
-          light: "#f1efe9e2",
-          medium: "#cbcac4e2",
-        },
-
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -100,5 +95,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [plugin, scrollbarHide],
+  plugins: [scrollbarHide],
 };

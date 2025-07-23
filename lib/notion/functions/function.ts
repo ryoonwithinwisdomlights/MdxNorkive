@@ -13,7 +13,7 @@ import {
   TagItem,
 } from "@/types";
 import md5 from "js-md5";
-import { CollectionPropertySchemaMap } from "notion-types";
+// import { CollectionPropertySchemaMap } from "notion-types";
 import {
   ARCHIVE_PROPERTIES_STATUS_MAP,
   ARCHIVE_PROPERTIES_TYPE_MAP,
@@ -31,7 +31,7 @@ import {
   getLastSegmentFromUrl,
   isStartWithHttp,
 } from "@/lib/utils/utils";
-import { defaultMapImageUrl, getPageTableOfContents } from "notion-utils";
+// import { defaultMapImageUrl, getPageTableOfContents } from "notion-utils";
 import {
   compressImage,
   extractLangPrefix,
@@ -54,40 +54,40 @@ export function getFilteredRecordList(allPages, type) {
   return recordList;
 }
 
-export function getPageCover(postInfo) {
-  const pageCover = postInfo.format?.page_cover;
-  if (pageCover) {
-    if (pageCover.startsWith("/")) return BLOG.NOTION_HOST + pageCover;
-    if (pageCover.startsWith("http"))
-      return defaultMapImageUrl(pageCover, postInfo);
-  }
-}
+// export function getPageCover(postInfo) {
+//   const pageCover = postInfo.format?.page_cover;
+//   if (pageCover) {
+//     if (pageCover.startsWith("/")) return BLOG.NOTION_HOST + pageCover;
+//     if (pageCover.startsWith("http"))
+//       return defaultMapImageUrl(pageCover, postInfo);
+//   }
+// }
 
 /**
  * Get label options
  * @param schema
  * @returns {undefined}
  */
-export function getTagOptions(schema: CollectionPropertySchemaMap) {
-  if (!schema) return [];
-  const tagSchema = Object.values(schema).find(
-    (element) => element.name === BLOG.NOTION_PROPERTY_NAME.tags
-  ) as TagItem | undefined;
-  return tagSchema?.options || [];
-}
+// export function getTagOptions(schema: CollectionPropertySchemaMap) {
+//   if (!schema) return [];
+//   const tagSchema = Object.values(schema).find(
+//     (element) => element.name === BLOG.NOTION_PROPERTY_NAME.tags
+//   ) as TagItem | undefined;
+//   return tagSchema?.options || [];
+// }
 
 /**
  * Get classification options
  * @param schema
  * @returns {{}|*|*[]}
  */
-export function getCategoryOptions(schema: CollectionPropertySchemaMap) {
-  if (!schema) return {};
-  const categorySchema = Object.values(schema).find(
-    (e) => e.name === BLOG.NOTION_PROPERTY_NAME.category
-  ) as CategoryItem | undefined;
-  return categorySchema?.options || [];
-}
+// export function getCategoryOptions(schema: CollectionPropertySchemaMap) {
+//   if (!schema) return {};
+//   const categorySchema = Object.values(schema).find(
+//     (e) => e.name === BLOG.NOTION_PROPERTY_NAME.category
+//   ) as CategoryItem | undefined;
+//   return categorySchema?.options || [];
+// }
 
 /**
  * Get the Categories or Tags of all Records
@@ -937,20 +937,20 @@ export function filterRecordBlocks(id, pageBlock) {
   return newPageBlock;
 }
 
-export function setPageTableOfContentsByRecord(props) {
-  if (props?.page?.blockMap?.block) {
-    props.page.content = Object.keys(props?.page.blockMap.block).filter(
-      (key) =>
-        props?.page.blockMap.block[key]?.value?.parent_id === props?.page.id
-    );
-    props.page.tableOfContents = getPageTableOfContents(
-      props?.page,
-      props?.page.blockMap
-    );
-  } else {
-    props.page.tableOfContents = [];
-  }
-}
+// export function setPageTableOfContentsByRecord(props) {
+//   if (props?.page?.blockMap?.block) {
+//     props.page.content = Object.keys(props?.page.blockMap.block).filter(
+//       (key) =>
+//         props?.page.blockMap.block[key]?.value?.parent_id === props?.page.id
+//     );
+//     props.page.tableOfContents = getPageTableOfContents(
+//       props?.page,
+//       props?.page.blockMap
+//     );
+//   } else {
+//     props.page.tableOfContents = [];
+//   }
+// }
 
 export function setPrevNextPages(recommendPages, props) {
   if (recommendPages && recommendPages.length > 0) {

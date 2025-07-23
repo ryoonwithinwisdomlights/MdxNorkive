@@ -12,10 +12,10 @@
       "@/*": ["./*"],
       "@/lib/*": ["lib/*"],
       // "@/styles/*": ["styles/*"],
+      "@/components/*": ["components/*"],
       "@/context/*": ["lib/context/*"],
       "@/modules/*": ["modules/*"],
       "@/types/*": ["types/*"],
-      "content-collections": ["./.content-collections/generated"]
     },
 
     "allowJs": true,

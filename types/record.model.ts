@@ -1,5 +1,5 @@
-import { ExtendedRecordMap, SelectOption } from "notion-types";
-import { TableOfContentsEntry } from "notion-utils";
+// import { ExtendedRecordMap, SelectOption } from "notion-types";
+// import { TableOfContentsEntry } from "notion-utils";
 type TextRequest = string;
 type IdRequest = string | string;
 export type EmojiRequest =
@@ -3708,7 +3708,7 @@ export type PageBlockDataProps = {
   type?: string;
   slice?: number;
   retryAttempts?: number;
-  recordMap?: ExtendedRecordMap;
+  recordMap?: any;
 };
 
 export type ExternalPageCoverResponse = {
@@ -3738,14 +3738,14 @@ export interface TagItem {
   color: string;
   name?: string;
   id?: string;
-  options?: SelectOption[];
+  options?: any[];
   count?: number;
 }
 export interface CategoryItem {
   color: string;
   name?: string;
   id?: string;
-  options?: SelectOption[];
+  options?: any[];
   count?: number;
 }
 
@@ -3783,9 +3783,9 @@ export type BaseArchivePageBlock = {
   icon?: string;
   results?: any;
   password?: string;
-  tableOfContents?: TableOfContentsEntry[] | [];
-  RecordMap?: ExtendedRecordMap | null;
-  blockMap?: ExtendedRecordMap | null;
+  tableOfContents?: any[] | [];
+  RecordMap?: any | null;
+  blockMap?: any | null;
   prev?: BaseArchivePageBlock | null;
   next?: BaseArchivePageBlock | null;
   recommendPages?: RecommendPage[] | [];
@@ -3819,9 +3819,9 @@ export type BaseArchivePageBlock2 = {
   icon?: string;
   results?: any;
   password?: string;
-  tableOfContents?: TableOfContentsEntry[] | [];
-  RecordMap?: ExtendedRecordMap | null;
-  blockMap?: ExtendedRecordMap | null;
+  tableOfContents?: any[] | [];
+  RecordMap?: any | null;
+  blockMap?: any | null;
   prev?: BaseArchivePageBlock | null;
   next?: BaseArchivePageBlock | null;
   recommendPages?: RecommendPage[] | [];
