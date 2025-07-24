@@ -77,6 +77,8 @@ export default async function RootLayout({ children }: ChildrenProp) {
   return (
     <html lang="en" suppressHydrationWarning className={GeistSans.className}>
       <body>
+      <RootProvider>
+   
         <MenuProvider menuData={menuData}>
           {/* <EssentialNavInfoProvider
             globalNotionData={globalNotionData}
@@ -91,18 +93,17 @@ export default async function RootLayout({ children }: ChildrenProp) {
                
                 {/* <AuxiliaryBlogComponent /> */}
                 {/* <Suspense fallback={<LoadingCover />}> */}
-                <RootProvider>
+              
                 <TopNavBar />
-                <div className=" w-screen md:flex  justify-center ">
-                  <div className="w-screen h-screen justify-center ">
-                    <div className=" dark:bg-black dark:text-neutral-300 py-40  items-center  px-10 
+              
+                 
+                    <div className=" dark:bg-black dark:text-neutral-300 py-20   px-10 
      flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain "> {children}</div>
                  
                     {/* <LeftNavigationBar /> */}
                     {/* <MainLayoutWrapper>{children}</MainLayoutWrapper> */}
-                  </div>
-                </div>
-                </RootProvider>
+                  
+              
                 {/* </Suspense> */}
                 <JumpToTopButton />
                 <JumpToBackButton />
@@ -118,6 +119,7 @@ export default async function RootLayout({ children }: ChildrenProp) {
           </NavInfoProvider>
           {/* </EssentialNavInfoProvider> */}
         </MenuProvider>
+        </RootProvider>
       </body>
     </html>
   );

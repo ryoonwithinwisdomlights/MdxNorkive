@@ -15,7 +15,8 @@ export default async function Page(props: {
   if (!params.slug || params.slug.length === 0) {
     return (
       <DocsPage>
-        <div className="space-y-6">
+        {/* <div className="space-y-6"></div> */}
+        <div className="">
           <div>
             <h1 className="text-3xl font-bold">Records</h1>
             <p className="text-muted-foreground mt-2">
