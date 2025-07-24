@@ -151,7 +151,7 @@ export class NotionPageListAdapter {
     const menus: MenuItem[] = [];
     if (this.pageList && this.pageList.length > 0) {
       this.pageList.sort((a, b) => {
-        const typeOrder = { Menu: 0, SubMenuPage: 1, Submenu: 2 };
+        const typeOrder = { Menu: 0, SubMenuPage: 1, Submenu: 1 };
         return (
           typeOrder[(a.properties as any)?.type?.select?.name] -
           typeOrder[(b.properties as any)?.type?.select?.name]

@@ -5,6 +5,7 @@ import { useMenu } from "@/lib/context/MenuProvider";
 import { useRef, useState } from "react";
 import TopNavMobile from "./TopNavMobile";
 import TopNavPC from "./TopNavPC";
+import { NavbarSidebarTrigger } from "../docs-min";
 
 const TopNavBar = () => {
   const { menuData } = useMenu({ from: "TopNavBar" });
@@ -17,13 +18,14 @@ const TopNavBar = () => {
   };
 
   return (
-    <div id="top-nav" className={"fixed top-0 w-full z-40 "}>
+    <div id="top-nav" className={"fixed top-0 w-full z-40 bg-white dark:bg-neutral-900 "}>
       <TopNavPC links={links} />
       <TopNavMobile
         collapseRef={collapseRef}
         isOpen={isOpen}
         toggleMenuOpen={toggleMenuOpen}
       />
+      <NavbarSidebarTrigger className="md:hidden" />
     </div>
   );
 };

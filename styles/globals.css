@@ -64,6 +64,16 @@ body{
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
   }
+  :root,
+  #nd-docs-layout {
+    --fd-layout-offset: max(calc(50vw - var(--fd-layout-width) / 2), 0px);
+  }
+}
+
+@variant max-xl {
+  #nd-docs-layout:has([data-toc-popover]) {
+    --fd-tocnav-height: calc(var(--spacing) * 10);
+  }
 }
 
 @layer utilities {

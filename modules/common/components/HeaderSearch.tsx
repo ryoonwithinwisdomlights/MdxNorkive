@@ -1,30 +1,37 @@
 "use client";
 
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { recordsource } from "@/lib/source";
 import Fuse from "fuse.js";
 import debounce from "lodash.debounce";
 import { Search, XIcon } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import SearchResultSkeleton from "../ui/search-result-skeleton";
-import Link from "next/link";
-import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
-import { useNav } from "@/lib/context/NavInfoProvider";
-
 export default function HeaderSearch() {
   const { locale } = useGeneralSiteSettings();
-  const { recordList } = useNav({ from: "header-search" });
+  // const { recordList } = useNav({ from: "header-search" });
+  const pages = recordsource.getPages();
+  // console.log("pages::", pages);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<{ title: string; url: string }[]>([]);
   const [loading, setLoading] = useState(false);
-
-  const groupedArray = recordList?.map((item: any) => {
+  const groupedArray = pages?.map((page: any) => {
     return {
-      id: item.notionId,
-      category: item.category,
-      title: item.title,
-      url: item.slug,
+      id: page.data.notionId,
+      category: page.data.category,
+      title: page.data.title,
+      url: page.url,
     };
   });
+  // const groupedArray = recordList?.map((item: any) => {
+  //   return {
+  //     id: item.notionId,
+  //     category: item.category,
+  //     title: item.title,
+  //     url: item.slug,
+  //   };
+  // });
 
   const fuse = useMemo(
     () =>

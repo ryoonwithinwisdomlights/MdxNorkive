@@ -1,9 +1,9 @@
 import { BLOG } from "@/blog.config";
-import "./../styles/globals.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
+import { RootProvider } from 'fumadocs-ui/provider';
 import { GeistSans } from "geist/font/sans";
 import type { Metadata, Viewport } from "next";
-import { RootProvider } from 'fumadocs-ui/provider';
+import "./../styles/globals.css";
 
 // import initArchiveGlobalData from "@/lib/notion/controller";
 import TopNavBar from "@/modules/layout/components/TopNavBar";
@@ -13,7 +13,6 @@ import { GeneralSiteSettingsProvider } from "@/lib/context/GeneralSiteSettingsPr
 import { ModalProvider } from "@/lib/context/ModalProvider";
 import JumpToTopButton from "@/modules/common/components/JumpToTopButton";
 import { ChildrenProp } from "@/types";
-import MainLayoutWrapper from "../modules/layout/templates/MainLayoutWrapper";
 
 import { MenuProvider } from "@/lib/context/MenuProvider";
 import { NavInfoProvider } from "@/lib/context/NavInfoProvider";
@@ -77,7 +76,7 @@ export default async function RootLayout({ children }: ChildrenProp) {
   return (
     <html lang="en" suppressHydrationWarning className={GeistSans.className}>
       <body>
-      <RootProvider>
+      <RootProvider theme={{enabled: false}}>
    
         <MenuProvider menuData={menuData}>
           {/* <EssentialNavInfoProvider
@@ -88,7 +87,7 @@ export default async function RootLayout({ children }: ChildrenProp) {
             <GeneralSiteSettingsProvider>
               <div
                 id="gitbook"
-                className={`${BLOG.FONT_STYLE}  w-screen h-screen justify-center dark:text-neutral-300  pb-16  md:pb-0 `}
+                className={` w-screen h-screen justify-center dark:text-neutral-300  pb-16  md:pb-0 `}
               >
                
                 {/* <AuxiliaryBlogComponent /> */}
@@ -97,7 +96,7 @@ export default async function RootLayout({ children }: ChildrenProp) {
                 <TopNavBar />
               
                  
-                    <div className=" dark:bg-black dark:text-neutral-300 py-20   px-10 
+                    <div className=" dark:bg-black dark:text-neutral-300 py-20  
      flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain "> {children}</div>
                  
                     {/* <LeftNavigationBar /> */}

@@ -17,7 +17,7 @@ export interface DocsLayoutProps {
 export function DocsLayout({ tree, children }: DocsLayoutProps) {
   return (
     <TreeContextProvider tree={tree}>
-      <header className="sticky top-0 bg-fd-background h-14 z-20">
+      {/* <header className="sticky top-0 h-14 z-20 ">
         <nav className="flex flex-row items-center gap-2 size-full px-4">
           <Link href="/" className="font-medium mr-auto">
             My Docs
@@ -26,10 +26,10 @@ export function DocsLayout({ tree, children }: DocsLayoutProps) {
           <SearchToggle />
           <NavbarSidebarTrigger className="md:hidden" />
         </nav>
-      </header>
+      </header> */}
       <main
         id="nd-docs-layout"
-        className="flex flex-1 flex-row [--fd-nav-height:56px]"
+        className="h-screen  overflow-y-auto scrollbar-hide overscroll-contain flex flex-1 flex-row [--fd-nav-height:56px] bg-amber-300"
       >
         <Sidebar />
         {children}
@@ -53,7 +53,7 @@ function SearchToggle(props: ComponentProps<"button">) {
   );
 }
 
-function NavbarSidebarTrigger(props: ComponentProps<"button">) {
+export function NavbarSidebarTrigger(props: ComponentProps<"button">) {
   const { open, setOpen } = useSidebar();
 
   return (
@@ -86,7 +86,7 @@ function Sidebar() {
   return (
     <aside
       className={cn(
-        "fixed flex flex-col shrink-0 p-4 top-14 z-20 text-sm overflow-auto md:sticky md:h-[calc(100dvh-56px)] md:w-[300px]",
+        "h-screen overflow-y-auto scrollbar-hide overscroll-contain fixed flex flex-col shrink-0 p-4  z-20 text-sm overflow-auto md:sticky md:h-[calc(100dvh-56px)] md:w-[300px]",
         "max-md:inset-x-0 max-md:bottom-0 max-md:bg-fd-background",
         !open && "max-md:invisible"
       )}
