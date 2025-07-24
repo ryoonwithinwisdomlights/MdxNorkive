@@ -3,7 +3,7 @@ import "./../styles/globals.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata, Viewport } from "next";
-
+import { RootProvider } from 'fumadocs-ui/provider';
 
 // import initArchiveGlobalData from "@/lib/notion/controller";
 import TopNavBar from "@/modules/layout/components/TopNavBar";
@@ -88,15 +88,21 @@ export default async function RootLayout({ children }: ChildrenProp) {
                 id="gitbook"
                 className={`${BLOG.FONT_STYLE}  w-screen h-screen justify-center dark:text-neutral-300  pb-16  md:pb-0 `}
               >
-                <TopNavBar />
+               
                 {/* <AuxiliaryBlogComponent /> */}
                 {/* <Suspense fallback={<LoadingCover />}> */}
-                <div className=" w-screen md:flex md:flex-row justify-center ">
+                <RootProvider>
+                <TopNavBar />
+                <div className=" w-screen md:flex  justify-center ">
                   <div className="w-screen h-screen justify-center ">
+                    <div className=" dark:bg-black dark:text-neutral-300 py-40  items-center  px-10 
+     flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain "> {children}</div>
+                 
                     {/* <LeftNavigationBar /> */}
-                    <MainLayoutWrapper>{children}</MainLayoutWrapper>
+                    {/* <MainLayoutWrapper>{children}</MainLayoutWrapper> */}
                   </div>
                 </div>
+                </RootProvider>
                 {/* </Suspense> */}
                 <JumpToTopButton />
                 <JumpToBackButton />

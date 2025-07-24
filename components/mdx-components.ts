@@ -1,0 +1,79 @@
+// 색상 팔레트 시각화 (디자인 시스템 문서에서만 필요)
+// import { ColorGrid } from "@/components/color-grid";
+// 컴포넌트 예시 (컴포넌트 라이브러리 문서에서만 필요)
+// import { ComponentExample } from "@/components/component-example";
+// 컴포넌트 스펙 블록 (컴포넌트 문서에서만 필요)
+// import { ComponentSpecBlock } from "@/components/component-spec-block";
+// 수동 설치 안내 (특정 문서에서만 필요)
+// import { ManualInstallation } from "@/components/manual-installation";
+// 디자인 토큰 레퍼런스 (디자인 시스템에서만 필요)
+// import { TokenReference } from "@/components/token-reference";
+// React 타입 테이블 생성기 (ReactTypeTable을 쓸 때만 필요)
+// import { createReactTypeTable } from "@/components/type-table/react-type-table";
+// 아코디언 UI
+import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
+// 코드 블록
+import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
+// 파일/폴더 UI
+import { File, Files, Folder } from "fumadocs-ui/components/files";
+// 단계별 UI
+import { Step, Steps } from "fumadocs-ui/components/steps";
+// 탭 UI
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+// 타입 테이블 (타입스크립트 문서화)
+import { TypeTable } from "fumadocs-ui/components/type-table";
+// 기본 MDX 컴포넌트 (반드시 필요)
+import defaultMdxComponents from "fumadocs-ui/mdx";
+// 아이콘 (특정 문서에서만 필요)
+import { AtomIcon } from "lucide-react";
+// MDX 타입
+import { MDXComponents } from "mdx/types";
+// import * as fumaui from "fumadocs-ui/components";
+// 아이콘 라이브러리 (Seed Design 특화)
+// import { IconLibrary } from "./iconography/icons";
+// 색상 마이그레이션 인덱스 (Seed Design 특화)
+// import { ColorMigrationIndex } from "./migration/color-migration-index";
+// 아이콘 마이그레이션 (Seed Design 특화)
+// import { V2Icon, V2IconColor, V3Icon } from "./migration/icon";
+// 아이콘 마이그레이션 인덱스 (Seed Design 특화)
+// import { IconographyMigrationIndex } from "./migration/iconography-migration-index";
+// 타이포 마이그레이션 인덱스 (Seed Design 특화)
+// import { TypographyMigrationIndex } from "./migration/typography-migration-index";
+// 빌드 툴 아이콘 (특정 문서에서만 필요)
+// import { ViteIcon, WebpackIcon } from "./tool-icon";
+// 타입 테이블 생성기 (ReactTypeTable을 쓸 때만 필요)
+// import { typeTableGenerator } from "./type-table/generator";
+
+// const { ReactTypeTable } = createReactTypeTable(typeTableGenerator); // React 타입 테이블 (특정 문서에서만 필요)
+
+export const mdxComponents: MDXComponents = {
+  ...defaultMdxComponents,
+  // ManualInstallation,
+  // ComponentExample,
+  // TokenReference,
+  // ComponentSpecBlock,
+  Tab,
+  Tabs,
+  Step,
+  Steps,
+  File,
+  Folder,
+  Files,
+  Accordion,
+  Accordions,
+  CodeBlock,
+  Pre,
+  AtomIcon,
+  // WebpackIcon,
+  // ViteIcon,
+  TypeTable,
+  // ReactTypeTable,
+  // ColorGrid,
+  // V3Icon,
+  // V2Icon,
+  // V2IconColor,
+  // IconLibrary,
+  // ColorMigrationIndex,
+  // TypographyMigrationIndex,
+  // IconographyMigrationIndex,
+};

@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
-
+import { withContentCollections } from "@content-collections/next";
 import path from "path";
 
+/** @type {import('next').NextConfig} */
 const baseConfig: NextConfig = {
   reactStrictMode: true,
   eslint: {
@@ -86,4 +87,4 @@ const baseConfig: NextConfig = {
   },
 };
 
-export default baseConfig;
+export default withContentCollections(baseConfig);;
