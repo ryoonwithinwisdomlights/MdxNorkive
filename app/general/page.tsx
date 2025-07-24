@@ -8,6 +8,7 @@ export default function Page() {
   return (
     <GeneralRecordTypePageWrapper>
       {/* <GeneralRecordPage /> */}
+      <div>No result</div>
       <RightSlidingDrawer props={props} />
     </GeneralRecordTypePageWrapper>
   );

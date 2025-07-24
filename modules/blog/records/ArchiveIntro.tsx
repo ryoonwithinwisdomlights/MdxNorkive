@@ -17,7 +17,7 @@ const ArchiveIntro = () => {
   const modAllPages = isAble
     ? setAllPagesGetSortedGroupedByDate(true, recordList)
     : {};
-  console.log("modAllPages:", modAllPages);
+  // console.log("modAllPages:", modAllPages);
   return (
     <div
       id="main-scroll-container"

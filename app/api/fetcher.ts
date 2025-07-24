@@ -75,7 +75,7 @@ export const fetchAllRecordList = cache(async (): Promise<RecordItem[]> => {
       },
     ],
   });
-  console.log("queryResponse:::", queryResponse);
+  // console.log("queryResponse:::", queryResponse);
   const convertedAllRecordList = new NotionPageListAdapter(
     queryResponse.results as Array<QueryPageResponse>
   ).convertToAllRecordList();

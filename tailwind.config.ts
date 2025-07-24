@@ -8,9 +8,20 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,}",
     "./context/**/*.{js,ts,jsx,tsx,}",
     "./lib/**/*.{js,ts,jsx,tsx,}",
-    "./app/**/*.{js,ts,jsx,tsx,}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./types/**/*.{js,ts,jsx,tsx,}",
     "./styles/**/*.{js,ts,jsx,tsx,css}",
+  ],
+  safelist: [
+    "wrapper",
+    "shadow-card",
+    "scroll-hidden",
+    "glassmorphism",
+    "medium-zoom-overlay",
+    "shadow-text",
+    "forbid-copy",
+    "no-scrollbar",
+    // 필요시 추가
   ],
   theme: {
     screens: {
@@ -88,9 +99,6 @@ module.exports = {
         2: "0px 5px 12px 0px rgba(0, 0, 0, 0.10)",
       },
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [scrollbarHide],
 };

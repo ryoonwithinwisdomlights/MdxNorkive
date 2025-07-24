@@ -1,16 +1,9 @@
 import React from "react";
 
-export default function GeneralRecordTypePageWrapper({
-  children,
-}: {
+type Props = {
   children: React.ReactNode;
-}) {
-  return (
-    <div
-      className="w-full h-screen flex flex-row justify-between
-     items-start dark:bg-black dark:text-neutral-200  md:pt-14 pt-10 pb-20 "
-    >
-      {children}
-    </div>
-  );
+};
+
+export default function GeneralRecordTypePageWrapper({ children }: Props) {
+  return <div>{children}</div>;
 }

@@ -1,8 +1,9 @@
 import { BLOG } from "@/blog.config";
+import "./../styles/globals.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata, Viewport } from "next";
-import "./../styles/globals.css";
+
 
 // import initArchiveGlobalData from "@/lib/notion/controller";
 import TopNavBar from "@/modules/layout/components/TopNavBar";
