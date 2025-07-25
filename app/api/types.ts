@@ -135,6 +135,16 @@ export interface QueryPageResponse
       } | null;
       id: string;
     };
+    upper_item: {
+      type: "relation";
+      relation: Array<PartialSelectResponse>;
+      id: string;
+    };
+    sub_item: {
+      type: "relation";
+      relation: Array<PartialSelectResponse>;
+      id: string;
+    };
     // icon:
     //   | {
     //       type: "emoji";
@@ -232,8 +242,12 @@ export interface MenuItem {
   icon?: string;
   url?: string;
   slug?: string;
-  type?: string;
+  type: string;
   title?: string;
+  publishDate: number;
+  childRelations?: Array<{
+    id: string;
+  }>;
   subMenus?: MenuItem[]; // 재귀적 구조
 }
 

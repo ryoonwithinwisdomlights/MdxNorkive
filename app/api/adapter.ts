@@ -9,17 +9,39 @@ import type {
 } from "@/app/api/types";
 import { INCLUDED_MENU_TYPES } from "@/constants/menu.constants";
 import { generateUserFriendlySlug } from "@/lib/utils/mdx-utils";
+import { notion } from "@/app/api/clients";
 
-function generateMenuItem(page: QueryDatabaseResponse): MenuItem {
-  const slugSet = new Set<string>();
+async function generateChildRelations(childRelations: Array<{ id: string }>) {
+  const childIds = childRelations.map((rel) => rel.id);
+  // 하위항목 id로 각각의 페이지 정보 가져오기
+  const children = await Promise.all(
+    childIds.map(async (childId) => {
+      const childPage = await notion.pages.retrieve({ page_id: childId });
+      const childProps = generateMenuItem(childPage as QueryDatabaseResponse);
+      return childProps;
+    })
+  );
+
+  // console.log("children:::", children);
+  return children;
+}
+async function generateMenuItem(page: QueryDatabaseResponse) {
   const id = page.id.replace(/-/g, "");
   const props = page.properties as any;
+  const childRelations = props.sub_item?.relation || [];
   const type = props.type?.select?.name;
+  const publishDate = new Date(
+    props?.date?.date?.start || page.created_time
+  ).getTime();
   const title = props.title?.title?.[0]?.plain_text?.trim() || "Untitled";
-  const sub_type = props.sub_type?.select?.name || "";
+  // const sub_type = props.sub_type?.select?.name || "";
   const icon = props.menuicon?.rich_text?.[0]?.plain_text?.trim() || "";
-  const slug =
-    type === "Menu" ? "" : generateUserFriendlySlug(sub_type, title, slugSet);
+  const slug = props.slug?.rich_text?.[0]?.plain_text?.trim() || "";
+  const subMenus =
+    childRelations.length > 0
+      ? await generateChildRelations(childRelations)
+      : [];
+
   return {
     id: id,
     icon: icon,
@@ -27,7 +49,9 @@ function generateMenuItem(page: QueryDatabaseResponse): MenuItem {
     slug: slug,
     url: slug,
     title: title,
-    subMenus: [],
+    publishDate: publishDate,
+    childRelations: childRelations,
+    subMenus: subMenus,
   };
 }
 
@@ -137,46 +161,20 @@ export class NotionPageAdapter {
 
 export class NotionPageListAdapter {
   private pageList: QueryDatabaseResponseArray;
-  // private id = page.id.replace(/-/g, "");
-  // private props = page.properties as any;
   constructor(pageList: QueryDatabaseResponseArray) {
     this.pageList = pageList;
   }
 
-  convertToMenuItemList(): MenuItem[] {
-    // const menuPages = this.pageList.filter((page) => {
-    //   const type = (page.properties as any)?.type?.select?.name;
-    //   return INCLUDED_MENU_TYPES.includes(type);
-    // });
-    const menus: MenuItem[] = [];
+  convertToBasicMenuItemList(): MenuItem[] {
+    let menus: MenuItem[] = [];
     if (this.pageList && this.pageList.length > 0) {
-      this.pageList.sort((a, b) => {
-        const typeOrder = { Menu: 0, SubMenuPage: 1, Submenu: 1 };
-        return (
-          typeOrder[(a.properties as any)?.type?.select?.name] -
-          typeOrder[(b.properties as any)?.type?.select?.name]
-        );
-      });
-      this.pageList.forEach((item) => {
-        const menuItem = generateMenuItem(item as QueryDatabaseResponse);
-        // console.log("menuItem:", menuItem);
-        const type = (item.properties as any)?.type?.select?.name;
-        // console.log("type:", type);
-        if (type === "Menu") {
-          menus.push(menuItem);
-        } else {
-          const parentMenu = menus[menus.length - 1];
-          // console.log("parentMenu:", type);
-          if (parentMenu) {
-            if (parentMenu.subMenus) {
-              parentMenu.subMenus.push(menuItem);
-            } else {
-              parentMenu.subMenus = [menuItem];
-            }
-          }
-        }
+      this.pageList.forEach(async (item) => {
+        const menuItem = await generateMenuItem(item as QueryDatabaseResponse);
+        menus.push(menuItem);
       });
     }
+
+    // console.log("menus:::", menus);
     return menus;
   }
 

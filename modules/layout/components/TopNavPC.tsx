@@ -2,8 +2,11 @@ import HeaderSearch from "@/modules/common/components/HeaderSearch";
 import LogoBar from "@/modules/common/ui/LogoBar";
 import { MenuItemDrop } from "@/modules/layout/components/menu/MenuItemDrop";
 import SettingButton from "@/modules/common/components/shared/SettingButton";
+import { useMenu } from "@/lib/context/MenuProvider";
 
-const TopNavPC = ({ links }) => {
+const TopNavPC = () => {
+  const { menuData } = useMenu({ from: "TopNavBar" });
+  const links = menuData;
   // console.log("TopNavPC links:::", links);
   return (
     <div className="hidden md:flex w-full h-16 shadow bg-white dark:bg-neutral-900 px-7 items-between dark:border-b-2 dark:border-neutral-800">

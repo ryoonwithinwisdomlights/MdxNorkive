@@ -8,24 +8,24 @@ import TopNavPC from "./TopNavPC";
 import { NavbarSidebarTrigger } from "../docs-min";
 
 const TopNavBar = () => {
-  const { menuData } = useMenu({ from: "TopNavBar" });
+
   const [isOpen, changeShow] = useState(false);
   const collapseRef = useRef<any>(null);
 
-  const links = menuData;
+
   const toggleMenuOpen = () => {
     changeShow(!isOpen);
   };
 
   return (
     <div id="top-nav" className={"fixed top-0 w-full z-40 bg-white dark:bg-neutral-900 "}>
-      <TopNavPC links={links} />
+      <TopNavPC  />
       <TopNavMobile
         collapseRef={collapseRef}
         isOpen={isOpen}
         toggleMenuOpen={toggleMenuOpen}
       />
-      <NavbarSidebarTrigger className="md:hidden" />
+      {/* <NavbarSidebarTrigger className="md:hidden" /> */}
     </div>
   );
 };
