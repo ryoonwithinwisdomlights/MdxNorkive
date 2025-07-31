@@ -15,6 +15,8 @@ interface CategoryItem {
 }
 
 const RecordBodyForPage = () => {
+  const pathname = usePathname();
+  const subType = pathname.split("/")[1].toLowerCase();
   const router = useRouter();
   const searchParams = useSearchParams();
   const pages = getPages();
@@ -28,7 +30,7 @@ const RecordBodyForPage = () => {
   const { filteredPages, allCategories } = useMemo(() => {
     // 기본 필터링: Project 타입만
     const projectPages = pages.filter(
-      (page) => page.data.sub_type === "Project"
+      (page) => page.data.sub_type?.toLowerCase() === subType
     );
 
     // 카테고리 파라미터가 있으면 추가 필터링
@@ -56,13 +58,13 @@ const RecordBodyForPage = () => {
       {
         id: -1,
         title: "All",
-        href: "/project",
+        href: `/${subType}`,
         isActive: !categoryParam, // 카테고리 파라미터가 없으면 활성
       },
       ...uniqueCategories.map((category, index) => ({
         id: index,
         title: category,
-        href: `/project?category=${category.toLowerCase()}`,
+        href: `/${subType}?category=${category.toLowerCase()}`,
         isActive: categoryParam?.toLowerCase() === category.toLowerCase(), // 현재 선택된 카테고리인지 확인
       })),
     ];

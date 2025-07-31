@@ -1,25 +1,38 @@
 "use client";
-import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
-import { setAllPagesGetSortedGroupedByDate } from "@/lib/notion/functions/function";
+import {
+  setPageGroupedByDate2,
+  setPageSortedByDate2,
+} from "@/lib/notion/functions/utils";
+import { getPages } from "@/lib/source";
 import { isObjectNotEmpty } from "@/lib/utils/utils";
-import { usePathname } from "next/navigation";
 import AllRecords from "./AllRecords";
 import NoRecordFound from "./NoRecordFound";
+import NotFound from "@/app/not-found";
+
+export function setAllPagesGetSortedGroupedByDate(allPages) {
+  let result = allPages;
+  const pageSortedByDate = setPageSortedByDate2(allPages, "date");
+  const pageGroupedByDate = setPageGroupedByDate2(pageSortedByDate, "date");
+  result = pageGroupedByDate;
+
+  return result;
+}
 
 const GeneralRecordPage = () => {
-  const pathname = usePathname();
-  const type = pathname.split("/")[1];
+  const pages = getPages();
 
-  const { allPages } = useGlobal({ from: type });
-  const isAble = isObjectNotEmpty(allPages);
-  const modAllPages = isAble
-    ? setAllPagesGetSortedGroupedByDate(true, allPages)
-    : {};
+  if (!pages) NotFound();
+  console.log("pages::", pages);
+  const filteredPages = pages.filter(
+    (page) =>
+      page.data.sub_type !== "Engineering" && page.data.sub_type !== "Project"
+  );
+  const isAble = isObjectNotEmpty(filteredPages);
+  const modAllPages = setAllPagesGetSortedGroupedByDate(filteredPages);
   return (
     <div
-      id="main-scroll-container"
       className=" dark:bg-black dark:text-neutral-300 pb-40  items-center  px-10 
-    md:w-[60%] flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain "
+   flex flex-col w-full"
     >
       {isAble ? (
         <div className="flex flex-row items-center w-full ">
