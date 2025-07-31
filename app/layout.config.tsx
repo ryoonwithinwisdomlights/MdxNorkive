@@ -1,6 +1,6 @@
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 import type { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
-import { recordsource } from "@/lib/source";
+import { pageTree } from "@/lib/source";
 /**
  * Shared layout configurations
  *
@@ -8,7 +8,7 @@ import { recordsource } from "@/lib/source";
  * Home Layout: app/(home)/layout.tsx
  * Docs Layout: app/docs/layout.tsx
  */
-export const baseOptions: BaseLayoutProps = {
+export const baseOptions: Partial<DocsLayoutProps> = {
   nav: {
     // title: (
     //   <>
@@ -29,7 +29,7 @@ export const baseOptions: BaseLayoutProps = {
 };
 export const recordOptions: DocsLayoutProps = {
   ...baseOptions,
-  tree: recordsource.getPageTree(),
+  tree: pageTree,
   nav: {
     ...baseOptions.nav,
     transparentMode: "none",

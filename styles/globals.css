@@ -1,12 +1,14 @@
 
 @import "tailwindcss";
-
-html {
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+@import 'fumadocs-twoslash/twoslash.css';
+/* html {
   overflow-x: hidden;
 }
 body{
   height: 100vh;
-} 
+}  */
 
 @layer base {
   :root {

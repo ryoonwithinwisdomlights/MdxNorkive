@@ -1,17 +1,7 @@
-import { recordsource } from "@/lib/source";
-import { mdxComponents } from "@/components/mdx-components";
-import { getMDXComponents } from "@/mdx-components";
-import { MDXContent } from "@content-collections/mdx/react";
-import { createRelativeLink } from "fumadocs-ui/mdx";
-import {
-  DocsBody,
-  DocsDescription,
-  DocsPage,
-  DocsTitle,
-} from "fumadocs-ui/page";
+import TempDoc from "@/components/TempDoc";
+import { getPage, getPages } from "@/lib/source";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import TempDoc from "@/components/TempDoc";
 
 function getPath(slug: string[]) {
   return slug.join("/");
@@ -32,25 +22,25 @@ export default async function Page(props: {
   if (slug) {
     slug = slug.map((s) => decodeURIComponent(s));
   }
-  // console.log("slug", slug);
-  // slug가 있으면 개별 페이지를 보여줌
-  const page = recordsource.getPage(params.slug);
+
+  const page = getPage(params.slug);
   if (!page) notFound();
   const { body, toc, lastEditedDate } = await page.data;
 
-  // console.log("page::", page);
   return <TempDoc body={body} toc={toc} date={lastEditedDate} page={page} />;
 }
 
 export async function generateStaticParams() {
-  return recordsource.generateParams();
+  return getPages().map((page) => ({
+    slug: page.slugs,
+  }));
 }
 
 export async function generateMetadata(props: {
   params: Promise<{ slug?: string[] }>;
 }) {
   const params = await props.params;
-  const page = recordsource.getPage(params.slug);
+  const page = getPage(params.slug);
   if (!page) notFound();
   return {
     title: page.data.title,

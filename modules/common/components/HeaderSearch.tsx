@@ -1,7 +1,7 @@
 "use client";
 
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { recordsource } from "@/lib/source";
+import { getPages } from "@/lib/source";
 import Fuse from "fuse.js";
 import debounce from "lodash.debounce";
 import { Search, XIcon } from "lucide-react";
@@ -11,7 +11,7 @@ import SearchResultSkeleton from "../ui/search-result-skeleton";
 export default function HeaderSearch() {
   const { locale } = useGeneralSiteSettings();
   // const { recordList } = useNav({ from: "header-search" });
-  const pages = recordsource.getPages();
+  const pages = getPages();
   // console.log("pages::", pages);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<{ title: string; url: string }[]>([]);

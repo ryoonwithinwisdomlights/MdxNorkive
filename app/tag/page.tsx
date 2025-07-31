@@ -4,7 +4,8 @@ import NoRecordTypePageWrapper from "@/modules/layout/templates/NoRecordTypePage
 export default async function Page() {
   return (
     <NoRecordTypePageWrapper>
-      <TagList />
+      {/* <TagList /> */}
+      <div>No result</div>
     </NoRecordTypePageWrapper>
   );
 }

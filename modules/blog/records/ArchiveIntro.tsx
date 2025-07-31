@@ -1,33 +1,36 @@
+"use client";
+import {
+  setPageGroupedByDate2,
+  setPageSortedByDate2,
+} from "@/lib/notion/functions/utils";
+import { getPages } from "@/lib/source";
 import { isObjectNotEmpty } from "@/lib/utils/utils";
-import React from "react";
 import AllRecords from "./AllRecords";
 import NoRecordFound from "./NoRecordFound";
-import HeaderSearch from "@/modules/common/components/HeaderSearch";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
-import { usePathname } from "next/navigation";
-import { setAllPagesGetSortedGroupedByDate } from "@/lib/notion/functions/function";
-import { useNav } from "@/lib/context/NavInfoProvider";
+import NotFound from "@/app/not-found";
+
+export function setAllPagesGetSortedGroupedByDate(allPages) {
+  let result = allPages;
+  const pageSortedByDate = setPageSortedByDate2(allPages, "date");
+  const pageGroupedByDate = setPageGroupedByDate2(pageSortedByDate, "date");
+  result = pageGroupedByDate;
+
+  return result;
+}
 
 const ArchiveIntro = () => {
-  const pathname = usePathname();
-  const type = pathname.split("/")[1];
-  const { recordList } = useNav({ from: type });
-  const isAble = isObjectNotEmpty(recordList);
-  const modAllPages = isAble
-    ? setAllPagesGetSortedGroupedByDate(true, recordList)
-    : {};
-  // console.log("modAllPages:", modAllPages);
+  const pages = getPages();
+
+  if (!pages) NotFound();
+  console.log("pages::", pages);
+  const isAble = isObjectNotEmpty(pages);
+  const modAllPages = setAllPagesGetSortedGroupedByDate(pages);
   return (
-    <div
-      id="main-scroll-container"
-      className=" dark:bg-black dark:text-neutral-300 pb-40  items-center  px-10 
-    md:w-[60%] flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain "
-    >
-      <div className="flex flex-col w-full items-center  pt-4  ">
+    <div id="main-scroll-container">
+      <div className="flex flex-col w-full items-center  pt-10  ">
         <div
           className="
-        flex flex-col   break-words overflow "
+        flex flex-col break-words overflow "
         >
           <div className="  dark:text-neutral-300 flex flex-col  ">
             <div className="text-1xl flex flex-row justify-start ml-2 text-neutral-600 dark:text-neutral-300 ">

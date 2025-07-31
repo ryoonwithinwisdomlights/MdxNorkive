@@ -23,7 +23,7 @@ const records = defineCollection({
     date: z.coerce.date(),
     lastEditedDate: z.coerce.date().optional(),
     sub_type: z.string().optional(), // ex. "engineering" 배열 또는 문자열 모두 수용할 수 있게 유연하게 처리
-    category: z.union([z.string(), z.array(z.string())]).optional(), // ex. "개발", ["개발", "에세이"]
+    category: z.string().optional(), // ex. "개발", ["개발", "에세이"]
     tags: z.array(z.string()).optional(), // ex. ["Next.js", "SEO"]
     draft: z.boolean().default(false),
     // Fumadocs OpenAPI generated

@@ -7,7 +7,7 @@ import { createMDXSource } from "@fumadocs/content-collections";
 //   source: createMDXSource(allDocs, allMetas),
 // });
 
-export const recordsource = loader({
+export const { getPage, getPages, pageTree, generateParams } = loader({
   baseUrl: "/records",
   source: createMDXSource(allRecords, allMetas),
 });

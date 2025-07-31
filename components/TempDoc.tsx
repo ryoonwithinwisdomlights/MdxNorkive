@@ -1,5 +1,5 @@
 import { mdxComponents } from "@/components/mdx-components";
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/modules/common/ui/button";
 import { MDXContent } from "@content-collections/mdx/react";
 import { InlineTOC } from "fumadocs-ui/components/inline-toc";
 import { DocsBody, DocsPage } from "fumadocs-ui/page";
@@ -7,8 +7,8 @@ import Link from "next/link";
 import Comment from "./Comment";
 export default function TempDoc({ body, toc, date, page }) {
   return (
-    <article className=" flex flex-col px-0 ">
-      <div className="prose min-w-0   ">
+    <article className=" flex flex-col px-0 bg-amber-400 ">
+      <div className=" min-w-0   ">
         {/* <InlineTOC items={page.data.toc} className="mb-12" /> */}
 
         <DocsPage
@@ -18,7 +18,7 @@ export default function TempDoc({ body, toc, date, page }) {
           breadcrumb={{ enabled: false }}
         >
           <div
-            className="container rounded-xl py-12 relative overflow-hidden"
+            className="container rounded-xl py-12 px-10 relative overflow-hidden"
             style={{
               backgroundColor: "black",
               backgroundImage: page.data.pageCover
@@ -46,7 +46,11 @@ export default function TempDoc({ body, toc, date, page }) {
               <p className="mb-4 text-white/80">{page.data.description}</p>
               <Link
                 href="/records"
-                className={buttonVariants({ size: "sm", variant: "secondary" })}
+                className={buttonVariants({
+                  size: "sm",
+                  variant: "secondary",
+                  className: "text-white",
+                })}
               >
                 Back
               </Link>

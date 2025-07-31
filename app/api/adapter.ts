@@ -34,7 +34,6 @@ async function generateMenuItem(page: QueryDatabaseResponse) {
     props?.date?.date?.start || page.created_time
   ).getTime();
   const title = props.title?.title?.[0]?.plain_text?.trim() || "Untitled";
-  // const sub_type = props.sub_type?.select?.name || "";
   const icon = props.menuicon?.rich_text?.[0]?.plain_text?.trim() || "";
   const slug = props.slug?.rich_text?.[0]?.plain_text?.trim() || "";
   const subMenus =

@@ -10,17 +10,15 @@ import type {
   QueryPageResponse,
   RecordItem,
 } from "@/app/api/types";
+import { getSiteInfo2 } from "@/lib/notion/functions/function";
 import type {
   GetBlockResponse,
   ImageBlockObjectResponse,
   ListBlockChildrenResponse,
-  PageObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
 import { cache } from "react";
 import "server-only";
 import { NOTION_DATABASE_ID } from "./clients";
-import { getSiteInfo2 } from "@/lib/notion/functions/function";
-import { getAllBlockChildren } from "@/lib/notion-utils";
 
 export const fetchMenuList = async (): Promise<MenuItem[]> => {
   const queryResponse = await notion.databases.query({
@@ -28,57 +26,18 @@ export const fetchMenuList = async (): Promise<MenuItem[]> => {
     filter: {
       and: [
         {
-          property: "type",
+          property: "status",
           select: {
-            is_not_empty: true,
+            equals: "Published",
           },
         },
-        {
-          or: [
-            { property: "type", select: { equals: "Menu" } },
-            // { property: "type", select: { equals: "SubMenuPage" } },
-            // { property: "type", select: { equals: "SubMenu" } },
-          ],
-        },
+        { property: "type", select: { equals: "Menu" } },
       ],
     },
   });
 
   const datalist = queryResponse.results as QueryDatabaseResponseArray;
-  // console.log("datalist::ee:", datalist);
 
-  // 2. 각 Menu의 하위항목 relation id 추출
-  // const menuWithChildren = await Promise.all(
-  //   datalist.map(async (menuPage) => {
-  //     const properties = menuPage.properties as QueryPageResponse["properties"];
-  //     const childRelations = properties.sub_item?.relation || [];
-  //     const childIds = childRelations.map((rel) => rel.id);
-
-  //     // 3. 하위항목 id로 각각의 페이지 정보 가져오기
-  //     const children = await Promise.all(
-  //       childIds.map(async (childId) => {
-  //         const childPage = await notion.pages.retrieve({ page_id: childId });
-  //         const childProps = (childPage as QueryPageResponse).properties;
-  //         return {
-  //           id: childId,
-  //           title: childProps.title?.title?.[0]?.plain_text || "Untitled",
-  //           slug: childProps.slug?.rich_text?.[0]?.plain_text || null,
-  //           // 필요하다면 추가 필드
-  //         };
-  //       })
-  //     );
-
-  //     // 4. Menu 페이지 정보 + 하위항목 정보 반환
-  //     return {
-  //       id: menuPage.id,
-  //       title: properties.title?.title?.[0]?.plain_text || "Untitled",
-  //       slug: properties.slug?.rich_text?.[0]?.plain_text || null,
-  //       children, // 하위항목 정보 배열
-  //     };
-  //   })
-  // );
-
-  // console.log("menuWithChildren:::", menuWithChildren);
   const convertedMenuItemList = new NotionPageListAdapter(
     datalist
   ).convertToBasicMenuItemList();
@@ -95,6 +54,12 @@ export const fetchAllRecordList = cache(async (): Promise<RecordItem[]> => {
     database_id: NOTION_DATABASE_ID,
     filter: {
       and: [
+        {
+          property: "status",
+          select: {
+            equals: "Published",
+          },
+        },
         {
           property: "type",
           select: {

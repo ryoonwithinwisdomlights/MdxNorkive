@@ -7,7 +7,7 @@ const RecordIntroForPage = () => {
   const pathname = usePathname();
   const type = pathname.split("/")[1];
   return (
-    <div className="mb-4  mr-4 flex flex-col justify-end">
+    <div className="mb-4  mr-4 flex flex-col justify-center">
       {type === "project" ? <ProjectIntro /> : <EngineeringIntro />}
     </div>
   );

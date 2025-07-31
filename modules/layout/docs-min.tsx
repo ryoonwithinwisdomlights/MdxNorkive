@@ -29,7 +29,7 @@ export function DocsLayout({ tree, children }: DocsLayoutProps) {
       </header> */}
       <main
         id="nd-docs-layout"
-        className="h-screen  overflow-y-auto scrollbar-hide overscroll-contain flex flex-1 flex-row [--fd-nav-height:56px] bg-amber-300"
+        className="h-screen  overflow-y-auto scrollbar-hide overscroll-contain flex flex-1 flex-row [--fd-nav-height:56px] "
       >
         <Sidebar />
         {children}

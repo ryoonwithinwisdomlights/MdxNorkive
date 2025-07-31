@@ -6,16 +6,17 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 interface SubMenuItem {
-  id: string;
+  id: number;
   title: string;
   href: string;
+  isActive?: boolean;
 }
 
 interface Props {
   items: SubMenuItem[];
 }
 
-export default function SubTypeCarousel({ items }: Props) {
+export default function CategoryCarousel({ items }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -38,29 +39,42 @@ export default function SubTypeCarousel({ items }: Props) {
 
     const handleScroll = () => checkScroll();
     el.addEventListener("scroll", handleScroll);
-    return () => el.removeEventListener("scroll", handleScroll);
+
+    // 윈도우 리사이즈 시에도 스크롤 상태 체크
+    const handleResize = () => checkScroll();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      el.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="relative w-full overflow-hidden md:max-w-3xl max-md:max-w-full">
       {canScrollLeft && (
         <button
-          className="absolute left-0 top-1/2 z-10 -translate-y-1/2 bg-white dark:bg-black p-2 shadow rounded-full"
+          className="absolute left-1 top-1/2 z-20 -translate-y-1/2 bg-white dark:bg-black p-2 shadow-lg rounded-full border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
           onClick={() => scrollBy(-200)}
+          aria-label="Scroll left"
         >
-          <ChevronLeft />
+          <ChevronLeft className="w-4 h-4" />
         </button>
       )}
 
       <div
         ref={containerRef}
-        className="no-scrollbar flex gap-3 overflow-x-auto scroll-smooth px-10 py-3"
+        className="no-scrollbar flex gap-3 overflow-x-auto scroll-smooth px-4 py-3"
       >
         {items.map((item) => (
           <Link
             key={item.id}
             href={item.href}
-            className="flex-shrink-0 whitespace-nowrap rounded-full border border-gray-300 px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800"
+            className={`flex-shrink-0 whitespace-nowrap rounded-full border border-gray-300 px-4 py-2 text-sm transition-colors ${
+              item.isActive
+                ? "bg-neutral-200 dark:bg-neutral-700 border-neutral-400"
+                : "hover:bg-gray-100 dark:hover:bg-gray-800"
+            }`}
           >
             {item.title}
           </Link>
@@ -69,10 +83,11 @@ export default function SubTypeCarousel({ items }: Props) {
 
       {canScrollRight && (
         <button
-          className="absolute right-0 top-1/2 z-10 -translate-y-1/2 bg-white dark:bg-black p-2 shadow rounded-full"
+          className="absolute right-1 top-1/2 z-20 -translate-y-1/2 bg-white dark:bg-black p-2 shadow-lg rounded-full border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
           onClick={() => scrollBy(200)}
+          aria-label="Scroll right"
         >
-          <ChevronRight />
+          <ChevronRight className="w-4 h-4" />
         </button>
       )}
     </div>

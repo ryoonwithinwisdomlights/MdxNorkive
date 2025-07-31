@@ -6,6 +6,16 @@ import { compile } from "@mdx-js/mdx";
 const BASE_OUTPUT_DIR = path.join(process.cwd(), "content");
 
 async function checkAllMdxFiles() {
+  // content 디렉토리가 존재하는지 확인
+  try {
+    await fs.access(BASE_OUTPUT_DIR);
+  } catch (error) {
+    console.log(
+      `📁 'content' 디렉토리가 존재하지 않습니다: ${BASE_OUTPUT_DIR}`
+    );
+    return;
+  }
+
   const files = await fs.readdir(BASE_OUTPUT_DIR);
   let hasError = false;
   for (const file of files) {

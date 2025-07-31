@@ -51,7 +51,7 @@ export type PaginationDivProps = {
 };
 
 export type CardInfoDivProps = {
-  record: BaseArchivePageBlock;
+  page: any;
   showPreview: boolean;
   showPageCover: boolean;
   showSummary: boolean;

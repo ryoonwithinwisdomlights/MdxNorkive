@@ -13,6 +13,29 @@ export function isDatabase(rawMetadata, uuidedRootPageId) {
   return true;
 }
 
+export function setPageSortedByDate2(obj, propsName) {
+  const recordsSortByDate = Object.create(obj);
+
+  recordsSortByDate.sort((a, b) => {
+    return b?.data?.[propsName] - a?.data?.[propsName];
+  });
+  return recordsSortByDate;
+}
+
+export function setPageGroupedByDate2(array, propsName) {
+  const allrecords = {};
+
+  array.forEach((record) => {
+    const date = formatDateFmt(record.data[propsName], "yyyy-MM");
+    if (allrecords[date]) {
+      allrecords[date].push(record);
+    } else {
+      allrecords[date] = [record];
+    }
+  });
+  return allrecords;
+}
+
 export function setPageSortedByDate(obj) {
   const recordsSortByDate = Object.create(obj);
 

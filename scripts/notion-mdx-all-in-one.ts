@@ -75,6 +75,15 @@ async function getExistingEndDates() {
   return map;
 }
 async function main() {
+  // content 디렉토리가 없으면 생성
+  try {
+    await fs.access(BASE_OUTPUT_DIR);
+    console.log(`📁 'content' 디렉토리가 이미 존재합니다: ${BASE_OUTPUT_DIR}`);
+  } catch (error) {
+    console.log(`📁 'content' 디렉토리를 생성합니다: ${BASE_OUTPUT_DIR}`);
+    await fs.mkdir(BASE_OUTPUT_DIR, { recursive: true });
+  }
+
   let posts;
   try {
     posts = await notion.databases.query({

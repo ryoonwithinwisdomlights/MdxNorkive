@@ -1,6 +1,6 @@
 import { BLOG } from "@/blog.config";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import { RootProvider } from 'fumadocs-ui/provider';
+import { RootProvider } from "fumadocs-ui/provider";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata, Viewport } from "next";
 import "./../styles/globals.css";
@@ -76,48 +76,48 @@ export default async function RootLayout({ children }: ChildrenProp) {
   return (
     <html lang="en" suppressHydrationWarning className={GeistSans.className}>
       <body>
-      <RootProvider theme={{enabled: false}}>
-   
-        <MenuProvider menuData={menuData}>
-          {/* <EssentialNavInfoProvider
+        <RootProvider theme={{ enabled: false }}>
+          <MenuProvider menuData={menuData}>
+            {/* <EssentialNavInfoProvider
             globalNotionData={globalNotionData}
             from={"index"}
           > */}
-          <NavInfoProvider recordList={recordList}>
-            <GeneralSiteSettingsProvider>
-              <div
-                id="gitbook"
-                className={` w-screen h-screen justify-center dark:text-neutral-300  pb-16  md:pb-0 `}
-              >
-               
-                {/* <AuxiliaryBlogComponent /> */}
-                {/* <Suspense fallback={<LoadingCover />}> */}
-              
-                <TopNavBar />
-              
-                 
-                    <div className=" dark:bg-black dark:text-neutral-300 py-20  
-     flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain "> {children}</div>
-                 
-                    {/* <LeftNavigationBar /> */}
-                    {/* <MainLayoutWrapper>{children}</MainLayoutWrapper> */}
-                  
-              
-                {/* </Suspense> */}
-                <JumpToTopButton />
-                <JumpToBackButton />
+            <NavInfoProvider recordList={recordList}>
+              <GeneralSiteSettingsProvider>
+                <div
+                  id="gitbook"
+                  className={` w-screen h-screen justify-center dark:text-neutral-300  pb-16  md:pb-0 `}
+                >
+                  {/* <AuxiliaryBlogComponent /> */}
+                  {/* <Suspense fallback={<LoadingCover />}> */}
 
-                {/* <MobileLeftNavDrawer /> */}
+                  <TopNavBar />
 
-                {/* <BottomMenuBar />
-                 */}
-                <ModalProvider />
-              </div>
-              {/* <PageObserver /> */}
-            </GeneralSiteSettingsProvider>
-          </NavInfoProvider>
-          {/* </EssentialNavInfoProvider> */}
-        </MenuProvider>
+                  <div
+                    className=" dark:bg-black dark:text-neutral-300 py-10
+     flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain "
+                  >
+                    {children}
+                  </div>
+
+                  {/* <LeftNavigationBar /> */}
+                  {/* <MainLayoutWrapper>{children}</MainLayoutWrapper> */}
+
+                  {/* </Suspense> */}
+                  <JumpToTopButton />
+                  <JumpToBackButton />
+
+                  {/* <MobileLeftNavDrawer /> */}
+
+                  {/* <BottomMenuBar />
+                   */}
+                  <ModalProvider />
+                </div>
+                {/* <PageObserver /> */}
+              </GeneralSiteSettingsProvider>
+            </NavInfoProvider>
+            {/* </EssentialNavInfoProvider> */}
+          </MenuProvider>
         </RootProvider>
       </body>
     </html>
