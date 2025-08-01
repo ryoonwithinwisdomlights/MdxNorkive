@@ -28,11 +28,16 @@ const EntireRecords = () => {
           <article
             key={page.data.notionId}
             className="group relative bg-gradient-to-br from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-700 rounded-lg border border-neutral-200
-              dark:border-neutral-700 p-6 hover:shadow-lg transition-all duration-300 hover:border-neutral-300 dark:hover:border-neutral-600"
+              dark:border-neutral-700 p-6 hover:shadow-lg transition-all duration-300 hover:scale-105  hover:border-neutral-300 dark:hover:border-neutral-600"
           >
             <Link href={page.url} className="block">
               {/* 제목 */}
-              <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+              <h3
+                className="text-xl font-semibold
+               text-neutral-700 dark:text-neutral-200 mb-3
+                group-hover:text-black group-hover:underline 
+                 dark:group-hover:text-white transition-colors"
+              >
                 {page.data.title}
               </h3>
 

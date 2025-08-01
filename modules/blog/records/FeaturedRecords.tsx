@@ -2,7 +2,7 @@
 import NotFound from "@/app/not-found";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { getPages } from "@/lib/source";
-import { getYearMonthDay } from "@/lib/utils/date";
+import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils/date";
 import LazyImage from "@/modules/common/components/shared/LazyImage";
 import {
   CalendarIcon,
@@ -17,7 +17,7 @@ type Props = {};
 
 const FeaturedRecords = (props: Props) => {
   const pages = getPages();
-  const { locale } = useGeneralSiteSettings();
+  const { locale, lang } = useGeneralSiteSettings();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   if (!pages) NotFound();
@@ -55,7 +55,7 @@ const FeaturedRecords = (props: Props) => {
 
       {/* 주요 게시글 슬라이더 */}
       <div
-        className="relative bg-gradient-to-br from-neutral-100 to-neutral-200
+        className="relative bg-gradient-to-br from-white to-neutral-200
        dark:from-neutral-900 dark:to-neutral-700 rounded-lg 
        border border-neutral-200 dark:border-neutral-700 overflow-hidden
        hover:shadow-lg transition-all duration-300
@@ -80,6 +80,8 @@ const FeaturedRecords = (props: Props) => {
                       currentPage.data.date,
                       locale === "kr-KR" ? "kr-KR" : "en-US"
                     )}
+                    &nbsp; &nbsp;
+                    {getDistanceFromToday(currentPage.data.date, lang)}
                   </span>
                 </div>
 
@@ -102,7 +104,7 @@ const FeaturedRecords = (props: Props) => {
               {/* 자세히 보기 버튼 */}
               <Link
                 href={currentPage.url}
-                className="inline-flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-300 font-medium hover:underline transition-all duration-300"
+                className="inline-flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-300 font-medium hover:underline transition-all duration-300"
               >
                 {locale.INTRO.READ_MORE}→
               </Link>
@@ -110,7 +112,7 @@ const FeaturedRecords = (props: Props) => {
           </div>
 
           {/* 오른쪽: 이미지 영역 */}
-          <div className="flex-1 relative p-8 lg:p-12 flex items-center justify-center h-[300px] lg:min-h-[400px] ">
+          <div className="flex-1 relative  p-8 lg:p-12 flex items-center justify-center h-[300px] lg:min-h-[400px] ">
             {/* 페이지 커버 이미지가 있으면 표시, 없으면 기본 일러스트레이션 */}
             {currentPage.data.pageCover ? (
               // <img
@@ -122,7 +124,8 @@ const FeaturedRecords = (props: Props) => {
                 alt={currentPage.data.title}
                 priority={true}
                 src={currentPage.data.pageCover}
-                className="h-full w-[90%]  rounded-xl object-cover object-center  transition-all duration-300 hover:scale-105"
+                className="h-full w-[90%] border border-neutral-200 dark:border-neutral-700  rounded-xl object-cover object-center 
+                transition-all duration-300 hover:scale-105"
               />
             ) : (
               <div className="text-center">
