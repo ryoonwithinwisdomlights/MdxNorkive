@@ -8,7 +8,7 @@ const NorkiveIntro = () => {
   return (
     <div
       id="norkive-intro"
-      className="w-full  xl:w-[64%] flex flex-col mt-10  px-10"
+      className="w-full  xl:w-[62%] flex flex-col mt-10  px-10"
     >
       {/* Favorite Records Section */}
       <FeaturedRecords />
