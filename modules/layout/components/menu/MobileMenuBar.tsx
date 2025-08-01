@@ -11,7 +11,7 @@ export const MobileMenuBar = (props) => {
     return null;
   }
   return (
-    <nav id="top-nav-pc" className=" text-md">
+    <nav id="top-nav-mobile" className="text-md">
       {links?.map((link, index) => (
         <MobileMenuItemDrop
           onHeightChange={props?.onHeightChange}

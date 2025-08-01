@@ -32,17 +32,36 @@ const Footer = () => {
   if (!isMounted) return null;
 
   return (
-    <footer className="z-20 py-2  dark:text-neutral-300 justify-center text-center  text-sm ">
-      <hr className="pb-2" />
+    <footer
+      className=" py-3  border-t text-neutral-500 dark:text-neutral-300 
+    justify-center text-center  text-sm w-full flex flex-col gap-1"
+    >
+      {/* <hr className="pb-2" /> */}
 
-      <div className="text-xs font-sans">
-        Powered By{" "}
-        <a
-          href={BLOG.CONTACT_GITHUB}
-          className="underline text-neutral-500 dark:text-neutral-300 font-semibold"
-        >
-          Norkive
-        </a>
+      <div className=" flex flex-row gap-2 justify-center">
+        {" "}
+        <p className="text-xs font-sans">
+          Powered By{" "}
+          <a
+            href={BLOG.CONTACT_GITHUB}
+            target="_blank"
+            rel="noreferrer noopener"
+            className=" text-amber-500 font-semibold"
+          >
+            Norkive,
+          </a>
+        </p>
+        <p className="text-xs">
+          Built with{" "}
+          <a
+            href="https://fuma-dev.vercel.app"
+            rel="noreferrer noopener"
+            target="_blank"
+            className="text-blue-500 font-medium"
+          >
+            Fuma
+          </a>
+        </p>
       </div>
       <div className="flex justify-center text-xs">
         <div>

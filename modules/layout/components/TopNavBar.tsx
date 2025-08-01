@@ -24,7 +24,6 @@ const TopNavBar = () => {
         isOpen={isOpen}
         toggleMenuOpen={toggleMenuOpen}
       />
-      {/* <NavbarSidebarTrigger className="md:hidden" /> */}
     </div>
   );
 };

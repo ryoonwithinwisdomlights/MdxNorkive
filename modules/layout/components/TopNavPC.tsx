@@ -18,7 +18,7 @@ const TopNavPC = () => {
       >
         {links &&
           links?.map((link, index) => <MenuItemDrop key={index} link={link} />)}
-        {/* <DarkModeButton className="flex flex-col justify-center items-center " /> */}
+
         <SettingButton />
       </div>
     </div>

@@ -16,19 +16,19 @@ import { useState } from "react";
  */
 export const MobileMenuItemDrop = (props) => {
   const { link } = props;
-  const pathname = usePathname();
+
   const [show, changeShow] = useState(false);
   const hasSubMenu = link?.subMenus?.length > 0;
 
-  const [isOpen, changeIsOpen] = useState(false);
+  const [isOpen, changeIsOpen] = useState(true);
 
   const router = useRouter();
 
   const onClickUrl = (sLink) => {
     if (sLink) {
-      //경로 앞에 슬래시(/)를 추가하여 절대 경로로 변경
-      //절대 경로는 루트(root) 디렉토리에서부터 시작하는 경로이며, 현재 URL과 관계없이 동일한 위치를 가리키게 된다.
       const href = sLink?.type === "SubMenuPage" ? sLink?.url : sLink?.slug;
+      // console.log("sLink?.type:::", sLink?.type);
+      // console.log("href:::", href);
       if (sLink?.slug?.includes("http")) {
         window.open(sLink.slug, "_blank");
       } else {
@@ -39,9 +39,9 @@ export const MobileMenuItemDrop = (props) => {
     }
   };
 
-  if (!link || !link.show) {
-    return null;
-  }
+  // if (!link || !link.show) {
+  //   return null;
+  // }
 
   const toggleShow = () => {
     changeShow(!show);
