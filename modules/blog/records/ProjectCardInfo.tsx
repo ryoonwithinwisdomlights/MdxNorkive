@@ -79,7 +79,7 @@ const ProjectCardInfo = ({
         <div className="text-neutral-400 justify-between flex">
           <div className="flex flex-row items-center">
             <CalendarIcon className="mr-1 w-4 h-4" />
-            {page?.data?.date || page.data.lastEditedDay}
+            {page?.data?.date.split("T")[0] || page.data.lastEditedDay}
           </div>
           <div className="md:flex-nowrap flex-wrap md:justify-start inline-block">
             <div>
