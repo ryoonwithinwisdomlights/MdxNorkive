@@ -93,10 +93,7 @@ export default async function RootLayout({ children }: ChildrenProp) {
 
                   <TopNavBar />
 
-                  <div
-                    className=" dark:bg-black dark:text-neutral-300 py-10
-     flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain "
-                  >
+                  <div className=" dark:bg-black dark:text-neutral-300 py-10 flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain ">
                     {children}
                   </div>
 

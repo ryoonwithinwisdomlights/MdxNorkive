@@ -22,7 +22,6 @@ const GeneralRecordPage = () => {
   const pages = getPages();
 
   if (!pages) NotFound();
-  console.log("pages::", pages);
   const filteredPages = pages.filter(
     (page) =>
       page.data.sub_type !== "Engineering" && page.data.sub_type !== "Project"

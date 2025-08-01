@@ -20,7 +20,9 @@ import { cache } from "react";
 import "server-only";
 import { NOTION_DATABASE_ID } from "./clients";
 
-export const fetchMenuList = async (): Promise<MenuItem[]> => {
+export const fetchMenuList = cache(async (): Promise<MenuItem[]> => {
+  console.log("🔍 fetchMenuList 시작");
+
   const queryResponse = await notion.databases.query({
     database_id: NOTION_DATABASE_ID,
     filter: {
@@ -36,13 +38,39 @@ export const fetchMenuList = async (): Promise<MenuItem[]> => {
     },
   });
 
+  console.log("📊 Notion 쿼리 결과:", queryResponse.results.length, "개 항목");
+  console.log(
+    "📋 쿼리 결과 상세:",
+    queryResponse.results.map((item) => {
+      const props = (item as any)?.properties;
+      return {
+        id: item.id,
+        title: props?.title?.title?.[0]?.plain_text || "제목 없음",
+        type: props?.type?.select?.name || "타입 없음",
+        status: props?.status?.select?.name || "상태 없음",
+      };
+    })
+  );
+
   const datalist = queryResponse.results as QueryDatabaseResponseArray;
 
-  const convertedMenuItemList = new NotionPageListAdapter(
+  const convertedMenuItemList = await new NotionPageListAdapter(
     datalist
   ).convertToBasicMenuItemList();
+
+  console.log("✅ 변환된 메뉴 목록:", convertedMenuItemList.length, "개 항목");
+  console.log(
+    "📝 메뉴 상세:",
+    convertedMenuItemList.map((item) => ({
+      id: item.id,
+      title: item.title,
+      type: item.type,
+      url: item.url,
+    }))
+  );
+
   return convertedMenuItemList;
-};
+});
 
 export const fetchPageData = cache(async (pageId: string) => {
   const pageData = await notion.pages.retrieve({ page_id: pageId });

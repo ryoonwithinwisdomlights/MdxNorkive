@@ -26,6 +26,7 @@ async function generateChildRelations(childRelations: Array<{ id: string }>) {
   return children;
 }
 async function generateMenuItem(page: QueryDatabaseResponse) {
+  const slugSet = new Set<string>();
   const id = page.id.replace(/-/g, "");
   const props = page.properties as any;
   const childRelations = props.sub_item?.relation || [];
@@ -33,6 +34,7 @@ async function generateMenuItem(page: QueryDatabaseResponse) {
   const publishDate = new Date(
     props?.date?.date?.start || page.created_time
   ).getTime();
+  const sub_type = props.sub_type?.select?.name || "";
   const title = props.title?.title?.[0]?.plain_text?.trim() || "Untitled";
   const icon = props.menuicon?.rich_text?.[0]?.plain_text?.trim() || "";
   const slug = props.slug?.rich_text?.[0]?.plain_text?.trim() || "";
@@ -40,13 +42,16 @@ async function generateMenuItem(page: QueryDatabaseResponse) {
     childRelations.length > 0
       ? await generateChildRelations(childRelations)
       : [];
-
+  const url =
+    type.toLowerCase() +
+    "/" +
+    generateUserFriendlySlug(sub_type, title, slugSet);
   return {
     id: id,
     icon: icon,
     type: type,
     slug: slug,
-    url: slug,
+    url: url,
     title: title,
     publishDate: publishDate,
     childRelations: childRelations,
@@ -164,13 +169,13 @@ export class NotionPageListAdapter {
     this.pageList = pageList;
   }
 
-  convertToBasicMenuItemList(): MenuItem[] {
+  async convertToBasicMenuItemList(): Promise<MenuItem[]> {
     let menus: MenuItem[] = [];
     if (this.pageList && this.pageList.length > 0) {
-      this.pageList.forEach(async (item) => {
-        const menuItem = await generateMenuItem(item as QueryDatabaseResponse);
-        menus.push(menuItem);
+      const menuPromises = this.pageList.map(async (item) => {
+        return await generateMenuItem(item as QueryDatabaseResponse);
       });
+      menus = await Promise.all(menuPromises);
     }
 
     // console.log("menus:::", menus);

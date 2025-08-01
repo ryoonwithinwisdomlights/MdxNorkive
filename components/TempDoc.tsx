@@ -7,7 +7,7 @@ import Link from "next/link";
 import Comment from "./Comment";
 export default function TempDoc({ body, toc, date, page }) {
   return (
-    <article className=" flex flex-col px-0 bg-amber-400 ">
+    <article className=" flex flex-col px-0">
       <div className=" min-w-0   ">
         {/* <InlineTOC items={page.data.toc} className="mb-12" /> */}
 

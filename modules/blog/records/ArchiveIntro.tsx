@@ -22,7 +22,6 @@ const ArchiveIntro = () => {
   const pages = getPages();
 
   if (!pages) NotFound();
-  console.log("pages::", pages);
   const isAble = isObjectNotEmpty(pages);
   const modAllPages = setAllPagesGetSortedGroupedByDate(pages);
   return (

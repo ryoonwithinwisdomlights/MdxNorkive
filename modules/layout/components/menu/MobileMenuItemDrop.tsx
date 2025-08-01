@@ -28,12 +28,13 @@ export const MobileMenuItemDrop = (props) => {
     if (sLink) {
       //경로 앞에 슬래시(/)를 추가하여 절대 경로로 변경
       //절대 경로는 루트(root) 디렉토리에서부터 시작하는 경로이며, 현재 URL과 관계없이 동일한 위치를 가리키게 된다.
-      const href =
-        sLink?.type === "SubMenuPage" ? `/intro/${sLink?.id}` : sLink?.slug;
+      const href = sLink?.type === "SubMenuPage" ? sLink?.url : sLink?.slug;
       if (sLink?.slug?.includes("http")) {
         window.open(sLink.slug, "_blank");
       } else {
-        router.push(href);
+        // SubMenuPage의 경우 절대 경로로 처리
+        const finalHref = sLink?.type === "SubMenuPage" ? `/${href}` : href;
+        router.push(finalHref);
       }
     }
   };

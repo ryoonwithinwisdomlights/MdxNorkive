@@ -12,7 +12,7 @@ export default function NoRecordTypePageWrapper({
         {children}
       </div>
 
-      <RightSlidingDrawer props={null} />
+      <RightSlidingDrawer />
     </div>
   );
 }

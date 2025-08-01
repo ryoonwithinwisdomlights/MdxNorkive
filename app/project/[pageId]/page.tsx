@@ -56,7 +56,7 @@ export default async function Page({ params }) {
   return (
     <GeneralRecordTypePageWrapper>
       <SingleRecords props={result} />
-      <RightSlidingDrawer props={result} />
+      <RightSlidingDrawer />
     </GeneralRecordTypePageWrapper>
   );
 }

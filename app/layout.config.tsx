@@ -1,6 +1,5 @@
-import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
-import type { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
 import { pageTree } from "@/lib/source";
+import type { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
 /**
  * Shared layout configurations
  *

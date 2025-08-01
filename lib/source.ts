@@ -1,4 +1,4 @@
-import { allMetas, allRecords } from "content-collections";
+import { allMetas, allRecords, allSubMenuPages } from "content-collections";
 import { loader } from "fumadocs-core/source";
 import { createMDXSource } from "@fumadocs/content-collections";
 
@@ -10,4 +10,9 @@ import { createMDXSource } from "@fumadocs/content-collections";
 export const { getPage, getPages, pageTree, generateParams } = loader({
   baseUrl: "/records",
   source: createMDXSource(allRecords, allMetas),
+});
+
+export const submenuPageSource = loader({
+  baseUrl: "/submenupage",
+  source: createMDXSource(allSubMenuPages, allMetas),
 });
