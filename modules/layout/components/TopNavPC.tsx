@@ -9,10 +9,11 @@ const TopNavPC = () => {
   const links = menuData;
   // console.log("TopNavPC links:::", links);
   return (
-    <div className="hidden md:flex w-full h-16 shadow bg-white dark:bg-neutral-900 px-7 items-between dark:border-b-2 dark:border-neutral-800">
+    <div className="hidden md:flex flex-row justify-between w-full h-16 shadow bg-white dark:bg-neutral-900 px-7 items-between dark:border-b-2 dark:border-neutral-800">
       <LogoBar />
       <HeaderSearch />
-      <div
+      <SettingButton />
+      {/* <div
         id="top-nav-pc"
         className="hidden md:flex md:flex-row justify-center py-2 bg-white dark:bg-neutral-900"
       >
@@ -20,7 +21,7 @@ const TopNavPC = () => {
           links?.map((link, index) => <MenuItemDrop key={index} link={link} />)}
 
         <SettingButton />
-      </div>
+      </div> */}
     </div>
   );
 };

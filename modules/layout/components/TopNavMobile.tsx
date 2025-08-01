@@ -26,11 +26,11 @@ const TopNavMobile = ({ collapseRef, isOpen, toggleMenuOpen }) => {
           />
         </div>
       </Collapse>
-      <div className="md:hidden flex w-full h-14 shadow  px-7 items-between  bg-neutral-50 dark:bg-neutral-800">
+      <div className="md:hidden flex flex-row justify-between w-full h-14 shadow  px-7 items-between  bg-neutral-50 dark:bg-neutral-800">
         <LogoBar />
         <div className="mr-1 flex justify-end items-center space-x-4 font-serif dark:text-neutral-200">
           {/* <DarkModeButton className="flex text-md items-center h-full" /> */}
-          <SettingButton />
+
           <div
             onClick={toggleMenuOpen}
             className="cursor-pointer text-lg hover:scale-110 duration-150"
@@ -41,6 +41,7 @@ const TopNavMobile = ({ collapseRef, isOpen, toggleMenuOpen }) => {
               <MenuIcon className="dark:text-norkive-light" />
             )}
           </div>
+          <SettingButton />
         </div>
       </div>
     </div>

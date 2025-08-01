@@ -24,14 +24,6 @@ export default function HeaderSearch() {
       url: page.url,
     };
   });
-  // const groupedArray = recordList?.map((item: any) => {
-  //   return {
-  //     id: item.notionId,
-  //     category: item.category,
-  //     title: item.title,
-  //     url: item.slug,
-  //   };
-  // });
 
   const fuse = useMemo(
     () =>
@@ -80,7 +72,7 @@ export default function HeaderSearch() {
   }, [query, handleSearch]);
 
   return (
-    <div className="relative hidden md:flex  flex-col items-start justify-center w-full max-w-sm text-sm mr-4">
+    <div className="relative hidden  md:flex  flex-col items-start justify-center w-full max-w-sm text-sm mr-4">
       {/* Search Input */}
       <div className="relative flex items-center w-full">
         <span className="absolute left-3 ">

@@ -15,7 +15,7 @@ export default function LogoBar(props) {
   // const { siteInfo } = useGlobal({ from: "LogoBar" });
   const siteInfo = getSiteInfo2({});
   return (
-    <div id="top-wrapper" className="w-full flex  flex-row items-center   ">
+    <div id="top-wrapper" className="flex  flex-row items-center   ">
       <Link
         href="/"
         className="flex flex-row   text-md  text-neutral-900 dark:text-neutral-200  p-2 dark:hover:text-white dark:hover:bg-neutral-500 px-2 hover:rounded-lg "

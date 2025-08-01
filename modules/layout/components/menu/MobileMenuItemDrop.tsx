@@ -1,10 +1,10 @@
 "use client"; // 클라이언트 컴포넌트
-import Collapse from "@/modules/common/components/shared/Collapse";
 import { parseIcon } from "@/lib/utils/utils";
+import Collapse from "@/modules/common/components/shared/Collapse";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 // 사전에 사용할 아이콘 추가

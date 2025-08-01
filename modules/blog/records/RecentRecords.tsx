@@ -79,7 +79,7 @@ const RecentRecords = () => {
         "
           >
             <div
-              className={`md:h-48  
+              className={`h-48  
          
             flex items-center justify-center 
             transition-all duration-300 hover:scale-110`}
