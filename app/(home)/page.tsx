@@ -1,7 +1,7 @@
-// // "use client";
-// // import ArchiveIntro from "@/modules/blog/records/ArchiveIntro";
-// // import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
-// // import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
+"use client";
+import BasicRecordPage from "@/modules/blog/records/BasicRecordPage";
+import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
+import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
 
 // // // export const revalidate = 600;
 // // // 10분 지난 뒤 누군가 방문하면 백그라운드 regenerate
@@ -35,7 +35,12 @@ export default function Page() {
   // if (!pages) notFound();
   // console.log("pages::", pages);
 
-  return <ArchiveIntro />;
+  return (
+    <GeneralRecordTypePageWrapper>
+      <ArchiveIntro />
+      <RightSlidingDrawer />
+    </GeneralRecordTypePageWrapper>
+  );
 }
 
 // export async function generateStaticParams() {

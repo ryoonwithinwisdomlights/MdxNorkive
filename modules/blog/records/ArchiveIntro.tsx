@@ -25,7 +25,7 @@ const ArchiveIntro = () => {
   const isAble = isObjectNotEmpty(pages);
   const modAllPages = setAllPagesGetSortedGroupedByDate(pages);
   return (
-    <div id="main-scroll-container">
+    <div className="w-full flex flex-col items-center ">
       <div className="flex flex-col w-full items-center  pt-10  ">
         <div
           className="
