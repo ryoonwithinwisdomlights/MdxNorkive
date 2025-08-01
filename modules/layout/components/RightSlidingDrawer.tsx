@@ -1,8 +1,5 @@
 "use client";
-import Announcement from "@/modules/blog/Announcement";
 import InfoCard from "./InfoCard";
-
-import ArchiveInfo from "@/modules/blog/records/ArchiveInfo";
 
 const RightSlidingDrawer = () => {
   return (

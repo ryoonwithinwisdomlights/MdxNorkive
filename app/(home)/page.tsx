@@ -4,13 +4,14 @@ import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralReco
 
 import ArchiveIntro from "@/modules/blog/records/ArchiveIntro";
 import LeftSidebar from "@/modules/layout/components/menu/LeftSidebar";
+import RightSideInfoBar from "@/modules/layout/components/RightSideInfoBar";
 
 export default function Page() {
   return (
     <GeneralRecordTypePageWrapper>
       <LeftSidebar />
       <ArchiveIntro />
-      <RightSlidingDrawer />
+      <RightSideInfoBar />
     </GeneralRecordTypePageWrapper>
   );
 }
