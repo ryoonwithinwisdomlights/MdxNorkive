@@ -33,8 +33,8 @@ const Footer = () => {
 
   return (
     <footer
-      className=" py-3  border-t text-neutral-500 dark:text-neutral-300 
-    justify-center text-center  text-sm w-full flex flex-col gap-1"
+      className="border-t text-neutral-500 dark:text-neutral-300 w-full min-h-[140px]
+   text-sm  flex flex-col py-6 items-center "
     >
       {/* <hr className="pb-2" /> */}
 

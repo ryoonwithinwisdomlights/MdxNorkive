@@ -7,6 +7,7 @@ import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils/date";
 import { useState } from "react";
 import { CalendarIcon } from "lucide-react";
 import TagItemMini from "../tag/TagItemMini";
+import Link from "next/link";
 
 function getArticles(pages: any, lang: string) {
   const sortedPage = pages
@@ -25,79 +26,15 @@ function getArticles(pages: any, lang: string) {
     description: page.data.summary?.slice(0, 100) || "",
     gradient: "from-blue-400 to-purple-500",
     tags: page.data.tags,
+    url: page.url,
   }));
 }
 const RecentRecords = () => {
   const pages = getPages();
   if (!pages) NotFound();
-  const { lang } = useGeneralSiteSettings();
+  const { lang, locale } = useGeneralSiteSettings();
   const articles = getArticles(pages, lang);
   console.log(pages);
-  // const articles = [
-  //   {
-  //     id: 1,
-  //     author: "Sam Phak",
-  //     date: "20 Apr 2024",
-  //     title:
-  //       "Beyond Transactions: Unlocking the Full Potential of Your POS System",
-  //     description:
-  //       "In the realm of modern business operations, a Point of Sale (POS) system serves as more than just a transaction processor...",
-  //     icon: "📱",
-  //     gradient: "from-blue-400 to-purple-500",
-  //   },
-  //   {
-  //     id: 2,
-  //     author: "Yull Sump",
-  //     date: "20 Apr 2024",
-  //     title:
-  //       "From Brick-and-Mortar to Online Storefront: Integrating E-commerce",
-  //     description:
-  //       "In the realm of modern business operations, a Point of Sale (POS) system serves as more than just a transaction processor...",
-  //     icon: "💳",
-  //     gradient: "from-green-400 to-blue-500",
-  //   },
-  //   {
-  //     id: 3,
-  //     author: "Ambon Fanda",
-  //     date: "20 Apr 2024",
-  //     title:
-  //       "Security First: Protecting Your Business with Advanced POS Systems",
-  //     description:
-  //       "One of the primary functions of a POS system is to process transactions and handle sensitive customer data securely...",
-  //     icon: "🛡️",
-  //     gradient: "from-red-400 to-orange-500",
-  //   },
-  //   {
-  //     id: 4,
-  //     author: "Jane Smith",
-  //     date: "19 Apr 2024",
-  //     title: "The Future of Retail: AI-Powered POS Solutions",
-  //     description:
-  //       "Artificial Intelligence is revolutionizing how businesses handle transactions and customer interactions...",
-  //     icon: "🤖",
-  //     gradient: "from-purple-400 to-pink-500",
-  //   },
-  //   {
-  //     id: 5,
-  //     author: "Mike Johnson",
-  //     date: "18 Apr 2024",
-  //     title: "Mobile POS: Taking Your Business Anywhere",
-  //     description:
-  //       "With the rise of mobile commerce, having a portable POS solution has become essential for modern businesses...",
-  //     icon: "📱",
-  //     gradient: "from-yellow-400 to-orange-500",
-  //   },
-  //   {
-  //     id: 6,
-  //     author: "Sarah Wilson",
-  //     date: "17 Apr 2024",
-  //     title: "Inventory Management: The Hidden Power of Your POS",
-  //     description:
-  //       "Beyond processing sales, your POS system can be a powerful tool for managing inventory and tracking stock levels...",
-  //     icon: "📦",
-  //     gradient: "from-indigo-400 to-purple-500",
-  //   },
-  // ];
 
   const [currentPage, setCurrentPage] = useState(0);
   const cardsPerPage = 3;
@@ -119,13 +56,13 @@ const RecentRecords = () => {
     return articles.slice(startIndex, startIndex + cardsPerPage);
   };
   return (
-    <div className="w-full   px-10 mb-16">
-      <div className="text-start mb-12">
-        <h2 className="text-4xl font-bold text-black dark:text-white mb-4">
-          Our Recent Articles
+    <div className="mb-16 px-10 mt-6 ">
+      <div className="text-start mb-6 flex flex-col gap-2">
+        <h2 className="text-4xl font-bold text-black dark:text-white ">
+          {locale.INTRO.RECENT_RECORDS}
         </h2>
         <p className="text-lg text-neutral-600 dark:text-neutral-300">
-          Stay Informed with Our Latest Insights
+          {locale.INTRO.RECENT_RECORDS_DESC}
         </p>
       </div>
 
@@ -136,8 +73,9 @@ const RecentRecords = () => {
         {getCurrentArticles().map((article) => (
           <div
             key={`${article.id}-${currentPage}`}
-            className="bg-white dark:bg-neutral-800 rounded-lg shadow-lg 
-        overflow-hidden hover:shadow-xl 
+            className="bg-white dark:bg-neutral-800 rounded-lg 
+        overflow-hidden hover:shadow-lg transition-all duration-300
+         border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 min-h-[400px]
         "
           >
             <div
@@ -151,7 +89,10 @@ const RecentRecords = () => {
                 backgroundPosition: "center",
               }}
             ></div>
-            <div className="p-6 flex flex-col justify-between">
+            <div
+              id="norkive-recent-card-content"
+              className="p-6 flex flex-col justify-between"
+            >
               <div className="flex gap-2 items-center text-sm text-neutral-500 dark:text-neutral-400 mb-3">
                 {/* <span>{article.author}</span> */}
                 {/* <span className="">•</span> */}
@@ -173,12 +114,14 @@ const RecentRecords = () => {
                   <TagItemMini data={article} />
                 )}
               </div>
-              <a
-                href="#"
-                className="text-neutral-600 dark:text-neutral-400 font-medium hover:underline transition-all duration-300 hover:text-neutral-800 dark:hover:text-neutral-300"
-              >
-                Read More →
-              </a>
+              <div className="mt-auto pt-4">
+                <Link
+                  href={article.url}
+                  className="text-neutral-600 dark:text-neutral-400 font-medium hover:underline transition-all duration-300 hover:text-neutral-800 dark:hover:text-neutral-300"
+                >
+                  {locale.INTRO.READ_MORE}→
+                </Link>
+              </div>
             </div>
           </div>
         ))}

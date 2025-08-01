@@ -1,6 +1,15 @@
 export const ENG_LANG = {
   LOCALE: "en-US",
   LOADING: "Loading...",
+  INTRO: {
+    FAVORITE_RECORDS: "Featured Records",
+    FAVORITE_RECORDS_DESC: "Display the records checked as favorite.",
+    RECENT_RECORDS: "Recent Records",
+    RECENT_RECORDS_DESC: "Shows up to 6 latest Records.",
+    ENTIRE_RECORDS: "Entire Records",
+    ENTIRE_RECORDS_DESC: "Display all records regardless of type.",
+    READ_MORE: "Read More",
+  },
   COMMON: {
     MORE: "More",
     NO_MORE: "No More",

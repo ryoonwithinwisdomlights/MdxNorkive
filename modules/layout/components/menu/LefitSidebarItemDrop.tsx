@@ -33,7 +33,7 @@ export const LefitSidebarItemDrop = (props) => {
   const renderMainMenus = () => {
     const icon = parseIcon(menuData.icon);
     return (
-      <div className="py-2 font-extralight flex justify-between cursor-pointer  no-underline tracking-widest">
+      <div className="py-2 flex justify-between cursor-pointer  no-underline tracking-widest">
         <div>
           <div className={`${menuData.icon} text-center w-4 mr-4`} />
           {icon && <FontAwesomeIcon icon={icon} />} {menuData.title}
@@ -71,7 +71,7 @@ export const LefitSidebarItemDrop = (props) => {
             <div
               key={index}
               style={{ paddingInlineStart: "1rem", paddingInlineEnd: "1rem" }}
-              className="font-extralight text-left justify-start tracking-widest transition-all duration-200
+              className=" text-left justify-start tracking-widest transition-all duration-200
               rounded-xl mx-4  p-2 cursor-pointer
                hover:bg-neutral-200/50 dark:hover:bg-neutral-700"
             >
@@ -95,7 +95,7 @@ export const LefitSidebarItemDrop = (props) => {
     );
   };
   return (
-    <div className="bg-neutral-50 dark:bg-neutral-800 dark:text-neutral-200  text-neutral-600  ">
+    <div className="bg-neutral-50 dark:bg-neutral-800 dark:text-neutral-200  text-neutral-600  h- ">
       <div className={" px-7 w-full text-left duration-200 dark:border-black"}>
         {!hasSubMenu && renderMainMenusWithNoSubMenus()}
 

@@ -11,11 +11,16 @@ const EntireRecords = () => {
   const { locale } = useGeneralSiteSettings();
   if (!pages) NotFound();
   return (
-    <section className="w-full mb-16 px-10">
+    <section className="mb-16 px-10 mt-6">
       {/* 섹션 제목 */}
-      <h2 className="text-3xl text-end font-bold text-neutral-900 dark:text-white mb-8">
-        전체 게시글
-      </h2>
+      <div className="text-end mb-6 flex flex-col gap-2">
+        <h2 className="text-4xl font-bold text-neutral-900 dark:text-white  ">
+          {locale.INTRO.ENTIRE_RECORDS}
+        </h2>
+        <p className="text-lg text-neutral-600 dark:text-neutral-300">
+          {locale.INTRO.ENTIRE_RECORDS_DESC}
+        </p>
+      </div>
 
       {/* 전체 게시글 목록 */}
       <div className="grid gap-6 ">
