@@ -1,0 +1,89 @@
+"use client";
+import NotFound from "@/app/not-found";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { getPages } from "@/lib/source";
+import { getYearMonthDay } from "@/lib/utils/date";
+import { CalendarIcon, FolderClosedIcon } from "lucide-react";
+import Link from "next/link";
+
+const EntireRecords = () => {
+  const pages = getPages();
+  const { locale } = useGeneralSiteSettings();
+  if (!pages) NotFound();
+  return (
+    <section className="w-full mb-16 px-10">
+      {/* 섹션 제목 */}
+      <h2 className="text-3xl text-end font-bold text-neutral-900 dark:text-white mb-8">
+        전체 게시글
+      </h2>
+
+      {/* 전체 게시글 목록 */}
+      <div className="grid gap-6 ">
+        {pages.map((page) => (
+          <article
+            key={page.data.notionId}
+            className="group relative bg-gradient-to-br from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-700 rounded-lg border border-neutral-200
+              dark:border-neutral-700 p-6 hover:shadow-lg transition-all duration-300 hover:border-neutral-300 dark:hover:border-neutral-600"
+          >
+            <Link href={page.url} className="block">
+              {/* 제목 */}
+              <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                {page.data.title}
+              </h3>
+
+              {/* 요약 */}
+              {page.data.summary && (
+                <p className="text-neutral-600 dark:text-neutral-300 mb-4 line-clamp-2">
+                  {page.data.summary}
+                </p>
+              )}
+
+              {/* 메타 정보 */}
+              <div className="flex items-center gap-4 text-sm text-neutral-500 dark:text-neutral-400">
+                {/* 날짜 */}
+                <div className="flex items-center gap-1">
+                  <CalendarIcon className="w-4 h-4" />
+                  <span>
+                    {getYearMonthDay(
+                      page.data.date,
+                      locale === "kr-KR" ? "kr-KR" : "en-US"
+                    )}
+                  </span>
+                </div>
+
+                {/* 카테고리 */}
+                {page.data.category && (
+                  <div className="flex items-center gap-1">
+                    <FolderClosedIcon className="w-4 h-4" />
+                    <span>{page.data.category}</span>
+                  </div>
+                )}
+
+                {/* 태그 */}
+                {page.data.tags && page.data.tags.length > 0 && (
+                  <div className="flex items-center gap-2">
+                    {page.data.tags.slice(0, 3).map((tag, index) => (
+                      <span
+                        key={index}
+                        className="px-2 py-1 bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300 rounded-md text-xs"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                    {page.data.tags.length > 3 && (
+                      <span className="text-xs">
+                        +{page.data.tags.length - 3}
+                      </span>
+                    )}
+                  </div>
+                )}
+              </div>
+            </Link>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default EntireRecords;

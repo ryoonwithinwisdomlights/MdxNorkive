@@ -5,12 +5,13 @@ import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralReco
 import ArchiveIntro from "@/modules/blog/records/ArchiveIntro";
 import LeftSidebar from "@/modules/layout/components/menu/LeftSidebar";
 import RightSideInfoBar from "@/modules/layout/components/RightSideInfoBar";
+import NorkiveIntro from "@/modules/blog/records/NorkiveIntro";
 
 export default function Page() {
   return (
     <GeneralRecordTypePageWrapper>
       <LeftSidebar />
-      <ArchiveIntro />
+      <NorkiveIntro />
       <RightSideInfoBar />
     </GeneralRecordTypePageWrapper>
   );

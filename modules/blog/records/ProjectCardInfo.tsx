@@ -3,6 +3,7 @@ import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvide
 import { CardInfoDivProps } from "@/types";
 import { CalendarIcon, FolderClosedIcon, LockIcon } from "lucide-react";
 import Link from "next/link";
+import TagItemMini from "../tag/TagItemMini";
 /**
  * Portfolio list text content
  * @param {*} param0
@@ -83,9 +84,9 @@ const ProjectCardInfo = ({
           </div>
           <div className="md:flex-nowrap flex-wrap md:justify-start inline-block">
             <div>
-              {/* {page.data.tags?.map((tag) => (
-                <TagItemMini key={tag.name} tag={tag} />
-              ))} */}
+              {page.data.tags && page.data.tags.length > 0 && (
+                <TagItemMini data={page.data} />
+              )}
             </div>
           </div>
         </div>

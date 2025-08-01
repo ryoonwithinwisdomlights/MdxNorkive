@@ -26,6 +26,7 @@ const records = defineCollection({
     category: z.string().optional(), // ex. "개발", ["개발", "에세이"]
     tags: z.array(z.string()).optional(), // ex. ["Next.js", "SEO"]
     draft: z.boolean().default(false),
+    favorite: z.boolean().default(false),
     // Fumadocs OpenAPI generated
     _openapi: z.record(z.string(), z.any()).optional(),
   }),

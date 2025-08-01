@@ -5,5 +5,5 @@ type Props = {
 };
 
 export default function GeneralRecordTypePageWrapper({ children }: Props) {
-  return <div className="w-full pt-10 flex flex-row">{children}</div>;
+  return <div className="w-full  flex flex-row justify-evenly">{children}</div>;
 }

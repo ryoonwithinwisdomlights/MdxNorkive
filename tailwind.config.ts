@@ -98,6 +98,21 @@ module.exports = {
         1: "0px 1px 3px 0px rgba(166, 175, 195, 0.40)",
         2: "0px 5px 12px 0px rgba(0, 0, 0, 0.10)",
       },
+      animation: {
+        "fade-in-up": "fadeInUp 0.6s ease-out forwards",
+      },
+      keyframes: {
+        fadeInUp: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(30px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+      },
     },
   },
   plugins: [scrollbarHide],

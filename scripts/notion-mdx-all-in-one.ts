@@ -32,6 +32,7 @@ export type FrontMatter = {
   description: string;
   icon: string;
   full: boolean;
+  favorite: boolean;
   lastModified: string;
   readingTime: number;
   wordCount: number;
@@ -142,6 +143,7 @@ async function main() {
           props.description?.rich_text?.[0]?.plain_text?.trim() || "";
         const icon = props.icon?.emoji || "";
         const full = props.full?.checkbox || false;
+        const favorite = props.favorite?.checkbox || false;
         const category = props.category?.select?.name ?? "";
         const tags = props.tags?.multi_select?.map((t: any) => t.name) ?? [];
         const date = props.date?.date?.start || new Date().toISOString();
@@ -169,6 +171,7 @@ async function main() {
           description,
           icon,
           full,
+          favorite,
           lastModified: new Date().toISOString().slice(0, 10),
           readingTime: Math.ceil((title.length + description.length) / 200),
           wordCount: title.length + description.length,

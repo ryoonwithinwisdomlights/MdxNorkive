@@ -5,9 +5,9 @@ import LazyImage from "@/modules/common/components/shared/LazyImage";
 const RightSideInfoBar = () => {
   return (
     <div
-      className="hidden md:w-[20%] md:fixed 
-md:right-0 xl:block border-neutral-200 dark:border-transparent 
-h-screen z-10  p-6"
+      className="hidden md:w-[18%] md:fixed xl:block
+right-0  border-neutral-200 dark:border-transparent 
+h-screen z-10  py-6 px-10   mt-10"
     >
       <div className="flex flex-col items-center gap-1  ">
         <div

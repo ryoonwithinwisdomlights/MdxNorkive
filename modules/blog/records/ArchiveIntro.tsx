@@ -11,7 +11,7 @@ import NotFound from "@/app/not-found";
 
 export function setAllPagesGetSortedGroupedByDate(allPages) {
   let result = allPages;
-  const pageSortedByDate = setPageSortedByDate2(allPages, "date");
+  const pageSortedByDate = setPageSortedByDate2(result, "date");
   const pageGroupedByDate = setPageGroupedByDate2(pageSortedByDate, "date");
   result = pageGroupedByDate;
 
