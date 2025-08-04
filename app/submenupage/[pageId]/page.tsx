@@ -41,7 +41,7 @@ export default async function Page({ params }) {
       toc={toc}
       date={lastEditedDate}
       page={page}
-      className="pl-20"
+      className=""
     />
   );
 }

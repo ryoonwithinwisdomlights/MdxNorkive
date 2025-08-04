@@ -5,11 +5,11 @@ import LazyImage from "@/modules/common/components/shared/LazyImage";
 const RightSideInfoBar = () => {
   return (
     <div
-      className="hidden md:w-[20%] h-screen md:fixed xl:block m-0
-top-0 right-0 border-l  border-neutral-200 dark:border-transparent 
- z-10  pt-18  "
+      className="hidden md:w-[20%] bg-pink-100 h-screen md:fixed xl:block m-0
+right-0 border-l  border-neutral-200 dark:border-transparent 
+ z-10  py-16   "
     >
-      <div className=" px-10 py-6 overflow-hidden w-full h-[calc(100vh-150px)] relative  flex flex-col gap-2 ">
+      <div className="  overflow-hidden w-full h-[calc(100vh-150px)] relative  flex flex-col gap-2 ">
         <div className="flex flex-col items-center gap-1  ">
           <div
             className="flex flex-row 

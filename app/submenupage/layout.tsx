@@ -6,9 +6,9 @@ import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralReco
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <GeneralRecordTypePageWrapper>
-      <LeftSidebar />
+      {/* <LeftSidebar /> */}
       <div
-        className="w-full p-16  xl:w-[60%] flex flex-col 
+        className="w-[60%] p-16 bg-pink-200  flex flex-col 
       justify-center items-center "
       >
         {children}
