@@ -173,8 +173,8 @@ const LatestRecords = () => {
             </div>
 
             <h3 className="  text-black mt-1 line-clamp-2">
-              {/* {articles[0].description} */}
-              Barely half of banks' own employees would recommend their inter...
+              {firstArticle.description}
+              {/* Barely half of banks' own employees would recommend their inter... */}
             </h3>
             <div className="flex items-center text-sm text-neutral-500">
               <span>{firstArticle.author}</span>
@@ -200,9 +200,9 @@ const LatestRecords = () => {
        hover:border-neutral-300 dark:hover:border-neutral-600"
           >
             <div className="flex flex-row">
-              <div className="w-30 h-30 bg-neutral-800 flex items-center justify-center">
+              <div className="w-30 h-40 bg-neutral-800 flex items-center justify-center">
                 <div
-                  className={`h-30 w-30
+                  className={`w-full h-full
                    
                       flex items-center justify-center rounded-l-sm
                       transition-all duration-300 hover:scale-105`}

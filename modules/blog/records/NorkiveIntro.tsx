@@ -1,8 +1,5 @@
 "use client";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import FeaturedRecords from "./FeaturedRecords";
-import RecentRecords from "./RecentRecords";
-import EntireRecords from "./EntireRecords";
 import LatestRecords from "./LatestRecords";
 
 const NorkiveIntro = () => {

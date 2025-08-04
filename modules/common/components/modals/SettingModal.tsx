@@ -17,7 +17,7 @@ const SettingModal = () => {
 
   return (
     <Dialog open={setting} onOpenChange={handleSettings}>
-      <DialogContent>
+      <DialogContent className="max-w-md w-full border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900">
         <VisuallyHidden>
           <DialogTitle></DialogTitle>
         </VisuallyHidden>

@@ -14,7 +14,7 @@ export default function SwitchLanguage() {
   const dicList = Object.keys(dictionaries);
 
   return (
-    <div className="relative inline-block text-left">
+    <div className="relative inline-block text-left ">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
@@ -26,7 +26,10 @@ export default function SwitchLanguage() {
             <span className="sr-only">""</span>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
+        <DropdownMenuContent
+          align="end"
+          className="  border border-neutral-200 dark:border-neutral-700  bg-white dark:bg-neutral-900"
+        >
           {dicList?.map((item, index) => (
             <DropdownMenuItem
               key={index}
