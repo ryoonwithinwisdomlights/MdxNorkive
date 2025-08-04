@@ -1,6 +1,6 @@
 "use client";
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
-import { formatToKoreanDate } from "@/lib/utils/utils";
+import { formatToKoreanDate } from "@/lib/utils/general";
 import { Clock4Icon } from "lucide-react";
 
 export default function ArchiveInfo({ props }) {

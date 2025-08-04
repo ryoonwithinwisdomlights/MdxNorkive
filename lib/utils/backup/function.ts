@@ -11,7 +11,6 @@ import {
   SiteInfoModel,
 } from "@/types";
 import md5 from "js-md5";
-// import { CollectionPropertySchemaMap } from "notion-types";
 import {
   ARCHIVE_PROPERTIES_STATUS_MAP,
   ARCHIVE_PROPERTIES_TYPE_MAP,
@@ -28,8 +27,7 @@ import {
   formatDate,
   getLastSegmentFromUrl,
   isStartWithHttp,
-} from "@/lib/utils/utils";
-// import { defaultMapImageUrl, getPageTableOfContents } from "notion-utils";
+} from "@/lib/utils/general";
 import { RecordItem } from "@/app/api/types";
 import { CodeLanguages } from "@/constants/code.languge";
 import {
@@ -37,7 +35,7 @@ import {
   extractLangPrefix,
   setPageGroupedByDate,
   setPageSortedByDate,
-} from "@/lib/notion/functions/utils";
+} from "@/lib/utils/backup/utils";
 
 export function getFilteredRecordList(allPages, type) {
   const allpageCounter = { count: 0 };
@@ -50,15 +48,6 @@ export function getFilteredRecordList(allPages, type) {
   );
   return recordList;
 }
-
-// export function getPageCover(postInfo) {
-//   const pageCover = postInfo.format?.page_cover;
-//   if (pageCover) {
-//     if (pageCover.startsWith("/")) return BLOG.NOTION_HOST + pageCover;
-//     if (pageCover.startsWith("http"))
-//       return defaultMapImageUrl(pageCover, postInfo);
-//   }
-// }
 
 /**
  * Get label options
@@ -208,48 +197,6 @@ export async function getNoticePage(data) {
   // });
 
   return notice;
-}
-
-export function getSiteInfo2({
-  recordItem,
-}: {
-  recordItem?: RecordItem;
-}): SiteInfoModel {
-  const defaultTitle = BLOG.TITLE;
-  const defaultDescription = BLOG.DESCRIPTION;
-  const defaultPageCover = BLOG.HOME_BANNER_IMAGE;
-  const defaultIcon = BLOG.AVATAR;
-  const defaultLink = BLOG.LINK;
-  if (!recordItem) {
-    return {
-      title: defaultTitle,
-      description: defaultDescription,
-      pageCover: defaultPageCover,
-      icon: defaultIcon,
-      link: defaultLink,
-    };
-  }
-
-  const title = recordItem.title || defaultTitle;
-  const description = recordItem?.description || defaultDescription;
-
-  const pageCover = recordItem?.pageCover || defaultPageCover;
-
-  const collectionIcon = recordItem?.icon || defaultIcon;
-
-  // Compress all category user avatars
-  let icon = compressImage(
-    collectionIcon ? { image: collectionIcon } : { image: defaultIcon }
-  );
-  // Site URL
-  const link = recordItem.slug || defaultLink;
-
-  // Site icon cannot be emoji
-  const emojiPattern = /\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g;
-  if (!icon || emojiPattern.test(icon)) {
-    icon = defaultIcon;
-  }
-  return { title, description, pageCover, icon, link } as SiteInfoModel;
 }
 
 export function getSiteInfo({
@@ -691,7 +638,7 @@ export function adjustPageProperties(properties) {
 
     properties.slug = BLOG.RECORD_URL_PREFIX
       ? customedUrl
-      : (properties.slug ?? properties.id);
+      : properties.slug ?? properties.id;
   } else if (PAGE_TYPE_MENU.includes(properties.type)) {
     properties.slug = `/intro/${properties.id}`;
   } else if (GENERAL_TYPE_MENU.includes(properties.type)) {
@@ -925,7 +872,9 @@ export function filterRecordBlocks(id, pageBlock) {
           b.value.properties?.source?.[0]?.[0]?.includes("amazonaws.com")
         ) {
           const oldUrl = b.value.properties.source[0][0];
-          b.value.properties.source[0][0] = `https://notion.so/signed/${encodeURIComponent(oldUrl)}?table=block&id=${b.value.id}`;
+          b.value.properties.source[0][0] = `https://notion.so/signed/${encodeURIComponent(
+            oldUrl
+          )}?table=block&id=${b.value.id}`;
         }
       }
     });

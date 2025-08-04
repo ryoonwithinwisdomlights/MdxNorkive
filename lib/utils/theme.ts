@@ -1,5 +1,5 @@
 import { BLOG } from "@/blog.config";
-import { getQueryVariable } from "./utils";
+import { getQueryVariable } from "./general";
 
 /**
  * Initialize topic, priorityquery > localstorage > systemPrefer

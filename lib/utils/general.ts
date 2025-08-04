@@ -10,6 +10,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export const isNil = (input: unknown): input is null => {
+  return input === null;
+};
+
 export function substringWithNumberDots(str, number) {
   const result = str.length > number ? str.substring(0, number) + "..." : str;
   return result;

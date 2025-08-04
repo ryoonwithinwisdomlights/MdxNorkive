@@ -5,7 +5,7 @@ import throttle from "lodash.throttle";
 import { useCallback, useEffect, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 // import { isBrowser } from "react-notion-x";
-import { uuidToId, isBrowser } from "@/lib/utils/utils";
+import { uuidToId, isBrowser } from "@/lib/utils/general";
 /**
  * @param toc
  * @returns {JSX.Element}

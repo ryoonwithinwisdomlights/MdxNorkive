@@ -1,6 +1,6 @@
 "use client";
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
-import { substringWithNumberDots } from "@/lib/utils/utils";
+import { substringWithNumberDots } from "@/lib/utils/general";
 import { NavListDivProps } from "@/types";
 import { usePathname } from "next/navigation";
 

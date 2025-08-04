@@ -1,7 +1,7 @@
 "use client";
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { ARCHIVE_CONFIG } from "@/lib/utils/archive-config";
+import { ARCHIVE_CONFIG } from "@/constants/archive-config";
 import NoRecordFound from "@/modules/blog/records/NoRecordFound";
 import NavPostItem from "@/modules/layout/components/NavPostItem";
 import NavPostListEmpty from "@/modules/layout/components/NavPostListEmpty";

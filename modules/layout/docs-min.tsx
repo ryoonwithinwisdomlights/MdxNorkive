@@ -1,7 +1,7 @@
 "use client";
 import type { PageTree } from "fumadocs-core/server";
 import { type ComponentProps, type ReactNode, useMemo } from "react";
-import { cn } from "@/lib/utils/utils";
+import { cn } from "@/lib/utils/general";
 import { TreeContextProvider, useTreeContext } from "fumadocs-ui/contexts/tree";
 import Link from "fumadocs-core/link";
 import { useSearchContext } from "fumadocs-ui/contexts/search";

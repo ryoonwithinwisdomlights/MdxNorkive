@@ -1,6 +1,6 @@
 "use client";
 import { BLOG } from "@/blog.config";
-import { isBrowser } from "@/lib/utils/utils";
+import { isBrowser } from "@/lib/utils/general";
 import Tabs from "@/modules/common/ui/Tabs";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";

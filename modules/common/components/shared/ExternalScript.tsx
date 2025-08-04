@@ -1,6 +1,6 @@
 "use client";
 
-import { isBrowser } from "@/lib/utils/utils";
+import { isBrowser } from "@/lib/utils/general";
 
 /**
  * custom external script

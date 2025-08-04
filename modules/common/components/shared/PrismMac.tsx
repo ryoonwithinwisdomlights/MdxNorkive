@@ -12,7 +12,7 @@
 
 // import { BLOG } from "@/blog.config";
 // import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-// import { loadExternalResource } from "@/lib/utils/utils";
+// import { loadExternalResource } from "@/lib/utils/general";
 // import { useRouter } from "next/navigation";
 
 // const PrismMac = (): JSX.Element => {

@@ -1,5 +1,5 @@
 "use client";
-import { loadExternalResource } from "@/lib/utils/utils";
+import { loadExternalResource } from "@/lib/utils/general";
 import { useEffect, useRef, useLayoutEffect, useState } from "react";
 
 const VConsoleTs = () => {

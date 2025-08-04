@@ -1,5 +1,5 @@
 import { BLOG } from "@/blog.config";
-import { convertCleanJsonString, deepClone, isUrl } from "@/lib/utils/utils";
+import { convertCleanJsonString, deepClone, isUrl } from "@/lib/utils/general";
 import { useGlobal } from "../context/EssentialNavInfoProvider";
 
 export const isServer = typeof window === "undefined";

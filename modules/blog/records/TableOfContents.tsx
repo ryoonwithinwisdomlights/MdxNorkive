@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import throttle from "lodash.throttle";
 
-import { uuidToId, isBrowser } from "@/lib/utils/utils";
+import { uuidToId, isBrowser } from "@/lib/utils/general";
 const TableOfContents = ({ page }) => {
   if (!page) {
     return null;
@@ -99,7 +99,9 @@ const TableOfContents = ({ page }) => {
                 activeSection === id &&
                 "pl-4 border-l border-neutral-400 text-neutral-500  font-bold"
               }  hover:text-neutral-500  duration-300 notion-table-of-contents-item  transform  dark:text-neutral-300
-              notion-table-of-contents-item-indent-level-${tocItem.indentLevel} catalog-item `}
+              notion-table-of-contents-item-indent-level-${
+                tocItem.indentLevel
+              } catalog-item `}
             >
               <span
                 style={{

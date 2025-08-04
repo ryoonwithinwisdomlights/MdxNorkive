@@ -1,5 +1,5 @@
 import { BLOG } from "@/blog.config";
-import { formatDate } from "@/lib/utils/utils";
+import { formatDate } from "@/lib/utils/general";
 import type { MetadataRoute } from "next";
 import { fetchAllRecordList } from "./api/fetcher";
 type ChangeFrequency =

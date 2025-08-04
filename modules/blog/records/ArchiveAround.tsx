@@ -1,5 +1,5 @@
 "use client";
-import { substringWithNumberDots } from "@/lib/utils/utils";
+import { substringWithNumberDots } from "@/lib/utils/general";
 import {
   ChevronLeft,
   ChevronRight,

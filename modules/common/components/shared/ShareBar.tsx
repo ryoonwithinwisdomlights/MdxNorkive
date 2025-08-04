@@ -3,40 +3,40 @@ import { BLOG } from "@/blog.config";
 import { usePathname, useSearchParams } from "next/navigation";
 import ShareButtons from "./ShareButtons";
 
-const ShareBar = ({ record }) => {
+const ShareBar = ({ data }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  if (
-    !JSON.parse(BLOG.RECORD_SHARE_BAR_ENABLE) ||
-    !record ||
-    record?.type === "CONFIG" ||
-    record?.type === "Menu" ||
-    record?.type === "SubMenu" ||
-    record?.type === "Notice" ||
-    record?.type === "Page" ||
-    record?.status !== "Published"
-  ) {
-    return <></>;
-  }
+  // if (
+  //   !JSON.parse(BLOG.RECORD_SHARE_BAR_ENABLE) ||
+  //   !record ||
+  //   record?.type === "CONFIG" ||
+  //   record?.type === "Menu" ||
+  //   record?.type === "SubMenu" ||
+  //   record?.type === "Notice" ||
+  //   record?.type === "Page" ||
+  //   record?.status !== "Published"
+  // ) {
+  //   return <></>;
+  // }
 
   const shareUrl = BLOG.LINK + `${pathname}?${searchParams}`;
-
+  // console.log("shareUrl::", shareUrl);
   return (
-    <div className="m-1 overflow-x-auto">
+    <div className="mt-16 overflow-x-auto">
       <div className="flex w-full md:justify-end">
         <ShareButtons
           shareUrl={shareUrl}
-          title={record.title}
-          image={record.pageCover}
+          title={data.title}
+          image={data.pageCover}
           body={
-            record?.title +
+            data?.title +
             " | " +
             BLOG.TITLE +
             " " +
             shareUrl +
             " " +
-            record?.summary
+            data?.summary
           }
         />
       </div>

@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { isBrowser } from "@/lib/utils/utils";
+import { isBrowser } from "@/lib/utils/general";
 import { useMediaQuery } from "usehooks-ts";
 const isMobile = useMediaQuery("(max-width: 768px");
 /**

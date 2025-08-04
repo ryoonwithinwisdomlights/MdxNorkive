@@ -1,5 +1,5 @@
 "use client";
-import { parseIcon } from "@/lib/utils/utils";
+import { parseIcon } from "@/lib/utils/general";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ChevronDownIcon } from "lucide-react";
 import Link from "next/link";

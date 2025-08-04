@@ -2,7 +2,7 @@
 "use client";
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { deepClone } from "@/lib/utils/utils";
+import { deepClone } from "@/lib/utils/general";
 
 import { SearchIcon, XIcon } from "lucide-react";
 import { useEffect, useImperativeHandle, useRef, useState } from "react";

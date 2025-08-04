@@ -1,5 +1,5 @@
 "use client"; // 클라이언트 컴포넌트
-import { parseIcon } from "@/lib/utils/utils";
+import { parseIcon } from "@/lib/utils/general";
 import Collapse from "@/modules/common/components/shared/Collapse";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ChevronRightIcon } from "lucide-react";

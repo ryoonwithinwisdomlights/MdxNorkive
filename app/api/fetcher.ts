@@ -10,7 +10,7 @@ import type {
   QueryPageResponse,
   RecordItem,
 } from "@/app/api/types";
-import { getSiteInfo2 } from "@/lib/notion/functions/function";
+import { getSiteInfo2 } from "@/lib/utils/site";
 import type {
   GetBlockResponse,
   ImageBlockObjectResponse,

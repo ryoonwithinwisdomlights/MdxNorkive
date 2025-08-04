@@ -1,4 +1,4 @@
-// import { calculateReadingTime } from "@/lib/utils/utils";
+// import { calculateReadingTime } from "@/lib/utils/general";
 // import React from "react";
 // import ReactMarkdown from "react-markdown";
 // import { components } from "@/modules/common/components/mdx-component";

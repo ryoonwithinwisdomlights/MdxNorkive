@@ -1,8 +1,6 @@
 "use client"; // 클라이언트 컴포넌트
 import { BLOG } from "@/blog.config";
-import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { getSiteInfo2 } from "@/lib/notion/functions/function";
+import { getSiteInfo2 } from "@/lib/utils/site";
 import LazyImage from "@/modules/common/components/shared/LazyImage";
 import Link from "next/link";
 

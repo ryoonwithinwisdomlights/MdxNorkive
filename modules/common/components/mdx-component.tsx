@@ -11,7 +11,7 @@
 // import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 // import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 // import { Badge } from "./ui/badge";
-// import { cn } from "@/lib/utils/utils";
+// import { cn } from "@/lib/utils/general";
 
 // const components = {
 //   h1: ({ children }: { children?: React.ReactNode }) => (

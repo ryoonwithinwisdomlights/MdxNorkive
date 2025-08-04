@@ -1,5 +1,5 @@
-import { isAbleRecordPage } from "@/lib/notion/functions/function";
-import { ARCHIVE_CONFIG } from "@/lib/utils/archive-config";
+import { isAbleRecordPage } from "@/lib/utils/backup/function";
+import { ARCHIVE_CONFIG } from "@/constants/archive-config";
 import CategoryItem from "@/modules/blog/category/CategoryItem";
 import ArchiveAround from "@/modules/blog/records/ArchiveAround";
 import Comment from "@/modules/common/components/shared/Comment";

@@ -9,7 +9,10 @@ import {
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { Book, ChevronDownIcon } from "lucide-react";
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 const LatestRecords = () => {
+  const router = useRouter();
   const pages = getPages();
   if (!pages) NotFound();
   const { lang, locale } = useGeneralSiteSettings();
@@ -163,13 +166,16 @@ const LatestRecords = () => {
 
           {/* Right Side - Content */}
           <div className="md:w-1/2 h-60 p-6 flex flex-col justify-between  items-start  ">
-            <div>
+            <div className="flex flex-col">
               <span className="text-xs text-neutral-500 uppercase tracking-wide mb-2">
                 {firstArticle.type} / {firstArticle.subType}
               </span>
-              <p className="text-xl font-bold text-black mb-4 leading-tight">
+              <Link
+                href={firstArticle.url}
+                className=" hover:underline text-xl font-bold text-black mb-4 leading-tight"
+              >
                 {firstArticle.title}
-              </p>
+              </Link>
             </div>
 
             <h3 className="  text-black mt-1 line-clamp-2">
@@ -217,9 +223,16 @@ const LatestRecords = () => {
                 <span className="text-xs text-neutral-500 uppercase tracking-wide">
                   {article.type} / {article.subType}
                 </span>
-                <h4 className="text-sm font-semibold text-black mt-1 line-clamp-2">
+                {/* <h4 className="text-sm font-semibold text-black mt-1 line-clamp-2">
                   {article.title}
-                </h4>
+                </h4> */}
+
+                <Link
+                  href={firstArticle.url}
+                  className=" hover:underline text-sm font-semibold text-black mt-1 line-clamp-2"
+                >
+                  {article.title}
+                </Link>
                 <h5 className="text-sm font-semibold text-black mt-1 line-clamp-2">
                   {article.description}
                 </h5>

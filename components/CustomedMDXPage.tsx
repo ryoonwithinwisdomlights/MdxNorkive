@@ -1,7 +1,7 @@
 import { mdxComponents } from "@/components/mdx-components";
+import ShareBar from "@/modules/common/components/shared/ShareBar";
 import { buttonVariants } from "@/modules/common/ui/button";
 import { MDXContent } from "@content-collections/mdx/react";
-import { InlineTOC } from "fumadocs-ui/components/inline-toc";
 import { DocsBody, DocsPage } from "fumadocs-ui/page";
 import Link from "next/link";
 import Comment from "./Comment";
@@ -55,11 +55,12 @@ export default function TempDoc({ body, toc, date, page, className }) {
         </div>
         {/* <DocsTitle>{page.data.title}</DocsTitle> */}
         {/* <DocsDescription>{page.data.description}</DocsDescription> */}
-        <DocsBody className=" p-4">
+        <DocsBody className=" p-4 ">
           {/* <MDX components={mdxComponents} /> */}
           {/* <p>{page.data.content}</p> */}
           <MDXContent code={body} components={mdxComponents} />
         </DocsBody>
+        <ShareBar data={page.data} />
       </DocsPage>
       <Comment frontMatter={page.data} />
     </article>

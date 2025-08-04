@@ -2,9 +2,9 @@
 import {
   setPageGroupedByDate2,
   setPageSortedByDate2,
-} from "@/lib/notion/functions/utils";
+} from "@/lib/utils/backup/utils";
 import { getPages } from "@/lib/source";
-import { isObjectNotEmpty } from "@/lib/utils/utils";
+import { isObjectNotEmpty } from "@/lib/utils/general";
 import AllRecords from "./EntireRecordsWithDateSort";
 import NoRecordFound from "./NoRecordFound";
 import NotFound from "@/app/not-found";
