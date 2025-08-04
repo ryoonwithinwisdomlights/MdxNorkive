@@ -7,7 +7,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       {...recordOptions}
       searchToggle={{ enabled: false }}
       themeSwitch={{ enabled: false }}
-      sidebar={{ enabled: false, defaultOpenLevel: 0 }}
+      sidebar={{ defaultOpenLevel: 0 }}
     >
       {children}
     </DocsLayout>

@@ -1,4 +1,5 @@
 "use client";
+import EntireRecords from "./EntireRecords";
 import FeaturedRecords from "./FeaturedRecords";
 import LatestRecords from "./LatestRecords";
 
@@ -12,7 +13,7 @@ const NorkiveIntro = () => {
       {/* Our Recent Records Section */}
       {/* <RecentRecords /> */}
       {/* All Records Section */}
-      {/* <EntireRecords /> */}
+      <EntireRecords />
     </div>
   );
 };

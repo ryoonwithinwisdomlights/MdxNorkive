@@ -92,14 +92,15 @@ export default function HeaderSearch() {
             rounded-md
             bg-neutral-100
             placeholder-neutral-500
+            dark:placeholder-neutral-300
             focus:outline-none
             focus:ring-2 focus:ring-neutral-400
             transition
-           dark:text-white/50
+        dark:text-neutral-300
             text-neutral-700 
            hover:ring-2 hover:ring-neutral-400
             dark:bg-neutral-700/50 
-            dark:placeholder-neutral-500
+    
             dark:focus:ring-neutral-600
             dark:hover:bg-neutral-600/50
           "
@@ -140,7 +141,7 @@ export default function HeaderSearch() {
             ))}
           </ul>
         ) : query.trim().length > 0 ? (
-          <div className="p-3 text-neutral-500 dark:text-neutral-400 ">
+          <div className="p-3 text-neutral-500 dark:text-neutral-300 ">
             No results found.
           </div>
         ) : null}

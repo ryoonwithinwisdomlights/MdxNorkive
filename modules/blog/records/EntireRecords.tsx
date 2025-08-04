@@ -6,11 +6,11 @@ import { getYearMonthDay } from "@/lib/utils/date";
 import { CalendarIcon, FolderClosedIcon } from "lucide-react";
 import Link from "next/link";
 
-const EntireRecords = ({ allRecords }) => {
-  // const pages = getPages();
+const EntireRecords = () => {
+  const pages = getPages();
   const { locale } = useGeneralSiteSettings();
-  if (!allRecords) NotFound();
-  const modAllRecords = allRecords.slice(6, allRecords.length);
+  if (!pages) NotFound();
+  const modAllRecords = pages.slice(6, pages.length);
   return (
     <section className="w-full">
       {/* 섹션 제목 */}

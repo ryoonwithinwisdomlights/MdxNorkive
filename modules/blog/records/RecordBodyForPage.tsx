@@ -78,7 +78,7 @@ const RecordBodyForPage = () => {
   return (
     <div className="flex flex-col w-full items-center gap-6 ">
       <CategoryCarousel items={allCategories} />
-      <div className="flex flex-row justify-end">
+      <div className="flex flex-row justify-end w-full">
         <div className="space-y-6 w-full">
           {filteredPages && filteredPages.length > 0 ? (
             filteredPages.map((item: any, index) => {
