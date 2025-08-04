@@ -7,6 +7,7 @@ import type { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
  * Home Layout: app/(home)/layout.tsx
  * Docs Layout: app/docs/layout.tsx
  */
+
 export const baseOptions: Partial<DocsLayoutProps> = {
   nav: {
     // title: (

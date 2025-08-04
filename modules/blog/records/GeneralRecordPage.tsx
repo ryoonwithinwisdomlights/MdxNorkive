@@ -1,7 +1,7 @@
 "use client";
 import NotFound from "@/app/not-found";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { getPages } from "@/lib/source";
+import { recordSource } from "@/lib/source";
 import {
   setPageGroupedByDate2,
   setPageSortedByDate2,
@@ -21,10 +21,11 @@ export function setAllPagesGetSortedGroupedByDate(allPages) {
 }
 
 const GeneralRecordPage = () => {
-  const pages = getPages();
+  const pages = recordSource.getPages();
 
   if (!pages) NotFound();
   const { lang, locale } = useGeneralSiteSettings();
+  console.log("GeneralRecordPage::", pages);
   const filteredPages = pages.filter(
     (page) =>
       page.data.sub_type !== "Engineering" && page.data.sub_type !== "Project"
@@ -82,7 +83,11 @@ const GeneralRecordPage = () => {
         {/* <hr className="w-full border-2 border-neutral-100" /> */}
         {isAble ? (
           <div className="flex flex-col gap-16 items-start w-full ">
-            <FeaturedRecords sub_type="General" introText={false} />
+            <FeaturedRecords
+              sub_type="General"
+              records={filteredPages}
+              introText={false}
+            />
             {/* <RecordsWithMultiplesOfThree
               filteredPages={filteredPages}
               className=""

@@ -3,7 +3,7 @@ import CategoryCarousel from "@/modules/common/components/CategoryCarousel";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import NoRecordFound from "./NoRecordFound";
 import RecordCardInfo from "./RecordCardInfo";
-import { getPages } from "@/lib/source";
+import { getPages, engineeringSource, projectSource } from "@/lib/source";
 import NotFound from "@/app/not-found";
 import { useMemo } from "react";
 
@@ -14,12 +14,15 @@ interface CategoryItem {
   isActive?: boolean;
 }
 
-const RecordBodyForPage = () => {
+const RecordBodyForPage = ({ type }: { type: string }) => {
   const pathname = usePathname();
   const subType = pathname.split("/")[1].toLowerCase();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const pages = getPages();
+  const pages =
+    type === "engineering"
+      ? engineeringSource.getPages()
+      : projectSource.getPages();
 
   if (!pages) NotFound();
 

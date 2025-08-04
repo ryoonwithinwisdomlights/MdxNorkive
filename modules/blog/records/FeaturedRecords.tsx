@@ -1,7 +1,6 @@
 "use client";
 import NotFound from "@/app/not-found";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { getPages } from "@/lib/source";
 import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils/date";
 import LazyImage from "@/modules/common/components/shared/LazyImage";
 import {
@@ -13,8 +12,9 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 
-const FeaturedRecords = ({ sub_type, introText }) => {
-  const pages = getPages();
+const FeaturedRecords = ({ sub_type, introText, records }) => {
+  const pages = records;
+  console.log("FeaturedRecords::", pages);
   const { locale, lang } = useGeneralSiteSettings();
   const [currentIndex, setCurrentIndex] = useState(0);
 
