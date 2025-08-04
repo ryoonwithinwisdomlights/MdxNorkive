@@ -5,7 +5,7 @@ import {
 } from "@/lib/notion/functions/utils";
 import { getPages } from "@/lib/source";
 import { isObjectNotEmpty } from "@/lib/utils/utils";
-import AllRecords from "./AllRecords";
+import AllRecords from "./EntireRecordsWithDateSort";
 import NoRecordFound from "./NoRecordFound";
 import NotFound from "@/app/not-found";
 

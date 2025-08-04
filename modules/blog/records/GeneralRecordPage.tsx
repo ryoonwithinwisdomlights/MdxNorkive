@@ -1,13 +1,17 @@
 "use client";
+import NotFound from "@/app/not-found";
 import {
   setPageGroupedByDate2,
   setPageSortedByDate2,
 } from "@/lib/notion/functions/utils";
 import { getPages } from "@/lib/source";
 import { isObjectNotEmpty } from "@/lib/utils/utils";
-import AllRecords from "./AllRecords";
+import EntireRecordsWithDateSort from "./EntireRecordsWithDateSort";
 import NoRecordFound from "./NoRecordFound";
-import NotFound from "@/app/not-found";
+import RecordsWithMultiplesOfThree from "./RecordsWithMultiplesOfThree";
+import { EntireRecordsWithDateSortWrapper } from "./EntireRecordsWithDateSortWrapper";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import FeaturedRecords from "./FeaturedRecords";
 
 export function setAllPagesGetSortedGroupedByDate(allPages) {
   let result = allPages;
@@ -22,28 +26,49 @@ const GeneralRecordPage = () => {
   const pages = getPages();
 
   if (!pages) NotFound();
+  const { lang, locale } = useGeneralSiteSettings();
   const filteredPages = pages.filter(
     (page) =>
       page.data.sub_type !== "Engineering" && page.data.sub_type !== "Project"
   );
+
   const isAble = isObjectNotEmpty(filteredPages);
+  if (!isAble) NotFound();
   const modAllPages = setAllPagesGetSortedGroupedByDate(filteredPages);
   return (
-    <div
-      className=" dark:bg-black dark:text-neutral-300 pb-40  items-center  px-10 
-   flex flex-col w-full"
-    >
-      {isAble ? (
-        <div className="flex flex-row items-center w-full ">
-          <div className="w-full  flex flex-col justify-center  items-center gap-10 bg-opacity-30 rounded-lg md:pl-10 dark:bg-black dark:bg-opacity-70 ">
-            {Object.keys(modAllPages)?.map((title, index) => (
-              <AllRecords key={index} title={title} recordList={modAllPages} />
-            ))}
-          </div>
+    <div className="flex flex-col md:px-10 w-full items-center dark:bg-black dark:text-neutral-300 ">
+      <div className="text-start mb-6 flex flex-col gap-10 w-full">
+        <div className="flex flex-col gap-2">
+          <h2
+            className="text-5xl  font-bold text-neutral-800
+           dark:text-white 
+         dark:bg-neutral-800"
+          >
+            General records
+          </h2>
+          {/* <p className="text-lg text-neutral-600 dark:text-neutral-300">
+          {locale.INTRO.RECENT_RECORDS_DESC}
+        </p> */}
         </div>
-      ) : (
-        <NoRecordFound />
-      )}
+        {/* <hr className="w-full border-2 border-neutral-100" /> */}
+        {isAble ? (
+          <div className="flex flex-col gap-16 items-start w-full ">
+            <FeaturedRecords sub_type="General" introText={false} />
+            {/* <RecordsWithMultiplesOfThree
+              filteredPages={filteredPages}
+              className=""
+              introText={false}
+            /> */}
+
+            <EntireRecordsWithDateSortWrapper
+              modAllPages={modAllPages}
+              className=""
+            />
+          </div>
+        ) : (
+          <NoRecordFound />
+        )}
+      </div>
     </div>
   );
 };

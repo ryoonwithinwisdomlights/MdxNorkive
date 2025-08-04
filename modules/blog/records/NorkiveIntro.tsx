@@ -4,11 +4,8 @@ import LatestRecords from "./LatestRecords";
 
 const NorkiveIntro = () => {
   return (
-    <div
-      id="norkive-intro"
-      className="w-full  xl:w-[62%] flex flex-col mt-10  px-10"
-    >
-      <FeaturedRecords />
+    <div id="norkive-intro" className="w-full flex flex-col gap-10">
+      <FeaturedRecords sub_type="" introText={true} />
       <LatestRecords />
       {/* Favorite Records Section */}
 

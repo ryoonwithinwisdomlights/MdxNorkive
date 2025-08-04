@@ -76,19 +76,16 @@ const RecordBodyForPage = () => {
   }, [pages, categoryParam]); // 의존성 배열에 pages와 categoryParam만 포함
 
   return (
-    <div className="flex flex-col w-full items-center px-10 ">
+    <div className="flex flex-col w-full items-center gap-6 ">
       <CategoryCarousel items={allCategories} />
       <div className="flex flex-row justify-end">
-        <div className="space-y-6 w-full px-2">
+        <div className="space-y-6 w-full">
           {filteredPages && filteredPages.length > 0 ? (
             filteredPages.map((item: any, index) => {
               const showPageCover = item?.data?.pageCover;
               return (
-                <div
-                  key={item?.data?.notionId || index}
-                  className="w-full md:max-w-3xl max-md:max-w-full"
-                >
-                  <div className="hover:scale-110 transition-all duration-150">
+                <div key={item?.data?.notionId || index} className="w-full ">
+                  <div className="hover:scale-105 transition-all duration-150">
                     <div
                       onClick={() => {
                         router.push(item?.url);

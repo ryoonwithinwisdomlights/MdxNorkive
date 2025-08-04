@@ -13,9 +13,7 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 
-type Props = {};
-
-const FeaturedRecords = (props: Props) => {
+const FeaturedRecords = ({ sub_type, introText }) => {
   const pages = getPages();
   const { locale, lang } = useGeneralSiteSettings();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -23,7 +21,11 @@ const FeaturedRecords = (props: Props) => {
   if (!pages) NotFound();
 
   // favorite이 true인 데이터만 필터링
-  const favoritePages = pages.filter((page) => page.data.favorite === true);
+  const favoritePages = pages.filter(
+    (page) =>
+      page.data.favorite === true &&
+      (sub_type !== "" ? page.data.sub_type === sub_type : true)
+  );
 
   if (favoritePages.length === 0) {
     return null; // favorite 게시글이 없으면 아무것도 표시하지 않음
@@ -42,16 +44,18 @@ const FeaturedRecords = (props: Props) => {
   const currentPage = favoritePages[currentIndex];
 
   return (
-    <section className="mb-16 px-4 mt-6">
+    <section className="px-4 w-full">
       {/* 섹션 제목 */}
-      <div className="text-end mb-6 flex flex-col gap-2">
-        <h2 className="text-4xl font-bold text-neutral-900 dark:text-white  ">
-          {locale.INTRO.FAVORITE_RECORDS}
-        </h2>
-        <p className="text-lg text-neutral-600 dark:text-neutral-300">
-          {locale.INTRO.FAVORITE_RECORDS_DESC}
-        </p>
-      </div>
+      {introText && (
+        <div className="text-end mb-6 flex flex-col gap-2">
+          <h2 className="text-4xl font-bold text-neutral-900 dark:text-white  ">
+            {locale.INTRO.FAVORITE_RECORDS}
+          </h2>
+          <p className="text-lg text-neutral-600 dark:text-neutral-300">
+            {locale.INTRO.FAVORITE_RECORDS_DESC}
+          </p>
+        </div>
+      )}
 
       {/* 주요 게시글 슬라이더 */}
       <div

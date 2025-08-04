@@ -6,15 +6,16 @@ import { getYearMonthDay } from "@/lib/utils/date";
 import { CalendarIcon, FolderClosedIcon } from "lucide-react";
 import Link from "next/link";
 
-const EntireRecords = () => {
-  const pages = getPages();
+const EntireRecords = ({ allRecords }) => {
+  // const pages = getPages();
   const { locale } = useGeneralSiteSettings();
-  if (!pages) NotFound();
+  if (!allRecords) NotFound();
+  const modAllRecords = allRecords.slice(6, allRecords.length);
   return (
-    <section className="mb-16 px-10 mt-6">
+    <section className="w-full">
       {/* 섹션 제목 */}
       <div className="text-end mb-6 flex flex-col gap-2">
-        <h2 className="text-4xl font-bold text-neutral-900 dark:text-white  ">
+        <h2 className="text-3xl font-bold text-neutral-900 dark:text-white  ">
           {locale.INTRO.ENTIRE_RECORDS}
         </h2>
         <p className="text-lg text-neutral-600 dark:text-neutral-300">
@@ -24,7 +25,7 @@ const EntireRecords = () => {
 
       {/* 전체 게시글 목록 */}
       <div className="grid grid-cols-1 gap-6 ">
-        {pages.map((page) => (
+        {modAllRecords.map((page) => (
           <article
             key={page.data.notionId}
             className="group relative bg-gradient-to-br from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-700 rounded-lg border border-neutral-200

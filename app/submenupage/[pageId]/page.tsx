@@ -1,9 +1,8 @@
 import { submenuPageSource } from "@/lib/source";
 import { notFound } from "next/navigation";
 
+import CustomedMDXPage from "@/components/CustomedMDXPage";
 import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
-import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
-import TempDoc from "@/components/TempDoc";
 
 // export async function generateStaticParams() {
 //   const records = [{ pageId: "341eb5c0337801da209c34c90bc3377" }];
@@ -22,59 +21,27 @@ export default async function Page({ params }) {
     return <ErrorComponent />;
   }
 
-  console.log("pageId:", pageId);
+  // console.log("pageId:", pageId);
   const pages = submenuPageSource.getPages();
-  console.log("pages::", pages);
-  // const filteredPages = pages.filter(
-  //   (page) => page.data.type === "SubMenuPage"
-  // );
-  // console.log("filteredPages::", filteredPages);
+  // console.log("pages::", pages);
+
   const page = pages.find((page) => {
     if (page.slugs[0] === pageId) {
       console.log("page.slugs[0]:", page.slugs[0]);
       return page;
     }
   });
-  console.log("page::", page);
+  // console.log("page::", page);
   // const page = submenuPageSource.getPage(params.slug);
   if (!page) notFound();
   const { body, toc, lastEditedDate } = await page.data;
   return (
-    <TempDoc body={body} toc={toc} date={lastEditedDate} page={page} />
-    // <GeneralRecordTypePageWrapper>
-    //   <div className="div"></div>
-    // </GeneralRecordTypePageWrapper>
+    <CustomedMDXPage
+      body={body}
+      toc={toc}
+      date={lastEditedDate}
+      page={page}
+      className="pl-20"
+    />
   );
 }
-
-// export default async function Page({ params }: { params: { pageId: string } }) {
-//   const { pageId } = params;
-//   let slug = pageId;
-//   if (slug) {
-//     slug = slug.map((s) => decodeURIComponent(s));
-//   }
-
-//   const page = getPage(params.slug);
-//   if (!page) notFound();
-//   const { body, toc, lastEditedDate } = await page.data;
-
-//   return <TempDoc body={body} toc={toc} date={lastEditedDate} page={page} />;
-// }
-
-// export async function generateStaticParams() {
-//   return getPages().map((page) => ({
-//     slug: page.slugs,
-//   }));
-// }
-
-// export async function generateMetadata(props: {
-//   params: Promise<{ slug?: string[] }>;
-// }) {
-//   const params = await props.params;
-//   const page = getPage(params.slug);
-//   if (!page) notFound();
-//   return {
-//     title: page.data.title,
-//     description: page.data.description,
-//   } satisfies Metadata;
-// }

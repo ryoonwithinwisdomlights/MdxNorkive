@@ -1,20 +1,21 @@
 "use client";
-import React from "react";
-import NotFound from "@/app/not-found";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { getPages } from "@/lib/source";
-import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils/date";
-import { useState } from "react";
-import { CalendarIcon } from "lucide-react";
-import TagItemMini from "../tag/TagItemMini";
-import Link from "next/link";
 import { getMainRecentArticles } from "@/lib/utils/records";
+import { CalendarIcon } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
+import TagItemMini from "../tag/TagItemMini";
+import NotFound from "@/app/not-found";
 
-const RecentRecords = () => {
-  const pages = getPages();
-  if (!pages) NotFound();
+const RecordsWithMultiplesOfThree = ({
+  filteredPages,
+  className,
+  introText,
+}) => {
+  // const pages = getPages();
+  if (!filteredPages) NotFound();
   const { lang, locale } = useGeneralSiteSettings();
-  const articles = getMainRecentArticles(pages, lang);
+  const articles = getMainRecentArticles(filteredPages, lang);
   const [currentPage, setCurrentPage] = useState(0);
   const cardsPerPage = 3;
   const totalPages = Math.ceil(articles.length / cardsPerPage);
@@ -35,16 +36,71 @@ const RecentRecords = () => {
     return articles.slice(startIndex, startIndex + cardsPerPage);
   };
   return (
-    <div className="mb-16 px-10 mt-6 ">
-      <div className="text-start mb-6 flex flex-col gap-2">
-        <h2 className="text-4xl font-bold text-black dark:text-white ">
-          {locale.INTRO.RECENT_RECORDS}
-        </h2>
-        <p className="text-lg text-neutral-600 dark:text-neutral-300">
-          {locale.INTRO.RECENT_RECORDS_DESC}
-        </p>
+    <div className={`${className} flex flex-col gap-6`}>
+      {introText && (
+        <div className="text-start mb-6 flex flex-col gap-2">
+          <h2 className="text-3xl font-bold text-black dark:text-white ">
+            {locale.INTRO.FAVORITE_RECORDS}
+          </h2>
+          <p className="text-lg text-neutral-600 dark:text-neutral-300">
+            {locale.INTRO.FAVORITE_RECORDS_DESC}
+          </p>
+        </div>
+      )}
+      {/* Navigation Arrows */}
+      <div className="flex justify-between items-center m">
+        <div className="text-sm text-neutral-500 dark:text-neutral-400">
+          Page {currentPage + 1} of {totalPages}
+        </div>
+        <div className="flex space-x-4">
+          <button
+            onClick={prevPage}
+            className={`p-2 rounded-full transition-all duration-300 ease-in-out transform hover:scale-110 ${
+              currentPage === 0
+                ? "bg-neutral-100 dark:bg-neutral-700 opacity-50 cursor-not-allowed"
+                : "bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+            }`}
+            disabled={currentPage === 0}
+          >
+            <svg
+              className="w-5 h-5 text-neutral-600 dark:text-neutral-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+          <button
+            onClick={nextPage}
+            className={`p-2 rounded-full transition-all duration-300 ease-in-out transform hover:scale-110 ${
+              currentPage === totalPages - 1
+                ? "bg-neutral-100 dark:bg-neutral-700 opacity-50 cursor-not-allowed"
+                : "bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+            }`}
+            disabled={currentPage === totalPages - 1}
+          >
+            <svg
+              className="w-5 h-5 text-neutral-600 dark:text-neutral-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
-
       <div
         id="norkive-recent-grid"
         className="grid grid-cols-1 md:grid-cols-3 gap-8"
@@ -105,63 +161,8 @@ const RecentRecords = () => {
           </div>
         ))}
       </div>
-
-      {/* Navigation Arrows */}
-      <div className="flex justify-between items-center mt-8">
-        <div className="text-sm text-neutral-500 dark:text-neutral-400">
-          Page {currentPage + 1} of {totalPages}
-        </div>
-        <div className="flex space-x-4">
-          <button
-            onClick={prevPage}
-            className={`p-2 rounded-full transition-all duration-300 ease-in-out transform hover:scale-110 ${
-              currentPage === 0
-                ? "bg-neutral-100 dark:bg-neutral-700 opacity-50 cursor-not-allowed"
-                : "bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600"
-            }`}
-            disabled={currentPage === 0}
-          >
-            <svg
-              className="w-5 h-5 text-neutral-600 dark:text-neutral-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-          <button
-            onClick={nextPage}
-            className={`p-2 rounded-full transition-all duration-300 ease-in-out transform hover:scale-110 ${
-              currentPage === totalPages - 1
-                ? "bg-neutral-100 dark:bg-neutral-700 opacity-50 cursor-not-allowed"
-                : "bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600"
-            }`}
-            disabled={currentPage === totalPages - 1}
-          >
-            <svg
-              className="w-5 h-5 text-neutral-600 dark:text-neutral-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
     </div>
   );
 };
 
-export default RecentRecords;
+export default RecordsWithMultiplesOfThree;

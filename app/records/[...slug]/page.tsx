@@ -1,4 +1,4 @@
-import TempDoc from "@/components/TempDoc";
+import CustomedMDXPage from "@/components/CustomedMDXPage";
 import { getPage, getPages } from "@/lib/source";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -27,7 +27,15 @@ export default async function Page(props: {
   if (!page) notFound();
   const { body, toc, lastEditedDate } = await page.data;
 
-  return <TempDoc body={body} toc={toc} date={lastEditedDate} page={page} />;
+  return (
+    <CustomedMDXPage
+      className="pl-20"
+      body={body}
+      toc={toc}
+      date={lastEditedDate}
+      page={page}
+    />
+  );
 }
 
 export async function generateStaticParams() {

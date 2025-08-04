@@ -1,20 +1,9 @@
 "use client";
-import RightSlidingDrawer from "@/modules/layout/components/RightSlidingDrawer";
-import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
 
-import ArchiveIntro from "@/modules/blog/records/ArchiveIntro";
-import LeftSidebar from "@/modules/layout/components/menu/LeftSidebar";
-import RightSideInfoBar from "@/modules/layout/components/RightSideInfoBar";
 import NorkiveIntro from "@/modules/blog/records/NorkiveIntro";
 
 export default function Page() {
-  return (
-    <GeneralRecordTypePageWrapper>
-      <LeftSidebar />
-      <NorkiveIntro />
-      <RightSideInfoBar />
-    </GeneralRecordTypePageWrapper>
-  );
+  return <NorkiveIntro />;
 }
 
 // export async function generateStaticParams() {

@@ -2,6 +2,7 @@ import { BLOG } from "@/blog.config";
 import { getDistanceFromToday, getYearMonthDay } from "./date";
 
 export function getMainRecentArticles(pages: any, lang: string, sliceNum = 6) {
+  console.log("pages:", pages);
   const sortedPage = pages
     .sort((a, b) => {
       return (

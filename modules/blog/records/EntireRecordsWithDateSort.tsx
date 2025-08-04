@@ -1,6 +1,6 @@
 "use client";
 import { BasicPageDivProps } from "@/types";
-import { LockIcon } from "lucide-react";
+import { FolderClosedIcon, LockIcon } from "lucide-react";
 import Link from "next/link";
 /**
  * Records grouping
@@ -8,26 +8,26 @@ import Link from "next/link";
  * @param {*} param0
  * @returns
  */
-export default function AllRecords({ title, recordList }: BasicPageDivProps) {
+export default function EntireRecordsWithDateSort({
+  title,
+  recordList,
+}: BasicPageDivProps) {
   return (
-    <div key={title} className="w-full flex flex-col items-center">
-      <div
-        id={title}
-        className="pt-10  text-norkive-medium font-semibold pb-4 text-2xl  "
-      >
+    <div key={title} className="w-full flex flex-col items-start">
+      <div id={title} className=" font-semibold pb-4 text-2xl  ">
         {title}
       </div>
-      <ul>
+      <ul className="w-full pl-4">
         {recordList[title]?.map((page) => (
           <li
             key={page.data.notionId}
-            className="border-l-4 border-norkive-light  hover:border-norkive-medium 
-             p-2 text-xs md:text-base 
+            className="border-l-4 border-neutral-200  hover:border-norkive-medium 
+             p-2 text-xs md:text-base w-full
              text-justify  hover:scale-x-105  dark:hover:border-neutral-400 dark:border-neutral-400/30 transform duration-500"
           >
             <div
               id={page.data.notionId}
-              className="flex flex-row items-start justify-start  "
+              className="flex flex-row items-start justify-between w-full  "
             >
               <Link
                 key={page.url}
@@ -52,7 +52,30 @@ export default function AllRecords({ title, recordList }: BasicPageDivProps) {
                   </>
                 )}
               </span>
+              {/* 카테고리 */}
+              {page.data.category && (
+                <div className="flex items-center gap-1">
+                  <FolderClosedIcon className="w-4 h-4" />
+                  <span>{page.data.category}</span>
+                </div>
+              )}
             </div>
+            {/* 태그 */}
+            {page.data.tags && page.data.tags.length > 0 && (
+              <div className="mt-4 flex items-center gap-2">
+                {page.data.tags.slice(0, 3).map((tag, index) => (
+                  <span
+                    key={index}
+                    className="px-2 py-1 bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300 rounded-md text-xs"
+                  >
+                    {tag}
+                  </span>
+                ))}
+                {page.data.tags.length > 3 && (
+                  <span className="text-xs">+{page.data.tags.length - 3}</span>
+                )}
+              </div>
+            )}
           </li>
         ))}
       </ul>

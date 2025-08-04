@@ -5,9 +5,9 @@ import { InlineTOC } from "fumadocs-ui/components/inline-toc";
 import { DocsBody, DocsPage } from "fumadocs-ui/page";
 import Link from "next/link";
 import Comment from "./Comment";
-export default function TempDoc({ body, toc, date, page }) {
+export default function TempDoc({ body, toc, date, page, className }) {
   return (
-    <article className=" flex flex-col px-0">
+    <article className={`mt-0 pt-0 flex flex-col  w-full ${className}`}>
       <DocsPage
         toc={toc}
         full={page.data.full}
