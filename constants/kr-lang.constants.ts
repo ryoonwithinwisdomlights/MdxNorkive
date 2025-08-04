@@ -5,12 +5,15 @@ export const KOR_LANG = {
     FAVORITE_RECORDS: "주요 레코드",
     FAVORITE_RECORDS_DESC: "favourite으로 체크된 레코드들을 가져옵니다.",
     RECENT_RECORDS: "최근 레코드",
-    RECENT_RECORDS_DESC: "가장 최근 작성된 6개의 레코드를 가져옵니다.",
+    RECENT_RECORDS_DESC:
+      "서브타입별로 가장 최근에 작성된 레코드 7개를 표시합니다.",
     ENTIRE_RECORDS: "전체 레코드",
     ENTIRE_RECORDS_DESC: "모든 레코드를 확인해보세요",
     READ_MORE: "자세히 보기",
   },
   COMMON: {
+    ALL: "전체",
+    OPTIONS: "옵션",
     MORE: "더보기",
     NO_MORE: "더보기 종료",
     LATEST_RECORDS: "최근 레코드",

@@ -8,34 +8,13 @@ import { useState } from "react";
 import { CalendarIcon } from "lucide-react";
 import TagItemMini from "../tag/TagItemMini";
 import Link from "next/link";
+import { getMainRecentArticles } from "@/lib/utils/records";
 
-function getArticles(pages: any, lang: string) {
-  const sortedPage = pages
-    .sort((a, b) => {
-      return (
-        new Date(b?.data?.date).getTime() - new Date(a?.data?.date).getTime()
-      );
-    })
-    .slice(0, 6);
-  return sortedPage.map((page, index) => ({
-    id: index,
-    date: getYearMonthDay(page.data.date, lang),
-    distanceFromToday: getDistanceFromToday(page.data.date, lang),
-    title: page.data.title,
-    pageCover: page.data.pageCover,
-    description: page.data.summary?.slice(0, 100) || "",
-    gradient: "from-blue-400 to-purple-500",
-    tags: page.data.tags,
-    url: page.url,
-  }));
-}
 const RecentRecords = () => {
   const pages = getPages();
   if (!pages) NotFound();
   const { lang, locale } = useGeneralSiteSettings();
-  const articles = getArticles(pages, lang);
-  console.log(pages);
-
+  const articles = getMainRecentArticles(pages, lang);
   const [currentPage, setCurrentPage] = useState(0);
   const cardsPerPage = 3;
   const totalPages = Math.ceil(articles.length / cardsPerPage);

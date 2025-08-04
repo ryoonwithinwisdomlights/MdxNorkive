@@ -69,7 +69,7 @@ const Comment = ({ frontMatter }) => {
       key={frontMatter?.notionId}
       id="comment"
       ref={commentRef}
-      className="justify-center items-center text-neutral-800 dark:text-neutral-300 w-3/4 mx-auto"
+      className="justify-center items-center text-neutral-800 dark:text-neutral-300 xl:w-[62%]  mx-auto"
     >
       {/* Lazy loading of comment area */}
       {!shouldLoad && (

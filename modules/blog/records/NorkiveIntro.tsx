@@ -3,6 +3,7 @@ import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvide
 import FeaturedRecords from "./FeaturedRecords";
 import RecentRecords from "./RecentRecords";
 import EntireRecords from "./EntireRecords";
+import LatestRecords from "./LatestRecords";
 
 const NorkiveIntro = () => {
   return (
@@ -10,12 +11,14 @@ const NorkiveIntro = () => {
       id="norkive-intro"
       className="w-full  xl:w-[62%] flex flex-col mt-10  px-10"
     >
-      {/* Favorite Records Section */}
       <FeaturedRecords />
+      <LatestRecords />
+      {/* Favorite Records Section */}
+
       {/* Our Recent Records Section */}
-      <RecentRecords />
+      {/* <RecentRecords /> */}
       {/* All Records Section */}
-      <EntireRecords />
+      {/* <EntireRecords /> */}
     </div>
   );
 };

@@ -54,7 +54,7 @@ export default function CategoryCarousel({ items }: Props) {
     <div className="relative w-full overflow-hidden md:max-w-3xl max-md:max-w-full">
       {canScrollLeft && (
         <button
-          className="absolute left-1 top-1/2 z-20 -translate-y-1/2 bg-white dark:bg-black p-2 shadow-lg rounded-full border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+          className="absolute left-1 top-1/2 z-20 -translate-y-1/2 bg-white dark:bg-black p-2 shadow-lg rounded-full border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
           onClick={() => scrollBy(-200)}
           aria-label="Scroll left"
         >
@@ -70,10 +70,10 @@ export default function CategoryCarousel({ items }: Props) {
           <Link
             key={item.id}
             href={item.href}
-            className={`flex-shrink-0 whitespace-nowrap rounded-full border border-gray-300 px-4 py-2 text-sm transition-colors ${
+            className={`flex-shrink-0 whitespace-nowrap rounded-full border border-neutral-300 px-4 py-2 text-sm transition-colors ${
               item.isActive
                 ? "bg-neutral-200 dark:bg-neutral-700 border-neutral-400"
-                : "hover:bg-gray-100 dark:hover:bg-gray-800"
+                : "hover:bg-neutral-100 dark:hover:bg-neutral-800"
             }`}
           >
             {item.title}
@@ -83,7 +83,7 @@ export default function CategoryCarousel({ items }: Props) {
 
       {canScrollRight && (
         <button
-          className="absolute right-1 top-1/2 z-20 -translate-y-1/2 bg-white dark:bg-black p-2 shadow-lg rounded-full border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+          className="absolute right-1 top-1/2 z-20 -translate-y-1/2 bg-white dark:bg-black p-2 shadow-lg rounded-full border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
           onClick={() => scrollBy(200)}
           aria-label="Scroll right"
         >

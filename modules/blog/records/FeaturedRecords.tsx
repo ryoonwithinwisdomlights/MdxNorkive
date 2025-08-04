@@ -42,7 +42,7 @@ const FeaturedRecords = (props: Props) => {
   const currentPage = favoritePages[currentIndex];
 
   return (
-    <section className="mb-16 px-10 mt-6">
+    <section className="mb-16 px-4 mt-6">
       {/* 섹션 제목 */}
       <div className="text-end mb-6 flex flex-col gap-2">
         <h2 className="text-4xl font-bold text-neutral-900 dark:text-white  ">
