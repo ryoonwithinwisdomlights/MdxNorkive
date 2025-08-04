@@ -63,12 +63,13 @@ const FeaturedRecords = ({ sub_type, introText }) => {
        dark:from-neutral-900 dark:to-neutral-700 rounded-lg 
        border border-neutral-200 dark:border-neutral-700 overflow-hidden
        hover:shadow-lg transition-all duration-300
-         hover:border-neutral-300 dark:hover:border-neutral-600
+         hover:border-neutral-300 dark:hover:border-neutral-600  p-8
+         flex flex-col gap-4
        "
       >
-        <div className="flex flex-col lg:flex-row">
+        <div className="flex flex-col lg:flex-row gap-4">
           {/* 왼쪽: 텍스트 내용 */}
-          <div className="flex-1 p-8 lg:p-12">
+          <div className="flex-1">
             <div className="flex flex-col h-full justify-between">
               <div>
                 {/* 제목 */}
@@ -116,20 +117,15 @@ const FeaturedRecords = ({ sub_type, introText }) => {
           </div>
 
           {/* 오른쪽: 이미지 영역 */}
-          <div className="flex-1 relative  p-8 lg:p-12 flex items-center justify-center h-[300px] lg:min-h-[400px] ">
+          <div className="flex-1 relative  flex items-center justify-center h-[250px]  ">
             {/* 페이지 커버 이미지가 있으면 표시, 없으면 기본 일러스트레이션 */}
             {currentPage.data.pageCover ? (
-              // <img
-              //   src={currentPage.data.pageCover}
-              //   alt={currentPage.data.title}
-              //   className="max-w-full max-h-full object-cover rounded-lg"
-              // />
               <LazyImage
                 alt={currentPage.data.title}
                 priority={true}
                 src={currentPage.data.pageCover}
-                className="h-full w-[90%] border border-neutral-200 dark:border-neutral-700  rounded-xl object-cover object-center 
-                transition-all duration-300 hover:scale-105"
+                className="h-full w-full border border-neutral-200 dark:border-neutral-700  rounded-xl object-cover object-center 
+               "
               />
             ) : (
               <div className="text-center">
@@ -149,13 +145,14 @@ const FeaturedRecords = ({ sub_type, introText }) => {
               <>
                 <button
                   onClick={prevSlide}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white dark:bg-neutral-800 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
+                  className="absolute hover:cursor-pointer   left-10 top-1/2 transform -translate-y-1/2 w-8 h-8 border border-neutral-200 
+                  bg-white dark:bg-neutral-800 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
                 >
                   <ChevronLeft className="w-4 h-4 text-neutral-600 dark:text-neutral-300" />
                 </button>
                 <button
                   onClick={nextSlide}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white dark:bg-neutral-800 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
+                  className="absolute hover:cursor-pointer right-10 top-1/2 transform -translate-y-1/2 w-8 h-8 border border-neutral-200  bg-white dark:bg-neutral-800 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
                 >
                   <ChevronRight className="w-4 h-4 text-neutral-600 dark:text-neutral-300" />
                 </button>
@@ -166,7 +163,7 @@ const FeaturedRecords = ({ sub_type, introText }) => {
 
         {/* 슬라이더 인디케이터 */}
         {favoritePages.length > 1 && (
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+          <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2">
             {favoritePages.map((_, index) => (
               <button
                 key={index}

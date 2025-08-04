@@ -23,7 +23,7 @@ export default function EntireRecordsWithDateSort({
             key={page.data.notionId}
             className="border-l-4 border-neutral-200  hover:border-norkive-medium 
              p-2 text-xs md:text-base w-full
-             text-justify  hover:scale-x-105  dark:hover:border-neutral-400 dark:border-neutral-400/30 transform duration-500"
+             text-justify    dark:hover:border-neutral-400 dark:border-neutral-400/30 "
           >
             <div
               id={page.data.notionId}
