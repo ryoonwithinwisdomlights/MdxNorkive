@@ -21,7 +21,7 @@ const TagList = () => {
         {tagOptions?.map((tag: any) => {
           return (
             <div key={tag.name} className="p-2">
-              <TagItemMini key={tag.name} tag={tag} />
+              <TagItemMini key={tag.name} data={tag} />
             </div>
           );
         })}

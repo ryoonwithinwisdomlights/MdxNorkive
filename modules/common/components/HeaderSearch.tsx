@@ -72,7 +72,7 @@ export default function HeaderSearch() {
   }, [query, handleSearch]);
 
   return (
-    <div className="relative hidden  md:flex  flex-col items-start justify-center w-full max-w-sm text-sm mr-4">
+    <div className="relative hidden  md:flex  flex-col items-start justify-center w-[30%] max-w-sm text-sm mr-4">
       {/* Search Input */}
       <div className="relative flex items-center w-full">
         <span className="absolute left-3 ">

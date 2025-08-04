@@ -3,14 +3,14 @@ import { getPage, getPages } from "@/lib/source";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-function getPath(slug: string[]) {
-  return slug.join("/");
-}
+// function getPath(slug: string[]) {
+//   return slug.join("/");
+// }
 
-function styleToLevel(style: unknown) {
-  if (typeof style !== "string") return;
-  return Number.parseInt(style.split("h")[1]);
-}
+// function styleToLevel(style: unknown) {
+//   if (typeof style !== "string") return;
+//   return Number.parseInt(style.split("h")[1]);
+// }
 
 export const dynamic = "force-static";
 

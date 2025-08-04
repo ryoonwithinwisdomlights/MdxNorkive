@@ -1,10 +1,9 @@
 "use client";
 
-import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { useEffect } from "react";
-import TableOfContents from "./TableOfContents";
 import { useMediaQuery } from "usehooks-ts";
+import TableOfContents from "./TableOfContents";
 
 /**
  * Mobile TableOfContents button

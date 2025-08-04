@@ -1,7 +1,7 @@
 import { isAbleRecordPage } from "@/lib/utils/backup/function";
 import { ARCHIVE_CONFIG } from "@/constants/archive-config";
 import CategoryItem from "@/modules/blog/category/CategoryItem";
-import ArchiveAround from "@/modules/blog/records/ArchiveAround";
+
 import Comment from "@/modules/common/components/shared/Comment";
 import ShareBar from "@/modules/common/components/shared/ShareBar";
 import { Skeleton } from "@/modules/common/ui/Skeleton";
@@ -13,7 +13,7 @@ const SingleRecordsBodyForPage = ({ page }) => {
       {/* <NotionPage record={page} /> */}
 
       {/* share */}
-      <ShareBar record={page} />
+      <ShareBar data={page} />
       {/* Archive classification and tag information */}
       <div className="flex justify-between">
         {ARCHIVE_CONFIG.RECORD_DETAIL_CATEGORY && page?.category && (
@@ -22,14 +22,11 @@ const SingleRecordsBodyForPage = ({ page }) => {
         <div>
           {ARCHIVE_CONFIG.RECORD_DETAIL_TAG &&
             page?.tagItems?.map((tag) => (
-              <TagItemMini key={tag.name} tag={tag} />
+              <TagItemMini key={tag.name} data={tag} />
             ))}
         </div>
       </div>
 
-      {isAbleRecordPage(page) && page.status === "Published" && (
-        <ArchiveAround prev={page.prev} next={page.next} />
-      )}
       <Comment frontMatter={page} />
       <TableOfContentsDrawerMobile page={page} />
     </section>
