@@ -7,7 +7,7 @@ import { z } from "zod";
 
 const books = defineCollection({
   name: "books", // 필수: 컬렉션 고유 이름
-  directory: "content/book", // 필수: 콘텐츠 폴더 경로
+  directory: "content/books", // 필수: 콘텐츠 폴더 경로
   include: "**/*.{md,mdx}", // 필수: MD/MDX 파일 패턴
   parser: "frontmatter", // 기본값이지만 명시해도 OK
   schema: z.object({
@@ -35,7 +35,7 @@ const books = defineCollection({
 
 const projects = defineCollection({
   name: "projects", // 필수: 컬렉션 고유 이름
-  directory: "content/project", // 필수: 콘텐츠 폴더 경로
+  directory: "content/projects", // 필수: 콘텐츠 폴더 경로
   include: "**/*.{md,mdx}", // 필수: MD/MDX 파일 패턴
   parser: "frontmatter", // 기본값이지만 명시해도 OK
   schema: z.object({
@@ -63,7 +63,7 @@ const projects = defineCollection({
 
 const engineerings = defineCollection({
   name: "engineerings", // 필수: 컬렉션 고유 이름
-  directory: "content/engineering", // 필수: 콘텐츠 폴더 경로
+  directory: "content/engineerings", // 필수: 콘텐츠 폴더 경로
   include: "**/*.{md,mdx}", // 필수: MD/MDX 파일 패턴
   parser: "frontmatter", // 기본값이지만 명시해도 OK
   schema: z.object({
@@ -91,7 +91,7 @@ const engineerings = defineCollection({
 
 const records = defineCollection({
   name: "records", // 필수: 컬렉션 고유 이름
-  directory: "content/record", // 필수: 콘텐츠 폴더 경로
+  directory: "content/records", // 필수: 콘텐츠 폴더 경로
   include: "**/*.{md,mdx}", // 필수: MD/MDX 파일 패턴
   parser: "frontmatter", // 기본값이지만 명시해도 OK
   schema: z.object({
@@ -119,7 +119,7 @@ const records = defineCollection({
 
 const subMenuPages = defineCollection({
   name: "subMenuPages", // 필수: 컬렉션 고유 이름
-  directory: "content/submenupage", // 필수: 콘텐츠 폴더 경로
+  directory: "content/submenupages", // 필수: 콘텐츠 폴더 경로
   include: "**/*.{md,mdx}", // 필수: MD/MDX 파일 패턴
   parser: "frontmatter", // 기본값이지만 명시해도 OK
   schema: z.object({

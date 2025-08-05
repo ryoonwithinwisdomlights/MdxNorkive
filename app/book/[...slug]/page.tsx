@@ -29,7 +29,7 @@ export default async function Page(props: {
 
   return (
     <CustomedMDXPage
-      className="pl-20 bg-pink-200"
+      className=" bg-pink-200"
       body={body}
       toc={toc}
       date={lastEditedDate}

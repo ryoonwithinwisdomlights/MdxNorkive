@@ -23,7 +23,7 @@ const baseOptions: Partial<DocsLayoutProps> = {
   // see https://fumadocs.dev/docs/ui/navigation/links
   links: [],
 };
-export const submenuPageOptions: DocsLayoutProps = {
+const submenuPageOptions: DocsLayoutProps = {
   ...baseOptions,
   tree: submenuPageSource.pageTree,
   nav: {

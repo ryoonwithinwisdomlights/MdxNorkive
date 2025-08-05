@@ -67,7 +67,7 @@ const baseOptions: Partial<DocsLayoutProps> = {
   // see https://fumadocs.dev/docs/ui/navigation/links
   links: [],
 };
-export const pageOptions: DocsLayoutProps = {
+const pageOptions: DocsLayoutProps = {
   ...baseOptions,
   tree: engineeringSource.pageTree,
   nav: {

@@ -20,7 +20,7 @@ const TagGroups = ({ tagOptions, currentTag }) => {
       <div className="space-y-2">
         {tagOptions?.map((tag) => {
           const selected = tag.name === currentTag;
-          return <TagItemMini key={tag.name} tag={tag} selected={selected} />;
+          return <TagItemMini key={tag.name} data={tag} />;
         })}
       </div>
     </div>

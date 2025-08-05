@@ -1,0 +1,201 @@
+---
+title: '[TIL] Refactoring SearchInput.'
+slug: engineering-TIL-Refactoring-SearchInput
+summary: ''
+pageCover: >-
+  https://images.unsplash.com/photo-1593062096033-9a26b09da705?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb
+notionId: 2231eb5c0337804eadfce7368b604088
+password: ''
+type: ENGINEERINGS
+sub_type: Engineering
+category: TIL
+tags:
+  - 개발TIL
+  - 기술로그
+date: '2025-07-01'
+last_edited_time: '2025-08-04T09:56:00.000Z'
+lastEditedDate: 2025-08-04T09:56:00.000Z
+draft: false
+description: ''
+icon: ''
+full: false
+favorite: false
+lastModified: '2025-08-04'
+readingTime: 1
+wordCount: 30
+status: published
+author: ryoon
+version: 1.0.0
+---
+
+## **✅ 전체 코드 개념 잡기**
+
+
+![%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-07-11_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_2.12.58.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/056ff9f5-a9ef-486f-8acb-9eef51d06a2d/599d8552-f7cd-48c4-a48c-0824b0622588/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-07-11_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_2.12.58.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466SRFHTQIH%2F20250804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20250804T095856Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEAkaCXVzLXdlc3QtMiJHMEUCIQCLD6ygTDct2djGOsvJlLEnKQIKlmIxRFvOFjn4D7k7tAIgYpPyRRe9qn641gvaxc2NlHpTVJMhbFbSulYOd9poTIcq%2FwMIQhAAGgw2Mzc0MjMxODM4MDUiDIRRb%2F1JPPvADMnQYircA6%2BfNGW4JG5MNiZcC%2BuC9Ld3HTjgMWe3Rk8WnveBFnw4BKvFqjMJ7ykgztUT28k%2FkwFqX7QDyDREqF2IBYaUIhItanoFu6yWyAXOy2haXuCxZyU26c4k4ol66c81%2Bx9QM4pRyyN5aWJR1D97JdgWU8g6blnJjLa5DS9XZrQ28TsCxS%2B4rhORWQmPOW7%2FjMjgsuaIUhG8UNEKXyXZojtKNCwG6SQjTlq1WCVL4lJtLq%2BiGbbHl20UX63%2F81eAim9R8d5XqmfdcK7JO35VJCfmRcwzopIhMXtXECInfr0nRVBT2%2B%2F9%2BPSem%2F1BheNf8NpUmMmGh8x0ADPmGnddrMkuCpx3qFyNIdoENgjAWMGyMMX475PXQGb0bSaVOoZ6PuUFhEbUZF7Xf7LxwjnvDM%2F0ZBuQzjqC1KUphL4i2WiulAWfvxtzB0z6X7iVJsS%2BBDddykB3Tg4fH6bn%2FW0j5bOA5vd5NMFCMaOnPRwHEOGbuwIMwbzr7ThSC%2BJeRwh3BE%2F%2BcHIjZGSL60%2FxVEQ6R7DEWhFJIfpkv59uXwPYL5vAmOlxwISotfhNyLBXLohr4JxOARcoNfWOTE9eS7Lm6zNoSHU6q3Ihs73WdukSmdBrfybJNjrCrv65f9YiuWUgMITmwcQGOqUB9H60WbKV04ulg2eqkURDMU2r7gqxuVhAC8BZROBn7aJfTKHli%2BaLQcLlT76rLX2oQ2%2BKO2evMS5j7l6BimOiSN1Z7ofSDKXqoH93zxnvWYVfQ7GBEzVnrtPG5GTVg%2FEiO2qvM877sq5RGe%2FuDVAyCgvMEPfHG6rDOE27oErjCwZ8zY0sLMC4H3DUdSE%2Fj1t6n%2Bew2i1WmHjFBjJOzFxg9NaKsIoX&X-Amz-Signature=1155243051cb3c2908ddbc81f3be748439e190e4f41f3f0b3099c48d840b3ead&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+
+
+### **1.**
+
+
+### **Fuse.js**
+
+- **뭐야?**
+
+    자바스크립트용 **빠른 클라이언트 사이드 검색 라이브러리**.
+
+
+    검색어가 “부정확하게” 일치해도 유사도를 기반으로 결과를 찾아줘. (부분 검색, 오타 관용적)
+
+- **여기서 쓰는 이유?**
+
+    백엔드 API 없이 그냥 **더미 배열**에서 실시간 검색 테스트하려고.
+
+- **사용 방법:**
+
+```typescript
+const fuse = new Fuse(대상데이터, 옵션);
+fuse.search(검색어); // 결과 배열 반환
+```text
+
+
+### **2.**
+
+
+### **lodash.debounce**
+
+- **뭐야?**
+
+    사용자가 입력할 때마다 **계속 검색 호출 안 되게 딜레이 걸어주는 함수**.
+
+- **여기서 쓰는 이유?**
+
+    한 글자 입력할 때마다 실시간 검색하면 너무 많은 연산 낭비 → **0.3초 입력 멈추면 그때 검색**
+
+- **사용 방법:**
+
+    ```typescript
+    const debouncedFn = debounce((text) => { ...검색로직... }, 300);
+    ```text
+
+
+### **3.**
+
+
+### **useMemo**
+
+- **뭐야?**
+
+    React에서 특정 값이나 객체를 **메모이제이션(캐시)** 해서,
+
+
+    **렌더링마다 새로 생성되는 걸 방지**하는 훅.
+
+- **여기서 왜 씀?**
+
+    Fuse 인스턴스를 매번 새로 만들지 않기 위해.
+
+- **사용 예시:**
+
+    ```typescript
+    const fuse = useMemo(() => new Fuse(데이터), []);
+    ```text
+
+
+
+ **전체 동작 흐름**
+
+
+
+```plain text
+[1] 사용자가 input에 타이핑 → setQuery 변경됨
+↓
+[2] query 상태 변경 → useEffect 실행됨
+↓
+[3] useEffect 안에서 debounce된 handleSearch 실행됨 (300ms 딜레이)
+↓
+[4] handleSearch 내부:
+- query 길이 체크
+- fuse.search() 실행 → 결과 배열 만들기
+- setResults로 검색결과 상태 업데이트
+↓
+[5] 결과 표시 영역에서:
+- 로딩중일 때 Skeleton
+- 검색결과 있을 때 리스트로 출력
+- 없으면 "No results found"
+```text
+
+
+
+**✅ 주요 State 설명**
+
+
+
+| **tate** | **역할**            |
+| --- |          | --- |                   | --- |
+| -------- | ----------------- |
+| --- |          | --- |                   | --- |
+| query    | 현재 input 값        |
+| --- |          | --- |                   | --- |
+| results  | 검색 결과 배열          |
+| --- |          | --- |                   | --- |
+| loading  | Skeleton 출력 여부 제어 |
+| --- |          | --- |                   | --- |
+
+
+
+**✅ 주요 Hook/로직 정리**
+
+
+
+| **항목**        | **설명**                        |
+| --- |               | --- |                               | --- |
+| ------------- | ----------------------------- |
+| --- |               | --- |                               | --- |
+| useState      | query, results, loading 상태 관리 |
+| --- |               | --- |                               | --- |
+| useEffect     | query가 바뀔 때마다 debounce로 검색 실행 |
+| --- |               | --- |                               | --- |
+| useMemo       | fuse 인스턴스 재생성 방지              |
+| --- |               | --- |                               | --- |
+| debounce      | 검색 호출 최적화                     |
+| --- |               | --- |                               | --- |
+| fuse.search() | 입력어 기반 검색                     |
+| --- |               | --- |                               | --- |
+
+
+
+**✅ 확장 작업 시 적용 포인트**
+
+
+
+| **기능**             | **적용 위치**                                        |
+| --- |                    | --- |                                                  | --- |
+| ------------------ | ------------------------------------------------ |
+| --- |                    | --- |                                                  | --- |
+| **Algolia 연동**     | → handleSearch 내부 fuse.search 대신 **axios fetch** |
+| --- |                    | --- |                                                  | --- |
+| **Next.js &lt;Link&gt;** | → 리스트 출력 부분 <a href> 대신 &lt;Link href&gt;              |
+| --- |                    | --- |                                                  | --- |
+| **서버 API**         | → handleSearch 내부를 **API 호출 비동기 함수**로 변경         |
+| --- |                    | --- |                                                  | --- |
+| **Skeleton 커스텀**   | → loading 상태일 때 보여주는 div 영역만 수정                  |
+| --- |                    | --- |                                                  | --- |
+
+
+## **✅ 요약:**
+
+
+지금 코드는 👉
+
+
+**[로컬 배열 + Fuse 검색 + debounce 최적화 + 다크모드 + Skeleton]**
+
+
+이 조합으로 구성된 **Next.js 클라이언트 컴포넌트형 검색 Input UI**
+
+
+여기가 끝이구나!
+
+
+진짜로 
+

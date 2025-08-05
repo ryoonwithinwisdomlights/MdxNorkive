@@ -19,7 +19,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 const LatestRecords = () => {
   const router = useRouter();
-  const pages = getPages();
+  const pages = recordSource.getPages();
   if (!pages) NotFound();
   const { lang, locale } = useGeneralSiteSettings();
   const [currentPage, setCurrentPage] = useState(0);

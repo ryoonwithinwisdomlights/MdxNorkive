@@ -107,7 +107,7 @@ export function generateUserFriendlySlug(
   title: string,
   existingSlugs: Set<string>
 ) {
-  let base = (subType || "RECORD").toLowerCase();
+  let base = (subType || "RECORDS").toLowerCase();
   let safeTitle = title
     .replace(/[^a-zA-Z0-9가-힣]+/g, "-")
     .replace(/-+/g, "-")

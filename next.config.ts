@@ -45,6 +45,10 @@ const baseConfig: NextConfig = {
         protocol: "https",
         hostname: "prod-files-secure.s3.us-west-2.amazonaws.com",
       },
+      {
+        protocol: "https",
+        hostname: "github.com",
+      },
     ],
   },
   async headers() {
@@ -87,4 +91,4 @@ const baseConfig: NextConfig = {
   },
 };
 
-export default withContentCollections(baseConfig);;
+export default withContentCollections(baseConfig);

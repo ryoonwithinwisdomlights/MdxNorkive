@@ -7,7 +7,9 @@ import Link from "next/link";
 import Comment from "./Comment";
 export default function TempDoc({ body, toc, date, page, className }) {
   return (
-    <article className={`flex flex-col   w-full h-full ${className}`}>
+    <article
+      className={`flex flex-col justify-center items-center w-[60vw] h-full ${className}`}
+    >
       <DocsPage
         toc={toc}
         full={page.data.full}
