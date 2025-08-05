@@ -36,9 +36,9 @@ const ProjectCardInfo = ({
         <div
           className={`line-clamp-2 flex flex-row replace cursor-pointer text-2xl ${
             showPreview ? "text-center" : ""
-          } leading-tight font-normal text-neutral-600  hover:text-black`}
+          } leading-tight font-normal text-neutral-900 dark:text-white `}
         >
-          <span className="menu-link text-start">
+          <span className="menu-link text-start hover:underline">
             {page.data.title.length > 35
               ? page.data.title.slice(0, 35) + "..."
               : page.data.title}
@@ -75,7 +75,7 @@ const ProjectCardInfo = ({
 
         {/* Summary */}
         {(!showPreview || showSummary) && !page.data.results && (
-          <p className="line-clamp-2 replace  text-neutral-500  dark:text-neutral-500 text-sm font-light leading-7">
+          <p className="line-clamp-2 replace  text-neutral-500  dark:text-neutral-200 text-sm font-light leading-7">
             {page.data.summary}
           </p>
         )}
@@ -87,12 +87,13 @@ const ProjectCardInfo = ({
           <div
             className={`flex items-center ${
               showPreview ? "justify-center" : "justify-start"
-            } flex-wrap dark:text-neutral-500 text-neutral-400 `}
+            } flex-wrap dark:text-neutral-200 text-neutral-400 `}
           >
             <Link
               href={page.url ?? ""}
               passHref
-              className="flex flex-row items-center cursor-pointer font-light text-sm menu-link hover:text-black transform "
+              className="flex flex-row items-center cursor-pointer 
+              font-light text-sm  "
             >
               <TagIcon className="mr-1 w-4 h-4" />
               {page.data.sub_type}
@@ -104,7 +105,7 @@ const ProjectCardInfo = ({
             {page.data.tags && page.data.tags.length > 0 && (
               <TagList
                 tags={page.data.tags}
-                className="bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300"
+                className="bg-neutral-200 dark:bg-neutral-500 text-neutral-500 dark:text-neutral-200"
               />
             )}
           </div>
