@@ -58,6 +58,7 @@ export const KOR_LANG = {
     NO_RECORD_FOUND: "관련 아카이브 레코드가 없습니다.",
     ENTER_SEARCH_TERM: "검색어를 입력하세요.",
     INVALID_RECORD: "유효하지 않은 레코드입니다.",
+    ERROR_OCCURRED: "문제가 발생했습니다",
   },
   PAGINATION: {
     PREV: "이전",

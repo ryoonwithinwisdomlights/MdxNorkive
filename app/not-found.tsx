@@ -4,8 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/modules/common/ui/button";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 
 export default function NotFound() {
+  const { locale } = useGeneralSiteSettings();
   return (
     <div className="h-screen flex flex-col items-center justify-center md:px-60 px-20 ">
       <Image
@@ -22,7 +24,9 @@ export default function NotFound() {
         alt="Error"
         className="hidden dark:block"
       />
-      <h2 className="text-xl font-medium mb-6">Something went wrong!</h2>
+      <h2 className="text-xl font-medium mb-6">
+        {locale.COMMON.ERROR_OCCURRED}
+      </h2>
       <Button asChild>
         <Link href={"/"}> Go Back</Link>
       </Button>

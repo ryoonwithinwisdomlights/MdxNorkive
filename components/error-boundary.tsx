@@ -1,5 +1,6 @@
 "use client";
 
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { ErrorBoundary } from "react-error-boundary";
 
 function Fallback({
@@ -8,9 +9,10 @@ function Fallback({
   // biome-ignore lint/suspicious/noExplicitAny: any is used to match the Error type
   error: any;
 }) {
+  const { locale } = useGeneralSiteSettings();
   return (
     <div role="alert">
-      <p>Something went wrong:</p>
+      <p>{locale.COMMON.ERROR_OCCURRED}:</p>
       <pre style={{ color: "red" }}>{error.message}</pre>
     </div>
   );

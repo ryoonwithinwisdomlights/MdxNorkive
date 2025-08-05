@@ -60,6 +60,7 @@ export const ENG_LANG = {
     NO_RECORD_FOUND: "No relevant archive records have been created.",
     ENTER_SEARCH_TERM: "Search archive...",
     INVALID_RECORD: "Invalid Record",
+    ERROR_OCCURRED: "Something went wrong",
   },
   PAGINATION: {
     PREV: "Prev",
