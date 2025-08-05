@@ -20,7 +20,7 @@ export const MenuItemDrop = ({ link }) => {
     if (sLink) {
       const href = sLink?.type === "SubMenuPages" ? sLink?.url : sLink?.slug;
       // console.log("sLink?.type:::", sLink?.type);
-      console.log("href:::", href);
+      // console.log("href:::", href);
       if (sLink?.slug?.includes("http")) {
         window.open(sLink.slug, "_blank");
       } else {

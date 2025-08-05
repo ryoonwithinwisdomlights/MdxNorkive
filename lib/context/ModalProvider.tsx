@@ -16,7 +16,17 @@ export const ModalProvider = () => {
   return (
     <>
       <SettingModal />
-      <Toaster position="bottom-right" style={{ border: "1px solid black" }} />
+      <Toaster
+        // className="bg-white dark:bg-neutral-800"
+        position="bottom-right"
+        // style={{
+        //   backgroundColor: "black",
+        //   color: "white",
+        //   border: "1px solid white",
+        //   borderRadius: "10px",
+        //   padding: "10px",
+        // }}
+      />
     </>
   );
 };

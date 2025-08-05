@@ -14,7 +14,7 @@ import {
   TwitterIcon,
   TwitterShareButton,
 } from "react-share";
-
+import { toast } from "sonner";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { LinkIcon } from "lucide-react";
 // 사전에 사용할 아이콘 추가
@@ -30,7 +30,8 @@ const ShareButtons = ({ shareUrl, title, body, image }) => {
 
   const copyUrl = () => {
     copy(shareUrl);
-    alert(locale.COMMON.URL_COPIED);
+    toast.success(`${locale.COMMON.URL_COPIED} `);
+    // alert(locale.COMMON.URL_COPIED);
   };
 
   return (
