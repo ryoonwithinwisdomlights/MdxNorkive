@@ -83,11 +83,11 @@ const GeneralRecordPage = () => {
         {/* <hr className="w-full border-2 border-neutral-100" /> */}
         {isAble ? (
           <div className="flex flex-col gap-16 items-start w-full ">
-            <FeaturedRecords type="General" records={pages} introText={false} />
+            <FeaturedRecords type="RECORDS" records={pages} introTrue={false} />
             {/* <RecordsWithMultiplesOfThree
               filteredPages={filteredPages}
               className=""
-              introText={false}
+              introTrue={false}
             /> */}
 
             <EntireRecordsWithDateSortWrapper

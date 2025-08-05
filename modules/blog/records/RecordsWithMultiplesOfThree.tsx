@@ -6,11 +6,12 @@ import Link from "next/link";
 import { useState } from "react";
 import TagItemMini from "../tag/TagItemMini";
 import NotFound from "@/app/not-found";
+import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 
 const RecordsWithMultiplesOfThree = ({
   filteredPages,
   className,
-  introText,
+  introTrue,
 }) => {
   // const pages = getPages();
   if (!filteredPages) NotFound();
@@ -37,16 +38,13 @@ const RecordsWithMultiplesOfThree = ({
   };
   return (
     <div className={`${className} flex flex-col gap-6`}>
-      {introText && (
-        <div className="text-start mb-6 flex flex-col gap-2">
-          <h2 className="text-3xl font-bold text-black dark:text-white ">
-            {locale.INTRO.FAVORITE_RECORDS}
-          </h2>
-          <p className="text-lg text-neutral-600 dark:text-neutral-300">
-            {locale.INTRO.FAVORITE_RECORDS_DESC}
-          </p>
-        </div>
-      )}
+      <IntroSectionWithMenuOption
+        introTrue={introTrue}
+        introType="LATEST"
+        currentRecordType={""}
+        allOptions={[]}
+        handleRecordTypeChange={() => {}}
+      />
       {/* Navigation Arrows */}
       <div className="flex justify-between items-center m">
         <div className="text-sm text-neutral-500 dark:text-neutral-400">

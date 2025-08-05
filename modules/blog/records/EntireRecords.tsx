@@ -1,19 +1,14 @@
 "use client";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { getYearMonthDay } from "@/lib/utils/date";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import {
-  Book,
-  CalendarIcon,
-  ChevronDownIcon,
-  FolderClosedIcon,
-  TagIcon,
-} from "lucide-react";
+import InjectedOptionMenu from "@/modules/shared/InjectedOptionMenu";
+import { CalendarIcon, FolderClosedIcon, TagIcon } from "lucide-react";
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 
-const EntireRecords = ({ records, introText }) => {
+const EntireRecords = ({ records, introTrue }) => {
   const pages = records;
   if (!pages) return null;
   const CARDS_PER_PAGE = 4;
@@ -92,53 +87,13 @@ const EntireRecords = ({ records, introText }) => {
   return (
     <section className="w-full">
       {/* 섹션 제목 */}
-      <div className="flex flex-row justify-between">
-        {introText && (
-          <div className="text-start mb-6 flex flex-col gap-2">
-            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white  ">
-              {locale.INTRO.ENTIRE_RECORDS}
-            </h2>
-            <p className="text-lg text-neutral-600 dark:text-neutral-300">
-              {locale.INTRO.ENTIRE_RECORDS_DESC}
-            </p>
-          </div>
-        )}
-        <div className="w-52 text-right relative flex flex-col justify-end items-end mb-6  ">
-          <Menu>
-            <MenuButton
-              className="w-40  inline-flex items-center justify-center
-            gap-2 rounded-md bg-neutral-50 dark:bg-neutral-600 
-            dark:border-neutral-100
-            border border-neutral-200 
-            px-3 py-1.5 text-sm font-semibold
-              text-neutral-900 dark:text-white shadow-inner shadow-white/10 
-        
-              data-focus:outline-white
-               data-hover:bg-neutral-100
-                data-open:bg-neutral-100"
-            >
-              {currentRecordType === "" ? locale.COMMON.ALL : currentRecordType}
-              <ChevronDownIcon className="size-4 fill-white/60" />
-            </MenuButton>
-            <MenuItems
-              anchor="bottom"
-              className="w-52 rounded-xl border border-neutral-200 bg-white dark:bg-neutral-800 dark:border-neutral-700 p-1 text-sm/6 text-neutral-900 dark:text-white shadow-lg"
-            >
-              {allOptions.map((item) => (
-                <MenuItem key={item.id}>
-                  <button
-                    onClick={() => handleRecordTypeChange(item.option)}
-                    className="group flex w-full items-center gap-2 rounded-lg px-3 py-1.5 data-focus:bg-neutral-100 dark:data-focus:bg-neutral-700"
-                  >
-                    <Book className="size-4 text-neutral-500 dark:text-neutral-400" />{" "}
-                    {item.title}
-                  </button>
-                </MenuItem>
-              ))}
-            </MenuItems>
-          </Menu>
-        </div>
-      </div>
+      <IntroSectionWithMenuOption
+        introTrue={introTrue}
+        introType="ENTIRE"
+        currentRecordType={currentRecordType}
+        allOptions={allOptions}
+        handleRecordTypeChange={handleRecordTypeChange}
+      />
 
       {/* 전체 게시글 목록 */}
       <div className="grid grid-cols-1 gap-6 ">

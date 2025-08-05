@@ -1,13 +1,21 @@
+import { Feather } from "lucide-react";
+
 export const ENG_LANG = {
   LOCALE: "en-US",
   LOADING: "Loading...",
   INTRO: {
-    FAVORITE_RECORDS: "Featured Records",
-    FAVORITE_RECORDS_DESC: "Display the records checked as favorite.",
-    RECENT_RECORDS: "Latest Records",
-    RECENT_RECORDS_DESC: "Displays up to 7 most recent records per subtype.",
-    ENTIRE_RECORDS: "Entire Records",
-    ENTIRE_RECORDS_DESC: "Display all records regardless of type.",
+    FEATURED: {
+      TITLE: "Featured Records",
+      DESC: "Display the records checked as favorite.",
+    },
+    LATEST: {
+      TITLE: "Latest Records",
+      DESC: "Displays up to 7 most recent records per subtype.",
+    },
+    ENTIRE: {
+      TITLE: "Entire Records",
+      DESC: "Display all records regardless of type.",
+    },
     READ_MORE: "Read More",
   },
   COMMON: {
