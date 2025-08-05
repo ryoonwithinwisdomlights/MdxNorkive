@@ -15,7 +15,7 @@ import { MDXContent } from "@content-collections/mdx/react";
 import { InlineTOC } from "fumadocs-ui/components/inline-toc";
 import { DocsBody, DocsPage } from "fumadocs-ui/page";
 import { useSidebar } from "fumadocs-ui/provider";
-import { Book, CalendarIcon, Eye, View } from "lucide-react";
+import { Book, CalendarIcon, Eye, Rocket, View } from "lucide-react";
 import { notFound } from "next/navigation";
 import { useEffect } from "react";
 import Comment from "./Comment";
@@ -40,7 +40,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
     setCollapsed(false);
   }, []);
 
-  console.log("page::", page);
+  // console.log("page::", page);
   return (
     <article
       className={`flex flex-col  justify-center items-center w-full h-full ${className}`}
@@ -81,18 +81,29 @@ export default function CustomedMDXPage({ className, slug, resource }) {
             <h1 className="mb-2 text-3xl font-bold text-white">
               {page.data.title}
             </h1>
-            <p className="mb-4 text-white/80">{page.data.description}</p>
-            <span className=" flex flex-row gap-2 items-center text-white text-sm">
-              <Book className="w-4 h-4" />
-              <span>
-                {getReadingTime(page.data.title, page.data?.description || "")}{" "}
-                min read
-              </span>
-              <span>·</span>
+            <div className=" flex flex-row gap-4 items-center text-white text-sm">
+              <div className="flex flex-row gap-2 items-center">
+                <Book className="w-4 h-4" />
+                <span className="flex flex-row gap-2 items-center">
+                  {locale.COMMON.READING_TIME}&nbsp;&nbsp;-&nbsp;&nbsp;
+                  {getReadingTime(
+                    page.data.title,
+                    page.data?.summary || ""
+                  )}{" "}
+                  {locale.COMMON.MINUTE}
+                </span>
+              </div>
+              <div className="flex flex-row gap-2 items-center">
+                <span className=" flex flex-row gap-2 items-center text-white text-sm">
+                  <Rocket className="w-4 h-4" />
+                  <span>{locale.COMMON.VIEWS}</span>
+                  <span className=" busuanzi_value_page_pv" />
+                </span>
+              </div>
+            </div>
 
-              <span className=" busuanzi_value_page_pv" />
-              <span>{locale.COMMON.VIEWS}</span>
-            </span>
+            <p className="mb-6 text-white/80">{page.data.summary}</p>
+
             <div className="flex items-center gap-2 text-white">
               <CalendarIcon className="w-4 h-4" />
               <span className="text-sm">

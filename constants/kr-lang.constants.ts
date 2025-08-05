@@ -52,6 +52,7 @@ export const KOR_LANG = {
     ANNOUNCEMENT: "공지사항",
     START_READING: "읽기 시작",
     MINUTE: "분",
+    READING_TIME: "읽는 시간",
     WORD_COUNT: "글자수",
     LOCKED: "비공개",
     SEARCH_TERM: "검색어",

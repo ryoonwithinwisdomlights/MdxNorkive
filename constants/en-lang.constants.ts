@@ -54,6 +54,7 @@ export const ENG_LANG = {
     ANNOUNCEMENT: "Announcement",
     START_READING: "Start Reading",
     MINUTE: "min",
+    READING_TIME: "Reading Time",
     WORD_COUNT: "W.C.",
     LOCKED: "private",
     SEARCH_TERM: "Search term",
