@@ -11,22 +11,19 @@ import {
 } from "lucide-react";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const EntireRecords = ({ records, introText }) => {
   const pages = records;
   if (!pages) return null;
+  const CARDS_PER_PAGE = 4;
+
   const { locale } = useGeneralSiteSettings();
+  const [currentPage, setCurrentPage] = useState(0);
   const [currentRecordType, setCurrentRecordType] = useState("");
 
   // useMemo를 사용하여 필터링 로직 최적화
-  const { allOptions, modAllRecords } = useMemo(() => {
-    // const favoritePages = pages.filter(
-    //   (page) =>
-    //     page.data.favorite === true &&
-    //     (type !== "" ? page.data.type === type : true)
-    // );
-    // currentRecordType값 있으면 추가 필터링
+  const { allOptions, modAllRecords, filteredPages } = useMemo(() => {
     const filtered =
       currentRecordType !== ""
         ? pages.filter((page) => {
@@ -38,8 +35,11 @@ const EntireRecords = ({ records, introText }) => {
           })
         : pages;
 
-    // const modAllRecords = filtered.slice(6, filtered.length);
-    const modAllRecords = filtered;
+    const modAllRecords = filtered.slice(
+      currentPage * CARDS_PER_PAGE,
+      (currentPage + 1) * CARDS_PER_PAGE
+    );
+    // const modAllRecords = filtered;
     // 중복되지 않는 고유한 타입만 추출 (전체 프로젝트 페이지 기준)
     const uniqueOptions = Array.from(
       new Set(
@@ -65,11 +65,27 @@ const EntireRecords = ({ records, introText }) => {
 
     return {
       modAllRecords: modAllRecords,
-      // filteredPages: filtered,
+      filteredPages: filtered,
       allOptions: options,
     };
-  }, [pages, currentRecordType]); // 의존성 배열에 pages와 categoryParam만 포함
+  }, [pages, currentRecordType, currentPage]); // 의존성 배열에 pages와 categoryParam만 포함
 
+  const TOTAL_PAGES = Math.ceil(filteredPages.length / CARDS_PER_PAGE);
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [currentRecordType]);
+
+  const nextPage = () => {
+    if (currentPage < TOTAL_PAGES - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
   const handleRecordTypeChange = (option: string) => {
     setCurrentRecordType(option);
   };
@@ -196,6 +212,59 @@ const EntireRecords = ({ records, introText }) => {
             </Link>
           </article>
         ))}
+      </div>
+      <div className="flex justify-between items-center mt-8">
+        <div className="text-sm text-neutral-500 dark:text-neutral-400">
+          Page {currentPage + 1} of {TOTAL_PAGES}
+        </div>
+        <div className="flex space-x-4">
+          <button
+            onClick={prevPage}
+            className={`p-2 rounded-full transition-all duration-300 ease-in-out transform hover:scale-110 ${
+              currentPage === 0
+                ? "bg-neutral-100 dark:bg-neutral-700 opacity-50 cursor-not-allowed"
+                : "bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+            }`}
+            disabled={currentPage === 0}
+          >
+            <svg
+              className="w-5 h-5 text-neutral-600 dark:text-neutral-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+          <button
+            onClick={nextPage}
+            className={`p-2 rounded-full transition-all duration-300 ease-in-out transform hover:scale-110 ${
+              currentPage === TOTAL_PAGES - 1
+                ? "bg-neutral-100 dark:bg-neutral-700 opacity-50 cursor-not-allowed"
+                : "bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+            }`}
+            disabled={currentPage === TOTAL_PAGES - 1}
+          >
+            <svg
+              className="w-5 h-5 text-neutral-600 dark:text-neutral-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
     </section>
   );
