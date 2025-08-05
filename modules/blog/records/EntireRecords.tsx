@@ -134,7 +134,7 @@ const EntireRecords = ({
           <article
             key={page.data.notionId}
             className="group relative bg-gradient-to-br from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-700 rounded-lg border border-neutral-200
-              dark:border-neutral-700 p-6 hover:shadow-lg transition-all duration-300 hover:scale-105  hover:border-neutral-300 dark:hover:border-neutral-600"
+              dark:border-neutral-700 p-6 hover:shadow-lg transition-all duration-300 hover:scale-95  hover:border-neutral-300 dark:hover:border-neutral-600"
           >
             <Link href={page.url} className=" flex flex-col gap-5">
               {/* 제목 */}

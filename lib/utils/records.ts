@@ -20,7 +20,6 @@ export function getMainRecentArticles(pages: any, lang: string, sliceNum = 6) {
     title: page.data.title,
     pageCover: page.data.pageCover,
     description: page.data.summary?.slice(0, 100) || "",
-    gradient: "from-blue-400 to-purple-500",
     tags: page.data.tags,
     url: page.url,
     author: BLOG.AUTHOR,

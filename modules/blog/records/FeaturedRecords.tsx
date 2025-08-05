@@ -217,7 +217,7 @@ const FeaturedRecords = ({
                   alt={currentPage.data.title}
                   priority={true}
                   src={currentPage.data.pageCover}
-                  className="h-full w-full border border-neutral-200 dark:border-neutral-700  rounded-xl object-cover object-center 
+                  className="h-[250px] w-full border border-neutral-200 dark:border-neutral-700  rounded-xl object-cover object-center 
              "
                 />
               ) : (
