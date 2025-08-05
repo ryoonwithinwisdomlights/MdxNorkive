@@ -1,13 +1,13 @@
 "use client";
+import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import {
   getCurrentRecordsWithPagination,
   getMainRecentArticles,
 } from "@/lib/utils/records";
-import InjectedOptionMenu from "@/modules/shared/InjectedOptionMenu";
-import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
+import PageIndicator from "./PageIndicator";
 
 const LatestRecords = ({ records, introTrue }) => {
   const pages = records;
@@ -184,10 +184,6 @@ const LatestRecords = ({ records, introTrue }) => {
                 <span className="text-xs text-neutral-500 uppercase tracking-wide">
                   {article.type} / {article.category}
                 </span>
-                {/* <h4 className="text-sm font-semibold text-black mt-1 line-clamp-2">
-                  {article.title}
-                </h4> */}
-
                 <Link
                   href={firstArticle.url}
                   className=" hover:underline text-sm font-semibold text-black mt-1 line-clamp-2"
@@ -199,71 +195,19 @@ const LatestRecords = ({ records, introTrue }) => {
                 </h5>
                 <div className="flex flex-col items-start text-xs text-neutral-500 mt-2">
                   <span>{article.author.substr(0, 10)}...</span>
-                  {/* <span className="mx-1">•</span> */}
                   <span>{article.date}</span>
                 </div>
-                {/* <div className="flex items-center text-xs text-neutral-500 mt-2">
-
-                  <span>{article.date}</span>
-                </div> */}
               </div>
             </div>
           </div>
         ))}
       </div>
-      <div className="flex justify-between items-center mt-8">
-        <div className="text-sm text-neutral-500 dark:text-neutral-400">
-          Page {currentPage + 1} of {TOTAL_PAGES}
-        </div>
-        <div className="flex space-x-4">
-          <button
-            onClick={prevPage}
-            className={`p-2 rounded-full transition-all duration-300 ease-in-out transform hover:scale-110 ${
-              currentPage === 0
-                ? "bg-neutral-100 dark:bg-neutral-700 opacity-50 cursor-not-allowed"
-                : "bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600"
-            }`}
-            disabled={currentPage === 0}
-          >
-            <svg
-              className="w-5 h-5 text-neutral-600 dark:text-neutral-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-          <button
-            onClick={nextPage}
-            className={`p-2 rounded-full transition-all duration-300 ease-in-out transform hover:scale-110 ${
-              currentPage === TOTAL_PAGES - 1
-                ? "bg-neutral-100 dark:bg-neutral-700 opacity-50 cursor-not-allowed"
-                : "bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600"
-            }`}
-            disabled={currentPage === TOTAL_PAGES - 1}
-          >
-            <svg
-              className="w-5 h-5 text-neutral-600 dark:text-neutral-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
+      <PageIndicator
+        currentPage={currentPage}
+        TOTAL_PAGES={TOTAL_PAGES}
+        prevPage={prevPage}
+        nextPage={nextPage}
+      />
     </div>
   );
 };

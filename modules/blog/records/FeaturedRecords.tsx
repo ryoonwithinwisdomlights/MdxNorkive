@@ -2,12 +2,8 @@
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils/date";
 import LazyImage from "@/modules/common/components/shared/LazyImage";
-import InjectedOptionMenu from "@/modules/shared/InjectedOptionMenu";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import {
-  Book,
   CalendarIcon,
-  ChevronDownIcon,
   ChevronLeft,
   ChevronRight,
   FolderClosedIcon,

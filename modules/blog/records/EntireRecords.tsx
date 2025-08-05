@@ -1,12 +1,13 @@
 "use client";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { getYearMonthDay } from "@/lib/utils/date";
-import InjectedOptionMenu from "@/modules/shared/InjectedOptionMenu";
 import { CalendarIcon, FolderClosedIcon, TagIcon } from "lucide-react";
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
+import PageIndicator from "./PageIndicator";
+import TagList from "./TagList";
 
 const EntireRecords = ({ records, introTrue }) => {
   const pages = records;
@@ -103,11 +104,11 @@ const EntireRecords = ({ records, introTrue }) => {
             className="group relative bg-gradient-to-br from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-700 rounded-lg border border-neutral-200
               dark:border-neutral-700 p-6 hover:shadow-lg transition-all duration-300 hover:scale-105  hover:border-neutral-300 dark:hover:border-neutral-600"
           >
-            <Link href={page.url} className="block">
+            <Link href={page.url} className=" flex flex-col gap-5">
               {/* 제목 */}
               <h3
                 className="text-xl font-semibold
-               text-neutral-700 dark:text-neutral-200 mb-3
+               text-neutral-700 dark:text-neutral-200 
                 group-hover:text-black group-hover:underline 
                  dark:group-hover:text-white transition-colors"
               >
@@ -116,7 +117,7 @@ const EntireRecords = ({ records, introTrue }) => {
 
               {/* 요약 */}
               {page.data.summary && (
-                <p className="text-neutral-600 dark:text-neutral-300 mb-4 line-clamp-2">
+                <p className="text-neutral-600 dark:text-neutral-300 line-clamp-2">
                   {page.data.summary}
                 </p>
               )}
@@ -148,79 +149,36 @@ const EntireRecords = ({ records, introTrue }) => {
               </div>
               {/* 태그 */}
               {page.data.tags && page.data.tags.length > 0 && (
-                <div className="mt-4 flex items-center gap-2">
-                  {page.data.tags.slice(0, 3).map((tag, index) => (
-                    <span
-                      key={index}
-                      className="px-2 py-1 bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300 rounded-md text-xs"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                  {page.data.tags.length > 3 && (
-                    <span className="text-xs">
-                      +{page.data.tags.length - 3}
-                    </span>
-                  )}
-                </div>
+                <TagList
+                  tags={page.data.tags}
+                  className="bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300"
+                />
+                // <div className="mt-4 flex items-center gap-2">
+                //   {page.data.tags.slice(0, 3).map((tag, index) => (
+                //     <span
+                //       key={index}
+                //       className="px-2 py-1 bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300 rounded-md text-xs"
+                //     >
+                //       {tag}
+                //     </span>
+                //   ))}
+                //   {page.data.tags.length > 3 && (
+                //     <span className="text-xs">
+                //       +{page.data.tags.length - 3}
+                //     </span>
+                //   )}
+                // </div>
               )}
             </Link>
           </article>
         ))}
       </div>
-      <div className="flex justify-between items-center mt-8">
-        <div className="text-sm text-neutral-500 dark:text-neutral-400">
-          Page {currentPage + 1} of {TOTAL_PAGES}
-        </div>
-        <div className="flex space-x-4">
-          <button
-            onClick={prevPage}
-            className={`p-2 rounded-full transition-all duration-300 ease-in-out transform hover:scale-110 ${
-              currentPage === 0
-                ? "bg-neutral-100 dark:bg-neutral-700 opacity-50 cursor-not-allowed"
-                : "bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600"
-            }`}
-            disabled={currentPage === 0}
-          >
-            <svg
-              className="w-5 h-5 text-neutral-600 dark:text-neutral-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-          <button
-            onClick={nextPage}
-            className={`p-2 rounded-full transition-all duration-300 ease-in-out transform hover:scale-110 ${
-              currentPage === TOTAL_PAGES - 1
-                ? "bg-neutral-100 dark:bg-neutral-700 opacity-50 cursor-not-allowed"
-                : "bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600"
-            }`}
-            disabled={currentPage === TOTAL_PAGES - 1}
-          >
-            <svg
-              className="w-5 h-5 text-neutral-600 dark:text-neutral-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
+      <PageIndicator
+        currentPage={currentPage}
+        TOTAL_PAGES={TOTAL_PAGES}
+        prevPage={prevPage}
+        nextPage={nextPage}
+      />
     </section>
   );
 };
