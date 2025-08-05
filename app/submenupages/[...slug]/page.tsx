@@ -21,14 +21,20 @@ export default async function Page(props: {
   if (slug) {
     slug = slug.map((s) => decodeURIComponent(s));
   }
-
-  // console.log("pageId:", pageId);
+  const pages = submenuPageSource.getPages();
+  // const page = pages.find((page) => {
+  //   if (page.slugs[0] === slug) {
+  //     console.log("page.slugs[0]:", page.slugs[0]);
+  //     return page;
+  //   }
+  // });
+  console.log("slug:", slug);
   // console.log("page::", page);
 
   return (
     <CustomedMDXPage
       resource={"submenupage"}
-      className="bg-pink-200 p-10 md:p-0"
+      className=" p-10 md:p-0"
       slug={params.slug}
     />
   );

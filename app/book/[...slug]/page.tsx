@@ -17,7 +17,7 @@ export default async function Page(props: {
   return (
     <CustomedMDXPage
       resource={"book"}
-      className="bg-pink-200 p-10 md:p-0"
+      className=" p-10 md:p-0"
       slug={params.slug}
     />
   );

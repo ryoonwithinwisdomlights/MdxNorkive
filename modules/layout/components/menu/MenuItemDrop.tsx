@@ -9,7 +9,7 @@ import { useState } from "react";
 export const MenuItemDrop = ({ link }) => {
   const [show, changeShow] = useState(false);
   const pathname = usePathname();
-  // console.log("link:::", link);
+  console.log("link:::", link);
   if (!link) {
     return null;
   }
@@ -18,14 +18,14 @@ export const MenuItemDrop = ({ link }) => {
   const router = useRouter();
   const onClickUrl = (sLink) => {
     if (sLink) {
-      const href = sLink?.type === "SubMenuPage" ? sLink?.url : sLink?.slug;
+      const href = sLink?.type === "SubMenuPages" ? sLink?.url : sLink?.slug;
       // console.log("sLink?.type:::", sLink?.type);
-      // console.log("href:::", href);
+      console.log("href:::", href);
       if (sLink?.slug?.includes("http")) {
         window.open(sLink.slug, "_blank");
       } else {
         // SubMenuPage의 경우 절대 경로로 처리
-        const finalHref = sLink?.type === "SubMenuPage" ? `/${href}` : href;
+        const finalHref = sLink?.type === "SubMenuPages" ? `/${href}` : href;
         router.push(finalHref);
       }
     }

@@ -96,7 +96,7 @@ export default async function Layout({
     >
       <div
         className="md:w-[60vw] w-full  flex flex-col
-      justify-center items-center  bg-amber-100"
+      justify-center items-center   "
       >
         {children}
       </div>
