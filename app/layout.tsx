@@ -19,7 +19,13 @@ import { NavInfoProvider } from "@/lib/context/NavInfoProvider";
 import JumpToBackButton from "@/modules/common/components/JumpToBackButton";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { fetchAllRecordList, fetchMenuList } from "./api/fetcher";
-
+import {
+  recordSource,
+  bookSource,
+  engineeringSource,
+  projectSource,
+} from "@/lib/source";
+import { LoaderConfig, Page, PageData } from "fumadocs-core/source";
 config.autoAddCss = false;
 
 export const viewport: Viewport = {
@@ -73,6 +79,37 @@ export default async function RootLayout({ children }: ChildrenProp) {
    */
   const menuData = await fetchMenuList();
   const recordList = await fetchAllRecordList();
+  const recordPages = recordSource.getPages();
+  const bookPages = bookSource.getPages();
+  const engineeringPages = engineeringSource.getPages();
+  const projectPages = projectSource.getPages();
+  // console.log("recordPages::", recordPages);
+  // console.log("bookPages::", bookPages);
+
+  const allPages: Page<LoaderConfig["source"]["pageData"]>[] = [
+    ...recordPages,
+    ...bookPages,
+    ...engineeringPages,
+    ...projectPages,
+  ];
+
+  // 직렬화 가능한 형태로 변환
+  const serializedAllPages = allPages.map((page) => ({
+    file: {
+      dirname: page.file.dirname,
+      name: page.file.name,
+      ext: page.file.ext,
+      path: page.file.path,
+      flattenedPath: page.file.flattenedPath,
+    },
+    absolutePath: page.absolutePath,
+    path: page.path,
+    url: page.url,
+    slugs: page.slugs,
+    data: page.data,
+    locale: page.locale,
+  }));
+
   return (
     <html lang="en" suppressHydrationWarning className={GeistSans.className}>
       <body>
@@ -82,7 +119,10 @@ export default async function RootLayout({ children }: ChildrenProp) {
             globalNotionData={globalNotionData}
             from={"index"}
           > */}
-            <NavInfoProvider recordList={recordList}>
+            <NavInfoProvider
+              recordList={recordList}
+              serializedAllPages={serializedAllPages}
+            >
               <GeneralSiteSettingsProvider>
                 <div
                   id="gitbook"

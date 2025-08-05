@@ -1,13 +1,31 @@
 "use client";
 
 import { RecordItem } from "@/app/api/types";
+import { PageData } from "fumadocs-core/source";
 import NextNProgress from "nextjs-progressbar";
 import { createContext, ReactNode, useContext } from "react";
+type SerializedPage = {
+  file: {
+    dirname: string;
+    name: string;
+    ext: string;
+    path: string;
+    flattenedPath: string;
+  };
+  absolutePath: string;
+  path: string;
+  url: string;
+  slugs: string[];
+  data: PageData;
+  locale: string | undefined;
+};
 
-const GlobalContext = createContext<{ recordList: RecordItem[] } | undefined>(
-  undefined
-);
-type NavInfo = { recordList: RecordItem[] };
+//Page<LoaderConfig['source']['pageData']>[]
+type NavInfo = {
+  recordList: RecordItem[];
+  serializedAllPages: SerializedPage[];
+};
+const GlobalContext = createContext<NavInfo | undefined>(undefined);
 /**
  *A Global provider that initializes the site with essential values.
  * @param children
@@ -18,15 +36,19 @@ export function NavInfoProvider({
   children,
   from = "index",
   recordList,
+  serializedAllPages,
 }: {
   children: ReactNode;
   from?: string;
   recordList: RecordItem[];
+  serializedAllPages: SerializedPage[];
 }) {
+  // console.log("allPages::", allPages);
   return (
     <GlobalContext.Provider
       value={{
         recordList,
+        serializedAllPages,
       }}
     >
       {children}

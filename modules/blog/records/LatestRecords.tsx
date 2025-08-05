@@ -17,10 +17,10 @@ import { Book, ChevronDownIcon } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-const LatestRecords = () => {
+const LatestRecords = ({ records }) => {
   const router = useRouter();
-  const pages = recordSource.getPages();
-  if (!pages) NotFound();
+  const pages = records;
+  if (!pages) return null;
   const { lang, locale } = useGeneralSiteSettings();
   const [currentPage, setCurrentPage] = useState(0);
   const [currentRecordType, setCurrentRecordType] = useState("");
@@ -35,13 +35,11 @@ const LatestRecords = () => {
       const filtered =
         currentRecordType !== ""
           ? projectPages.filter((page) => {
-              const pageSubType = page?.data?.sub_type;
-              if (!pageSubType) return false;
+              const pageType = page?.data?.type;
+              if (!pageType) return false;
 
               // 대소문자 구분 없이 비교
-              return (
-                pageSubType.toLowerCase() === currentRecordType.toLowerCase()
-              );
+              return pageType.toLowerCase() === currentRecordType.toLowerCase();
             })
           : projectPages;
 
@@ -49,8 +47,8 @@ const LatestRecords = () => {
       const uniqueOptions = Array.from(
         new Set(
           projectPages
-            .map((item) => item?.data?.sub_type)
-            .filter((subType): subType is string => Boolean(subType))
+            .map((item) => item?.data?.type)
+            .filter((type): type is string => Boolean(type))
         )
       );
 
@@ -125,7 +123,7 @@ const LatestRecords = () => {
                data-hover:bg-neutral-100
                 data-open:bg-neutral-100"
             >
-              {locale.COMMON.OPTIONS}
+              {currentRecordType === "" ? locale.COMMON.ALL : currentRecordType}
               <ChevronDownIcon className="size-4 fill-white/60" />
             </MenuButton>
             <MenuItems
@@ -174,7 +172,7 @@ const LatestRecords = () => {
           <div className="md:w-1/2 h-60 p-6 flex flex-col justify-between  items-start  ">
             <div className="flex flex-col">
               <span className="text-xs text-neutral-500 uppercase tracking-wide mb-2">
-                {firstArticle.type} / {firstArticle.subType}
+                {firstArticle.type} / {firstArticle.type}
               </span>
               <Link
                 href={firstArticle.url}

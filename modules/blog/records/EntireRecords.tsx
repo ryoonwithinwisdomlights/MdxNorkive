@@ -1,15 +1,21 @@
 "use client";
 import NotFound from "@/app/not-found";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { getPages } from "@/lib/source";
+import {
+  getPages,
+  recordSource,
+  bookSource,
+  engineeringSource,
+  projectSource,
+} from "@/lib/source";
 import { getYearMonthDay } from "@/lib/utils/date";
 import { CalendarIcon, FolderClosedIcon } from "lucide-react";
 import Link from "next/link";
 
-const EntireRecords = () => {
-  const pages = getPages();
+const EntireRecords = ({ records }) => {
+  const pages = records;
   const { locale } = useGeneralSiteSettings();
-  if (!pages) NotFound();
+  if (!pages) return null;
   const modAllRecords = pages.slice(6, pages.length);
   return (
     <section className="w-full">

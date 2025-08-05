@@ -83,11 +83,7 @@ const GeneralRecordPage = () => {
         {/* <hr className="w-full border-2 border-neutral-100" /> */}
         {isAble ? (
           <div className="flex flex-col gap-16 items-start w-full ">
-            <FeaturedRecords
-              sub_type="General"
-              records={filteredPages}
-              introText={false}
-            />
+            <FeaturedRecords type="General" records={pages} introText={false} />
             {/* <RecordsWithMultiplesOfThree
               filteredPages={filteredPages}
               className=""
