@@ -10,13 +10,13 @@ const NorkiveIntro = () => {
   return (
     <div id="norkive-intro" className="w-full flex flex-col gap-10">
       <FeaturedRecords type="" records={pages} introText={true} />
-      <LatestRecords records={pages} />
+      <LatestRecords records={pages} introText={true} />
       {/* Favorite Records Section */}
 
       {/* Our Recent Records Section */}
       {/* <RecentRecords /> */}
       {/* All Records Section */}
-      <EntireRecords records={pages} />
+      <EntireRecords records={pages} introText={true} />
     </div>
   );
 };

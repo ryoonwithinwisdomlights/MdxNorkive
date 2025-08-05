@@ -1,23 +1,15 @@
 "use client";
-import NotFound from "@/app/not-found";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import {
-  getPages,
-  recordSource,
-  engineeringSource,
-  projectSource,
-  bookSource,
-} from "@/lib/source";
 import {
   getCurrentRecordsWithPagination,
   getMainRecentArticles,
 } from "@/lib/utils/records";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { Book, ChevronDownIcon } from "lucide-react";
-import { useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
-const LatestRecords = ({ records }) => {
+import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
+const LatestRecords = ({ records, introText }) => {
   const router = useRouter();
   const pages = records;
   if (!pages) return null;
@@ -81,6 +73,10 @@ const LatestRecords = ({ records }) => {
   const CARDS_PER_PAGE = 3;
   const TOTAL_PAGES = Math.ceil(restArticles.length / CARDS_PER_PAGE);
 
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [currentRecordType]);
+
   const nextPage = () => {
     if (currentPage < TOTAL_PAGES - 1) {
       setCurrentPage(currentPage + 1);
@@ -112,7 +108,7 @@ const LatestRecords = ({ records }) => {
         <div className="w-52 text-right relative flex flex-col justify-end items-end mb-6  ">
           <Menu>
             <MenuButton
-              className="w-30  inline-flex items-center justify-center
+              className="w-40  inline-flex items-center justify-center
             gap-2 rounded-md bg-neutral-50 dark:bg-neutral-600 
             dark:border-neutral-100
             border border-neutral-200 

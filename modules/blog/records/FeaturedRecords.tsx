@@ -90,12 +90,7 @@ const FeaturedRecords = ({ type, introText, records }) => {
     setCurrentRecordType(option);
   };
   const currentPage = filteredPages[currentIndex];
-  // const engineeringPages = filteredPages.filter(
-  //   (page) =>
-  //     page.data.type === "ENGINEERINGS" &&
-  //     (type !== "" ? page.data.type === type : true)
-  // );
-  // console.log("engineeringPages::", engineeringPages);
+
   return (
     <section className="px-4 w-full">
       {/* 섹션 제목 */}
