@@ -19,7 +19,7 @@ const InjectedOptionMenu = ({
     <Menu>
       <MenuButton
         className="w-40  inline-flex items-center justify-center
-  gap-2 rounded-md bg-neutral-50 dark:bg-neutral-600 
+  gap-2 rounded-md bg-neutral-50 dark:bg-neutral-700 
   dark:border-neutral-100
   border border-neutral-200 
   px-3 py-1.5 text-sm font-semibold
@@ -27,7 +27,8 @@ const InjectedOptionMenu = ({
 
     data-focus:outline-white
      data-hover:bg-neutral-100
-      data-open:bg-neutral-100"
+     data-hover:dark:bg-neutral-600
+     "
       >
         {currentRecordType === "" ? locale.COMMON.ALL : currentRecordType}
         <ChevronDownIcon className="size-4 fill-white/60" />
@@ -40,7 +41,8 @@ const InjectedOptionMenu = ({
           <MenuItem key={item.id}>
             <button
               onClick={() => handleRecordTypeChange(item.option)}
-              className="group flex w-full items-center gap-2 rounded-lg px-3 py-1.5 data-focus:bg-neutral-100 dark:data-focus:bg-neutral-700"
+              className="group flex w-full items-center gap-2 rounded-lg px-3 
+              py-1.5 data-focus:bg-neutral-100 dark:data-focus:bg-neutral-700"
             >
               <Book className="size-4 text-neutral-500 dark:text-neutral-400" />{" "}
               {item.title}

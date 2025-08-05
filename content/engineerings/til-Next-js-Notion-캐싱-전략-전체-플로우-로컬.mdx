@@ -1,0 +1,92 @@
+---
+title: Next.js + Notion + 캐싱 전략 전체 플로우 (로컬 vs 운영 + Vercel Cron)
+slug: til-Next-js-Notion-캐싱-전략-전체-플로우-로컬
+summary: ''
+pageCover: >-
+  https://images.unsplash.com/photo-1593062096033-9a26b09da705?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb
+notionId: 2251eb5c0337802f8f44c164859f1b33
+password: ''
+type: ENGINEERINGS
+sub_type: TIL
+category: TIL
+tags:
+  - 개발TIL
+  - 기술로그
+date: '2025-07-03'
+last_edited_time: '2025-08-05T03:05:00.000Z'
+lastEditedDate: 2025-08-05T03:05:00.000Z
+draft: false
+description: ''
+icon: ''
+full: false
+favorite: true
+lastModified: '2025-08-05'
+readingTime: 1
+wordCount: 56
+status: published
+author: ryoon
+version: 1.0.0
+---
+
+```typescript
+[Client (/blog 접근)]
+        │
+        ▼
+[Next.js 15 App Router → Page Component]
+        │
+        ▼
+[getPosts() 호출]
+        │
+        ├── (로컬 개발 환경)
+        │       │
+        │       ▼
+        │   [p-memoize / memory-cache 등]
+        │       │
+        │       └── 캐시 miss 시
+        │               │
+        │               ▼
+        │          [Notion API fetch (notion-client)]
+        │
+        └── (운영 환경: Vercel)
+                │
+                ▼
+            [Upstash Redis 캐시 확인]
+                │
+                └── 캐시 miss 시
+                        │
+                        ▼
+                   [Notion API fetch (notion-client)]
+
+────────────────────────────────────────────────────────────
+
+[Vercel Cron Job (10분마다 실행)]
+        │
+        ▼
+[GET /api/cron/update-posts → 내부에서 변경사항 탐지]
+        │
+        ▼
+[변경된 post 블록만 다시 fetch]
+        │
+        ▼
+[Redis 캐시 갱신 (Upstash)]
+```text
+
+
+
+**✅ 요약 포인트**
+
+
+
+| **구분**       | **전략**                                        |
+| --- |              | --- |                                               | --- |
+| ------------ | --------------------------------------------- |
+| --- |              | --- |                                               | --- |
+| **로컬 개발**    | p-memoize, memory-cache, Map 등 in-memory 방식   |
+| --- |              | --- |                                               | --- |
+| **운영 서버**    | Upstash Redis 사용하여 Vercel 환경에서도 지속되는 캐시       |
+| --- |              | --- |                                               | --- |
+| **최신화**      | Vercel Cron 으로 10분마다 Notion 데이터 변화 감지 후 캐시 갱신 |
+| --- |              | --- |                                               | --- |
+| **Fallback** | 캐시 miss 시에만 notion-client 직접 호출 (서버 전용)       |
+| --- |              | --- |                                               | --- |
+

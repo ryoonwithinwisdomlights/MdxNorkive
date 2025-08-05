@@ -9,9 +9,14 @@ const NorkiveIntro = () => {
   const pages = serializedAllPages;
   return (
     <div id="norkive-intro" className="w-full flex flex-col gap-10">
-      <FeaturedRecords type="" records={pages} introTrue={true} />
-      <LatestRecords records={pages} introTrue={true} />
-      <EntireRecords records={pages} introTrue={true} />
+      <FeaturedRecords
+        type=""
+        subType={false}
+        records={pages}
+        introTrue={true}
+      />
+      <LatestRecords type="" records={pages} introTrue={true} subType={false} />
+      <EntireRecords type="" records={pages} introTrue={true} subType={false} />
     </div>
   );
 };

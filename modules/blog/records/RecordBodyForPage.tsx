@@ -1,90 +1,118 @@
-import LazyImage from "@/modules/common/components/shared/LazyImage";
-import CategoryCarousel from "@/modules/common/components/CategoryCarousel";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import NoRecordFound from "./NoRecordFound";
-import RecordCardInfo from "./RecordCardInfo";
-import { getPages, engineeringSource, projectSource } from "@/lib/source";
 import NotFound from "@/app/not-found";
-import { useMemo } from "react";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import TypeCarousel from "@/modules/common/components/TypeCarousel";
+import LazyImage from "@/modules/common/components/shared/LazyImage";
+import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
+import NoRecordFound from "./NoRecordFound";
+import PageIndicator from "./PageIndicator";
+import ProjectCardInfo from "./ProjectCardInfo";
 
-interface CategoryItem {
+export interface OptionItem {
   id: number;
   title: string;
-  href: string;
-  isActive?: boolean;
+  option?: any;
+  isActive?: boolean; // 현재 선택된지 확인
 }
 
-const RecordBodyForPage = ({ type }: { type: string }) => {
-  const pathname = usePathname();
-  const subType = pathname.split("/")[1].toLowerCase();
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const pages =
-    type === "engineering"
-      ? engineeringSource.getPages()
-      : projectSource.getPages();
-
+const RecordBodyForPage = ({ records }: { records: any[] }) => {
+  const pages = records;
   if (!pages) NotFound();
-
-  // URL에서 category 쿼리 파라미터 가져오기
-  const categoryParam = searchParams.get("category");
-
+  const router = useRouter();
+  const { locale } = useGeneralSiteSettings();
+  const [currentRecordType, setCurrentRecordType] = useState("");
+  const [currentPage, setCurrentPage] = useState(0);
+  const CARDS_PER_PAGE = 4;
   // useMemo를 사용하여 필터링 로직 최적화
-  const { filteredPages, allCategories } = useMemo(() => {
-    // 기본 필터링: Project 타입만
-    const projectPages = pages.filter(
-      (page) => page.data.sub_type?.toLowerCase() === subType
+  const { filteredPages, allOptions, modAllRecords } = useMemo(() => {
+    const filtered =
+      currentRecordType !== ""
+        ? pages.filter((page) => {
+            const pageCategory = page?.data?.sub_type;
+            if (!pageCategory) return false;
+
+            // 대소문자 구분 없이 비교
+            return (
+              pageCategory.toLowerCase() === currentRecordType.toLowerCase()
+            );
+          })
+        : pages;
+
+    const modAllRecords = filtered.slice(
+      currentPage * CARDS_PER_PAGE,
+      (currentPage + 1) * CARDS_PER_PAGE
     );
 
-    // 카테고리 파라미터가 있으면 추가 필터링
-    const filtered = categoryParam
-      ? projectPages.filter((page) => {
-          const pageCategory = page?.data?.category;
-          if (!pageCategory) return false;
-
-          // 대소문자 구분 없이 비교
-          return pageCategory.toLowerCase() === categoryParam.toLowerCase();
-        })
-      : projectPages;
-
-    // 중복되지 않는 고유한 카테고리만 추출 (전체 프로젝트 페이지 기준)
-    const uniqueCategories = Array.from(
+    // 중복되지 않는 고유한 sub_type 추출
+    const uniqueOptions = Array.from(
       new Set(
-        projectPages
-          .map((item) => item?.data?.category)
+        pages
+          .map((item) => item?.data?.sub_type)
           .filter((category): category is string => Boolean(category))
       )
     );
 
     // "전체" 아이템을 맨 앞에 추가
-    const categories: CategoryItem[] = [
+    const options: OptionItem[] = [
       {
         id: -1,
-        title: "All",
-        href: `/${subType}`,
-        isActive: !categoryParam, // 카테고리 파라미터가 없으면 활성
+        title: locale.COMMON.ALL,
+        option: "",
+        isActive: currentRecordType === "",
       },
-      ...uniqueCategories.map((category, index) => ({
+      ...uniqueOptions.map((option, index) => ({
         id: index,
-        title: category,
-        href: `/${subType}?category=${category.toLowerCase()}`,
-        isActive: categoryParam?.toLowerCase() === category.toLowerCase(), // 현재 선택된 카테고리인지 확인
+        title: option,
+        option: option,
+        isActive: option.toLowerCase() === currentRecordType.toLowerCase(),
       })),
     ];
 
     return {
       filteredPages: filtered,
-      allCategories: categories,
+      allOptions: options,
+      modAllRecords,
     };
-  }, [pages, categoryParam]); // 의존성 배열에 pages와 categoryParam만 포함
+  }, [pages, currentRecordType, currentPage]);
 
+  const TOTAL_PAGES = Math.ceil(filteredPages.length / CARDS_PER_PAGE);
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [currentRecordType]);
+
+  const nextPage = () => {
+    if (currentPage < TOTAL_PAGES - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  const handleRecordTypeChange = (option: string) => {
+    setCurrentRecordType(option);
+  };
   return (
     <div className="flex flex-col w-full items-center gap-6 ">
-      <CategoryCarousel items={allCategories} />
+      <div className="flex flex-col  w-full">
+        <TypeCarousel
+          allOptions={allOptions}
+          handleRecordTypeChange={handleRecordTypeChange}
+        />
+        <PageIndicator
+          currentPage={currentPage}
+          TOTAL_PAGES={TOTAL_PAGES}
+          prevPage={prevPage}
+          nextPage={nextPage}
+        />
+      </div>
+
       <div className="flex flex-row justify-end w-full">
         <div className="space-y-6 w-full">
-          {filteredPages && filteredPages.length > 0 ? (
-            filteredPages.map((item: any, index) => {
+          {modAllRecords && modAllRecords.length > 0 ? (
+            modAllRecords.map((item: any, index) => {
               const showPageCover = item?.data?.pageCover;
               return (
                 <div key={item?.data?.notionId || index} className="w-full ">
@@ -103,11 +131,16 @@ const RecordBodyForPage = ({ type }: { type: string }) => {
                         index % 2 === 1 ? "md:flex-row-reverse" : ""
                       } overflow-hidden border dark:border-black rounded-xl bg-white dark:bg-neutral-100`}
                     >
-                      <RecordCardInfo
+                      {/* <RecordCardInfo
                         item={item}
                         showPageCover={showPageCover}
+                      /> */}
+                      <ProjectCardInfo
+                        page={item}
+                        showPageCover={showPageCover}
+                        showPreview={true}
+                        showSummary={true}
                       />
-
                       {showPageCover && (
                         <div className="md:w-5/12 rounded-xl overflow-hidden">
                           <LazyImage

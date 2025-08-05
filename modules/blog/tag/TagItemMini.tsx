@@ -1,6 +1,3 @@
-import Link from "next/link";
-import { TagIcon } from "lucide-react";
-
 const TagItemMini = ({ data }) => {
   // console.log("tag::", tag);
   return (

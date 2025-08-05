@@ -1,9 +1,15 @@
 "use client";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils/date";
 import { CardInfoDivProps } from "@/types";
-import { CalendarIcon, FolderClosedIcon, LockIcon } from "lucide-react";
+import {
+  CalendarIcon,
+  FolderClosedIcon,
+  LockIcon,
+  TagIcon,
+} from "lucide-react";
 import Link from "next/link";
-import TagItemMini from "../tag/TagItemMini";
+import TagList from "./TagList";
 /**
  * Portfolio list text content
  * @param {*} param0
@@ -15,7 +21,7 @@ const ProjectCardInfo = ({
   showPageCover,
   showSummary,
 }: CardInfoDivProps) => {
-  const { locale } = useGeneralSiteSettings();
+  const { locale, lang } = useGeneralSiteSettings();
   // const { handleRouter } = useGlobal({});
 
   return (
@@ -26,37 +32,37 @@ const ProjectCardInfo = ({
           : "w-full"
       }`}
     >
-      <div className="flex flex-col items-start  text-start">
+      <div className="flex flex-col items-start  text-start gap-2">
         <div
-          onClick={(e) => {
-            // handleRouter(record);
-          }}
           className={`line-clamp-2 flex flex-row replace cursor-pointer text-2xl ${
             showPreview ? "text-center" : ""
           } leading-tight font-normal text-neutral-600  hover:text-black`}
         >
           <span className="menu-link text-start">
-            {/* {page.data.title} */}
-            {page.data.title.substr(0, 25) + "..."}
+            {page.data.title.length > 35
+              ? page.data.title.slice(0, 35) + "..."
+              : page.data.title}
           </span>
         </div>
-        {/* Classification */}
-        {page?.data?.category && (
-          <div
-            className={`flex items-center ${
-              showPreview ? "justify-center" : "justify-start"
-            } flex-wrap dark:text-neutral-500 text-neutral-400 `}
-          >
-            <Link
-              href={page.url ?? ""}
-              passHref
-              className="flex flex-row items-center cursor-pointer font-light text-sm menu-link hover:text-black transform py-2"
-            >
-              <FolderClosedIcon className="mr-1 w-4 h-4" />
-              {page.data.category}
-            </Link>
-            <span className="text-xs flex flex-row">
-              &nbsp;&nbsp;&nbsp;{" "}
+
+        {page.data.type && (
+          <div className="flex flex-row justify-start items-center gap-4">
+            <div className="flex items-center gap-2 text-neutral-500 dark:text-neutral-400 ">
+              <FolderClosedIcon className="w-4 h-4" />
+              <span className="text-sm">{page.data.type}</span>
+            </div>
+            <div className="flex flex-row items-center gap-2 text-neutral-500 dark:text-neutral-400">
+              <CalendarIcon className="w-4 h-4" />
+              <span className="text-sm">
+                {getYearMonthDay(
+                  page.data.date,
+                  locale === "kr-KR" ? "kr-KR" : "en-US"
+                )}
+                &nbsp; &nbsp;
+                {getDistanceFromToday(page.data.date, lang)}
+              </span>
+            </div>
+            <span className="text-xs flex flex-row text-neutral-500 dark:text-neutral-400">
               {page.data.password !== "" && (
                 <>
                   <LockIcon className="mr-1 w-4 h-4" />
@@ -75,19 +81,32 @@ const ProjectCardInfo = ({
         )}
       </div>
 
-      <div>
-        {/* date label */}
-        <div className="text-neutral-400 justify-between flex">
-          <div className="flex flex-row items-center">
-            <CalendarIcon className="mr-1 w-4 h-4" />
-            {page?.data?.date.split("T")[0] || page.data.lastEditedDay}
+      <div className="flex flex-row justify-start items-center gap-4">
+        {/* Classification */}
+        {page?.data?.sub_type && (
+          <div
+            className={`flex items-center ${
+              showPreview ? "justify-center" : "justify-start"
+            } flex-wrap dark:text-neutral-500 text-neutral-400 `}
+          >
+            <Link
+              href={page.url ?? ""}
+              passHref
+              className="flex flex-row items-center cursor-pointer font-light text-sm menu-link hover:text-black transform "
+            >
+              <TagIcon className="mr-1 w-4 h-4" />
+              {page.data.sub_type}
+            </Link>
           </div>
-          <div className="md:flex-nowrap flex-wrap md:justify-start inline-block">
-            <div>
-              {page.data.tags && page.data.tags.length > 0 && (
-                <TagItemMini data={page.data} />
-              )}
-            </div>
+        )}
+        <div className="md:flex-nowrap flex-wrap md:justify-start inline-block">
+          <div>
+            {page.data.tags && page.data.tags.length > 0 && (
+              <TagList
+                tags={page.data.tags}
+                className="bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300"
+              />
+            )}
           </div>
         </div>
       </div>

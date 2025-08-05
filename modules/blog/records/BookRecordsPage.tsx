@@ -22,14 +22,9 @@ export function setAllPagesGetSortedGroupedByDate(allPages) {
 
 const BookRecordsPage = () => {
   const pages = bookSource.getPages();
-
   if (!pages) NotFound();
-  const { lang, locale } = useGeneralSiteSettings();
-  console.log("BookRecordsPage::", pages);
-  const filteredPages = pages.filter(
-    (page) =>
-      page.data.sub_type !== "Engineering" && page.data.sub_type !== "Project"
-  );
+  const { lang } = useGeneralSiteSettings();
+  // console.log("BookRecordsPage::", pages);
 
   const isAble = isObjectNotEmpty(pages);
   if (!isAble) NotFound();
@@ -40,10 +35,10 @@ const BookRecordsPage = () => {
         <div className="flex flex-col justify-center items-center">
           <div className="flex flex-col  ">
             <div className="flex flex-row justify-end text-sm  text-neutral-600 font-extralight dark:text-neutral-200  pr-3">
-              Take a look all the General Records&nbsp;&nbsp;
+              Take a look all the Book Records&nbsp;&nbsp;
             </div>
             <div className="flex flex-row justify-end text-sm   text-neutral-600 font-extralight dark:text-neutral-200  pr-3">
-              based on all the waves Life has been comming through.
+              based on all the Words and World of sentences.
             </div>
             <div className="text-7xl hover:underline dark:text-neutral-100 flex flex-row justify-end ">
               Book Records.
@@ -51,7 +46,7 @@ const BookRecordsPage = () => {
             <div className=" dark:text-neutral-200 text-right md:px-2 text-neutral-700 mt-1  my-2  text-2xl ">
               {lang === "kr-KR" ? (
                 <>
-                  일상의 작은 조각들로
+                  언어와 문장들로
                   <span className="font-semibold "> 이루어진</span>
                   <span className=" dark:text-[#ffffff] font-bold">
                     &nbsp;아카이브.
@@ -60,30 +55,22 @@ const BookRecordsPage = () => {
               ) : (
                 <>
                   <span className="font-semibold ">Archive</span> of
-                  <span className="font-semibold "> All projects&nbsp;</span>
-                  connected by small and big learnings
+                  <span className="font-semibold "> All Books&nbsp;</span>
+                  connected by small and big words.
                 </>
               )}
             </div>
           </div>
         </div>
 
-        {/* <div className="flex flex-col gap-2">
-          <h2
-            className="text-5xl  font-bold text-neutral-800
-           dark:text-white 
-         dark:bg-neutral-800"
-          >
-            General records
-          </h2>
-          <p className="text-lg text-neutral-600 dark:text-neutral-300">
-          {locale.INTRO.RECENT_RECORDS_DESC}
-        </p>
-        </div> */}
-        {/* <hr className="w-full border-2 border-neutral-100" /> */}
         {isAble ? (
           <div className="flex flex-col gap-16 items-start w-full ">
-            <FeaturedRecords type="Book" records={pages} introTrue={false} />
+            <FeaturedRecords
+              type="BOOKS"
+              subType={true}
+              records={pages}
+              introTrue={false}
+            />
             {/* <RecordsWithMultiplesOfThree
               filteredPages={filteredPages}
               className=""

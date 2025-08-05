@@ -8,8 +8,16 @@ import {
 } from "@/lib/utils/records";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import PageIndicator from "./PageIndicator";
+import LazyImage from "@/components/LazyImage";
 
-const LatestRecords = ({ records, introTrue }) => {
+type Props = {
+  type: string;
+  subType: boolean;
+  introTrue: boolean;
+  records: any[];
+};
+
+const LatestRecords = ({ records, introTrue, subType = false }: Props) => {
   const pages = records;
   if (!pages) return null;
   const { lang, locale } = useGeneralSiteSettings();
@@ -20,43 +28,67 @@ const LatestRecords = ({ records, introTrue }) => {
   const { firstArticle, restArticles, filteredPages, allOptions } =
     useMemo(() => {
       // 기본 필터링: Project 타입만
-      const projectPages = pages;
+      const latestPages = pages;
 
       // 카테고리 파라미터가 있으면 추가 필터링
       const filtered =
         currentRecordType !== ""
-          ? projectPages.filter((page) => {
-              const pageType = page?.data?.type;
+          ? latestPages.filter((page) => {
+              const pageType = subType
+                ? page?.data?.sub_type
+                : page?.data?.type;
               if (!pageType) return false;
 
               // 대소문자 구분 없이 비교
               return pageType.toLowerCase() === currentRecordType.toLowerCase();
             })
-          : projectPages;
+          : latestPages;
 
       // 중복되지 않는 고유한 카테고리만 추출 (전체 프로젝트 페이지 기준)
-      const uniqueOptions = Array.from(
+      const uniqueTypeOptions = Array.from(
         new Set(
-          projectPages
+          pages
             .map((item) => item?.data?.type)
-            .filter((type): type is string => Boolean(type))
+            .filter((data): data is string => Boolean(data))
+        )
+      );
+
+      const uniqueSubTypeOptions = Array.from(
+        new Set(
+          filtered
+            .map((item) => item?.data?.sub_type)
+            .filter((data): data is string => Boolean(data))
         )
       );
 
       // "전체" 아이템을 맨 앞에 추가
-      const options: any[] = [
+      const typeOptions: any[] = [
         {
           id: -1,
           title: locale.COMMON.ALL,
           option: "",
         },
-        ...uniqueOptions.map((option, index) => ({
+        ...uniqueTypeOptions.map((option, index) => ({
           id: index,
           title: option,
           option: option,
         })),
       ];
 
+      // "전체" 아이템을 맨 앞에 추가
+      const subTypeOptions: any[] = [
+        {
+          id: -1,
+          title: locale.COMMON.ALL,
+          option: "",
+        },
+        ...uniqueSubTypeOptions.map((option, index) => ({
+          id: index,
+          title: option,
+          option: option,
+        })),
+      ];
+      const allOptions = subType ? subTypeOptions : typeOptions;
       const articles = getMainRecentArticles(filtered, lang, 7);
       const firstArticle = articles[0];
       const restArticles = articles.slice(1, articles.length);
@@ -65,9 +97,9 @@ const LatestRecords = ({ records, introTrue }) => {
         firstArticle,
         restArticles,
         filteredPages: filtered,
-        allOptions: options,
+        allOptions: allOptions,
       };
-    }, [pages, currentRecordType]); // 의존성 배열에 pages와 categoryParam만 포함
+    }, [pages, currentRecordType]);
 
   const CARDS_PER_PAGE = 3;
   const TOTAL_PAGES = Math.ceil(restArticles.length / CARDS_PER_PAGE);
@@ -105,35 +137,31 @@ const LatestRecords = ({ records, introTrue }) => {
 
       {/* Main Featured Article */}
       <div
-        className="bg-white rounded-lg shadow-md overflow-hidden mb-8 
+        className="bg-white dark:bg-neutral-700 rounded-lg shadow-md overflow-hidden mb-8 
       border border-neutral-200 dark:border-neutral-700
-       hover:border-neutral-300 dark:hover:border-neutral-600"
+       hover:border-neutral-300 dark:hover:border-neutral-500"
       >
-        <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col md:flex-row  md:h-60 ">
           {/* Left Side - Image */}
-          <div className="md:w-1/2 rounded-lg">
-            <div
-              className={`h-60   
-         
-            flex items-center justify-center rounded-l-lg
-            transition-all duration-300 hover:scale-105`}
-              style={{
-                backgroundImage: `url(${firstArticle.pageCover})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            ></div>
-          </div>
-
+          <LazyImage
+            alt={firstArticle.title}
+            priority={true}
+            src={firstArticle.pageCover}
+            className="md:w-1/2  h-60 w-full 
+            transition-all duration-300 hover:scale-105  
+            rounded-l-lg hover:border-neutral-300 dark:hover:border-neutral-600
+            object-cover object-center 
+             "
+          />
           {/* Right Side - Content */}
-          <div className="md:w-1/2 h-60 p-6 flex flex-col justify-between  items-start  ">
+          <div className="md:w-1/2   h-60 p-6 flex flex-col justify-between  items-start  ">
             <div className="flex flex-col">
-              <span className="text-xs text-neutral-500 uppercase tracking-wide mb-2">
-                {firstArticle.type} / {firstArticle.category}
+              <span className="text-xs  text-neutral-500 dark:text-neutral-400  uppercase tracking-wide mb-2">
+                {firstArticle.type} / {firstArticle.sub_type}
               </span>
               <Link
                 href={firstArticle.url}
-                className=" hover:underline text-xl font-bold text-black mb-4 leading-tight"
+                className=" hover:underline text-xl font-bold text-neutral-900 dark:text-white mb-4 leading-tight"
               >
                 {firstArticle.title}
               </Link>
@@ -143,7 +171,7 @@ const LatestRecords = ({ records, introTrue }) => {
               {firstArticle.description}
               {/* Barely half of banks' own employees would recommend their inter... */}
             </h3>
-            <div className="flex items-center text-sm text-neutral-500">
+            <div className="flex items-center text-sm text-neutral-500 dark:text-neutral-400 ">
               <span>{firstArticle.author}</span>
               <span className="mx-2">•</span>
               <span>{firstArticle.date}</span>
@@ -162,38 +190,36 @@ const LatestRecords = ({ records, introTrue }) => {
         ).map((article) => (
           <div
             key={`${article.id}-${currentPage}`}
-            className="bg-white rounded-lg shadow-md overflow-hidden
+            className="bg-white dark:bg-neutral-700  rounded-lg shadow-md overflow-hidden
               border border-neutral-200 dark:border-neutral-700
-       hover:border-neutral-300 dark:hover:border-neutral-600"
+       hover:border-neutral-300 dark:hover:border-neutral-500"
           >
             <div className="flex flex-row">
               <div className="w-30 h-40 bg-neutral-800 flex items-center justify-center">
-                <div
-                  className={`w-full h-full
-                   
-                      flex items-center justify-center rounded-l-sm
-                      transition-all duration-300 hover:scale-105`}
-                  style={{
-                    backgroundImage: `url(${article.pageCover})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
-                ></div>
+                <LazyImage
+                  alt={article.title}
+                  priority={true}
+                  src={article.pageCover}
+                  className="w-full h-full
+                  transition-all duration-300 hover:scale-105  
+                  rounded-l-lg hover:border-neutral-300 dark:hover:border-neutral-600
+                  object-cover object-center  "
+                />
               </div>
               <div className="flex-1 p-4 flex flex-col justify-between items-start">
-                <span className="text-xs text-neutral-500 uppercase tracking-wide">
-                  {article.type} / {article.category}
+                <span className="text-xs text-neutral-500 dark:text-neutral-400  uppercase tracking-wide">
+                  {article.type} / {article.sub_type}
                 </span>
                 <Link
                   href={firstArticle.url}
-                  className=" hover:underline text-sm font-semibold text-black mt-1 line-clamp-2"
+                  className=" hover:underline text-sm font-semibold text-neutral-900 dark:text-white mt-1 line-clamp-2"
                 >
                   {article.title}
                 </Link>
-                <h5 className="text-sm font-semibold text-black mt-1 line-clamp-2">
+                <h5 className="text-sm font-semibold text-neutral-500 dark:text-neutral-400  mt-1 line-clamp-2">
                   {article.description}
                 </h5>
-                <div className="flex flex-col items-start text-xs text-neutral-500 mt-2">
+                <div className="flex flex-col items-start text-xs text-neutral-500 dark:text-neutral-400  mt-2">
                   <span>{article.author.substr(0, 10)}...</span>
                   <span>{article.date}</span>
                 </div>

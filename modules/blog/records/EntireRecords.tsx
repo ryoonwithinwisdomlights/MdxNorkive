@@ -9,7 +9,18 @@ import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import PageIndicator from "./PageIndicator";
 import TagList from "./TagList";
 
-const EntireRecords = ({ records, introTrue }) => {
+type Props = {
+  type: string;
+  subType: boolean;
+  introTrue: boolean;
+  records: any[];
+};
+const EntireRecords = ({
+  type,
+  records,
+  introTrue,
+  subType = false,
+}: Props) => {
   const pages = records;
   if (!pages) return null;
   const CARDS_PER_PAGE = 4;
@@ -23,7 +34,7 @@ const EntireRecords = ({ records, introTrue }) => {
     const filtered =
       currentRecordType !== ""
         ? pages.filter((page) => {
-            const pageType = page?.data?.type;
+            const pageType = subType ? page?.data?.sub_type : page?.data?.type;
             if (!pageType) return false;
 
             // 대소문자 구분 없이 비교
@@ -37,34 +48,55 @@ const EntireRecords = ({ records, introTrue }) => {
     );
     // const modAllRecords = filtered;
     // 중복되지 않는 고유한 타입만 추출 (전체 프로젝트 페이지 기준)
-    const uniqueOptions = Array.from(
+    const uniqueTypeOptions = Array.from(
       new Set(
         pages
           .map((item) => item?.data?.type)
-          .filter((type): type is string => Boolean(type))
+          .filter((data): data is string => Boolean(data))
+      )
+    );
+
+    const uniqueSubTypeOptions = Array.from(
+      new Set(
+        filtered
+          .map((item) => item?.data?.sub_type)
+          .filter((data): data is string => Boolean(data))
       )
     );
 
     // "전체" 아이템을 맨 앞에 추가
-    const options: any[] = [
+    const typeOptions: any[] = [
       {
         id: -1,
         title: locale.COMMON.ALL,
         option: "",
       },
-      ...uniqueOptions.map((option, index) => ({
+      ...uniqueTypeOptions.map((option, index) => ({
+        id: index,
+        title: option,
+        option: option,
+      })),
+    ];
+    const subTypeOptions: any[] = [
+      {
+        id: -1,
+        title: locale.COMMON.ALL,
+        option: "",
+      },
+      ...uniqueSubTypeOptions.map((option, index) => ({
         id: index,
         title: option,
         option: option,
       })),
     ];
 
+    const allOptions = subType ? subTypeOptions : typeOptions;
     return {
       modAllRecords: modAllRecords,
       filteredPages: filtered,
-      allOptions: options,
+      allOptions: allOptions,
     };
-  }, [pages, currentRecordType, currentPage]); // 의존성 배열에 pages와 categoryParam만 포함
+  }, [pages, currentRecordType, currentPage]);
 
   const TOTAL_PAGES = Math.ceil(filteredPages.length / CARDS_PER_PAGE);
   useEffect(() => {
@@ -129,11 +161,11 @@ const EntireRecords = ({ records, introTrue }) => {
                   <FolderClosedIcon className="w-4 h-4" />
                   <span>{page.data.type}</span>
                 </div>
-                {/* 카테고리 */}
-                {page.data.category && (
+                {/* sub_type */}
+                {page.data.sub_type && (
                   <div className="flex items-center gap-1">
                     <TagIcon className="w-4 h-4" />
-                    <span>{page.data.category}</span>
+                    <span>{page.data.sub_type}</span>
                   </div>
                 )}
                 {/* 날짜 */}

@@ -22,18 +22,17 @@ export function setAllPagesGetSortedGroupedByDate(allPages) {
 
 const GeneralRecordPage = () => {
   const pages = recordSource.getPages();
-
   if (!pages) NotFound();
   const { lang, locale } = useGeneralSiteSettings();
   console.log("GeneralRecordPage::", pages);
-  const filteredPages = pages.filter(
-    (page) =>
-      page.data.sub_type !== "Engineering" && page.data.sub_type !== "Project"
-  );
+  // const filteredPages = pages.filter(
+  //   (page) =>
+  //     page.data.sub_type !== "Engineering" && page.data.sub_type !== "Project"
+  // );
 
-  const isAble = isObjectNotEmpty(filteredPages);
+  const isAble = isObjectNotEmpty(pages);
   if (!isAble) NotFound();
-  const modAllPages = setAllPagesGetSortedGroupedByDate(filteredPages);
+  const modAllPages = setAllPagesGetSortedGroupedByDate(pages);
   return (
     <div className="flex flex-col md:px-10 w-full items-center dark:bg-black dark:text-neutral-300 ">
       <div className="text-start mb-6 flex flex-col gap-10 w-full">
@@ -60,8 +59,8 @@ const GeneralRecordPage = () => {
               ) : (
                 <>
                   <span className="font-semibold ">Archive</span> of
-                  <span className="font-semibold "> All projects&nbsp;</span>
-                  connected by small and big learnings
+                  <span className="font-semibold "> All Records&nbsp;</span>
+                  connected by small and big waves.
                 </>
               )}
             </div>
@@ -83,7 +82,12 @@ const GeneralRecordPage = () => {
         {/* <hr className="w-full border-2 border-neutral-100" /> */}
         {isAble ? (
           <div className="flex flex-col gap-16 items-start w-full ">
-            <FeaturedRecords type="RECORDS" records={pages} introTrue={false} />
+            <FeaturedRecords
+              type="RECORDS"
+              subType={true}
+              records={pages}
+              introTrue={false}
+            />
             {/* <RecordsWithMultiplesOfThree
               filteredPages={filteredPages}
               className=""
