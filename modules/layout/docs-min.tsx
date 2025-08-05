@@ -71,9 +71,9 @@ export function DocsLayout({
   const links = getLinks(props.links ?? [], props.githubUrl);
 
   const variables = cn(
-    " md:[--fd-sidebar-width:300px] lg:[--fd-sidebar-width:300px]  xl:[--fd-toc-width:300px] h-[calc(100vh-64px)]",
+    " md:[--fd-sidebar-width:300px] lg:[--fd-sidebar-width:300px]  xl:[--fd-toc-width:300px] h-full pt-0 mt-0",
     !nav.component && nav.enabled !== false
-      ? "[--fd-nav-height:56px] md:[--fd-nav-height:0px]"
+      ? "[--fd-nav-height:0px] "
       : undefined
   );
 

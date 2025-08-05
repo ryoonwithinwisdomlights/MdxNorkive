@@ -8,7 +8,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <GeneralRecordTypePageWrapper>
       {/* <LeftSidebar /> */}
       <div
-        className="w-full p-16  xl:w-[60%] flex flex-col 
+        className="w-full mt-[20px] p-8 xl:w-[60%] flex flex-col  bg-amber-100
       justify-center items-center "
       >
         {children}

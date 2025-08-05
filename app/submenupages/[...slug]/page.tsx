@@ -34,7 +34,7 @@ export default async function Page(props: {
   return (
     <CustomedMDXPage
       resource={"submenupage"}
-      className=" p-10 md:p-0"
+      className=" p-4 md:p-0"
       slug={params.slug}
     />
   );

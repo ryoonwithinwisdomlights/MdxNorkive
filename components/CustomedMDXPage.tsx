@@ -46,6 +46,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
     >
       <DocsPage
         // toc={toc}
+
         full={page.data.full}
         lastUpdate={lastEditedDate}
         breadcrumb={{ enabled: false }}

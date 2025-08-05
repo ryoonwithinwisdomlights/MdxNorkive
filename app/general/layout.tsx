@@ -30,7 +30,7 @@ export default async function Layout({
       sidebar={{ defaultOpenLevel: 0, collapsible: false }}
     >
       <div
-        className="md:w-[60vw] w-full  flex flex-col
+        className="md:w-[60vw] w-full mt-[20px] flex flex-col
       justify-center items-center   "
       >
         {children}
