@@ -1,6 +1,5 @@
-import { submenuPageSource } from "@/lib/source";
 import { notFound } from "next/navigation";
-
+import { engineeringSource, submenuPageSource } from "@/lib/source";
 import CustomedMDXPage from "@/components/CustomedMDXPage";
 import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
 
@@ -14,34 +13,23 @@ import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
 export const dynamic = "force-static";
 
 // `generateStaticParams`가 반환한 `params`를 사용하여 이 페이지의 여러 버전이 정적으로 생성됩니다.
-export default async function Page({ params }) {
-  const { pageId } = await params;
-
-  if (!pageId) {
-    return <ErrorComponent />;
+export default async function Page(props: {
+  params: Promise<{ slug?: string[] }>;
+}) {
+  const params = await props.params;
+  let slug = params.slug;
+  if (slug) {
+    slug = slug.map((s) => decodeURIComponent(s));
   }
 
   // console.log("pageId:", pageId);
-  const pages = submenuPageSource.getPages();
-  // console.log("pages::", pages);
-
-  const page = pages.find((page) => {
-    if (page.slugs[0] === pageId) {
-      console.log("page.slugs[0]:", page.slugs[0]);
-      return page;
-    }
-  });
   // console.log("page::", page);
-  // const page = submenuPageSource.getPage(params.slug);
-  if (!page) notFound();
-  const { body, toc, lastEditedDate } = await page.data;
+
   return (
     <CustomedMDXPage
-      body={body}
-      toc={toc}
-      date={lastEditedDate}
-      page={page}
-      className=""
+      resource={"submenupage"}
+      className="bg-pink-200 p-10 md:p-0"
+      slug={params.slug}
     />
   );
 }

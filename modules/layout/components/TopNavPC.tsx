@@ -7,7 +7,7 @@ import { useMenu } from "@/lib/context/MenuProvider";
 const TopNavPC = () => {
   const { menuData } = useMenu({ from: "TopNavBar" });
   const links = menuData;
-  // console.log("TopNavPC links:::", links);
+
   return (
     <div className="hidden md:flex flex-row justify-center w-full h-16 shadow bg-white dark:bg-neutral-900  dark:border-b-2 dark:border-neutral-800">
       <div className="xl:w-[60%] w-full px-6 flex flex-row justify-between items-center h-16 ">

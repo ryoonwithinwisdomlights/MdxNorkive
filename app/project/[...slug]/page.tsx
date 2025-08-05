@@ -3,15 +3,6 @@ import { projectSource } from "@/lib/source";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-// function getPath(slug: string[]) {
-//   return slug.join("/");
-// }
-
-// function styleToLevel(style: unknown) {
-//   if (typeof style !== "string") return;
-//   return Number.parseInt(style.split("h")[1]);
-// }
-
 export const dynamic = "force-static";
 
 export default async function Page(props: {
@@ -23,17 +14,11 @@ export default async function Page(props: {
     slug = slug.map((s) => decodeURIComponent(s));
   }
 
-  const page = projectSource.getPage(params.slug);
-  if (!page) notFound();
-  const { body, toc, lastEditedDate } = await page.data;
-
   return (
     <CustomedMDXPage
-      className="bg-amber-200"
-      body={body}
-      toc={toc}
-      date={lastEditedDate}
-      page={page}
+      resource={"project"}
+      className="bg-pink-200 p-10 md:p-0"
+      slug={params.slug}
     />
   );
 }

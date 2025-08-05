@@ -185,21 +185,6 @@ const EntireRecords = ({
                   tags={page.data.tags}
                   className="bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300"
                 />
-                // <div className="mt-4 flex items-center gap-2">
-                //   {page.data.tags.slice(0, 3).map((tag, index) => (
-                //     <span
-                //       key={index}
-                //       className="px-2 py-1 bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300 rounded-md text-xs"
-                //     >
-                //       {tag}
-                //     </span>
-                //   ))}
-                //   {page.data.tags.length > 3 && (
-                //     <span className="text-xs">
-                //       +{page.data.tags.length - 3}
-                //     </span>
-                //   )}
-                // </div>
               )}
             </Link>
           </article>

@@ -71,7 +71,7 @@ export function DocsLayout({
   const links = getLinks(props.links ?? [], props.githubUrl);
 
   const variables = cn(
-    "md:[--fd-sidebar-width:400px] lg:[--fd-sidebar-width:400px] xl:[--fd-toc-width:400px]",
+    " md:[--fd-sidebar-width:300px] lg:[--fd-sidebar-width:300px]  xl:[--fd-toc-width:300px] h-[calc(100vh-64px)]",
     !nav.component && nav.enabled !== false
       ? "[--fd-nav-height:56px] md:[--fd-nav-height:0px]"
       : undefined
@@ -80,9 +80,13 @@ export function DocsLayout({
   const sidebar = sidebarComponent ?? (
     <>
       {sidebarCollapsible ? <CollapsibleControl /> : null}
-      <Sidebar {...sidebarProps} collapsible={sidebarCollapsible}>
+      <Sidebar
+        {...sidebarProps}
+        collapsible={sidebarCollapsible}
+        className="mt-[64px] bg-neutral-100 dark:bg-neutral-800"
+      >
         <HideIfEmpty>
-          <SidebarHeader className="data-[empty=true]:hidden">
+          <SidebarHeader className="data-[empty=true]:hidden ">
             <div className="flex max-md:hidden">
               <Link
                 href={nav.url ?? "/"}
@@ -154,9 +158,9 @@ export function DocsLayout({
       </Sidebar>
     </>
   );
-  console.log("nav.children::", nav.children);
+  // console.log("nav.children::", nav.children);
 
-  console.log("props.tree::", props.tree);
+  // console.log("props.tree::", props.tree);
   return (
     <TreeContextProvider tree={props.tree}>
       <NavProvider transparentMode={transparentMode}>

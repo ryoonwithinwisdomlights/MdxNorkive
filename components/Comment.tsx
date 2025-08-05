@@ -12,7 +12,7 @@ const COMMENT_GISCUS_REPONAME = process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPONAME;
  * @param {*} param0
  * @returns
  */
-const Comment = ({ frontMatter }) => {
+const Comment = ({ frontMatter, className }) => {
   const pathname = usePathname();
 
   const [shouldLoad, setShouldLoad] = useState(false);
@@ -61,15 +61,12 @@ const Comment = ({ frontMatter }) => {
     return <LoadingCover />;
   }
 
-  // if (frontMatter?.comment === "Hide") {
-  //   return null;
-  // }
   return (
     <div
       key={frontMatter?.notionId}
       id="comment"
       ref={commentRef}
-      className="justify-center items-center text-neutral-800 dark:text-neutral-300 xl:w-[62%]  mx-auto"
+      className={`justify-center items-center text-neutral-800 dark:text-neutral-300 w-full mx-auto ${className}`}
     >
       {/* Lazy loading of comment area */}
       {!shouldLoad && (

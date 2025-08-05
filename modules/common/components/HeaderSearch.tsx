@@ -1,13 +1,14 @@
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { useNav } from "@/lib/context/NavInfoProvider";
 import Fuse from "fuse.js";
 import debounce from "lodash.debounce";
 import { Search, XIcon } from "lucide-react";
-import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
 import SearchResultSkeleton from "../ui/search-result-skeleton";
+
 export default function HeaderSearch() {
   const { locale } = useGeneralSiteSettings();
   const { serializedAllPages } = useNav({ from: "header-search" });
@@ -93,9 +94,9 @@ export default function HeaderSearch() {
             placeholder-neutral-500
             dark:placeholder-neutral-300
             focus:outline-none
-            focus:ring-2 focus:ring-neutral-400
+  
             transition
-        dark:text-neutral-300
+           dark:text-neutral-300
             text-neutral-700 
            hover:ring-2 hover:ring-neutral-400
             dark:bg-neutral-700/50 

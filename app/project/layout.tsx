@@ -1,20 +1,41 @@
-"use client";
-import LeftSidebar from "@/modules/layout/components/menu/LeftSidebar";
+import { projectSource } from "@/lib/source";
 import RightSideInfoBar from "@/modules/layout/components/RightSideInfoBar";
-import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
+import { DocsLayout } from "@/modules/layout/docs-min";
+import { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+const baseOptions: Partial<DocsLayoutProps> = {
+  nav: {
+    title: <></>,
+  },
+  links: [],
+};
+const pageOptions: DocsLayoutProps = {
+  ...baseOptions,
+  tree: projectSource.pageTree,
+  nav: {
+    ...baseOptions.nav,
+    transparentMode: "none",
+  },
+};
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <GeneralRecordTypePageWrapper>
-      {/* <LeftSidebar /> */}
+    <DocsLayout
+      {...pageOptions}
+      searchToggle={{ enabled: false }}
+      themeSwitch={{ enabled: false }}
+      sidebar={{ defaultOpenLevel: 0, collapsible: false }}
+    >
       <div
-        className="w-full p-16  xl:w-[60%] flex flex-col 
-      justify-center items-center "
+        className="md:w-[60vw] w-full  flex flex-col
+      justify-center items-center  bg-amber-100"
       >
         {children}
       </div>
-
       <RightSideInfoBar />
-    </GeneralRecordTypePageWrapper>
+    </DocsLayout>
   );
 }

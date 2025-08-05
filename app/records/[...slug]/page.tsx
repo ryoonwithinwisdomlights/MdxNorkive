@@ -1,4 +1,5 @@
 import CustomedMDXPage from "@/components/CustomedMDXPage";
+import { recordSource } from "@/lib/source";
 import { getPage, getPages } from "@/lib/source";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -23,17 +24,11 @@ export default async function Page(props: {
     slug = slug.map((s) => decodeURIComponent(s));
   }
 
-  const page = getPage(params.slug);
-  if (!page) notFound();
-  const { body, toc, lastEditedDate } = await page.data;
-
   return (
     <CustomedMDXPage
-      className="pl-20"
-      body={body}
-      toc={toc}
-      date={lastEditedDate}
-      page={page}
+      resource={"record"}
+      className="bg-pink-200 p-10 md:p-0"
+      slug={params.slug}
     />
   );
 }
