@@ -1,6 +1,6 @@
 "use client"; // 클라이언트 컴포넌트
 import busuanzi from "@/lib/plugins/busuanzi";
-import { useParams, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Busuanzi() {

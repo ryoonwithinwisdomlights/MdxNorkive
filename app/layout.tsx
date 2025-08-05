@@ -26,6 +26,7 @@ import {
   projectSource,
 } from "@/lib/source";
 import { LoaderConfig, Page, PageData } from "fumadocs-core/source";
+import AuxiliaryBlogComponent from "@/modules/layout/components/AuxiliaryComponent";
 config.autoAddCss = false;
 
 export const viewport: Viewport = {
@@ -128,7 +129,7 @@ export default async function RootLayout({ children }: ChildrenProp) {
                   id="gitbook"
                   className={` w-screen h-screen justify-center dark:text-neutral-300  pb-16  md:pb-0 `}
                 >
-                  {/* <AuxiliaryBlogComponent /> */}
+                  <AuxiliaryBlogComponent />
                   {/* <Suspense fallback={<LoadingCover />}> */}
 
                   <TopNavBar />

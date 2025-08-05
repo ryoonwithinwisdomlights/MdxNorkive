@@ -15,10 +15,11 @@ import { MDXContent } from "@content-collections/mdx/react";
 import { InlineTOC } from "fumadocs-ui/components/inline-toc";
 import { DocsBody, DocsPage } from "fumadocs-ui/page";
 import { useSidebar } from "fumadocs-ui/provider";
-import { CalendarIcon } from "lucide-react";
+import { Book, CalendarIcon, Eye, View } from "lucide-react";
 import { notFound } from "next/navigation";
 import { useEffect } from "react";
 import Comment from "./Comment";
+import { getReadingTime } from "@/lib/utils/read";
 
 function getResource(resource: string) {
   if (resource === "engineering") return engineeringSource;
@@ -39,7 +40,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
     setCollapsed(false);
   }, []);
 
-  // console.log("page::", page);
+  console.log("page::", page);
   return (
     <article
       className={`flex flex-col  justify-center items-center w-full h-full ${className}`}
@@ -81,7 +82,17 @@ export default function CustomedMDXPage({ className, slug, resource }) {
               {page.data.title}
             </h1>
             <p className="mb-4 text-white/80">{page.data.description}</p>
+            <span className=" flex flex-row gap-2 items-center text-white text-sm">
+              <Book className="w-4 h-4" />
+              <span>
+                {getReadingTime(page.data.title, page.data?.description || "")}{" "}
+                min read
+              </span>
+              <span>·</span>
 
+              <span className=" busuanzi_value_page_pv" />
+              <span>{locale.COMMON.VIEWS}</span>
+            </span>
             <div className="flex items-center gap-2 text-white">
               <CalendarIcon className="w-4 h-4" />
               <span className="text-sm">
