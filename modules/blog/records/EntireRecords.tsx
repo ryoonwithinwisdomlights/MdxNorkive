@@ -7,6 +7,7 @@ import {
   CalendarIcon,
   ChevronDownIcon,
   FolderClosedIcon,
+  TagIcon,
 } from "lucide-react";
 
 import Link from "next/link";
@@ -151,6 +152,18 @@ const EntireRecords = ({ records, introText }) => {
 
               {/* 메타 정보 */}
               <div className="flex items-center gap-4 text-sm text-neutral-500 dark:text-neutral-400">
+                {/* 타입 */}
+                <div className="flex items-center gap-1">
+                  <FolderClosedIcon className="w-4 h-4" />
+                  <span>{page.data.type}</span>
+                </div>
+                {/* 카테고리 */}
+                {page.data.category && (
+                  <div className="flex items-center gap-1">
+                    <TagIcon className="w-4 h-4" />
+                    <span>{page.data.category}</span>
+                  </div>
+                )}
                 {/* 날짜 */}
                 <div className="flex items-center gap-1">
                   <CalendarIcon className="w-4 h-4" />
@@ -161,14 +174,6 @@ const EntireRecords = ({ records, introText }) => {
                     )}
                   </span>
                 </div>
-
-                {/* 카테고리 */}
-                {page.data.category && (
-                  <div className="flex items-center gap-1">
-                    <FolderClosedIcon className="w-4 h-4" />
-                    <span>{page.data.category}</span>
-                  </div>
-                )}
               </div>
               {/* 태그 */}
               {page.data.tags && page.data.tags.length > 0 && (

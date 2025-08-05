@@ -15,6 +15,7 @@ export function getMainRecentArticles(pages: any, lang: string, sliceNum = 6) {
     date: getYearMonthDay(page.data.date, lang),
     type: page.data.type,
     subType: page.data.sub_type,
+    category: page.data.category,
     distanceFromToday: getDistanceFromToday(page.data.date, lang),
     title: page.data.title,
     pageCover: page.data.pageCover,

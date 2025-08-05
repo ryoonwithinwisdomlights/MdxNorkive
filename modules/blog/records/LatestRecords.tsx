@@ -168,7 +168,7 @@ const LatestRecords = ({ records, introText }) => {
           <div className="md:w-1/2 h-60 p-6 flex flex-col justify-between  items-start  ">
             <div className="flex flex-col">
               <span className="text-xs text-neutral-500 uppercase tracking-wide mb-2">
-                {firstArticle.type} / {firstArticle.type}
+                {firstArticle.type} / {firstArticle.category}
               </span>
               <Link
                 href={firstArticle.url}
@@ -221,7 +221,7 @@ const LatestRecords = ({ records, introText }) => {
               </div>
               <div className="flex-1 p-4 flex flex-col justify-between items-start">
                 <span className="text-xs text-neutral-500 uppercase tracking-wide">
-                  {article.type} / {article.subType}
+                  {article.type} / {article.category}
                 </span>
                 {/* <h4 className="text-sm font-semibold text-black mt-1 line-clamp-2">
                   {article.title}
@@ -236,11 +236,15 @@ const LatestRecords = ({ records, introText }) => {
                 <h5 className="text-sm font-semibold text-black mt-1 line-clamp-2">
                   {article.description}
                 </h5>
-                <div className="flex items-center text-xs text-neutral-500 mt-2">
+                <div className="flex flex-col items-start text-xs text-neutral-500 mt-2">
                   <span>{article.author.substr(0, 10)}...</span>
-                  <span className="mx-1">•</span>
+                  {/* <span className="mx-1">•</span> */}
                   <span>{article.date}</span>
                 </div>
+                {/* <div className="flex items-center text-xs text-neutral-500 mt-2">
+
+                  <span>{article.date}</span>
+                </div> */}
               </div>
             </div>
           </div>

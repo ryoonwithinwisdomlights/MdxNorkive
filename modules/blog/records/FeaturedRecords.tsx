@@ -10,6 +10,7 @@ import {
   ChevronLeft,
   ChevronRight,
   FolderClosedIcon,
+  TagIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
@@ -162,6 +163,13 @@ const FeaturedRecords = ({ type, introText, records }) => {
                   {currentPage.data.title}
                 </h3>
 
+                {currentPage.data.type && (
+                  <div className="flex items-center gap-2 text-neutral-500 dark:text-neutral-400 mb-4">
+                    <FolderClosedIcon className="w-4 h-4" />
+                    <span className="text-sm">{currentPage.data.type}</span>
+                  </div>
+                )}
+
                 {/* 날짜 */}
                 <div className="flex items-center gap-2 text-neutral-500 dark:text-neutral-400 mb-4">
                   <CalendarIcon className="w-4 h-4" />
@@ -185,7 +193,7 @@ const FeaturedRecords = ({ type, introText, records }) => {
                 {/* 카테고리 */}
                 {currentPage.data.category && (
                   <div className="flex items-center gap-2 text-neutral-500 dark:text-neutral-400 mb-6">
-                    <FolderClosedIcon className="w-4 h-4" />
+                    <TagIcon className="w-4 h-4" />
                     <span className="text-sm">{currentPage.data.category}</span>
                   </div>
                 )}
