@@ -83,7 +83,7 @@ export function DocsLayout({
       <Sidebar
         {...sidebarProps}
         collapsible={sidebarCollapsible}
-        className="mt-[64px] bg-neutral-100 dark:bg-neutral-800"
+        className="mt-[50px] bg-neutral-100 dark:bg-neutral-800"
       >
         <HideIfEmpty>
           <SidebarHeader className="data-[empty=true]:hidden ">
