@@ -11,7 +11,7 @@ export default function Page() {
     setCollapsed(true);
   });
   return (
-    <div className="w-full flex flex-col items-center p-8 gap-10">
+    <div className="w-full flex flex-col items-center p-10 gap-10">
       <EngineeringIntro />
       <RecordBodyForPage records={pages} />
     </div>
