@@ -1,7 +1,7 @@
 "use client";
 
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { getPages } from "@/lib/source";
+import { useNav } from "@/lib/context/NavInfoProvider";
 import Fuse from "fuse.js";
 import debounce from "lodash.debounce";
 import { Search, XIcon } from "lucide-react";
@@ -10,9 +10,8 @@ import { useEffect, useMemo, useState } from "react";
 import SearchResultSkeleton from "../ui/search-result-skeleton";
 export default function HeaderSearch() {
   const { locale } = useGeneralSiteSettings();
-  // const { recordList } = useNav({ from: "header-search" });
-  const pages = getPages();
-  // console.log("pages::", pages);
+  const { serializedAllPages } = useNav({ from: "header-search" });
+  const pages = serializedAllPages;
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<{ title: string; url: string }[]>([]);
   const [loading, setLoading] = useState(false);
@@ -122,7 +121,7 @@ export default function HeaderSearch() {
       </div>
 
       {/* Results */}
-      <div className=" absolute top-12 mt-2 w-full bg-white dark:bg-neutral-900 rounded-md shadow-lg">
+      <div className=" absolute top-9 mt-2 w-full bg-white dark:bg-neutral-900 rounded-md shadow-lg">
         {loading ? (
           <SearchResultSkeleton />
         ) : results.length > 0 ? (

@@ -23,12 +23,8 @@ export function setAllPagesGetSortedGroupedByDate(allPages) {
 const GeneralRecordPage = () => {
   const pages = recordSource.getPages();
   if (!pages) NotFound();
-  const { lang, locale } = useGeneralSiteSettings();
-  console.log("GeneralRecordPage::", pages);
-  // const filteredPages = pages.filter(
-  //   (page) =>
-  //     page.data.sub_type !== "Engineering" && page.data.sub_type !== "Project"
-  // );
+  const { lang } = useGeneralSiteSettings();
+  // console.log("GeneralRecordPage::", pages);
 
   const isAble = isObjectNotEmpty(pages);
   if (!isAble) NotFound();
