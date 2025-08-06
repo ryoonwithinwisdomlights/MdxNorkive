@@ -88,6 +88,41 @@ body{
   flex-direction: column;
 }
 
+.google-drive{
+  gap: 8px;
+  padding: 10px;
+  cursor: pointer;
+   background-color: #f0f0f0; 
+   border: 1px solid #333;
+  display: inline-flex;
+  align-items: center;
+  position: relative; 
+}
+
+/* CSS 툴팁 효과 */
+.google-drive::before {
+  content: "Google Drive File Open";
+  position: absolute;
+  top: 100%;
+  left: 80%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1000;
+}
+
+.google-drive:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+
 .pdf-link {
   background-color: #f0f0f0;
   padding: 10px;
@@ -103,7 +138,7 @@ body{
 
 /* CSS 툴팁 효과 */
 .pdf-link::before {
-  content: "PDF 다운로드";
+  content: "PDF Open";
   position: absolute;
   top: 100%;
   left: 80%;

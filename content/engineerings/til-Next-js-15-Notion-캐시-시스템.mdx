@@ -113,7 +113,7 @@ version: 1.0.0
 
 ## **🧩 1단계: Upstash Redis 설정 (Vercel에서 쓸 외부 캐시)**
 
-1. https://upstash.com 가입
+1. [https://upstash.com](https://upstash.com/) 가입
 2. Redis → Create Database
 3. REST URL, Token 확인
 4. .env.local에 아래 환경변수 추가
@@ -174,11 +174,11 @@ export async function getPostBlocks(pageId: string) {
 // lib/cache.ts
 const memory = new Map();
 
-export async function getCached&lt;T&gt;(
+export async function getCached<T>(
   key: string,
-  fetcher: () => Promise&lt;T&gt;,
+  fetcher: () => Promise<T>,
   ttl = 600
-): Promise&lt;T&gt; {
+): Promise<T> {
   const isProd = process.env.NODE_ENV === "production";
 
   if (!isProd) {
@@ -190,7 +190,7 @@ export async function getCached&lt;T&gt;(
   }
 
   // 운영에서는 Redis
-  const cached = await redis.get&lt;T&gt;(key);
+  const cached = await redis.get<T>(key);
   if (cached) return cached;
 
   const fresh = await fetcher();
@@ -248,7 +248,7 @@ export const revalidate = 600; // 페이지 요청 시 10분 경과되면 백그
 
 export default async function BlogPage() {
   const posts = await getPosts(); // 내부에서 Redis → Notion 호출
-  return &lt;BlogList posts={posts} /&gt;;
+  return <BlogList posts={posts} />;
 }
 ```
 

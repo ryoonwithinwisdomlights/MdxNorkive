@@ -20,7 +20,8 @@
     "prettier": "prettier --write --ignore-unknown .",
     "prettier:check": "prettier --check --ignore-unknown .",
     "export": "next build && next export",
-    "bundle-report": "ANALYZE=true yarn build"
+    "bundle-report": "ANALYZE=true yarn build",
+    "check:validity": "node scripts/check-mdx-validity.mjs"
   },
   "dependencies": {
     "@content-collections/core": "^0.10.0",

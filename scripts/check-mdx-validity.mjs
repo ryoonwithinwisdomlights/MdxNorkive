@@ -1,7 +1,10 @@
 import fs from "fs/promises";
 import path from "path";
 import { compile } from "@mdx-js/mdx";
-import pkg from "../lib/utils/convert-unsafe-mdx-content.js";
+import pkg, {
+  decodeUrlEncodedLinks,
+  processMdxContent,
+} from "../lib/utils/convert-unsafe-mdx-content.js";
 const { convertUnsafeTags } = pkg;
 
 const BASE_OUTPUT_DIR = path.join(process.cwd(), "content");
@@ -24,8 +27,12 @@ async function applyUnsafeTagsConversion(filePath) {
     const body = content.substring(frontmatterEndIndex + 3);
 
     // 본문에 convertUnsafeTags 적용
-    const safeBody = convertUnsafeTags(body);
-    const newContent = frontmatter + safeBody;
+    let enhancedContent = body;
+    // 안전 변환 적용
+    enhancedContent = processMdxContent(enhancedContent);
+    enhancedContent = decodeUrlEncodedLinks(enhancedContent);
+    // const safeBody = convertUnsafeTags(body);
+    const newContent = frontmatter + enhancedContent;
 
     // 파일에 다시 쓰기
     await fs.writeFile(filePath, newContent, "utf-8");

@@ -20,12 +20,17 @@ const CustomLinkComponent = ({ href, children, ...props }) => {
     return cleanUrl.endsWith(".pdf") || url.toLowerCase().includes(".pdf");
   };
 
+  const isGoogleDriveLink = (url: string) => {
+    if (!url) return false;
+    return url.toLowerCase().includes("drive.google.com");
+  };
+
+  const isGoogleDrivePdf = isGoogleDriveLink(href);
   const isPdf = isPdfLink(href);
   const isExternal = href?.startsWith("http");
 
   if (isPdf) {
     return (
-      // <span className=" bg-amber-200 w-full h-40">
       <a
         id="pdf-link"
         href={href}
@@ -37,7 +42,24 @@ const CustomLinkComponent = ({ href, children, ...props }) => {
         <icons.FileTextIcon className="w-4 h-4" />
         {children || "PDF 보기"}
       </a>
-      // </span>
+    );
+  } else if (isGoogleDrivePdf) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="google-drive text-sm 
+        rounded-md text-neutral-600 
+          relative group
+          dark:bg-neutral-800  dark:border-neutral-700
+          border-neutral-500
+          "
+        {...props}
+      >
+        <icons.HardDrive className="w-4 h-4" />
+        {children}
+      </a>
     );
   }
 
@@ -48,7 +70,7 @@ const CustomLinkComponent = ({ href, children, ...props }) => {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-blue-600 hover:text-blue-800 underline"
+        className="text-neutral-500 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 underline"
         {...props}
       >
         {children}
