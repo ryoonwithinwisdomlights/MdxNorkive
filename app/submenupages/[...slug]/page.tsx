@@ -19,6 +19,7 @@ export default async function Page(props: {
     slug = slug.map((s) => decodeURIComponent(s));
   }
 
+  console.log("slug", params.slug);
   return (
     <CustomedMDXPage
       resource={"submenupage"}

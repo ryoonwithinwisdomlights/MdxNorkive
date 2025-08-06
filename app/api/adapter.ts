@@ -43,9 +43,7 @@ async function generateMenuItem(page: QueryDatabaseResponse) {
       ? await generateChildRelations(childRelations)
       : [];
   const url =
-    type.toLowerCase() +
-    "/" +
-    generateUserFriendlySlug(sub_type, title, slugSet);
+    type.toLowerCase() + "/" + generateUserFriendlySlug(type, title, slugSet);
   return {
     id: id,
     icon: icon,
