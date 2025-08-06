@@ -15,8 +15,6 @@
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev --turbo",
     "prebuild": "npx tsx scripts/notion-mdx-all-in-one.ts",
-    "mdx:test": "node scripts/check-mdx-validity.mjs && npx tsx scripts/test-mdx.ts",
-    "notion:export": "node scripts/check-mdx-validity.mjs && npx tsx scripts/notion-mdx-all-in-one.ts",
     "build": "rm -rf .next && next build",
     "start": "NODE_OPTIONS='--inspect' next build && next start",
     "prettier": "prettier --write --ignore-unknown .",
