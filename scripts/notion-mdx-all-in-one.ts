@@ -11,7 +11,10 @@ import {
   PageObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
 
-import { processMdxContent } from "@/lib/utils/convert-unsafe-mdx-content";
+import {
+  decodeUrlEncodedLinks,
+  processMdxContent,
+} from "@/lib/utils/convert-unsafe-mdx-content";
 import { generateUserFriendlySlug } from "@/lib/utils/mdx-utils";
 
 export type FrontMatter = {
@@ -138,6 +141,7 @@ async function main() {
         let enhancedContent = content;
         // 안전 변환 적용
         enhancedContent = processMdxContent(enhancedContent);
+        enhancedContent = decodeUrlEncodedLinks(enhancedContent);
         // 메타데이터 생성
         const description =
           props.description?.rich_text?.[0]?.plain_text?.trim() || "";

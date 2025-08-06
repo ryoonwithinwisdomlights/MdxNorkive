@@ -87,6 +87,7 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-error-boundary": "^6.0.0",
+    "react-pdf": "^10.0.1",
     "react-share": "^5.2.2",
     "recast": "^0.23.11",
     "slugify": "^1.6.6",

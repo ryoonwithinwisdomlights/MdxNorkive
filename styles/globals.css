@@ -88,6 +88,51 @@ body{
   flex-direction: column;
 }
 
+.pdf-link {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  color: #333;
+  text-decoration: none;
+  /* font-weight: bold; */
+  transition: background-color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+/* CSS 툴팁 효과 */
+.pdf-link::before {
+  content: "PDF 다운로드";
+  position: absolute;
+  top: 100%;
+  left: 80%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1000;
+}
+
+.pdf-link:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+.pdf-link {
+  gap: 8px;
+  margin: 4px 0;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
 .shadow-card {
   box-shadow:
     rgba(0, 0, 0, 0.07) 0px 1px 2px,
