@@ -1,11 +1,23 @@
 import { v2 as cloudinary } from "cloudinary";
 
 // Cloudinary 설정
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+const cloudinaryConfig = {
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
+  api_key: process.env.CLOUDINARY_API_KEY!,
+  api_secret: process.env.CLOUDINARY_API_SECRET!,
+};
+
+// 설정 확인 로그
+console.log("🔧 Cloudinary 설정 확인:");
+console.log(`   - cloud_name: ${cloudinaryConfig.cloud_name}`);
+console.log(
+  `   - api_key: ${cloudinaryConfig.api_key ? "설정됨" : "설정 안됨"}`
+);
+console.log(
+  `   - api_secret: ${cloudinaryConfig.api_secret ? "설정됨" : "설정 안됨"}`
+);
+
+cloudinary.config(cloudinaryConfig);
 
 export interface CloudinaryUploadResult {
   secure_url: string;
@@ -138,4 +150,75 @@ export function getOptimizedImageUrl(
   // URL에 변환 파라미터 추가
   const separator = originalUrl.includes("?") ? "&" : "?";
   return `${originalUrl}${separator}${transformations.join(",")}`;
+}
+
+/**
+ * PDF 파일을 Cloudinary에 업로드
+ */
+export async function uploadPdfToCloudinary(
+  pdfBuffer: Buffer,
+  fileName: string,
+  options: {
+    folder?: string;
+  } = {}
+): Promise<CloudinaryUploadResult> {
+  try {
+    // Base64로 인코딩
+    const base64Pdf = pdfBuffer.toString("base64");
+    const dataURI = `data:application/pdf;base64,${base64Pdf}`;
+
+    // 업로드 옵션 설정
+    const uploadOptions: any = {
+      resource_type: "raw",
+      folder: process.env.CLOUDINARY_UPLOAD_FOLDER!,
+      public_id: `${Date.now()}-${fileName.replace(/\.pdf$/, "")}`,
+      overwrite: false,
+    };
+
+    // Cloudinary에 업로드
+    const result = await cloudinary.uploader.upload(dataURI, uploadOptions);
+
+    return {
+      secure_url: result.secure_url,
+      public_id: result.public_id,
+      width: 0, // PDF는 width가 없음
+      height: 0, // PDF는 height가 없음
+      format: "pdf",
+      bytes: result.bytes,
+    };
+  } catch (error) {
+    console.error("PDF Cloudinary 업로드 실패:", error);
+    throw new Error(`PDF Cloudinary 업로드 실패: ${error}`);
+  }
+}
+
+/**
+ * URL에서 PDF를 다운로드하여 Cloudinary에 업로드
+ */
+export async function uploadPdfFromUrl(
+  pdfUrl: string,
+  fileName: string
+): Promise<CloudinaryUploadResult> {
+  try {
+    // PDF 다운로드
+    const response = await fetch(pdfUrl, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (compatible; NorkiveBot/1.0)",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`PDF 다운로드 실패: ${response.status}`);
+    }
+
+    const pdfBuffer = Buffer.from(await response.arrayBuffer());
+
+    // Cloudinary에 업로드
+    return await uploadPdfToCloudinary(pdfBuffer, fileName, {
+      folder: process.env.CLOUDINARY_UPLOAD_FOLDER!,
+    });
+  } catch (error) {
+    console.error("URL에서 PDF Cloudinary 업로드 실패:", error);
+    throw error;
+  }
 }

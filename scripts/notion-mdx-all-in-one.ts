@@ -18,7 +18,40 @@ import {
 import { generateUserFriendlySlug } from "@/lib/utils/mdx-utils";
 
 import { imageCacheManager } from "@/lib/cache/image_cache_manager";
-import { uploadImageFromUrl } from "@/lib/cloudinary";
+import { uploadImageFromUrl, uploadPdfFromUrl } from "@/lib/cloudinary";
+import { v2 as cloudinary } from "cloudinary";
+
+// 환경변수 로드 확인
+console.log("🔧 환경변수 확인:");
+console.log(
+  `   - CLOUDINARY_CLOUD_NAME: ${
+    process.env.CLOUDINARY_CLOUD_NAME ? "✅ 설정됨" : "❌ 설정 안됨"
+  }`
+);
+console.log(
+  `   - CLOUDINARY_API_KEY: ${
+    process.env.CLOUDINARY_API_KEY ? "✅ 설정됨" : "❌ 설정 안됨"
+  }`
+);
+console.log(
+  `   - CLOUDINARY_API_SECRET: ${
+    process.env.CLOUDINARY_API_SECRET ? "✅ 설정됨" : "❌ 설정 안됨"
+  }`
+);
+console.log(
+  `   - CLOUDINARY_UPLOAD_FOLDER: ${
+    process.env.CLOUDINARY_UPLOAD_FOLDER ? "✅ 설정됨" : "❌ 설정 안됨"
+  }`
+);
+
+// Cloudinary 설정을 스크립트에서 직접 설정
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
+  api_key: process.env.CLOUDINARY_API_KEY!,
+  api_secret: process.env.CLOUDINARY_API_SECRET!,
+});
+
+console.log("🔧 Cloudinary 설정 완료");
 
 export type FrontMatter = {
   title: string;
@@ -66,6 +99,10 @@ let cloudinaryUploadCount = 0;
 let cacheHitCount = 0;
 let processedPageCoversCount = 0;
 
+// ✅ PDF 처리 통계
+let processedPdfsCount = 0;
+let cloudinaryPdfUploadCount = 0;
+
 // 1. 기존 MDX 파일의 notionId → endDate 매핑
 async function getExistingEndDates() {
   const map = new Map();
@@ -99,12 +136,6 @@ async function processPageCover(
 
   // Unsplash 이미지 URL인지 확인
   if (isUnsplashImageUrl(pageCover)) {
-    // console.log(`🖼️ Unsplash pageCover 처리: ${extractFileName(pageCover)}`);
-    // const cloudinaryUrl = await getOrCreateCloudinaryUrl(
-    //   pageCover,
-    //   "pagecover"
-    // );
-    // processedPageCoversCount++;
     return pageCover;
   }
 
@@ -256,6 +287,42 @@ function extractFileName(url: string): string {
     return `image_${Date.now()}.jpg`;
   }
 }
+
+/**
+ * PDF 링크를 Cloudinary URL로 변환
+ */
+async function processPdfLinks(content: string): Promise<string> {
+  // PDF 링크 패턴: [파일명.pdf](URL)
+  const pdfLinkRegex = /\[([^\]]+\.pdf)\]\(([^)]+)\)/g;
+
+  let processedContent = content;
+  let match;
+
+  while ((match = pdfLinkRegex.exec(content)) !== null) {
+    const [fullMatch, fileName, pdfUrl] = match;
+
+    try {
+      console.log(`📄 PDF 처리 중: ${fileName} (${pdfUrl})`);
+
+      // PDF를 Cloudinary에 업로드
+      const result = await uploadPdfFromUrl(pdfUrl, fileName);
+
+      // 원본 링크를 Cloudinary URL로 교체
+      const newLink = `[${fileName}](${result.secure_url})`;
+      processedContent = processedContent.replace(fullMatch, newLink);
+
+      console.log(`✅ PDF 업로드 완료: ${fileName} → ${result.secure_url}`);
+      processedPdfsCount++;
+      cloudinaryPdfUploadCount++;
+    } catch (error) {
+      console.error(`❌ PDF 업로드 실패: ${fileName}`, error);
+      // 실패한 경우 원본 링크 유지
+    }
+  }
+
+  return processedContent;
+}
+
 async function main() {
   // content 디렉토리가 없으면 생성
   try {
@@ -328,6 +395,10 @@ async function main() {
         console.log(`🖼️ 이미지 처리 시작: ${slug}`);
         enhancedContent = await processNotionImages(enhancedContent);
 
+        // PDF 링크를 Cloudinary URL로 변환
+        console.log(`📄 PDF 처리 시작: ${slug}`);
+        enhancedContent = await processPdfLinks(enhancedContent);
+
         // pageCover 이미지를 Cloudinary URL로 변환
         if (pageCover) {
           console.log(`🖼️ pageCover 처리 시작: ${slug}`);
@@ -396,6 +467,11 @@ async function main() {
   console.log(`   - Cloudinary 업로드: ${cloudinaryUploadCount}개`);
   console.log(`   - 캐시 히트: ${cacheHitCount}개`);
   console.log(`   - 처리된 pageCover: ${processedPageCoversCount}개`);
+
+  // PDF 처리 통계 출력
+  console.log("\n📄 PDF 처리 통계:");
+  console.log(`   - 총 처리된 PDF: ${processedPdfsCount}개`);
+  console.log(`   - Cloudinary PDF 업로드: ${cloudinaryPdfUploadCount}개`);
 
   // Redis 캐시 통계 출력
   try {

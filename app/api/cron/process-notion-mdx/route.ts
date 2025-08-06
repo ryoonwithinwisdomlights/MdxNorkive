@@ -1,8 +1,7 @@
-import { NextResponse } from "next/server";
 import { getDataFromCache, setDataToCache } from "@/lib/cache/cache_manager";
 import { imageCacheManager } from "@/lib/cache/image_cache_manager";
 import RedisImageProcessor from "@/scripts/redis-image-processor";
-import { BLOG } from "@/blog.config";
+import { NextResponse } from "next/server";
 
 interface ProcessResult {
   pageId: string;

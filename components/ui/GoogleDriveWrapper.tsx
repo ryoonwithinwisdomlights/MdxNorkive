@@ -29,7 +29,7 @@ export default function GoogleDriveWrapper(props: GoogleDriveWrapperProps) {
             "
         {...props}
       >
-        <HardDrive className="w-4 h-4" />
+        <HardDrive className="min-w-4 min-h-4 mr-2" />
         drive&nbsp;-&nbsp;
         {names}
       </a>

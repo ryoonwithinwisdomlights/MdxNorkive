@@ -57,7 +57,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ...ImageZoomComponents,
     ...InlineTOCComponents,
     // 커스텀 링크 컴포넌트 추가 - a 태그를 오버라이드
-    a: CustomLinkComponent, // PDF, Google Drive 링크 자동 감지
+    a: CustomLinkComponent,
     YoutubeWrapper,
     EmbededWrapper,
     PdfWrapper,

@@ -1,5 +1,5 @@
 import { imageCacheManager } from "@/lib/cache/image_cache_manager";
-import { uploadImageFromUrl } from "@/lib/cloudinary";
+import { uploadImageFromUrl, uploadPdfFromUrl } from "@/lib/cloudinary";
 import {
   decodeUrlEncodedLinks,
   processMdxContent,
@@ -15,6 +15,39 @@ import fs from "fs/promises";
 import matter from "gray-matter";
 import { NotionToMarkdown } from "notion-to-md";
 import path from "path";
+import { v2 as cloudinary } from "cloudinary";
+
+// 환경변수 로드 확인
+console.log("🔧 환경변수 확인:");
+console.log(
+  `   - CLOUDINARY_CLOUD_NAME: ${
+    process.env.CLOUDINARY_CLOUD_NAME ? "✅ 설정됨" : "❌ 설정 안됨"
+  }`
+);
+console.log(
+  `   - CLOUDINARY_API_KEY: ${
+    process.env.CLOUDINARY_API_KEY ? "✅ 설정됨" : "❌ 설정 안됨"
+  }`
+);
+console.log(
+  `   - CLOUDINARY_API_SECRET: ${
+    process.env.CLOUDINARY_API_SECRET ? "✅ 설정됨" : "❌ 설정 안됨"
+  }`
+);
+console.log(
+  `   - CLOUDINARY_UPLOAD_FOLDER: ${
+    process.env.CLOUDINARY_UPLOAD_FOLDER ? "✅ 설정됨" : "❌ 설정 안됨"
+  }`
+);
+
+// Cloudinary 설정을 스크립트에서 직접 설정
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
+  api_key: process.env.CLOUDINARY_API_KEY!,
+  api_secret: process.env.CLOUDINARY_API_SECRET!,
+});
+
+console.log("🔧 Cloudinary 설정 완료");
 
 export type FrontMatter = {
   title: string;
@@ -62,6 +95,10 @@ let cloudinaryUploadCount = 0;
 let cacheHitCount = 0;
 let processedPageCoversCount = 0;
 
+// ✅ PDF 처리 통계
+let processedPdfsCount = 0;
+let cloudinaryPdfUploadCount = 0;
+
 // 1. 기존 MDX 파일의 notionId → endDate 매핑
 async function getExistingEndDates() {
   const map = new Map();
@@ -95,13 +132,13 @@ async function processPageCover(
 
   // Unsplash 이미지 URL인지 확인
   if (isUnsplashImageUrl(pageCover)) {
-    console.log(`🖼️ Unsplash pageCover 처리: ${extractFileName(pageCover)}`);
-    const cloudinaryUrl = await getOrCreateCloudinaryUrl(
-      pageCover,
-      "pagecover"
-    );
-    processedPageCoversCount++;
-    return cloudinaryUrl;
+    // console.log(`🖼️ Unsplash pageCover 처리: ${extractFileName(pageCover)}`);
+    // const cloudinaryUrl = await getOrCreateCloudinaryUrl(
+    //   pageCover,
+    //   "pagecover"
+    // );
+    // processedPageCoversCount++;
+    return pageCover;
   }
 
   // Notion 만료 이미지 URL인지 확인
@@ -165,6 +202,41 @@ async function processNotionImages(content: string): Promise<string> {
       const newImageTag = fullMatch.replace(imageUrl, cloudinaryUrl);
       processedContent = processedContent.replace(fullMatch, newImageTag);
       processedImagesCount++;
+    }
+  }
+
+  return processedContent;
+}
+
+/**
+ * PDF 링크를 Cloudinary URL로 변환
+ */
+async function processPdfLinks(content: string): Promise<string> {
+  // PDF 링크 패턴: [파일명.pdf](URL)
+  const pdfLinkRegex = /\[([^\]]+\.pdf)\]\(([^)]+)\)/g;
+
+  let processedContent = content;
+  let match;
+
+  while ((match = pdfLinkRegex.exec(content)) !== null) {
+    const [fullMatch, fileName, pdfUrl] = match;
+
+    try {
+      console.log(`📄 PDF 처리 중: ${fileName} (${pdfUrl})`);
+
+      // PDF를 Cloudinary에 업로드
+      const result = await uploadPdfFromUrl(pdfUrl, fileName);
+
+      // 원본 링크를 Cloudinary URL로 교체
+      const newLink = `[${fileName}](${result.secure_url})`;
+      processedContent = processedContent.replace(fullMatch, newLink);
+
+      console.log(`✅ PDF 업로드 완료: ${fileName} → ${result.secure_url}`);
+      processedPdfsCount++;
+      cloudinaryPdfUploadCount++;
+    } catch (error) {
+      console.error(`❌ PDF 업로드 실패: ${fileName}`, error);
+      // 실패한 경우 원본 링크 유지
     }
   }
 
@@ -292,93 +364,99 @@ async function main() {
     try {
       const id = page.id.replace(/-/g, "");
 
-      // 테스트용으로 모든 페이지 처리 (특정 ID 제한 제거)
-      const props = page.properties as any;
-      const last_edited_time = page.last_edited_time;
-      let pageCover: string | null = null;
-      if (page.cover) {
-        if (page.cover.type === "external") {
-          pageCover = page.cover.external.url;
-        } else if (page.cover.type === "file") {
-          pageCover = page.cover.file.url;
-        }
-      }
-
-      // pageCover 이미지 처리
-      if (pageCover) {
-        pageCover = await processPageCover(pageCover);
-      }
-
-      const title = props.title?.title?.[0]?.plain_text?.trim() || "Untitled";
-      const type = props.type?.select?.name;
-      const sub_type = props.sub_type?.select?.name || "";
-      // 사용자 친화적 슬러그 생성
-      const slug = generateUserFriendlySlug(sub_type, title, slugSet);
-      if (existingEndDates.get(id) !== last_edited_time) {
-        const mdBlocks = await n2m.pageToMarkdown(page.id);
-        const { parent: content } = n2m.toMarkdownString(mdBlocks);
-        if (!content || content.trim() === "") {
-          console.warn(`❌ 마크다운 콘텐츠 없음: ${page.id}`);
-          continue;
+      if (id === "ccbcc665d1eb45c28ba6bfd711d722df") {
+        // 테스트용으로 모든 페이지 처리 (특정 ID 제한 제거)
+        const props = page.properties as any;
+        const last_edited_time = page.last_edited_time;
+        let pageCover: string | null = null;
+        if (page.cover) {
+          if (page.cover.type === "external") {
+            pageCover = page.cover.external.url;
+          } else if (page.cover.type === "file") {
+            pageCover = page.cover.file.url;
+          }
         }
 
-        let enhancedContent = content;
-        // 안전 변환 적용
-        enhancedContent = decodeUrlEncodedLinks(enhancedContent);
-        enhancedContent = processMdxContent(enhancedContent);
+        const title = props.title?.title?.[0]?.plain_text?.trim() || "Untitled";
+        const type = props.type?.select?.name;
+        const sub_type = props.sub_type?.select?.name || "";
+        // 사용자 친화적 슬러그 생성
+        const slug = generateUserFriendlySlug(sub_type, title, slugSet);
+        if (existingEndDates.get(id) !== last_edited_time) {
+          const mdBlocks = await n2m.pageToMarkdown(page.id);
+          const { parent: content } = n2m.toMarkdownString(mdBlocks);
+          if (!content || content.trim() === "") {
+            console.warn(`❌ 마크다운 콘텐츠 없음: ${page.id}`);
+            continue;
+          }
 
-        // 노션 이미지를 Cloudinary URL로 변환
-        console.log(`🖼️ 이미지 처리 시작: ${slug}`);
-        enhancedContent = await processNotionImages(enhancedContent);
+          let enhancedContent = content;
+          // PDF 링크를 Cloudinary URL로 변환
+          console.log(`📄 PDF 링크 처리 시작: ${slug}`);
+          enhancedContent = await processPdfLinks(enhancedContent);
 
-        // 메타데이터 생성
-        const description =
-          props.description?.rich_text?.[0]?.plain_text?.trim() || "";
-        const icon = props.icon?.emoji || "";
-        const full = props.full?.checkbox || false;
-        const favorite = props.favorite?.checkbox || false;
-        const category = props.category?.select?.name ?? "";
-        const tags = props.tags?.multi_select?.map((t: any) => t.name) ?? [];
-        const date = props.date?.date?.start || new Date().toISOString();
-        const lastEditedDate = last_edited_time
-          ? new Date(last_edited_time)
-          : date;
-        const summary = props.summary?.rich_text?.[0]?.plain_text?.trim() || "";
-        const password =
-          props.password?.rich_text?.[0]?.plain_text?.trim() || "";
-        const frontMatter = matter.stringify(enhancedContent, {
-          title,
-          slug,
-          summary,
-          pageCover,
-          notionId: id,
-          password,
-          type,
-          sub_type,
-          category,
-          tags,
-          date: date.slice(0, 10),
-          last_edited_time,
-          lastEditedDate,
-          draft: false,
-          description,
-          icon,
-          full,
-          favorite,
-          lastModified: new Date().toISOString().slice(0, 10),
-          readingTime: Math.ceil((title.length + description.length) / 200),
-          wordCount: title.length + description.length,
-          status: "published",
-          author: "ryoon",
-          version: "1.0.0",
-        } as FrontMatter);
-        const dir = path.join(BASE_OUTPUT_DIR, type.toLowerCase());
-        await fs.mkdir(dir, { recursive: true });
-        const filePath = path.join(dir, `${slug}.mdx`);
-        await fs.writeFile(filePath, frontMatter, "utf-8");
-        console.log(`✅ Notion → MDX 변환+안전화 완료: ${slug} → ${type}`);
-      } else {
-        console.log(`🎉 이미 최신 버전: ${slug} → ${type}`);
+          // 안전 변환 적용
+          enhancedContent = decodeUrlEncodedLinks(enhancedContent);
+          enhancedContent = processMdxContent(enhancedContent);
+          // 노션 이미지를 Cloudinary URL로 변환
+          console.log(`🖼️ 이미지 처리 시작: ${slug}`);
+          enhancedContent = await processNotionImages(enhancedContent);
+
+          // pageCover 이미지를 Cloudinary URL로 변환
+          if (pageCover) {
+            console.log(`🖼️ pageCover 처리 시작: ${slug}`);
+            pageCover = await processPageCover(pageCover);
+          }
+          // 메타데이터 생성
+          const description =
+            props.description?.rich_text?.[0]?.plain_text?.trim() || "";
+          const icon = props.icon?.emoji || "";
+          const full = props.full?.checkbox || false;
+          const favorite = props.favorite?.checkbox || false;
+          const category = props.category?.select?.name ?? "";
+          const tags = props.tags?.multi_select?.map((t: any) => t.name) ?? [];
+          const date = props.date?.date?.start || new Date().toISOString();
+          const lastEditedDate = last_edited_time
+            ? new Date(last_edited_time)
+            : date;
+          const summary =
+            props.summary?.rich_text?.[0]?.plain_text?.trim() || "";
+          const password =
+            props.password?.rich_text?.[0]?.plain_text?.trim() || "";
+          const frontMatter = matter.stringify(enhancedContent, {
+            title,
+            slug,
+            summary,
+            pageCover,
+            notionId: id,
+            password,
+            type,
+            sub_type,
+            category,
+            tags,
+            date: date.slice(0, 10),
+            last_edited_time,
+            lastEditedDate,
+            draft: false,
+            description,
+            icon,
+            full,
+            favorite,
+            lastModified: new Date().toISOString().slice(0, 10),
+            readingTime: Math.ceil((title.length + description.length) / 200),
+            wordCount: title.length + description.length,
+            status: "published",
+            author: "ryoon",
+            version: "1.0.0",
+          } as FrontMatter);
+          const dir = path.join(BASE_OUTPUT_DIR, type.toLowerCase());
+          await fs.mkdir(dir, { recursive: true });
+          const filePath = path.join(dir, `${slug}.mdx`);
+          await fs.writeFile(filePath, frontMatter, "utf-8");
+          console.log(`✅ Notion → MDX 변환+안전화 완료: ${slug} → ${type}`);
+        } else {
+          console.log(`🎉 이미 최신 버전: ${slug} → ${type}`);
+        }
       }
     } catch (err) {
       console.error(`🔥 TEST Notion → MDX 변환 실패: ${page.id}`);
@@ -393,6 +471,11 @@ async function main() {
   console.log(`   - 처리된 pageCover: ${processedPageCoversCount}개`);
   console.log(`   - Cloudinary 업로드: ${cloudinaryUploadCount}개`);
   console.log(`   - 캐시 히트: ${cacheHitCount}개`);
+
+  // PDF 처리 통계 출력
+  console.log("\n📄 PDF 처리 통계:");
+  console.log(`   - 총 처리된 PDF: ${processedPdfsCount}개`);
+  console.log(`   - Cloudinary PDF 업로드: ${cloudinaryPdfUploadCount}개`);
 
   // Redis 캐시 통계 출력
   try {
