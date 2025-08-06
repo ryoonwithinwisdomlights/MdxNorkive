@@ -17,6 +17,9 @@ import {
 } from "@/lib/utils/convert-unsafe-mdx-content";
 import { generateUserFriendlySlug } from "@/lib/utils/mdx-utils";
 
+import { imageCacheManager } from "@/lib/cache/image_cache_manager";
+import { uploadImageFromUrl } from "@/lib/cloudinary";
+
 export type FrontMatter = {
   title: string;
   slug: string;
@@ -56,6 +59,11 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 
 // ✅ 슬러그 중복 방지용 Set
 const slugSet = new Set<string>();
+
+// ✅ 이미지 처리 통계
+let processedImagesCount = 0;
+let cloudinaryUploadCount = 0;
+let cacheHitCount = 0;
 // 1. 기존 MDX 파일의 notionId → endDate 매핑
 async function getExistingEndDates() {
   const map = new Map();
@@ -78,6 +86,123 @@ async function getExistingEndDates() {
   }
   return map;
 }
+
+/**
+ * 노션 이미지 URL을 Cloudinary URL로 변환
+ */
+async function processNotionImages(content: string): Promise<string> {
+  // 마크다운 이미지 문법 처리: ![alt](url)
+  const markdownImageRegex = /!\[([^\]]*)\]\(([^)]+)\)/g;
+  let processedContent = content;
+
+  const markdownMatches = [...content.matchAll(markdownImageRegex)];
+  for (const match of markdownMatches) {
+    const [fullMatch, alt, imageUrl] = match;
+
+    if (isNotionImageUrl(imageUrl)) {
+      const cloudinaryUrl = await getOrCreateCloudinaryUrl(imageUrl);
+      const newImageTag = `![${alt}](${cloudinaryUrl})`;
+      processedContent = processedContent.replace(fullMatch, newImageTag);
+      processedImagesCount++;
+    }
+  }
+
+  // HTML img 태그 처리: <img src="url">
+  const htmlImageRegex = /<img[^>]+src=["']([^"']+)["'][^>]*>/g;
+  const htmlMatches = [...processedContent.matchAll(htmlImageRegex)];
+
+  for (const match of htmlMatches) {
+    const [fullMatch, imageUrl] = match;
+
+    if (isNotionImageUrl(imageUrl)) {
+      const cloudinaryUrl = await getOrCreateCloudinaryUrl(imageUrl);
+      const newImageTag = fullMatch.replace(imageUrl, cloudinaryUrl);
+      processedContent = processedContent.replace(fullMatch, newImageTag);
+      processedImagesCount++;
+    }
+  }
+
+  return processedContent;
+}
+
+/**
+ * 노션 이미지 URL인지 확인
+ */
+function isNotionImageUrl(url: string): boolean {
+  return (
+    url.includes("prod-files-secure.s3.us-west-2.amazonaws.com") ||
+    url.includes("s3.us-west-2.amazonaws.com") ||
+    url.includes("notion.so")
+  );
+}
+
+/**
+ * Cloudinary URL 생성 또는 기존 캐시 사용
+ */
+async function getOrCreateCloudinaryUrl(originalUrl: string): Promise<string> {
+  try {
+    // Redis에서 캐시된 URL 확인
+    const cachedUrl = await imageCacheManager.getCachedImageUrl(originalUrl);
+
+    if (cachedUrl) {
+      cacheHitCount++;
+      console.log(`🔄 캐시 히트: ${extractFileName(originalUrl)}`);
+      return cachedUrl;
+    }
+
+    // 캐시된 URL이 없으면 Cloudinary에 업로드
+    console.log(`☁️ Cloudinary 업로드 시작: ${extractFileName(originalUrl)}`);
+    const fileName = extractFileName(originalUrl);
+    const cloudinaryResult = await uploadImageFromUrl(originalUrl, fileName);
+
+    // Redis에 캐시 정보 저장
+    await imageCacheManager.cacheImageUrl(
+      originalUrl,
+      cloudinaryResult.secure_url,
+      {
+        fileName: fileName,
+        size: cloudinaryResult.bytes,
+        contentType: `image/${cloudinaryResult.format}`,
+      }
+    );
+
+    cloudinaryUploadCount++;
+    console.log(
+      `✅ Cloudinary 업로드 완료: ${fileName} → ${cloudinaryResult.secure_url}`
+    );
+
+    return cloudinaryResult.secure_url;
+  } catch (error) {
+    console.error(`❌ 이미지 처리 실패: ${originalUrl}`, error);
+    // 실패 시 원본 URL 반환
+    return originalUrl;
+  }
+}
+
+/**
+ * 파일명 추출
+ */
+function extractFileName(url: string): string {
+  try {
+    const urlObj = new URL(url);
+    const pathname = urlObj.pathname;
+    let fileName = pathname.split("/").pop() || "image.jpg";
+
+    if (fileName.includes("?")) {
+      fileName = fileName.split("?")[0];
+    }
+
+    // 안전한 파일명으로 변환
+    const safeFileName = fileName
+      .replace(/[^a-zA-Z0-9가-힣._-]/g, "_")
+      .replace(/_{2,}/g, "_")
+      .replace(/^_|_$/g, "");
+
+    return safeFileName || `image_${Date.now()}.jpg`;
+  } catch (error) {
+    return `image_${Date.now()}.jpg`;
+  }
+}
 async function main() {
   // content 디렉토리가 없으면 생성
   try {
@@ -87,6 +212,9 @@ async function main() {
     console.log(`📁 'content' 디렉토리를 생성합니다: ${BASE_OUTPUT_DIR}`);
     await fs.mkdir(BASE_OUTPUT_DIR, { recursive: true });
   }
+
+  // Cloudinary 이미지 처리 시스템 초기화
+  console.log("☁️ Cloudinary 이미지 처리 시스템 준비 완료");
 
   let posts;
   try {
@@ -128,7 +256,7 @@ async function main() {
       const type = props.type?.select?.name;
       const sub_type = props.sub_type?.select?.name || "";
       // 사용자 친화적 슬러그 생성
-      const slug = generateUserFriendlySlug(sub_type, title, slugSet);
+      const slug = generateUserFriendlySlug(type, title, slugSet);
 
       if (existingEndDates.get(id) !== last_edited_time) {
         const mdBlocks = await n2m.pageToMarkdown(page.id);
@@ -140,8 +268,12 @@ async function main() {
 
         let enhancedContent = content;
         // 안전 변환 적용
-        enhancedContent = processMdxContent(enhancedContent);
         enhancedContent = decodeUrlEncodedLinks(enhancedContent);
+        enhancedContent = processMdxContent(enhancedContent);
+
+        // 노션 이미지를 Cloudinary URL로 변환
+        console.log(`🖼️ 이미지 처리 시작: ${slug}`);
+        enhancedContent = await processNotionImages(enhancedContent);
         // 메타데이터 생성
         const description =
           props.description?.rich_text?.[0]?.plain_text?.trim() || "";
@@ -197,6 +329,26 @@ async function main() {
       continue;
     }
   }
+
+  // 이미지 처리 통계 출력
+  console.log("\n📊 이미지 처리 통계:");
+  console.log(`   - 총 처리된 이미지: ${processedImagesCount}개`);
+  console.log(`   - Cloudinary 업로드: ${cloudinaryUploadCount}개`);
+  console.log(`   - 캐시 히트: ${cacheHitCount}개`);
+
+  // Redis 캐시 통계 출력
+  try {
+    const cacheStats = await imageCacheManager.getCacheStats();
+    console.log("\n📊 Redis 캐시 통계:");
+    console.log(`   - 총 캐시된 이미지: ${cacheStats.totalImages}개`);
+    console.log(
+      `   - 총 크기: ${(cacheStats.totalSize / 1024 / 1024).toFixed(2)}MB`
+    );
+    console.log(`   - 만료된 이미지: ${cacheStats.expiredCount}개`);
+  } catch (error) {
+    console.log(`\n⚠️ Redis 캐시 통계 조회 실패: ${error}`);
+  }
+
   console.log("\n🎉 Notion → MDX 변환 및 안전화 통합 완료!");
 }
 

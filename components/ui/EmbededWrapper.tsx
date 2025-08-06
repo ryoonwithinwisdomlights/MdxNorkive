@@ -18,21 +18,21 @@ export default function EmbededWrapper(props: EmbededWrapperProps) {
     urls.toLowerCase().includes("figma.site");
 
   // Figma 링크인 경우 iframe으로 임베드
-  if (isFigmaLink) {
-    return (
-      <div className="my-4">
-        <iframe
-          src={urls}
-          width="100%"
-          height="600"
-          style={assetStyle}
-          allowFullScreen
-          loading="lazy"
-          title="Embedded Content"
-        />
-      </div>
-    );
-  }
+  // if (isFigmaLink) {
+  return (
+    <div className="my-4">
+      <iframe
+        src={urls}
+        width="100%"
+        height="600"
+        style={assetStyle}
+        allowFullScreen
+        loading="lazy"
+        title="Embedded Content"
+      />
+    </div>
+  );
+  // }
 
   // 일반 링크인 경우 링크로 표시
   return (

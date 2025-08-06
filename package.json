@@ -21,7 +21,11 @@
     "prettier:check": "prettier --check --ignore-unknown .",
     "export": "next build && next export",
     "bundle-report": "ANALYZE=true yarn build",
-    "check:validity": "node scripts/check-mdx-validity.mjs"
+    "check:validity": "node scripts/check-mdx-validity.mjs",
+    "fix-images": "npx tsx scripts/fix-existing-notion-images.ts",
+    "test-image-download": "npx tsx scripts/download-notion-images.ts",
+    "process-redis-images": "npx tsx scripts/redis-image-processor.ts",
+    "cron-process-mdx": "curl -X GET http://localhost:3000/api/cron/process-notion-mdx"
   },
   "dependencies": {
     "@content-collections/core": "^0.10.0",
@@ -59,6 +63,7 @@
     "aos": "^3.0.0-beta.6",
     "babel-plugin-macros": "^3.1.0",
     "class-variance-authority": "^0.7.0",
+    "cloudinary": "^2.7.0",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.4",
     "copy-to-clipboard": "^3.3.3",
@@ -82,6 +87,7 @@
     "lucide-react": "^0.525.0",
     "memory-cache": "^0.2.0",
     "next": "15.4.1",
+    "next-cloudinary": "^6.16.0",
     "nextjs-progressbar": "^0.0.16",
     "notion-to-md": "^3.1.1",
     "prismjs": "^1.30.0",

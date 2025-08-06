@@ -5,6 +5,10 @@
     {
       "path": "/api/cron/update-records",
       "schedule": "0 10 * * *"
+    },
+    {
+      "path": "/api/cron/process-notion-mdx",
+      "schedule": "0 0 * * *"
     }
   ]
 }

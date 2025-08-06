@@ -72,8 +72,6 @@ export function LiteYouTubeEmbed({
   style?: React.CSSProperties;
   className?: string;
 }) {
-  console.log("debug id:::", id);
-  console.log("debug params:::", params);
   const muteParam = mute || defaultPlay ? "1" : "0"; // Default play must be muted
   const queryString = React.useMemo(
     () => qs({ autoplay: "1", mute: muteParam, ...params }),

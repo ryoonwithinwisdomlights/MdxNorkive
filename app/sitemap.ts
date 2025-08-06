@@ -2,6 +2,8 @@ import { BLOG } from "@/blog.config";
 import { formatDate } from "@/lib/utils/general";
 import type { MetadataRoute } from "next";
 import { fetchAllRecordList } from "./api/fetcher";
+import type { RecordItem } from "@/app/api/types";
+
 type ChangeFrequency =
   | "always"
   | "hourly"
@@ -19,7 +21,16 @@ type ChangeFrequency =
  *
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const allRecordList = await fetchAllRecordList();
+  let allRecordList: RecordItem[] = [];
+
+  try {
+    allRecordList = await fetchAllRecordList();
+  } catch (error) {
+    console.warn("Failed to fetch records from Notion API:", error);
+    // 빌드 시 Notion API 접근이 실패할 경우 빈 배열 사용
+    allRecordList = [];
+  }
+
   const dailyVariable: ChangeFrequency = "daily";
 
   const urls = [

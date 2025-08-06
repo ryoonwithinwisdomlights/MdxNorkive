@@ -473,7 +473,6 @@ const youtubeDomains = new Set([
 ]);
 
 export const getYoutubeId = (url: string): string | null => {
-  console.log("debug url:::", url);
   try {
     const { hostname } = new URL(url);
     if (!youtubeDomains.has(hostname)) {

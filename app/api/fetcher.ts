@@ -23,106 +23,121 @@ import { NOTION_DATABASE_ID } from "./clients";
 export const fetchMenuList = cache(async (): Promise<MenuItem[]> => {
   // console.log("🔍 fetchMenuList 시작");
 
-  const queryResponse = await notion.databases.query({
-    database_id: NOTION_DATABASE_ID,
-    filter: {
-      and: [
-        {
-          property: "status",
-          select: {
-            equals: "Published",
+  try {
+    const queryResponse = await notion.databases.query({
+      database_id: NOTION_DATABASE_ID,
+      filter: {
+        and: [
+          {
+            property: "status",
+            select: {
+              equals: "Published",
+            },
           },
-        },
-        { property: "type", select: { equals: "Menu" } },
-      ],
-    },
-  });
+          { property: "type", select: { equals: "Menu" } },
+        ],
+      },
+    });
 
-  // console.log("📊 Notion 쿼리 결과:", queryResponse.results.length, "개 항목");
-  // console.log(
-  //   "📋 쿼리 결과 상세:",
-  //   queryResponse.results.map((item) => {
-  //     const props = (item as any)?.properties;
-  //     return {
-  //       id: item.id,
-  //       title: props?.title?.title?.[0]?.plain_text || "제목 없음",
-  //       type: props?.type?.select?.name || "타입 없음",
-  //       status: props?.status?.select?.name || "상태 없음",
-  //     };
-  //   })
-  // );
+    // console.log("📊 Notion 쿼리 결과:", queryResponse.results.length, "개 항목");
+    // console.log(
+    //   "📋 쿼리 결과 상세:",
+    //   queryResponse.results.map((item) => {
+    //     const props = (item as any)?.properties;
+    //     return {
+    //       id: item.id,
+    //       title: props?.title?.title?.[0]?.plain_text || "제목 없음",
+    //       type: props?.type?.select?.name || "타입 없음",
+    //       status: props?.status?.select?.name || "상태 없음",
+    //     };
+    //   })
+    // );
 
-  const datalist = queryResponse.results as QueryDatabaseResponseArray;
+    const datalist = queryResponse.results as QueryDatabaseResponseArray;
 
-  const convertedMenuItemList = await new NotionPageListAdapter(
-    datalist
-  ).convertToBasicMenuItemList();
+    const convertedMenuItemList = await new NotionPageListAdapter(
+      datalist
+    ).convertToBasicMenuItemList();
 
-  // console.log("✅ 변환된 메뉴 목록:", convertedMenuItemList.length, "개 항목");
-  // console.log(
-  //   "📝 메뉴 상세:",
-  //   convertedMenuItemList.map((item) => ({
-  //     id: item.id,
-  //     title: item.title,
-  //     type: item.type,
-  //     url: item.url,
-  //   }))
-  // );
+    // console.log("✅ 변환된 메뉴 목록:", convertedMenuItemList.length, "개 항목");
+    // console.log(
+    //   "📝 메뉴 상세:",
+    //   convertedMenuItemList.map((item) => ({
+    //     id: item.id,
+    //     title: item.title,
+    //     type: item.type,
+    //     url: item.url,
+    //   }))
+    // );
 
-  return convertedMenuItemList;
+    return convertedMenuItemList;
+  } catch (error) {
+    console.warn("Failed to fetch menu list from Notion API:", error);
+    return [];
+  }
 });
 
 export const fetchPageData = cache(async (pageId: string) => {
-  const pageData = await notion.pages.retrieve({ page_id: pageId });
-  return pageData;
+  try {
+    const pageData = await notion.pages.retrieve({ page_id: pageId });
+    return pageData;
+  } catch (error) {
+    console.warn(`Failed to fetch page data for pageId ${pageId}:`, error);
+    throw error;
+  }
 });
 
 export const fetchAllRecordList = cache(async (): Promise<RecordItem[]> => {
-  const queryResponse = await notion.databases.query({
-    database_id: NOTION_DATABASE_ID,
-    filter: {
-      and: [
-        {
-          property: "status",
-          select: {
-            equals: "Published",
+  try {
+    const queryResponse = await notion.databases.query({
+      database_id: NOTION_DATABASE_ID,
+      filter: {
+        and: [
+          {
+            property: "status",
+            select: {
+              equals: "Published",
+            },
           },
-        },
-        {
-          property: "type",
-          select: {
-            is_not_empty: true, // type이 null(비어있지 않음)
+          {
+            property: "type",
+            select: {
+              is_not_empty: true, // type이 null(비어있지 않음)
+            },
           },
-        },
-        {
-          property: "type",
-          select: {
-            equals: "RECORD", // type이 Record
+          {
+            property: "type",
+            select: {
+              equals: "RECORD", // type이 Record
+            },
           },
+        ],
+      },
+      sorts: [
+        {
+          property: "date",
+          direction: "descending",
         },
       ],
-    },
-    sorts: [
-      {
-        property: "date",
-        direction: "descending",
-      },
-    ],
-  });
-  // console.log("queryResponse:::", queryResponse);
-  const convertedAllRecordList = new NotionPageListAdapter(
-    queryResponse.results as Array<QueryPageResponse>
-  ).convertToAllRecordList();
+    });
+    // console.log("queryResponse:::", queryResponse);
+    const convertedAllRecordList = new NotionPageListAdapter(
+      queryResponse.results as Array<QueryPageResponse>
+    ).convertToAllRecordList();
 
-  convertedAllRecordList.map((item: RecordItem) => {
-    const siteInfo = getSiteInfo2({ recordItem: item });
-    // console.log("siteInfo:", siteInfo);
-    return {
-      ...item,
-      siteInfo,
-    };
-  });
-  return convertedAllRecordList;
+    convertedAllRecordList.map((item: RecordItem) => {
+      const siteInfo = getSiteInfo2({ recordItem: item });
+      // console.log("siteInfo:", siteInfo);
+      return {
+        ...item,
+        siteInfo,
+      };
+    });
+    return convertedAllRecordList;
+  } catch (error) {
+    console.warn("Failed to fetch records from Notion API:", error);
+    return [];
+  }
   // return Promise.all(
   //   convertedFeaturedArticleList.map(
   //     async ({ thumbnailUrl, pageId, ...rest }) => ({
@@ -192,15 +207,20 @@ export const fetchAllRecordList = cache(async (): Promise<RecordItem[]> => {
  * article tag 목록을 조회해오는 함수
  */
 export const fetchRecordTagList = cache(async () => {
-  const metaDataResponse = await notion.databases.retrieve({
-    database_id: NOTION_DATABASE_ID,
-  });
+  try {
+    const metaDataResponse = await notion.databases.retrieve({
+      database_id: NOTION_DATABASE_ID,
+    });
 
-  return new NotionDataBaseMetaDataAdapter(
-    metaDataResponse as unknown as DataBaseMetaDataResponse
-  )
-    .convertToTagList()
-    .sort((tag1, tag2) => (tag1.name > tag2.name ? 1 : -1));
+    return new NotionDataBaseMetaDataAdapter(
+      metaDataResponse as unknown as DataBaseMetaDataResponse
+    )
+      .convertToTagList()
+      .sort((tag1, tag2) => (tag1.name > tag2.name ? 1 : -1));
+  } catch (error) {
+    console.warn("Failed to fetch record tag list from Notion API:", error);
+    return [];
+  }
 });
 
 /**
@@ -348,36 +368,44 @@ export const fetchRecordTagList = cache(async () => {
  */
 export const fetchAllBlocksInPage = cache(
   async (blockOrPageId: string): Promise<GetBlockResponse[]> => {
-    let hasMore = true;
-    let nextCursor: string | null = null;
-    const blocks: GetBlockResponse[] = [];
-    while (hasMore) {
-      const result: ListBlockChildrenResponse =
-        await notion.blocks.children.list({
-          block_id: blockOrPageId,
-          start_cursor: nextCursor ?? undefined,
-        });
+    try {
+      let hasMore = true;
+      let nextCursor: string | null = null;
+      const blocks: GetBlockResponse[] = [];
+      while (hasMore) {
+        const result: ListBlockChildrenResponse =
+          await notion.blocks.children.list({
+            block_id: blockOrPageId,
+            start_cursor: nextCursor ?? undefined,
+          });
 
-      blocks.push(...result.results);
-      hasMore = result.has_more;
-      nextCursor = result.next_cursor;
+        blocks.push(...result.results);
+        hasMore = result.has_more;
+        nextCursor = result.next_cursor;
 
-      if (hasMore) {
-        console.log("load more blocks in page...");
+        if (hasMore) {
+          console.log("load more blocks in page...");
+        }
       }
+
+      // nested block(ex - toggle block) 불러오기
+      const childBlocks = await Promise.all(
+        blocks
+          .filter((block) => "has_children" in block && block.has_children)
+          .map(async (block) => {
+            const childBlocks = await fetchAllBlocksInPage(block.id);
+            return childBlocks;
+          })
+      );
+
+      return [...blocks, ...childBlocks.flat()];
+    } catch (error) {
+      console.warn(
+        `Failed to fetch blocks for blockOrPageId ${blockOrPageId}:`,
+        error
+      );
+      throw error;
     }
-
-    // nested block(ex - toggle block) 불러오기
-    const childBlocks = await Promise.all(
-      blocks
-        .filter((block) => "has_children" in block && block.has_children)
-        .map(async (block) => {
-          const childBlocks = await fetchAllBlocksInPage(block.id);
-          return childBlocks;
-        })
-    );
-
-    return [...blocks, ...childBlocks.flat()];
   }
 );
 
@@ -385,10 +413,15 @@ export const fetchAllBlocksInPage = cache(
  * 해당 아티클 페이지의 모든 image block들을 불러오는 함수
  */
 export const fetchAllImageBlocksInPage = cache(async (pageId: string) => {
-  const allBlocks = await fetchAllBlocksInPage(pageId);
-  return allBlocks.filter(
-    (block) => "type" in block && block.type === "image"
-  ) as ImageBlockObjectResponse[];
+  try {
+    const allBlocks = await fetchAllBlocksInPage(pageId);
+    return allBlocks.filter(
+      (block) => "type" in block && block.type === "image"
+    ) as ImageBlockObjectResponse[];
+  } catch (error) {
+    console.warn(`Failed to fetch image blocks for pageId ${pageId}:`, error);
+    throw error;
+  }
 });
 
 /**
