@@ -60,7 +60,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ...InlineTOCComponents,
     // 커스텀 링크 컴포넌트 추가
     a: CustomLink,
-    // StyledLink,
+    StyledLink,
     ...components,
   };
 }

@@ -3,16 +3,16 @@ import fs from "fs/promises";
 import matter from "gray-matter";
 import path from "path";
 
-import { NotionToMarkdown } from "notion-to-md";
 import { Client } from "@notionhq/client";
+import { NotionToMarkdown } from "notion-to-md";
 
 import {
   DatabaseObjectResponse,
   PageObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
 
+import { processMdxContent } from "@/lib/utils/convert-unsafe-mdx-content";
 import { generateUserFriendlySlug } from "@/lib/utils/mdx-utils";
-import { convertUnsafeTags } from "@/lib/utils/convert-unsafe-mdx-content";
 
 export type FrontMatter = {
   title: string;
@@ -137,7 +137,7 @@ async function main() {
 
         let enhancedContent = content;
         // 안전 변환 적용
-        enhancedContent = convertUnsafeTags(enhancedContent);
+        enhancedContent = processMdxContent(enhancedContent);
         // 메타데이터 생성
         const description =
           props.description?.rich_text?.[0]?.plain_text?.trim() || "";

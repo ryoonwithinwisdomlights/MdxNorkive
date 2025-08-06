@@ -1,4 +1,7 @@
-import { convertUnsafeTags } from "@/lib/utils/convert-unsafe-mdx-content";
+import {
+  convertUnsafeTags,
+  processMdxContent,
+} from "@/lib/utils/convert-unsafe-mdx-content";
 import { generateUserFriendlySlug } from "@/lib/utils/mdx-utils";
 import { Client } from "@notionhq/client";
 import {
@@ -137,7 +140,7 @@ async function main() {
 
           let enhancedContent = content;
           // 안전 변환 적용
-          enhancedContent = convertUnsafeTags(enhancedContent);
+          enhancedContent = processMdxContent(enhancedContent);
           // 메타데이터 생성
           const description =
             props.description?.rich_text?.[0]?.plain_text?.trim() || "";
