@@ -1,18 +1,18 @@
+import "dotenv/config";
+import fs from "fs/promises";
+import matter from "gray-matter";
+import path from "path";
+
+import { NotionToMarkdown } from "notion-to-md";
 import { Client } from "@notionhq/client";
+
 import {
   DatabaseObjectResponse,
   PageObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
-import "dotenv/config";
-import fs from "fs/promises";
-import matter from "gray-matter";
-import { NotionToMarkdown } from "notion-to-md";
-import path from "path";
-import {
-  convertUnsafeTags,
-  enhanceContent,
-  generateUserFriendlySlug,
-} from "@/lib/utils/mdx-utils";
+
+import { generateUserFriendlySlug } from "@/lib/utils/mdx-utils";
+import { convertUnsafeTags } from "@/lib/utils/convert-unsafe-mdx-content";
 
 export type FrontMatter = {
   title: string;
@@ -134,8 +134,8 @@ async function main() {
           console.warn(`❌ 마크다운 콘텐츠 없음: ${page.id}`);
           continue;
         }
-        // Seed Design 스타일의 콘텐츠 개선
-        let enhancedContent = enhanceContent(content, title, type);
+
+        let enhancedContent = content;
         // 안전 변환 적용
         enhancedContent = convertUnsafeTags(enhancedContent);
         // 메타데이터 생성

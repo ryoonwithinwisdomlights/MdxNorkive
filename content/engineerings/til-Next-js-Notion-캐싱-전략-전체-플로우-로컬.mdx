@@ -20,7 +20,7 @@ description: ''
 icon: ''
 full: false
 favorite: true
-lastModified: '2025-08-05'
+lastModified: '2025-08-06'
 readingTime: 1
 wordCount: 56
 status: published
@@ -69,7 +69,7 @@ version: 1.0.0
         │
         ▼
 [Redis 캐시 갱신 (Upstash)]
-```text
+```
 
 
 
@@ -78,15 +78,9 @@ version: 1.0.0
 
 
 | **구분**       | **전략**                                        |
-| --- |              | --- |                                               | --- |
 | ------------ | --------------------------------------------- |
-| --- |              | --- |                                               | --- |
 | **로컬 개발**    | p-memoize, memory-cache, Map 등 in-memory 방식   |
-| --- |              | --- |                                               | --- |
 | **운영 서버**    | Upstash Redis 사용하여 Vercel 환경에서도 지속되는 캐시       |
-| --- |              | --- |                                               | --- |
 | **최신화**      | Vercel Cron 으로 10분마다 Notion 데이터 변화 감지 후 캐시 갱신 |
-| --- |              | --- |                                               | --- |
 | **Fallback** | 캐시 miss 시에만 notion-client 직접 호출 (서버 전용)       |
-| --- |              | --- |                                               | --- |
 

@@ -2,7 +2,6 @@ import CustomedMDXPage from "@/components/CustomedMDXPage";
 import { engineeringSource } from "@/lib/source";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-
 export const dynamic = "force-static";
 
 export default async function Page(props: {

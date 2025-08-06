@@ -1,7 +1,4 @@
-import { notFound } from "next/navigation";
-import { engineeringSource, submenuPageSource } from "@/lib/source";
 import CustomedMDXPage from "@/components/CustomedMDXPage";
-import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
 
 // export async function generateStaticParams() {
 //   const records = [{ pageId: "341eb5c0337801da209c34c90bc3377" }];
@@ -21,15 +18,6 @@ export default async function Page(props: {
   if (slug) {
     slug = slug.map((s) => decodeURIComponent(s));
   }
-  const pages = submenuPageSource.getPages();
-  // const page = pages.find((page) => {
-  //   if (page.slugs[0] === slug) {
-  //     console.log("page.slugs[0]:", page.slugs[0]);
-  //     return page;
-  //   }
-  // });
-  console.log("slug:", slug);
-  // console.log("page::", page);
 
   return (
     <CustomedMDXPage

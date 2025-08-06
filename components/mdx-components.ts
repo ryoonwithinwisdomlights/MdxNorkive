@@ -13,13 +13,22 @@
 // 아코디언 UI
 import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
 // 코드 블록
-import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
+import * as CodeBlockComponents from "fumadocs-ui/components/codeblock";
 // 파일/폴더 UI
-import { File, Files, Folder } from "fumadocs-ui/components/files";
+import * as FilesComponents from "fumadocs-ui/components/files";
+import * as TabsComponents from "fumadocs-ui/components/tabs";
+import * as CalloutComponents from "fumadocs-ui/components/callout";
+import * as HeadingComponents from "fumadocs-ui/components/heading";
+import * as DynamicCodeBlockComponents from "fumadocs-ui/components/dynamic-codeblock";
+import * as ImageZoomComponents from "fumadocs-ui/components/image-zoom";
+import * as InlineTOCComponents from "fumadocs-ui/components/inline-toc";
+
+// // import { File, Files, Folder } from "fumadocs-ui/components/files";
+// // 탭 UI
+// import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 // 단계별 UI
 import { Step, Steps } from "fumadocs-ui/components/steps";
-// 탭 UI
-import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
 // 타입 테이블 (타입스크립트 문서화)
 import { TypeTable } from "fumadocs-ui/components/type-table";
 // 기본 MDX 컴포넌트 (반드시 필요)
@@ -52,17 +61,23 @@ export const mdxComponents: MDXComponents = {
   // ComponentExample,
   // TokenReference,
   // ComponentSpecBlock,
-  Tab,
-  Tabs,
+  // Tab,
+  // Tabs,
+  // File,
+  // Folder,
+  // Files,
   Step,
   Steps,
-  File,
-  Folder,
-  Files,
+  ...TabsComponents,
+  ...FilesComponents,
   Accordion,
   Accordions,
-  CodeBlock,
-  Pre,
+  ...CalloutComponents,
+  ...HeadingComponents,
+  ...DynamicCodeBlockComponents,
+  ...ImageZoomComponents,
+  ...InlineTOCComponents,
+  ...CodeBlockComponents,
   AtomIcon,
   // WebpackIcon,
   // ViteIcon,

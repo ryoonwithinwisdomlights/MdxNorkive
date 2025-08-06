@@ -3,6 +3,16 @@ import {
   createMetaSchema,
   transformMDX,
 } from "@fumadocs/content-collections/configuration";
+import {
+  remarkNpm,
+  rehypeCode,
+  remarkStructure,
+  remarkCodeTab,
+  remarkImage,
+  remarkSteps,
+  transformerIcon,
+  transformerTab,
+} from "fumadocs-core/mdx-plugins";
 import { z } from "zod";
 
 const books = defineCollection({
@@ -153,5 +163,18 @@ const metas = defineCollection({
 });
 
 export default defineConfig({
+  mdxOptions: {
+    remarkPlugins: [
+      rehypeCode,
+      remarkNpm,
+      remarkCodeTab,
+      remarkImage,
+      remarkSteps,
+      remarkStructure,
+      transformerIcon,
+      transformerTab,
+    ],
+    rehypePlugins: [rehypeCode],
+  },
   collections: [records, subMenuPages, metas, books, engineerings, projects],
 });

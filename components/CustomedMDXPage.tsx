@@ -1,25 +1,26 @@
 "use client";
-import { mdxComponents } from "@/components/mdx-components";
+
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import {
-  engineeringSource,
   bookSource,
+  engineeringSource,
   projectSource,
   recordSource,
   submenuPageSource,
 } from "@/lib/source";
 import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils/date";
+import { getReadingTime } from "@/lib/utils/read";
 import TagList from "@/modules/blog/records/TagList";
 import ShareBar from "@/modules/common/components/shared/ShareBar";
 import { MDXContent } from "@content-collections/mdx/react";
 import { InlineTOC } from "fumadocs-ui/components/inline-toc";
 import { DocsBody, DocsPage } from "fumadocs-ui/page";
 import { useSidebar } from "fumadocs-ui/provider";
-import { Book, CalendarIcon, Eye, Rocket, View } from "lucide-react";
+import { Book, CalendarIcon, Rocket } from "lucide-react";
 import { notFound } from "next/navigation";
 import { useEffect } from "react";
 import Comment from "./Comment";
-import { getReadingTime } from "@/lib/utils/read";
+import { getMDXComponents } from "@/getMDXComponents";
 
 function getResource(resource: string) {
   if (resource === "engineering") return engineeringSource;
@@ -29,6 +30,13 @@ function getResource(resource: string) {
   if (resource === "submenupage") return submenuPageSource;
   else return null;
 }
+
+// // MDX output
+// page?.data.body;
+// // Table of contents
+// page?.data.toc;
+// // Structured Data, for Search API
+// page?.data.structuredData;
 export default function CustomedMDXPage({ className, slug, resource }) {
   const page = getResource(resource)?.getPage(slug);
   if (!page) notFound();
@@ -129,12 +137,9 @@ export default function CustomedMDXPage({ className, slug, resource }) {
             className="bg-neutral-100 dark:bg-neutral-800 mb-4"
           />
         )}
-        {/* <DocsTitle>{page.data.title}</DocsTitle> */}
-        {/* <DocsDescription>{page.data.description}</DocsDescription> */}
-        <DocsBody className="  ">
-          {/* <MDX components={mdxComponents} /> */}
 
-          <MDXContent code={body} components={mdxComponents} />
+        <DocsBody className="  ">
+          <MDXContent code={body} components={getMDXComponents()} />
         </DocsBody>
         <ShareBar data={page.data} />
       </DocsPage>

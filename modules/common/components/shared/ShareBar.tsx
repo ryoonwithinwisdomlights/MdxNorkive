@@ -8,7 +8,7 @@ const ShareBar = ({ data }) => {
   const searchParams = useSearchParams();
 
   const shareUrl = BLOG.LINK + `${pathname}?${searchParams}`;
-  console.log("shareUrl::", shareUrl);
+  // console.log("shareUrl::", shareUrl);
   return (
     <div className="mt-16 overflow-x-auto">
       <div className="flex w-full md:justify-end">
