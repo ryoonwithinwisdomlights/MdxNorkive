@@ -64,6 +64,8 @@ const slugSet = new Set<string>();
 let processedImagesCount = 0;
 let cloudinaryUploadCount = 0;
 let cacheHitCount = 0;
+let processedPageCoversCount = 0;
+
 // 1. 기존 MDX 파일의 notionId → endDate 매핑
 async function getExistingEndDates() {
   const map = new Map();
@@ -88,6 +90,54 @@ async function getExistingEndDates() {
 }
 
 /**
+ * pageCover 이미지 URL을 Cloudinary URL로 변환
+ */
+async function processPageCover(
+  pageCover: string | null
+): Promise<string | null> {
+  if (!pageCover) return null;
+
+  // Unsplash 이미지 URL인지 확인
+  if (isUnsplashImageUrl(pageCover)) {
+    // console.log(`🖼️ Unsplash pageCover 처리: ${extractFileName(pageCover)}`);
+    // const cloudinaryUrl = await getOrCreateCloudinaryUrl(
+    //   pageCover,
+    //   "pagecover"
+    // );
+    // processedPageCoversCount++;
+    return pageCover;
+  }
+
+  // Notion 만료 이미지 URL인지 확인
+  if (isNotionExpiringImageUrl(pageCover)) {
+    console.log(`🖼️ Notion 만료 pageCover 처리: ${extractFileName(pageCover)}`);
+    const cloudinaryUrl = await getOrCreateCloudinaryUrl(
+      pageCover,
+      "pagecover"
+    );
+    processedPageCoversCount++;
+    return cloudinaryUrl;
+  }
+
+  // 이미 Cloudinary URL이거나 다른 안전한 URL인 경우 그대로 반환
+  return pageCover;
+}
+
+/**
+ * Unsplash 이미지 URL인지 확인
+ */
+function isUnsplashImageUrl(url: string): boolean {
+  return url.startsWith("https://images.unsplash.com");
+}
+
+/**
+ * Notion 만료 이미지 URL인지 확인
+ */
+function isNotionExpiringImageUrl(url: string): boolean {
+  return url.startsWith("https://prod-files-secure.s3.us-west-2.amazonaws.com");
+}
+
+/**
  * 노션 이미지 URL을 Cloudinary URL로 변환
  */
 async function processNotionImages(content: string): Promise<string> {
@@ -100,7 +150,7 @@ async function processNotionImages(content: string): Promise<string> {
     const [fullMatch, alt, imageUrl] = match;
 
     if (isNotionImageUrl(imageUrl)) {
-      const cloudinaryUrl = await getOrCreateCloudinaryUrl(imageUrl);
+      const cloudinaryUrl = await getOrCreateCloudinaryUrl(imageUrl, "content");
       const newImageTag = `![${alt}](${cloudinaryUrl})`;
       processedContent = processedContent.replace(fullMatch, newImageTag);
       processedImagesCount++;
@@ -115,7 +165,7 @@ async function processNotionImages(content: string): Promise<string> {
     const [fullMatch, imageUrl] = match;
 
     if (isNotionImageUrl(imageUrl)) {
-      const cloudinaryUrl = await getOrCreateCloudinaryUrl(imageUrl);
+      const cloudinaryUrl = await getOrCreateCloudinaryUrl(imageUrl, "content");
       const newImageTag = fullMatch.replace(imageUrl, cloudinaryUrl);
       processedContent = processedContent.replace(fullMatch, newImageTag);
       processedImagesCount++;
@@ -139,7 +189,10 @@ function isNotionImageUrl(url: string): boolean {
 /**
  * Cloudinary URL 생성 또는 기존 캐시 사용
  */
-async function getOrCreateCloudinaryUrl(originalUrl: string): Promise<string> {
+async function getOrCreateCloudinaryUrl(
+  originalUrl: string,
+  type: "content" | "pagecover" = "content"
+): Promise<string> {
   try {
     // Redis에서 캐시된 URL 확인
     const cachedUrl = await imageCacheManager.getCachedImageUrl(originalUrl);
@@ -274,6 +327,13 @@ async function main() {
         // 노션 이미지를 Cloudinary URL로 변환
         console.log(`🖼️ 이미지 처리 시작: ${slug}`);
         enhancedContent = await processNotionImages(enhancedContent);
+
+        // pageCover 이미지를 Cloudinary URL로 변환
+        if (pageCover) {
+          console.log(`🖼️ pageCover 처리 시작: ${slug}`);
+          pageCover = await processPageCover(pageCover);
+        }
+
         // 메타데이터 생성
         const description =
           props.description?.rich_text?.[0]?.plain_text?.trim() || "";
@@ -335,6 +395,7 @@ async function main() {
   console.log(`   - 총 처리된 이미지: ${processedImagesCount}개`);
   console.log(`   - Cloudinary 업로드: ${cloudinaryUploadCount}개`);
   console.log(`   - 캐시 히트: ${cacheHitCount}개`);
+  console.log(`   - 처리된 pageCover: ${processedPageCoversCount}개`);
 
   // Redis 캐시 통계 출력
   try {

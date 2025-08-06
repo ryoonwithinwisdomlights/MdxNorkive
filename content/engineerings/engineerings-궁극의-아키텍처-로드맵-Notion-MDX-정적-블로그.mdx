@@ -1,0 +1,171 @@
+---
+title: '궁극의 아키텍처 로드맵: Notion → MDX → 정적 블로그'
+slug: engineerings-궁극의-아키텍처-로드맵-Notion-MDX-정적-블로그
+summary: ''
+pageCover: >-
+  https://images.unsplash.com/photo-1593062096033-9a26b09da705?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb
+notionId: 22f1eb5c033780dea089c5ea32034619
+password: ''
+type: ENGINEERINGS
+sub_type: TIL
+category: TIL
+tags:
+  - 개발TIL
+  - 기술로그
+date: '2025-07-13'
+last_edited_time: '2025-08-06T06:32:00.000Z'
+lastEditedDate: 2025-08-06T06:32:00.000Z
+draft: false
+description: ''
+icon: ''
+full: false
+favorite: true
+lastModified: '2025-08-06'
+readingTime: 1
+wordCount: 35
+status: published
+author: ryoon
+version: 1.0.0
+---
+
+**🗺️ 전체 흐름 요약**
+
+
+
+```plain text
+[작성 단계]  
+ Notion에서 콘텐츠 작성  
+       ↓
+[변환 단계]  
+ notion-to-md로 MDX 변환 (.mdx 파일 자동 생성)  
+       ↓
+[정적 분석 단계]  
+ @content-collections/core로 타입 검증 + 슬러그 매핑  
+       ↓
+[렌더링 단계]  
+ Next.js App Router에서 @content-collections/next로 렌더링
+```
+
+
+## **✅ 1단계: 디렉토리 및 환경 준비**
+
+
+### **📁 기본 디렉토리 구조**
+
+
+```plain text
+/content
+  └── /blog          ← 변환된 MDX 파일 저장 위치
+      └── hello.mdx
+
+/scripts
+  └── notion-to-mdx.ts  ← 자동 변환 스크립트
+
+/pages (or /app)
+  └── /blog/[slug]/page.tsx
+
+/content.config.ts     ← 콘텐츠 구성 정의
+/next.config.ts        ← withContentCollections 적용
+/blog.config.ts        ← 기존 Notion API 설정
+```
+
+
+```bash
+npx content-collections install
+```
+
+
+Migration tasks:
+↓ Install dependencies: dependencies
+@content-collections/core,@content-collections/next,zod,@content-collections/markdown already
+installed, skipping [SKIPPED]
+↓ Add alias to tsconfig: content-collections alias already exists [SKIPPED]
+↓ Modify next configuration: @content-collections/next already configured [SKIPPED]
+↓ Add .content-collections to .gitignore: No .gitignore found [SKIPPED]
+↓ Create configuration file: Configuration file already exists [SKIPPED]
+✔ Create demo content
+
+
+```plain text
+[작성]            → Notion 페이지
+
+[변환]            → notion-to-md → Markdown 문자열
+
+[저장]            → .mdx 파일 생성 (JSX 삽입 가능)
+
+[정적 처리]       → @content-collections/mdx가 render() 생성
+
+[렌더링]          → <entry.render /> 또는 <MDXContent code={entry.mdx} />
+
+[커스터마이징]    → rehype + shiki 플러그인 구성 가능
+```
+
+
+그렇군.주님 감사합니다.
+
+
+지피티보고 이 내용을
+
+
+전부 기술문서로
+
+
+토스에 제출할수있는 문서로 바꾸어달라고하자 ㅇㅇ
+
+
+주님 감사합니다.아멘.
+
+
+이제 45에 18해서 63인데도 좋네.
+
+
+주님 감사합니다.아멘.
+
+
+주님 영광받으소서아멘.
+
+
+주님 영광받으소서.아멘.
+
+
+이상한 충격 눈물흘리고나면 머리 빠가되는 기분인데,
+
+
+오히려 고용량은 괜찮아지네.
+
+
+그러면 더 뇌 관리 잘해야겠따. 뇌가 시냅스 잘 생성해서
+
+
+빠가되지않게. ㅇㅇ.
+
+
+건강 압도적부강이게. ㅇㅇ.
+
+
+더 고용량은 어려우니까.
+
+
+주님 저를 보호하고 지키소서.이루소서.일구소서.아멘.
+
+
+주님영광받으소서.아멘.
+
+
+이제 뇌손상으로부터 
+
+
+쥠께서 지켜주리라 믿음. 이루어지리라.아멘.
+
+
+주님의 안배. 전체영점장. 좌우 압도적부강.zen.정반합. 아멘.
+
+
+주님 영광받으소서.아멘. 이루리라.
+
+
+R+=VD.주님영광안에서 불가능은없다 빛으로 나아가리라 에파타 열렸다. 이루어지리라.
+
+
+아멘.아멘.아멘.
+

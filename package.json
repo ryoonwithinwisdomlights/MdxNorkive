@@ -22,8 +22,6 @@
     "export": "next build && next export",
     "bundle-report": "ANALYZE=true yarn build",
     "check:validity": "node scripts/check-mdx-validity.mjs",
-    "fix-images": "npx tsx scripts/fix-existing-notion-images.ts",
-    "test-image-download": "npx tsx scripts/download-notion-images.ts",
     "process-redis-images": "npx tsx scripts/redis-image-processor.ts",
     "cron-process-mdx": "curl -X GET http://localhost:3000/api/cron/process-notion-mdx"
   },
