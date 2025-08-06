@@ -1,11 +1,10 @@
+import { compile } from "@mdx-js/mdx";
 import fs from "fs/promises";
 import path from "path";
-import { compile } from "@mdx-js/mdx";
-import pkg, {
+import {
   decodeUrlEncodedLinks,
   processMdxContent,
 } from "../lib/utils/convert-unsafe-mdx-content.js";
-const { convertUnsafeTags } = pkg;
 
 const BASE_OUTPUT_DIR = path.join(process.cwd(), "content");
 

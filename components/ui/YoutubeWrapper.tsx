@@ -8,7 +8,7 @@ interface YoutubeWrappereProps {
   urls: string;
 }
 
-export function YoutubeWrapper(props: YoutubeWrappereProps) {
+export default function YoutubeWrapper(props: YoutubeWrappereProps) {
   const { names, urls } = props;
   const youtubeVideoId = getYoutubeId(urls);
   const params = getUrlParams(urls);

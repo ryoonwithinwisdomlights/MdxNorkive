@@ -88,86 +88,6 @@ body{
   flex-direction: column;
 }
 
-.google-drive{
-  gap: 8px;
-  padding: 10px;
-  cursor: pointer;
-   background-color: #f0f0f0; 
-   border: 1px solid #333;
-  display: inline-flex;
-  align-items: center;
-  position: relative; 
-}
-
-/* CSS 툴팁 효과 */
-.google-drive::before {
-  content: "Google Drive File Open";
-  position: absolute;
-  top: 100%;
-  left: 80%;
-  transform: translateX(-50%);
-  background-color: #333;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 12px;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  z-index: 1000;
-}
-
-.google-drive:hover::before {
-  opacity: 1;
-  visibility: visible;
-}
-
-.pdf-link {
-  background-color: #f0f0f0;
-  padding: 10px;
-  border-radius: 5px;
-  color: #333;
-  text-decoration: none;
-  /* font-weight: bold; */
-  transition: background-color 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  position: relative;
-}
-
-/* CSS 툴팁 효과 */
-.pdf-link::before {
-  content: "PDF Open";
-  position: absolute;
-  top: 100%;
-  left: 80%;
-  transform: translateX(-50%);
-  background-color: #333;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 12px;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  z-index: 1000;
-}
-
-.pdf-link:hover::before {
-  opacity: 1;
-  visibility: visible;
-}
-
-.pdf-link {
-  gap: 8px;
-  margin: 4px 0;
-  cursor: pointer;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
 
 
 .youtube-lite {
@@ -337,20 +257,25 @@ img {
 [data-tooltip]::after {
   content: attr(data-tooltip);
   position: absolute;
-  top: 35px; /* 툴팁 위치 조정 */
+  top: 100%;
   left: 50%;
+  z-index: 9999;
   transform: translateX(-50%);
-  background-color: black;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  background-color: #333;
   color: white;
-  padding: 4px 8px;
+  padding: 5px 10px;
   border-radius: 4px;
   white-space: nowrap;
-  font-size: 14px;
-  display: none;
+  font-size: 12px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 [data-tooltip]:hover::after {
-  display: block;
+  opacity: 1;
+  visibility: visible;
 }
 
 nav {

@@ -141,8 +141,9 @@ async function main() {
 
           let enhancedContent = content;
           // 안전 변환 적용
-          enhancedContent = processMdxContent(enhancedContent);
           enhancedContent = decodeUrlEncodedLinks(enhancedContent);
+          enhancedContent = processMdxContent(enhancedContent);
+
           // 메타데이터 생성
           const description =
             props.description?.rich_text?.[0]?.plain_text?.trim() || "";
