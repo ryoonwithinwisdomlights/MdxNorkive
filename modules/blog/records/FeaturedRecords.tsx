@@ -155,11 +155,17 @@ const FeaturedRecords = ({
               <div className="flex flex-col h-full justify-between">
                 <div>
                   {/* 제목 */}
-                  <h3 className="text-2xl lg:text-3xl font-bold text-neutral-900 dark:text-white mb-4 leading-tight">
-                    {currentPage.data.title.length > 35
-                      ? currentPage.data.title.slice(0, 35) + "..."
-                      : currentPage.data.title}
-                  </h3>
+
+                  <Link href={currentPage.url}>
+                    <h3
+                      className="text-2xl lg:text-3xl font-bold text-neutral-900 dark:text-white mb-4 leading-tight
+                    hover:underline transition-all duration-300"
+                    >
+                      {currentPage.data.title.length > 35
+                        ? currentPage.data.title.slice(0, 35) + "..."
+                        : currentPage.data.title}
+                    </h3>
+                  </Link>
 
                   {currentPage.data.type && (
                     <div className="flex items-center gap-2 text-neutral-500 dark:text-neutral-400 mb-6">
