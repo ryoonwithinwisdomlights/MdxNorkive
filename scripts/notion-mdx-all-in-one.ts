@@ -67,8 +67,8 @@ let cacheHitCount = 0;
 let processedPageCoversCount = 0;
 
 // ✅ PDF 처리 통계
-let processedPdfsCount = 0;
-let cloudinaryPdfUploadCount = 0;
+let processedFilesCount = 0;
+let cloudinaryFileUploadCount = 0;
 
 // 1. 기존 MDX 파일의 notionId → endDate 매핑
 async function getExistingEndDates() {
@@ -147,7 +147,9 @@ async function processNotionImages(content: string): Promise<string> {
   for (const match of markdownMatches) {
     const [fullMatch, alt, imageUrl] = match;
 
-    if (isNotionImageUrl(imageUrl)) {
+    // alt 텍스트에 파일 확장자가 있고, 그 확장자가 이미지이고, URL이 Notion URL인 경우만 처리
+    if (alt && isImageFile(alt) && isNotionImageUrl(imageUrl)) {
+      console.log(`🖼️ 이미지 파일 감지: ${alt}`);
       const cloudinaryUrl = await getOrCreateCloudinaryUrl(imageUrl, "content");
       const newImageTag = `![${alt}](${cloudinaryUrl})`;
       processedContent = processedContent.replace(fullMatch, newImageTag);
@@ -182,6 +184,62 @@ function isNotionImageUrl(url: string): boolean {
     url.includes("s3.us-west-2.amazonaws.com") ||
     url.includes("notion.so")
   );
+}
+
+/**
+ * 파일 확장자가 이미지인지 확인
+ */
+function isImageFile(fileName: string): boolean {
+  const imageExtensions = [
+    "jpg",
+    "jpeg",
+    "png",
+    "gif",
+    "bmp",
+    "webp",
+    "svg",
+    "ico",
+    "tiff",
+    "tif",
+    "JPG",
+    "JPEG",
+    "PNG",
+    "GIF",
+    "BMP",
+    "WEBP",
+    "SVG",
+    "ICO",
+    "TIFF",
+    "TIF",
+  ];
+
+  const extension = fileName.split(".").pop()?.toLowerCase();
+  return extension ? imageExtensions.includes(extension) : false;
+}
+
+/**
+ * 파일 확장자가 문서인지 확인
+ */
+function isDocumentFile(fileName: string): boolean {
+  const documentExtensions = [
+    "pdf",
+    "doc",
+    "docx",
+    "rtf",
+    "txt",
+    "md",
+    "odt",
+    "PDF",
+    "DOC",
+    "DOCX",
+    "RTF",
+    "TXT",
+    "MD",
+    "ODT",
+  ];
+
+  const extension = fileName.split(".").pop()?.toLowerCase();
+  return extension ? documentExtensions.includes(extension) : false;
 }
 
 /**
@@ -256,34 +314,64 @@ function extractFileName(url: string): string {
 }
 
 /**
- * PDF 링크를 Cloudinary URL로 변환
+ * 문서 링크를 Cloudinary URL로 변환 (PDF, DOC, RTF 등)
  */
-async function processPdfLinks(content: string): Promise<string> {
-  // PDF 링크 패턴: [파일명.pdf](URL)
-  const pdfLinkRegex = /\[([^\]]+\.pdf)\]\(([^)]+)\)/g;
+async function processDocumentLinks(content: string): Promise<string> {
+  // 문서 링크 패턴: [파일명.확장자](URL)
+  const documentLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
 
   let processedContent = content;
   let match;
 
-  while ((match = pdfLinkRegex.exec(content)) !== null) {
-    const [fullMatch, fileName, pdfUrl] = match;
+  while ((match = documentLinkRegex.exec(content)) !== null) {
+    const [fullMatch, fileName, documentUrl] = match;
 
-    try {
-      console.log(`📄 PDF 처리 중: ${fileName} (${pdfUrl})`);
+    // 파일명이 문서 확장자를 가지고 있고, URL이 Notion URL인 경우만 처리
+    if (fileName && isDocumentFile(fileName) && isNotionImageUrl(documentUrl)) {
+      try {
+        console.log(`📄 문서 처리 중: ${fileName} (${documentUrl})`);
 
-      // PDF를 Cloudinary에 업로드
-      const result = await uploadPdfFromUrl(pdfUrl, fileName);
+        // Redis에서 캐시된 URL 확인
+        const cachedUrl = await imageCacheManager.getCachedImageUrl(
+          documentUrl
+        );
 
-      // 원본 링크를 Cloudinary URL로 교체
-      const newLink = `[${fileName}](${result.secure_url})`;
-      processedContent = processedContent.replace(fullMatch, newLink);
+        let cloudinaryUrl: string;
 
-      console.log(`✅ PDF 업로드 완료: ${fileName} → ${result.secure_url}`);
-      processedPdfsCount++;
-      cloudinaryPdfUploadCount++;
-    } catch (error) {
-      console.error(`❌ PDF 업로드 실패: ${fileName}`, error);
-      // 실패한 경우 원본 링크 유지
+        if (cachedUrl) {
+          cacheHitCount++;
+          console.log(`🔄 문서 캐시 히트: ${fileName}`);
+          cloudinaryUrl = cachedUrl;
+        } else {
+          // 문서를 Cloudinary에 업로드
+          const result = await uploadPdfFromUrl(documentUrl, fileName);
+
+          // Redis에 캐시 정보 저장
+          await imageCacheManager.cacheImageUrl(
+            documentUrl,
+            result.secure_url,
+            {
+              fileName: fileName,
+              size: result.bytes,
+              contentType: "application/octet-stream", // 일반 문서 타입
+            }
+          );
+
+          cloudinaryUrl = result.secure_url;
+          cloudinaryFileUploadCount++;
+          console.log(
+            `✅ 문서 업로드 완료: ${fileName} → ${result.secure_url}`
+          );
+        }
+
+        // 원본 링크를 Cloudinary URL로 교체
+        const newLink = `[${fileName}](${cloudinaryUrl})`;
+        processedContent = processedContent.replace(fullMatch, newLink);
+        processedFilesCount++;
+      } catch (error) {
+        console.error(`❌ 문서 업로드 실패: ${fileName}`, error);
+        // 실패한 경우 원본 링크 유지
+      }
     }
   }
 
@@ -362,9 +450,9 @@ async function main() {
         console.log(`🖼️ 이미지 처리 시작: ${slug}`);
         enhancedContent = await processNotionImages(enhancedContent);
 
-        // PDF 링크를 Cloudinary URL로 변환
-        console.log(`📄 PDF 처리 시작: ${slug}`);
-        enhancedContent = await processPdfLinks(enhancedContent);
+        // 문서 링크를 Cloudinary URL로 변환
+        console.log(`📄 문서 링크 처리 시작: ${slug}`);
+        enhancedContent = await processDocumentLinks(enhancedContent);
 
         // pageCover 이미지를 Cloudinary URL로 변환
         if (pageCover) {
@@ -435,23 +523,23 @@ async function main() {
   console.log(`   - 캐시 히트: ${cacheHitCount}개`);
   console.log(`   - 처리된 pageCover: ${processedPageCoversCount}개`);
 
-  // PDF 처리 통계 출력
-  console.log("\n📄 PDF 처리 통계:");
-  console.log(`   - 총 처리된 PDF: ${processedPdfsCount}개`);
-  console.log(`   - Cloudinary PDF 업로드: ${cloudinaryPdfUploadCount}개`);
+  // 문서 처리 통계 출력
+  console.log("\n📄 문서 처리 통계:");
+  console.log(`   - 총 처리된 문서: ${processedFilesCount}개`);
+  console.log(`   - Cloudinary 문서 업로드: ${cloudinaryFileUploadCount}개`);
 
-  // Redis 캐시 통계 출력
-  try {
-    const cacheStats = await imageCacheManager.getCacheStats();
-    console.log("\n📊 Redis 캐시 통계:");
-    console.log(`   - 총 캐시된 이미지: ${cacheStats.totalImages}개`);
-    console.log(
-      `   - 총 크기: ${(cacheStats.totalSize / 1024 / 1024).toFixed(2)}MB`
-    );
-    console.log(`   - 만료된 이미지: ${cacheStats.expiredCount}개`);
-  } catch (error) {
-    console.log(`\n⚠️ Redis 캐시 통계 조회 실패: ${error}`);
-  }
+  // Redis 캐시 통계 출력 (개발용 - 필요시 주석 해제)
+  // try {
+  //   const cacheStats = await imageCacheManager.getCacheStats();
+  //   console.log("\n📊 Redis 캐시 통계:");
+  //   console.log(`   - 총 캐시된 이미지: ${cacheStats.totalImages}개`);
+  //   console.log(
+  //     `   - 총 크기: ${(cacheStats.totalSize / 1024 / 1024).toFixed(2)}MB`
+  //   );
+  //   console.log(`   - 만료된 이미지: ${cacheStats.expiredCount}개`);
+  // } catch (error) {
+  //   console.log(`\n⚠️ Redis 캐시 통계 조회 실패: ${error}`);
+  // }
 
   console.log("\n🎉 Notion → MDX 변환 및 안전화 통합 완료!");
 }

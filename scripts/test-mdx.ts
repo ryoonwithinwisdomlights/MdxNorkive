@@ -63,8 +63,8 @@ let cacheHitCount = 0;
 let processedPageCoversCount = 0;
 
 // ✅ PDF 처리 통계
-let processedPdfsCount = 0;
-let cloudinaryPdfUploadCount = 0;
+let processedFilesCount = 0;
+let cloudinaryFileUploadCount = 0;
 
 // 1. 기존 MDX 파일의 notionId → endDate 매핑
 async function getExistingEndDates() {
@@ -222,7 +222,7 @@ async function processDocumentLinks(content: string): Promise<string> {
           );
 
           cloudinaryUrl = result.secure_url;
-          cloudinaryPdfUploadCount++;
+          cloudinaryFileUploadCount++;
           console.log(
             `✅ 문서 업로드 완료: ${fileName} → ${result.secure_url}`
           );
@@ -231,7 +231,7 @@ async function processDocumentLinks(content: string): Promise<string> {
         // 원본 링크를 Cloudinary URL로 교체
         const newLink = `[${fileName}](${cloudinaryUrl})`;
         processedContent = processedContent.replace(fullMatch, newLink);
-        processedPdfsCount++;
+        processedFilesCount++;
       } catch (error) {
         console.error(`❌ 문서 업로드 실패: ${fileName}`, error);
         // 실패한 경우 원본 링크 유지
@@ -527,23 +527,23 @@ async function main() {
   console.log(`   - Cloudinary 업로드: ${cloudinaryUploadCount}개`);
   console.log(`   - 캐시 히트: ${cacheHitCount}개`);
 
-  // PDF 처리 통계 출력
-  console.log("\n📄 PDF 처리 통계:");
-  console.log(`   - 총 처리된 PDF: ${processedPdfsCount}개`);
-  console.log(`   - Cloudinary PDF 업로드: ${cloudinaryPdfUploadCount}개`);
+  // 문서 처리 통계 출력
+  console.log("\n📄 문서 처리 통계:");
+  console.log(`   - 총 처리된 문서: ${processedFilesCount}개`);
+  console.log(`   - Cloudinary 문서 업로드: ${cloudinaryFileUploadCount}개`);
 
-  // Redis 캐시 통계 출력
-  try {
-    const cacheStats = await imageCacheManager.getCacheStats();
-    console.log("\n📊 Redis 캐시 통계:");
-    console.log(`   - 총 캐시된 이미지: ${cacheStats.totalImages}개`);
-    console.log(
-      `   - 총 크기: ${(cacheStats.totalSize / 1024 / 1024).toFixed(2)}MB`
-    );
-    console.log(`   - 만료된 이미지: ${cacheStats.expiredCount}개`);
-  } catch (error) {
-    console.log(`\n⚠️ Redis 캐시 통계 조회 실패: ${error}`);
-  }
+  // Redis 캐시 통계 출력 (개발용 - 필요시 주석 해제)
+  // try {
+  //   const cacheStats = await imageCacheManager.getCacheStats();
+  //   console.log("\n📊 Redis 캐시 통계:");
+  //   console.log(`   - 총 캐시된 이미지: ${cacheStats.totalImages}개`);
+  //   console.log(
+  //     `   - 총 크기: ${(cacheStats.totalSize / 1024 / 1024).toFixed(2)}MB`
+  //   );
+  //   console.log(`   - 만료된 이미지: ${cacheStats.expiredCount}개`);
+  // } catch (error) {
+  //   console.log(`\n⚠️ Redis 캐시 통계 조회 실패: ${error}`);
+  // }
 
   console.log("\n🎉 TEST Notion → MDX 변환 및 Cloudinary 이미지 처리 완료!");
 }
