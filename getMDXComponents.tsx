@@ -12,7 +12,7 @@ import defaultMdxComponents from "fumadocs-ui/mdx";
 import * as icons from "lucide-react";
 import type { MDXComponents } from "mdx/types";
 
-import PdfWrapper from "./components/ui/PdfWrapper";
+import FileWrapper from "./components/ui/FileWrapper";
 import GoogleDriveWrapper from "./components/ui/GoogleDriveWrapper";
 import YoutubeWrapper from "./components/ui/YoutubeWrapper";
 import EmbededWrapper from "./components/ui/EmbededWrapper";
@@ -60,7 +60,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     a: CustomLinkComponent,
     YoutubeWrapper,
     EmbededWrapper,
-    PdfWrapper,
+    FileWrapper,
     GoogleDriveWrapper,
     BookMarkWrapper,
     ...components,

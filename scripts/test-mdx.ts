@@ -191,16 +191,35 @@ async function processPdfLinks(content: string): Promise<string> {
     try {
       console.log(`📄 PDF 처리 중: ${fileName} (${pdfUrl})`);
 
-      // PDF를 Cloudinary에 업로드
-      const result = await uploadPdfFromUrl(pdfUrl, fileName);
+      // Redis에서 캐시된 URL 확인
+      const cachedUrl = await imageCacheManager.getCachedImageUrl(pdfUrl);
+
+      let cloudinaryUrl: string;
+
+      if (cachedUrl) {
+        cacheHitCount++;
+        console.log(`🔄 PDF 캐시 히트: ${fileName}`);
+        cloudinaryUrl = cachedUrl;
+      } else {
+        // PDF를 Cloudinary에 업로드
+        const result = await uploadPdfFromUrl(pdfUrl, fileName);
+
+        // Redis에 캐시 정보 저장
+        await imageCacheManager.cacheImageUrl(pdfUrl, result.secure_url, {
+          fileName: fileName,
+          size: result.bytes,
+          contentType: "application/pdf",
+        });
+
+        cloudinaryUrl = result.secure_url;
+        cloudinaryPdfUploadCount++;
+        console.log(`✅ PDF 업로드 완료: ${fileName} → ${result.secure_url}`);
+      }
 
       // 원본 링크를 Cloudinary URL로 교체
-      const newLink = `[${fileName}](${result.secure_url})`;
+      const newLink = `[${fileName}](${cloudinaryUrl})`;
       processedContent = processedContent.replace(fullMatch, newLink);
-
-      console.log(`✅ PDF 업로드 완료: ${fileName} → ${result.secure_url}`);
       processedPdfsCount++;
-      cloudinaryPdfUploadCount++;
     } catch (error) {
       console.error(`❌ PDF 업로드 실패: ${fileName}`, error);
       // 실패한 경우 원본 링크 유지
@@ -369,7 +388,7 @@ async function main() {
           console.log(`🖼️ 이미지 처리 시작: ${slug}`);
           enhancedContent = await processNotionImages(enhancedContent);
 
-          // pageCover 이미지를 Cloudinary URL로 변환
+          // // pageCover 이미지를 Cloudinary URL로 변환
           if (pageCover) {
             console.log(`🖼️ pageCover 처리 시작: ${slug}`);
             pageCover = await processPageCover(pageCover);

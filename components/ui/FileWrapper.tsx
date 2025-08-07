@@ -1,12 +1,12 @@
 import { FileTextIcon, HardDrive } from "lucide-react";
 import * as React from "react";
 
-interface PdfWrapperProps {
+interface FileWrapperProps {
   names: string;
   urls: string;
 }
 
-export default function PdfWrapper(props: PdfWrapperProps) {
+export default function FileWrapper(props: FileWrapperProps) {
   const { names, urls } = props;
 
   if (!urls) return null;
