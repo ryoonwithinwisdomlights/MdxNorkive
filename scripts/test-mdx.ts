@@ -149,7 +149,9 @@ async function processNotionImages(content: string): Promise<string> {
   for (const match of markdownMatches) {
     const [fullMatch, alt, imageUrl] = match;
 
-    if (isNotionImageUrl(imageUrl)) {
+    // alt 텍스트에 파일 확장자가 있고, 그 확장자가 이미지이고, URL이 Notion URL인 경우만 처리
+    if (alt && isImageFile(alt) && isNotionImageUrl(imageUrl)) {
+      console.log(`🖼️ 이미지 파일 감지: ${alt}`);
       const cloudinaryUrl = await getOrCreateCloudinaryUrl(imageUrl, "content");
       const newImageTag = `![${alt}](${cloudinaryUrl})`;
       processedContent = processedContent.replace(fullMatch, newImageTag);
@@ -176,53 +178,64 @@ async function processNotionImages(content: string): Promise<string> {
 }
 
 /**
- * PDF 링크를 Cloudinary URL로 변환
+ * 문서 링크를 Cloudinary URL로 변환 (PDF, DOC, RTF 등)
  */
-async function processPdfLinks(content: string): Promise<string> {
-  // PDF 링크 패턴: [파일명.pdf](URL)
-  const pdfLinkRegex = /\[([^\]]+\.pdf)\]\(([^)]+)\)/g;
+async function processDocumentLinks(content: string): Promise<string> {
+  // 문서 링크 패턴: [파일명.확장자](URL)
+  const documentLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
 
   let processedContent = content;
   let match;
 
-  while ((match = pdfLinkRegex.exec(content)) !== null) {
-    const [fullMatch, fileName, pdfUrl] = match;
+  while ((match = documentLinkRegex.exec(content)) !== null) {
+    const [fullMatch, fileName, documentUrl] = match;
 
-    try {
-      console.log(`📄 PDF 처리 중: ${fileName} (${pdfUrl})`);
+    // 파일명이 문서 확장자를 가지고 있고, URL이 Notion URL인 경우만 처리
+    if (fileName && isDocumentFile(fileName) && isNotionImageUrl(documentUrl)) {
+      try {
+        console.log(`📄 문서 처리 중: ${fileName} (${documentUrl})`);
 
-      // Redis에서 캐시된 URL 확인
-      const cachedUrl = await imageCacheManager.getCachedImageUrl(pdfUrl);
+        // Redis에서 캐시된 URL 확인
+        const cachedUrl = await imageCacheManager.getCachedImageUrl(
+          documentUrl
+        );
 
-      let cloudinaryUrl: string;
+        let cloudinaryUrl: string;
 
-      if (cachedUrl) {
-        cacheHitCount++;
-        console.log(`🔄 PDF 캐시 히트: ${fileName}`);
-        cloudinaryUrl = cachedUrl;
-      } else {
-        // PDF를 Cloudinary에 업로드
-        const result = await uploadPdfFromUrl(pdfUrl, fileName);
+        if (cachedUrl) {
+          cacheHitCount++;
+          console.log(`🔄 문서 캐시 히트: ${fileName}`);
+          cloudinaryUrl = cachedUrl;
+        } else {
+          // 문서를 Cloudinary에 업로드
+          const result = await uploadPdfFromUrl(documentUrl, fileName);
 
-        // Redis에 캐시 정보 저장
-        await imageCacheManager.cacheImageUrl(pdfUrl, result.secure_url, {
-          fileName: fileName,
-          size: result.bytes,
-          contentType: "application/pdf",
-        });
+          // Redis에 캐시 정보 저장
+          await imageCacheManager.cacheImageUrl(
+            documentUrl,
+            result.secure_url,
+            {
+              fileName: fileName,
+              size: result.bytes,
+              contentType: "application/octet-stream", // 일반 문서 타입
+            }
+          );
 
-        cloudinaryUrl = result.secure_url;
-        cloudinaryPdfUploadCount++;
-        console.log(`✅ PDF 업로드 완료: ${fileName} → ${result.secure_url}`);
+          cloudinaryUrl = result.secure_url;
+          cloudinaryPdfUploadCount++;
+          console.log(
+            `✅ 문서 업로드 완료: ${fileName} → ${result.secure_url}`
+          );
+        }
+
+        // 원본 링크를 Cloudinary URL로 교체
+        const newLink = `[${fileName}](${cloudinaryUrl})`;
+        processedContent = processedContent.replace(fullMatch, newLink);
+        processedPdfsCount++;
+      } catch (error) {
+        console.error(`❌ 문서 업로드 실패: ${fileName}`, error);
+        // 실패한 경우 원본 링크 유지
       }
-
-      // 원본 링크를 Cloudinary URL로 교체
-      const newLink = `[${fileName}](${cloudinaryUrl})`;
-      processedContent = processedContent.replace(fullMatch, newLink);
-      processedPdfsCount++;
-    } catch (error) {
-      console.error(`❌ PDF 업로드 실패: ${fileName}`, error);
-      // 실패한 경우 원본 링크 유지
     }
   }
 
@@ -238,6 +251,62 @@ function isNotionImageUrl(url: string): boolean {
     url.includes("s3.us-west-2.amazonaws.com") ||
     url.includes("notion.so")
   );
+}
+
+/**
+ * 파일 확장자가 이미지인지 확인
+ */
+function isImageFile(fileName: string): boolean {
+  const imageExtensions = [
+    "jpg",
+    "jpeg",
+    "png",
+    "gif",
+    "bmp",
+    "webp",
+    "svg",
+    "ico",
+    "tiff",
+    "tif",
+    "JPG",
+    "JPEG",
+    "PNG",
+    "GIF",
+    "BMP",
+    "WEBP",
+    "SVG",
+    "ICO",
+    "TIFF",
+    "TIF",
+  ];
+
+  const extension = fileName.split(".").pop()?.toLowerCase();
+  return extension ? imageExtensions.includes(extension) : false;
+}
+
+/**
+ * 파일 확장자가 문서인지 확인
+ */
+function isDocumentFile(fileName: string): boolean {
+  const documentExtensions = [
+    "pdf",
+    "doc",
+    "docx",
+    "rtf",
+    "txt",
+    "md",
+    "odt",
+    "PDF",
+    "DOC",
+    "DOCX",
+    "RTF",
+    "TXT",
+    "MD",
+    "ODT",
+  ];
+
+  const extension = fileName.split(".").pop()?.toLowerCase();
+  return extension ? documentExtensions.includes(extension) : false;
 }
 
 /**
@@ -377,9 +446,9 @@ async function main() {
           }
 
           let enhancedContent = content;
-          // PDF 링크를 Cloudinary URL로 변환
-          console.log(`📄 PDF 링크 처리 시작: ${slug}`);
-          enhancedContent = await processPdfLinks(enhancedContent);
+          // 문서 링크를 Cloudinary URL로 변환
+          console.log(`📄 문서 링크 처리 시작: ${slug}`);
+          enhancedContent = await processDocumentLinks(enhancedContent);
 
           // 안전 변환 적용
           enhancedContent = decodeUrlEncodedLinks(enhancedContent);
