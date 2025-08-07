@@ -3,15 +3,17 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils/date";
-import LazyImage from "@/modules/common/components/shared/LazyImage";
+import LazyImage from "@/components/LazyImage";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import {
   CalendarIcon,
   ChevronLeft,
   ChevronRight,
   FolderClosedIcon,
+  LockIcon,
   TagIcon,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 type Props = {
   type: string;
@@ -29,6 +31,10 @@ const FeaturedRecords = ({
   const pages = records;
   if (!pages) return null;
 
+  const router = useRouter();
+
+  // Article lock🔐
+  const [lock, setLock] = useState("");
   const { locale, lang } = useGeneralSiteSettings();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentRecordType, setCurrentRecordType] = useState("");
@@ -126,6 +132,15 @@ const FeaturedRecords = ({
   const handleRecordTypeChange = (option: string) => {
     setCurrentRecordType(option);
   };
+
+  // const handlePassword = (password: string) => {
+  //   setLock(password);
+  // };
+  const handleRouter = (currentPage: any) => {
+    if (currentPage.data.password === "") {
+      router.push(currentPage.url);
+    }
+  };
   const currentPage = filteredPages[currentIndex];
 
   return (
@@ -156,23 +171,35 @@ const FeaturedRecords = ({
                 <div>
                   {/* 제목 */}
 
-                  <Link href={currentPage.url}>
+                  <div
+                    onClick={() => handleRouter(currentPage)}
+                    className="flex flex-row justify-start items-center mb-4 gap-2"
+                  >
                     <h3
-                      className="text-2xl lg:text-3xl font-bold text-neutral-900 dark:text-white mb-4 leading-tight
+                      className="text-2xl lg:text-3xl font-bold text-neutral-900 dark:text-white  leading-tight
                     hover:underline transition-all duration-300"
                     >
                       {currentPage.data.title.length > 35
                         ? currentPage.data.title.slice(0, 35) + "..."
                         : currentPage.data.title}
                     </h3>
-                  </Link>
+                  </div>
 
-                  {currentPage.data.type && (
-                    <div className="flex items-center gap-2 text-neutral-500 dark:text-neutral-400 mb-6">
-                      <FolderClosedIcon className="w-4 h-4" />
-                      <span className="text-sm">{currentPage.data.type}</span>
-                    </div>
-                  )}
+                  <div className="flex flex-row justify-start items-center gap-2  text-neutral-500 dark:text-neutral-400 mb-6">
+                    {" "}
+                    {currentPage.data.type && (
+                      <div className="flex items-center gap-2 ">
+                        <FolderClosedIcon className="w-4 h-4" />
+                        <span className="text-sm">{currentPage.data.type}</span>
+                      </div>
+                    )}
+                    {currentPage.data.password !== "" && (
+                      <div className="flex flex-row  gap-1 text-sm justify-start items-center">
+                        /<LockIcon className="w-4 h-4" />
+                        <span className="text-sm">{locale.COMMON.LOCKED}</span>
+                      </div>
+                    )}
+                  </div>
 
                   {/* 날짜 */}
                   <div className="flex items-center gap-2 text-neutral-500 dark:text-neutral-400 mb-4">
@@ -206,12 +233,14 @@ const FeaturedRecords = ({
                 </div>
 
                 {/* 자세히 보기 버튼 */}
-                <Link
-                  href={currentPage.url}
-                  className="inline-flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-300 font-medium hover:underline transition-all duration-300"
-                >
-                  {locale.INTRO.READ_MORE}→
-                </Link>
+                <div className="flex flex-row justify-start items-center gap-2">
+                  <Link
+                    href={currentPage.url}
+                    className="inline-flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-300 font-medium hover:underline transition-all duration-300"
+                  >
+                    {locale.INTRO.READ_MORE}→
+                  </Link>
+                </div>
               </div>
             </div>
 

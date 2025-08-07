@@ -1,6 +1,6 @@
 import { BLOG } from "@/blog.config";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import LazyImage from "@/modules/common/components/shared/LazyImage";
+import LazyImage from "@/components/LazyImage";
 import NotionIcon from "@/modules/common/components/shared/NotionIcon";
 import { Skeleton } from "@/modules/common/ui/Skeleton";
 import {

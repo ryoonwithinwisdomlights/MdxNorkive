@@ -34,7 +34,7 @@ const ProjectCardInfo = ({
     >
       <div className="flex flex-col items-start  text-start gap-2">
         <div
-          className={`line-clamp-2 flex flex-row replace cursor-pointer text-2xl ${
+          className={`line-clamp-2 flex flex-row justify-start gap-2 replace cursor-pointer text-2xl ${
             showPreview ? "text-center" : ""
           } leading-tight font-normal text-neutral-900 dark:text-white `}
         >
@@ -43,6 +43,12 @@ const ProjectCardInfo = ({
               ? page.data.title.slice(0, 35) + "..."
               : page.data.title}
           </span>
+          {page.data.password !== "" && (
+            <div className=" text-neutral-500 dark:text-neutral-400 flex flex-row  gap-1 text-sm justify-start items-center">
+              <LockIcon className="w-2 h-2" />
+              <span className="text-sm">{locale.COMMON.LOCKED}</span>
+            </div>
+          )}
         </div>
 
         {page.data.type && (
@@ -62,14 +68,6 @@ const ProjectCardInfo = ({
                 {getDistanceFromToday(page.data.date, lang)}
               </span>
             </div>
-            <span className="text-xs flex flex-row text-neutral-500 dark:text-neutral-400">
-              {page.data.password !== "" && (
-                <>
-                  <LockIcon className="mr-1 w-4 h-4" />
-                  &nbsp;{locale.COMMON.LOCKED}
-                </>
-              )}
-            </span>
           </div>
         )}
 

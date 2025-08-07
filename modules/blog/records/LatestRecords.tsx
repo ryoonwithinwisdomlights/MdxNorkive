@@ -9,6 +9,7 @@ import {
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import PageIndicator from "./PageIndicator";
 import LazyImage from "@/components/LazyImage";
+import { LockIcon } from "lucide-react";
 
 type Props = {
   type: string;
@@ -165,6 +166,12 @@ const LatestRecords = ({ records, introTrue, subType = false }: Props) => {
               >
                 {firstArticle.title}
               </Link>
+              {firstArticle.password !== "" && (
+                <div className="flex flex-row  gap-1 text-sm justify-start items-center">
+                  <LockIcon className="w-4 h-4" />
+                  <span className="text-sm">{locale.COMMON.LOCKED}</span>
+                </div>
+              )}
             </div>
 
             <h3 className="  text-black mt-1 line-clamp-2">
@@ -210,12 +217,17 @@ const LatestRecords = ({ records, introTrue, subType = false }: Props) => {
                 <span className="text-xs text-neutral-500 dark:text-neutral-400  uppercase tracking-wide">
                   {article.type} / {article.sub_type}
                 </span>
-                <Link
-                  href={firstArticle.url}
-                  className=" hover:underline text-sm font-semibold text-neutral-900 dark:text-white mt-1 line-clamp-2"
-                >
-                  {article.title}
+                <Link href={firstArticle.url} className="">
+                  <span className=" hover:underline text-sm font-semibold text-neutral-900 dark:text-white mt-1 line-clamp-2">
+                    {article.title}
+                  </span>
                 </Link>
+                {article.password !== "" && (
+                  <div className="mt-1 text-neutral-500 dark:text-neutral-400 flex flex-row  gap-1 text-sm justify-start items-center">
+                    <LockIcon className="w-2 h-2" />
+                    <span className="text-xs">{locale.COMMON.LOCKED}</span>
+                  </div>
+                )}
                 <h5 className="text-sm font-semibold text-neutral-500 dark:text-neutral-400  mt-1 line-clamp-2">
                   {article.description}
                 </h5>

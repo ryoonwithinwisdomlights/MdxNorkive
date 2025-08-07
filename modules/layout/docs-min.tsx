@@ -1,5 +1,5 @@
 "use client";
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/DocButton";
 import { cn } from "@/lib/utils/general";
 import { HideIfEmpty } from "fumadocs-core/hide-if-empty";
 import Link from "fumadocs-core/link";

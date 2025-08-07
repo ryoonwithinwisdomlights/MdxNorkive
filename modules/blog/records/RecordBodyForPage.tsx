@@ -1,7 +1,7 @@
 import NotFound from "@/app/not-found";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import TypeCarousel from "@/modules/common/components/TypeCarousel";
-import LazyImage from "@/modules/common/components/shared/LazyImage";
+import LazyImage from "@/components/LazyImage";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import NoRecordFound from "./NoRecordFound";

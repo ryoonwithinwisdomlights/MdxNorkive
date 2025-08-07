@@ -11,8 +11,39 @@ interface ProcessResult {
   error?: string;
 }
 
+export const maxDuration = 300; // 5분 타임아웃
+
 export async function GET() {
   console.log("🛎️ [CRON] 노션 MDX 자동 처리 시작 -", new Date().toISOString());
+
+  // 환경변수 검증
+  const requiredEnvVars = [
+    "NOTION_ACCESS_TOKEN",
+    "NOTION_DATABASE_ID",
+    "CLOUDINARY_CLOUD_NAME",
+    "CLOUDINARY_API_KEY",
+    "CLOUDINARY_API_SECRET",
+    "UPSTASH_REDIS_REST_URL",
+    "UPSTASH_REDIS_REST_TOKEN",
+  ];
+
+  const missingEnvVars = requiredEnvVars.filter(
+    (envVar) => !process.env[envVar]
+  );
+
+  if (missingEnvVars.length > 0) {
+    console.error("❌ 필수 환경변수 누락:", missingEnvVars);
+    return NextResponse.json(
+      {
+        status: "error",
+        error: `Missing required environment variables: ${missingEnvVars.join(
+          ", "
+        )}`,
+        timestamp: new Date().toISOString(),
+      },
+      { status: 500 }
+    );
+  }
 
   try {
     // 1. 노션에서 모든 페이지 ID 가져오기

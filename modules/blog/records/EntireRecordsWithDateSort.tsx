@@ -1,7 +1,9 @@
 "use client";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { BasicPageDivProps } from "@/types";
 import { FolderClosedIcon, LockIcon } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 /**
  * Records grouping
 
@@ -12,6 +14,13 @@ export default function EntireRecordsWithDateSort({
   title,
   recordList,
 }: BasicPageDivProps) {
+  const router = useRouter();
+  const { locale } = useGeneralSiteSettings();
+  const handleRouter = (page: any) => {
+    // if (page.data.password === "") {
+    router.push(page.url);
+    // }
+  };
   return (
     <div key={title} className="w-full flex flex-col items-start">
       <div id={title} className=" font-semibold pb-4 text-2xl  ">
@@ -27,12 +36,13 @@ export default function EntireRecordsWithDateSort({
           >
             <div
               id={page.data.notionId}
-              className="flex flex-row items-start justify-between w-full  "
+              className="flex flex-row items-start justify-between  gap-4 w-full break-all "
             >
-              <Link
+              <div
                 key={page.url}
-                href={page.url}
+                onClick={() => handleRouter(page)}
                 className="dark:text-neutral-400
+                flex flex-row justify-start items-center 
                  hover:text-neutral-400  dark:hover:text-neutral-200 overflow-x-hidden 
                  hover:underline cursor-pointer text-neutral-600"
               >
@@ -40,18 +50,19 @@ export default function EntireRecordsWithDateSort({
                   {new Date(page.data.date).toISOString().split("T")[0]}
                 </span>
 
-                <span className="pl-2 pr-3 text-xs  ">{page.data.icon}</span>
-                <span className=" ">{page.data.title}</span>
-              </Link>
-              <span className="pl-2 pr-3  flex flex-row justify-start items-center text-neutral-500">
-                &nbsp;
-                {page.data.password !== "" && (
-                  <>
-                    <LockIcon className="mr-1 w-3" />
-                    비공개
-                  </>
-                )}
-              </span>
+                <div className="flex flex-row justify-start items-center gap-2">
+                  <span className="pl-2 pr-3 text-xs  ">{page.data.icon}</span>
+                  <span className="  ">{page.data.title}</span>
+
+                  {page.data.password !== "" && (
+                    <div className="pl-2 text-neutral-500 dark:text-neutral-400 flex flex-row  gap-1 text-sm justify-start items-center">
+                      <LockIcon className="w-3 h-3" />
+                      <span className="">{locale.COMMON.LOCKED}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
               {/* 카테고리 */}
               {page.data.category && (
                 <div className="flex items-center gap-1">

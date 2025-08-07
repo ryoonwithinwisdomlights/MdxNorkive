@@ -1,6 +1,6 @@
 "use client";
 import { BLOG } from "@/blog.config";
-import LazyImage from "@/modules/common/components/shared/LazyImage";
+import LazyImage from "@/components/LazyImage";
 
 const RightSideInfoBar = () => {
   return (

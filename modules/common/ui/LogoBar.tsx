@@ -1,7 +1,7 @@
 "use client"; // 클라이언트 컴포넌트
 import { BLOG } from "@/blog.config";
 import { getSiteInfo2 } from "@/lib/utils/site";
-import LazyImage from "@/modules/common/components/shared/LazyImage";
+import LazyImage from "@/components/LazyImage";
 import Link from "next/link";
 
 /**

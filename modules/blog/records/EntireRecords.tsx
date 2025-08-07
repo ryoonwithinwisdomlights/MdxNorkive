@@ -1,13 +1,19 @@
 "use client";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { getYearMonthDay } from "@/lib/utils/date";
-import { CalendarIcon, FolderClosedIcon, TagIcon } from "lucide-react";
+import {
+  CalendarIcon,
+  FolderClosedIcon,
+  LockIcon,
+  TagIcon,
+} from "lucide-react";
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import PageIndicator from "./PageIndicator";
 import TagList from "./TagList";
+import { useRouter } from "next/navigation";
 
 type Props = {
   type: string;
@@ -23,6 +29,7 @@ const EntireRecords = ({
 }: Props) => {
   const pages = records;
   if (!pages) return null;
+  const router = useRouter();
   const CARDS_PER_PAGE = 4;
 
   const { locale } = useGeneralSiteSettings();
@@ -117,6 +124,13 @@ const EntireRecords = ({
   const handleRecordTypeChange = (option: string) => {
     setCurrentRecordType(option);
   };
+
+  const handleRouter = (page: any) => {
+    // if (page.data.password === "") {
+    router.push(page.url);
+    // }
+  };
+
   return (
     <section className="w-full">
       {/* 섹션 제목 */}
@@ -136,16 +150,27 @@ const EntireRecords = ({
             className="group relative bg-gradient-to-br from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-700 rounded-lg border border-neutral-200
               dark:border-neutral-700 p-6 hover:shadow-lg transition-all duration-300 hover:scale-95  hover:border-neutral-300 dark:hover:border-neutral-600"
           >
-            <Link href={page.url} className=" flex flex-col gap-5">
+            <div
+              onClick={() => handleRouter(page)}
+              className=" flex flex-col gap-5 hover:cursor-pointer"
+            >
               {/* 제목 */}
-              <h3
-                className="text-xl font-semibold
+              <div className="flex flex-row justify-start items-center gap-2">
+                <h3
+                  className="text-xl font-semibold
                text-neutral-700 dark:text-neutral-200 
                 group-hover:text-black group-hover:underline 
                  dark:group-hover:text-white transition-colors"
-              >
-                {page.data.title}
-              </h3>
+                >
+                  {page.data.title}
+                </h3>
+                {page.data.password !== "" && (
+                  <div className="text-neutral-500 dark:text-neutral-400 flex flex-row  gap-2  text-sm justify-start items-center">
+                    <LockIcon className="w-4 h-4" />
+                    <span className="text-sm">{locale.COMMON.LOCKED}</span>
+                  </div>
+                )}
+              </div>
 
               {/* 요약 */}
               {page.data.summary && (
@@ -186,7 +211,7 @@ const EntireRecords = ({
                   className="bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300"
                 />
               )}
-            </Link>
+            </div>
           </article>
         ))}
       </div>

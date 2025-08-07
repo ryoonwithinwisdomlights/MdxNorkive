@@ -17,7 +17,6 @@ export const ArchiveLock = (props) => {
   const router = useRouter();
   const [tempPassword, setTempPassword] = useState<string>("");
   const submitPassword = () => {
-    // const p: HTMLElement = document.getElementById("password");
     if (!validPassword(tempPassword)) {
       const tips = document.getElementById("tips");
       if (tips) {
@@ -25,10 +24,6 @@ export const ArchiveLock = (props) => {
         tips.innerHTML = `<div class='pt-4 font-semibold text-red-500  dark:text-red-500 animate__shakeX animate__animated'>${locale.COMMON.PASSWORD_ERROR}</div>`;
       }
     }
-  };
-
-  const historyGoBack = () => {
-    router.back();
   };
 
   const passwordInputRef = useRef<HTMLInputElement>(null);
@@ -123,13 +118,13 @@ export const ArchiveLock = (props) => {
             className="flex flex-row justify-center items-center text-right "
           ></div>
         </div>
-        <div
+        {/* <div
           onClick={historyGoBack}
           className="pt-4 flex flex-row text-stone-700 items-start justify-start text-right md:w-2/5 
            md:my-20 duration-200  hover:border-stone-200 border-b-2 border-stone-100 hover:font-semibold "
         >
           {locale.SITE.BACK}
-        </div>
+        </div> */}
       </div>
     </div>
   );

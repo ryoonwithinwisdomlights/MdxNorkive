@@ -1,5 +1,5 @@
 import * as React from "react";
-import { LiteYouTubeEmbed } from "./lite-youtube-embed";
+import { LiteYouTubeEmbed } from "./LiteYouTubeEmbed";
 import { getUrlParams, getYoutubeId } from "@/lib/utils/general";
 
 const assetStyle: React.CSSProperties = {};

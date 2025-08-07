@@ -23,6 +23,7 @@ export function getMainRecentArticles(pages: any, lang: string, sliceNum = 6) {
     tags: page.data.tags,
     url: page.url,
     author: BLOG.AUTHOR,
+    password: page.data.password,
   }));
 }
 
