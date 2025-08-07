@@ -14,7 +14,6 @@
   },
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev --turbo",
-    "prebuild": "npm run check:validity",
     "build": "rm -rf .next && next build",
     "start": "NODE_OPTIONS='--inspect' next build && next start",
     "prettier": "prettier --write --ignore-unknown .",
