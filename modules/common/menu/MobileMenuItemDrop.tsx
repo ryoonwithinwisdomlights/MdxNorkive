@@ -14,8 +14,8 @@ import { useState } from "react";
  * @param {*} param0
  * @returns
  */
-export const MobileMenuItemDrop = (props) => {
-  const { link } = props;
+export const MobileMenuItemDrop = ({ link, onHeightChange }) => {
+  // const { link } = props;
 
   const [show, changeShow] = useState(false);
   const hasSubMenu = link?.subMenus?.length > 0;
@@ -26,22 +26,17 @@ export const MobileMenuItemDrop = (props) => {
 
   const onClickUrl = (sLink) => {
     if (sLink) {
-      const href = sLink?.type === "SubMenuPage" ? sLink?.url : sLink?.slug;
-      // console.log("sLink?.type:::", sLink?.type);
-      // console.log("href:::", href);
+      const href = sLink?.type === "SubMenuPages" ? sLink?.url : sLink?.slug;
+
       if (sLink?.slug?.includes("http")) {
         window.open(sLink.slug, "_blank");
       } else {
         // SubMenuPage의 경우 절대 경로로 처리
-        const finalHref = sLink?.type === "SubMenuPage" ? `/${href}` : href;
+        const finalHref = sLink?.type === "SubMenuPages" ? `/${href}` : href;
         router.push(finalHref);
       }
     }
   };
-
-  // if (!link || !link.show) {
-  //   return null;
-  // }
 
   const toggleShow = () => {
     changeShow(!show);
@@ -90,7 +85,7 @@ export const MobileMenuItemDrop = (props) => {
 
   const renderSubmenus = () => {
     return (
-      <Collapse isOpen={isOpen} onHeightChange={props.onHeightChange}>
+      <Collapse isOpen={isOpen} onHeightChange={onHeightChange}>
         {link?.subMenus?.map((sLink, index) => {
           const icon = parseIcon(sLink.icon);
           return (

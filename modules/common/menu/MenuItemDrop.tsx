@@ -9,7 +9,7 @@ import { useState } from "react";
 export const MenuItemDrop = ({ link }) => {
   const [show, changeShow] = useState(false);
   const pathname = usePathname();
-  // console.log("link:::", link);
+
   if (!link) {
     return null;
   }

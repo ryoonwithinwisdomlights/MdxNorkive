@@ -1,5 +1,5 @@
 "use client";
-import BookRecordsPage from "@/modules/intropage/BookRecordsPage";
+import BookRecordsPage from "@/modules/page/intropage/BookRecordsPage";
 import { useSidebar } from "fumadocs-ui/provider";
 import { useEffect } from "react";
 

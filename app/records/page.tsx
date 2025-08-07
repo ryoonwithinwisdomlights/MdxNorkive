@@ -1,9 +1,8 @@
 "use client";
 
+import GeneralRecordPage from "@/modules/page/intropage/GeneralRecordPage";
 import { useSidebar } from "fumadocs-ui/provider";
 import { useEffect } from "react";
-import ArchiveIntroPage from "@/modules/page/ArchiveIntroPage";
-import GeneralRecordPage from "@/modules/intropage/GeneralRecordPage";
 
 export default function Page() {
   const { setCollapsed } = useSidebar();

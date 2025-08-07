@@ -1,7 +1,11 @@
 "use client";
-import EngineeringIntro from "@/modules/page/intropage/intro/EngineeringIntro";
+import { engineeringSource } from "@/lib/source";
 import RecordBodyForPage from "@/modules/page/intropage/body/RecordBodyForPage";
-const EngineeringIRecordPage = (pages) => {
+import EngineeringIntro from "@/modules/page/intropage/intro/EngineeringIntro";
+
+const EngineeringIRecordPage = () => {
+  const pages = engineeringSource.getPages();
+
   return (
     <div className="w-full flex flex-col items-center p-10 gap-10">
       <EngineeringIntro />

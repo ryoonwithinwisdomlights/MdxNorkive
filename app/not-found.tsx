@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/modules/shared/ui/button";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 
 export default function NotFound() {
