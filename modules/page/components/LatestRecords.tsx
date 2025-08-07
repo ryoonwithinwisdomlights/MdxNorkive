@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import {
   getCurrentRecordsWithPagination,
-  getMainRecentArticles,
+  getMainRecentRecords,
 } from "@/lib/utils/records";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import PageIndicator from "./PageIndicator";
@@ -90,7 +90,7 @@ const LatestRecords = ({ records, introTrue, subType = false }: Props) => {
         })),
       ];
       const allOptions = subType ? subTypeOptions : typeOptions;
-      const articles = getMainRecentArticles(filtered, lang, 7);
+      const articles = getMainRecentRecords(filtered, lang, 7);
       const firstArticle = articles[0];
       const restArticles = articles.slice(1, articles.length);
 

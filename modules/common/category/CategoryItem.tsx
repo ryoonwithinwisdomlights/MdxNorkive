@@ -1,14 +1,14 @@
 "use client";
 import { useRouter } from "next/navigation";
-
 import { FolderIcon, FolderOpenIcon } from "lucide-react";
+
 export default function CategoryItem(props) {
   const { selected, category, categoryCount } = props;
   const router = useRouter();
   const onClick = (category: string) => {
     router.push(`/category/${category}`);
   };
-  // console.log("category::", category);
+
   return (
     <div
       onClick={(e) => {

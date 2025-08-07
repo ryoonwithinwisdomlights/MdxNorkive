@@ -4,9 +4,7 @@ import DebugPanel from "@/modules/shared/DebugPanel";
 import DisableCopy from "@/modules/shared/DisableCopy";
 import VConsoleTs from "@/modules/shared/VConsoleTs";
 
-type Props = {};
-
-const AuxiliaryBlogComponent = (props: Props) => {
+const AuxiliaryBlogComponent = () => {
   return (
     <div>
       {!BLOG.isProd && <DebugPanel />}

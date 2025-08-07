@@ -1,31 +1,11 @@
 "use client";
 
-import { RecordItem } from "@/app/api/types";
-import { PageData } from "fumadocs-core/source";
+import { MenuItem, RecordItem } from "@/app/api/types";
+import { GlobalNavInfoProps, SerializedPage } from "@/types";
 import NextNProgress from "nextjs-progressbar";
 import { createContext, ReactNode, useContext } from "react";
-type SerializedPage = {
-  file: {
-    dirname: string;
-    name: string;
-    ext: string;
-    path: string;
-    flattenedPath: string;
-  };
-  absolutePath: string;
-  path: string;
-  url: string;
-  slugs: string[];
-  data: PageData;
-  locale: string | undefined;
-};
 
-//Page<LoaderConfig['source']['pageData']>[]
-type NavInfo = {
-  recordList: RecordItem[];
-  serializedAllPages: SerializedPage[];
-};
-const GlobalContext = createContext<NavInfo | undefined>(undefined);
+const GlobalContext = createContext<GlobalNavInfoProps | undefined>(undefined);
 /**
  *A Global provider that initializes the site with essential values.
  * @param children
@@ -37,11 +17,13 @@ export function NavInfoProvider({
   from = "index",
   recordList,
   serializedAllPages,
+  menuList,
 }: {
   children: ReactNode;
   from?: string;
   recordList: RecordItem[];
   serializedAllPages: SerializedPage[];
+  menuList: MenuItem[];
 }) {
   // console.log("allPages::", allPages);
   return (
@@ -49,6 +31,7 @@ export function NavInfoProvider({
       value={{
         recordList,
         serializedAllPages,
+        menuList,
       }}
     >
       {children}
@@ -57,7 +40,7 @@ export function NavInfoProvider({
   );
 }
 
-export const useNav = ({ from }: { from?: string }): NavInfo => {
+export const useNav = ({ from }: { from?: string }): GlobalNavInfoProps => {
   const context = useContext(GlobalContext);
   if (!context) {
     throw new Error("useGlobal must be used within a GlobalContext.Provider");

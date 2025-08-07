@@ -15,7 +15,7 @@ import {
   decodeUrlEncodedLinks,
   processMdxContent,
 } from "@/lib/utils/convert-unsafe-mdx-content";
-import { generateUserFriendlySlug } from "@/lib/utils/mdx-utils";
+import { generateUserFriendlySlug } from "@/lib/utils/slug";
 
 import { imageCacheManager } from "@/lib/cache/image_cache_manager";
 import { uploadImageFromUrl, uploadPdfFromUrl } from "@/lib/cloudinary";

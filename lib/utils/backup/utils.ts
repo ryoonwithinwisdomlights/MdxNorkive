@@ -1,5 +1,6 @@
 import { BLOG } from "@/blog.config";
-import { deepClone, formatDateFmt } from "@/lib/utils/general";
+import { deepClone } from "@/lib/utils/general";
+import { formatDateFmt } from "../date";
 
 export function isDatabase(rawMetadata, uuidedRootPageId) {
   if (

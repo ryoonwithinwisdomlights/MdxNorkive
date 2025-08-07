@@ -1,11 +1,11 @@
-import { useMenu } from "@/lib/context/MenuProvider";
-import { LefitSidebarItemDrop } from "./LefitSidebarItemDrop";
+import { useNav } from "@/lib/context/NavInfoProvider";
 import Footer from "./Footer";
+import { LefitSidebarItemDrop } from "./LefitSidebarItemDrop";
 
 const LeftSidebar = () => {
   //   const [collapsed, setCollapsed] = useState(false);
-  const { menuData } = useMenu({ from: "LeftSidebar" });
-  console.log(menuData);
+  const { menuList } = useNav({ from: "LeftSidebar" });
+  console.log(menuList);
   return (
     <aside
       id="nd-sidebar"
@@ -17,7 +17,7 @@ const LeftSidebar = () => {
         id="nd-sidebar-content"
         className="  overflow-hidden w-full h-[calc(100vh-150px)] relative  py-6 flex flex-col gap-2 "
       >
-        {menuData?.map((data, index) => (
+        {menuList?.map((data, index) => (
           <LefitSidebarItemDrop key={index} menuData={data} />
         ))}
       </div>

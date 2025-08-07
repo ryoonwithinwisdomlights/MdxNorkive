@@ -1,6 +1,34 @@
 import { ko, enUS } from "date-fns/locale";
 import { format, formatDistanceToNowStrict } from "date-fns";
 
+export function formatDateFmt(timestamp, fmt) {
+  const date = new Date(timestamp);
+  const o = {
+    "M+": date.getMonth() + 1,
+    "d+": date.getDate(),
+    "h+": date.getHours(),
+    "m+": date.getMinutes(),
+    "s+": date.getSeconds(),
+    "q+": Math.floor((date.getMonth() + 3) / 3), // quarter
+    S: date.getMilliseconds(), // millisecond
+  };
+  if (/(y+)/.test(fmt)) {
+    fmt = fmt.replace(
+      RegExp.$1,
+      (date.getFullYear() + "").substr(4 - RegExp.$1.length)
+    );
+  }
+  for (const k in o) {
+    if (new RegExp("(" + k + ")").test(fmt)) {
+      fmt = fmt.replace(
+        RegExp.$1,
+        RegExp.$1.length === 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length)
+      );
+    }
+  }
+  return fmt.trim();
+}
+
 export const getYearMonthDay = (date: Date | string, lang: string) => {
   // console.log(lang);
   // const locale = lang === "ko" ? ko : enUS;
@@ -16,3 +44,38 @@ export const getDistanceFromToday = (date: Date | string, lang: string) => {
     addSuffix: true,
   });
 };
+
+export function formatToKoreanDate(utcDateString): string {
+  const date = new Date(utcDateString);
+  const koreaTime = new Date(date.getTime() + 9 * 60 * 60 * 1000);
+  const year = koreaTime.getFullYear();
+  const month = String(koreaTime.getMonth() + 1).padStart(2, "0");
+  const day = String(koreaTime.getDate()).padStart(2, "0");
+  const hours = String(koreaTime.getHours()).padStart(2, "0");
+  const minutes = String(koreaTime.getMinutes()).padStart(2, "0");
+
+  return `${year}.${month}.${day} ${hours}:${minutes}`;
+}
+
+/**
+ * Format date
+ * @param date
+ * @param local
+ * @returns {string}
+ */
+export function formatDate(date, local) {
+  if (!date || !local) return date || "";
+  const d = new Date(date);
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  };
+  const res = d.toLocaleDateString(local, options);
+  // If the format is Chinese date, it will be converted to a horizontal bar
+  const format =
+    local.slice(0, 2).toLowerCase() === "zh"
+      ? res.replace("年", "-").replace("月", "-").replace("日", "")
+      : res;
+  return format;
+}

@@ -1,6 +1,6 @@
 "use client";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { getMainRecentArticles } from "@/lib/utils/records";
+import { getMainRecentRecords } from "@/lib/utils/records";
 import { CalendarIcon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -17,7 +17,7 @@ const RecordsWithMultiplesOfThree = ({
   // const pages = getPages();
   if (!filteredPages) NotFound();
   const { lang, locale } = useGeneralSiteSettings();
-  const articles = getMainRecentArticles(filteredPages, lang);
+  const articles = getMainRecentRecords(filteredPages, lang);
   const [currentPage, setCurrentPage] = useState(0);
   const cardsPerPage = 3;
   const totalPages = Math.ceil(articles.length / cardsPerPage);

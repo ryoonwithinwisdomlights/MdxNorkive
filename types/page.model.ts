@@ -1,5 +1,6 @@
 import { ParsedUrlQuery } from "querystring";
 import { BaseArchivePageBlock } from "./record.model";
+import { RecordItem } from "@/app/api/types";
 
 export interface ChildrenProp {
   children: React.ReactNode;
@@ -57,7 +58,7 @@ export type CardInfoDivProps = {
   showSummary: boolean;
 };
 export type NavListDivProps = {
-  record: BaseArchivePageBlock;
+  record: RecordItem;
   className?: string;
   substr?: boolean;
   substrNumber?: number;

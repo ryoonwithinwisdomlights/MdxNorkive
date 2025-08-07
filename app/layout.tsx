@@ -13,24 +13,24 @@ import { ModalProvider } from "@/lib/context/ModalProvider";
 
 import { ChildrenProp } from "@/types";
 
-import { MenuProvider } from "@/lib/context/MenuProvider";
 import { NavInfoProvider } from "@/lib/context/NavInfoProvider";
 
-import { config } from "@fortawesome/fontawesome-svg-core";
-import { fetchAllRecordList, fetchMenuList } from "./api/fetcher";
 import {
-  recordSource,
   bookSource,
   engineeringSource,
   projectSource,
+  recordSource,
 } from "@/lib/source";
-import { LoaderConfig, Page, PageData } from "fumadocs-core/source";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import { LoaderConfig, Page } from "fumadocs-core/source";
+import { fetchAllRecordList, fetchMenuList } from "./api/fetcher";
 
 import BottomMenuBar from "@/modules/common/menu/BottomMenuBar";
-import JumpToTopButton from "@/modules/shared/JumpToTopButton";
-import JumpToBackButton from "@/modules/shared/JumpToBackButton";
 import AuxiliaryBlogComponent from "@/modules/layout/components/AuxiliaryComponent";
 import TopNavigationWrapper from "@/modules/layout/components/TopNavigationWrapper";
+import JumpToBackButton from "@/modules/shared/JumpToBackButton";
+import JumpToTopButton from "@/modules/shared/JumpToTopButton";
+import { RecordItem } from "./api/types";
 config.autoAddCss = false;
 
 export const viewport: Viewport = {
@@ -82,14 +82,12 @@ export default async function RootLayout({ children }: ChildrenProp) {
    * 메뉴데이터
    * globalNotionData 따로
    */
-  const menuData = await fetchMenuList();
+  const menuList = await fetchMenuList();
   const recordList = await fetchAllRecordList();
   const recordPages = recordSource.getPages();
   const bookPages = bookSource.getPages();
   const engineeringPages = engineeringSource.getPages();
   const projectPages = projectSource.getPages();
-  // console.log("recordPages::", recordPages);
-  // console.log("bookPages::", bookPages);
 
   const allPages: Page<LoaderConfig["source"]["pageData"]>[] = [
     ...recordPages,
@@ -111,7 +109,7 @@ export default async function RootLayout({ children }: ChildrenProp) {
     path: page.path,
     url: page.url,
     slugs: page.slugs,
-    data: page.data,
+    data: page.data as RecordItem,
     locale: page.locale,
   }));
 
@@ -119,44 +117,33 @@ export default async function RootLayout({ children }: ChildrenProp) {
     <html lang="en" suppressHydrationWarning className={GeistSans.className}>
       <body>
         <RootProvider theme={{ enabled: false }}>
-          <MenuProvider menuData={menuData}>
-            {/* <EssentialNavInfoProvider
-            globalNotionData={globalNotionData}
-            from={"index"}
-          > */}
-            <NavInfoProvider
-              recordList={recordList}
-              serializedAllPages={serializedAllPages}
-            >
-              <GeneralSiteSettingsProvider>
-                <div
-                  id="gitbook"
-                  className={` w-screen h-screen justify-center dark:text-neutral-300  pb-16  md:pb-0 `}
-                >
-                  <AuxiliaryBlogComponent />
-                  {/* <Suspense fallback={<LoadingCover />}> */}
+          <NavInfoProvider
+            recordList={recordList}
+            serializedAllPages={serializedAllPages}
+            menuList={menuList}
+          >
+            <GeneralSiteSettingsProvider>
+              <div
+                id="gitbook"
+                className={` w-screen h-screen justify-center dark:text-neutral-300  pb-16  md:pb-0 `}
+              >
+                <AuxiliaryBlogComponent />
 
-                  <TopNavigationWrapper />
+                <TopNavigationWrapper />
 
-                  <div className=" dark:bg-black dark:text-neutral-300 py-10 flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain ">
-                    {children}
-                  </div>
-
-                  {/* <LeftNavigationBar /> */}
-
-                  {/* </Suspense> */}
-                  <JumpToTopButton />
-                  <JumpToBackButton />
-
-                  <BottomMenuBar />
-
-                  <ModalProvider />
+                <div className=" dark:bg-black dark:text-neutral-300 py-10 flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain ">
+                  {children}
                 </div>
-                {/* <PageObserver /> */}
-              </GeneralSiteSettingsProvider>
-            </NavInfoProvider>
-            {/* </EssentialNavInfoProvider> */}
-          </MenuProvider>
+
+                <JumpToTopButton />
+                <JumpToBackButton />
+
+                <BottomMenuBar />
+
+                <ModalProvider />
+              </div>
+            </GeneralSiteSettingsProvider>
+          </NavInfoProvider>
         </RootProvider>
       </body>
     </html>

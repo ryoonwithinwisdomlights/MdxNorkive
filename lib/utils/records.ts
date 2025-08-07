@@ -1,7 +1,7 @@
 import { BLOG } from "@/blog.config";
 import { getDistanceFromToday, getYearMonthDay } from "./date";
 
-export function getMainRecentArticles(pages: any, lang: string, sliceNum = 6) {
+export function getMainRecentRecords(pages: any, lang: string, sliceNum = 6) {
   // console.log("pages:", pages);
   const sortedPage = pages
     .sort((a, b) => {
@@ -10,6 +10,7 @@ export function getMainRecentArticles(pages: any, lang: string, sliceNum = 6) {
       );
     })
     .slice(0, sliceNum);
+
   return sortedPage.map((page, index) => ({
     id: index,
     date: getYearMonthDay(page.data.date, lang),

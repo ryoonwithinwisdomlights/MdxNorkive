@@ -4,7 +4,7 @@ import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvide
 const EngineeringIntro = () => {
   const { lang } = useGeneralSiteSettings();
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col w-full">
       <div className="pr-3 flex flex-row justify-end text-sm  text-neutral-600 font-extralight dark:text-neutral-200 hover:text-neutral-800 ">
         Browsing all the engineering related records you have
         learned&nbsp;&nbsp;

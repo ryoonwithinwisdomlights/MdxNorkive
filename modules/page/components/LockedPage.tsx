@@ -44,7 +44,7 @@ const LockedPage = (props) => {
         <div className="flex flex-col justify-center  w-full">
           {/** pc */}
           <div className="hidden md:flex w-full flex-row items-center justify-center">
-            <div className=" flex flex-col items-start text-stone-700">
+            <div className=" flex flex-col items-start text-neutral-700 dark:text-neutral-200">
               <div className="font-semibold text-lg p-0 mr-4 ">
                 {locale.COMMON.PASSWORD_SUBMIT}
               </div>
@@ -62,13 +62,13 @@ const LockedPage = (props) => {
                 }}
                 ref={passwordInputRef} // Bind ref to passwordInputRef variable
                 className="outline-none w-full text-sm pl-5 rounded-l transition focus:shadow-lg
-                 dark:text-neutral-300 font-light leading-10 text-black
-                  bg-stone-100 dark:bg-stone-200"
+                 dark:text-neutral-700 font-light leading-10 text-black
+                  bg-neutral-100 dark:bg-neutral-200"
               ></input>
               <div
                 onClick={submitPassword}
-                className="px-3 flex flex-row whitespace-nowrap cursor-pointer  items-center justify-center py-2  bg-stone-600 
-                 hover:bg-stone-800 hover:dark:bg-stone-500 text-stone-100  hover:text-white rounded-r duration-300"
+                className="px-3 flex flex-row whitespace-nowrap cursor-pointer  items-center justify-center py-2  bg-neutral-600 
+                 hover:bg-neutral-800 hover:dark:bg-neutral-500 text-neutral-100  hover:text-white rounded-r duration-300"
               >
                 <KeyRoundIcon className="duration-200 cursor-pointer w-4 h-4 " />
 
@@ -81,7 +81,7 @@ const LockedPage = (props) => {
           {/** mobile */}
           <div className="lg:hidden sm:hidden md:hidden text-center w-full justify-center flex flex-col gap-2 py-4 dark:text-neutral-100">
             <div className=" ">
-              <div className="font-semibold text-lg p-0 m-0 text-stone-700">
+              <div className="font-semibold text-lg p-0 m-0 text-neutral-700">
                 {locale.COMMON.PASSWORD_SUBMIT}
               </div>
               <p className="text-sm">{locale.COMMON.ARCHIVE_LOCK_TIPS}</p>
@@ -97,12 +97,13 @@ const LockedPage = (props) => {
                 }}
                 ref={passwordInputRef} // Bind ref to passwordInputRef variable
                 className="outline-none w-full text-sm  rounded-l transition focus:shadow-lg dark:text-neutral-300 font-light leading-10 text-black
-                  bg-stone-100 dark:bg-stone-200"
+                  bg-neutral-100 dark:bg-neutral-200"
               ></input>
               <div
                 onClick={submitPassword}
-                className="px-3 flex flex-row whitespace-nowrap cursor-pointer text-center items-center justify-center py-2 rounded-r duration-300 bg-stone-600 
-                 hover:bg-stone-800 hover:dark:bg-stone-500 text-stone-100  hover:text-white "
+                className="px-3 flex flex-row whitespace-nowrap cursor-pointer text-center items-center justify-center
+                 py-2 rounded-r duration-300 bg-neutral-600 
+                 hover:bg-neutral-800 hover:dark:bg-neutral-500 text-neutral-100  hover:text-white "
               >
                 <KeyRoundIcon className="duration-200 cursor-pointer " />
 

@@ -13,12 +13,13 @@ import { useEffect, useMemo, useState } from "react";
 import TagItemMini from "@/modules/common/tag/TagItemMini";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import PageIndicator from "./PageIndicator";
+import { SerializedPage } from "@/types";
 
 type Props = {
   type: string;
   subType: boolean;
   introTrue: boolean;
-  records: any[];
+  records: SerializedPage[];
 };
 const EntireRecords = ({
   type,

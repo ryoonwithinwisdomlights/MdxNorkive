@@ -1,3 +1,4 @@
+import { notion } from "@/app/api/clients";
 import type {
   ArticleTag,
   DataBaseMetaDataResponse,
@@ -7,9 +8,7 @@ import type {
   QueryPageResponse,
   RecordItem,
 } from "@/app/api/types";
-import { INCLUDED_MENU_TYPES } from "@/constants/menu.constants";
-import { generateUserFriendlySlug } from "@/lib/utils/mdx-utils";
-import { notion } from "@/app/api/clients";
+import { generateUserFriendlySlug } from "@/lib/utils/slug";
 
 async function generateChildRelations(childRelations: Array<{ id: string }>) {
   const childIds = childRelations.map((rel) => rel.id);

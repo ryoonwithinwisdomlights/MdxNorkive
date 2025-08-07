@@ -1,11 +1,11 @@
 "use client"; // 클라이언트 컴포넌트
-import { useMenu } from "@/lib/context/MenuProvider";
+import { useNav } from "@/lib/context/NavInfoProvider";
 import { MobileMenuItemDrop } from "./MobileMenuItemDrop";
 
 export const MobileMenuBar = ({ onHeightChange }) => {
-  const { menuData } = useMenu({ from: "TopNavBar" });
+  const { menuList } = useNav({ from: "TopNavBar" });
 
-  const links = menuData;
+  const links = menuList;
 
   return (
     <nav id="top-nav-mobile" className="text-md">

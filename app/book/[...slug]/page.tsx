@@ -15,11 +15,7 @@ export default async function Page(props: {
   }
 
   return (
-    <CustomedMDXPage
-      resource={"book"}
-      className=" p-4 md:p-0 "
-      slug={params.slug}
-    />
+    <CustomedMDXPage resource={"book"} className=" p-4  " slug={params.slug} />
   );
 }
 

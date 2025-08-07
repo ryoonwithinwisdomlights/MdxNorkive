@@ -2,6 +2,7 @@ import { submenuPageSource } from "@/lib/source";
 import { DocsLayout } from "@/modules/layout/templates/docs-min";
 import { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
 import RightSideInfoBar from "@/modules/layout/components/RightSideInfoBar";
+import { basicDocsClass } from "@/types/layout.props";
 
 const baseOptions: Partial<DocsLayoutProps> = {
   nav: {
@@ -29,12 +30,7 @@ export default async function Layout({
       themeSwitch={{ enabled: false }}
       sidebar={{ defaultOpenLevel: 0, collapsible: false, enabled: false }}
     >
-      <div
-        className="md:w-[60vw] mt-[20px] w-full  flex flex-col  pb-20 md:p-0
-      justify-center items-center   "
-      >
-        {children}
-      </div>
+      <div className={basicDocsClass}>{children}</div>
       <RightSideInfoBar />
     </DocsLayout>
   );

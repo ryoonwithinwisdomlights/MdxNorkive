@@ -4,7 +4,7 @@ import {
   decodeUrlEncodedLinks,
   processMdxContent,
 } from "@/lib/utils/convert-unsafe-mdx-content";
-import { generateUserFriendlySlug } from "@/lib/utils/mdx-utils";
+import { generateUserFriendlySlug } from "@/lib/utils/slug";
 import { Client } from "@notionhq/client";
 import {
   DatabaseObjectResponse,

@@ -96,7 +96,7 @@ const RecordBodyForPage = ({ records }: { records: any[] }) => {
   };
   return (
     <div className="flex flex-col w-full items-center gap-6 ">
-      <div className="flex flex-col  w-full">
+      <div className="flex flex-col  w-full ">
         <TypeCarousel
           allOptions={allOptions}
           handleRecordTypeChange={handleRecordTypeChange}

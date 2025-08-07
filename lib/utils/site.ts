@@ -1,11 +1,10 @@
 import { BLOG } from "@/blog.config";
 import { SiteInfoModel } from "@/types";
-// import { CollectionPropertySchemaMap } from "notion-types";
-// import { defaultMapImageUrl, getPageTableOfContents } from "notion-utils";
-import { RecordItem } from "@/app/api/types";
-import { compressImage } from "@/lib/utils/backup/utils";
 
-export function getSiteInfo2({
+import { RecordItem } from "@/app/api/types";
+import { compressImage } from "@/lib/utils/image";
+
+export function getSiteInfo({
   recordItem,
 }: {
   recordItem?: RecordItem;

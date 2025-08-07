@@ -1,6 +1,6 @@
 "use client"; // 클라이언트 컴포넌트
 import { BLOG } from "@/blog.config";
-import { getSiteInfo2 } from "@/lib/utils/site";
+import { getSiteInfo } from "@/lib/utils/site";
 import LazyImage from "@/modules/shared/LazyImage";
 import Link from "next/link";
 
@@ -11,7 +11,7 @@ import Link from "next/link";
  */
 export default function LogoBar(props) {
   // const { siteInfo } = useGlobal({ from: "LogoBar" });
-  const siteInfo = getSiteInfo2({});
+  const siteInfo = getSiteInfo({});
   return (
     <div id="top-wrapper" className="flex  flex-row items-center   ">
       <Link

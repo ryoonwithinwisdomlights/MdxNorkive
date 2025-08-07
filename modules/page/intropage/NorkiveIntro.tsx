@@ -8,7 +8,7 @@ const NorkiveIntro = () => {
   const { serializedAllPages } = useNav({ from: "NorkiveIntro" });
   const pages = serializedAllPages;
   return (
-    <div id="norkive-intro" className="w-full flex flex-col gap-10">
+    <div id="norkive-intro" className="w-full flex flex-col md:p-10  gap-10">
       <FeaturedRecords
         type=""
         subType={false}

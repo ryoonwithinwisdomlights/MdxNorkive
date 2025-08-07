@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
  */
 export const LefitSidebarItemDrop = (props) => {
   const { menuData } = props;
-  console.log("menuData:::", menuData);
+
   const router = useRouter();
   const hasSubMenu = menuData?.subMenus?.length > 0;
   const onClickUrl = (sLink) => {

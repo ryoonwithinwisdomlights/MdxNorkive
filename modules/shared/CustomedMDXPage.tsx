@@ -59,12 +59,12 @@ export default function CustomedMDXPage({ className, slug, resource }) {
   // console.log("page::", page);
   return (
     <article
-      className={`flex flex-col  pb-20  justify-center items-center w-full h-full ${className}`}
+      className={`flex flex-col   pb-20  justify-center items-center w-full h-full ${className}`}
     >
       {lock ? (
         <LockedPage validPassword={validPassword} />
       ) : (
-        <div>
+        <div className="flex flex-col  w-full">
           <DocsPage
             // toc={toc}
 
@@ -155,7 +155,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
             </DocsBody>
             <ShareBar data={page.data} />
           </DocsPage>
-          <Comment frontMatter={page.data} className="p-10" />
+          <Comment frontMatter={page.data} className=" md:px-10" />
         </div>
       )}
     </article>

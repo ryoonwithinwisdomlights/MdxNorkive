@@ -10,7 +10,7 @@ import type {
   QueryPageResponse,
   RecordItem,
 } from "@/app/api/types";
-import { getSiteInfo2 } from "@/lib/utils/site";
+import { getSiteInfo } from "@/lib/utils/site";
 import type {
   GetBlockResponse,
   ImageBlockObjectResponse,
@@ -126,7 +126,7 @@ export const fetchAllRecordList = cache(async (): Promise<RecordItem[]> => {
     ).convertToAllRecordList();
 
     convertedAllRecordList.map((item: RecordItem) => {
-      const siteInfo = getSiteInfo2({ recordItem: item });
+      const siteInfo = getSiteInfo({ recordItem: item });
       // console.log("siteInfo:", siteInfo);
       return {
         ...item,

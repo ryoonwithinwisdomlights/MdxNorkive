@@ -1,5 +1,5 @@
 import { BLOG } from "@/blog.config";
-import { formatDate } from "@/lib/utils/general";
+import { formatDate } from "@/lib/utils/date";
 import type { MetadataRoute } from "next";
 import { fetchAllRecordList } from "./api/fetcher";
 import type { RecordItem } from "@/app/api/types";

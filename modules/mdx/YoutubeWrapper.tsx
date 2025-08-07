@@ -1,6 +1,7 @@
 import * as React from "react";
 import { LiteYouTubeEmbed } from "../../modules/shared/LiteYouTubeEmbed";
-import { getUrlParams, getYoutubeId } from "@/lib/utils/general";
+import { getUrlParams } from "@/lib/utils/general";
+import { getYoutubeId } from "@/lib/utils/youtube";
 
 const assetStyle: React.CSSProperties = {};
 interface YoutubeWrappereProps {

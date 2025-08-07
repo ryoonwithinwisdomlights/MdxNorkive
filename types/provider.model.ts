@@ -1,43 +1,24 @@
 import { Dispatch, SetStateAction } from "react";
-import { LeftSideBarNavItem, NavItem, OldNavItem } from "./layout.model";
-
-import { MenuItem } from "@/app/api/types";
+import { MenuItem, RecordItem } from "@/app/api/types";
+import { PageData } from "fumadocs-core/source";
 import { SiteInfoModel } from "./index";
-import { BaseArchivePageBlock } from "./record.model";
 
-export interface EssentialMenuInfo {
-  menuData: MenuItem[];
-}
-
-export interface EssentialNavInfo {
-  siteInfo: SiteInfoModel;
-  categoryOptions?: any[];
-  tagOptions?: any[];
-  subTypeOptions?: [];
-
-  notice: any;
-  latestRecords: [];
-  allPages: BaseArchivePageBlock[];
-  handleRouter: (page: BaseArchivePageBlock) => void;
-  cleanCurrentRecordData: () => void;
-  allPagesForLeftNavBar: LeftSideBarNavItem[];
-  filteredNavPages: LeftSideBarNavItem[];
-  setFilteredNavPages?: Dispatch<SetStateAction<LeftSideBarNavItem[]>>;
-}
-
-export interface GlobalNotionData {
-  notice: any;
-  siteInfo: SiteInfoModel;
-  categoryOptions?: any[];
-  tagOptions?: any[];
-  subTypeOptions?: [];
-  oldNav?: OldNavItem[];
-  customMenu: NavItem[];
-  latestRecords?: [];
-  allPagesForLeftNavBar: LeftSideBarNavItem[];
-  allPages?: BaseArchivePageBlock[];
-}
-export interface GeneralSiteSettingsProviderContext {
+export type SerializedPage = {
+  file: {
+    dirname: string;
+    name: string;
+    ext: string;
+    path: string;
+    flattenedPath: string;
+  };
+  absolutePath: string;
+  path: string;
+  url: string;
+  slugs: string[];
+  data: RecordItem;
+  locale: string | undefined;
+};
+export interface GeneralSiteSettingsProps {
   onLoading: boolean;
   isMobileTopNavOpen: boolean;
   toggleMobileTopNavOpen: () => void;
@@ -58,4 +39,10 @@ export interface GeneralSiteSettingsProviderContext {
   changeOppositeLang: () => void;
   setting: boolean;
   handleSettings: () => void;
+}
+
+export interface GlobalNavInfoProps {
+  recordList: RecordItem[];
+  serializedAllPages: SerializedPage[];
+  menuList: MenuItem[];
 }

@@ -1,5 +1,3 @@
-// MDX 변환 및 안전화 유틸리티
-
 /**
  * 사용자 친화적 슬러그 생성 (sub_type-title, 한글/영어/숫자만, 중복 방지)
  */
@@ -23,16 +21,4 @@ export function generateUserFriendlySlug(
   }
   existingSlugs.add(uniqueSlug);
   return uniqueSlug;
-}
-
-export function convertTime(time?: string): number | undefined {
-  if (time) {
-    try {
-      return new Date(time).getTime();
-    } catch {
-      // ignore invalid time strings
-    }
-  }
-
-  return undefined;
 }

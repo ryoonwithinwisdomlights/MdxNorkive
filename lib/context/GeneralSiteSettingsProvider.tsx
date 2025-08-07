@@ -1,6 +1,6 @@
 "use client";
 import { BLOG } from "@/blog.config";
-import { GeneralSiteSettingsProviderContext } from "@/types";
+import { GeneralSiteSettingsProps } from "@/types";
 import {
   createContext,
   ReactNode,
@@ -19,8 +19,9 @@ import {
 import { initDarkMode, setThemeByLocalStorage } from "@/lib/utils/theme";
 import { toast } from "sonner";
 
-const GeneralSiteSettings =
-  createContext<GeneralSiteSettingsProviderContext | null>(null);
+const GeneralSiteSettings = createContext<GeneralSiteSettingsProps | null>(
+  null
+);
 
 /**
  * Global variable Provider, including language localization, style theme, search terms
@@ -84,7 +85,7 @@ export const GeneralSiteSettingsProvider: React.FC<{
   const handleSettings = () => {
     SetSettingState((prev) => !prev);
   };
-  const value: GeneralSiteSettingsProviderContext = {
+  const value: GeneralSiteSettingsProps = {
     onLoading,
     setOnLoading,
     searchKeyword,
@@ -130,13 +131,12 @@ export const GeneralSiteSettingsProvider: React.FC<{
   );
 };
 
-export const useGeneralSiteSettings =
-  (): GeneralSiteSettingsProviderContext => {
-    const context = useContext(GeneralSiteSettings);
-    if (!context) {
-      throw new Error(
-        "useGeneralSiteSettings must be used within a GeneralSiteSettingsProvider"
-      );
-    }
-    return context;
-  };
+export const useGeneralSiteSettings = (): GeneralSiteSettingsProps => {
+  const context = useContext(GeneralSiteSettings);
+  if (!context) {
+    throw new Error(
+      "useGeneralSiteSettings must be used within a GeneralSiteSettingsProvider"
+    );
+  }
+  return context;
+};
