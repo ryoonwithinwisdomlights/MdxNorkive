@@ -4,11 +4,11 @@ import TypeCarousel from "@/modules/shared/TypeCarousel";
 import LazyImage from "@/modules/shared/LazyImage";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import NoRecordFound from "../../blog/NoRecordFound";
-import PageIndicator from "../../blog/PageIndicator";
-import RecordCardInfo from "../../blog/RecordCardInfo";
+import NoRecordFound from "@/modules/page/components/NoRecordFound";
+import PageIndicator from "@/modules/page/components/PageIndicator";
+import InformationCard from "@/modules/page/components/InformationCard";
 
-export interface OptionItem {
+interface OptionItem {
   id: number;
   title: string;
   option?: any;
@@ -131,7 +131,7 @@ const RecordBodyForPage = ({ records }: { records: any[] }) => {
                         index % 2 === 1 ? "md:flex-row-reverse" : ""
                       } overflow-hidden border dark:border-black bg-white dark:bg-neutral-700 rounded-lg shadow-md`}
                     >
-                      <RecordCardInfo
+                      <InformationCard
                         page={item}
                         showPageCover={showPageCover}
                         showPreview={true}

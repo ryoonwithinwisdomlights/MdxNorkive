@@ -4,9 +4,10 @@ import { getMainRecentArticles } from "@/lib/utils/records";
 import { CalendarIcon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import TagItemMini from "../common/tag/TagItemMini";
+
 import NotFound from "@/app/not-found";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
+import TagItemMini from "@/modules/common/tag/TagItemMini";
 
 const RecordsWithMultiplesOfThree = ({
   filteredPages,

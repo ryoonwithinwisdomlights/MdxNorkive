@@ -19,7 +19,7 @@ import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { getMDXComponents } from "@/getMDXComponents";
-import RecordLockedPage from "@/modules/blog/RecordLockedPage";
+import LockedPage from "@/modules/page/components/LockedPage";
 import TagItemMini from "@/modules/common/tag/TagItemMini";
 import Comment from "./Comment";
 
@@ -62,7 +62,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
       className={`flex flex-col  pb-20  justify-center items-center w-full h-full ${className}`}
     >
       {lock ? (
-        <RecordLockedPage validPassword={validPassword} />
+        <LockedPage validPassword={validPassword} />
       ) : (
         <div>
           <DocsPage

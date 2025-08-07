@@ -1,8 +1,8 @@
 "use client";
 
-import { EntireRecordsWithDateSortWrapper } from "@/modules/blog/EntireRecordsWithDateSortWrapper";
-import FeaturedRecords from "@/modules/blog/FeaturedRecords";
-import NoRecordFound from "@/modules/blog/NoRecordFound";
+import { RecordsWrapper } from "@/modules/page/components/RecordsWrapper";
+import FeaturedRecords from "@/modules/page/components/FeaturedRecords";
+import NoRecordFound from "@/modules/page/components/NoRecordFound";
 
 const BookRecordsBody = ({ modAllPages, isAble, pages }) => {
   return (
@@ -21,9 +21,9 @@ const BookRecordsBody = ({ modAllPages, isAble, pages }) => {
           introTrue={false}
         /> */}
 
-          <EntireRecordsWithDateSortWrapper
+          <RecordsWrapper
             modAllPages={modAllPages}
-            className=""
+            className="w-full flex flex-col justify-center  items-center gap-10 bg-opacity-30 rounded-lg dark:bg-black dark:bg-opacity-70"
           />
         </div>
       ) : (

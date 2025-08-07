@@ -2,11 +2,11 @@
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { ARCHIVE_CONFIG } from "@/constants/archive-config";
-import NoRecordFound from "@/modules/blog/NoRecordFound";
 
 import { usePathname } from "next/navigation";
 import NavPostListEmpty from "./NavPostListEmpty";
 import NavPostItem from "./NavPostItem";
+import NoRecordFound from "@/modules/page/components/NoRecordFound";
 /**
  * Blog list scrolling paging
  * @param records All articles

@@ -2,7 +2,6 @@
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { BasicPageDivProps } from "@/types";
 import { FolderClosedIcon, LockIcon } from "lucide-react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 /**
  * Records grouping
@@ -10,7 +9,7 @@ import { useRouter } from "next/navigation";
  * @param {*} param0
  * @returns
  */
-export default function EntireRecordsWithDateSort({
+export default function DateSortedRecords({
   title,
   recordList,
 }: BasicPageDivProps) {

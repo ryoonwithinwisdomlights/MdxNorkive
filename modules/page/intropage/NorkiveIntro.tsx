@@ -1,8 +1,8 @@
 "use client";
 import { useNav } from "@/lib/context/NavInfoProvider";
-import EntireRecords from "../blog/EntireRecords";
-import FeaturedRecords from "../blog/FeaturedRecords";
-import LatestRecords from "../blog/LatestRecords";
+import EntireRecords from "@/modules/page/components/EntireRecords";
+import FeaturedRecords from "@/modules/page/components/FeaturedRecords";
+import LatestRecords from "@/modules/page/components/LatestRecords";
 
 const NorkiveIntro = () => {
   const { serializedAllPages } = useNav({ from: "NorkiveIntro" });

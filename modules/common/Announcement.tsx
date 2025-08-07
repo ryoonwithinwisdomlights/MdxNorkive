@@ -1,7 +1,6 @@
 "use client";
 
 import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
-import dynamic from "next/dynamic";
 
 // 공지사항전용
 const Announcement = () => {

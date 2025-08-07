@@ -10,7 +10,7 @@ import {
 
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import TagItemMini from "../common/tag/TagItemMini";
+import TagItemMini from "@/modules/common/tag/TagItemMini";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import PageIndicator from "./PageIndicator";
 

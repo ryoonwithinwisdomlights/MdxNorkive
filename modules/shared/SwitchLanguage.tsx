@@ -1,12 +1,12 @@
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { dictionaries } from "@/lib/utils/lang";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/modules/shared/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/modules/shared/ui/dropdown-menu";
 import { LanguagesIcon } from "lucide-react";
 
 export default function SwitchLanguage() {

@@ -1,10 +1,15 @@
 // components/SubTypeCarousel.tsx
 "use client";
 
-import { OptionItem } from "@/modules/intropage/body/RecordBodyForPage";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+interface OptionItem {
+  id: number;
+  title: string;
+  option?: any;
+  isActive?: boolean; // 현재 선택된지 확인
+}
 type Props = {
   allOptions: OptionItem[];
   handleRecordTypeChange: (option: string) => void;

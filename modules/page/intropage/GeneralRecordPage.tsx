@@ -7,9 +7,9 @@ import {
   setPageSortedByDate2,
 } from "@/lib/utils/backup/utils";
 import { isObjectNotEmpty } from "@/lib/utils/general";
-import { EntireRecordsWithDateSortWrapper } from "../blog/EntireRecordsWithDateSortWrapper";
-import FeaturedRecords from "../blog/FeaturedRecords";
-import NoRecordFound from "../blog/NoRecordFound";
+import { RecordsWrapper } from "@/modules/page/components/RecordsWrapper";
+import FeaturedRecords from "@/modules/page/components/FeaturedRecords";
+import NoRecordFound from "@/modules/page/components/NoRecordFound";
 
 export function setAllPagesGetSortedGroupedByDate(allPages) {
   let result = allPages;
@@ -90,9 +90,9 @@ const GeneralRecordPage = () => {
               introTrue={false}
             /> */}
 
-            <EntireRecordsWithDateSortWrapper
+            <RecordsWrapper
               modAllPages={modAllPages}
-              className=""
+              className="w-full flex flex-col justify-center  items-center gap-10 bg-opacity-30 rounded-lg dark:bg-black dark:bg-opacity-70"
             />
           </div>
         ) : (

@@ -1,6 +1,6 @@
 "use client";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import Catalog from "@/modules/blog/Catalog";
+import Catalog from "@/modules/common/toc/Catalog";
 import { XIcon } from "lucide-react";
 import { useEffect } from "react";
 import { useMediaQuery } from "usehooks-ts";

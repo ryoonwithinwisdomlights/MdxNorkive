@@ -1,5 +1,6 @@
 "use client";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+
 const EngineeringIntro = () => {
   const { lang } = useGeneralSiteSettings();
   return (

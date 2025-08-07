@@ -1,11 +1,11 @@
 "use client";
-import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
+
 import throttle from "lodash.throttle";
-// import { uuidToId } from "notion-utils";
+
 import { useCallback, useEffect, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
-// import { isBrowser } from "react-notion-x";
-import { uuidToId, isBrowser } from "@/lib/utils/general";
+
+import { uuidToId } from "@/lib/utils/general";
 /**
  * @param toc
  * @returns {JSX.Element}
@@ -21,7 +21,6 @@ const Catalog = ({ page }) => {
   // Synchronize selected directory events
   const [activeSection, setActiveSection] = useState(null);
 
-  const isMobile = useMediaQuery("(max-width: 768px");
   // listen for scroll events
   useEffect(() => {
     window.addEventListener("scroll", actionSectionScrollSpy);

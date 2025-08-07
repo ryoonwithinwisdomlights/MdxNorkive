@@ -6,9 +6,9 @@ import { PaginationDivProps } from "@/types";
 import { useRouter } from "next/navigation";
 
 import { ChevronLeft } from "lucide-react";
-import PaginationSimple from "./PaginationSimple";
-import SubstringedTitleNav from "../layout/components/SubstringedTitleNav";
-import NavPostListEmpty from "../layout/components/NavPostListEmpty";
+import PaginationSimple from "@/modules/page/components/PaginationSimple";
+import SubstringedTitleNav from "@/modules/layout/components/SubstringedTitleNav";
+import NavPostListEmpty from "@/modules/layout/components/NavPostListEmpty";
 /**
  * Archive list pagination table
  * @param page current page

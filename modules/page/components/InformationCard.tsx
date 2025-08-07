@@ -9,13 +9,13 @@ import {
   TagIcon,
 } from "lucide-react";
 import Link from "next/link";
-import TagItemMini from "../common/tag/TagItemMini";
+import TagItemMini from "@/modules/common/tag/TagItemMini";
 /**
  * Portfolio list text content
  * @param {*} param0
  * @returns
  */
-const RecordCardInfo = ({
+const InformationCard = ({
   page,
   showPreview,
   showPageCover,
@@ -112,4 +112,4 @@ const RecordCardInfo = ({
   );
 };
 
-export default RecordCardInfo;
+export default InformationCard;

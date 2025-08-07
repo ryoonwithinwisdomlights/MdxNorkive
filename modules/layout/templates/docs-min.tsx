@@ -1,5 +1,5 @@
 "use client";
-import { buttonVariants } from "@/components/ui/DocButton";
+import { buttonVariants } from "@/modules/shared/ui/DocButton";
 import { cn } from "@/lib/utils/general";
 import Footer from "@/modules/layout/components/Footer";
 import { HideIfEmpty } from "fumadocs-core/hide-if-empty";

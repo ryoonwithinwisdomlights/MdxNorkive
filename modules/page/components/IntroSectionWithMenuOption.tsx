@@ -1,5 +1,5 @@
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import InjectedOptionMenu from "@/modules/blog/InjectedOptionMenu";
+import InjectedOptionMenu from "@/modules/page/components/InjectedOptionMenu";
 import React from "react";
 
 type Props = {

@@ -1,7 +1,7 @@
 "use client";
 
 import { isBrowser } from "@/lib/utils/general";
-import Tabs from "@/components/ui/Tabs";
+import Tabs from "@/modules/shared/ui/Tabs";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import LoadingCover from "@/modules/shared/LoadingCover";

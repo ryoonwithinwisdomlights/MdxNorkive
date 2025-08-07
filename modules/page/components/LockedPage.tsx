@@ -11,7 +11,7 @@ import React, { useEffect, useRef, useState } from "react";
  * @param validPassword(bool) Callback function, verify that the correct callback input parameter is true
  * @returns
  */
-const RecordLockedPage = (props) => {
+const LockedPage = (props) => {
   const { validPassword } = props;
 
   const { locale } = useGeneralSiteSettings();
@@ -123,4 +123,4 @@ const RecordLockedPage = (props) => {
   );
 };
 
-export default RecordLockedPage;
+export default LockedPage;
