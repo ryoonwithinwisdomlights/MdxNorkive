@@ -8,12 +8,11 @@ import {
   TagIcon,
 } from "lucide-react";
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+import TagItemMini from "../tag/TagItemMini";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import PageIndicator from "./PageIndicator";
-import TagList from "./TagList";
-import { useRouter } from "next/navigation";
 
 type Props = {
   type: string;
@@ -206,7 +205,7 @@ const EntireRecords = ({
               </div>
               {/* 태그 */}
               {page.data.tags && page.data.tags.length > 0 && (
-                <TagList
+                <TagItemMini
                   tags={page.data.tags}
                   className="bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300"
                 />

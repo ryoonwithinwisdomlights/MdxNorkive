@@ -2,9 +2,7 @@ import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvide
 import { Settings2Icon } from "lucide-react";
 import React from "react";
 
-type Props = {};
-
-const SettingButton = (props: Props) => {
+const SettingButton = () => {
   const { handleSettings } = useGeneralSiteSettings();
   return (
     <button data-tooltip={"Settings"} onClick={handleSettings}>

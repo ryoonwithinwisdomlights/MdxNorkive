@@ -30,7 +30,7 @@ import { BaseLayoutProps, getLinks } from "fumadocs-ui/layouts/shared";
 import { NavProvider } from "fumadocs-ui/provider";
 import { SidebarIcon } from "lucide-react";
 import { HTMLAttributes, type ReactNode, useMemo } from "react";
-import Footer from "./components/Footer";
+import Footer from "../components/Footer";
 export interface DocsLayoutProps extends BaseLayoutProps {
   tree: PageTree.Root;
 

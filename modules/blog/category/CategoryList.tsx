@@ -18,7 +18,6 @@ const CategoryList = () => {
   w-full h-full  flex flex-col   "
     >
       <div className="flex flex-row text-center items-center dark:text-white text-neutral-700 mb-5">
-        {/* <TagIcon/> */}
         <FolderOpen className="mr-2 h-5 text-neutral-700 dark:text-white fill-stone-900 " />
         <span className="text-xl ">Category</span>
       </div>

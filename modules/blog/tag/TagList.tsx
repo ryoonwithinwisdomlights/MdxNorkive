@@ -21,7 +21,11 @@ const TagList = () => {
         {tagOptions?.map((tag: any) => {
           return (
             <div key={tag.name} className="p-2">
-              <TagItemMini key={tag.name} data={tag} />
+              <TagItemMini
+                key={tag.name}
+                tags={tag}
+                className="bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300"
+              />
             </div>
           );
         })}

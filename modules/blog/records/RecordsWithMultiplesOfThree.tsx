@@ -144,7 +144,10 @@ const RecordsWithMultiplesOfThree = ({
               )}
               <div className="flex gap-2 items-end  mb-3">
                 {article.tags && article.tags.length > 0 && (
-                  <TagItemMini data={article} />
+                  <TagItemMini
+                    tags={article.tags}
+                    className="bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300"
+                  />
                 )}
               </div>
               <div className="mt-auto pt-4">

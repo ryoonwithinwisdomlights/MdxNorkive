@@ -19,8 +19,7 @@ export const MenuItemDrop = ({ link }) => {
   const onClickUrl = (sLink) => {
     if (sLink) {
       const href = sLink?.type === "SubMenuPages" ? sLink?.url : sLink?.slug;
-      // console.log("sLink?.type:::", sLink?.type);
-      // console.log("href:::", href);
+
       if (sLink?.slug?.includes("http")) {
         window.open(sLink.slug, "_blank");
       } else {
@@ -60,7 +59,7 @@ export const MenuItemDrop = ({ link }) => {
 
   const renderMainMenusWithNoSubMenus = () => {
     const icon = parseIcon(link.icon);
-    // console.log("renderMainMenusWithNoSubMenus:::", link);
+
     return (
       <div
         className={
@@ -84,7 +83,6 @@ export const MenuItemDrop = ({ link }) => {
     /* 하위 메뉴 */
   }
   const renderSubmenus = () => {
-    // console.log("renderSubmenus:::", link);
     return (
       <ul
         className={`${

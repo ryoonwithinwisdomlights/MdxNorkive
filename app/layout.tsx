@@ -27,6 +27,7 @@ import {
 } from "@/lib/source";
 import { LoaderConfig, Page, PageData } from "fumadocs-core/source";
 import AuxiliaryBlogComponent from "@/modules/layout/components/AuxiliaryComponent";
+import BottomMenuBar from "@/modules/layout/components/menu/BottomMenuBar";
 config.autoAddCss = false;
 
 export const viewport: Viewport = {
@@ -147,8 +148,8 @@ export default async function RootLayout({ children }: ChildrenProp) {
 
                   {/* <MobileLeftNavDrawer /> */}
 
-                  {/* <BottomMenuBar />
-                   */}
+                  <BottomMenuBar />
+
                   <ModalProvider />
                 </div>
                 {/* <PageObserver /> */}

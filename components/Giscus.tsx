@@ -10,7 +10,7 @@ import { useEffect, useRef } from "react";
  */
 const GiscusComponent = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const { isDarkMode, lang, locale } = useGeneralSiteSettings();
+  const { isDarkMode, lang } = useGeneralSiteSettings();
   const theme = isDarkMode ? "dark" : "light";
   const giscusLang = lang === "kr-KR" ? "ko" : "en";
   useEffect(() => {

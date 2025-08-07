@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable no-unused-vars */
 import { BLOG } from "@/blog.config";
-import SocialButton from "@/modules/common/ui/SocialButton";
+import SocialButton from "@/components/ui/SocialButton";
 import LazyImage from "@/components/LazyImage";
 import { useRouter } from "next/navigation";
 

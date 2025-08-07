@@ -3,7 +3,7 @@ import { Check, Share } from "lucide-react";
 import { cn } from "@/lib/utils/general";
 // import { buttonVariants } from "@/components/ui/button";
 import { useCopyButton } from "fumadocs-ui/utils/use-copy-button";
-import { buttonVariants } from "@/modules/common/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 
 export function Control({ url }: { url: string }): React.ReactElement {
   const [isChecked, onCopy] = useCopyButton(() => {

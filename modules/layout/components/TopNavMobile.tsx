@@ -1,9 +1,9 @@
 "use client";
 /* eslint-disable multiline-ternary */
 import { MobileMenuBar } from "@/modules/layout/components/menu/MobileMenuBar";
-import LogoBar from "@/modules/common/ui/LogoBar";
+import LogoBar from "@/components/ui/LogoBar";
 import Collapse from "@/modules/common/components/shared/Collapse";
-import DarkModeButton from "@/modules/common/components/shared/DarkModeButton";
+
 import SettingButton from "@/modules/common/components/shared/SettingButton";
 import { AlignRightIcon, MenuIcon } from "lucide-react";
 

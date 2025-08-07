@@ -3,7 +3,8 @@ import { useCallback, useEffect, useState } from "react";
 
 import throttle from "lodash.throttle";
 
-import { uuidToId, isBrowser } from "@/lib/utils/general";
+import { uuidToId } from "@/lib/utils/general";
+
 const TableOfContents = ({ page }) => {
   if (!page) {
     return null;

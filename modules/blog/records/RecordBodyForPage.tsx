@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import NoRecordFound from "./NoRecordFound";
 import PageIndicator from "./PageIndicator";
-import ProjectCardInfo from "./ProjectCardInfo";
+import RecordCardInfo from "./RecordCardInfo";
 
 export interface OptionItem {
   id: number;
@@ -131,7 +131,7 @@ const RecordBodyForPage = ({ records }: { records: any[] }) => {
                         index % 2 === 1 ? "md:flex-row-reverse" : ""
                       } overflow-hidden border dark:border-black bg-white dark:bg-neutral-700 rounded-lg shadow-md`}
                     >
-                      <ProjectCardInfo
+                      <RecordCardInfo
                         page={item}
                         showPageCover={showPageCover}
                         showPreview={true}

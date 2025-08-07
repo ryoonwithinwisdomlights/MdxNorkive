@@ -1,5 +1,4 @@
 "use client";
-import { useEffect, useState } from "react";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import {
   bookSource,
@@ -10,7 +9,6 @@ import {
 } from "@/lib/source";
 import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils/date";
 import { getReadingTime } from "@/lib/utils/read";
-import TagList from "@/modules/blog/records/TagList";
 import ShareBar from "@/modules/common/components/shared/ShareBar";
 import { MDXContent } from "@content-collections/mdx/react";
 import { InlineTOC } from "fumadocs-ui/components/inline-toc";
@@ -18,11 +16,12 @@ import { DocsBody, DocsPage } from "fumadocs-ui/page";
 import { useSidebar } from "fumadocs-ui/provider";
 import { Book, CalendarIcon, Rocket } from "lucide-react";
 import { notFound } from "next/navigation";
+import { useEffect, useState } from "react";
 
-import md5 from "js-md5";
-import Comment from "./Comment";
 import { getMDXComponents } from "@/getMDXComponents";
 import { ArchiveLock } from "@/modules/blog/records/ArchiveLock";
+import TagItemMini from "@/modules/blog/tag/TagItemMini";
+import Comment from "./Comment";
 
 function getResource(resource: string) {
   if (resource === "engineering") return engineeringSource;
@@ -33,12 +32,6 @@ function getResource(resource: string) {
   else return null;
 }
 
-// MDX output
-// page?.data.body;
-// Table of contents
-// page?.data.toc;
-// Structured Data, for Search API
-// page?.data.structuredData;
 export default function CustomedMDXPage({ className, slug, resource }) {
   const page = getResource(resource)?.getPage(slug);
 
@@ -66,7 +59,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
   // console.log("page::", page);
   return (
     <article
-      className={`flex flex-col  justify-center items-center w-full h-full ${className}`}
+      className={`flex flex-col  pb-20  justify-center items-center w-full h-full ${className}`}
     >
       {lock ? (
         <ArchiveLock validPassword={validPassword} />
@@ -143,7 +136,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
                   </span>
                 </div>
                 {page.data.tags && page.data.tags.length > 0 && (
-                  <TagList
+                  <TagItemMini
                     tags={page.data.tags}
                     className="bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300"
                   />

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { Button } from "@/modules/common/ui/button";
+import { Button } from "@/components/ui/button";
 
 export default function ErrorComponent() {
   const { locale } = useGeneralSiteSettings();

@@ -1,6 +1,6 @@
 import { recordSource } from "@/lib/source";
 import RightSideInfoBar from "@/modules/layout/components/RightSideInfoBar";
-import { DocsLayout } from "@/modules/layout/docs-min";
+import { DocsLayout } from "@/modules/layout/templates/docs-min";
 import { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
 
 const baseOptions: Partial<DocsLayoutProps> = {
@@ -30,7 +30,7 @@ export default async function Layout({
       sidebar={{ defaultOpenLevel: 0, collapsible: false }}
     >
       <div
-        className="md:w-[60vw] mt-[20px] w-full  flex flex-col
+        className="md:w-[60vw] mt-[20px] w-full  flex flex-col pb-20 md:p-0
       justify-center items-center   "
       >
         {children}

@@ -47,7 +47,7 @@ export const ArchiveLock = (props) => {
               <div className="font-semibold text-lg p-0 mr-4 ">
                 {locale.COMMON.PASSWORD_SUBMIT}
               </div>
-              {/* <p className="text-sm">{locale.COMMON.ARCHIVE_LOCK_TIPS}</p> */}
+
               <p className="text-sm">{locale.COMMON.ARCHIVE_LOCK_TIPS}</p>
             </div>
             <div className="flex ">
@@ -56,7 +56,6 @@ export const ArchiveLock = (props) => {
                 id="password"
                 type="password"
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  // let ss = event.target.value;
                   setTempPassword(event.target.value);
                   submitPassword();
                 }}
@@ -118,13 +117,6 @@ export const ArchiveLock = (props) => {
             className="flex flex-row justify-center items-center text-right "
           ></div>
         </div>
-        {/* <div
-          onClick={historyGoBack}
-          className="pt-4 flex flex-row text-stone-700 items-start justify-start text-right md:w-2/5 
-           md:my-20 duration-200  hover:border-stone-200 border-b-2 border-stone-100 hover:font-semibold "
-        >
-          {locale.SITE.BACK}
-        </div> */}
       </div>
     </div>
   );

@@ -7,8 +7,6 @@ import { deepClone } from "@/lib/utils/general";
 import { SearchIcon, XIcon } from "lucide-react";
 import { useEffect, useImperativeHandle, useRef, useState } from "react";
 
-let lock = false;
-
 const SearchInput = ({ cRef }) => {
   const [showClean, setShowClean] = useState(false);
   // 검색 키워드 상태
@@ -84,9 +82,6 @@ Enter key  // 키 입력 처리 함수
 
   // 검색 키워드 변경 처리
   const updateSearchKey = (val) => {
-    // if (lock) {
-    //   return;
-    // }
     if (searchInputRef.current) {
       searchInputRef.current.value = val;
     }
@@ -97,15 +92,6 @@ Enter key  // 키 입력 처리 함수
       setShowClean(false);
     }
   };
-
-  // 입력 시작, 업데이트, 종료 이벤트를 처리하는 잠금/잠금 해제 함수
-  function lockSearchInput() {
-    lock = true;
-  }
-
-  function unLockSearchInput() {
-    lock = false;
-  }
 
   const [isMounted, setIsMounted] = useState(false);
 
@@ -159,10 +145,6 @@ Enter key  // 키 입력 처리 함수
             // 포커스 잃었을 때 비어있으면 placeholder 복구
           }
         }}
-        //       onChange={(e) => {
-        //   onChange(e.target.value);
-        //   debounced(e.target.value);
-        // }}
         onChange={(e) => updateSearchKey(e.target.value)}
         defaultValue={""}
         placeholder={locale.COMMON.ENTER_SEARCH_TERM}
@@ -173,9 +155,6 @@ Enter key  // 키 입력 처리 함수
         <button
           onClick={() => {
             cleanSearch();
-            // handleSearch();
-            //  onChange("");
-            //   onChangeDebounced?.("");
           }}
           className="pointer-events-auto absolute inset-y-0 right-0 flex items-center pr-4"
         >

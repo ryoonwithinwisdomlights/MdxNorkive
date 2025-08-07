@@ -1,5 +1,5 @@
 import HeaderSearch from "@/modules/common/components/HeaderSearch";
-import LogoBar from "@/modules/common/ui/LogoBar";
+import LogoBar from "@/components/ui/LogoBar";
 import { MenuItemDrop } from "@/modules/layout/components/menu/MenuItemDrop";
 import SettingButton from "@/modules/common/components/shared/SettingButton";
 import { useMenu } from "@/lib/context/MenuProvider";

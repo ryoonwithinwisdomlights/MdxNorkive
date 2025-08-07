@@ -7,7 +7,7 @@ import { useNav } from "@/lib/context/NavInfoProvider";
 import Fuse from "fuse.js";
 import debounce from "lodash.debounce";
 import { Search, XIcon } from "lucide-react";
-import SearchResultSkeleton from "../ui/search-result-skeleton";
+import SearchResultSkeleton from "../../../components/ui/search-result-skeleton";
 
 export default function HeaderSearch() {
   const { locale } = useGeneralSiteSettings();

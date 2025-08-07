@@ -1,12 +1,8 @@
 "use client";
 
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-} from "@/modules/common/ui/dialog";
-import { Label } from "@/modules/common/ui/label";
+import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
 import SwitchLanguage from "@/modules/common/components/SwitchLanguage";
 import ToggleDarkModeButton from "@/modules/common/components/ToggleDarkModeButton";
 import { DialogTitle } from "@radix-ui/react-dialog";

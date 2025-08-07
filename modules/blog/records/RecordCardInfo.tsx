@@ -9,20 +9,19 @@ import {
   TagIcon,
 } from "lucide-react";
 import Link from "next/link";
-import TagList from "./TagList";
+import TagItemMini from "../tag/TagItemMini";
 /**
  * Portfolio list text content
  * @param {*} param0
  * @returns
  */
-const ProjectCardInfo = ({
+const RecordCardInfo = ({
   page,
   showPreview,
   showPageCover,
   showSummary,
 }: CardInfoDivProps) => {
   const { locale, lang } = useGeneralSiteSettings();
-  // const { handleRouter } = useGlobal({});
 
   return (
     <div
@@ -101,7 +100,7 @@ const ProjectCardInfo = ({
         <div className="md:flex-nowrap flex-wrap md:justify-start inline-block">
           <div>
             {page.data.tags && page.data.tags.length > 0 && (
-              <TagList
+              <TagItemMini
                 tags={page.data.tags}
                 className="bg-neutral-200 dark:bg-neutral-500 text-neutral-500 dark:text-neutral-200"
               />
@@ -113,4 +112,4 @@ const ProjectCardInfo = ({
   );
 };
 
-export default ProjectCardInfo;
+export default RecordCardInfo;
