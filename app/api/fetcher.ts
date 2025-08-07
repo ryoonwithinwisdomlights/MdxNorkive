@@ -1,3 +1,6 @@
+import "server-only";
+import { cache } from "react";
+
 import {
   NotionDataBaseMetaDataAdapter,
   NotionPageListAdapter,
@@ -16,8 +19,6 @@ import type {
   ImageBlockObjectResponse,
   ListBlockChildrenResponse,
 } from "@notionhq/client/build/src/api-endpoints";
-import { cache } from "react";
-import "server-only";
 import { NOTION_DATABASE_ID } from "./clients";
 
 export const fetchMenuList = cache(async (): Promise<MenuItem[]> => {

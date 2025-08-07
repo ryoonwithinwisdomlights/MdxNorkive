@@ -10,6 +10,7 @@ const baseConfig: NextConfig = {
   },
   output: "standalone",
   staticPageGenerationTimeout: 120,
+
   images: {
     // Image compression
     formats: ["image/avif", "image/webp"],

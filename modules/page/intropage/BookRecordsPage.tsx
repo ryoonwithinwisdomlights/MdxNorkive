@@ -11,8 +11,8 @@ import BookIntro from "./intro/BookIntro";
 
 export function setAllPagesGetSortedGroupedByDate(allPages) {
   let result = allPages;
-  const pageSortedByDate = setPageSortedByDate2(allPages, "date");
-  const pageGroupedByDate = setPageGroupedByDate2(pageSortedByDate, "date");
+  const pageSortedByDate = setPageSortedByDate2(allPages);
+  const pageGroupedByDate = setPageGroupedByDate2(pageSortedByDate);
   result = pageGroupedByDate;
 
   return result;

@@ -1,7 +1,12 @@
 import "dotenv/config";
+import { config } from "dotenv";
+import path from "path";
+
+// .env.local 파일을 명시적으로 로드
+config({ path: path.resolve(process.cwd(), ".env.local") });
+
 import fs from "fs/promises";
 import matter from "gray-matter";
-import path from "path";
 
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
@@ -19,6 +24,9 @@ import { generateUserFriendlySlug } from "@/lib/utils/slug";
 
 import { imageCacheManager } from "@/lib/cache/image_cache_manager";
 import { uploadImageFromUrl, uploadPdfFromUrl } from "@/lib/cloudinary";
+
+// MDX 검증을 위한 추가 import
+import { validateMdxContent } from "@/lib/utils/mdx-validator";
 
 export type FrontMatter = {
   title: string;
@@ -442,9 +450,21 @@ async function main() {
         }
 
         let enhancedContent = content;
+
         // 안전 변환 적용
         enhancedContent = decodeUrlEncodedLinks(enhancedContent);
         enhancedContent = processMdxContent(enhancedContent);
+
+        // enhancedContent = await processMdxContent(enhancedContent);
+        // // MDX 검증 및 수정
+        // const validationResult = await validateMdxContent(
+        //   enhancedContent,
+        //   slug
+        // );
+        // enhancedContent = validationResult.content;
+        // if (!validationResult.isValid) {
+        //   console.warn(`⚠️ MDX 검증 실패, 기본 템플릿 사용: ${slug}`);
+        // }
 
         // 노션 이미지를 Cloudinary URL로 변환
         console.log(`🖼️ 이미지 처리 시작: ${slug}`);

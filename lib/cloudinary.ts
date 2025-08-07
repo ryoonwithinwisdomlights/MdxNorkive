@@ -1,5 +1,10 @@
 import "dotenv/config";
+import { config } from "dotenv";
+import path from "path";
 import { v2 as cloudinary } from "cloudinary";
+
+// .env.local 파일을 명시적으로 로드
+config({ path: path.resolve(process.cwd(), ".env.local") });
 
 // Cloudinary 설정
 const cloudinaryConfig = {

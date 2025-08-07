@@ -1,3 +1,6 @@
+import "dotenv/config";
+import { config } from "dotenv";
+
 import { imageCacheManager } from "@/lib/cache/image_cache_manager";
 import { uploadImageFromUrl, uploadPdfFromUrl } from "@/lib/cloudinary";
 import {
@@ -10,11 +13,15 @@ import {
   DatabaseObjectResponse,
   PageObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
-import "dotenv/config";
+
 import fs from "fs/promises";
 import matter from "gray-matter";
 import { NotionToMarkdown } from "notion-to-md";
 import path from "path";
+import { validateMdxContent } from "@/lib/utils/mdx-validator";
+
+// .env.local 파일을 명시적으로 로드
+config({ path: path.resolve(process.cwd(), ".env.local") });
 
 export type FrontMatter = {
   title: string;
@@ -446,8 +453,8 @@ async function main() {
           }
 
           let enhancedContent = content;
-          // 문서 링크를 Cloudinary URL로 변환
-          console.log(`📄 문서 링크 처리 시작: ${slug}`);
+
+          // console.log(`📄 문서 링크 처리 시작: ${slug}`);
           enhancedContent = await processDocumentLinks(enhancedContent);
 
           // 안전 변환 적용
@@ -462,6 +469,18 @@ async function main() {
             console.log(`🖼️ pageCover 처리 시작: ${slug}`);
             pageCover = await processPageCover(pageCover);
           }
+
+          enhancedContent = await processMdxContent(enhancedContent);
+          // MDX 검증 및 수정
+          // const validationResult = await validateMdxContent(
+          //   enhancedContent,
+          //   slug
+          // );
+          // enhancedContent = validationResult.content;
+          // if (!validationResult.isValid) {
+          //   console.warn(`⚠️ MDX 검증 실패, 기본 템플릿 사용: ${slug}`);
+          // }
+
           // 메타데이터 생성
           const description =
             props.description?.rich_text?.[0]?.plain_text?.trim() || "";
