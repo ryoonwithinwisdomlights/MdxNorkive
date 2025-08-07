@@ -14,7 +14,7 @@
   },
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev --turbo",
-    "prebuild": "npx tsx scripts/notion-mdx-all-in-one.ts",
+    "prebuild": "echo 'Skipping prebuild for Vercel deployment'",
     "build": "rm -rf .next && next build",
     "start": "NODE_OPTIONS='--inspect' next build && next start",
     "prettier": "prettier --write --ignore-unknown .",
@@ -114,8 +114,7 @@
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.11",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "ts-node": "^10.9.2"
   },
   "engines": {
     "node": " >=18.12.1"
