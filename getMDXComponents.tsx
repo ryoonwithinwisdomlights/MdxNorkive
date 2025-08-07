@@ -12,11 +12,11 @@ import defaultMdxComponents from "fumadocs-ui/mdx";
 import * as icons from "lucide-react";
 import type { MDXComponents } from "mdx/types";
 
-import FileWrapper from "./components/ui/FileWrapper";
-import GoogleDriveWrapper from "./components/ui/GoogleDriveWrapper";
-import YoutubeWrapper from "./components/ui/YoutubeWrapper";
-import EmbededWrapper from "./components/ui/EmbededWrapper";
-import BookMarkWrapper from "./components/ui/BookMarkWrapper";
+import FileWrapper from "@/modules/mdx/FileWrapper";
+import GoogleDriveWrapper from "@/modules/mdx/GoogleDriveWrapper";
+import YoutubeWrapper from "@/modules/mdx/YoutubeWrapper";
+import EmbededWrapper from "@/modules/mdx/EmbededWrapper";
+import BookMarkWrapper from "@/modules/mdx/BookMarkWrapper";
 
 // 일반 링크를 위한 컴포넌트 (PDF, Google Drive, 외부 링크)
 const CustomLinkComponent = ({

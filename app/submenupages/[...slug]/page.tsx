@@ -1,4 +1,4 @@
-import CustomedMDXPage from "@/components/CustomedMDXPage";
+import CustomedMDXPage from "@/modules/shared/CustomedMDXPage";
 
 // export async function generateStaticParams() {
 //   const records = [{ pageId: "341eb5c0337801da209c34c90bc3377" }];

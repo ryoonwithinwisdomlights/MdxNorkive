@@ -1,4 +1,4 @@
-import CustomedMDXPage from "@/components/CustomedMDXPage";
+import CustomedMDXPage from "@/modules/shared/CustomedMDXPage";
 import { bookSource } from "@/lib/source";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";

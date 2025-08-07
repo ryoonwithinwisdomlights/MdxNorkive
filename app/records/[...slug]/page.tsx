@@ -1,6 +1,5 @@
-import CustomedMDXPage from "@/components/CustomedMDXPage";
+import CustomedMDXPage from "@/modules/shared/CustomedMDXPage";
 import { recordSource } from "@/lib/source";
-import { getPage, getPages } from "@/lib/source";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -34,7 +33,7 @@ export default async function Page(props: {
 }
 
 export async function generateStaticParams() {
-  return getPages().map((page) => ({
+  return recordSource.getPages().map((page) => ({
     slug: page.slugs,
   }));
 }
@@ -43,7 +42,7 @@ export async function generateMetadata(props: {
   params: Promise<{ slug?: string[] }>;
 }) {
   const params = await props.params;
-  const page = getPage(params.slug);
+  const page = recordSource.getPage(params.slug);
   if (!page) notFound();
   return {
     title: page.data.title,

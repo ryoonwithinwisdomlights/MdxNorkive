@@ -6,17 +6,17 @@ import type { Metadata, Viewport } from "next";
 import "./../styles/globals.css";
 
 // import initArchiveGlobalData from "@/lib/notion/controller";
-import TopNavBar from "@/modules/layout/components/TopNavBar";
+import TopNavigationWrapper from "@/modules/common/layout/components/TopNavigationWrapper";
 
 import { GeneralSiteSettingsProvider } from "@/lib/context/GeneralSiteSettingsProvider";
 
 import { ModalProvider } from "@/lib/context/ModalProvider";
-import JumpToTopButton from "@/modules/common/components/JumpToTopButton";
+
 import { ChildrenProp } from "@/types";
 
 import { MenuProvider } from "@/lib/context/MenuProvider";
 import { NavInfoProvider } from "@/lib/context/NavInfoProvider";
-import JumpToBackButton from "@/modules/common/components/JumpToBackButton";
+
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { fetchAllRecordList, fetchMenuList } from "./api/fetcher";
 import {
@@ -26,8 +26,10 @@ import {
   projectSource,
 } from "@/lib/source";
 import { LoaderConfig, Page, PageData } from "fumadocs-core/source";
-import AuxiliaryBlogComponent from "@/modules/layout/components/AuxiliaryComponent";
-import BottomMenuBar from "@/modules/layout/components/menu/BottomMenuBar";
+import AuxiliaryBlogComponent from "@/modules/common/layout/components/AuxiliaryComponent";
+import BottomMenuBar from "@/modules/common/menu/BottomMenuBar";
+import JumpToTopButton from "@/modules/shared/JumpToTopButton";
+import JumpToBackButton from "@/modules/shared/JumpToBackButton";
 config.autoAddCss = false;
 
 export const viewport: Viewport = {
@@ -133,20 +135,17 @@ export default async function RootLayout({ children }: ChildrenProp) {
                   <AuxiliaryBlogComponent />
                   {/* <Suspense fallback={<LoadingCover />}> */}
 
-                  <TopNavBar />
+                  <TopNavigationWrapper />
 
                   <div className=" dark:bg-black dark:text-neutral-300 py-10 flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain ">
                     {children}
                   </div>
 
                   {/* <LeftNavigationBar /> */}
-                  {/* <MainLayoutWrapper>{children}</MainLayoutWrapper> */}
 
                   {/* </Suspense> */}
                   <JumpToTopButton />
                   <JumpToBackButton />
-
-                  {/* <MobileLeftNavDrawer /> */}
 
                   <BottomMenuBar />
 

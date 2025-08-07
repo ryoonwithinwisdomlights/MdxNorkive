@@ -1,5 +1,4 @@
-import TagList from "@/modules/blog/tag/TagList";
-import NoRecordTypePageWrapper from "@/modules/layout/templates/NoRecordTypePageWrapper";
+import NoRecordTypePageWrapper from "@/modules/common/layout/templates/NoRecordTypePageWrapper";
 
 export default async function Page() {
   return (

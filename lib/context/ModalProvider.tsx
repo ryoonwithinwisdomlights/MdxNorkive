@@ -1,6 +1,6 @@
 "use client";
 
-import SettingModal from "@/modules/common/components/modals/SettingModal";
+import SettingModal from "@/modules/common/modals/SettingModal";
 import { useEffect, useState } from "react";
 import { Toaster } from "sonner";
 

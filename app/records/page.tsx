@@ -2,11 +2,10 @@
 
 import { useSidebar } from "fumadocs-ui/provider";
 import { useEffect } from "react";
-import ArchiveIntro from "@/modules/blog/records/ArchiveIntro";
+import ArchiveIntroPage from "@/modules/page/ArchiveIntroPage";
+import GeneralRecordPage from "@/modules/intropage/GeneralRecordPage";
 
 export default function Page() {
-  // const pages = pageTree;
-
   const { setCollapsed } = useSidebar();
   useEffect(() => {
     setCollapsed(true);
@@ -14,7 +13,7 @@ export default function Page() {
 
   return (
     <div className="w-full flex flex-col items-center p-10 gap-10">
-      <ArchiveIntro />
+      <GeneralRecordPage />
     </div>
   );
 }

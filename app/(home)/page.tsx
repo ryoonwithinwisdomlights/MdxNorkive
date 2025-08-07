@@ -1,6 +1,6 @@
 "use client";
 
-import NorkiveIntro from "@/modules/blog/records/NorkiveIntro";
+import NorkiveIntro from "@/modules/intropage/NorkiveIntro";
 
 export default function Page() {
   return <NorkiveIntro />;

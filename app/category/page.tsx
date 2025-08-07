@@ -1,10 +1,9 @@
-import CategoryList from "@/modules/blog/category/CategoryList";
-import NoRecordTypePageWrapper from "@/modules/layout/templates/NoRecordTypePageWrapper";
+import NoRecordTypePageWrapper from "@/modules/common/layout/templates/NoRecordTypePageWrapper";
 
 export default async function Page() {
   return (
     <NoRecordTypePageWrapper>
-      {/* <CategoryList /> */}
+      {/* <CategoryPage /> */}
       <div>No result</div>
     </NoRecordTypePageWrapper>
   );

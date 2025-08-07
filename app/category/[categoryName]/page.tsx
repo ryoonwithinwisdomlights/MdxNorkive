@@ -1,5 +1,5 @@
-import ErrorComponent from "@/modules/common/components/shared/ErrorComponent";
-import NoRecordTypePageWrapper from "@/modules/layout/templates/NoRecordTypePageWrapper";
+import ErrorComponent from "@/modules/shared/ErrorComponent";
+import NoRecordTypePageWrapper from "@/modules/common/layout/templates/NoRecordTypePageWrapper";
 import { TotalPageParams } from "@/types";
 
 export async function generateStaticParams() {

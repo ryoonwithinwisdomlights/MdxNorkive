@@ -1,5 +1,5 @@
 "use client";
-import BookRecordsPage from "@/modules/blog/records/BookRecordsPage";
+import BookRecordsPage from "@/modules/intropage/BookRecordsPage";
 import { useSidebar } from "fumadocs-ui/provider";
 import { useEffect } from "react";
 
@@ -8,9 +8,5 @@ export default function Page() {
   useEffect(() => {
     setCollapsed(true);
   });
-  return (
-    <div className="w-full flex flex-col items-center p-10 gap-10">
-      <BookRecordsPage />
-    </div>
-  );
+  return <BookRecordsPage />;
 }

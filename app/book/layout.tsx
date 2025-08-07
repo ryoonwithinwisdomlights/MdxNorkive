@@ -1,7 +1,7 @@
-import RightSideInfoBar from "@/modules/layout/components/RightSideInfoBar";
+import RightSideInfoBar from "@/modules/common/layout/components/RightSideInfoBar";
 import { ReactElement, ReactNode } from "react";
 import { bookSource } from "@/lib/source";
-import { DocsLayout } from "@/modules/layout/templates/docs-min";
+import { DocsLayout } from "@/modules/common/layout/templates/docs-min";
 import { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
 interface Root {
   $id?: string;

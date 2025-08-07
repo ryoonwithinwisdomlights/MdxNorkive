@@ -1,19 +1,13 @@
 "use client";
+import { projectSource } from "@/lib/source";
+import ProjectRecordsPage from "@/modules/intropage/ProjectRecordsPage";
 import { useSidebar } from "fumadocs-ui/provider";
 import { useEffect } from "react";
-import { projectSource } from "@/lib/source";
-import ProjectIntro from "@/modules/blog/records/ProjectIntro";
-import RecordBodyForPage from "@/modules/blog/records/RecordBodyForPage";
 export default function Page() {
   const pages = projectSource.getPages();
   const { setCollapsed } = useSidebar();
   useEffect(() => {
     setCollapsed(true);
   });
-  return (
-    <div className="w-full flex flex-col items-center p-10 gap-10">
-      <ProjectIntro />
-      <RecordBodyForPage records={pages} />
-    </div>
-  );
+  return <ProjectRecordsPage pages={pages} />;
 }

@@ -1,7 +1,6 @@
 "use client";
 import { engineeringSource } from "@/lib/source";
-import EngineeringIntro from "@/modules/blog/records/EngineeringIntro";
-import RecordBodyForPage from "@/modules/blog/records/RecordBodyForPage";
+import EngineeringIRecordPage from "@/modules/intropage/EngineeringIRecordPage";
 import { useSidebar } from "fumadocs-ui/provider";
 import { useEffect } from "react";
 export default function Page() {
@@ -10,10 +9,5 @@ export default function Page() {
   useEffect(() => {
     setCollapsed(true);
   });
-  return (
-    <div className="w-full flex flex-col items-center p-10 gap-10">
-      <EngineeringIntro />
-      <RecordBodyForPage records={pages} />
-    </div>
-  );
+  return <EngineeringIRecordPage pages={pages} />;
 }

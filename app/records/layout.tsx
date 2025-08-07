@@ -1,6 +1,6 @@
 import { recordSource } from "@/lib/source";
-import RightSideInfoBar from "@/modules/layout/components/RightSideInfoBar";
-import { DocsLayout } from "@/modules/layout/templates/docs-min";
+import RightSideInfoBar from "@/modules/common/layout/components/RightSideInfoBar";
+import { DocsLayout } from "@/modules/common/layout/templates/docs-min";
 import { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
 
 const baseOptions: Partial<DocsLayoutProps> = {
