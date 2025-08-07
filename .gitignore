@@ -49,6 +49,9 @@ yarn-error.log*
 # notion images (선택사항 - 이미지를 git에 포함하고 싶지 않다면 주석 해제)
 # /public/images/notion/
 
+# TEST directory
+/TEST
+
 
 # yarn
 package-lock.json
