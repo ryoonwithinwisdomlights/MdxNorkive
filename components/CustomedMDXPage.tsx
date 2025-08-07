@@ -38,8 +38,8 @@ function getResource(resource: string) {
 // // Structured Data, for Search API
 // page?.data.structuredData;
 export default function CustomedMDXPage({ className, slug, resource }) {
-  console.log("resource", resource);
-  console.log("slug", slug);
+  // console.log("resource", resource);
+  // console.log("slug", slug);
   const page = getResource(resource)?.getPage(slug);
   console.log("page:", page);
   if (!page) notFound();

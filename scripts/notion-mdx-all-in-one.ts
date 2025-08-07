@@ -19,39 +19,6 @@ import { generateUserFriendlySlug } from "@/lib/utils/mdx-utils";
 
 import { imageCacheManager } from "@/lib/cache/image_cache_manager";
 import { uploadImageFromUrl, uploadPdfFromUrl } from "@/lib/cloudinary";
-import { v2 as cloudinary } from "cloudinary";
-
-// 환경변수 로드 확인
-console.log("🔧 환경변수 확인:");
-console.log(
-  `   - CLOUDINARY_CLOUD_NAME: ${
-    process.env.CLOUDINARY_CLOUD_NAME ? "✅ 설정됨" : "❌ 설정 안됨"
-  }`
-);
-console.log(
-  `   - CLOUDINARY_API_KEY: ${
-    process.env.CLOUDINARY_API_KEY ? "✅ 설정됨" : "❌ 설정 안됨"
-  }`
-);
-console.log(
-  `   - CLOUDINARY_API_SECRET: ${
-    process.env.CLOUDINARY_API_SECRET ? "✅ 설정됨" : "❌ 설정 안됨"
-  }`
-);
-console.log(
-  `   - CLOUDINARY_UPLOAD_FOLDER: ${
-    process.env.CLOUDINARY_UPLOAD_FOLDER ? "✅ 설정됨" : "❌ 설정 안됨"
-  }`
-);
-
-// Cloudinary 설정을 스크립트에서 직접 설정
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
-  api_key: process.env.CLOUDINARY_API_KEY!,
-  api_secret: process.env.CLOUDINARY_API_SECRET!,
-});
-
-console.log("🔧 Cloudinary 설정 완료");
 
 export type FrontMatter = {
   title: string;

@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { v2 as cloudinary } from "cloudinary";
 
 // Cloudinary 설정
@@ -7,17 +8,36 @@ const cloudinaryConfig = {
   api_secret: process.env.CLOUDINARY_API_SECRET!,
 };
 
-// 설정 확인 로그
-console.log("🔧 Cloudinary 설정 확인:");
-console.log(`   - cloud_name: ${cloudinaryConfig.cloud_name}`);
-console.log(
-  `   - api_key: ${cloudinaryConfig.api_key ? "설정됨" : "설정 안됨"}`
-);
-console.log(
-  `   - api_secret: ${cloudinaryConfig.api_secret ? "설정됨" : "설정 안됨"}`
-);
+// 설정 확인 및 초기화
+function initializeCloudinary() {
+  console.log("🔧 Cloudinary 설정 확인:");
+  console.log(`   - cloud_name: ${cloudinaryConfig.cloud_name}`);
+  console.log(
+    `   - api_key: ${cloudinaryConfig.api_key ? "✅ 설정됨" : "❌ 설정 안됨"}`
+  );
+  console.log(
+    `   - api_secret: ${
+      cloudinaryConfig.api_secret ? "✅ 설정됨" : "❌ 설정 안됨"
+    }`
+  );
 
-cloudinary.config(cloudinaryConfig);
+  // 모든 설정이 완료된 경우에만 config 설정
+  if (
+    cloudinaryConfig.cloud_name &&
+    cloudinaryConfig.api_key &&
+    cloudinaryConfig.api_secret
+  ) {
+    cloudinary.config(cloudinaryConfig);
+    console.log("✅ Cloudinary 설정 완료");
+    return true;
+  } else {
+    console.log("❌ Cloudinary 설정 실패 - 환경변수 확인 필요");
+    return false;
+  }
+}
+
+// 초기화 실행
+initializeCloudinary();
 
 export interface CloudinaryUploadResult {
   secure_url: string;

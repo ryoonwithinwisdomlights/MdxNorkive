@@ -41,19 +41,19 @@ export class ImageCacheManager {
    * 캐시된 이미지 URL 조회
    */
   async getCachedImageUrl(originalUrl: string): Promise<string | null> {
-    const cacheKey = this.generateCacheKey(originalUrl);
-    const cached = await redis.get(cacheKey);
-
-    if (!cached) return null;
-
     try {
+      const cacheKey = this.generateCacheKey(originalUrl);
+      const cached = await redis.get(cacheKey);
+
+      if (!cached) return null;
+
       // Redis에서 가져온 값이 문자열인지 확인
       const cachedString =
         typeof cached === "string" ? cached : JSON.stringify(cached);
       const cacheInfo: ImageCacheInfo = JSON.parse(cachedString);
       return cacheInfo.cachedUrl;
     } catch (error) {
-      console.error("캐시 파싱 오류:", error);
+      console.error("Redis 캐시 조회 실패:", error);
       return null;
     }
   }
