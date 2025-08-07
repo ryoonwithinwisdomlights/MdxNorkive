@@ -39,6 +39,8 @@ export interface GlobalNotionData {
 }
 export interface GeneralSiteSettingsProviderContext {
   onLoading: boolean;
+  isMobileTopNavOpen: boolean;
+  toggleMobileTopNavOpen: () => void;
   setOnLoading: Dispatch<SetStateAction<boolean>>;
   searchKeyword: string;
   setSearchKeyword: Dispatch<SetStateAction<string>>;

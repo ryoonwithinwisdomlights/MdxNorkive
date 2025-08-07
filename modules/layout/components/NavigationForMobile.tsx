@@ -6,14 +6,18 @@ import Collapse from "@/modules/shared/Collapse";
 
 import SettingButton from "@/modules/shared/SettingButton";
 import { AlignRightIcon, MenuIcon } from "lucide-react";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 
-const NavigationForMobile = ({ collapseRef, isOpen, toggleMenuOpen }) => {
+const NavigationForMobile = ({ collapseRef }) => {
+  const { isMobileTopNavOpen, toggleMobileTopNavOpen } =
+    useGeneralSiteSettings();
+
   return (
     <div className="bg-neutral-50 dark:bg-neutral-800">
       <Collapse
         type="vertical"
         collapseRef={collapseRef}
-        isOpen={isOpen}
+        isOpen={isMobileTopNavOpen}
         className="md:hidden "
       >
         <div className=" pt-1 py-2 lg:hidden ">
@@ -30,10 +34,10 @@ const NavigationForMobile = ({ collapseRef, isOpen, toggleMenuOpen }) => {
         <LogoBar />
         <div className="mr-1 flex justify-end items-center space-x-4 font-serif dark:text-neutral-200">
           <div
-            onClick={toggleMenuOpen}
+            onClick={toggleMobileTopNavOpen}
             className="cursor-pointer text-lg hover:scale-110 duration-150"
           >
-            {isOpen ? (
+            {isMobileTopNavOpen ? (
               <AlignRightIcon className="dark:text-norkive-light" />
             ) : (
               <MenuIcon className="dark:text-norkive-light" />

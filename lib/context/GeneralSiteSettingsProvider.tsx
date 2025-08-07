@@ -38,6 +38,9 @@ export const GeneralSiteSettingsProvider: React.FC<{
   const [isDarkMode, updateDarkMode] = useState<boolean>(
     BLOG.APPEARANCE === "dark"
   );
+
+  const [isMobileTopNavOpen, changeMobileTopNavOpen] = useState<boolean>(false);
+
   const [onLoading, setOnLoading] = useState<boolean>(false);
 
   const [tocVisible, setTOCVisible] = useState<boolean>(true);
@@ -45,6 +48,10 @@ export const GeneralSiteSettingsProvider: React.FC<{
 
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const isFirstRender = useRef(true);
+
+  const toggleMobileTopNavOpen = () => {
+    changeMobileTopNavOpen(!isMobileTopNavOpen);
+  };
 
   const handleTOCVisible = () => setTOCVisible(!tocVisible);
 
@@ -95,6 +102,8 @@ export const GeneralSiteSettingsProvider: React.FC<{
     changeOppositeLang,
     setting,
     handleSettings,
+    isMobileTopNavOpen,
+    toggleMobileTopNavOpen,
   };
 
   useEffect(() => {
