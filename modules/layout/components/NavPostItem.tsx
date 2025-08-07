@@ -1,10 +1,11 @@
 "use client";
 import { BLOG } from "@/blog.config";
-import SubstringedTitleNav from "@/modules/common/layout/components/SubstringedTitleNav";
+
 import Collapse from "@/modules/shared/Collapse";
 import { ChevronLeftIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import SubstringedTitleNav from "./SubstringedTitleNav";
 
 /**
  * navigation list

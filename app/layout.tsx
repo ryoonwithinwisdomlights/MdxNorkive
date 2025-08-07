@@ -6,7 +6,6 @@ import type { Metadata, Viewport } from "next";
 import "./../styles/globals.css";
 
 // import initArchiveGlobalData from "@/lib/notion/controller";
-import TopNavigationWrapper from "@/modules/common/layout/components/TopNavigationWrapper";
 
 import { GeneralSiteSettingsProvider } from "@/lib/context/GeneralSiteSettingsProvider";
 
@@ -26,10 +25,12 @@ import {
   projectSource,
 } from "@/lib/source";
 import { LoaderConfig, Page, PageData } from "fumadocs-core/source";
-import AuxiliaryBlogComponent from "@/modules/common/layout/components/AuxiliaryComponent";
+
 import BottomMenuBar from "@/modules/common/menu/BottomMenuBar";
 import JumpToTopButton from "@/modules/shared/JumpToTopButton";
 import JumpToBackButton from "@/modules/shared/JumpToBackButton";
+import AuxiliaryBlogComponent from "@/modules/layout/components/AuxiliaryComponent";
+import TopNavigationWrapper from "@/modules/layout/components/TopNavigationWrapper";
 config.autoAddCss = false;
 
 export const viewport: Viewport = {

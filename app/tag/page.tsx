@@ -1,4 +1,4 @@
-import NoRecordTypePageWrapper from "@/modules/common/layout/templates/NoRecordTypePageWrapper";
+import NoRecordTypePageWrapper from "@/modules/layout/templates/NoRecordTypePageWrapper";
 
 export default async function Page() {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import RightSideInfoBar from "../components/RightSideInfoBar";
+import RightSideInfoBar from "@/modules/layout/components/RightSideInfoBar";
 
 export default function NoRecordTypePageWrapper({
   children,

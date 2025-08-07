@@ -1,6 +1,7 @@
 "use client";
 import { buttonVariants } from "@/components/ui/DocButton";
 import { cn } from "@/lib/utils/general";
+import Footer from "@/modules/layout/components/Footer";
 import { HideIfEmpty } from "fumadocs-core/hide-if-empty";
 import Link from "fumadocs-core/link";
 import type { PageTree } from "fumadocs-core/server";
@@ -30,7 +31,7 @@ import { BaseLayoutProps, getLinks } from "fumadocs-ui/layouts/shared";
 import { NavProvider } from "fumadocs-ui/provider";
 import { SidebarIcon } from "lucide-react";
 import { HTMLAttributes, type ReactNode, useMemo } from "react";
-import Footer from "../components/Footer";
+
 export interface DocsLayoutProps extends BaseLayoutProps {
   tree: PageTree.Root;
 

@@ -3,9 +3,10 @@ import { useGlobal } from "@/lib/context/EssentialNavInfoProvider";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { ARCHIVE_CONFIG } from "@/constants/archive-config";
 import NoRecordFound from "@/modules/blog/NoRecordFound";
-import NavPostItem from "@/modules/common/layout/components/NavPostItem";
-import NavPostListEmpty from "@/modules/common/layout/components/NavPostListEmpty";
+
 import { usePathname } from "next/navigation";
+import NavPostListEmpty from "./NavPostListEmpty";
+import NavPostItem from "./NavPostItem";
 /**
  * Blog list scrolling paging
  * @param records All articles

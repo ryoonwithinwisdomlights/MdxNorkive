@@ -1,7 +1,7 @@
 "use client";
-import LeftSidebar from "@/modules/common/layout/components/LeftSidebar";
-import RightSideInfoBar from "@/modules/common/layout/components/RightSideInfoBar";
-import GeneralRecordTypePageWrapper from "@/modules/common/layout/templates/GeneralRecordTypePageWrapper";
+
+import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
+import RightSideInfoBar from "@/modules/layout/components/RightSideInfoBar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

@@ -1,13 +1,14 @@
 "use client";
 import { BLOG } from "@/blog.config";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import NavPostListEmpty from "@/modules/common/layout/components/NavPostListEmpty";
+
 import { PaginationDivProps } from "@/types";
 import { useRouter } from "next/navigation";
-import SubstringedTitleNav from "../common/layout/components/SubstringedTitleNav";
 
 import { ChevronLeft } from "lucide-react";
 import PaginationSimple from "./PaginationSimple";
+import SubstringedTitleNav from "../layout/components/SubstringedTitleNav";
+import NavPostListEmpty from "../layout/components/NavPostListEmpty";
 /**
  * Archive list pagination table
  * @param page current page
