@@ -15,7 +15,7 @@ export function setAllPagesGetSortedGroupedByDate(allPages) {
   let result = allPages;
   const pageSortedByDate = setPageSortedByDate2(allPages);
 
-  const pageGroupedByDate = setPageGroupedByDate2(pageSortedByDate, "date");
+  const pageGroupedByDate = setPageGroupedByDate2(pageSortedByDate);
   result = pageGroupedByDate;
 
   return result;
@@ -25,7 +25,6 @@ const GeneralRecordPage = () => {
   const pages = recordSource.getPages();
   if (!pages) NotFound();
   const { lang } = useGeneralSiteSettings();
-  // console.log("GeneralRecordPage::", pages);
 
   const isAble = isObjectNotEmpty(pages);
   if (!isAble) NotFound();

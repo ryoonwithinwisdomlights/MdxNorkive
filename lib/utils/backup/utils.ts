@@ -25,11 +25,11 @@ export function setPageSortedByDate2(obj) {
   return recordsSortByDate;
 }
 
-export function setPageGroupedByDate2(array, propsName) {
+export function setPageGroupedByDate2(array) {
   const allrecords = {};
 
   array.forEach((record) => {
-    const date = formatDateFmt(record.data[propsName], "yyyy-MM");
+    const date = formatDateFmt(record.data.date, "yyyy-MM");
     if (allrecords[date]) {
       allrecords[date].push(record);
     } else {
