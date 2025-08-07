@@ -145,32 +145,7 @@ export interface QueryPageResponse
       relation: Array<PartialSelectResponse>;
       id: string;
     };
-    // icon:
-    //   | {
-    //       type: "emoji";
-    //       emoji: EmojiRequest;
-    //     }
-    //   | null
-    //   | {
-    //       type: "external";
-    //       external: {
-    //         url: TextRequest;
-    //       };
-    //     }
-    //   | null
-    //   | {
-    //       type: "file";
-    //       file: {
-    //         url: string;
-    //         expiry_time: string;
-    //       };
-    //     }
-    //   | null
-    //   | {
-    //       type: "custom_emoji";
-    //       custom_emoji: CustomEmojiResponse;
-    //     }
-    //   | null;
+
     cover:
       | {
           type: "external";
@@ -187,15 +162,6 @@ export interface QueryPageResponse
           };
         }
       | null;
-    // releasable: { type: "checkbox"; checkbox: boolean; id: string };
-    // prevArticleId: {
-    //   type: "number";
-    //   number: number;
-    // };
-    // nextArticleId: {
-    //   type: "number";
-    //   number: number;
-    // };
   };
 }
 

@@ -21,7 +21,6 @@ async function generateChildRelations(childRelations: Array<{ id: string }>) {
     })
   );
 
-  // console.log("children:::", children);
   return children;
 }
 async function generateMenuItem(page: QueryDatabaseResponse) {
@@ -33,7 +32,7 @@ async function generateMenuItem(page: QueryDatabaseResponse) {
   const publishDate = new Date(
     props?.date?.date?.start || page.created_time
   ).getTime();
-  const sub_type = props.sub_type?.select?.name || "";
+  // const sub_type = props.sub_type?.select?.name || "";
   const title = props.title?.title?.[0]?.plain_text?.trim() || "Untitled";
   const icon = props.menuicon?.rich_text?.[0]?.plain_text?.trim() || "";
   const slug = props.slug?.rich_text?.[0]?.plain_text?.trim() || "";
@@ -84,8 +83,7 @@ function generateRecordItem(page: QueryDatabaseResponse) {
       pageCover = page.icon.file.url;
     }
   }
-  // const icon = page.icon?.emoji || "";
-  const full = false;
+
   const category = props.category?.multi_select?.map((t: any) => t.name) ?? [];
   const tags = props.tags?.multi_select?.map((t: any) => t.name) ?? [];
   const date = props.date?.date?.start || new Date().toISOString();
@@ -113,7 +111,7 @@ function generateRecordItem(page: QueryDatabaseResponse) {
     draft: false,
     description,
     icon,
-    full,
+    full: false,
     lastModified: new Date().toISOString().slice(0, 10),
     readingTime: Math.ceil((title.length + description.length) / 200),
     wordCount: title.length + description.length,
@@ -132,32 +130,6 @@ export class NotionPageAdapter {
     this.id = page.id.replace(/-/g, "");
     this.props = page.properties as QueryDatabaseResponse["properties"];
   }
-
-  // convertToArticlePageHeaderData(): ArticlePageHeaderData {
-  //   const {
-  //     properties: { name, description, tags, createdAt, thumbnail },
-  //     created_time,
-  //   } = this.page;
-  //   return {
-  //     title: name.title?.[0]?.plain_text ?? "",
-  //     description: description.rich_text?.[0]?.plain_text ?? "",
-  //     tagList: tags.multi_select.map(({ id, name }) => ({ id, name })),
-  //     createdAt: new Date(createdAt.date?.start ?? created_time),
-  //     thumbnailUrl: thumbnail.files?.[0]?.file.url ?? "기본 이미지 url",
-  //   };
-  // }
-
-  // convertToArticleLinkerData(): ArticleLinkerData {
-  //   const {
-  //     id: pageId,
-  //     properties: { name },
-  //   } = this.page;
-
-  //   return {
-  //     pageId,
-  //     title: name.title?.[0]?.plain_text ?? "",
-  //   };
-  // }
 }
 
 export class NotionPageListAdapter {
@@ -175,26 +147,8 @@ export class NotionPageListAdapter {
       menus = await Promise.all(menuPromises);
     }
 
-    // console.log("menus:::", menus);
     return menus;
   }
-
-  // convertToFeaturedArticleList(): FeaturedArticle[] {
-  //   return this.pageList.map(
-  //     ({
-  //       id: pageId,
-  //       properties: { id, name, description, createdAt, thumbnail },
-  //       created_time,
-  //     }) => ({
-  //       id: id.unique_id.number,
-  //       title: name.title?.[0]?.plain_text ?? "",
-  //       description: description.rich_text?.[0]?.plain_text ?? "",
-  //       createdAt: new Date(createdAt.date?.start ?? created_time),
-  //       thumbnailUrl: thumbnail.files?.[0]?.file.url ?? "기본 이미지 url",
-  //       pageId,
-  //     })
-  //   );
-  // }
 
   convertToAllRecordList(): RecordItem[] {
     return this.pageList.map((item) => generateRecordItem(item));

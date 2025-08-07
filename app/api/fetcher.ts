@@ -39,36 +39,11 @@ export const fetchMenuList = cache(async (): Promise<MenuItem[]> => {
       },
     });
 
-    // console.log("📊 Notion 쿼리 결과:", queryResponse.results.length, "개 항목");
-    // console.log(
-    //   "📋 쿼리 결과 상세:",
-    //   queryResponse.results.map((item) => {
-    //     const props = (item as any)?.properties;
-    //     return {
-    //       id: item.id,
-    //       title: props?.title?.title?.[0]?.plain_text || "제목 없음",
-    //       type: props?.type?.select?.name || "타입 없음",
-    //       status: props?.status?.select?.name || "상태 없음",
-    //     };
-    //   })
-    // );
-
     const datalist = queryResponse.results as QueryDatabaseResponseArray;
 
     const convertedMenuItemList = await new NotionPageListAdapter(
       datalist
     ).convertToBasicMenuItemList();
-
-    // console.log("✅ 변환된 메뉴 목록:", convertedMenuItemList.length, "개 항목");
-    // console.log(
-    //   "📝 메뉴 상세:",
-    //   convertedMenuItemList.map((item) => ({
-    //     id: item.id,
-    //     title: item.title,
-    //     type: item.type,
-    //     url: item.url,
-    //   }))
-    // );
 
     return convertedMenuItemList;
   } catch (error) {
@@ -120,7 +95,7 @@ export const fetchAllRecordList = cache(async (): Promise<RecordItem[]> => {
         },
       ],
     });
-    // console.log("queryResponse:::", queryResponse);
+
     const convertedAllRecordList = new NotionPageListAdapter(
       queryResponse.results as Array<QueryPageResponse>
     ).convertToAllRecordList();
@@ -138,70 +113,7 @@ export const fetchAllRecordList = cache(async (): Promise<RecordItem[]> => {
     console.warn("Failed to fetch records from Notion API:", error);
     return [];
   }
-  // return Promise.all(
-  //   convertedFeaturedArticleList.map(
-  //     async ({ thumbnailUrl, pageId, ...rest }) => ({
-  //       ...rest,
-  //       pageId,
-  //       thumbnailUrl: await cloudinaryApi.convertToPermanentImage(
-  //         thumbnailUrl,
-  //         `${pageId}_thumbnail`
-  //       ),
-  //       blurDataUrl: await fetchBlurDataUrl(thumbnailUrl),
-  //     })
-  //   )
-  // );
 });
-/**
- * featured article 목록을 조회해오는 함수
- */
-// export const fetchFeaturedArticleList = cache(
-//   async (): Promise<FeaturedArticleWithBlur[]> => {
-//     const queryResponse = await notion.databases.query({
-//       database_id: NOTION_DATABASE_ID,
-//       filter: {
-//         and: [
-//           {
-//             property: "Published",
-//             checkbox: {
-//               equals: true,
-//             },
-//           },
-//           {
-//             property: "type",
-//             select: {
-//               equals: "Record",
-//             },
-//           },
-//         ],
-//       },
-//       sorts: [
-//         {
-//           property: "date",
-//           direction: "descending",
-//         },
-//       ],
-//     });
-
-//     const convertedFeaturedArticleList = new NotionPageListAdapter(
-//       queryResponse.results as Array<QueryPageResponse>
-//     ).convertToFeaturedArticleList();
-
-//     return Promise.all(
-//       convertedFeaturedArticleList.map(
-//         async ({ thumbnailUrl, pageId, ...rest }) => ({
-//           ...rest,
-//           pageId,
-//           thumbnailUrl: await cloudinaryApi.convertToPermanentImage(
-//             thumbnailUrl,
-//             `${pageId}_thumbnail`
-//           ),
-//           blurDataUrl: await fetchBlurDataUrl(thumbnailUrl),
-//         })
-//       )
-//     );
-//   }
-// );
 
 /**
  * article tag 목록을 조회해오는 함수
@@ -222,146 +134,6 @@ export const fetchRecordTagList = cache(async () => {
     return [];
   }
 });
-
-/**
- * 전체 아티클들의 목록을 조회해오는 함수
- */
-// export const fetchAllArticleList = cache(
-//   async (): Promise<AllArticleWithBlur[]> => {
-//     const queryResponse = await notion.databases.query({
-//       database_id: NOTION_DATABASE_ID,
-//       filter: {
-//         and: [
-//           {
-//             property: "releasable",
-//             checkbox: {
-//               equals: true,
-//             },
-//           },
-//         ],
-//       },
-//       sorts: [
-//         {
-//           property: "createdAt",
-//           direction: "descending",
-//         },
-//       ],
-//     });
-
-//     const convertedAllArticleList = new NotionPageListAdapter(
-//       queryResponse.results as Array<QueryPageResponse>
-//     ).convertToAllRecordList();
-
-//     return Promise.all(
-//       convertedAllArticleList.map(async ({ thumbnailUrl, pageId, ...rest }) => {
-//         const convertedThumbnailUrl =
-//           await cloudinaryApi.convertToPermanentImage(
-//             thumbnailUrl,
-//             `${pageId}_thumbnail`
-//           );
-
-//         return {
-//           ...rest,
-//           pageId,
-//           thumbnailUrl: convertedThumbnailUrl,
-//           blurDataUrl: await fetchBlurDataUrl(convertedThumbnailUrl),
-//         };
-//       })
-//     );
-//   }
-// );
-
-/**
- * 해당 아티클 페이지의 header 부분의 데이터를 불러오는 함수
- */
-// export const fetchArticlePageHeaderData = (pageId: string) => {
-//   const cacheKey = ARTICLE_HEADER(pageId);
-
-//   return unstable_cache(
-//     async (pageId: string): Promise<ArticlePageHeaderDataWithBlur> => {
-//       const pageResponse = await notion.pages.retrieve({
-//         page_id: pageId,
-//       });
-
-//       const { thumbnailUrl, ...rest } = new NotionPageAdapter(
-//         pageResponse as QueryPageResponse
-//       ).convertToArticlePageHeaderData();
-
-//       const convertedThumbnailUrl = await cloudinaryApi.convertToPermanentImage(
-//         thumbnailUrl,
-//         `${pageId}_thumbnail`
-//       );
-
-//       return {
-//         ...rest,
-//         thumbnailUrl: convertedThumbnailUrl,
-//         blurDataUrl: await fetchBlurDataUrl(convertedThumbnailUrl),
-//       };
-//     },
-//     [cacheKey],
-//     {
-//       tags: [cacheKey],
-//     }
-//   )(pageId);
-// };
-
-/**
- * 해당 아티클 페이지의 footer 부분의 데이터를 불러오는 함수
- */
-// export const fetchArticlePageFooterData = (pageId: string) => {
-//   const cacheKey = ARTICLE_FOOTER(pageId);
-
-//   return unstable_cache(
-//     async (pageId: string): Promise<ArticlePageFooterData> => {
-//       const {
-//         properties: {
-//           prevArticleId: { number: prevArticleId },
-//           nextArticleId: { number: nextArticleId },
-//         },
-//       } = (await notion.pages.retrieve({
-//         page_id: pageId,
-//       })) as QueryPageResponse;
-
-//       const [prevArticlePageData, nextArticlePageData] = await Promise.all(
-//         [prevArticleId, nextArticleId].map((articleId) => {
-//           if (isNil(articleId)) {
-//             return undefined;
-//           }
-//           return notion.databases.query({
-//             database_id: process.env.NOTION_DATABASE_ID!,
-//             filter: {
-//               and: [
-//                 {
-//                   property: "id",
-//                   number: {
-//                     equals: articleId,
-//                   },
-//                 },
-//               ],
-//             },
-//           });
-//         })
-//       );
-
-//       return {
-//         prevArticle: prevArticlePageData
-//           ? new NotionPageAdapter(
-//               prevArticlePageData?.results[0] as QueryPageResponse
-//             ).convertToArticleLinkerData()
-//           : undefined,
-//         nextArticle: nextArticlePageData
-//           ? new NotionPageAdapter(
-//               nextArticlePageData?.results[0] as QueryPageResponse
-//             ).convertToArticleLinkerData()
-//           : undefined,
-//       };
-//     },
-//     [cacheKey],
-//     {
-//       tags: [cacheKey],
-//     }
-//   )(pageId);
-// };
 
 /**
  * 해당 아티클 페이지의 모든 block들을 불러오는 함수
@@ -423,49 +195,3 @@ export const fetchAllImageBlocksInPage = cache(async (pageId: string) => {
     throw error;
   }
 });
-
-/**
- * 페이지 내의 image 블락들을 불러들여 파싱 진행
- */
-// export const updateImageBlocks = async (pageId: string) => {
-//   const allImageBlocks = await fetchAllImageBlocksInPage(pageId);
-
-//   for (const [index, imageBlock] of allImageBlocks.entries()) {
-//     const { image, id: blockId } = imageBlock;
-//     // notion에 직접 업로드된 이미지 파일들만 cloudinary에 업로드하여 변환
-//     if ("type" in image && image.type === "file") {
-//       const convertedImageUrl = await cloudinaryApi.convertToPermanentImage(
-//         (image as FileImageBlock).file.url,
-//         `${pageId}_imageblock_${index + 1}`
-//       );
-//       await notion.blocks.update({
-//         block_id: blockId,
-//         image: {
-//           external: {
-//             url: convertedImageUrl,
-//           },
-//         },
-//       });
-//     }
-//   }
-// };
-
-/**
- * 해당 아티클 페이지의 content 부분의 데이터를 불러오는 함수
- */
-// export const fetchArticlePageContent = (pageId: string) => {
-//   const cacheKey = ARTICLE_CONTENT(pageId);
-
-//   return unstable_cache(
-//     async (pageId: string) => {
-//       await updateImageBlocks(pageId);
-
-//       const mdBlocks = await n2m.pageToMarkdown(pageId);
-//       return n2m.toMarkdownString(mdBlocks);
-//     },
-//     [cacheKey],
-//     {
-//       tags: [cacheKey],
-//     }
-//   )(pageId);
-// };
