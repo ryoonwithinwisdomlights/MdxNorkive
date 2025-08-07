@@ -14,11 +14,13 @@ export function isDatabase(rawMetadata, uuidedRootPageId) {
   return true;
 }
 
-export function setPageSortedByDate2(obj, propsName) {
+export function setPageSortedByDate2(obj) {
   const recordsSortByDate = Object.create(obj);
 
   recordsSortByDate.sort((a, b) => {
-    return b?.data?.[propsName] - a?.data?.[propsName];
+    return (
+      new Date(b?.data?.date).getTime() - new Date(a?.data?.date).getTime()
+    );
   });
   return recordsSortByDate;
 }

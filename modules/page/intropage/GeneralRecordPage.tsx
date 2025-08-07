@@ -13,7 +13,8 @@ import NoRecordFound from "@/modules/page/components/NoRecordFound";
 
 export function setAllPagesGetSortedGroupedByDate(allPages) {
   let result = allPages;
-  const pageSortedByDate = setPageSortedByDate2(allPages, "date");
+  const pageSortedByDate = setPageSortedByDate2(allPages);
+
   const pageGroupedByDate = setPageGroupedByDate2(pageSortedByDate, "date");
   result = pageGroupedByDate;
 
@@ -63,19 +64,6 @@ const GeneralRecordPage = () => {
           </div>
         </div>
 
-        {/* <div className="flex flex-col gap-2">
-          <h2
-            className="text-5xl  font-bold text-neutral-800
-           dark:text-white 
-         dark:bg-neutral-800"
-          >
-            General records
-          </h2>
-          <p className="text-lg text-neutral-600 dark:text-neutral-300">
-          {locale.INTRO.RECENT_RECORDS_DESC}
-        </p>
-        </div> */}
-        {/* <hr className="w-full border-2 border-neutral-100" /> */}
         {isAble ? (
           <div className="flex flex-col gap-16 items-start w-full ">
             <FeaturedRecords
@@ -84,12 +72,6 @@ const GeneralRecordPage = () => {
               records={pages}
               introTrue={false}
             />
-            {/* <RecordsWithMultiplesOfThree
-              filteredPages={filteredPages}
-              className=""
-              introTrue={false}
-            /> */}
-
             <RecordsWrapper
               modAllPages={modAllPages}
               className="w-full flex flex-col justify-center  items-center gap-10 bg-opacity-30 rounded-lg dark:bg-black dark:bg-opacity-70"
