@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
 /**
- * Encrypted article verification component
+ * Record verification component
  * @param {password, validPassword} props
  * @param password correct password
  * @param validPassword(bool) Callback function, verify that the correct callback input parameter is true
