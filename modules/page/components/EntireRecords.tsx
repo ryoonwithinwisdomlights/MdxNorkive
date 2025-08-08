@@ -127,6 +127,7 @@ const EntireRecords = ({
 
   const handleRouter = (page: any) => {
     // if (page.data.password === "") {
+    console.log("page.url:", page.url);
     router.push(page.url);
     // }
   };

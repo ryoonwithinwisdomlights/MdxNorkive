@@ -16,17 +16,20 @@ export default async function Page(props: {
 
   return (
     <CustomedMDXPage
-      resource={"submenupage"}
+      resource={"record"}
       className="p-4 md:p-0"
-      slug={slug}
+      slug={params.slug}
     />
   );
 }
 
 export async function generateStaticParams() {
-  return submenuPageSource.getPages().map((page) => ({
-    slug: page.slugs,
-  }));
+  return submenuPageSource.getPages().map((page) => {
+    const modSlug = page.slugs.map((s) => decodeURIComponent(s));
+    return {
+      slug: modSlug,
+    };
+  });
 }
 
 export async function generateMetadata(props: {

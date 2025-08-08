@@ -24,14 +24,21 @@ export default async function Page(props: {
   }
 
   return (
-    <CustomedMDXPage resource={"record"} className="p-4 md:p-0" slug={slug} />
+    <CustomedMDXPage
+      resource={"record"}
+      className="p-4 md:p-0"
+      slug={params.slug}
+    />
   );
 }
 
 export async function generateStaticParams() {
-  return recordSource.getPages().map((page) => ({
-    slug: page.slugs,
-  }));
+  return recordSource.getPages().map((page) => {
+    const modSlug = page.slugs.map((s) => decodeURIComponent(s));
+    return {
+      slug: modSlug,
+    };
+  });
 }
 
 export async function generateMetadata(props: {

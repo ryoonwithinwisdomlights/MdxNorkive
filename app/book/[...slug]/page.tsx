@@ -10,23 +10,22 @@ export default async function Page(props: {
 }) {
   const params = await props.params;
   let slug = params.slug;
-  if (slug) {
-    slug = slug.map((s) => decodeURIComponent(s));
-  }
+  // if (slug) {
+  //   slug = slug.map((s) => decodeURIComponent(s));
+  // }
 
   return (
-    <CustomedMDXPage
-      resource={"book"}
-      className="p-4 md:p-0"
-      slug={slug}
-    />
+    <CustomedMDXPage resource={"book"} className=" p-4  " slug={params.slug} />
   );
 }
 
 export async function generateStaticParams() {
-  return bookSource.getPages().map((page) => ({
-    slug: page.slugs,
-  }));
+  return bookSource.getPages().map((page) => {
+    const modSlug = page.slugs.map((s) => decodeURIComponent(s));
+    return {
+      slug: modSlug,
+    };
+  });
 }
 
 export async function generateMetadata(props: {

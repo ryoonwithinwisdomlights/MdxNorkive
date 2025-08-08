@@ -33,6 +33,15 @@ function getResource(resource: string) {
 }
 
 export default function CustomedMDXPage({ className, slug, resource }) {
+  let modSlug = slug.map((s) => decodeURIComponent(s));
+  console.log("slug:", slug);
+  console.log("modSlug:", modSlug);
+  const temp = getResource(resource)
+    ?.getPages()
+    .map((page) => ({
+      slug: page.slugs,
+    }));
+  console.log("temp:", temp);
   const page = getResource(resource)?.getPage(slug);
 
   if (!page) notFound();
