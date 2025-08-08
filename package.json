@@ -14,6 +14,9 @@
   },
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev --turbo",
+    "prebuild": "npm run generate:mdx",
+    "prebuild:clean": "npm run clean:lockfiles && npm run prebuild",
+    "prebuild:full": "npm run prebuild && npm run process-redis-images",
     "build": "rm -rf .next && next build",
     "build:vercel": "NODE_OPTIONS='--max-old-space-size=4096 --no-warnings' next build",
     "start": "NODE_OPTIONS='--inspect' next build && next start",
@@ -28,7 +31,8 @@
     "cron-process-mdx": "curl -X GET http://localhost:3000/api/cron/process-notion-mdx",
     "clean:lockfiles": "find . -name 'package-lock.json' ! -path './package-lock.json' -delete && find . -name 'yarn.lock' ! -path './yarn.lock' -delete && find . -name 'pnpm-lock.yaml' ! -path './pnpm-lock.yaml' -delete",
     "install:clean": "npm run clean:lockfiles && npm install --legacy-peer-deps",
-    "build:clean": "npm run clean:lockfiles && npm run build"
+    "build:clean": "npm run clean:lockfiles && npm run build",
+    "check:validity": "npm run validate:mdx && npm run prettier:check"
   },
   "dependencies": {
     "@content-collections/core": "^0.10.0",

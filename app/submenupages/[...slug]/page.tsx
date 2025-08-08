@@ -14,9 +14,12 @@ export default async function Page(props: {
     slug = slug.map((s) => decodeURIComponent(s));
   }
 
+  // console.log("slug:", slug);
+  // console.log("params.slug:", params.slug);
+  // console.log("===================");
   return (
     <CustomedMDXPage
-      resource={"record"}
+      resource={"submenupages"}
       className="p-4 md:p-0"
       slug={params.slug}
     />
@@ -24,12 +27,9 @@ export default async function Page(props: {
 }
 
 export async function generateStaticParams() {
-  return submenuPageSource.getPages().map((page) => {
-    const modSlug = page.slugs.map((s) => decodeURIComponent(s));
-    return {
-      slug: modSlug,
-    };
-  });
+  return submenuPageSource.getPages().map((page) => ({
+    slug: page.slugs,
+  }));
 }
 
 export async function generateMetadata(props: {

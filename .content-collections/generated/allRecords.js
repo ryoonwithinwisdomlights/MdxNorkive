@@ -293,7 +293,7 @@ export default [
   },
   {
     "notionId": "e404d3a112244b30998549eaf753d023",
-    "title": "[Essay]",
+    "title": "[Essay] 나와 남을 잘 사랑하는 방법에 대한 조각들",
     "icon": "",
     "full": false,
     "summary": "",
@@ -313,7 +313,7 @@ export default [
     "draft": false,
     "favorite": true,
     "readingTime": 36,
-    "wordCount": 7114,
+    "wordCount": 7138,
     "lastModified": "2025-08-08",
     "version": "1.0.0",
     "status": "published",

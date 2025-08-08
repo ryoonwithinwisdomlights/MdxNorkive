@@ -28,20 +28,20 @@ function getResource(resource: string) {
   if (resource === "book") return bookSource;
   if (resource === "project") return projectSource;
   if (resource === "record") return recordSource;
-  if (resource === "submenupage") return submenuPageSource;
+  if (resource === "submenupages") return submenuPageSource;
   else return null;
 }
 
 export default function CustomedMDXPage({ className, slug, resource }) {
-  let modSlug = slug.map((s) => decodeURIComponent(s));
-  console.log("slug:", slug);
-  console.log("modSlug:", modSlug);
-  const temp = getResource(resource)
-    ?.getPages()
-    .map((page) => ({
-      slug: page.slugs,
-    }));
-  console.log("temp:", temp);
+  // let modSlug = slug.map((s) => decodeURIComponent(s));
+  // console.log("slug:", slug);
+  // console.log("modSlug:", modSlug);
+  // const temp = getResource(resource)
+  //   ?.getPages()
+  //   .map((page) => ({
+  //     slug: page.slugs,
+  //   }));
+  // console.log("temp:", temp);
   const page = getResource(resource)?.getPage(slug);
 
   if (!page) notFound();

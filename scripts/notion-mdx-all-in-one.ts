@@ -120,7 +120,6 @@ async function main() {
 
   // 2. Notion DB에서 endDate 비교 후, 변경된 페이지만 변환
   const existingEndDates = await getExistingEndDates();
-  console.log("existingEndDates:", existingEndDates);
 
   // 배치 처리를 위한 배열
 
@@ -148,7 +147,6 @@ async function main() {
     return isChanged;
   });
 
-  console.log("pagesToProcess:", pagesToProcess);
   console.log(
     `🔄 ${pagesToProcess.length}개의 변경된 페이지를 함수형 파이프라인으로 처리합니다.`
   );
@@ -167,9 +165,6 @@ async function main() {
         }
       }
 
-      if (id === "0c5d42b6f9a24e1aa7585e0ffe4b7d5e") {
-        console.log("🔍 props.title?.title:", props.title?.title);
-      }
       // Notion title은 여러 text 블록으로 구성되어 있으므로 모든 plain_text를 합침
       const title =
         props.title?.title
