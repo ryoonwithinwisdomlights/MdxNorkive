@@ -30,7 +30,7 @@ export type RecordFrontMatter = {
   password: string;
   type: string;
   sub_type: string;
-  category: string[];
+  category: string;
   tags: string[];
   favorite: boolean;
   publishDate?: number;

@@ -37,7 +37,6 @@ import {
 
 import {
   ModifiedQueryDatabaseResponseArray,
-  OriginalQueryDatabaseResponseArray,
   QueryPageResponse,
 } from "@/types/notion.client.model";
 
@@ -73,8 +72,32 @@ async function main() {
     posts = await notion.databases.query({
       database_id: DATABASE_ID,
       filter: {
-        property: "status",
-        select: { equals: "Published" },
+        and: [
+          {
+            property: "status",
+            select: {
+              equals: "Published",
+            },
+          },
+          {
+            property: "type",
+            select: {
+              does_not_equal: "Menu",
+            },
+          },
+          {
+            property: "type",
+            select: {
+              does_not_equal: "SubMenuPages",
+            },
+          },
+          {
+            property: "type",
+            select: {
+              does_not_equal: "SubMenu",
+            },
+          },
+        ],
       },
       sorts: [
         {
@@ -97,16 +120,35 @@ async function main() {
 
   // 2. Notion DB에서 endDate 비교 후, 변경된 페이지만 변환
   const existingEndDates = await getExistingEndDates();
+  console.log("existingEndDates:", existingEndDates);
 
   // 배치 처리를 위한 배열
+
   const pagesToProcess = (
     posts.results as ModifiedQueryDatabaseResponseArray
   ).filter((page) => {
     const id = page.id.replace(/-/g, "");
+    console.log(`🔍 ID: ${id}`);
     const last_edited_time = page.last_edited_time;
-    return existingEndDates.get(id) !== last_edited_time;
+    const existingTime = existingEndDates.get(id);
+    const isChanged = existingTime !== last_edited_time;
+    const isNewPage = existingTime === undefined;
+
+    if (isNewPage) {
+      console.log(`🆕 새로 추가된 페이지: ${id}`);
+    } else if (isChanged) {
+      console.log(`🔄 변경된 페이지: ${id}`);
+    } else {
+      console.log(`✅ 변경 없음: ${id}`);
+    }
+
+    console.log(
+      `🔍 ID: ${id}, \n기존: ${existingTime}, 현재: ${last_edited_time}, 변경됨: ${isChanged}`
+    );
+    return isChanged;
   });
 
+  console.log("pagesToProcess:", pagesToProcess);
   console.log(
     `🔄 ${pagesToProcess.length}개의 변경된 페이지를 함수형 파이프라인으로 처리합니다.`
   );
@@ -124,9 +166,19 @@ async function main() {
           pageCover = page.cover.file.url;
         }
       }
-      const title = props.title?.title?.[0]?.plain_text?.trim() || "Untitled";
+
+      if (id === "0c5d42b6f9a24e1aa7585e0ffe4b7d5e") {
+        console.log("🔍 props.title?.title:", props.title?.title);
+      }
+      // Notion title은 여러 text 블록으로 구성되어 있으므로 모든 plain_text를 합침
+      const title =
+        props.title?.title
+          ?.reduce((acc, block) => {
+            return acc + (block.plain_text || "");
+          }, "")
+          ?.trim() || "Untitled";
       const type = props.type?.select?.name || "";
-      const sub_type = props.sub_type?.select?.name || "";
+      // const sub_type = props.sub_type?.select?.name || "";
       // 사용자 친화적 슬러그 생성
       const slug = generateUserFriendlySlug(
         type,

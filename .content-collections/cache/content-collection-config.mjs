@@ -45,6 +45,12 @@ var books = defineCollection({
     // ex. ["Next.js", "SEO"]
     draft: z.boolean().default(false),
     favorite: z.boolean().default(false),
+    readingTime: z.number().optional(),
+    wordCount: z.number().optional(),
+    lastModified: z.string().optional(),
+    version: z.string().optional(),
+    status: z.string().optional(),
+    author: z.string().optional(),
     // Fumadocs OpenAPI generated
     _openapi: z.record(z.string(), z.any()).optional()
   }),
@@ -80,6 +86,12 @@ var projects = defineCollection({
     // ex. ["Next.js", "SEO"]
     draft: z.boolean().default(false),
     favorite: z.boolean().default(false),
+    readingTime: z.number().optional(),
+    wordCount: z.number().optional(),
+    lastModified: z.string().optional(),
+    version: z.string().optional(),
+    status: z.string().optional(),
+    author: z.string().optional(),
     // Fumadocs OpenAPI generated
     _openapi: z.record(z.string(), z.any()).optional()
   }),
@@ -115,6 +127,12 @@ var engineerings = defineCollection({
     // ex. ["Next.js", "SEO"]
     draft: z.boolean().default(false),
     favorite: z.boolean().default(false),
+    readingTime: z.number().optional(),
+    wordCount: z.number().optional(),
+    lastModified: z.string().optional(),
+    version: z.string().optional(),
+    status: z.string().optional(),
+    author: z.string().optional(),
     // Fumadocs OpenAPI generated
     _openapi: z.record(z.string(), z.any()).optional()
   }),
@@ -150,6 +168,12 @@ var records = defineCollection({
     // ex. ["Next.js", "SEO"]
     draft: z.boolean().default(false),
     favorite: z.boolean().default(false),
+    readingTime: z.number().optional(),
+    wordCount: z.number().optional(),
+    lastModified: z.string().optional(),
+    version: z.string().optional(),
+    status: z.string().optional(),
+    author: z.string().optional(),
     // Fumadocs OpenAPI generated
     _openapi: z.record(z.string(), z.any()).optional()
   }),
@@ -183,6 +207,13 @@ var subMenuPages = defineCollection({
     // ex. "개발", ["개발", "에세이"]
     tags: z.array(z.string()).optional(),
     // ex. ["Next.js", "SEO"]
+    favorite: z.boolean().default(false),
+    readingTime: z.number().optional(),
+    wordCount: z.number().optional(),
+    lastModified: z.string().optional(),
+    version: z.string().optional(),
+    status: z.string().optional(),
+    author: z.string().optional(),
     draft: z.boolean().default(false),
     // Fumadocs OpenAPI generated
     _openapi: z.record(z.string(), z.any()).optional()

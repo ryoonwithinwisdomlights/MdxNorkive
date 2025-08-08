@@ -89,9 +89,9 @@ function generateRecordItem(page: ModifiedQueryDatabaseResponse) {
       pageCover = page.icon.file.url;
     }
   }
-
-  const category = props.category?.multi_select?.map((t: any) => t.name) ?? [];
-  const tags = props.tags?.multi_select?.map((t: any) => t.name) ?? [];
+  const favorite = props.favorite?.checkbox || false;
+  const category = props.category?.select?.name || "";
+  const tags = props.tags?.multi_select?.map((t: any) => t.name) || [];
   const date = props.date?.date?.start || new Date().toISOString();
   const publishDate = new Date(
     props?.date?.date?.start || page.created_time
@@ -110,6 +110,7 @@ function generateRecordItem(page: ModifiedQueryDatabaseResponse) {
     sub_type,
     category,
     tags,
+    favorite,
     publishDate,
     date: date.slice(0, 10),
     last_edited_time,

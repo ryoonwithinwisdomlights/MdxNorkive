@@ -21,83 +21,11 @@
 import { processMdxContentFn } from "./convert-unsafe-mdx/content-functional";
 
 // ===== 타입 및 상수 import =====
-import {
-  MdxDirectoryValidationResult,
-  MdxSyntaxValidationResult,
-} from "@/types/mdx.model";
+import { MdxDirectoryValidationResult } from "@/types/mdx.model";
 
-import {
-  ALLOWED_HTML_TAGS,
-  MDX_CONSTANTS,
-  MDX_CONTENT_PATTERNS,
-} from "@/constants/mdx.constants";
+import { MDX_CONSTANTS } from "@/constants/mdx.constants";
 
 // ===== 검증 전용 함수들 =====
-
-/**
- * 간단한 MDX 문법 검증
- */
-function validateMdxSyntax(content: string): MdxSyntaxValidationResult {
-  const errors: string[] = [];
-
-  // 1. 빈 제목 검사
-  if (content.match(/^#\s*$/gm)) {
-    errors.push("빈 제목이 있습니다");
-  }
-
-  // 2. 잘못된 HTML 태그 검사 (허용되지 않은 태그)
-  const tagMatches = content.match(MDX_CONTENT_PATTERNS.HTML_TAG);
-  if (tagMatches) {
-    for (const match of tagMatches) {
-      const tagContent = match.replace(/[<>]/g, "");
-      const tagName = tagContent
-        .trim()
-        .split(/[\s='"]+/)[0]
-        .toLowerCase();
-
-      if (
-        !ALLOWED_HTML_TAGS.includes(tagName as any) &&
-        !tagContent.startsWith("/")
-      ) {
-        errors.push(`허용되지 않은 HTML 태그: ${tagName}`);
-      }
-    }
-  }
-
-  // 3. 잘못된 마크다운 링크 검사
-  const linkMatches = content.match(/\[([^\]]*)\]\(([^)]*)\)/g);
-  if (linkMatches) {
-    for (const match of linkMatches) {
-      const [, text, url] = match.match(/\[([^\]]*)\]\(([^)]*)\)/) || [];
-      if (!text?.trim() || !url?.trim()) {
-        errors.push("잘못된 마크다운 링크가 있습니다");
-      }
-    }
-  }
-
-  // 4. 빈 코드블록 검사
-  if (content.match(/```\s*\n\s*```/g)) {
-    errors.push("빈 코드블록이 있습니다");
-  }
-
-  // 5. JSX 속성 검사
-  const jsxMatches = content.match(/\w+=([^"\s>]+)/g);
-  if (jsxMatches) {
-    for (const match of jsxMatches) {
-      const [, attr, value] = match.match(/(\w+)=([^"\s>]+)/) || [];
-      if (
-        value &&
-        !value.startsWith('"') &&
-        !value.startsWith("'") &&
-        !value.startsWith("{")
-      ) {
-        errors.push(`잘못된 JSX 속성: ${attr}=${value}`);
-      }
-    }
-  }
-
-  return { isValid: errors.length === 0, errors };
-}
 
 /**
  * MDX 콘텐츠 강제 수정 (2차 수정)
@@ -139,8 +67,9 @@ export async function validateMdxContent(
       return { isValid: true, content: processedContent, errors: [] };
     }
 
-    // 변환이 필요하지 않은 경우 (원본이 이미 유효함)
-    return { isValid: true, content, errors: [] };
+    // 변환이 필요하지 않은 경우에도 항상 처리된 콘텐츠 반환
+    // (테이블 블록 수정 등이 적용되었을 수 있음)
+    return { isValid: true, content: processedContent, errors: [] };
   } catch (error) {
     errors.push(`변환 실패: ${error.message}`);
     console.warn(`⚠️ MDX 변환 실패: ${frontmatter} - ${error.message}`);
@@ -213,12 +142,27 @@ export async function validateMdxDirectory(
           const result = await validateMdxFile(fullPath);
 
           if (result.isValid) {
-            if (result.errors.length === 0) {
-              results.valid++;
-            } else {
+            // 원본 파일 내용 읽기
+            const originalContent = await fs.readFile(fullPath, "utf-8");
+
+            // frontmatter와 본문 분리
+            const frontmatterEndIndex = originalContent.indexOf("---", 3);
+            const frontmatter = originalContent.substring(
+              0,
+              frontmatterEndIndex + 3
+            );
+            const originalBody = originalContent.substring(
+              frontmatterEndIndex + 3
+            );
+
+            // 변환된 내용과 원본 비교
+            if (result.content !== originalBody) {
               results.fixed++;
               // 수정된 내용을 파일에 다시 쓰기
-              await fs.writeFile(fullPath, result.content, "utf-8");
+              const newContent = frontmatter + "\n" + result.content;
+              await fs.writeFile(fullPath, newContent, "utf-8");
+            } else {
+              results.valid++;
             }
           } else {
             results.failed++;

@@ -88,7 +88,7 @@ export const fetchAllRecordList = cache(
             {
               property: "type",
               select: {
-                equals: "RECORD", // type이 Record
+                equals: "RECORDS", // type이 Record
               },
             },
           ],

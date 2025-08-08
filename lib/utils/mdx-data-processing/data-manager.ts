@@ -28,9 +28,14 @@ export function generateRecordFrontMatter(
   enhancedContent: string
 ): RecordFrontMatter {
   // 기본 메타데이터 추출
-  const title = props.title?.title?.[0]?.plain_text?.trim() || "제목 없음";
-  const description = "";
-  const icon = null;
+  const title =
+    props.title?.title
+      ?.reduce((acc, block) => {
+        return acc + (block.plain_text || "");
+      }, "")
+      ?.trim() || "Untitled";
+  const description = props.summary?.rich_text?.[0]?.plain_text?.trim() || "";
+  const icon = ""; //임시
   const full = false;
   const favorite = props.favorite?.checkbox || false;
   const category = props.category?.select?.name ?? "";
@@ -56,7 +61,7 @@ export function generateRecordFrontMatter(
     password,
     type,
     sub_type,
-    category: category ? [category] : [],
+    category,
     tags,
     favorite,
     date: date.slice(0, 10),
@@ -130,7 +135,7 @@ export function generateUserFriendlySlug(
   title: string,
   existingSlugs: Set<string>
 ) {
-  let base = (subType || "RECORDS").toLowerCase();
+  let base = subType.toLowerCase();
   let safeTitle = title
     .replace(/[^a-zA-Z0-9가-힣]+/g, "-")
     .replace(/-+/g, "-")
@@ -176,6 +181,7 @@ export async function getExistingEndDates(
             const fm = matter(content).data as any;
 
             if (fm.notionId && fm.last_edited_time) {
+              // 기존 MDX 파일의 notionId는 이미 하이픈이 제거된 형태
               map.set(fm.notionId, fm.last_edited_time);
             }
           } catch (error) {

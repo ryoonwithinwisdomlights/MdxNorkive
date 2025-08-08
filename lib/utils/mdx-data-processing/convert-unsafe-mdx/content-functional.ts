@@ -224,7 +224,46 @@ const protectBlockquotes: ContentTransformer = (content, context) => {
 const fixTableBlocks = (content: string): string => {
   return content.replace(MDX_CONTENT_PATTERNS.TABLE, (tableMatch) => {
     return tableMatch.replace(/\|([^|]*)\|/g, (cellMatch, cellContent) => {
-      return `|${cellContent}|`;
+      // 1단계: 이미 HTML 엔티티로 변환된 허용된 태그들을 원래대로 되돌리기
+      let sanitizedContent = cellContent;
+      // .replace(/&lt;strong&gt;/g, "<strong>")
+      // .replace(/&lt;\/strong&gt;/g, "</strong>");
+
+      // 2단계: 테이블 셀 내부의 HTML 태그들을 안전하게 이스케이프
+      sanitizedContent = sanitizedContent.replace(
+        /<([^>]+)>/g,
+        (tagMatch, tagContent) => {
+          // 허용된 HTML 태그는 그대로 유지
+          const tagName = tagContent
+            .trim()
+            .split(/[\s='"]+/)[0]
+            .toLowerCase();
+
+          // 1. 허용된 태그인지 확인
+          if (ALLOWED_HTML_TAGS.includes(tagName as any)) {
+            // 2. 실제로 닫히지 않은 태그인지 확인
+            // 닫는 태그가 아닌 경우 (self-closing 태그가 아닌 경우)
+            if (!tagContent.startsWith("/") && !tagContent.endsWith("/")) {
+              // 해당 태그의 닫는 태그가 같은 셀 내에 있는지 확인
+              const closingTagPattern = new RegExp(`</${tagName}[^>]*>`, "i");
+              if (!closingTagPattern.test(sanitizedContent)) {
+                // 실제로 닫히지 않은 태그만 변환
+                // <a href> 같은 태그만 변환하고, <strong> 같은 태그는 그대로 유지
+                if (tagName === "a" && tagContent.includes("href")) {
+                  console.log(
+                    `🔒 닫히지 않은 태그 변환: <${tagContent}> → &lt;${tagContent}&gt;`
+                  );
+                  return `&lt;${tagContent}&gt;`;
+                }
+              }
+            }
+            return tagMatch;
+          }
+          // 그 외의 태그는 HTML 엔티티로 변환
+          return `&lt;${tagContent}&gt;`;
+        }
+      );
+      return `|${sanitizedContent}|`;
     });
   });
 };
