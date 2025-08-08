@@ -121,187 +121,21 @@
  * @lastModified 2024-12-19
  */
 
-// ===== 타입 정의 =====
-export interface MdxValidationResult {
-  isValid: boolean;
-  content: string;
-  errors: string[];
-}
+// ===== 타입 및 상수 import =====
+import {
+  MdxValidationResult,
+  ContentBlock,
+  ProcessingContext,
+  ContentTransformer,
+} from "../../../../types/mdx.model";
 
-interface ContentBlock {
-  marker: string;
-  content: string;
-}
-
-interface ProcessingContext {
-  codeBlocks: ContentBlock[];
-  blockquotes: ContentBlock[];
-  codeBlockIndex: number;
-  blockquoteIndex: number;
-}
-
-type ContentTransformer = (
-  content: string,
-  context: ProcessingContext
-) => string;
-
-// ===== 상수 정의 =====
-const ALLOWED_HTML_TAGS = [
-  "h1",
-  "h2",
-  "h3",
-  "h4",
-  "h5",
-  "h6",
-  "p",
-  "span",
-  "div",
-  "br",
-  "hr",
-  "strong",
-  "b",
-  "em",
-  "i",
-  "u",
-  "s",
-  "del",
-  "ins",
-  "mark",
-  "small",
-  "sub",
-  "sup",
-  "a",
-  "blockquote",
-  "cite",
-  "code",
-  "pre",
-  "kbd",
-  "samp",
-  "var",
-  "ul",
-  "ol",
-  "li",
-  "dl",
-  "dt",
-  "dd",
-  "table",
-  "thead",
-  "tbody",
-  "tfoot",
-  "tr",
-  "td",
-  "th",
-  "caption",
-  "colgroup",
-  "col",
-  "img",
-  "video",
-  "audio",
-  "source",
-  "track",
-  "figure",
-  "figcaption",
-  "form",
-  "input",
-  "textarea",
-  "select",
-  "option",
-  "optgroup",
-  "button",
-  "label",
-  "fieldset",
-  "legend",
-  "details",
-  "summary",
-  "dialog",
-  "menu",
-  "menuitem",
-  "abbr",
-  "acronym",
-  "address",
-  "article",
-  "aside",
-  "footer",
-  "header",
-  "main",
-  "nav",
-  "section",
-  "time",
-  "data",
-  "meter",
-  "progress",
-  "svg",
-  "path",
-  "circle",
-  "rect",
-  "line",
-  "polyline",
-  "polygon",
-  "ellipse",
-  "text",
-  "g",
-  "defs",
-  "use",
-  "math",
-  "mrow",
-  "mi",
-  "mo",
-  "mn",
-  "msup",
-  "msub",
-  "msubsup",
-  "mfrac",
-  "msqrt",
-  "mroot",
-  "ruby",
-  "rt",
-  "rp",
-  "bdi",
-  "bdo",
-  "wbr",
-  "nobr",
-  "spacer",
-  "embed",
-  "object",
-  "param",
-  "map",
-  "area",
-  "YoutubeWrapper",
-  "EmbededWrapper",
-  "FileWrapper",
-  "GoogleDriveWrapper",
-  "BookMarkWrapper",
-] as const;
-
-const ALLOWED_JSX_ATTRIBUTES = [
-  "className",
-  "id",
-  "style",
-  "src",
-  "href",
-  "alt",
-  "target",
-  "rel",
-  "onClick",
-  "onChange",
-  "value",
-  "type",
-  "placeholder",
-  "disabled",
-  "required",
-  "checked",
-  "selected",
-  "readonly",
-  "maxlength",
-  "minlength",
-  "pattern",
-  "autocomplete",
-  "autofocus",
-  "form",
-  "name",
-  "tabindex",
-  "title",
-] as const;
+import {
+  ALLOWED_HTML_TAGS,
+  ALLOWED_JSX_ATTRIBUTES,
+  MDX_CONSTANTS,
+  MDX_LINK_PATTERNS,
+  MDX_CONTENT_PATTERNS,
+} from "../../../../constants/mdx.constants";
 
 // ===== 유틸리티 함수들 =====
 const pipe =
@@ -323,8 +157,8 @@ const createContext = (): ProcessingContext => ({
 
 // ===== 콘텐츠 보호 함수들 =====
 const protectCodeBlocks: ContentTransformer = (content, context) => {
-  return content.replace(/```[\s\S]*?```/g, (match) => {
-    const marker = `__CODE_BLOCK_${context.codeBlockIndex}__`;
+  return content.replace(MDX_CONTENT_PATTERNS.CODE_BLOCK, (match) => {
+    const marker = `${MDX_CONSTANTS.CODE_BLOCK_MARKER_PREFIX}${context.codeBlockIndex}__`;
     context.codeBlocks.push({ marker, content: match });
     context.codeBlockIndex++;
     return marker;
@@ -332,8 +166,8 @@ const protectCodeBlocks: ContentTransformer = (content, context) => {
 };
 
 const protectBlockquotes: ContentTransformer = (content, context) => {
-  return content.replace(/^>\s*(.+)$/gm, (match, content) => {
-    const marker = `__BLOCKQUOTE_${context.blockquoteIndex}__`;
+  return content.replace(MDX_CONTENT_PATTERNS.BLOCKQUOTE, (match, content) => {
+    const marker = `${MDX_CONSTANTS.BLOCKQUOTE_MARKER_PREFIX}${context.blockquoteIndex}__`;
 
     // 블록쿼트 내부의 안전하지 않은 태그들을 미리 처리
     let processedContent = match;
@@ -389,7 +223,7 @@ const protectBlockquotes: ContentTransformer = (content, context) => {
 
 // ===== 콘텐츠 변환 함수들 =====
 const fixTableBlocks = (content: string): string => {
-  return content.replace(/(\|[^|\n]*\|[^|\n]*\|[^|\n]*\n?)+/g, (tableMatch) => {
+  return content.replace(MDX_CONTENT_PATTERNS.TABLE, (tableMatch) => {
     return tableMatch.replace(/\|([^|]*)\|/g, (cellMatch, cellContent) => {
       return `|${cellContent}|`;
     });
@@ -400,20 +234,20 @@ const fixHeadingBlocks = (content: string): string => {
   // 빈 제목 수정
   content = content.replace(/^#{1,6}\s*$/gm, (match) => {
     const level = match.match(/^#{1,6}/)?.[0] || "#";
-    return `${level} 제목 없음`;
+    return `${level} ${MDX_CONSTANTS.DEFAULT_HEADING_TEXT}`;
   });
 
   // 제목이 있지만 내용이 비어있거나 공백만 있는 경우 처리
-  return content.replace(/^#{1,6}\s*([^\n]*)$/gm, (match, title) => {
+  return content.replace(MDX_CONTENT_PATTERNS.HEADING, (match, title) => {
     const level = match.match(/^#{1,6}/)?.[0] || "#";
     const trimmedTitle = title.trim();
 
     if (!trimmedTitle || trimmedTitle === "") {
-      return `${level} 제목 없음`;
+      return `${level} ${MDX_CONSTANTS.DEFAULT_HEADING_TEXT}`;
     }
 
     if (trimmedTitle.length <= 2 && !/^[a-zA-Z가-힣0-9]/.test(trimmedTitle)) {
-      return `${level} 제목 없음`;
+      return `${level} ${MDX_CONSTANTS.DEFAULT_HEADING_TEXT}`;
     }
 
     return match;
@@ -422,9 +256,9 @@ const fixHeadingBlocks = (content: string): string => {
 
 const convertMarkdownSyntax = (content: string): string => {
   return content
-    .replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>")
-    .replace(/\*([^*\n]+)\*/g, "<em>$1</em>")
-    .replace(/`([^`\n]+)`/g, "<code>$1</code>");
+    .replace(MDX_CONTENT_PATTERNS.BOLD, "<strong>$1</strong>")
+    .replace(MDX_CONTENT_PATTERNS.ITALIC, "<em>$1</em>")
+    .replace(MDX_CONTENT_PATTERNS.INLINE_CODE, "<code>$1</code>");
 };
 
 const fixUnclosedTags = (content: string): string => {
@@ -435,7 +269,7 @@ const fixUnclosedTags = (content: string): string => {
 };
 
 const sanitizeUnsafeTags = (content: string): string => {
-  return content.replace(/<([^>]+)>/g, (match, tagContent) => {
+  return content.replace(MDX_CONTENT_PATTERNS.HTML_TAG, (match, tagContent) => {
     const tagContentFirst = tagContent.trim().split(/[\s='"]+/)[0];
     const tagName = tagContentFirst.toLowerCase();
 
@@ -502,24 +336,21 @@ const restoreProtectedContent: ContentTransformer = (content, context) => {
 
 // ===== 링크 변환 함수들 =====
 const transformYouTubeLinks = (content: string): string => {
-  return content.replace(
-    /\[video\]\((https?:\/\/(www\.)?(youtube\.com|youtu\.be|youtube-nocookie\.com)\/[^\s)]+)\)/g,
-    (match, url) => {
-      const cleanUrl = url.split("?")[0];
-      return `<YoutubeWrapper names={"video"} urls={"${cleanUrl}"} />`;
-    }
-  );
+  return content.replace(MDX_LINK_PATTERNS.YOUTUBE, (match, url) => {
+    const cleanUrl = url.split("?")[0];
+    return `<YoutubeWrapper names={"video"} urls={"${cleanUrl}"} />`;
+  });
 };
 
 const transformEmbededLinks = (content: string): string => {
-  return content.replace(/\[embed\]\((https?:\/\/[^\s)]+)\)/g, (match, url) => {
+  return content.replace(MDX_LINK_PATTERNS.EMBED, (match, url) => {
     return `<EmbededWrapper names={"embed"} urls={"${url}"} />`;
   });
 };
 
 const transformFileLinks = (content: string): string => {
   return content.replace(
-    /\[([^\]]+\.(pdf|doc|docx|rtf|txt|md|odt))\]\(([^)]+)\)/gi,
+    MDX_LINK_PATTERNS.FILE,
     (match, fileName, extension, url) => {
       return `<FileWrapper names={"${fileName}"} urls={"${url}"} />`;
     }
@@ -528,7 +359,7 @@ const transformFileLinks = (content: string): string => {
 
 const transformGoogleDriveLinks = (content: string): string => {
   return content.replace(
-    /\[([^\]]+)\]\((https?:\/\/drive\.google\.com\/file\/d\/[^\s)]+)\)/g,
+    MDX_LINK_PATTERNS.GOOGLE_DRIVE,
     (match, linkText, url) => {
       return `<GoogleDriveWrapper names={"${linkText}"} urls={"${url}"} />`;
     }
@@ -536,12 +367,9 @@ const transformGoogleDriveLinks = (content: string): string => {
 };
 
 const transformBookMarkLinks = (content: string): string => {
-  return content.replace(
-    /\[bookmark\]\((https?:\/\/[^\s)]+)\)/g,
-    (match, url) => {
-      return `<BookMarkWrapper names={"bookmark"} urls={"${url}"} />`;
-    }
-  );
+  return content.replace(MDX_LINK_PATTERNS.BOOKMARK, (match, url) => {
+    return `<BookMarkWrapper names={"bookmark"} urls={"${url}"} />`;
+  });
 };
 
 const fixNestedLinks = (content: string): string => {
@@ -571,7 +399,7 @@ const contentTransformPipeline = (context: ProcessingContext) =>
     fixUnclosedTags,
     sanitizeUnsafeTags,
     (content: string) => restoreProtectedContent(content, context),
-    (content: string) => content.replace(/\{:[^}]+\}/g, "") // MDX 확장 문법 제거
+    (content: string) => content.replace(MDX_CONTENT_PATTERNS.MDX_EXTENSION, "") // MDX 확장 문법 제거
   );
 
 // ===== 메인 처리 함수 =====
@@ -656,7 +484,7 @@ export async function validateAndFixMdxContent(
         }`
       );
 
-      const fallbackContent = `# ${filename}\n\n이 문서는 준비 중입니다.\n\n원본 콘텐츠에 문제가 있어 임시로 대체되었습니다.`;
+      const fallbackContent = MDX_CONSTANTS.DEFAULT_DOCUMENT_TEMPLATE(filename);
       return { isValid: false, content: fallbackContent, errors };
     }
   }

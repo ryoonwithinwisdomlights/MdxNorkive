@@ -2,18 +2,6 @@ import { BLOG } from "@/blog.config";
 import { deepClone } from "@/lib/utils/general";
 import { formatDateFmt } from "../date";
 
-export function isDatabase(rawMetadata, uuidedRootPageId) {
-  if (
-    rawMetadata?.type !== "collection_view_page" &&
-    rawMetadata?.type !== "collection_view"
-  ) {
-    console.error(`rootPageId -"${uuidedRootPageId}" is not a database`);
-    console.trace();
-    return false;
-  }
-  return true;
-}
-
 export function setPageSortedByDate2(obj) {
   const recordsSortByDate = Object.create(obj);
 
@@ -187,39 +175,6 @@ export const mapImgUrl: any = (img, block, type = "block", from) => {
   return ret;
 };
 
-export function applyDataBaseProcessing(data) {
-  const db = deepClone(data);
-
-  delete db.block;
-  delete db.schema;
-  delete db.rawMetadata;
-  delete db.pageIds;
-  delete db.viewIds;
-  delete db.collection;
-  delete db.collectionQuery;
-  delete db.collectionId;
-  delete db.collectionView;
-  // Sensitive data not returned
-  // Clean up excess blocks
-  // if (db?.notice) {
-  //   db.notice = cleanBlock(db?.notice);
-  //   delete db.notice?.id;
-  // }
-
-  // db.tagOptions = cleanIds(db?.tagOptions)
-  // db.categoryOptions = cleanIds(db?.categoryOptions)
-  // db.customMenu = cleanIds(db?.customMenu)
-
-  // //   db.latestRecords = shortenIds(db?.latestRecords)
-  // db.allNavPages = shortenIds(db?.allNavPages)
-  // //   db.allPages = cleanBlocks(db?.allPages)
-
-  // db.allPagesForLeftNavBar = cleanPages(db?.allPagesForLeftNavBar, db.tagOptions)
-  // db.allPages = cleanPages(db.allPages, db.tagOptions)
-
-  return db;
-}
-
 /**
  * Intercept the language prefix of page-id
  * The format of notionPageId can be en:xxxxx
@@ -341,45 +296,3 @@ function cleanIds(items) {
   }
   return items;
 }
-
-/**
- * Clean block data
- */
-function cleanBlock(item) {
-  const record = deepClone(item);
-  const pageBlock = record?.blockMap?.block;
-  //   delete record?.id
-  //   delete record?.blockMap?.collection
-
-  if (pageBlock) {
-    for (const i in pageBlock) {
-      pageBlock[i] = cleanBlock(pageBlock[i]);
-      delete pageBlock[i]?.role;
-      delete pageBlock[i]?.value?.version;
-      delete pageBlock[i]?.value?.created_by_table;
-      delete pageBlock[i]?.value?.created_by_id;
-      delete pageBlock[i]?.value?.last_edited_by_table;
-      delete pageBlock[i]?.value?.last_edited_by_id;
-      delete pageBlock[i]?.value?.space_id;
-      delete pageBlock[i]?.value?.version;
-      delete pageBlock[i]?.value?.format?.copied_from_pointer;
-      delete pageBlock[i]?.value?.format?.block_locked_by;
-      delete pageBlock[i]?.value?.parent_table;
-      delete pageBlock[i]?.value?.copied_from_pointer;
-      delete pageBlock[i]?.value?.copied_from;
-      delete pageBlock[i]?.value?.created_by_table;
-      delete pageBlock[i]?.value?.created_by_id;
-      delete pageBlock[i]?.value?.last_edited_by_table;
-      delete pageBlock[i]?.value?.last_edited_by_id;
-      delete pageBlock[i]?.value?.permissions;
-      delete pageBlock[i]?.value?.alive;
-    }
-  }
-  return record;
-}
-
-export const oldlanguageMap = new Map([
-  ["C++", "cpp"],
-  ["C#", "csharp"],
-  ["Assembly", "asm6502"],
-]);

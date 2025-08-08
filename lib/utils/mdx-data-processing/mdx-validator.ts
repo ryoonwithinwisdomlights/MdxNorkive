@@ -10,158 +10,35 @@
  * - 검증 전용 로직만 추가로 구현
  * - 생성과 검증에서 동일한 로직 사용으로 무결성 보장
  *
- * @version 2.0.0
- * @author AI Assistant
- * @created 2024-12-19
- * @lastModified 2024-12-19
+ * @version 1.0.0
+ * @author AI Assistant & ryoon (ryoon.with.wisdomtrees@gmail.com)
+ * @created 2025-08-08
+ * @lastModified 2025-08-08
  */
 
 // ===== 핵심 변환 로직 import =====
+// ===== 핵심 변환 로직 import =====
+import { processMdxContentFn } from "./convert-unsafe-mdx/content-functional";
+
+// ===== 타입 및 상수 import =====
 import {
   MdxValidationResult,
-  processMdxContentFn,
-} from "./convert-unsafe-mdx/content-functional";
+  MdxDirectoryValidationResult,
+  MdxSyntaxValidationResult,
+} from "../../../types/mdx.model";
 
-// ===== 타입 재export =====
-export type { MdxValidationResult };
-
-// ===== 상수 정의 (content-functional.ts와 동일) =====
-const ALLOWED_HTML_TAGS = [
-  "h1",
-  "h2",
-  "h3",
-  "h4",
-  "h5",
-  "h6",
-  "p",
-  "span",
-  "div",
-  "br",
-  "hr",
-  "strong",
-  "b",
-  "em",
-  "i",
-  "u",
-  "s",
-  "del",
-  "ins",
-  "mark",
-  "small",
-  "sub",
-  "sup",
-  "a",
-  "blockquote",
-  "cite",
-  "code",
-  "pre",
-  "kbd",
-  "samp",
-  "var",
-  "ul",
-  "ol",
-  "li",
-  "dl",
-  "dt",
-  "dd",
-  "table",
-  "thead",
-  "tbody",
-  "tfoot",
-  "tr",
-  "td",
-  "th",
-  "caption",
-  "colgroup",
-  "col",
-  "img",
-  "video",
-  "audio",
-  "source",
-  "track",
-  "figure",
-  "figcaption",
-  "form",
-  "input",
-  "textarea",
-  "select",
-  "option",
-  "optgroup",
-  "button",
-  "label",
-  "fieldset",
-  "legend",
-  "details",
-  "summary",
-  "dialog",
-  "menu",
-  "menuitem",
-  "abbr",
-  "acronym",
-  "address",
-  "article",
-  "aside",
-  "footer",
-  "header",
-  "main",
-  "nav",
-  "section",
-  "time",
-  "data",
-  "meter",
-  "progress",
-  "svg",
-  "path",
-  "circle",
-  "rect",
-  "line",
-  "polyline",
-  "polygon",
-  "ellipse",
-  "text",
-  "g",
-  "defs",
-  "use",
-  "math",
-  "mrow",
-  "mi",
-  "mo",
-  "mn",
-  "msup",
-  "msub",
-  "msubsup",
-  "mfrac",
-  "msqrt",
-  "mroot",
-  "ruby",
-  "rt",
-  "rp",
-  "bdi",
-  "bdo",
-  "wbr",
-  "nobr",
-  "spacer",
-  "embed",
-  "object",
-  "param",
-  "map",
-  "area",
-  "YoutubeWrapper",
-  "EmbededWrapper",
-  "FileWrapper",
-  "GoogleDriveWrapper",
-  "BookMarkWrapper",
-] as const;
+import {
+  ALLOWED_HTML_TAGS,
+  MDX_CONSTANTS,
+  MDX_CONTENT_PATTERNS,
+} from "../../../constants/mdx.constants";
 
 // ===== 검증 전용 함수들 =====
 
 /**
  * 간단한 MDX 문법 검증
  */
-function validateMdxSyntax(content: string): {
-  isValid: boolean;
-  errors: string[];
-} {
+function validateMdxSyntax(content: string): MdxSyntaxValidationResult {
   const errors: string[] = [];
 
   // 1. 빈 제목 검사
@@ -170,7 +47,7 @@ function validateMdxSyntax(content: string): {
   }
 
   // 2. 잘못된 HTML 태그 검사 (허용되지 않은 태그)
-  const tagMatches = content.match(/<([^>]+)>/g);
+  const tagMatches = content.match(MDX_CONTENT_PATTERNS.HTML_TAG);
   if (tagMatches) {
     for (const match of tagMatches) {
       const tagContent = match.replace(/[<>]/g, "");
@@ -234,7 +111,7 @@ function forceFixMdxContent(content: string, frontmatter: string): string {
 
   // 최소한의 마크다운 구조 보장
   if (!fixedContent.trim()) {
-    fixedContent = `# ${frontmatter}\n\n내용이 없습니다.`;
+    fixedContent = MDX_CONSTANTS.EMPTY_DOCUMENT_TEMPLATE(frontmatter);
   }
 
   return fixedContent;
@@ -281,7 +158,8 @@ export async function validateMdxContent(
       );
 
       // 최후의 수단: 기본 템플릿
-      const fallbackContent = `# ${frontmatter}\n\n이 문서는 준비 중입니다.\n\n원본 콘텐츠에 문제가 있어 임시로 대체되었습니다.`;
+      const fallbackContent =
+        MDX_CONSTANTS.DEFAULT_DOCUMENT_TEMPLATE(frontmatter);
       return { isValid: false, content: fallbackContent, errors };
     }
   }
@@ -307,13 +185,9 @@ export async function validateMdxFile(
 /**
  * 디렉토리 내의 모든 MDX 파일을 검증
  */
-export async function validateMdxDirectory(dirPath: string): Promise<{
-  total: number;
-  valid: number;
-  fixed: number;
-  failed: number;
-  errors: Array<{ file: string; errors: string[] }>;
-}> {
+export async function validateMdxDirectory(
+  dirPath: string
+): Promise<MdxDirectoryValidationResult> {
   const fs = await import("fs/promises");
   const path = await import("path");
 
@@ -365,6 +239,9 @@ export async function validateMdxDirectory(dirPath: string): Promise<{
   return results;
 }
 
+// API 일관성: 검증 관련 모든 것(함수 + 타입)을 한 곳에서 제공
+// ===== 타입 재export =====
+// export type { MdxValidationResult };
 // ===== content-functional.ts의 함수들 재export =====
 export {
   convertUnsafeTags,
