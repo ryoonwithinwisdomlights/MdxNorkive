@@ -8,7 +8,7 @@ import type {
   QueryPageResponse,
   RecordItem,
 } from "@/app/api/types";
-import { generateUserFriendlySlug } from "@/lib/utils/slug";
+import { generateUserFriendlySlug } from "@/lib/utils/mdx-data-processing/data-manager";
 
 async function generateChildRelations(childRelations: Array<{ id: string }>) {
   const childIds = childRelations.map((rel) => rel.id);

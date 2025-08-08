@@ -32,7 +32,7 @@ version: 1.0.0
 
 
 
-**✅ Next.js + Notion + 캐싱 전략 전체 플로우 (로컬 vs 운영 + Vercel Cron)**
+<strong>✅ Next.js + Notion + 캐싱 전략 전체 플로우 (로컬 vs 운영 + Vercel Cron)</strong>
 
 
 ```typescript
@@ -80,27 +80,27 @@ version: 1.0.0
 
 
 
-**✅ 요약 포인트**
+<strong>✅ 요약 포인트</strong>
 
 
 
-| **구분**       | **전략**                                        |
+| <strong>구분</strong>       | <strong>전략</strong>                                        |
 | ------------ | --------------------------------------------- |
-| **로컬 개발**    | p-memoize, memory-cache, Map 등 in-memory 방식   |
-| **운영 서버**    | Upstash Redis 사용하여 Vercel 환경에서도 지속되는 캐시       |
-| **최신화**      | Vercel Cron 으로 10분마다 Notion 데이터 변화 감지 후 캐시 갱신 |
-| **Fallback** | 캐시 miss 시에만 notion-client 직접 호출 (서버 전용)       |
+| <strong>로컬 개발</strong>    | p-memoize, memory-cache, Map 등 in-memory 방식   |
+| <strong>운영 서버</strong>    | Upstash Redis 사용하여 Vercel 환경에서도 지속되는 캐시       |
+| <strong>최신화</strong>      | Vercel Cron 으로 10분마다 Notion 데이터 변화 감지 후 캐시 갱신 |
+| <strong>Fallback</strong> | 캐시 miss 시에만 notion-client 직접 호출 (서버 전용)       |
 
 
-이 로직을 기준으로한 **Next.js 15 + Notion + 캐시 시스템**을 실제로 구현하기 위한 **단계별 가이드는 아래와 같음.**
-
-
-
-**✅ 전체 작업 순서 요약**
+이 로직을 기준으로한 <strong>Next.js 15 + Notion + 캐시 시스템</strong>을 실제로 구현하기 위한 <strong>단계별 가이드는 아래와 같음.</strong>
 
 
 
-| **단계** | **목표**                       | **설명**                               |
+<strong>✅ 전체 작업 순서 요약</strong>
+
+
+
+| <strong>단계</strong> | <strong>목표</strong>                       | <strong>설명</strong>                               |
 | ------ | ---------------------------- | ------------------------------------ |
 | 1단계    | Upstash Redis 설정             | Vercel에서 쓸 수 있는 클라우드 Redis 인스턴스 준비   |
 | 2단계    | Redis 연결 및 캐시 유틸 구현          | 운영환경에서 Redis 캐시를 사용할 수 있게 함수 작성      |
@@ -111,7 +111,7 @@ version: 1.0.0
 | 7단계    | ISR(revalidate) 병행(optional) | 인기 페이지는 자동 갱신되도록 revalidate 속성 활용    |
 
 
-## **🧩 1단계: Upstash Redis 설정 (Vercel에서 쓸 외부 캐시)**
+## <strong>🧩 1단계: Upstash Redis 설정 (Vercel에서 쓸 외부 캐시)</strong>
 
 1. [https://upstash.com](https://upstash.com/) 가입
 2. Redis → Create Database
@@ -124,7 +124,7 @@ UPSTASH_REDIS_REST_TOKEN=your_upstash_token
 ```
 
 
-**🧩 2단계: Redis 연결 유틸 생성**
+<strong>🧩 2단계: Redis 연결 유틸 생성</strong>
 
 
 ```typescript
@@ -139,7 +139,7 @@ export const redis = new Redis({
 
 
 
-**🧩 3단계: getPostBlocks 리팩토링**
+<strong>🧩 3단계: getPostBlocks 리팩토링</strong>
 
 
 
@@ -166,7 +166,7 @@ export async function getPostBlocks(pageId: string) {
 
 
 
-**🧩 4단계: 로컬/운영 캐시 분기 처리**
+<strong>🧩 4단계: 로컬/운영 캐시 분기 처리</strong>
 
 
 
@@ -201,7 +201,7 @@ export async function getCached<T>(
 
 
 
-**🧩 5단계: Vercel Cron용 API route 만들기**
+<strong>🧩 5단계: Vercel Cron용 API route 만들기</strong>
 
 
 
@@ -225,7 +225,7 @@ export async function GET() {
 
 
 
-**🧩 6단계: Vercel Cron 설정**
+<strong>🧩 6단계: Vercel Cron 설정</strong>
 
 
 ```json
@@ -238,7 +238,7 @@ export async function GET() {
 
 
 
-**🧩 7단계: ISR (revalidate = 600) 병행 사용 (선택)**
+<strong>🧩 7단계: ISR (revalidate = 600) 병행 사용 (선택)</strong>
 
 
 ```bash
@@ -254,11 +254,11 @@ export default async function BlogPage() {
 
 
 
-**✅ 마무리 체크리스트**
+<strong>✅ 마무리 체크리스트</strong>
 
 
 
-| **항목**                  | **완료 여부** |
+| <strong>항목</strong>                  | <strong>완료 여부</strong> |
 | ----------------------- | --------- |
 | ✅ Upstash Redis 연동 완료   | ☐         |
 | ✅ Redis 캐시 유틸 생성        | ☐         |

@@ -28,29 +28,29 @@ author: ryoon
 version: 1.0.0
 ---
 
-## **✅ 전체 코드 개념 잡기**
+## <strong>✅ 전체 코드 개념 잡기</strong>
 
 
 ![스크린샷_2025-07-11_오후_2.12.58.png](https://res.cloudinary.com/dyrdul1dd/image/upload/v1754574960/norkive-notion-images/1754574957442-E1_84_89_E1_85_B3_E1_84_8F_E1_85_B3_E1_84_85_E1_85_B5_E1_86_AB_E1_84_89_E1_85_A3_E1_86_BA_2025-07-11_E1_84_8B_E1_85_A9_E1_84_92_E1_85_AE_2.12.58.png)
 
 
-### **1.**
+### <strong>1.</strong>
 
 
-### **Fuse.js**
+### <strong>Fuse.js</strong>
 
-- **뭐야?**
+- <strong>뭐야?</strong>
 
-    자바스크립트용 **빠른 클라이언트 사이드 검색 라이브러리**.
+    자바스크립트용 <strong>빠른 클라이언트 사이드 검색 라이브러리</strong>.
 
 
     검색어가 “부정확하게” 일치해도 유사도를 기반으로 결과를 찾아줘. (부분 검색, 오타 관용적)
 
-- **여기서 쓰는 이유?**
+- <strong>여기서 쓰는 이유?</strong>
 
-    백엔드 API 없이 그냥 **더미 배열**에서 실시간 검색 테스트하려고.
+    백엔드 API 없이 그냥 <strong>더미 배열</strong>에서 실시간 검색 테스트하려고.
 
-- **사용 방법:**
+- <strong>사용 방법:</strong>
 
 ```typescript
 const fuse = new Fuse(대상데이터, 옵션);
@@ -58,43 +58,43 @@ fuse.search(검색어); // 결과 배열 반환
 ```
 
 
-### **2.**
+### <strong>2.</strong>
 
 
-### **lodash.debounce**
+### <strong>lodash.debounce</strong>
 
-- **뭐야?**
+- <strong>뭐야?</strong>
 
-    사용자가 입력할 때마다 **계속 검색 호출 안 되게 딜레이 걸어주는 함수**.
+    사용자가 입력할 때마다 <strong>계속 검색 호출 안 되게 딜레이 걸어주는 함수</strong>.
 
-- **여기서 쓰는 이유?**
+- <strong>여기서 쓰는 이유?</strong>
 
-    한 글자 입력할 때마다 실시간 검색하면 너무 많은 연산 낭비 → **0.3초 입력 멈추면 그때 검색**
+    한 글자 입력할 때마다 실시간 검색하면 너무 많은 연산 낭비 → <strong>0.3초 입력 멈추면 그때 검색</strong>
 
-- **사용 방법:**
+- <strong>사용 방법:</strong>
 
     ```typescript
     const debouncedFn = debounce((text) => { ...검색로직... }, 300);
     ```
 
 
-### **3.**
+### <strong>3.</strong>
 
 
-### **useMemo**
+### <strong>useMemo</strong>
 
-- **뭐야?**
+- <strong>뭐야?</strong>
 
-    React에서 특정 값이나 객체를 **메모이제이션(캐시)** 해서,
+    React에서 특정 값이나 객체를 <strong>메모이제이션(캐시)</strong> 해서,
 
 
-    **렌더링마다 새로 생성되는 걸 방지**하는 훅.
+    <strong>렌더링마다 새로 생성되는 걸 방지</strong>하는 훅.
 
-- **여기서 왜 씀?**
+- <strong>여기서 왜 씀?</strong>
 
     Fuse 인스턴스를 매번 새로 만들지 않기 위해.
 
-- **사용 예시:**
+- <strong>사용 예시:</strong>
 
     ```typescript
     const fuse = useMemo(() => new Fuse(데이터), []);
@@ -102,7 +102,7 @@ fuse.search(검색어); // 결과 배열 반환
 
 
 
- **전체 동작 흐름**
+ <strong>전체 동작 흐름</strong>
 
 
 
@@ -126,11 +126,11 @@ fuse.search(검색어); // 결과 배열 반환
 
 
 
-**✅ 주요 State 설명**
+<strong>✅ 주요 State 설명</strong>
 
 
 
-| **tate** | **역할**            |
+| <strong>tate</strong> | <strong>역할</strong>            |
 | -------- | ----------------- |
 | query    | 현재 input 값        |
 | results  | 검색 결과 배열          |
@@ -138,11 +138,11 @@ fuse.search(검색어); // 결과 배열 반환
 
 
 
-**✅ 주요 Hook/로직 정리**
+<strong>✅ 주요 Hook/로직 정리</strong>
 
 
 
-| **항목**        | **설명**                        |
+| <strong>항목</strong>        | <strong>설명</strong>                        |
 | ------------- | ----------------------------- |
 | useState      | query, results, loading 상태 관리 |
 | useEffect     | query가 바뀔 때마다 debounce로 검색 실행 |
@@ -152,28 +152,28 @@ fuse.search(검색어); // 결과 배열 반환
 
 
 
-**✅ 확장 작업 시 적용 포인트**
+<strong>✅ 확장 작업 시 적용 포인트</strong>
 
 
 
-| **기능**             | **적용 위치**                                        |
+| <strong>기능</strong>             | <strong>적용 위치</strong>                                        |
 | ------------------ | ------------------------------------------------ |
-| **Algolia 연동**     | → handleSearch 내부 fuse.search 대신 **axios fetch** |
-| **Next.js &lt;Link&gt;** | → 리스트 출력 부분 &lt;a href&gt; 대신 &lt;Link href&gt;              |
-| **서버 API**         | → handleSearch 내부를 **API 호출 비동기 함수**로 변경         |
-| **Skeleton 커스텀**   | → loading 상태일 때 보여주는 div 영역만 수정                  |
+| <strong>Algolia 연동</strong>     | → handleSearch 내부 fuse.search 대신 <strong>axios fetch</strong> |
+| <strong>Next.js &lt;Link&gt;</strong> | → 리스트 출력 부분 &lt;a href&gt; 대신 &lt;Link href&gt;              |
+| <strong>서버 API</strong>         | → handleSearch 내부를 <strong>API 호출 비동기 함수</strong>로 변경         |
+| <strong>Skeleton 커스텀</strong>   | → loading 상태일 때 보여주는 div 영역만 수정                  |
 
 
-## **✅ 요약:**
+## <strong>✅ 요약:</strong>
 
 
 지금 코드는 👉
 
 
-**[로컬 배열 + Fuse 검색 + debounce 최적화 + 다크모드 + Skeleton]**
+<strong>[로컬 배열 + Fuse 검색 + debounce 최적화 + 다크모드 + Skeleton]</strong>
 
 
-이 조합으로 구성된 **Next.js 클라이언트 컴포넌트형 검색 Input UI**
+이 조합으로 구성된 <strong>Next.js 클라이언트 컴포넌트형 검색 Input UI</strong>
 
 
 여기가 끝이구나!

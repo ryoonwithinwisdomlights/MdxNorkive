@@ -2,10 +2,9 @@ import { compile } from "@mdx-js/mdx";
 import fs from "fs/promises";
 import path from "path";
 import {
-  convertUnsafeTags,
   decodeUrlEncodedLinks,
   processMdxContent,
-} from "../lib/utils/convert-unsafe-mdx-content.js";
+} from "../lib/utils/mdx-data-processing/convert-unsafe-content/convert-unsafe-mdx-content.js";
 
 const BASE_OUTPUT_DIR = path.join(process.cwd(), "content");
 
@@ -20,87 +19,210 @@ async function validateAndFixMdxContent(content, filename) {
   } catch (error) {
     console.warn(`⚠️ MDX 검증 실패, 수정 시도: ${filename} - ${error.message}`);
     const errors = [`1차 검증 실패: ${error.message}`];
-    
+
     // 문제가 있는 콘텐츠 수정
     let fixedContent = content;
-    
+
     // 1. 빈 제목 수정
-    fixedContent = fixedContent.replace(/^#\s*$/gm, '# 제목 없음');
+    fixedContent = fixedContent.replace(/^#\s*$/gm, "# 제목 없음");
     fixedContent = fixedContent.replace(/^#\s*([^\n]*)$/gm, (match, title) => {
-      if (!title.trim()) return '# 제목 없음';
+      if (!title.trim()) return "# 제목 없음";
       return match;
     });
-    
+
     // 2. 중첩된 링크 문제 수정
     fixedContent = fixedContent.replace(
       /(<a[^>]*>)(\[([^\]]+)\]\([^)]+\))(<\/a>)/g,
       "$1$3$4"
     );
-    
+
     // 3. 잘못된 HTML 태그 수정
     fixedContent = fixedContent.replace(/<([^>]+)>/g, (match, tagContent) => {
-      const tagName = tagContent.trim().split(/[\s='"]+/)[0].toLowerCase();
-      
+      const tagName = tagContent
+        .trim()
+        .split(/[\s='"]+/)[0]
+        .toLowerCase();
+
       const allowedTags = [
-        'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'div', 'br', 'hr',
-        'strong', 'b', 'em', 'i', 'u', 's', 'del', 'ins', 'mark', 'small',
-        'sub', 'sup', 'a', 'blockquote', 'cite', 'code', 'pre', 'kbd',
-        'samp', 'var', 'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'table', 'thead',
-        'tbody', 'tfoot', 'tr', 'td', 'th', 'caption', 'colgroup', 'col',
-        'img', 'video', 'audio', 'source', 'track', 'figure', 'figcaption',
-        'form', 'input', 'textarea', 'select', 'option', 'optgroup', 'button',
-        'label', 'fieldset', 'legend', 'details', 'summary', 'dialog', 'menu',
-        'menuitem', 'abbr', 'acronym', 'address', 'article', 'aside', 'footer',
-        'header', 'main', 'nav', 'section', 'time', 'data', 'meter', 'progress',
-        'svg', 'path', 'circle', 'rect', 'line', 'polyline', 'polygon', 'ellipse',
-        'text', 'g', 'defs', 'use', 'math', 'mrow', 'mi', 'mo', 'mn', 'msup',
-        'msub', 'msubsup', 'mfrac', 'msqrt', 'mroot', 'ruby', 'rt', 'rp',
-        'bdi', 'bdo', 'wbr', 'nobr', 'spacer', 'embed', 'object', 'param',
-        'map', 'area', 'YoutubeWrapper', 'EmbededWrapper', 'FileWrapper',
-        'GoogleDriveWrapper', 'BookMarkWrapper'
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "p",
+        "span",
+        "div",
+        "br",
+        "hr",
+        "strong",
+        "b",
+        "em",
+        "i",
+        "u",
+        "s",
+        "del",
+        "ins",
+        "mark",
+        "small",
+        "sub",
+        "sup",
+        "a",
+        "blockquote",
+        "cite",
+        "code",
+        "pre",
+        "kbd",
+        "samp",
+        "var",
+        "ul",
+        "ol",
+        "li",
+        "dl",
+        "dt",
+        "dd",
+        "table",
+        "thead",
+        "tbody",
+        "tfoot",
+        "tr",
+        "td",
+        "th",
+        "caption",
+        "colgroup",
+        "col",
+        "img",
+        "video",
+        "audio",
+        "source",
+        "track",
+        "figure",
+        "figcaption",
+        "form",
+        "input",
+        "textarea",
+        "select",
+        "option",
+        "optgroup",
+        "button",
+        "label",
+        "fieldset",
+        "legend",
+        "details",
+        "summary",
+        "dialog",
+        "menu",
+        "menuitem",
+        "abbr",
+        "acronym",
+        "address",
+        "article",
+        "aside",
+        "footer",
+        "header",
+        "main",
+        "nav",
+        "section",
+        "time",
+        "data",
+        "meter",
+        "progress",
+        "svg",
+        "path",
+        "circle",
+        "rect",
+        "line",
+        "polyline",
+        "polygon",
+        "ellipse",
+        "text",
+        "g",
+        "defs",
+        "use",
+        "math",
+        "mrow",
+        "mi",
+        "mo",
+        "mn",
+        "msup",
+        "msub",
+        "msubsup",
+        "mfrac",
+        "msqrt",
+        "mroot",
+        "ruby",
+        "rt",
+        "rp",
+        "bdi",
+        "bdo",
+        "wbr",
+        "nobr",
+        "spacer",
+        "embed",
+        "object",
+        "param",
+        "map",
+        "area",
+        "YoutubeWrapper",
+        "EmbededWrapper",
+        "FileWrapper",
+        "GoogleDriveWrapper",
+        "BookMarkWrapper",
       ];
-      
-      if (allowedTags.includes(tagName) || tagContent.startsWith('/')) {
+
+      if (allowedTags.includes(tagName) || tagContent.startsWith("/")) {
         return match;
       }
-      
+
       return `&lt;${tagContent}&gt;`;
     });
-    
+
     // 4. 잘못된 마크다운 링크 수정
-    fixedContent = fixedContent.replace(/\[([^\]]*)\]\(([^)]*)\)/g, (match, text, url) => {
-      if (!text.trim() || !url.trim()) {
-        return `[링크](${url || '#'})`;
+    fixedContent = fixedContent.replace(
+      /\[([^\]]*)\]\(([^)]*)\)/g,
+      (match, text, url) => {
+        if (!text.trim() || !url.trim()) {
+          return `[링크](${url || "#"})`;
+        }
+        return match;
       }
-      return match;
-    });
-    
+    );
+
     // 5. 빈 코드블록 수정
-    fixedContent = fixedContent.replace(/```\s*\n\s*```/g, '```\n// 코드 없음\n```');
-    
+    fixedContent = fixedContent.replace(
+      /```\s*\n\s*```/g,
+      "```\n// 코드 없음\n```"
+    );
+
     // 6. JSX 속성 수정
-    fixedContent = fixedContent.replace(/(\w+)=([^"\s>]+)/g, (match, attr, value) => {
-      if (!value.startsWith('"') && !value.startsWith("'")) {
-        return `${attr}="${value}"`;
+    fixedContent = fixedContent.replace(
+      /(\w+)=([^"\s>]+)/g,
+      (match, attr, value) => {
+        if (!value.startsWith('"') && !value.startsWith("'")) {
+          return `${attr}="${value}"`;
+        }
+        return match;
       }
-      return match;
-    });
-    
+    );
+
     // 7. 공백과 줄바꿈 정리
-    fixedContent = fixedContent.replace(/\n{3,}/g, '\n\n');
-    fixedContent = fixedContent.replace(/[ \t]+/g, ' ');
-    
+    fixedContent = fixedContent.replace(/\n{3,}/g, "\n\n");
+    fixedContent = fixedContent.replace(/[ \t]+/g, " ");
+
     // 8. 특수 문자 이스케이프
     fixedContent = fixedContent.replace(/[<>]/g, (match) => {
-      if (match === '<') return '&lt;';
-      if (match === '>') return '&gt;';
+      if (match === "<") return "&lt;";
+      if (match === ">") return "&gt;";
       return match;
     });
-    
+
     // 9. 마크다운 문법 수정
-    fixedContent = fixedContent.replace(/^[-*+]\s*$/gm, '- 항목');
-    fixedContent = fixedContent.replace(/\|\s*\|\s*\n\s*\|\s*\|\s*\n/g, '| 내용 |\n| --- |\n');
-    
+    fixedContent = fixedContent.replace(/^[-*+]\s*$/gm, "- 항목");
+    fixedContent = fixedContent.replace(
+      /\|\s*\|\s*\n\s*\|\s*\|\s*\n/g,
+      "| 내용 |\n| --- |\n"
+    );
+
     // 2차 검증
     try {
       await compile(fixedContent, { jsx: true });
@@ -109,21 +231,21 @@ async function validateAndFixMdxContent(content, filename) {
     } catch (secondError) {
       errors.push(`2차 검증 실패: ${secondError.message}`);
       console.error(`❌ MDX 수정 실패: ${filename} - ${secondError.message}`);
-      
+
       // 최후의 수단: 강제 수정
       let finalContent = fixedContent;
-      
+
       // 모든 JSX 컴포넌트 제거
-      finalContent = finalContent.replace(/<[^>]+>/g, '');
-      
+      finalContent = finalContent.replace(/<[^>]+>/g, "");
+
       // 빈 줄 정리
-      finalContent = finalContent.replace(/\n{3,}/g, '\n\n');
-      
+      finalContent = finalContent.replace(/\n{3,}/g, "\n\n");
+
       // 최소한의 마크다운 구조 보장
       if (!finalContent.trim()) {
         finalContent = `# ${filename}\n\n내용이 없습니다.`;
       }
-      
+
       // 최종 검증
       try {
         await compile(finalContent, { jsx: true });
@@ -131,8 +253,10 @@ async function validateAndFixMdxContent(content, filename) {
         return { isValid: true, content: finalContent, errors };
       } catch (finalError) {
         errors.push(`강제 수정 실패: ${finalError.message}`);
-        console.error(`❌ MDX 강제 수정 실패: ${filename} - ${finalError.message}`);
-        
+        console.error(
+          `❌ MDX 강제 수정 실패: ${filename} - ${finalError.message}`
+        );
+
         // 최후의 수단: 기본 템플릿
         const fallbackContent = `# ${filename}\n\n이 문서는 준비 중입니다.\n\n원본 콘텐츠에 문제가 있어 임시로 대체되었습니다.`;
         return { isValid: false, content: fallbackContent, errors };
@@ -163,12 +287,12 @@ async function applyUnsafeTagsConversion(filePath) {
     // 안전 변환 적용
     enhancedContent = decodeUrlEncodedLinks(enhancedContent);
     enhancedContent = processMdxContent(enhancedContent);
-    enhancedContent = convertUnsafeTags(enhancedContent);
-    
-    // MDX 검증 및 수정
-    const validationResult = await validateAndFixMdxContent(enhancedContent, path.basename(filePath));
-    enhancedContent = validationResult.content;
-    
+    // enhancedContent = convertUnsafeTags(enhancedContent);
+
+    // // MDX 검증 및 수정
+    // const validationResult = await validateAndFixMdxContent(enhancedContent, path.basename(filePath));
+    // enhancedContent = validationResult.content;
+
     const newContent = frontmatter + enhancedContent;
 
     // 파일에 다시 쓰기
@@ -242,10 +366,13 @@ async function checkAllMdxFiles() {
         console.error(
           `❌ MDX 파싱 실패: ${path.basename(filePath)} - ${e.message}`
         );
-        
+
         // MDX 검증 및 수정 시도
-        const validationResult = await validateAndFixMdxContent(content, path.basename(filePath));
-        
+        const validationResult = await validateAndFixMdxContent(
+          content,
+          path.basename(filePath)
+        );
+
         if (validationResult.isValid) {
           fixedCount++;
           await fs.writeFile(filePath, validationResult.content, "utf-8");
@@ -259,7 +386,9 @@ async function checkAllMdxFiles() {
       }
     } catch (error) {
       failedCount++;
-      console.error(`❌ 파일 처리 실패: ${path.basename(filePath)} - ${error.message}`);
+      console.error(
+        `❌ 파일 처리 실패: ${path.basename(filePath)} - ${error.message}`
+      );
     }
   }
 

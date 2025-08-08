@@ -1,5 +1,5 @@
-import "dotenv/config";
 import { config } from "dotenv";
+import "dotenv/config";
 import path from "path";
 
 // .env.local 파일을 명시적으로 로드
@@ -18,15 +18,27 @@ import {
 
 import {
   decodeUrlEncodedLinks,
-  processMdxContent,
-} from "@/lib/utils/convert-unsafe-mdx-content";
-import { generateUserFriendlySlug } from "@/lib/utils/slug";
+  processMdxContentWithLoggingFn,
+  validateAndFixMdxContent,
+} from "@/lib/utils/mdx-data-processing/convert-unsafe-content/convert-unsafe-mdx-content-functional";
 
-import { imageCacheManager } from "@/lib/cache/image_cache_manager";
-import { uploadImageFromUrl, uploadPdfFromUrl } from "@/lib/cloudinary";
-
-// MDX 검증을 위한 추가 import
-import { validateMdxContent } from "@/lib/utils/mdx-validator";
+// 모듈화된 유틸리티들
+import {
+  getExistingEndDates,
+  SlugManager,
+  generateUserFriendlySlug,
+} from "@/lib/utils/mdx-data-processing/data-manager";
+import {
+  printDocumentStats,
+  processDocumentLinks,
+  resetDocumentStats,
+} from "@/lib/utils/mdx-data-processing/cloudinary/document-processor";
+import {
+  printImageStats,
+  processNotionImages,
+  processPageCover,
+  resetImageStats,
+} from "@/lib/utils/mdx-data-processing/cloudinary/image-processor";
 
 export type FrontMatter = {
   title: string;
@@ -65,326 +77,12 @@ const BASE_OUTPUT_DIR = path.join(process.cwd(), "content");
 const notion = new Client({ auth: NOTION_TOKEN });
 const n2m = new NotionToMarkdown({ notionClient: notion });
 
-// ✅ 슬러그 중복 방지용 Set
-const slugSet = new Set<string>();
+// ✅ 슬러그 중복 방지용 매니저
+const slugManager = new SlugManager();
 
-// ✅ 이미지 처리 통계
-let processedImagesCount = 0;
-let cloudinaryUploadCount = 0;
-let cacheHitCount = 0;
-let processedPageCoversCount = 0;
-
-// ✅ PDF 처리 통계
-let processedFilesCount = 0;
-let cloudinaryFileUploadCount = 0;
-
-// 1. 기존 MDX 파일의 notionId → endDate 매핑
-async function getExistingEndDates() {
-  const map = new Map();
-  const baseDir = BASE_OUTPUT_DIR;
-  const typeDirs = await fs.readdir(baseDir);
-  for (const typeDir of typeDirs) {
-    const dirPath = path.join(baseDir, typeDir);
-    const stat = await fs.stat(dirPath);
-    if (!stat.isDirectory()) continue;
-    const files = await fs.readdir(dirPath);
-    for (const file of files) {
-      if (file.endsWith(".mdx")) {
-        const content = await fs.readFile(path.join(dirPath, file), "utf-8");
-        const fm = matter(content).data;
-        if (fm.notionId && fm.last_edited_time) {
-          map.set(fm.notionId, fm.last_edited_time);
-        }
-      }
-    }
-  }
-  return map;
-}
-
-/**
- * pageCover 이미지 URL을 Cloudinary URL로 변환
- */
-async function processPageCover(
-  pageCover: string | null
-): Promise<string | null> {
-  if (!pageCover) return null;
-
-  // Unsplash 이미지 URL인지 확인
-  if (isUnsplashImageUrl(pageCover)) {
-    return pageCover;
-  }
-
-  // Notion 만료 이미지 URL인지 확인
-  if (isNotionExpiringImageUrl(pageCover)) {
-    console.log(`🖼️ Notion 만료 pageCover 처리: ${extractFileName(pageCover)}`);
-    const cloudinaryUrl = await getOrCreateCloudinaryUrl(
-      pageCover,
-      "pagecover"
-    );
-    processedPageCoversCount++;
-    return cloudinaryUrl;
-  }
-
-  // 이미 Cloudinary URL이거나 다른 안전한 URL인 경우 그대로 반환
-  return pageCover;
-}
-
-/**
- * Unsplash 이미지 URL인지 확인
- */
-function isUnsplashImageUrl(url: string): boolean {
-  return url.startsWith("https://images.unsplash.com");
-}
-
-/**
- * Notion 만료 이미지 URL인지 확인
- */
-function isNotionExpiringImageUrl(url: string): boolean {
-  return url.startsWith("https://prod-files-secure.s3.us-west-2.amazonaws.com");
-}
-
-/**
- * 노션 이미지 URL을 Cloudinary URL로 변환
- */
-async function processNotionImages(content: string): Promise<string> {
-  // 마크다운 이미지 문법 처리: ![alt](url)
-  const markdownImageRegex = /!\[([^\]]*)\]\(([^)]+)\)/g;
-  let processedContent = content;
-
-  const markdownMatches = [...content.matchAll(markdownImageRegex)];
-  for (const match of markdownMatches) {
-    const [fullMatch, alt, imageUrl] = match;
-
-    // alt 텍스트에 파일 확장자가 있고, 그 확장자가 이미지이고, URL이 Notion URL인 경우만 처리
-    if (alt && isImageFile(alt) && isNotionImageUrl(imageUrl)) {
-      console.log(`🖼️ 이미지 파일 감지: ${alt}`);
-      const cloudinaryUrl = await getOrCreateCloudinaryUrl(imageUrl, "content");
-      const newImageTag = `![${alt}](${cloudinaryUrl})`;
-      processedContent = processedContent.replace(fullMatch, newImageTag);
-      processedImagesCount++;
-    }
-  }
-
-  // HTML img 태그 처리: <img src="url">
-  const htmlImageRegex = /<img[^>]+src=["']([^"']+)["'][^>]*>/g;
-  const htmlMatches = [...processedContent.matchAll(htmlImageRegex)];
-
-  for (const match of htmlMatches) {
-    const [fullMatch, imageUrl] = match;
-
-    if (isNotionImageUrl(imageUrl)) {
-      const cloudinaryUrl = await getOrCreateCloudinaryUrl(imageUrl, "content");
-      const newImageTag = fullMatch.replace(imageUrl, cloudinaryUrl);
-      processedContent = processedContent.replace(fullMatch, newImageTag);
-      processedImagesCount++;
-    }
-  }
-
-  return processedContent;
-}
-
-/**
- * 노션 이미지 URL인지 확인
- */
-function isNotionImageUrl(url: string): boolean {
-  return (
-    url.includes("prod-files-secure.s3.us-west-2.amazonaws.com") ||
-    url.includes("s3.us-west-2.amazonaws.com") ||
-    url.includes("notion.so")
-  );
-}
-
-/**
- * 파일 확장자가 이미지인지 확인
- */
-function isImageFile(fileName: string): boolean {
-  const imageExtensions = [
-    "jpg",
-    "jpeg",
-    "png",
-    "gif",
-    "bmp",
-    "webp",
-    "svg",
-    "ico",
-    "tiff",
-    "tif",
-    "JPG",
-    "JPEG",
-    "PNG",
-    "GIF",
-    "BMP",
-    "WEBP",
-    "SVG",
-    "ICO",
-    "TIFF",
-    "TIF",
-  ];
-
-  const extension = fileName.split(".").pop()?.toLowerCase();
-  return extension ? imageExtensions.includes(extension) : false;
-}
-
-/**
- * 파일 확장자가 문서인지 확인
- */
-function isDocumentFile(fileName: string): boolean {
-  const documentExtensions = [
-    "pdf",
-    "doc",
-    "docx",
-    "rtf",
-    "txt",
-    "md",
-    "odt",
-    "PDF",
-    "DOC",
-    "DOCX",
-    "RTF",
-    "TXT",
-    "MD",
-    "ODT",
-  ];
-
-  const extension = fileName.split(".").pop()?.toLowerCase();
-  return extension ? documentExtensions.includes(extension) : false;
-}
-
-/**
- * Cloudinary URL 생성 또는 기존 캐시 사용
- */
-async function getOrCreateCloudinaryUrl(
-  originalUrl: string,
-  type: "content" | "pagecover" = "content"
-): Promise<string> {
-  try {
-    // Redis에서 캐시된 URL 확인
-    const cachedUrl = await imageCacheManager.getCachedImageUrl(originalUrl);
-
-    if (cachedUrl) {
-      cacheHitCount++;
-      console.log(`🔄 캐시 히트: ${extractFileName(originalUrl)}`);
-      return cachedUrl;
-    }
-
-    // 캐시된 URL이 없으면 Cloudinary에 업로드
-    console.log(`☁️ Cloudinary 업로드 시작: ${extractFileName(originalUrl)}`);
-    const fileName = extractFileName(originalUrl);
-    const cloudinaryResult = await uploadImageFromUrl(originalUrl, fileName);
-
-    // Redis에 캐시 정보 저장
-    await imageCacheManager.cacheImageUrl(
-      originalUrl,
-      cloudinaryResult.secure_url,
-      {
-        fileName: fileName,
-        size: cloudinaryResult.bytes,
-        contentType: `image/${cloudinaryResult.format}`,
-      }
-    );
-
-    cloudinaryUploadCount++;
-    console.log(
-      `✅ Cloudinary 업로드 완료: ${fileName} → ${cloudinaryResult.secure_url}`
-    );
-
-    return cloudinaryResult.secure_url;
-  } catch (error) {
-    console.error(`❌ 이미지 처리 실패: ${originalUrl}`, error);
-    // 실패 시 원본 URL 반환
-    return originalUrl;
-  }
-}
-
-/**
- * 파일명 추출
- */
-function extractFileName(url: string): string {
-  try {
-    const urlObj = new URL(url);
-    const pathname = urlObj.pathname;
-    let fileName = pathname.split("/").pop() || "image.jpg";
-
-    if (fileName.includes("?")) {
-      fileName = fileName.split("?")[0];
-    }
-
-    // 안전한 파일명으로 변환
-    const safeFileName = fileName
-      .replace(/[^a-zA-Z0-9가-힣._-]/g, "_")
-      .replace(/_{2,}/g, "_")
-      .replace(/^_|_$/g, "");
-
-    return safeFileName || `image_${Date.now()}.jpg`;
-  } catch (error) {
-    return `image_${Date.now()}.jpg`;
-  }
-}
-
-/**
- * 문서 링크를 Cloudinary URL로 변환 (PDF, DOC, RTF 등)
- */
-async function processDocumentLinks(content: string): Promise<string> {
-  // 문서 링크 패턴: [파일명.확장자](URL)
-  const documentLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
-
-  let processedContent = content;
-  let match;
-
-  while ((match = documentLinkRegex.exec(content)) !== null) {
-    const [fullMatch, fileName, documentUrl] = match;
-
-    // 파일명이 문서 확장자를 가지고 있고, URL이 Notion URL인 경우만 처리
-    if (fileName && isDocumentFile(fileName) && isNotionImageUrl(documentUrl)) {
-      try {
-        console.log(`📄 문서 처리 중: ${fileName} (${documentUrl})`);
-
-        // Redis에서 캐시된 URL 확인
-        const cachedUrl = await imageCacheManager.getCachedImageUrl(
-          documentUrl
-        );
-
-        let cloudinaryUrl: string;
-
-        if (cachedUrl) {
-          cacheHitCount++;
-          console.log(`🔄 문서 캐시 히트: ${fileName}`);
-          cloudinaryUrl = cachedUrl;
-        } else {
-          // 문서를 Cloudinary에 업로드
-          const result = await uploadPdfFromUrl(documentUrl, fileName);
-
-          // Redis에 캐시 정보 저장
-          await imageCacheManager.cacheImageUrl(
-            documentUrl,
-            result.secure_url,
-            {
-              fileName: fileName,
-              size: result.bytes,
-              contentType: "application/octet-stream", // 일반 문서 타입
-            }
-          );
-
-          cloudinaryUrl = result.secure_url;
-          cloudinaryFileUploadCount++;
-          console.log(
-            `✅ 문서 업로드 완료: ${fileName} → ${result.secure_url}`
-          );
-        }
-
-        // 원본 링크를 Cloudinary URL로 교체
-        const newLink = `[${fileName}](${cloudinaryUrl})`;
-        processedContent = processedContent.replace(fullMatch, newLink);
-        processedFilesCount++;
-      } catch (error) {
-        console.error(`❌ 문서 업로드 실패: ${fileName}`, error);
-        // 실패한 경우 원본 링크 유지
-      }
-    }
-  }
-
-  return processedContent;
-}
+// 통계 초기화
+resetImageStats();
+resetDocumentStats();
 
 async function main() {
   // content 디렉토리가 없으면 생성
@@ -397,7 +95,7 @@ async function main() {
   }
 
   // Cloudinary 이미지 처리 시스템 초기화
-  console.log("☁️ Cloudinary 이미지 처리 시스템 준비 완료");
+  // console.log("☁️ Cloudinary 이미지 처리 시스템 준비 완료");
 
   let posts;
   try {
@@ -420,9 +118,29 @@ async function main() {
   }
 
   console.log(`📊 총 ${posts.results.length}개의 게시물을 처리합니다.`);
+
+  // 함수형 파이프라인 통계
+  let processedCount = 0;
+  let skippedCount = 0;
+  let errorCount = 0;
+
   // 2. Notion DB에서 endDate 비교 후, 변경된 페이지만 변환
   const existingEndDates = await getExistingEndDates();
-  for (const page of posts.results as QueryDatabaseResponseArray) {
+
+  // 배치 처리를 위한 배열
+  const pagesToProcess = (posts.results as QueryDatabaseResponseArray).filter(
+    (page) => {
+      const id = page.id.replace(/-/g, "");
+      const last_edited_time = page.last_edited_time;
+      return existingEndDates.get(id) !== last_edited_time;
+    }
+  );
+
+  console.log(
+    `🔄 ${pagesToProcess.length}개의 변경된 페이지를 함수형 파이프라인으로 처리합니다.`
+  );
+
+  for (const page of pagesToProcess) {
     try {
       const id = page.id.replace(/-/g, "");
       const props = page.properties as any;
@@ -439,7 +157,11 @@ async function main() {
       const type = props.type?.select?.name;
       const sub_type = props.sub_type?.select?.name || "";
       // 사용자 친화적 슬러그 생성
-      const slug = generateUserFriendlySlug(type, title, slugSet);
+      const slug = generateUserFriendlySlug(
+        type,
+        title,
+        new Set(slugManager.getAllSlugs())
+      );
 
       if (existingEndDates.get(id) !== last_edited_time) {
         const mdBlocks = await n2m.pageToMarkdown(page.id);
@@ -451,20 +173,32 @@ async function main() {
 
         let enhancedContent = content;
 
-        // 안전 변환 적용
-        enhancedContent = decodeUrlEncodedLinks(enhancedContent);
-        enhancedContent = processMdxContent(enhancedContent);
+        // 함수형 파이프라인을 사용한 MDX 처리
+        console.log(`🔄 함수형 MDX 파이프라인 처리 시작: ${slug}`);
 
-        // enhancedContent = await processMdxContent(enhancedContent);
-        // // MDX 검증 및 수정
-        // const validationResult = await validateMdxContent(
-        //   enhancedContent,
-        //   slug
-        // );
-        // enhancedContent = validationResult.content;
-        // if (!validationResult.isValid) {
-        //   console.warn(`⚠️ MDX 검증 실패, 기본 템플릿 사용: ${slug}`);
-        // }
+        try {
+          // 1단계: URL 디코딩
+          enhancedContent = decodeUrlEncodedLinks(enhancedContent);
+
+          // 2단계: 함수형 파이프라인으로 MDX 처리 (로깅 포함)
+          enhancedContent = processMdxContentWithLoggingFn(enhancedContent);
+
+          console.log(`✅ 함수형 MDX 파이프라인 처리 완료: ${slug}`);
+        } catch (error) {
+          console.warn(
+            `⚠️ 함수형 파이프라인 처리 실패, 기존 방식으로 폴백: ${slug}`
+          );
+
+          // 폴백: 기존 검증 방식 사용
+          const validationResult = await validateAndFixMdxContent(
+            enhancedContent,
+            slug
+          );
+          enhancedContent = validationResult.content;
+          if (!validationResult.isValid) {
+            console.warn(`⚠️ MDX 검증 실패, 기본 템플릿 사용: ${slug}`);
+          }
+        }
 
         // 노션 이미지를 Cloudinary URL로 변환
         console.log(`🖼️ 이미지 처리 시작: ${slug}`);
@@ -526,27 +260,33 @@ async function main() {
         const filePath = path.join(dir, `${slug}.mdx`);
         await fs.writeFile(filePath, frontMatter, "utf-8");
         console.log(`✅ Notion → MDX 변환+안전화 완료: ${slug} → ${type}`);
+        processedCount++;
       } else {
         console.log(`🎉 이미 최신 버전: ${slug} → ${type}`);
+        skippedCount++;
       }
     } catch (err) {
       console.error(`🔥 Notion → MDX 변환 실패: ${page.id}`);
       console.error(err);
+      errorCount++;
       continue;
     }
   }
 
-  // 이미지 처리 통계 출력
-  console.log("\n📊 이미지 처리 통계:");
-  console.log(`   - 총 처리된 이미지: ${processedImagesCount}개`);
-  console.log(`   - Cloudinary 업로드: ${cloudinaryUploadCount}개`);
-  console.log(`   - 캐시 히트: ${cacheHitCount}개`);
-  console.log(`   - 처리된 pageCover: ${processedPageCoversCount}개`);
+  // 통계 출력
+  printImageStats();
+  printDocumentStats();
 
-  // 문서 처리 통계 출력
-  console.log("\n📄 문서 처리 통계:");
-  console.log(`   - 총 처리된 문서: ${processedFilesCount}개`);
-  console.log(`   - Cloudinary 문서 업로드: ${cloudinaryFileUploadCount}개`);
+  // 함수형 파이프라인 통계 출력
+  console.log("\n📊 함수형 MDX 파이프라인 통계:");
+  console.log(`   - 처리된 페이지: ${processedCount}개`);
+  console.log(`   - 건너뛴 페이지: ${skippedCount}개`);
+  console.log(`   - 오류 발생: ${errorCount}개`);
+  console.log(
+    `   - 총 처리율: ${((processedCount / pagesToProcess.length) * 100).toFixed(
+      1
+    )}%`
+  );
 
   // Redis 캐시 통계 출력 (개발용 - 필요시 주석 해제)
   // try {
