@@ -6,7 +6,7 @@
 import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
-import { RecordFrontMatter } from "@/types/mdx.model";
+import { MdxMetadata, RecordFrontMatter } from "@/types/mdx.model";
 import { QueryPageResponse } from "@/types/notion.client.model";
 import { BLOG } from "@/blog.config";
 
@@ -248,18 +248,6 @@ export class SlugManager {
   clear(): void {
     this.slugSet.clear();
   }
-}
-
-/**
- * MDX 파일 메타데이터 타입
- */
-export interface MdxMetadata {
-  notionId?: string;
-  last_edited_time?: string;
-  title?: string;
-  slug?: string;
-  type?: string;
-  [key: string]: any;
 }
 
 /**

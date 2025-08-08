@@ -254,6 +254,18 @@ export interface MdxProcessingStats {
 }
 
 /**
+ * MDX 파일 메타데이터 타입
+ */
+export interface MdxMetadata {
+  notionId?: string;
+  last_edited_time?: string;
+  title?: string;
+  slug?: string;
+  type?: string;
+  [key: string]: any;
+}
+
+/**
  * 타입 가드 함수들
  */
 

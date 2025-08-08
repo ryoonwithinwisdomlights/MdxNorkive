@@ -51,7 +51,7 @@ const AllRecordsList = ({
       <div id="records-wrapper ">
         {allPages?.map((record: any) => (
           <SubstringedTitleNav
-            key={record.id}
+            key={record.notionId}
             record={record}
             substr={true}
             substrNumber={BLOG.RECORD_SUBSTR_BASIC_NUMBER}

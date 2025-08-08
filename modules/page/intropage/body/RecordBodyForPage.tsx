@@ -1,19 +1,12 @@
 import NotFound from "@/app/not-found";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import TypeCarousel from "@/modules/shared/TypeCarousel";
+import TypeCarousel, { OptionItem } from "@/modules/shared/TypeCarousel";
 import LazyImage from "@/modules/shared/LazyImage";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import NoRecordFound from "@/modules/page/components/NoRecordFound";
 import PageIndicator from "@/modules/page/components/PageIndicator";
 import InformationCard from "@/modules/page/components/InformationCard";
-
-interface OptionItem {
-  id: number;
-  title: string;
-  option?: any;
-  isActive?: boolean; // 현재 선택된지 확인
-}
 
 const RecordBodyForPage = ({ records }: { records: any[] }) => {
   const pages = records;

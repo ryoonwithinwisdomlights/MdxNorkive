@@ -3,14 +3,12 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { RootProvider } from "fumadocs-ui/provider";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata, Viewport } from "next";
-import "./../styles/globals.css";
 import { Suspense } from "react";
+import "./../styles/globals.css";
 
 import { GeneralSiteSettingsProvider } from "@/lib/context/GeneralSiteSettingsProvider";
 
 import { ModalProvider } from "@/lib/context/ModalProvider";
-
-import { ChildrenProp } from "@/types";
 
 import { NavInfoProvider } from "@/lib/context/NavInfoProvider";
 
@@ -78,7 +76,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({ children }: ChildrenProp) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   /**
    * 메뉴데이터
    * globalNotionData 따로

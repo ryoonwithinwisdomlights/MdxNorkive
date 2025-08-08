@@ -27,12 +27,3 @@ export interface SiteInfoModel {
   link?: string;
   author?: string;
 }
-
-export type ConfirmModalProps = {
-  children: React.ReactNode;
-  onConfirm: () => void;
-};
-
-export interface CanonicalPageMap {
-  [canonicalPageId: string]: string;
-}

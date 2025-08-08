@@ -3,6 +3,8 @@
  * ----------------------------------------------------------------------/
  */
 
+import { RecordFrontMatter } from "./mdx.model";
+
 export type RecommendPage = {
   id: string;
   type: string;
@@ -24,84 +26,6 @@ export interface CategoryItem {
   count?: number;
 }
 
-export type DateObj = {
-  type?: string;
-  start_date?: string;
-  date_format?: string;
-};
-
-export type BaseArchivePageBlock = {
-  id: string;
-  description?: string;
-  author?: string;
-  date: DateObj;
-  type: string;
-  category: string;
-  sub_type?: string[];
-  favorite?: boolean;
-  comment?: string;
-  tags?: string[];
-  title: string;
-  content?: string[];
-  status: string;
-  publishDate: number;
-  publishDay: string;
-  lastEditedDate?: Date;
-  lastEditedDay?: string;
-  fullWidth?: boolean;
-  pageIcon?: string;
-  pageCover?: string;
-  pageCoverThumbnail?: string;
-  tagItems?: TagItem[];
-  summary?: any;
-  slug: string;
-  icon?: string;
-  results?: any;
-  password?: string;
-  tableOfContents?: any[] | [];
-  RecordMap?: any | null;
-  blockMap?: any | null;
-  prev?: BaseArchivePageBlock | null;
-  next?: BaseArchivePageBlock | null;
-  recommendPages?: RecommendPage[] | [];
-};
-
-export type BaseArchivePageBlock2 = {
-  id: string;
-  description?: string;
-  author?: string;
-  date: DateObj;
-  type: string;
-  category: string;
-  sub_type?: string;
-  favorite?: boolean;
-  comment?: string;
-  tags?: string[];
-  title: string;
-  content?: string;
-  status: string;
-  publishDate: number;
-  publishDay: string;
-  lastEditedDate?: Date;
-  lastEditedDay?: string;
-  fullWidth?: boolean;
-  pageIcon?: string;
-  pageCover?: string;
-  pageCoverThumbnail?: string;
-  tagItems?: TagItem[];
-  summary?: any;
-  slug: string;
-  icon?: string;
-  results?: any;
-  password?: string;
-  tableOfContents?: any[] | [];
-  RecordMap?: any | null;
-  blockMap?: any | null;
-  prev?: BaseArchivePageBlock | null;
-  next?: BaseArchivePageBlock | null;
-  recommendPages?: RecommendPage[] | [];
-};
-
 export interface MenuItem {
   id: string;
   icon?: string;
@@ -120,3 +44,38 @@ export interface RecordTag {
   id: string;
   name: string;
 }
+
+export type BasicPageDivProps = {
+  title: string;
+  recordList: RecordFrontMatter[];
+};
+
+export type PaginationDivProps = {
+  pagenum?: number;
+  allPages?: RecordFrontMatter[];
+  pageCount: number;
+};
+
+export type CardInfoDivProps = {
+  page: any;
+  showPreview: boolean;
+  showPageCover: boolean;
+  showSummary: boolean;
+};
+export type NavListDivProps = {
+  record: RecordFrontMatter;
+  className?: string;
+  substr?: boolean;
+  substrNumber?: number;
+};
+
+export type PageParams = Promise<{ [key: string]: string }>;
+
+export type PageSearchParams = Promise<{
+  [key: string]: number | undefined;
+}>;
+
+export type TotalPageParams = {
+  params: PageParams;
+  searchParams: PageSearchParams;
+};

@@ -4,7 +4,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-interface OptionItem {
+export interface OptionItem {
   id: number;
   title: string;
   option?: any;

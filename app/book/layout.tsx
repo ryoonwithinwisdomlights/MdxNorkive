@@ -3,7 +3,7 @@ import { bookSource } from "@/lib/source";
 import { DocsLayout } from "@/modules/layout/templates/docs-min";
 import { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
 import RightSideInfoBar from "@/modules/layout/components/RightSideInfoBar";
-import { basicDocsClass } from "@/types/layout.props";
+import { basicDocsClass } from "@/styles/layout.styles";
 interface Root {
   $id?: string;
   name: ReactNode;

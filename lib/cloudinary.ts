@@ -2,6 +2,7 @@ import "dotenv/config";
 import { config } from "dotenv";
 import path from "path";
 import { v2 as cloudinary } from "cloudinary";
+import { CloudinaryUploadResult } from "@/types/cloudinaty.model";
 
 // .env.local 파일을 명시적으로 로드
 config({ path: path.resolve(process.cwd(), ".env.local") });
@@ -43,15 +44,6 @@ function initializeCloudinary() {
 
 // 초기화 실행
 initializeCloudinary();
-
-export interface CloudinaryUploadResult {
-  secure_url: string;
-  public_id: string;
-  width: number;
-  height: number;
-  format: string;
-  bytes: number;
-}
 
 /**
  * 이미지를 Cloudinary에 업로드

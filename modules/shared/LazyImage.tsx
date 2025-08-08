@@ -1,32 +1,7 @@
 "use client";
 
+import { ImgProps, LazyImageProps } from "@/types";
 import React, { useEffect, useRef, useState } from "react";
-
-export type LazyImageProps = {
-  priority?: any;
-  id?: any;
-  src: any;
-  alt?: any;
-  placeholderSrc?: string;
-  className?: any;
-  width?: any;
-  height?: any;
-  title?: any;
-  onLoad?: any;
-  style?: any;
-};
-export type ImgProps = {
-  ref: React.RefObject<HTMLImageElement | null>;
-  src: string;
-  alt: string;
-  onLoad: () => void;
-  id?: string;
-  title?: string;
-  width?: string | number;
-  height?: string | number;
-  className?: string;
-  style?: React.CSSProperties;
-};
 
 const IMG_LAZY_LOAD_PLACEHOLDER =
   process.env.NEXT_PUBLIC_IMG_LAZY_LOAD_PLACEHOLDER ||
