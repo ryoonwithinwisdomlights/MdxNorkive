@@ -37,6 +37,12 @@ const books = defineCollection({
     tags: z.array(z.string()).optional(), // ex. ["Next.js", "SEO"]
     draft: z.boolean().default(false),
     favorite: z.boolean().default(false),
+    readingTime: z.number().optional(),
+    wordCount: z.number().optional(),
+    lastModified: z.string().optional(),
+    version: z.string().optional(),
+    status: z.string().optional(),
+    author: z.string().optional(),
     // Fumadocs OpenAPI generated
     _openapi: z.record(z.string(), z.any()).optional(),
   }),
@@ -65,6 +71,12 @@ const projects = defineCollection({
     tags: z.array(z.string()).optional(), // ex. ["Next.js", "SEO"]
     draft: z.boolean().default(false),
     favorite: z.boolean().default(false),
+    readingTime: z.number().optional(),
+    wordCount: z.number().optional(),
+    lastModified: z.string().optional(),
+    version: z.string().optional(),
+    status: z.string().optional(),
+    author: z.string().optional(),
     // Fumadocs OpenAPI generated
     _openapi: z.record(z.string(), z.any()).optional(),
   }),
@@ -93,6 +105,12 @@ const engineerings = defineCollection({
     tags: z.array(z.string()).optional(), // ex. ["Next.js", "SEO"]
     draft: z.boolean().default(false),
     favorite: z.boolean().default(false),
+    readingTime: z.number().optional(),
+    wordCount: z.number().optional(),
+    lastModified: z.string().optional(),
+    version: z.string().optional(),
+    status: z.string().optional(),
+    author: z.string().optional(),
     // Fumadocs OpenAPI generated
     _openapi: z.record(z.string(), z.any()).optional(),
   }),
@@ -121,6 +139,12 @@ const records = defineCollection({
     tags: z.array(z.string()).optional(), // ex. ["Next.js", "SEO"]
     draft: z.boolean().default(false),
     favorite: z.boolean().default(false),
+    readingTime: z.number().optional(),
+    wordCount: z.number().optional(),
+    lastModified: z.string().optional(),
+    version: z.string().optional(),
+    status: z.string().optional(),
+    author: z.string().optional(),
     // Fumadocs OpenAPI generated
     _openapi: z.record(z.string(), z.any()).optional(),
   }),
@@ -147,6 +171,13 @@ const subMenuPages = defineCollection({
     sub_type: z.string().optional(), // ex. "engineering" 배열 또는 문자열 모두 수용할 수 있게 유연하게 처리
     category: z.string().optional(), // ex. "개발", ["개발", "에세이"]
     tags: z.array(z.string()).optional(), // ex. ["Next.js", "SEO"]
+    favorite: z.boolean().default(false),
+    readingTime: z.number().optional(),
+    wordCount: z.number().optional(),
+    lastModified: z.string().optional(),
+    version: z.string().optional(),
+    status: z.string().optional(),
+    author: z.string().optional(),
     draft: z.boolean().default(false),
     // Fumadocs OpenAPI generated
     _openapi: z.record(z.string(), z.any()).optional(),

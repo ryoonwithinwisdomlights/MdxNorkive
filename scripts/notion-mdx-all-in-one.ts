@@ -35,7 +35,11 @@ import {
   SlugManager,
 } from "@/lib/utils/mdx-data-processing/data-manager";
 
-import { OriginalQueryDatabaseResponseArray } from "@/app/api/types";
+import {
+  ModifiedQueryDatabaseResponseArray,
+  OriginalQueryDatabaseResponseArray,
+  QueryPageResponse,
+} from "@/types/notion.client.model";
 
 // === ✅ 환경변수 및 설정 ===
 const NOTION_TOKEN = process.env.NOTION_ACCESS_TOKEN!;
@@ -96,7 +100,7 @@ async function main() {
 
   // 배치 처리를 위한 배열
   const pagesToProcess = (
-    posts.results as OriginalQueryDatabaseResponseArray
+    posts.results as ModifiedQueryDatabaseResponseArray
   ).filter((page) => {
     const id = page.id.replace(/-/g, "");
     const last_edited_time = page.last_edited_time;
@@ -110,7 +114,7 @@ async function main() {
   for (const page of pagesToProcess) {
     try {
       const id = page.id.replace(/-/g, "");
-      const props = page.properties as any;
+      const props = page.properties as QueryPageResponse["properties"];
       const last_edited_time = page.last_edited_time;
       let pageCover: string | null = null;
       if (page.cover) {
@@ -121,7 +125,7 @@ async function main() {
         }
       }
       const title = props.title?.title?.[0]?.plain_text?.trim() || "Untitled";
-      const type = props.type?.select?.name;
+      const type = props.type?.select?.name || "";
       const sub_type = props.sub_type?.select?.name || "";
       // 사용자 친화적 슬러그 생성
       const slug = generateUserFriendlySlug(

@@ -106,10 +106,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
                     <Book className="w-4 h-4" />
                     <span className="flex flex-row gap-2 items-center">
                       {locale.COMMON.READING_TIME}&nbsp;&nbsp;-&nbsp;&nbsp;
-                      {getReadingTime(
-                        page.data.title,
-                        page.data?.summary || ""
-                      )}{" "}
+                      {page.data.readingTime} {locale.COMMON.MINUTE}
                       {locale.COMMON.MINUTE}
                     </span>
                   </div>

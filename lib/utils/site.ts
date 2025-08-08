@@ -1,7 +1,7 @@
 import { BLOG } from "@/blog.config";
 import { SiteInfoModel } from "@/types";
 
-import { RecordFrontMatter } from "@/app/api/types";
+import { RecordFrontMatter } from "@/types/mdx.model";
 import { compressImage } from "@/lib/utils/image";
 
 export function getSiteInfo({

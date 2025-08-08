@@ -28,7 +28,7 @@ import AuxiliaryBlogComponent from "@/modules/layout/components/AuxiliaryCompone
 import TopNavigationWrapper from "@/modules/layout/components/TopNavigationWrapper";
 import JumpToBackButton from "@/modules/shared/JumpToBackButton";
 import JumpToTopButton from "@/modules/shared/JumpToTopButton";
-import { RecordFrontMatter } from "@/app/api/types";
+import { RecordFrontMatter } from "@/types/mdx.model";
 config.autoAddCss = false;
 
 export const viewport: Viewport = {

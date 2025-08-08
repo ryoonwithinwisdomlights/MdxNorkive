@@ -1,13 +1,12 @@
 import { notion } from "@/app/api/clients";
 import type {
-  ArticleTag,
   DataBaseMetaDataResponse,
-  MenuItem,
   ModifiedQueryDatabaseResponse,
   ModifiedQueryDatabaseResponseArray,
   QueryPageResponse,
-  RecordFrontMatter,
-} from "@/app/api/types";
+} from "@/types/notion.client.model";
+import { RecordFrontMatter } from "@/types/mdx.model";
+import { RecordTag, MenuItem } from "@/types/record.model";
 import { generateUserFriendlySlug } from "@/lib/utils/mdx-data-processing/data-manager";
 
 async function generateChildRelations(childRelations: Array<{ id: string }>) {
@@ -169,7 +168,7 @@ export class NotionDataBaseMetaDataAdapter {
     this.metaData = metaData;
   }
 
-  convertToTagList(): ArticleTag[] {
+  convertToTagList(): RecordTag[] {
     return this.metaData.properties.tags.multi_select.options;
   }
 }

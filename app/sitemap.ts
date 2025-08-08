@@ -2,7 +2,7 @@ import { BLOG } from "@/blog.config";
 import { formatDate } from "@/lib/utils/date";
 import type { MetadataRoute } from "next";
 import { fetchAllRecordList } from "./api/fetcher";
-import type { RecordFrontMatter } from "@/app/api/types";
+import type { RecordFrontMatter } from "@/types/mdx.model";
 
 type ChangeFrequency =
   | "always"

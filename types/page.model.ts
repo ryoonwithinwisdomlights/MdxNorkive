@@ -1,7 +1,6 @@
 import { ParsedUrlQuery } from "querystring";
 import { BaseArchivePageBlock } from "./record.model";
-import { RecordFrontMatter } from "@/app/api/types";
-
+import { RecordFrontMatter } from "@/types/mdx.model";
 export interface ChildrenProp {
   children: React.ReactNode;
 }

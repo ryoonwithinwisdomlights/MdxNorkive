@@ -6,78 +6,9 @@
 import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
-
-// ===== 타입 정의 =====
-export interface NotionPageProperties {
-  title?: {
-    title?: Array<{ plain_text?: string }>;
-  };
-  description?: {
-    rich_text?: Array<{ plain_text?: string }>;
-  };
-  icon?: {
-    emoji?: string;
-  };
-  full?: {
-    checkbox?: boolean;
-  };
-  favorite?: {
-    checkbox?: boolean;
-  };
-  category?: {
-    select?: { name?: string };
-  };
-  tags?: {
-    multi_select?: Array<{ name?: string }>;
-  };
-  date?: {
-    date?: { start?: string };
-  };
-  password?: {
-    rich_text?: Array<{ plain_text?: string }>;
-  };
-  summary?: {
-    rich_text?: Array<{ plain_text?: string }>;
-  };
-  type?: {
-    select?: { name?: string };
-  };
-  sub_type?: {
-    select?: { name?: string };
-  };
-  [key: string]: any;
-}
-
-export interface RecordFrontMatter {
-  title: string;
-  slug: string;
-  summary: string;
-  pageCover: string | null;
-  notionId: string;
-  password: string;
-  type: string;
-  sub_type: string;
-  category: string[];
-  tags: string[];
-  favorite: boolean;
-  publishDate?: number;
-  date: string;
-  last_edited_time: string;
-  lastEditedDate: string | Date;
-  draft: boolean;
-  description: string;
-  icon: string | null;
-  full: boolean;
-
-  lastModified: string;
-  readingTime: number;
-  wordCount: number;
-  status: string;
-  author: string;
-  version: string;
-}
-
-// ===== 메타데이터 생성 함수 =====
+import { RecordFrontMatter } from "@/types/mdx.model";
+import { QueryPageResponse } from "@/types/notion.client.model";
+import { BLOG } from "@/blog.config";
 
 /**
  * Notion 페이지 데이터로부터 RecordFrontMatter 메타데이터 생성
@@ -90,7 +21,7 @@ export interface RecordFrontMatter {
  * @returns RecordFrontMatter 객체
  */
 export function generateRecordFrontMatter(
-  props: NotionPageProperties,
+  props: QueryPageResponse["properties"],
   id: string,
   last_edited_time: string,
   pageCover: string | null,
@@ -98,10 +29,9 @@ export function generateRecordFrontMatter(
 ): RecordFrontMatter {
   // 기본 메타데이터 추출
   const title = props.title?.title?.[0]?.plain_text?.trim() || "제목 없음";
-  const description =
-    props.description?.rich_text?.[0]?.plain_text?.trim() || "";
-  const icon = props.icon?.emoji || "";
-  const full = props.full?.checkbox || false;
+  const description = "";
+  const icon = null;
+  const full = false;
   const favorite = props.favorite?.checkbox || false;
   const category = props.category?.select?.name ?? "";
   const tags = props.tags?.multi_select?.map((t: any) => t.name) ?? [];
@@ -113,8 +43,8 @@ export function generateRecordFrontMatter(
   const sub_type = props.sub_type?.select?.name || "RECORDS";
 
   // 계산된 메타데이터
-  const readingTime = Math.ceil((title.length + description.length) / 200);
-  const wordCount = title.length + description.length;
+  const readingTime = Math.ceil((title.length + enhancedContent.length) / 200);
+  const wordCount = title.length + enhancedContent.length;
   const lastModified = new Date().toISOString().slice(0, 10);
 
   return {
@@ -140,7 +70,7 @@ export function generateRecordFrontMatter(
     readingTime,
     wordCount,
     status: "published",
-    author: "ryoon",
+    author: BLOG.AUTHOR,
     version: "1.0.0",
   };
 }
@@ -171,7 +101,7 @@ export function stringifyFrontMatter(
  * @returns frontmatter가 포함된 MDX 문자열
  */
 export function generateCompleteMdxFile(
-  props: NotionPageProperties,
+  props: QueryPageResponse["properties"],
   id: string,
   last_edited_time: string,
   pageCover: string | null,

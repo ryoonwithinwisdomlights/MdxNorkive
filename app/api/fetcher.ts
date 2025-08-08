@@ -1,25 +1,25 @@
-import "server-only";
 import { cache } from "react";
+import "server-only";
 import { NOTION_DATABASE_ID } from "./clients";
 
-import { notion } from "@/app/api/clients";
 import {
   NotionDataBaseMetaDataAdapter,
   NotionPageListAdapter,
 } from "@/app/api/adapter";
+import { notion } from "@/app/api/clients";
 
+import type {
+  DataBaseMetaDataResponse,
+  ModifiedQueryDatabaseResponseArray,
+  QueryPageResponse,
+} from "@/types/notion.client.model";
+import { RecordFrontMatter } from "@/types/mdx.model";
+import { MenuItem } from "@/types/record.model";
 import type {
   GetBlockResponse,
   ImageBlockObjectResponse,
   ListBlockChildrenResponse,
 } from "@notionhq/client/build/src/api-endpoints";
-import type {
-  DataBaseMetaDataResponse,
-  MenuItem,
-  ModifiedQueryDatabaseResponseArray,
-  QueryPageResponse,
-  RecordFrontMatter,
-} from "@/app/api/types";
 
 import { getSiteInfo } from "@/lib/utils/site";
 

@@ -1,4 +1,5 @@
-import { MenuItem, RecordFrontMatter } from "@/app/api/types";
+import { MenuItem } from "@/types/record.model";
+import { RecordFrontMatter } from "@/types/mdx.model";
 import { Dispatch, SetStateAction } from "react";
 import { SiteInfoModel } from "./index";
 

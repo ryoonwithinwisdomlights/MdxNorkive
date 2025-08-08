@@ -1,6 +1,7 @@
 "use client";
 
-import { MenuItem, RecordFrontMatter } from "@/app/api/types";
+import { MenuItem } from "@/types/record.model";
+import { RecordFrontMatter } from "@/types/mdx.model";
 import { GlobalNavInfoProps, SerializedPage } from "@/types";
 import NextNProgress from "nextjs-progressbar";
 import { createContext, ReactNode, useContext } from "react";
