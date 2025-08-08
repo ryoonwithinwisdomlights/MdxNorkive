@@ -1,5 +1,30 @@
 import { BLOG } from "@/blog.config";
-import { getDistanceFromToday, getYearMonthDay } from "./date";
+import { formatDateFmt, getDistanceFromToday, getYearMonthDay } from "./date";
+
+export function setPageSortedByDate(obj) {
+  const recordsSortByDate = Object.create(obj);
+
+  recordsSortByDate.sort((a, b) => {
+    return (
+      new Date(b?.data?.date).getTime() - new Date(a?.data?.date).getTime()
+    );
+  });
+  return recordsSortByDate;
+}
+
+export function setPageGroupedByDate(array) {
+  const allrecords = {};
+
+  array.forEach((record) => {
+    const date = formatDateFmt(record.data.date, "yyyy-MM");
+    if (allrecords[date]) {
+      allrecords[date].push(record);
+    } else {
+      allrecords[date] = [record];
+    }
+  });
+  return allrecords;
+}
 
 export function getMainRecentRecords(pages: any, lang: string, sliceNum = 6) {
   // console.log("pages:", pages);

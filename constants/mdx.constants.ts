@@ -9,6 +9,13 @@
  * - 허용된 JSX 속성 목록
  * - 기타 MDX 처리 관련 상수들
  *
+ ** ALLOWED_HTML_TAGS: 허용된 HTML 태그 목록 (보안 고려사항 포함)
+ * ALLOWED_JSX_ATTRIBUTES: 허용된 JSX 속성 목록
+ * MDX_CONSTANTS: 코드 블록 마커, 기본 템플릿 등
+ * MDX_LINK_PATTERNS: 링크 변환 정규식 패턴들
+ * MDX_CONTENT_PATTERNS: 콘텐츠 변환 정규식 패턴들
+ *
+ *
  * @version 1.0.0
  * @author AI Assistant & ryoon (ryoon.with.wisdomtrees@gmail.com)
  * @created 2025-08-08

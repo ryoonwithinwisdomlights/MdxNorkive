@@ -1,18 +1,15 @@
 "use client";
 import NotFound from "@/app/not-found";
 import { bookSource } from "@/lib/source";
-import {
-  setPageGroupedByDate2,
-  setPageSortedByDate2,
-} from "@/lib/utils/backup/utils";
+import { setPageGroupedByDate, setPageSortedByDate } from "@/lib/utils/records";
 import { isObjectNotEmpty } from "@/lib/utils/general";
 import BookRecordsBody from "./body/BookRecordsBody";
 import BookIntro from "./intro/BookIntro";
 
 export function setAllPagesGetSortedGroupedByDate(allPages) {
   let result = allPages;
-  const pageSortedByDate = setPageSortedByDate2(allPages);
-  const pageGroupedByDate = setPageGroupedByDate2(pageSortedByDate);
+  const pageSortedByDate = setPageSortedByDate(allPages);
+  const pageGroupedByDate = setPageGroupedByDate(pageSortedByDate);
   result = pageGroupedByDate;
 
   return result;

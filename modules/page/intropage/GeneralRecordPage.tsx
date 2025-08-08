@@ -2,10 +2,7 @@
 import NotFound from "@/app/not-found";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { recordSource } from "@/lib/source";
-import {
-  setPageGroupedByDate2,
-  setPageSortedByDate2,
-} from "@/lib/utils/backup/utils";
+import { setPageGroupedByDate, setPageSortedByDate } from "@/lib/utils/records";
 import { isObjectNotEmpty } from "@/lib/utils/general";
 import { RecordsWrapper } from "@/modules/page/components/RecordsWrapper";
 import FeaturedRecords from "@/modules/page/components/FeaturedRecords";
@@ -13,9 +10,9 @@ import NoRecordFound from "@/modules/page/components/NoRecordFound";
 
 export function setAllPagesGetSortedGroupedByDate(allPages) {
   let result = allPages;
-  const pageSortedByDate = setPageSortedByDate2(allPages);
+  const pageSortedByDate = setPageSortedByDate(allPages);
 
-  const pageGroupedByDate = setPageGroupedByDate2(pageSortedByDate);
+  const pageGroupedByDate = setPageGroupedByDate(pageSortedByDate);
   result = pageGroupedByDate;
 
   return result;
