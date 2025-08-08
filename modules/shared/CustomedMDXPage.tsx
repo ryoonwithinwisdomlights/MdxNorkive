@@ -107,7 +107,6 @@ export default function CustomedMDXPage({ className, slug, resource }) {
                     <span className="flex flex-row gap-2 items-center">
                       {locale.COMMON.READING_TIME}&nbsp;&nbsp;-&nbsp;&nbsp;
                       {page.data.readingTime} {locale.COMMON.MINUTE}
-                      {locale.COMMON.MINUTE}
                     </span>
                   </div>
                   <div className="flex flex-row gap-2 items-center">
