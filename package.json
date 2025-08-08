@@ -15,6 +15,7 @@
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev --turbo",
     "build": "rm -rf .next && next build",
+    "build:vercel": "NODE_OPTIONS='--max-old-space-size=4096' next build",
     "start": "NODE_OPTIONS='--inspect' next build && next start",
     "prettier": "prettier --write --ignore-unknown .",
     "prettier:check": "prettier --check --ignore-unknown .",
@@ -120,7 +121,7 @@
     "ts-node": "^10.9.2"
   },
   "engines": {
-    "node": " >=18.12.1"
+    "node": ">=18.12.1"
   },
   "bugs": {
     "url": "https://github.com/ryoonwithinwisdomlights/norkive/issues",

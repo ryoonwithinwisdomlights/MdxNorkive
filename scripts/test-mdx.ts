@@ -470,7 +470,7 @@ async function main() {
             pageCover = await processPageCover(pageCover);
           }
 
-          enhancedContent = await processMdxContent(enhancedContent);
+          // enhancedContent = await processMdxContent(enhancedContent);
           // MDX 검증 및 수정
           // const validationResult = await validateMdxContent(
           //   enhancedContent,

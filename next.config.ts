@@ -10,7 +10,10 @@ const baseConfig: NextConfig = {
   },
   output: "standalone",
   staticPageGenerationTimeout: 120,
-
+  experimental: {
+    scrollRestoration: true,
+    mdxRs: false,
+  },
   images: {
     // Image compression
     formats: ["image/avif", "image/webp"],
@@ -93,10 +96,16 @@ const baseConfig: NextConfig = {
       // externals에서 @headlessui/react 제거
     }
 
+    // lightningcss 문제 해결
+    if (process.env.VERCEL) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        path: false,
+      };
+    }
+
     return config;
-  },
-  experimental: {
-    scrollRestoration: true,
   },
 };
 
