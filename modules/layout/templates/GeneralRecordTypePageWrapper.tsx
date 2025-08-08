@@ -6,6 +6,8 @@ type Props = {
 
 export default function GeneralRecordTypePageWrapper({ children }: Props) {
   return (
-    <div className="w-screen  flex flex-row  justify-center ">{children}</div>
+    <div className="xl:w-[calc(100vw-300px)] w-full h-vh flex flex-row  justify-center items-start ">
+      {children}
+    </div>
   );
 }

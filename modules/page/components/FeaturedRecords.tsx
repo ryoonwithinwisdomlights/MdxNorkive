@@ -31,7 +31,7 @@ const FeaturedRecords = ({
   const pages = records;
   if (!pages) return null;
 
-  console.log("pages:", pages);
+  // console.log("pages:", pages);
 
   pages.sort((a, b) => {
     return (

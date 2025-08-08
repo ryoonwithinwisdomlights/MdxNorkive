@@ -27,7 +27,7 @@ const GeneralRecordPage = () => {
   if (!isAble) NotFound();
   const modAllPages = setAllPagesGetSortedGroupedByDate(pages);
   return (
-    <div className="flex flex-col md:px-10 w-full items-center dark:bg-black dark:text-neutral-300 ">
+    <div className="flex flex-col  w-full items-center dark:bg-black dark:text-neutral-300 ">
       <div className="text-start mb-6 flex flex-col gap-10 w-full">
         <div className="flex flex-col justify-center items-center">
           <div className="flex flex-col  ">

@@ -2,14 +2,12 @@
 
 import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
 import RightSideInfoBar from "@/modules/layout/components/RightSideInfoBar";
+import { basicDocsClass } from "@/types/layout.props";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <GeneralRecordTypePageWrapper>
-      <div
-        className="w-full mt-[20px] p-10 xl:w-[60%] flex flex-col  pb-20 
-      justify-center items-center "
-      >
+      <div className=" w-full xl:w-[calc(100vw-600px)] flex flex-col justify-center items-center  pb-20  ">
         {children}
       </div>
 
