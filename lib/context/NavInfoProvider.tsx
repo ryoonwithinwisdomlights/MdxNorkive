@@ -1,6 +1,6 @@
 "use client";
 
-import { MenuItem, RecordItem } from "@/app/api/types";
+import { MenuItem, RecordFrontMatter } from "@/app/api/types";
 import { GlobalNavInfoProps, SerializedPage } from "@/types";
 import NextNProgress from "nextjs-progressbar";
 import { createContext, ReactNode, useContext } from "react";
@@ -21,7 +21,7 @@ export function NavInfoProvider({
 }: {
   children: ReactNode;
   from?: string;
-  recordList: RecordItem[];
+  recordList: RecordFrontMatter[];
   serializedAllPages: SerializedPage[];
   menuList: MenuItem[];
 }) {

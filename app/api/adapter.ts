@@ -3,10 +3,10 @@ import type {
   ArticleTag,
   DataBaseMetaDataResponse,
   MenuItem,
-  QueryDatabaseResponse,
-  QueryDatabaseResponseArray,
+  ModifiedQueryDatabaseResponse,
+  ModifiedQueryDatabaseResponseArray,
   QueryPageResponse,
-  RecordItem,
+  RecordFrontMatter,
 } from "@/app/api/types";
 import { generateUserFriendlySlug } from "@/lib/utils/mdx-data-processing/data-manager";
 
@@ -16,14 +16,16 @@ async function generateChildRelations(childRelations: Array<{ id: string }>) {
   const children = await Promise.all(
     childIds.map(async (childId) => {
       const childPage = await notion.pages.retrieve({ page_id: childId });
-      const childProps = generateMenuItem(childPage as QueryDatabaseResponse);
+      const childProps = generateMenuItem(
+        childPage as ModifiedQueryDatabaseResponse
+      );
       return childProps;
     })
   );
 
   return children;
 }
-async function generateMenuItem(page: QueryDatabaseResponse) {
+async function generateMenuItem(page: ModifiedQueryDatabaseResponse) {
   const slugSet = new Set<string>();
   const id = page.id.replace(/-/g, "");
   const props = page.properties as any;
@@ -60,7 +62,7 @@ async function generateMenuItem(page: QueryDatabaseResponse) {
   }
 }
 
-function generateRecordItem(page: QueryDatabaseResponse) {
+function generateRecordItem(page: ModifiedQueryDatabaseResponse) {
   const slugSet = new Set<string>();
 
   const id = page.id.replace(/-/g, "");
@@ -123,23 +125,23 @@ function generateRecordItem(page: QueryDatabaseResponse) {
     status: "published",
     author: "ryoon",
     version: "1.0.0",
-  } as RecordItem;
+  } as RecordFrontMatter;
 }
 
 export class NotionPageAdapter {
-  private page: QueryDatabaseResponse;
+  private page: ModifiedQueryDatabaseResponse;
   private id: string;
-  private props: QueryDatabaseResponse["properties"];
-  constructor(page: QueryDatabaseResponse) {
+  private props: ModifiedQueryDatabaseResponse["properties"];
+  constructor(page: ModifiedQueryDatabaseResponse) {
     this.page = page;
     this.id = page.id.replace(/-/g, "");
-    this.props = page.properties as QueryDatabaseResponse["properties"];
+    this.props = page.properties as ModifiedQueryDatabaseResponse["properties"];
   }
 }
 
 export class NotionPageListAdapter {
-  private pageList: QueryDatabaseResponseArray;
-  constructor(pageList: QueryDatabaseResponseArray) {
+  private pageList: ModifiedQueryDatabaseResponseArray;
+  constructor(pageList: ModifiedQueryDatabaseResponseArray) {
     this.pageList = pageList;
   }
 
@@ -147,7 +149,7 @@ export class NotionPageListAdapter {
     let menus: MenuItem[] = [];
     if (this.pageList && this.pageList.length > 0) {
       const menuPromises = this.pageList.map(async (item) => {
-        return await generateMenuItem(item as QueryDatabaseResponse);
+        return await generateMenuItem(item as ModifiedQueryDatabaseResponse);
       });
       menus = await Promise.all(menuPromises);
     }
@@ -155,7 +157,7 @@ export class NotionPageListAdapter {
     return menus;
   }
 
-  convertToAllRecordList(): RecordItem[] {
+  convertToAllRecordList(): RecordFrontMatter[] {
     return this.pageList.map((item) => generateRecordItem(item));
   }
 }

@@ -5,8 +5,6 @@ import { GeistSans } from "geist/font/sans";
 import type { Metadata, Viewport } from "next";
 import "./../styles/globals.css";
 
-// import initArchiveGlobalData from "@/lib/notion/controller";
-
 import { GeneralSiteSettingsProvider } from "@/lib/context/GeneralSiteSettingsProvider";
 
 import { ModalProvider } from "@/lib/context/ModalProvider";
@@ -30,7 +28,7 @@ import AuxiliaryBlogComponent from "@/modules/layout/components/AuxiliaryCompone
 import TopNavigationWrapper from "@/modules/layout/components/TopNavigationWrapper";
 import JumpToBackButton from "@/modules/shared/JumpToBackButton";
 import JumpToTopButton from "@/modules/shared/JumpToTopButton";
-import { RecordItem } from "./api/types";
+import { RecordFrontMatter } from "@/app/api/types";
 config.autoAddCss = false;
 
 export const viewport: Viewport = {
@@ -109,7 +107,7 @@ export default async function RootLayout({ children }: ChildrenProp) {
     path: page.path,
     url: page.url,
     slugs: page.slugs,
-    data: page.data as RecordItem,
+    data: page.data as RecordFrontMatter,
     locale: page.locale,
   }));
 

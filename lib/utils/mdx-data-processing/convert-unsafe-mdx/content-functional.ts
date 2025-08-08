@@ -116,26 +116,25 @@
  * - 함수형: 데이터 변환 파이프라인에 최적 (현재 선택)
  *
  * @version 2.0.0
- * @author AI Assistant
- * @created 2024-12-19
- * @lastModified 2024-12-19
+ * @author AI Assistant & ryoon (ryoon.with.wisdomtrees@gmail.com)
+ * @created 2025-08-08
+ * @lastModified 2025-08-08
  */
 
 // ===== 타입 및 상수 import =====
 import {
-  MdxValidationResult,
-  ContentBlock,
-  ProcessingContext,
   ContentTransformer,
-} from "../../../../types/mdx.model";
+  MdxValidationResult,
+  ProcessingContext,
+} from "@/types/mdx.model";
 
 import {
   ALLOWED_HTML_TAGS,
   ALLOWED_JSX_ATTRIBUTES,
   MDX_CONSTANTS,
-  MDX_LINK_PATTERNS,
   MDX_CONTENT_PATTERNS,
-} from "../../../../constants/mdx.constants";
+  MDX_LINK_PATTERNS,
+} from "@/constants/mdx.constants";
 
 // ===== 유틸리티 함수들 =====
 const pipe =

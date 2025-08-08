@@ -20,6 +20,7 @@
       "@/context/*": ["lib/context/*"],
       "@/modules/*": ["modules/*"],
       "@/types/*": ["types/*"],
+      "@/constants/*": ["constants/*"],
       "content-collections": ["./.content-collections/generated"]
     },
     "forceConsistentCasingInFileNames": true,

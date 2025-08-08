@@ -94,6 +94,10 @@
  * - 지연 초기화
  * - 설정 캐싱
  * - 의존성 그래프 최적화
+ * @version 3.0.0
+ * @author AI Assistant & ryoon (ryoon.with.wisdomtrees@gmail.com)
+ * @created 2025-08-08
+ * @lastModified 2025-08-08
  */
 
 // ===== 타입 정의 =====

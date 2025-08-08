@@ -6,15 +6,9 @@ import path from "path";
 config({ path: path.resolve(process.cwd(), ".env.local") });
 
 import fs from "fs/promises";
-import matter from "gray-matter";
 
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
-
-import {
-  DatabaseObjectResponse,
-  PageObjectResponse,
-} from "@notionhq/client/build/src/api-endpoints";
 
 import {
   decodeUrlEncodedLinks,
@@ -23,11 +17,6 @@ import {
 } from "@/lib/utils/mdx-data-processing/convert-unsafe-mdx/content-functional";
 
 // 모듈화된 유틸리티들
-import {
-  getExistingEndDates,
-  SlugManager,
-  generateUserFriendlySlug,
-} from "@/lib/utils/mdx-data-processing/data-manager";
 import {
   printDocumentStats,
   processDocumentLinks,
@@ -39,36 +28,14 @@ import {
   processPageCover,
   resetImageStats,
 } from "@/lib/utils/mdx-data-processing/cloudinary/image-processor";
+import {
+  generateCompleteMdxFile,
+  generateUserFriendlySlug,
+  getExistingEndDates,
+  SlugManager,
+} from "@/lib/utils/mdx-data-processing/data-manager";
 
-export type FrontMatter = {
-  title: string;
-  slug: string;
-  summary: string;
-  pageCover: string | null;
-  notionId: string;
-  password: string;
-  type: string;
-  sub_type: string;
-  category: string;
-  tags: string[];
-  date: string;
-  last_edited_time: string;
-  lastEditedDate: string | Date;
-  draft: boolean;
-  description: string;
-  icon: string;
-  full: boolean;
-  favorite: boolean;
-  lastModified: string;
-  readingTime: number;
-  wordCount: number;
-  status: string;
-  author: string;
-  version: string;
-};
-type QueryDatabaseResponseArray = Array<
-  PageObjectResponse | DatabaseObjectResponse
->;
+import { OriginalQueryDatabaseResponseArray } from "@/app/api/types";
 
 // === ✅ 환경변수 및 설정 ===
 const NOTION_TOKEN = process.env.NOTION_ACCESS_TOKEN!;
@@ -128,13 +95,13 @@ async function main() {
   const existingEndDates = await getExistingEndDates();
 
   // 배치 처리를 위한 배열
-  const pagesToProcess = (posts.results as QueryDatabaseResponseArray).filter(
-    (page) => {
-      const id = page.id.replace(/-/g, "");
-      const last_edited_time = page.last_edited_time;
-      return existingEndDates.get(id) !== last_edited_time;
-    }
-  );
+  const pagesToProcess = (
+    posts.results as OriginalQueryDatabaseResponseArray
+  ).filter((page) => {
+    const id = page.id.replace(/-/g, "");
+    const last_edited_time = page.last_edited_time;
+    return existingEndDates.get(id) !== last_edited_time;
+  });
 
   console.log(
     `🔄 ${pagesToProcess.length}개의 변경된 페이지를 함수형 파이프라인으로 처리합니다.`
@@ -214,47 +181,15 @@ async function main() {
           pageCover = await processPageCover(pageCover);
         }
 
-        // 메타데이터 생성
-        const description =
-          props.description?.rich_text?.[0]?.plain_text?.trim() || "";
-        const icon = props.icon?.emoji || "";
-        const full = props.full?.checkbox || false;
-        const favorite = props.favorite?.checkbox || false;
-        const category = props.category?.select?.name ?? "";
-        const tags = props.tags?.multi_select?.map((t: any) => t.name) ?? [];
-        const date = props.date?.date?.start || new Date().toISOString();
-        const lastEditedDate = last_edited_time
-          ? new Date(last_edited_time)
-          : date;
-        const summary = props.summary?.rich_text?.[0]?.plain_text?.trim() || "";
-        const password =
-          props.password?.rich_text?.[0]?.plain_text?.trim() || "";
-        const frontMatter = matter.stringify(enhancedContent, {
-          title,
-          slug,
-          summary,
-          pageCover,
-          notionId: id,
-          password,
-          type,
-          sub_type,
-          category,
-          tags,
-          date: date.slice(0, 10),
+        // 메타데이터 생성 (data-manager.ts의 함수 사용)
+        const frontMatter = generateCompleteMdxFile(
+          props,
+          id,
           last_edited_time,
-          lastEditedDate,
-          draft: false,
-          description,
-          icon,
-          full,
-          favorite,
-          lastModified: new Date().toISOString().slice(0, 10),
-          readingTime: Math.ceil((title.length + description.length) / 200),
-          wordCount: title.length + description.length,
-          status: "published",
-          author: "ryoon",
-          version: "1.0.0",
-        } as FrontMatter);
+          pageCover,
+          enhancedContent,
+          slug
+        );
         const dir = path.join(BASE_OUTPUT_DIR, type.toLowerCase());
         await fs.mkdir(dir, { recursive: true });
         const filePath = path.join(dir, `${slug}.mdx`);
@@ -287,19 +222,6 @@ async function main() {
       1
     )}%`
   );
-
-  // Redis 캐시 통계 출력 (개발용 - 필요시 주석 해제)
-  // try {
-  //   const cacheStats = await imageCacheManager.getCacheStats();
-  //   console.log("\n📊 Redis 캐시 통계:");
-  //   console.log(`   - 총 캐시된 이미지: ${cacheStats.totalImages}개`);
-  //   console.log(
-  //     `   - 총 크기: ${(cacheStats.totalSize / 1024 / 1024).toFixed(2)}MB`
-  //   );
-  //   console.log(`   - 만료된 이미지: ${cacheStats.expiredCount}개`);
-  // } catch (error) {
-  //   console.log(`\n⚠️ Redis 캐시 통계 조회 실패: ${error}`);
-  // }
 
   console.log("\n🎉 Notion → MDX 변환 및 안전화 통합 완료!");
 }

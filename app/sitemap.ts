@@ -2,7 +2,7 @@ import { BLOG } from "@/blog.config";
 import { formatDate } from "@/lib/utils/date";
 import type { MetadataRoute } from "next";
 import { fetchAllRecordList } from "./api/fetcher";
-import type { RecordItem } from "@/app/api/types";
+import type { RecordFrontMatter } from "@/app/api/types";
 
 type ChangeFrequency =
   | "always"
@@ -21,7 +21,7 @@ type ChangeFrequency =
  *
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  let allRecordList: RecordItem[] = [];
+  let allRecordList: RecordFrontMatter[] = [];
 
   try {
     allRecordList = await fetchAllRecordList();

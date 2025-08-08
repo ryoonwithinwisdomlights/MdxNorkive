@@ -1,6 +1,5 @@
+import { MenuItem, RecordFrontMatter } from "@/app/api/types";
 import { Dispatch, SetStateAction } from "react";
-import { MenuItem, RecordItem } from "@/app/api/types";
-import { PageData } from "fumadocs-core/source";
 import { SiteInfoModel } from "./index";
 
 export type SerializedPage = {
@@ -15,7 +14,7 @@ export type SerializedPage = {
   path: string;
   url: string;
   slugs: string[];
-  data: RecordItem;
+  data: RecordFrontMatter;
   locale: string | undefined;
 };
 export interface GeneralSiteSettingsProps {
@@ -42,7 +41,7 @@ export interface GeneralSiteSettingsProps {
 }
 
 export interface GlobalNavInfoProps {
-  recordList: RecordItem[];
+  recordList: RecordFrontMatter[];
   serializedAllPages: SerializedPage[];
   menuList: MenuItem[];
 }

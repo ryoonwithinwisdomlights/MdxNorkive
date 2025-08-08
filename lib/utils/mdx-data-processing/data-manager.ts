@@ -7,6 +7,191 @@ import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
 
+// ===== 타입 정의 =====
+export interface NotionPageProperties {
+  title?: {
+    title?: Array<{ plain_text?: string }>;
+  };
+  description?: {
+    rich_text?: Array<{ plain_text?: string }>;
+  };
+  icon?: {
+    emoji?: string;
+  };
+  full?: {
+    checkbox?: boolean;
+  };
+  favorite?: {
+    checkbox?: boolean;
+  };
+  category?: {
+    select?: { name?: string };
+  };
+  tags?: {
+    multi_select?: Array<{ name?: string }>;
+  };
+  date?: {
+    date?: { start?: string };
+  };
+  password?: {
+    rich_text?: Array<{ plain_text?: string }>;
+  };
+  summary?: {
+    rich_text?: Array<{ plain_text?: string }>;
+  };
+  type?: {
+    select?: { name?: string };
+  };
+  sub_type?: {
+    select?: { name?: string };
+  };
+  [key: string]: any;
+}
+
+export interface RecordFrontMatter {
+  title: string;
+  slug: string;
+  summary: string;
+  pageCover: string | null;
+  notionId: string;
+  password: string;
+  type: string;
+  sub_type: string;
+  category: string[];
+  tags: string[];
+  favorite: boolean;
+  publishDate?: number;
+  date: string;
+  last_edited_time: string;
+  lastEditedDate: string | Date;
+  draft: boolean;
+  description: string;
+  icon: string | null;
+  full: boolean;
+
+  lastModified: string;
+  readingTime: number;
+  wordCount: number;
+  status: string;
+  author: string;
+  version: string;
+}
+
+// ===== 메타데이터 생성 함수 =====
+
+/**
+ * Notion 페이지 데이터로부터 RecordFrontMatter 메타데이터 생성
+ *
+ * @param props Notion 페이지 속성
+ * @param id Notion 페이지 ID
+ * @param last_edited_time 마지막 수정 시간
+ * @param pageCover 페이지 커버 이미지 URL
+ * @param enhancedContent 처리된 콘텐츠
+ * @returns RecordFrontMatter 객체
+ */
+export function generateRecordFrontMatter(
+  props: NotionPageProperties,
+  id: string,
+  last_edited_time: string,
+  pageCover: string | null,
+  enhancedContent: string
+): RecordFrontMatter {
+  // 기본 메타데이터 추출
+  const title = props.title?.title?.[0]?.plain_text?.trim() || "제목 없음";
+  const description =
+    props.description?.rich_text?.[0]?.plain_text?.trim() || "";
+  const icon = props.icon?.emoji || "";
+  const full = props.full?.checkbox || false;
+  const favorite = props.favorite?.checkbox || false;
+  const category = props.category?.select?.name ?? "";
+  const tags = props.tags?.multi_select?.map((t: any) => t.name) ?? [];
+  const date = props.date?.date?.start || new Date().toISOString();
+  const lastEditedDate = last_edited_time ? new Date(last_edited_time) : date;
+  const summary = props.summary?.rich_text?.[0]?.plain_text?.trim() || "";
+  const password = props.password?.rich_text?.[0]?.plain_text?.trim() || "";
+  const type = props.type?.select?.name || "RECORDS";
+  const sub_type = props.sub_type?.select?.name || "RECORDS";
+
+  // 계산된 메타데이터
+  const readingTime = Math.ceil((title.length + description.length) / 200);
+  const wordCount = title.length + description.length;
+  const lastModified = new Date().toISOString().slice(0, 10);
+
+  return {
+    title,
+    slug: "", // slug는 별도로 생성해야 함
+    summary,
+    pageCover,
+    notionId: id,
+    password,
+    type,
+    sub_type,
+    category: category ? [category] : [],
+    tags,
+    favorite,
+    date: date.slice(0, 10),
+    last_edited_time,
+    lastEditedDate,
+    draft: false,
+    description,
+    icon,
+    full,
+    lastModified,
+    readingTime,
+    wordCount,
+    status: "published",
+    author: "ryoon",
+    version: "1.0.0",
+  };
+}
+
+/**
+ * 메타데이터를 frontmatter 문자열로 변환
+ *
+ * @param frontMatter 메타데이터 객체
+ * @param content MDX 콘텐츠
+ * @returns frontmatter가 포함된 MDX 문자열
+ */
+export function stringifyFrontMatter(
+  frontMatter: RecordFrontMatter,
+  content: string
+): string {
+  return matter.stringify(content, frontMatter);
+}
+
+/**
+ * Notion 페이지 데이터로부터 완전한 MDX 파일 생성
+ *
+ * @param props Notion 페이지 속성
+ * @param id Notion 페이지 ID
+ * @param last_edited_time 마지막 수정 시간
+ * @param pageCover 페이지 커버 이미지 URL
+ * @param enhancedContent 처리된 콘텐츠
+ * @param slug 생성된 슬러그
+ * @returns frontmatter가 포함된 MDX 문자열
+ */
+export function generateCompleteMdxFile(
+  props: NotionPageProperties,
+  id: string,
+  last_edited_time: string,
+  pageCover: string | null,
+  enhancedContent: string,
+  slug: string
+): string {
+  const frontMatter = generateRecordFrontMatter(
+    props,
+    id,
+    last_edited_time,
+    pageCover,
+    enhancedContent
+  );
+
+  // slug 설정
+  frontMatter.slug = slug;
+
+  return stringifyFrontMatter(frontMatter, enhancedContent);
+}
+
 /**
  * 사용자 친화적 슬러그 생성 (sub_type-title, 한글/영어/숫자만, 중복 방지)
  */

@@ -1,25 +1,27 @@
 import "server-only";
 import { cache } from "react";
+import { NOTION_DATABASE_ID } from "./clients";
 
+import { notion } from "@/app/api/clients";
 import {
   NotionDataBaseMetaDataAdapter,
   NotionPageListAdapter,
 } from "@/app/api/adapter";
-import { notion } from "@/app/api/clients";
-import type {
-  DataBaseMetaDataResponse,
-  MenuItem,
-  QueryDatabaseResponseArray,
-  QueryPageResponse,
-  RecordItem,
-} from "@/app/api/types";
-import { getSiteInfo } from "@/lib/utils/site";
+
 import type {
   GetBlockResponse,
   ImageBlockObjectResponse,
   ListBlockChildrenResponse,
 } from "@notionhq/client/build/src/api-endpoints";
-import { NOTION_DATABASE_ID } from "./clients";
+import type {
+  DataBaseMetaDataResponse,
+  MenuItem,
+  ModifiedQueryDatabaseResponseArray,
+  QueryPageResponse,
+  RecordFrontMatter,
+} from "@/app/api/types";
+
+import { getSiteInfo } from "@/lib/utils/site";
 
 export const fetchMenuList = cache(async (): Promise<MenuItem[]> => {
   // console.log("🔍 fetchMenuList 시작");
@@ -40,7 +42,8 @@ export const fetchMenuList = cache(async (): Promise<MenuItem[]> => {
       },
     });
 
-    const datalist = queryResponse.results as QueryDatabaseResponseArray;
+    const datalist =
+      queryResponse.results as ModifiedQueryDatabaseResponseArray;
 
     const convertedMenuItemList = await new NotionPageListAdapter(
       datalist
@@ -63,58 +66,60 @@ export const fetchPageData = cache(async (pageId: string) => {
   }
 });
 
-export const fetchAllRecordList = cache(async (): Promise<RecordItem[]> => {
-  try {
-    const queryResponse = await notion.databases.query({
-      database_id: NOTION_DATABASE_ID,
-      filter: {
-        and: [
-          {
-            property: "status",
-            select: {
-              equals: "Published",
+export const fetchAllRecordList = cache(
+  async (): Promise<RecordFrontMatter[]> => {
+    try {
+      const queryResponse = await notion.databases.query({
+        database_id: NOTION_DATABASE_ID,
+        filter: {
+          and: [
+            {
+              property: "status",
+              select: {
+                equals: "Published",
+              },
             },
-          },
-          {
-            property: "type",
-            select: {
-              is_not_empty: true, // type이 null(비어있지 않음)
+            {
+              property: "type",
+              select: {
+                is_not_empty: true, // type이 null(비어있지 않음)
+              },
             },
-          },
-          {
-            property: "type",
-            select: {
-              equals: "RECORD", // type이 Record
+            {
+              property: "type",
+              select: {
+                equals: "RECORD", // type이 Record
+              },
             },
+          ],
+        },
+        sorts: [
+          {
+            property: "date",
+            direction: "descending",
           },
         ],
-      },
-      sorts: [
-        {
-          property: "date",
-          direction: "descending",
-        },
-      ],
-    });
+      });
 
-    const convertedAllRecordList = new NotionPageListAdapter(
-      queryResponse.results as Array<QueryPageResponse>
-    ).convertToAllRecordList();
+      const convertedAllRecordList = new NotionPageListAdapter(
+        queryResponse.results as Array<QueryPageResponse>
+      ).convertToAllRecordList();
 
-    convertedAllRecordList.map((item: RecordItem) => {
-      const siteInfo = getSiteInfo({ recordItem: item });
-      // console.log("siteInfo:", siteInfo);
-      return {
-        ...item,
-        siteInfo,
-      };
-    });
-    return convertedAllRecordList;
-  } catch (error) {
-    console.warn("Failed to fetch records from Notion API:", error);
-    return [];
+      convertedAllRecordList.map((item: RecordFrontMatter) => {
+        const siteInfo = getSiteInfo({ recordItem: item });
+        // console.log("siteInfo:", siteInfo);
+        return {
+          ...item,
+          siteInfo,
+        };
+      });
+      return convertedAllRecordList;
+    } catch (error) {
+      console.warn("Failed to fetch records from Notion API:", error);
+      return [];
+    }
   }
-});
+);
 
 /**
  * article tag 목록을 조회해오는 함수

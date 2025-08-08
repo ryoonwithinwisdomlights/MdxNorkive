@@ -1,4 +1,3 @@
-import { EmojiRequest } from "@/types";
 import type {
   DatabaseObjectResponse,
   PageObjectResponse,
@@ -31,7 +30,7 @@ type CustomEmojiResponse = {
   url: string;
 };
 type TextRequest = string;
-export type RecordItem = {
+export type RecordFrontMatter = {
   title: string;
   slug: string;
   summary: string;
@@ -57,8 +56,15 @@ export type RecordItem = {
   author: string;
   version: string;
 };
-export type QueryDatabaseResponseArray = Array<QueryDatabaseResponse>;
-export type QueryDatabaseResponse = QueryPageResponse | DatabaseObjectResponse;
+
+export type OriginalQueryDatabaseResponseArray = Array<
+  PageObjectResponse | DatabaseObjectResponse
+>;
+export type ModifiedQueryDatabaseResponseArray =
+  Array<ModifiedQueryDatabaseResponse>;
+export type ModifiedQueryDatabaseResponse =
+  | QueryPageResponse
+  | DatabaseObjectResponse;
 /**
  * api로 부터 받아오는 노션 page response
  * property들은 노션 데이터베이스 schema를 따른다.

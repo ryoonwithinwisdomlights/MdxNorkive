@@ -17,21 +17,20 @@
  */
 
 // ===== 핵심 변환 로직 import =====
-// ===== 핵심 변환 로직 import =====
+
 import { processMdxContentFn } from "./convert-unsafe-mdx/content-functional";
 
 // ===== 타입 및 상수 import =====
 import {
-  MdxValidationResult,
   MdxDirectoryValidationResult,
   MdxSyntaxValidationResult,
-} from "../../../types/mdx.model";
+} from "@/types/mdx.model";
 
 import {
   ALLOWED_HTML_TAGS,
   MDX_CONSTANTS,
   MDX_CONTENT_PATTERNS,
-} from "../../../constants/mdx.constants";
+} from "@/constants/mdx.constants";
 
 // ===== 검증 전용 함수들 =====
 

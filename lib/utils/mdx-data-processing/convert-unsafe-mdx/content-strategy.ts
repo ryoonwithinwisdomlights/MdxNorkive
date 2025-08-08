@@ -134,9 +134,9 @@
  * - 플러그인 아키텍처: 런타임 확장, 최대 유연성 (현재 선택)
  *
  * @version 3.0.0
- * @author AI Assistant
- * @created 2024-12-19
- * @lastModified 2024-12-19
+ * @author AI Assistant & ryoon (ryoon.with.wisdomtrees@gmail.com)
+ * @created 2025-08-08
+ * @lastModified 2025-08-08
  */
 
 // ===== 타입 정의 =====

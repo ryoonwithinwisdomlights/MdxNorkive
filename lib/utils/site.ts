@@ -1,13 +1,13 @@
 import { BLOG } from "@/blog.config";
 import { SiteInfoModel } from "@/types";
 
-import { RecordItem } from "@/app/api/types";
+import { RecordFrontMatter } from "@/app/api/types";
 import { compressImage } from "@/lib/utils/image";
 
 export function getSiteInfo({
   recordItem,
 }: {
-  recordItem?: RecordItem;
+  recordItem?: RecordFrontMatter;
 }): SiteInfoModel {
   const defaultTitle = BLOG.TITLE;
   const defaultDescription = BLOG.DESCRIPTION;
