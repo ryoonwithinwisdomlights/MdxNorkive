@@ -31,6 +31,14 @@ const FeaturedRecords = ({
   const pages = records;
   if (!pages) return null;
 
+  console.log("pages:", pages);
+
+  pages.sort((a, b) => {
+    return (
+      new Date(b?.data?.date).getTime() - new Date(a?.data?.date).getTime()
+    );
+  });
+  // console.log("pageGroupedByDate:", pageGroupedByDate);
   const router = useRouter();
 
   // Article lock🔐

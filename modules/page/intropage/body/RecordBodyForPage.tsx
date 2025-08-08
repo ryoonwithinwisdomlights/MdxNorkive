@@ -18,6 +18,11 @@ interface OptionItem {
 const RecordBodyForPage = ({ records }: { records: any[] }) => {
   const pages = records;
   if (!pages) NotFound();
+  pages.sort((a, b) => {
+    return (
+      new Date(b?.data?.date).getTime() - new Date(a?.data?.date).getTime()
+    );
+  });
   const router = useRouter();
   const { locale } = useGeneralSiteSettings();
   const [currentRecordType, setCurrentRecordType] = useState("");
