@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { validateMdxDirectory } from "@/lib/utils/backup/mdx-validator";
+import { validateMdxDirectory } from "@/lib/utils/mdx-data-processing/mdx-validator";
 import path from "path";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");

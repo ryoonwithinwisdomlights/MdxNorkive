@@ -20,7 +20,7 @@ import {
   decodeUrlEncodedLinks,
   processMdxContentWithLoggingFn,
   validateAndFixMdxContent,
-} from "@/lib/utils/mdx-data-processing/convert-unsafe-content/convert-unsafe-mdx-content-functional";
+} from "@/lib/utils/mdx-data-processing/convert-unsafe-mdx/content-functional";
 
 // 모듈화된 유틸리티들
 import {
