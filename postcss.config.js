@@ -11,7 +11,7 @@ const isVercel = process.env.VERCEL === "1";
 module.exports = {
   plugins: [
     isVercel
-      ? ["tailwindcss", "autoprefixer"]
+      ? ["@tailwindcss/postcss", "autoprefixer"]
       : ["@tailwindcss/postcss", "autoprefixer"],
   ],
 };

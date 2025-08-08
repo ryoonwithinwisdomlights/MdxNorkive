@@ -165,7 +165,6 @@ const metas = defineCollection({
 export default defineConfig({
   mdxOptions: {
     remarkPlugins: [
-      rehypeCode,
       remarkNpm,
       remarkCodeTab,
       remarkImage,
@@ -175,6 +174,8 @@ export default defineConfig({
       transformerTab,
     ],
     rehypePlugins: [rehypeCode],
+    format: "mdx",
+    development: process.env.NODE_ENV === "development",
   },
   collections: [records, subMenuPages, metas, books, engineerings, projects],
 });

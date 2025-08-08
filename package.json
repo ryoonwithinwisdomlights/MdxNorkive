@@ -15,7 +15,7 @@
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev --turbo",
     "build": "rm -rf .next && next build",
-    "build:vercel": "NODE_OPTIONS='--max-old-space-size=4096' next build",
+    "build:vercel": "NODE_OPTIONS='--max-old-space-size=4096 --no-warnings' next build",
     "start": "NODE_OPTIONS='--inspect' next build && next start",
     "prettier": "prettier --write --ignore-unknown .",
     "prettier:check": "prettier --check --ignore-unknown .",

@@ -200,7 +200,6 @@ var metas = defineCollection({
 var content_collections_default = defineConfig({
   mdxOptions: {
     remarkPlugins: [
-      rehypeCode,
       remarkNpm,
       remarkCodeTab,
       remarkImage,
@@ -209,7 +208,9 @@ var content_collections_default = defineConfig({
       transformerIcon,
       transformerTab
     ],
-    rehypePlugins: [rehypeCode]
+    rehypePlugins: [rehypeCode],
+    format: "mdx",
+    development: process.env.NODE_ENV === "development"
   },
   collections: [records, subMenuPages, metas, books, engineerings, projects]
 });

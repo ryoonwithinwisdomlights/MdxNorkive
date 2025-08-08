@@ -132,7 +132,7 @@ const EntireRecords = ({
   };
 
   return (
-    <section className="w-full">
+    <section className="w-full max-w-6xl mx-auto px-4 py-8">
       {/* 섹션 제목 */}
       <IntroSectionWithMenuOption
         introTrue={introTrue}

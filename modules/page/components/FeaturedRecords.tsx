@@ -144,7 +144,7 @@ const FeaturedRecords = ({
   const currentPage = filteredPages[currentIndex];
 
   return (
-    <section className="px-4 w-full">
+    <section className="w-full max-w-6xl mx-auto px-4 py-8">
       {/* Section Title */}
       <IntroSectionWithMenuOption
         introTrue={introTrue}
