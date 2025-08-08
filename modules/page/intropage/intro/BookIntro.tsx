@@ -5,7 +5,7 @@ const BookIntro = () => {
   const { lang } = useGeneralSiteSettings();
 
   return (
-    <div className="flex flex-col  ">
+    <div className="flex flex-col  w-full items-center">
       <div className="flex flex-row justify-end text-sm  text-neutral-600 font-extralight dark:text-neutral-200  pr-3">
         Take a look all the Book Records&nbsp;&nbsp;
       </div>

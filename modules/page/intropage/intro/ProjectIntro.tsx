@@ -4,7 +4,7 @@ import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvide
 const ProjectIntro = () => {
   const { lang } = useGeneralSiteSettings();
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col w-full items-center">
       <div className="flex flex-row justify-end text-sm  text-neutral-600 font-extralight dark:text-neutral-200 hover:text-neutral-800 pr-3">
         Take a look all the Project Records&nbsp;&nbsp;
       </div>

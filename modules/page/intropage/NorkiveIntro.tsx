@@ -10,7 +10,7 @@ const NorkiveIntro = () => {
   return (
     <div
       id="norkive-intro"
-      className="w-full max-w-6xl  mx-auto flex flex-col p-10   gap-10"
+      className="w-full max-w-6xl  items-center justify-center mx-auto flex flex-col p-10   gap-10"
     >
       <FeaturedRecords
         type=""
