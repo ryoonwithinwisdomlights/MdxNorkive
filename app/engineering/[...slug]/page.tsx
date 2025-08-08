@@ -12,9 +12,9 @@ export default async function Page(props: {
   // if (slug) {
   //   slug = slug.map((s) => decodeURIComponent(s));
   // }
-  console.log("slug:", slug);
-  console.log(" params.slug:", params.slug);
-  console.log("===================");
+  // console.log("slug:", slug);
+  // console.log(" params.slug:", params.slug);
+  // console.log("===================");
   return (
     <CustomedMDXPage
       resource={"engineering"}

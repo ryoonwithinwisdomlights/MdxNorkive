@@ -1,9 +1,8 @@
 "use client";
 
-import { Suspense } from "react";
-import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
 import RightSideInfoBar from "@/modules/layout/components/RightSideInfoBar";
-import { basicDocsClass } from "@/types/layout.props";
+import GeneralRecordTypePageWrapper from "@/modules/layout/templates/GeneralRecordTypePageWrapper";
+import { Suspense } from "react";
 import Loading from "../loading";
 
 export default function Layout({ children }: { children: React.ReactNode }) {

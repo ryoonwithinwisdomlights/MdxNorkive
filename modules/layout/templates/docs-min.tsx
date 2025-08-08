@@ -30,7 +30,8 @@ import { BaseLinkItem } from "fumadocs-ui/layouts/links";
 import { BaseLayoutProps, getLinks } from "fumadocs-ui/layouts/shared";
 import { NavProvider } from "fumadocs-ui/provider";
 import { SidebarIcon } from "lucide-react";
-import { HTMLAttributes, type ReactNode, useMemo } from "react";
+import { HTMLAttributes, type ReactNode, Suspense, useMemo } from "react";
+import Loading from "@/app/loading";
 
 export interface DocsLayoutProps extends BaseLayoutProps {
   tree: PageTree.Root;
@@ -187,7 +188,8 @@ export function DocsLayout({
           className={cn(variables, props.containerProps?.className)}
         >
           {sidebarEnabled && sidebar}
-          {children}
+          <Suspense fallback={<Loading />}>{children}</Suspense>
+          {/* {children} */}
         </LayoutBody>
       </NavProvider>
     </TreeContextProvider>
