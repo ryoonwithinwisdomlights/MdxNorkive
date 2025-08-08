@@ -2,6 +2,7 @@ import CustomedMDXPage from "@/modules/shared/CustomedMDXPage";
 import { engineeringSource } from "@/lib/source";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+
 export const dynamic = "force-static";
 
 export default async function Page(props: {
@@ -16,8 +17,8 @@ export default async function Page(props: {
   return (
     <CustomedMDXPage
       resource={"engineering"}
-      className=" p-4 md:p-0"
-      slug={params.slug}
+      className="p-4 md:p-0"
+      slug={slug}
     />
   );
 }

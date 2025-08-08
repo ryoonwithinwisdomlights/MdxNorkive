@@ -3752,33 +3752,6 @@ type PartialSelectResponse = {
   color: SelectColor;
 };
 
-// export type RecordFrontMatter = {
-//   title: string;
-//   slug: string;
-//   summary: string;
-//   pageCover: string | null;
-//   notionId: string;
-//   password: string;
-//   type: string;
-//   sub_type: string;
-//   category: string[];
-//   tags: string[];
-//   publishDate?: number;
-//   date: string;
-//   last_edited_time: string;
-//   lastEditedDate: string | Date;
-//   draft: boolean;
-//   description: string;
-//   icon: string | null;
-//   full: boolean;
-//   lastModified: string;
-//   readingTime: number;
-//   wordCount: number;
-//   status: string;
-//   author: string;
-//   version: string;
-// };
-
 export type OriginalQueryDatabaseResponseArray = Array<
   PageObjectResponse | DatabaseObjectResponse
 >;

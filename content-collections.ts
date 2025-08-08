@@ -205,8 +205,8 @@ export default defineConfig({
       transformerTab,
     ],
     rehypePlugins: [rehypeCode],
-    format: "mdx",
-    development: process.env.NODE_ENV === "development",
+    // format: "mdx",
+    // development: false, // 항상 프로덕션 모드로 설정
   },
   collections: [records, subMenuPages, metas, books, engineerings, projects],
 });

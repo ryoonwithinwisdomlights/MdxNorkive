@@ -11,7 +11,7 @@ const assetStyle: React.CSSProperties = {};
 export default function BookMarkWrapper(props: BookMarkWrapperProps) {
   const { names, urls } = props;
 
-  if (!urls) return null;
+  if (!urls || !names) return null;
 
   // 일반 링크인 경우 링크로 표시
   return (
@@ -30,13 +30,7 @@ export default function BookMarkWrapper(props: BookMarkWrapperProps) {
       data-tooltip={"Bookmark Open in new tab"}
     >
       <LinkIcon className="w-4 h-4 mr-2" />
-      <a
-        href={urls}
-        target="_blank"
-        rel="noopener noreferrer"
-        className=" "
-        {...props}
-      >
+      <a href={urls} target="_blank" rel="noopener noreferrer" className=" ">
         <span className="">{names} -</span>
         <span className=""> {urls}</span>
       </a>

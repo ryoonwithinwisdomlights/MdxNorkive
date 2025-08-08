@@ -1,15 +1,10 @@
 import CustomedMDXPage from "@/modules/shared/CustomedMDXPage";
-
-// export async function generateStaticParams() {
-//   const records = [{ pageId: "341eb5c0337801da209c34c90bc3377" }];
-//   return records.map((record) => ({
-//     pageId: record.pageId,
-//   }));
-// }
+import { submenuPageSource } from "@/lib/source";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 export const dynamic = "force-static";
 
-// `generateStaticParams`가 반환한 `params`를 사용하여 이 페이지의 여러 버전이 정적으로 생성됩니다.
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
 }) {
@@ -19,12 +14,29 @@ export default async function Page(props: {
     slug = slug.map((s) => decodeURIComponent(s));
   }
 
-  // console.log("slug", params.slug);
   return (
     <CustomedMDXPage
       resource={"submenupage"}
-      className=" p-4 md:p-0"
-      slug={params.slug}
+      className="p-4 md:p-0"
+      slug={slug}
     />
   );
+}
+
+export async function generateStaticParams() {
+  return submenuPageSource.getPages().map((page) => ({
+    slug: page.slugs,
+  }));
+}
+
+export async function generateMetadata(props: {
+  params: Promise<{ slug?: string[] }>;
+}) {
+  const params = await props.params;
+  const page = submenuPageSource.getPage(params.slug);
+  if (!page) notFound();
+  return {
+    title: page.data.title,
+    description: page.data.description,
+  } satisfies Metadata;
 }

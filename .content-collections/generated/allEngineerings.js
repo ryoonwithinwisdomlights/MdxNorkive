@@ -1391,8 +1391,8 @@ export default [
     "password": "",
     "type": "ENGINEERINGS",
     "description": "",
-    "date": new Date("2025-08-08T00:00:00.000Z"),
-    "lastEditedDate": new Date("2025-08-08T12:58:00.000Z"),
+    "date": "2025-08-08T00:00:00.000Z",
+    "lastEditedDate": "2025-08-08T12:58:00.000Z",
     "sub_type": "RECORDS",
     "category": "TIL",
     "tags": [

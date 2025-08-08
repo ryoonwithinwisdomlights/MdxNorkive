@@ -4,6 +4,7 @@ import { RootProvider } from "fumadocs-ui/provider";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata, Viewport } from "next";
 import "./../styles/globals.css";
+import { Suspense } from "react";
 
 import { GeneralSiteSettingsProvider } from "@/lib/context/GeneralSiteSettingsProvider";
 
@@ -29,6 +30,8 @@ import TopNavigationWrapper from "@/modules/layout/components/TopNavigationWrapp
 import JumpToBackButton from "@/modules/shared/JumpToBackButton";
 import JumpToTopButton from "@/modules/shared/JumpToTopButton";
 import { RecordFrontMatter } from "@/types/mdx.model";
+import Loading from "./loading";
+
 config.autoAddCss = false;
 
 export const viewport: Viewport = {
@@ -130,7 +133,7 @@ export default async function RootLayout({ children }: ChildrenProp) {
                 <TopNavigationWrapper />
 
                 <div className=" dark:bg-black dark:text-neutral-300 py-10 flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain ">
-                  {children}
+                  <Suspense fallback={<Loading />}>{children}</Suspense>
                 </div>
 
                 <JumpToTopButton />
