@@ -32,6 +32,7 @@ async function generateMenuItem(page: QueryDatabaseResponse) {
   const publishDate = new Date(
     props?.date?.date?.start || page.created_time
   ).getTime();
+  const status = props.status?.select?.name;
   // const sub_type = props.sub_type?.select?.name || "";
   const title = props.title?.title?.[0]?.plain_text?.trim() || "Untitled";
   const icon = props.menuicon?.rich_text?.[0]?.plain_text?.trim() || "";
@@ -40,19 +41,23 @@ async function generateMenuItem(page: QueryDatabaseResponse) {
     childRelations.length > 0
       ? await generateChildRelations(childRelations)
       : [];
+
   const url =
     type.toLowerCase() + "/" + generateUserFriendlySlug(type, title, slugSet);
-  return {
-    id: id,
-    icon: icon,
-    type: type,
-    slug: slug,
-    url: url,
-    title: title,
-    publishDate: publishDate,
-    childRelations: childRelations,
-    subMenus: subMenus,
-  };
+
+  if (status === "Published") {
+    return {
+      id: id,
+      icon: icon,
+      type: type,
+      slug: slug,
+      url: url,
+      title: title,
+      publishDate: publishDate,
+      childRelations: childRelations,
+      subMenus: subMenus,
+    };
+  }
 }
 
 function generateRecordItem(page: QueryDatabaseResponse) {
