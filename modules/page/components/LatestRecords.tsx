@@ -201,8 +201,8 @@ const LatestRecords = ({ records, introTrue, subType = false }: Props) => {
               border border-neutral-200 dark:border-neutral-700
        hover:border-neutral-300 dark:hover:border-neutral-500"
           >
-            <div className="flex flex-row">
-              <div className="w-30 h-40 bg-neutral-800 flex items-center justify-center">
+            <div className="flex flex-row md:flex-col">
+              <div className="md:w-full w-30 h-40 bg-neutral-800 flex items-center justify-center">
                 <LazyImage
                   alt={article.title}
                   priority={true}

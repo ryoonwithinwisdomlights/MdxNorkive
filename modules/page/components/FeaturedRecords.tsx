@@ -155,7 +155,7 @@ const FeaturedRecords = ({
   const currentPage = filteredPages[currentIndex];
 
   return (
-    <section className="w-full max-w-6xl mx-auto px-4 py-8">
+    <section className="w-full max-w-6xl mx-auto md:px-4 py-8">
       {/* Section Title */}
       <IntroSectionWithMenuOption
         introTrue={introTrue}
@@ -170,7 +170,7 @@ const FeaturedRecords = ({
        dark:from-neutral-900 dark:to-neutral-700 rounded-lg 
        border border-neutral-200 dark:border-neutral-700 overflow-hidden
        hover:shadow-lg transition-all duration-300
-         hover:border-neutral-300 dark:hover:border-neutral-500  p-8
+         hover:border-neutral-300 dark:hover:border-neutral-500  p-4 md:p-8
          flex flex-col gap-4
        "
       >

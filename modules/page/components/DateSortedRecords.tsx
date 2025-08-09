@@ -16,16 +16,14 @@ export default function DateSortedRecords({
   const router = useRouter();
   const { locale } = useGeneralSiteSettings();
   const handleRouter = (page: any) => {
-    // if (page.data.password === "") {
     router.push(page.url);
-    // }
   };
   return (
     <div key={title} className="w-full flex flex-col items-start">
       <div id={title} className=" font-semibold pb-4 text-2xl  ">
         {title}
       </div>
-      <ul className="w-full pl-4">
+      <ul className="w-full md:pl-4">
         {recordList[title]?.map((page) => (
           <li
             key={page.data.notionId}
