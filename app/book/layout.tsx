@@ -1,5 +1,5 @@
 import { bookSource } from "@/lib/source";
-import RightSideInfoBar from "@/modules/layout/components/RightSideInfoBar";
+import RightSideNavWrapper from "@/modules/layout/wrapper/RightSideNavWrapper";
 import { DocsLayout } from "@/modules/layout/templates/docs-layout";
 import { basicDocsClass } from "@/styles/layout.styles";
 import { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
@@ -31,7 +31,7 @@ export default async function Layout({
       sidebar={{ defaultOpenLevel: 0, collapsible: false }}
     >
       <div className={basicDocsClass}>{children}</div>
-      <RightSideInfoBar />
+      <RightSideNavWrapper />
     </DocsLayout>
   );
 }

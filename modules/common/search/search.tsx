@@ -120,7 +120,7 @@ export default function DefaultSearchDialog({
       {...props}
     >
       <SearchDialogOverlay />
-      <SearchDialogContent>
+      <SearchDialogContent aria-describedby={undefined} className="">
         <SearchDialogHeader>
           <SearchDialogIcon />
           <SearchDialogInput />

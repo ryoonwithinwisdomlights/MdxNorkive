@@ -1,5 +1,6 @@
 import ErrorComponent from "@/modules/shared/ErrorComponent";
-import NoRecordTypePageWrapper from "@/modules/layout/templates/NoRecordTypePageWrapper";
+import GeneralRecordTypePageWrapper from "@/modules/layout/templates/home-page-layout";
+
 import { TotalPageParams } from "@/types";
 
 export async function generateStaticParams() {
@@ -26,13 +27,13 @@ export default async function Page({ params, searchParams }: TotalPageParams) {
   //   });
 
   return (
-    <NoRecordTypePageWrapper>
+    <GeneralRecordTypePageWrapper>
       {/* <AllRecordsList
         pagenum={pagenum !== undefined ? pagenum : 1}
         pageCount={result.pageCount!}
         allPages={result.allPages}
       /> */}
       <div>No result</div>
-    </NoRecordTypePageWrapper>
+    </GeneralRecordTypePageWrapper>
   );
 }

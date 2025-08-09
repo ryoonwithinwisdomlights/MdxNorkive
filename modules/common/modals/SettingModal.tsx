@@ -1,8 +1,8 @@
 "use client";
 
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import SwitchLanguage from "@/modules/shared/SwitchLanguage";
-import ToggleDarkModeButton from "@/modules/shared/ToggleDarkModeButton";
+import SwitchLanguage from "@/modules/layout/components/switch-language-dropdown";
+import ToggleDarkModeButton from "@/modules/layout/components/dark-mode-toggle";
 import {
   Dialog,
   DialogContent,

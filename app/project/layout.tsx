@@ -1,6 +1,6 @@
 import { projectSource } from "@/lib/source";
 import { DocsLayout } from "@/modules/layout/templates/docs-layout";
-import RightSideInfoBar from "@/modules/layout/components/RightSideInfoBar";
+import RightSideNavWrapper from "@/modules/layout/wrapper/RightSideNavWrapper";
 import { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
 import { basicDocsClass } from "@/styles/layout.styles";
 
@@ -31,7 +31,7 @@ export default async function Layout({
       sidebar={{ defaultOpenLevel: 0, collapsible: false }}
     >
       <div className={basicDocsClass}>{children}</div>
-      <RightSideInfoBar />
+      <RightSideNavWrapper />
     </DocsLayout>
   );
 }

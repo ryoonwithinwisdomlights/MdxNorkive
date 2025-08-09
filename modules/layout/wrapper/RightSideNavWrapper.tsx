@@ -1,10 +1,10 @@
 "use client";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import AuthorInfoCard from "./AuthorInfoCard";
-import NorKiveInfoCard from "./NorKiveInfoCard";
+import AuthorInfoCard from "@/modules/common/right-sidebar/infocard/AuthorInfoCard";
+import NorKiveInfoCard from "@/modules/common/right-sidebar/infocard/NorKiveInfoCard";
 import { useEffect } from "react";
 
-const RightSideInfoBar = () => {
+const RightSideNavWrapper = () => {
   const { rightSideInfoBarMode, handleChangeRightSideInfoBarMode } =
     useGeneralSiteSettings();
   useEffect(() => {
@@ -27,4 +27,4 @@ right-0 border-l bg-fd-background dark:bg-transparent border-neutral-200 dark:bo
   );
 };
 
-export default RightSideInfoBar;
+export default RightSideNavWrapper;

@@ -1,7 +1,8 @@
 import { TotalPageParams } from "@/types";
 
 import ErrorComponent from "@/modules/shared/ErrorComponent";
-import NoRecordTypePageWrapper from "@/modules/layout/templates/NoRecordTypePageWrapper";
+import GeneralRecordTypePageWrapper from "@/modules/layout/templates/home-page-layout";
+
 export async function generateStaticParams() {
   const records = [{ tagId: "기술로그" }, { tagId: "another-Tags" }];
   return records.map((record) => ({
@@ -22,13 +23,13 @@ export default async function Page({ params, searchParams }: TotalPageParams) {
   //     pagenum: pagenum !== undefined ? pagenum : 1,
   //   });
   return (
-    <NoRecordTypePageWrapper>
+    <GeneralRecordTypePageWrapper>
       {/* <AllRecordsList
         pagenum={pagenum !== undefined ? pagenum : 1}
         pageCount={result.pageCount!}
         allPages={result.allPages}
       /> */}
       <div>No result</div>
-    </NoRecordTypePageWrapper>
+    </GeneralRecordTypePageWrapper>
   );
 }

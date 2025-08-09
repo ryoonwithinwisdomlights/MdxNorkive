@@ -99,7 +99,7 @@ export const MenuItemDrop = ({ menuData }) => {
             tracking-widest transition-all duration-200  dark:border-neutral-800 p-4"
               >
                 <div
-                  className="hover:bg-neutral-200/50 dark:hover:bg-neutral-700/50 p-2 hover:rounded-lg hover:h-4/5 w-full"
+                  className="hover:bg-neutral-200/50 dark:hover:bg-neutral-600/50 p-2 hover:rounded-lg hover:h-4/5 w-full"
                   onClick={() => {
                     onClickUrl(sLink);
                   }}

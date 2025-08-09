@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
  * @param {*} param0
  * @returns
  */
-export const LefitSidebarItemDrop = (props) => {
+export const RightSidebarItemDrop = (props) => {
   const { menuData } = props;
 
   const router = useRouter();

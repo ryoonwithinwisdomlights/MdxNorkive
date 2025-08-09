@@ -1,10 +1,10 @@
-import NoRecordTypePageWrapper from "@/modules/layout/templates/NoRecordTypePageWrapper";
+import GeneralRecordTypePageWrapper from "@/modules/layout/templates/home-page-layout";
 
 export default async function Page() {
   return (
-    <NoRecordTypePageWrapper>
+    <GeneralRecordTypePageWrapper>
       {/* <CategoryPage /> */}
       <div>No result</div>
-    </NoRecordTypePageWrapper>
+    </GeneralRecordTypePageWrapper>
   );
 }

@@ -1,10 +1,9 @@
 import { engineeringSource } from "@/lib/source";
-import { LargeSearchToggle } from "@/modules/layout/components/layout/search-toggle";
-import RightSideInfoBar from "@/modules/layout/components/RightSideInfoBar";
+import { LargeSearchToggle } from "@/modules/layout/components/search-toggle";
 import { DocsLayout } from "@/modules/layout/templates/docs-layout";
+import RightSideNavWrapper from "@/modules/layout/wrapper/RightSideNavWrapper";
 import { basicDocsClass } from "@/styles/layout.styles";
 import { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
-import { Sparkles } from "lucide-react";
 
 const baseOptions: Partial<DocsLayoutProps> = {
   nav: {
@@ -42,7 +41,7 @@ export default async function Layout({
       sidebar={{ defaultOpenLevel: 0, collapsible: false }}
     >
       <div className={basicDocsClass}>{children}</div>
-      <RightSideInfoBar />
+      <RightSideNavWrapper />
     </DocsLayout>
   );
 }

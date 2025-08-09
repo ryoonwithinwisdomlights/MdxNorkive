@@ -2,8 +2,8 @@
 /* eslint-disable multiline-ternary */
 
 import { useRef } from "react";
-import NavigationForMobile from "./NavigationForMobile";
-import NavigationForPC from "./NavigationForPC";
+import NavigationForMobile from "../../common/top-header/NavigationForMobile";
+import NavigationForPC from "../../common/top-header/NavigationForPC";
 
 const TopNavigationWrapper = () => {
   const collapseRef = useRef<any>(null);

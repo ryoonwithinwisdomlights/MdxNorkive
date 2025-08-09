@@ -13,12 +13,12 @@ function toBlogNumber(a: any) {
 }
 
 /**
- * BottomMenuBarion
+ * MobileFooterion
  * @param className
  * @returns {JSX.Element}
  * @constructor
  */
-const BottomMenuBar = () => {
+const MobileFooter = () => {
   const [time, setTime] = useState<Date>();
   useLayoutEffect(() => {
     // You can determine when and how often to update
@@ -77,4 +77,4 @@ const BottomMenuBar = () => {
     </div>
   );
 };
-export default BottomMenuBar;
+export default MobileFooter;

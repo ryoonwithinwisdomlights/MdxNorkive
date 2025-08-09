@@ -1,8 +1,8 @@
 import { useNav } from "@/lib/context/NavInfoProvider";
-import { MenuItemDrop } from "@/modules/common/menu/MenuItemDrop";
-import LogoBar from "@/modules/shared/LogoBar";
-import SettingButton from "@/modules/shared/SettingButton";
-import { LargeSearchToggle } from "./layout/search-toggle";
+import { MenuItemDrop } from "@/modules/common/top-header/MenuItemDrop";
+import LogoBar from "@/modules/common/top-header/LogoBar";
+import SettingButton from "@/modules/common/top-header/SettingButton";
+import { LargeSearchToggle } from "../../layout/components/search-toggle";
 
 const NavigationForPC = () => {
   const { menuList } = useNav({ from: "TopNavBar" });

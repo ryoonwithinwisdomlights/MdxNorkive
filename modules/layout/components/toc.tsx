@@ -4,7 +4,7 @@ import * as Primitive from "fumadocs-core/toc";
 import { type ComponentProps, createContext, useContext, useRef } from "react";
 import { cn } from "@/lib/utils/general";
 import { useI18n } from "fumadocs-ui/contexts/i18n";
-import { TocThumb } from "@/modules/layout/components/layout/toc-thumb";
+import { TocThumb } from "@/modules/layout/components/toc-thumb";
 import { mergeRefs } from "fumadocs-ui/utils/merge-refs";
 
 const TOCContext = createContext<TOCItemType[]>([]);

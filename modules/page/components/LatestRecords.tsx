@@ -6,8 +6,8 @@ import {
   getCurrentRecordsWithPagination,
   getMainRecentRecords,
 } from "@/lib/utils/records";
-import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
-import PageIndicator from "./PageIndicator";
+import IntroSectionWithMenuOption from "@/modules/page/components/IntroSectionWithMenuOption";
+import PageIndicator from "@/modules/page/components/PageIndicator";
 import LazyImage from "@/modules/shared/LazyImage";
 import { LockIcon } from "lucide-react";
 

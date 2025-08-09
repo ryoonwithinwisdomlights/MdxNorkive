@@ -22,15 +22,15 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import { LoaderConfig, Page } from "fumadocs-core/source";
 import { fetchAllRecordList, fetchMenuList } from "./api/fetcher";
 
-import BottomMenuBar from "@/modules/common/menu/BottomMenuBar";
+import MobileFooter from "@/modules/layout/components/mobile-footer";
 import DefaultSearchDialog from "@/modules/common/search/search";
 import AuxiliaryBlogComponent from "@/modules/layout/components/AuxiliaryComponent";
-import TopNavigationWrapper from "@/modules/layout/components/TopNavigationWrapper";
+import TopNavigationWrapper from "@/modules/layout/wrapper/TopNavigationWrapper";
 import JumpToBackButton from "@/modules/shared/JumpToBackButton";
 import JumpToTopButton from "@/modules/shared/JumpToTopButton";
 import { RecordFrontMatter } from "@/types/mdx.model";
 import Loading from "./loading";
-import MobileLeftSidebarWrapper from "@/modules/layout/components/MobileLeftSidebarWrapper";
+import MobileRightSidebarWrapper from "@/modules/common/right-sidebar/MobileRightSidebarWrapper";
 
 config.autoAddCss = false;
 
@@ -138,7 +138,7 @@ export default async function RootLayout({
           >
             <GeneralSiteSettingsProvider>
               <div
-                id="gitbook"
+                id="norkive-main"
                 className={` w-screen h-screen justify-center dark:text-neutral-300  pb-16  md:pb-0 `}
               >
                 <AuxiliaryBlogComponent />
@@ -152,8 +152,8 @@ export default async function RootLayout({
                 <JumpToTopButton />
                 <JumpToBackButton />
 
-                <MobileLeftSidebarWrapper />
-                <BottomMenuBar />
+                <MobileRightSidebarWrapper />
+                <MobileFooter />
 
                 <ModalProvider />
               </div>

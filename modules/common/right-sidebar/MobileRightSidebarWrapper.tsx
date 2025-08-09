@@ -3,23 +3,23 @@
 import { BLOG } from "@/blog.config";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { useNav } from "@/lib/context/NavInfoProvider";
-import SwitchLanguage from "@/modules/shared/SwitchLanguage";
-import ToggleDarkModeButton from "@/modules/shared/ToggleDarkModeButton";
+import SwitchLanguage from "@/modules/layout/components/switch-language-dropdown";
+import ToggleDarkModeButton from "@/modules/layout/components/dark-mode-toggle";
 import { Label } from "@/modules/shared/ui/label";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { AlignRightIcon, MenuIcon } from "lucide-react";
 import Link from "next/link";
 import { useRef } from "react";
-import { LefitSidebarItemDrop } from "./LefitSidebarItemDrop";
-import MobileLeftSidebar from "./MobileLeftSidebar";
+import { RightSidebarItemDrop } from "./RightSidebarItemDrop";
+import MobileRightSidebar from "./MobileRightSidebar";
 
-const MobileLeftSidebarWrapper = () => {
+const MobileRightSidebarWrapper = () => {
   const { menuList } = useNav({ from: "LeftSidebar" });
   const { locale, toggleMobileLeftSidebarOpen } = useGeneralSiteSettings();
   const collapseRef = useRef<any>(null);
 
   return (
-    <MobileLeftSidebar collapseRef={collapseRef}>
+    <MobileRightSidebar collapseRef={collapseRef}>
       <div
         id="left-sidebar-mobile-content"
         className="p-4  overflow-hidden w-full h-[calc(100vh-150px)] relative flex flex-col gap-2 "
@@ -45,7 +45,7 @@ const MobileLeftSidebarWrapper = () => {
         </div>
 
         {menuList?.map((data, index) => (
-          <LefitSidebarItemDrop key={index} menuData={data} />
+          <RightSidebarItemDrop key={index} menuData={data} />
         ))}
 
         <div className="mt-4 pl-2 flex flex-col gap-2 w-full">
@@ -63,8 +63,8 @@ const MobileLeftSidebarWrapper = () => {
           </div>
         </div>
       </div>
-    </MobileLeftSidebar>
+    </MobileRightSidebar>
   );
 };
 
-export default MobileLeftSidebarWrapper;
+export default MobileRightSidebarWrapper;

@@ -12,7 +12,7 @@ function toBlogNumber(a: any) {
   }
 }
 
-const Footer = () => {
+const DocFooter = () => {
   const d = new Date();
   const currentYear = d.getFullYear();
   const blogSince = toBlogNumber(BLOG.SINCE);
@@ -81,4 +81,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default DocFooter;

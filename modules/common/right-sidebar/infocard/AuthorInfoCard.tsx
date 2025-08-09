@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { BLOG } from "@/blog.config";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import InlineTocCustomed from "@/modules/shared/InlineTocCustomed";
+import InlineTocCustomed from "@/modules/common/toc/InlineTocCustomed";
 import LazyImage from "@/modules/shared/LazyImage";
 import SocialButton from "@/modules/shared/SocialButton";
 import Link from "next/link";

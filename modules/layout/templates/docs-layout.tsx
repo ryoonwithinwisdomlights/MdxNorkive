@@ -1,7 +1,7 @@
 "use client";
 import Loading from "@/app/loading";
 import { cn } from "@/lib/utils/general";
-import Footer from "@/modules/layout/components/Footer";
+import DocFooter from "@/modules/layout/components/doc-footer";
 import { buttonVariants } from "@/modules/shared/ui/DocButton";
 import { HideIfEmpty } from "fumadocs-core/hide-if-empty";
 import Link from "fumadocs-core/link";
@@ -30,10 +30,7 @@ import { BaseLayoutProps, getLinks } from "fumadocs-ui/layouts/shared";
 import { NavProvider } from "fumadocs-ui/provider";
 import { SidebarIcon } from "lucide-react";
 import { HTMLAttributes, type ReactNode, Suspense, useMemo } from "react";
-import {
-  LargeSearchToggle,
-  SearchToggle,
-} from "../components/layout/search-toggle";
+import { LargeSearchToggle, SearchToggle } from "../components/search-toggle";
 import HeaderSearch from "@/modules/shared/HeaderSearch";
 import LayoutNavSearch from "@/modules/shared/LayoutNavSearch";
 
@@ -139,7 +136,7 @@ export function DocsLayout({
           <SidebarPageTree components={sidebarComponents} />
         </SidebarViewport>
         <HideIfEmpty>
-          <Footer />
+          <DocFooter />
         </HideIfEmpty>
       </Sidebar>
     </>

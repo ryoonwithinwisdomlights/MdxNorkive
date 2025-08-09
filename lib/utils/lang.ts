@@ -81,15 +81,13 @@ export function initLocale(lang, locale, changeLang, changeLocale) {
       getQueryVariable("lang") ||
       loadLangFromLocalStorage() ||
       window.navigator.language;
-    let currentLang = lang;
-    if (queryLang !== lang) {
-      currentLang = queryLang;
-    }
-    changeLang(currentLang);
-    saveLangToLocalStorage(currentLang);
 
-    const targetLocale = generateLocaleDict(currentLang);
-    if (JSON.stringify(locale) !== JSON.stringify(currentLang)) {
+    // 실제로 언어가 변경되었을 때만 처리
+    if (queryLang && queryLang !== lang) {
+      changeLang(queryLang);
+      saveLangToLocalStorage(queryLang);
+
+      const targetLocale = generateLocaleDict(queryLang);
       changeLocale(targetLocale);
     }
   }

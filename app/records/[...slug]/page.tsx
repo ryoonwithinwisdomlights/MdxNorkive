@@ -1,4 +1,4 @@
-import CustomedMDXPage from "@/modules/shared/CustomedMDXPage";
+import CustomedMDXPage from "@/modules/page/CustomedMDXPage";
 import { recordSource } from "@/lib/source";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";

@@ -1,12 +1,12 @@
 "use client";
 /* eslint-disable multiline-ternary */
-import { MobileMenuBar } from "@/modules/common/menu/MobileMenuBar";
+import { MobileMenuBar } from "@/modules/common/top-header/MobileMenuBar";
 import Collapse from "@/modules/shared/Collapse";
-import LogoBar from "@/modules/shared/LogoBar";
+import LogoBar from "@/modules/common/top-header/LogoBar";
 
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { SearchToggle } from "./layout/search-toggle";
-import SettingToggle from "./layout/setting-toggle";
+import { SearchToggle } from "../../layout/components/search-toggle";
+import SettingToggle from "../../layout/components/setting-toggle";
 
 const NavigationForMobile = ({ collapseRef }) => {
   const { isMobileTopNavOpen } = useGeneralSiteSettings();

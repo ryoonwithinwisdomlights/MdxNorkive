@@ -10,7 +10,7 @@ type Props = {
   collapseRef: React.RefObject<any>;
 };
 
-const MobileLeftSidebar = ({
+const MobileRightSidebar = ({
   collapseRef,
   children,
   className,
@@ -61,4 +61,4 @@ const MobileLeftSidebar = ({
   );
 };
 
-export default MobileLeftSidebar;
+export default MobileRightSidebar;

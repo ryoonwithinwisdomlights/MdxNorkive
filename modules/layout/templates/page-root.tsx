@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils/general";
 import { RootProps } from "fumadocs-ui/layouts/docs/page";
 import { useSidebar } from "fumadocs-ui/provider";
-import { TOCProvider } from "../components/layout/toc";
+import { TOCProvider } from "../components/toc";
 
 export function PageRoot({ toc, children, ...props }: RootProps) {
   const { collapsed } = useSidebar();

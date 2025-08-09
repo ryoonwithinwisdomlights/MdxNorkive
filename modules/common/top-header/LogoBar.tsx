@@ -10,7 +10,6 @@ import Link from "next/link";
  * @returns
  */
 export default function LogoBar(props) {
-  // const { siteInfo } = useGlobal({ from: "LogoBar" });
   const siteInfo = getSiteInfo({});
   return (
     <div id="top-wrapper" className="flex  flex-row items-center   ">

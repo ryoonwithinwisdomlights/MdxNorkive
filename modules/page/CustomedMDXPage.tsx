@@ -16,7 +16,7 @@ import ShareBar from "@/modules/shared/ShareBar";
 import { MDXContent } from "@content-collections/mdx/react";
 import { InlineTOC } from "fumadocs-ui/components/inline-toc";
 import { useSidebar } from "fumadocs-ui/provider";
-import { Book, CalendarIcon } from "lucide-react";
+import { Book, CalendarIcon, Rocket } from "lucide-react";
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -110,18 +110,23 @@ export default function CustomedMDXPage({ className, slug, resource }) {
                 <div className=" flex flex-row gap-4 items-center text-white text-sm">
                   <div className="flex flex-row gap-2 items-center">
                     <Book className="w-4 h-4" />
-                    <span className="flex flex-row gap-2 items-center">
-                      {locale.COMMON.READING_TIME}&nbsp;&nbsp;-&nbsp;&nbsp;
-                      {page.data.readingTime} {locale.COMMON.MINUTE}
-                    </span>
+                    <div className="flex flex-row gap-2 items-center">
+                      <span className="text-white text-sm">
+                        {locale.COMMON.READING_TIME}
+                      </span>
+                      -
+                      <span className="text-white text-sm">
+                        {page.data.readingTime} {locale.COMMON.MINUTE}
+                      </span>
+                    </div>
                   </div>
-                  {/* <div className="flex flex-row gap-2 items-center">
+                  <div className="flex flex-row gap-2 items-center">
                     <span className=" flex flex-row gap-2 items-center text-white text-sm">
                       <Rocket className="w-4 h-4" />
                       <span>{locale.COMMON.VIEWS}</span>
                       <span className=" busuanzi_value_page_pv" />
                     </span>
-                  </div> */}
+                  </div>
                 </div>
 
                 <p className="mb-6 text-white/80">{page.data.summary}</p>
