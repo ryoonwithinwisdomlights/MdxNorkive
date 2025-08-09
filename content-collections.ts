@@ -28,7 +28,7 @@ const books = defineCollection({
     summary: z.string().optional(),
     pageCover: z.string().nullable().optional(),
     password: z.string().optional(),
-    type: z.string().optional(), // "Record", "Notice", "Page" 등
+    type: z.string(),
     description: z.string().optional(),
     date: z.coerce.date(),
     lastEditedDate: z.coerce.date().optional(),
@@ -62,7 +62,7 @@ const projects = defineCollection({
     summary: z.string().optional(),
     pageCover: z.string().nullable().optional(),
     password: z.string().optional(),
-    type: z.string().optional(), // "Record", "Notice", "Page" 등
+    type: z.string(),
     description: z.string().optional(),
     date: z.coerce.date(),
     lastEditedDate: z.coerce.date().optional(),
@@ -96,7 +96,7 @@ const engineerings = defineCollection({
     summary: z.string().optional(),
     pageCover: z.string().nullable().optional(),
     password: z.string().optional(),
-    type: z.string().optional(), // "Record", "Notice", "Page" 등
+    type: z.string(),
     description: z.string().optional(),
     date: z.coerce.date(),
     lastEditedDate: z.coerce.date().optional(),
@@ -130,7 +130,7 @@ const records = defineCollection({
     summary: z.string().optional(),
     pageCover: z.string().nullable().optional(),
     password: z.string().optional(),
-    type: z.string().optional(), // "Record", "Notice", "Page" 등
+    type: z.string(),
     description: z.string().optional(),
     date: z.coerce.date(),
     lastEditedDate: z.coerce.date().optional(),
@@ -164,7 +164,7 @@ const subMenuPages = defineCollection({
     summary: z.string().optional(),
     pageCover: z.string().nullable().optional(),
     password: z.string().optional(),
-    type: z.string().optional(), // "Record", "Notice", "Page" 등
+    type: z.string(),
     description: z.string().optional(),
     date: z.coerce.date(),
     lastEditedDate: z.coerce.date().optional(),

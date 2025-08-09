@@ -1,6 +1,6 @@
 import { bookSource } from "@/lib/source";
 import RightSideInfoBar from "@/modules/layout/components/RightSideInfoBar";
-import { DocsLayout } from "@/modules/layout/templates/docs-min";
+import { DocsLayout } from "@/modules/layout/templates/docs-layout";
 import { basicDocsClass } from "@/styles/layout.styles";
 import { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
 

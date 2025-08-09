@@ -1,8 +1,10 @@
 import { engineeringSource } from "@/lib/source";
+import { LargeSearchToggle } from "@/modules/layout/components/layout/search-toggle";
 import RightSideInfoBar from "@/modules/layout/components/RightSideInfoBar";
-import { DocsLayout } from "@/modules/layout/templates/docs-min";
+import { DocsLayout } from "@/modules/layout/templates/docs-layout";
 import { basicDocsClass } from "@/styles/layout.styles";
 import { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
+import { Sparkles } from "lucide-react";
 
 const baseOptions: Partial<DocsLayoutProps> = {
   nav: {
@@ -26,7 +28,16 @@ export default async function Layout({
   return (
     <DocsLayout
       {...pageOptions}
-      searchToggle={{ enabled: false }}
+      searchToggle={{
+        enabled: true,
+        components: {
+          lg: (
+            <div className="flex gap-1.5 max-md:hidden">
+              <LargeSearchToggle className="flex-1" />
+            </div>
+          ),
+        },
+      }}
       themeSwitch={{ enabled: false }}
       sidebar={{ defaultOpenLevel: 0, collapsible: false }}
     >

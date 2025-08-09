@@ -10,6 +10,10 @@ body{
   height: 100vh;
 }  */
 
+
+
+
+
 @layer base {
   :root {
     --tw-bg-opacity: 1;
@@ -33,6 +37,7 @@ body{
     --input: 0 0% 89.8%;
     --ring: 0 0% 3.9%;
     --radius: 0.5rem;
+
   }
 
   .dark {

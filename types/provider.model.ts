@@ -44,6 +44,8 @@ export interface GeneralSiteSettingsProps {
   handleChangeRightSideInfoBarMode: (newMode: "info" | "author") => void;
   tocContent: TOCItemType[];
   handleSetTocContent: (toc: TOCItemType[]) => void;
+  isMobileLeftSidebarOpen: boolean;
+  toggleMobileLeftSidebarOpen: () => void;
 }
 
 export interface GlobalNavInfoProps {

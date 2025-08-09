@@ -23,12 +23,14 @@ import { LoaderConfig, Page } from "fumadocs-core/source";
 import { fetchAllRecordList, fetchMenuList } from "./api/fetcher";
 
 import BottomMenuBar from "@/modules/common/menu/BottomMenuBar";
+import DefaultSearchDialog from "@/modules/common/search/search";
 import AuxiliaryBlogComponent from "@/modules/layout/components/AuxiliaryComponent";
 import TopNavigationWrapper from "@/modules/layout/components/TopNavigationWrapper";
 import JumpToBackButton from "@/modules/shared/JumpToBackButton";
 import JumpToTopButton from "@/modules/shared/JumpToTopButton";
 import { RecordFrontMatter } from "@/types/mdx.model";
 import Loading from "./loading";
+import MobileLeftSidebarWrapper from "@/modules/layout/components/MobileLeftSidebarWrapper";
 
 config.autoAddCss = false;
 
@@ -119,7 +121,16 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={GeistSans.className}>
       <body>
-        <RootProvider theme={{ enabled: false }}>
+        <RootProvider
+          search={{
+            SearchDialog: DefaultSearchDialog,
+            options: {
+              defaultTag: "All",
+              api: "/api/search",
+            },
+          }}
+          theme={{ enabled: false }}
+        >
           <NavInfoProvider
             recordList={recordList}
             serializedAllPages={serializedAllPages}
@@ -141,6 +152,7 @@ export default async function RootLayout({
                 <JumpToTopButton />
                 <JumpToBackButton />
 
+                <MobileLeftSidebarWrapper />
                 <BottomMenuBar />
 
                 <ModalProvider />

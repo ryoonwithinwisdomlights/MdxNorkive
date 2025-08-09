@@ -46,6 +46,9 @@ export const GeneralSiteSettingsProvider: React.FC<{
   >("info");
   const [isMobileTopNavOpen, changeMobileTopNavOpen] = useState<boolean>(false);
 
+  const [isMobileLeftSidebarOpen, changeMobileLeftSidebarOpen] =
+    useState<boolean>(false);
+
   const [onLoading, setOnLoading] = useState<boolean>(false);
 
   const [tocContent, setTocContent] = useState<TOCItemType[]>([]);
@@ -54,6 +57,10 @@ export const GeneralSiteSettingsProvider: React.FC<{
 
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const isFirstRender = useRef(true);
+
+  const toggleMobileLeftSidebarOpen = () => {
+    changeMobileLeftSidebarOpen(!isMobileLeftSidebarOpen);
+  };
 
   const toggleMobileTopNavOpen = () => {
     changeMobileTopNavOpen(!isMobileTopNavOpen);
@@ -120,6 +127,8 @@ export const GeneralSiteSettingsProvider: React.FC<{
     handleChangeRightSideInfoBarMode,
     tocContent,
     handleSetTocContent,
+    isMobileLeftSidebarOpen,
+    toggleMobileLeftSidebarOpen,
   };
 
   useEffect(() => {

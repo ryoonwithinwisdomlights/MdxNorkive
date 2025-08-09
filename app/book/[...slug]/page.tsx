@@ -9,10 +9,6 @@ export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
 }) {
   const params = await props.params;
-  let slug = params.slug;
-  // if (slug) {
-  //   slug = slug.map((s) => decodeURIComponent(s));
-  // }
 
   return (
     <CustomedMDXPage resource={"book"} className=" p-4  " slug={params.slug} />

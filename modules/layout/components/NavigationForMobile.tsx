@@ -7,10 +7,14 @@ import Collapse from "@/modules/shared/Collapse";
 import SettingButton from "@/modules/shared/SettingButton";
 import { AlignRightIcon, MenuIcon } from "lucide-react";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { SearchToggle } from "./layout/search-toggle";
 
 const NavigationForMobile = ({ collapseRef }) => {
-  const { isMobileTopNavOpen, toggleMobileTopNavOpen } =
-    useGeneralSiteSettings();
+  const {
+    isMobileTopNavOpen,
+    toggleMobileTopNavOpen,
+    toggleMobileLeftSidebarOpen,
+  } = useGeneralSiteSettings();
 
   return (
     <div className="bg-neutral-50 dark:bg-neutral-800">
@@ -33,8 +37,10 @@ const NavigationForMobile = ({ collapseRef }) => {
       <div className="md:hidden flex flex-row justify-between w-full h-14 shadow  px-7 items-between  bg-neutral-50 dark:bg-neutral-800">
         <LogoBar />
         <div className="mr-1 flex justify-end items-center space-x-4 font-serif dark:text-neutral-200">
+          <SearchToggle />
           <div
-            onClick={toggleMobileTopNavOpen}
+            onClick={toggleMobileLeftSidebarOpen}
+            // onClick={toggleMobileLeftSidebarOpen}
             className="cursor-pointer text-lg hover:scale-110 duration-150"
           >
             {isMobileTopNavOpen ? (
@@ -43,7 +49,8 @@ const NavigationForMobile = ({ collapseRef }) => {
               <MenuIcon className="dark:text-norkive-light" />
             )}
           </div>
-          <SettingButton />
+
+          {/* <SettingButton /> */}
         </div>
       </div>
     </div>

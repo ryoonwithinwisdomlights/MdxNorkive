@@ -8,22 +8,21 @@ import {
   submenuPageSource,
 } from "@/lib/source";
 import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils/date";
-import ShareBar from "@/modules/shared/ShareBar";
-import { MDXContent } from "@content-collections/mdx/react";
-import { InlineTOC } from "fumadocs-ui/components/inline-toc";
 import {
   DocsBody,
   DocsPage,
 } from "@/modules/layout/templates/docs-page-layout";
+import ShareBar from "@/modules/shared/ShareBar";
+import { MDXContent } from "@content-collections/mdx/react";
+import { InlineTOC } from "fumadocs-ui/components/inline-toc";
 import { useSidebar } from "fumadocs-ui/provider";
-import { Book, CalendarIcon, Rocket } from "lucide-react";
+import { Book, CalendarIcon } from "lucide-react";
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { getMDXComponents } from "@/getMDXComponents";
 import TagItemMini from "@/modules/common/tag/TagItemMini";
 import LockedPage from "@/modules/page/components/LockedPage";
-import Comment from "./Comment";
 
 function getResource(resource: string) {
   if (resource === "engineering") return engineeringSource;
@@ -74,7 +73,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
       ) : (
         <div className="flex flex-col  w-full">
           <DocsPage
-            toc={toc}
+            // toc={toc}
             full={page.data.full}
             lastUpdate={lastEditedDate}
             breadcrumb={{ enabled: false }}
@@ -116,13 +115,13 @@ export default function CustomedMDXPage({ className, slug, resource }) {
                       {page.data.readingTime} {locale.COMMON.MINUTE}
                     </span>
                   </div>
-                  <div className="flex flex-row gap-2 items-center">
+                  {/* <div className="flex flex-row gap-2 items-center">
                     <span className=" flex flex-row gap-2 items-center text-white text-sm">
                       <Rocket className="w-4 h-4" />
                       <span>{locale.COMMON.VIEWS}</span>
                       <span className=" busuanzi_value_page_pv" />
                     </span>
-                  </div>
+                  </div> */}
                 </div>
 
                 <p className="mb-6 text-white/80">{page.data.summary}</p>

@@ -34,6 +34,8 @@ import {
   LargeSearchToggle,
   SearchToggle,
 } from "../components/layout/search-toggle";
+import HeaderSearch from "@/modules/shared/HeaderSearch";
+import LayoutNavSearch from "@/modules/shared/LayoutNavSearch";
 
 export interface DocsLayoutProps extends BaseLayoutProps {
   tree: PageTree.Root;
@@ -114,10 +116,11 @@ export function DocsLayout({
                 </SidebarCollapseTrigger>
               )}
             </div>
-            {searchToggle.enabled !== false &&
+            {/* {searchToggle.enabled !== false &&
               (searchToggle.components?.lg ?? (
                 <LargeSearchToggle hideIfDisabled className="max-md:hidden" />
-              ))}
+              ))} */}
+            {/* <LayoutNavSearch /> */}
             {tabs.length > 0 && <RootToggle options={tabs} />}
 
             {sidebarBanner}

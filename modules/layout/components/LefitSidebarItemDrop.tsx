@@ -33,16 +33,9 @@ export const LefitSidebarItemDrop = (props) => {
   const renderMainMenus = () => {
     const icon = parseIcon(menuData.icon);
     return (
-      <div className="py-2 flex justify-between cursor-pointer  no-underline tracking-widest">
-        <div>
-          <div className={`${menuData.icon} text-center w-4 mr-4`} />
-          {icon && <FontAwesomeIcon icon={icon} />} {menuData.title}
-        </div>
-        <div className="inline-flex items-center ">
-          <ChevronRightIcon
-            className={`w-3 h-3 transition-all duration-200 dark:text-norkive-light rotate-90`}
-          />
-        </div>
+      <div className="p-2  rounded-lg  flex justify-start cursor-pointer flex-row items-center gap-2 hover:bg-neutral-200/50 dark:hover:bg-neutral-700">
+        {icon && <FontAwesomeIcon icon={icon} className="w-3 h-3" />}
+        <span className="text-sm">{menuData.title}</span>
       </div>
     );
   };
@@ -52,11 +45,11 @@ export const LefitSidebarItemDrop = (props) => {
       <Link
         href={menuData?.slug}
         target={menuData?.slug?.indexOf("http") === 0 ? "_blank" : "_self"}
-        className="py-2 w-full my-auto items-center justify-between flex  "
+        className="p-2  rounded-lg  w-full my-auto items-center justify-between flex  "
       >
-        <div>
-          <div className={`${menuData.icon} text-center w-4 mr-4`} />
-          {icon && <FontAwesomeIcon icon={icon} />} {menuData.title}
+        <div className="flex flex-row items-center gap-2">
+          {icon && <FontAwesomeIcon icon={icon} />}
+          <span className="text-sm">{menuData.title}</span>
         </div>
       </Link>
     );
@@ -70,9 +63,9 @@ export const LefitSidebarItemDrop = (props) => {
           return (
             <div
               key={index}
-              style={{ paddingInlineStart: "1rem", paddingInlineEnd: "1rem" }}
-              className=" text-left justify-start tracking-widest transition-all duration-200
-              rounded-xl mx-4  p-2 cursor-pointer
+              style={{ paddingInlineStart: "20px", paddingInlineEnd: "0px" }}
+              className=" text-left justify-start  transition-all duration-200
+              rounded-lg  cursor-pointer p-2
                hover:bg-neutral-200/50 dark:hover:bg-neutral-700"
             >
               <div
@@ -80,12 +73,11 @@ export const LefitSidebarItemDrop = (props) => {
                   onClickUrl(sLink);
                 }}
               >
-                <div className="flex flex-row gap-2 items-center justify-start text-sm">
-                  <div className={`${sLink.icon} text-center mr-3 text-xs`} />
+                <div className="flex flex-row gap-2 items-center justify-start">
                   {icon && (
                     <FontAwesomeIcon icon={icon} className="text-xs w-3 h-3" />
                   )}
-                  {sLink.title}
+                  <span className="text-sm">{sLink.title}</span>
                 </div>
               </div>
             </div>
@@ -95,8 +87,8 @@ export const LefitSidebarItemDrop = (props) => {
     );
   };
   return (
-    <div className="bg-neutral-50 dark:bg-neutral-800 dark:text-neutral-200  text-neutral-600  h- ">
-      <div className={" px-7 w-full text-left duration-200 dark:border-black"}>
+    <div className="flex flex-col gap-2  dark:text-neutral-200  text-neutral-600">
+      <div className={" w-full text-left duration-200 dark:border-black"}>
         {!hasSubMenu && renderMainMenusWithNoSubMenus()}
 
         {hasSubMenu && renderMainMenus()}

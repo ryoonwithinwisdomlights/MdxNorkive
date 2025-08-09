@@ -95,6 +95,9 @@ module.exports = {
       },
       animation: {
         "fade-in-up": "fadeInUp 0.6s ease-out forwards",
+        "fade-in": "fadeIn 0.2s ease-out forwards",
+        "fd-sidebar-in-right": "fdSidebarInRight 0.3s ease-out forwards",
+        "fd-sidebar-out-right": "fdSidebarOutRight 0.3s ease-in forwards",
       },
       keyframes: {
         fadeInUp: {
@@ -105,6 +108,34 @@ module.exports = {
           "100%": {
             opacity: "1",
             transform: "translateY(0)",
+          },
+        },
+        fadeIn: {
+          "0%": {
+            opacity: "0",
+          },
+          "100%": {
+            opacity: "1",
+          },
+        },
+        fdSidebarInRight: {
+          "0%": {
+            opacity: "0",
+            transform: "translateX(100%)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateX(0)",
+          },
+        },
+        fdSidebarOutRight: {
+          "0%": {
+            opacity: "1",
+            transform: "translateX(0)",
+          },
+          "100%": {
+            opacity: "0",
+            transform: "translateX(100%)",
           },
         },
       },

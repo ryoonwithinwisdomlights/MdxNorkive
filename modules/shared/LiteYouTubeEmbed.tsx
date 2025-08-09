@@ -111,6 +111,7 @@ export function LiteYouTubeEmbed({
         href={getPosterUrl(id)}
         imageSrcSet={generateSrcSet(id, "webp")}
         imageSizes={resolutionSizes}
+        type="image/webp"
       />
 
       {isPreconnected && (

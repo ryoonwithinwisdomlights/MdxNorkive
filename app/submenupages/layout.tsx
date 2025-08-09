@@ -1,5 +1,5 @@
 import { submenuPageSource } from "@/lib/source";
-import { DocsLayout } from "@/modules/layout/templates/docs-min";
+import { DocsLayout } from "@/modules/layout/templates/docs-layout";
 import { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
 import RightSideInfoBar from "@/modules/layout/components/RightSideInfoBar";
 import { basicDocsClass } from "@/styles/layout.styles";
