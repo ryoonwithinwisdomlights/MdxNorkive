@@ -26,7 +26,7 @@ import { ChevronDown } from "lucide-react";
 import { buttonVariants } from "@/modules/shared/ui/DocButton";
 import { cn } from "@/lib/utils/general";
 import type { SharedProps, TagItem } from "fumadocs-ui/contexts/search";
-import { type ReactNode, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 
 export interface DefaultSearchDialogProps extends SharedProps {
   defaultTag?: string;
@@ -100,7 +100,7 @@ export default function DefaultSearchDialog({
   ...props
 }: DefaultSearchDialogProps): ReactNode {
   const [open, setOpen] = useState(false);
-  const [tag, setTag] = useState(defaultTag);
+  const [tag, setTag] = useState(defaultTag || undefined);
   const { search, setSearch, query } = useDocsSearch({
     type: api ? "fetch" : "static",
     initOrama: api ? undefined : initOrama,
@@ -194,6 +194,10 @@ export const SearchPopover = ({
   tag: string | undefined;
   setTag: (tag: string | undefined) => void;
 }) => {
+  useEffect(() => {
+    console.log(tag);
+    setTag(undefined);
+  }, []);
   return (
     <div className="flex flex-row gap-2 justify-between w-full">
       <Popover open={open} onOpenChange={setOpen}>
@@ -205,7 +209,7 @@ export const SearchPopover = ({
           })}
         >
           <span className="text-fd-muted-foreground/80 me-2">Filter</span>
-          {items.find((item) => item.value === tag)?.name}
+          {items.find((item) => item.value === tag)?.name || "All"}
           <ChevronDown className="size-3.5 text-fd-muted-foreground" />
         </PopoverTrigger>
         <PopoverContent className="flex flex-col p-1 gap-1" align="start">
@@ -216,7 +220,7 @@ export const SearchPopover = ({
               <button
                 key={i}
                 onClick={() => {
-                  setTag(item.value || undefined);
+                  setTag(item.value);
                   setOpen(false);
                 }}
                 className={cn(
