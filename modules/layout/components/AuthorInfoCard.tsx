@@ -1,20 +1,27 @@
 "use client";
 /* eslint-disable no-unused-vars */
 import { BLOG } from "@/blog.config";
-import SocialButton from "@/modules/shared/SocialButton";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import InlineTocCustomed from "@/modules/shared/InlineTocCustomed";
 import LazyImage from "@/modules/shared/LazyImage";
-import { useRouter } from "next/navigation";
+import SocialButton from "@/modules/shared/SocialButton";
+import Link from "next/link";
 
-const InfoCard = () => {
-  const router = useRouter();
-
+const AuthorInfoCard = () => {
+  const { tocContent } = useGeneralSiteSettings();
+  console.log("tocContent:", tocContent);
   return (
-    <div className=" items-center justify-center flex flex-col">
-      <div
+    <div className=" items-center justify-center flex flex-col gap-2">
+      {tocContent.length > 0 && (
+        <InlineTocCustomed
+          items={tocContent}
+          defaultOpen={true}
+          className=" bg-fd-accent/50 dark:bg-neutral-800 mb-4"
+        />
+      )}
+      <Link
+        href={BLOG.LINK || "/"}
         className="hover:scale-105 transform duration-200 cursor-pointer flex justify-center"
-        onClick={() => {
-          router.push("/");
-        }}
       >
         <LazyImage
           src={"/images/norkive_black.png"}
@@ -22,7 +29,7 @@ const InfoCard = () => {
           width={120}
           alt={BLOG.AUTHOR}
         />
-      </div>
+      </Link>
       <div
         className="text-xl my-2 hover:scale-105
           hover:text-black text-neutral-700
@@ -47,4 +54,4 @@ const InfoCard = () => {
   );
 };
 
-export default InfoCard;
+export default AuthorInfoCard;

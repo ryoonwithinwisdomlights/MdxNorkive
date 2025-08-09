@@ -8,7 +8,6 @@ import {
   submenuPageSource,
 } from "@/lib/source";
 import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils/date";
-import { getReadingTime } from "@/lib/utils/read";
 import ShareBar from "@/modules/shared/ShareBar";
 import { MDXContent } from "@content-collections/mdx/react";
 import { InlineTOC } from "fumadocs-ui/components/inline-toc";
@@ -19,8 +18,8 @@ import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { getMDXComponents } from "@/getMDXComponents";
-import LockedPage from "@/modules/page/components/LockedPage";
 import TagItemMini from "@/modules/common/tag/TagItemMini";
+import LockedPage from "@/modules/page/components/LockedPage";
 import Comment from "./Comment";
 
 function getResource(resource: string) {
@@ -49,10 +48,17 @@ export default function CustomedMDXPage({ className, slug, resource }) {
   const [lock, setLock] = useState(page?.data?.password !== "");
   const { body, toc, lastEditedDate } = page.data;
 
-  const { locale, lang } = useGeneralSiteSettings();
+  const {
+    locale,
+    lang,
+    handleChangeRightSideInfoBarMode,
+    handleSetTocContent,
+  } = useGeneralSiteSettings();
   const { setCollapsed } = useSidebar();
   useEffect(() => {
     setCollapsed(false);
+    handleSetTocContent(toc);
+    handleChangeRightSideInfoBarMode("author");
   }, []);
 
   const validPassword = (passInput) => {
@@ -82,7 +88,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
             breadcrumb={{ enabled: false }}
           >
             <div
-              className="container rounded-xl py-12 px-10 relative overflow-hidden"
+              className="container rounded-xl py-12 px-10 relative overflow-hidden mb-4"
               style={{
                 backgroundColor: "black",
                 backgroundImage: page.data.pageCover
@@ -151,7 +157,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
             {toc.length > 0 && (
               <InlineTOC
                 items={toc}
-                className="bg-neutral-100 dark:bg-neutral-800 mb-4"
+                className="block md:hidden bg-neutral-100 dark:bg-neutral-800 mb-4"
               />
             )}
 

@@ -2,6 +2,7 @@ import { MenuItem } from "@/types/record.model";
 import { RecordFrontMatter } from "@/types/mdx.model";
 import { Dispatch, SetStateAction } from "react";
 import { SiteInfoModel } from "./index";
+import { TOCItemType } from "fumadocs-core/server";
 
 export type SerializedPage = {
   file: {
@@ -39,6 +40,10 @@ export interface GeneralSiteSettingsProps {
   changeOppositeLang: () => void;
   setting: boolean;
   handleSettings: () => void;
+  rightSideInfoBarMode: "info" | "author";
+  handleChangeRightSideInfoBarMode: (newMode: "info" | "author") => void;
+  tocContent: TOCItemType[];
+  handleSetTocContent: (toc: TOCItemType[]) => void;
 }
 
 export interface GlobalNavInfoProps {

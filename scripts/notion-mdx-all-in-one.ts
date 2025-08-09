@@ -173,7 +173,7 @@ async function main() {
           }, "")
           ?.trim() || "Untitled";
       const type = props.type?.select?.name || "";
-      // const sub_type = props.sub_type?.select?.name || "";
+
       // 사용자 친화적 슬러그 생성
       const slug = generateUserFriendlySlug(
         type,

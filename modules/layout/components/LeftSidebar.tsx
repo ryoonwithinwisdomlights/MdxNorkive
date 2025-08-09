@@ -3,7 +3,6 @@ import Footer from "./Footer";
 import { LefitSidebarItemDrop } from "./LefitSidebarItemDrop";
 
 const LeftSidebar = () => {
-  //   const [collapsed, setCollapsed] = useState(false);
   const { menuList } = useNav({ from: "LeftSidebar" });
   console.log(menuList);
   return (

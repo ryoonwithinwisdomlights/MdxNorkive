@@ -18,6 +18,7 @@ import {
 } from "@/lib/utils/lang";
 import { initDarkMode, setThemeByLocalStorage } from "@/lib/utils/theme";
 import { toast } from "sonner";
+import { TOCItemType } from "fumadocs-core/server";
 
 const GeneralSiteSettings = createContext<GeneralSiteSettingsProps | null>(
   null
@@ -40,10 +41,14 @@ export const GeneralSiteSettingsProvider: React.FC<{
     BLOG.APPEARANCE === "dark"
   );
 
+  const [rightSideInfoBarMode, changeRightSideInfoBarMode] = useState<
+    "info" | "author"
+  >("info");
   const [isMobileTopNavOpen, changeMobileTopNavOpen] = useState<boolean>(false);
 
   const [onLoading, setOnLoading] = useState<boolean>(false);
 
+  const [tocContent, setTocContent] = useState<TOCItemType[]>([]);
   const [tocVisible, setTOCVisible] = useState<boolean>(true);
   const [pageNavVisible, setPageNavVisible] = useState<boolean>(false);
 
@@ -54,6 +59,9 @@ export const GeneralSiteSettingsProvider: React.FC<{
     changeMobileTopNavOpen(!isMobileTopNavOpen);
   };
 
+  const handleSetTocContent = (toc: TOCItemType[]) => {
+    setTocContent(toc);
+  };
   const handleTOCVisible = () => setTOCVisible(!tocVisible);
 
   const handleLeftNavVisible = () => setPageNavVisible(!pageNavVisible);
@@ -85,6 +93,9 @@ export const GeneralSiteSettingsProvider: React.FC<{
   const handleSettings = () => {
     SetSettingState((prev) => !prev);
   };
+  const handleChangeRightSideInfoBarMode = (newMode: "info" | "author") => {
+    changeRightSideInfoBarMode(newMode);
+  };
   const value: GeneralSiteSettingsProps = {
     onLoading,
     setOnLoading,
@@ -105,6 +116,10 @@ export const GeneralSiteSettingsProvider: React.FC<{
     handleSettings,
     isMobileTopNavOpen,
     toggleMobileTopNavOpen,
+    rightSideInfoBarMode,
+    handleChangeRightSideInfoBarMode,
+    tocContent,
+    handleSetTocContent,
   };
 
   useEffect(() => {
