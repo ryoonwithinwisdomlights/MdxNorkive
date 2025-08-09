@@ -17,7 +17,11 @@ export default function SwitchLanguage() {
     <div className="relative inline-block text-left ">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button className="h-8 w-14 transform hover:scale-110 duration-500 hover:bg-neutral-300/50 bg-neutral-200  dark:bg-neutral-600">
+          <Button
+            className="h-8 w-14 
+           hover:bg-neutral-300 bg-neutral-200  dark:bg-neutral-800
+           dark:hover:bg-neutral-700"
+          >
             <LanguagesIcon className="h-4 w-4 text-neutral-800 dark:text-white " />
 
             <span className="sr-only">""</span>
@@ -30,12 +34,13 @@ export default function SwitchLanguage() {
           {dicList?.map((item, index) => (
             <DropdownMenuItem
               key={index}
-              className="hover:bg-neutral-200  dark:hover:bg-neutral-600  justify-center"
+              className="hover:bg-neutral-200  dark:hover:bg-neutral-700  justify-center"
               onClick={() => {
                 changeLang(item);
               }}
             >
-              {item}
+              {/* {item} */}
+              {dictionaries[item].LANGUAGE}
             </DropdownMenuItem>
           ))}
         </DropdownMenuContent>

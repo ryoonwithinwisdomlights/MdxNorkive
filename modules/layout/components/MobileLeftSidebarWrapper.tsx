@@ -7,7 +7,7 @@ import SwitchLanguage from "@/modules/shared/SwitchLanguage";
 import ToggleDarkModeButton from "@/modules/shared/ToggleDarkModeButton";
 import { Label } from "@/modules/shared/ui/label";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import { MenuIcon } from "lucide-react";
+import { AlignRightIcon, MenuIcon } from "lucide-react";
 import Link from "next/link";
 import { useRef } from "react";
 import { LefitSidebarItemDrop } from "./LefitSidebarItemDrop";
@@ -29,15 +29,18 @@ const MobileLeftSidebarWrapper = () => {
             href={BLOG.CONTACT_GITHUB}
             target="_blank"
             rel="noreferrer"
-            className="h-8 w-8 rounded-lg bg-neutral-200 hover:bg-neutral-300/70 dark:bg-neutral-700 flex items-center justify-center"
+            className="h-8 w-8 rounded-lg 
+             bg-neutral-200/50 hover:bg-neutral-200 dark:bg-neutral-800 
+            dark:hover:bg-neutral-700 
+            flex items-center justify-center"
           >
-            <GitHubLogoIcon className="w-4 h-4 text-neutral-600 hover:text-neutral-900 dark:hover:text-white dark:text-neutral-200" />
+            <GitHubLogoIcon className="w-4 h-4 text-neutral-600 hover:text-neutral-900 dark:hover:text-white dark:text-neutral-100" />
           </Link>
           <div
             onClick={toggleMobileLeftSidebarOpen}
-            className="h-8 w-8 rounded-lg bg-neutral-200 hover:bg-neutral-300/70 dark:bg-neutral-700 flex items-center justify-center"
+            className="h-8 w-8 rounded-lg  bg-neutral-200/50  hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700  flex items-center justify-center"
           >
-            <MenuIcon className="dark:text-norkive-light" />
+            <AlignRightIcon className="w-4 h-4 text-neutral-600 hover:text-neutral-900 dark:hover:text-white dark:text-neutral-100" />
           </div>
         </div>
 

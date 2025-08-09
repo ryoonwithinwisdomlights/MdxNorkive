@@ -16,7 +16,10 @@ export default function LogoBar(props) {
     <div id="top-wrapper" className="flex  flex-row items-center   ">
       <Link
         href="/"
-        className="flex flex-row   text-md  text-neutral-900 dark:text-neutral-200  p-2 dark:hover:text-white dark:hover:bg-neutral-500 px-2 hover:rounded-lg "
+        className="flex flex-row   text-md 
+         text-neutral-900 dark:text-neutral-200 
+         hover:bg-neutral-200/50  dark:hover:bg-neutral-700/50
+          p-2 dark:hover:text-white px-2 hover:rounded-lg "
       >
         <LazyImage
           src={siteInfo?.icon}

@@ -13,7 +13,15 @@ const NavigationForPC = () => {
       <div className=" w-full px-6 flex flex-row justify-between items-center h-16 ">
         <LogoBar />
         {/* <HeaderSearch /> */}
-        <LargeSearchToggle hideIfDisabled className="hidden md:flex  w-[40%]" />
+        <LargeSearchToggle
+          hideIfDisabled
+          className="hidden md:flex w-[40%]
+          hover:text-neutral-800 dark:hover:text-neutral-200
+           bg-gradient-to-br from-white to-white
+            dark:from-neutral-900 dark:to-neutral-700
+             hover:from-white hover:to-neutral-200/50
+              dark:hover:from-neutral-900 dark:hover:to-neutral-700/50"
+        />
         <div
           id="top-nav-pc"
           className="hidden md:flex md:flex-row justify-center py-2  dark:bg-neutral-900"

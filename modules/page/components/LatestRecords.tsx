@@ -138,7 +138,7 @@ const LatestRecords = ({ records, introTrue, subType = false }: Props) => {
 
       {/* Main Featured Article */}
       <div
-        className="bg-white dark:bg-neutral-700 rounded-lg shadow-md overflow-hidden mb-8 
+        className=" bg-gradient-to-br from-white to-white dark:from-neutral-900 dark:to-neutral-700 rounded-lg shadow-md overflow-hidden mb-8 
       border border-neutral-200 dark:border-neutral-700
        hover:border-neutral-300 dark:hover:border-neutral-500"
       >
@@ -197,7 +197,7 @@ const LatestRecords = ({ records, introTrue, subType = false }: Props) => {
         ).map((article) => (
           <div
             key={`${article.id}-${currentPage}`}
-            className="bg-white dark:bg-neutral-700  rounded-lg shadow-md overflow-hidden
+            className="bg-gradient-to-br from-white to-white dark:from-neutral-900 dark:to-neutral-700  rounded-lg shadow-md overflow-hidden
               border border-neutral-200 dark:border-neutral-700
        hover:border-neutral-300 dark:hover:border-neutral-500"
           >

@@ -1,5 +1,6 @@
 export const KOR_LANG = {
   LOCALE: "kr-KR",
+  LANGUAGE: "한국어",
   LOADING: "로딩중...",
   INTRO: {
     FEATURED: {

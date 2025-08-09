@@ -6,7 +6,7 @@ const SettingButton = () => {
   const { handleSettings } = useGeneralSiteSettings();
   return (
     <button data-tooltip={"Settings"} onClick={handleSettings}>
-      <Settings2Icon className="w-6 h-6    " />
+      <Settings2Icon className="w-6 h-6" />
     </button>
   );
 };

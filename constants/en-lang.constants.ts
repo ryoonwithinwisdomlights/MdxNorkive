@@ -2,6 +2,7 @@ import { Feather } from "lucide-react";
 
 export const ENG_LANG = {
   LOCALE: "en-US",
+  LANGUAGE: "English",
   LOADING: "Loading...",
   INTRO: {
     FEATURED: {

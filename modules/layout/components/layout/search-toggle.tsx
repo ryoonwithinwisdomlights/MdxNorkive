@@ -8,6 +8,7 @@ import {
   type ButtonProps,
   buttonVariants,
 } from "@/modules/shared/ui/DocButton";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 
 interface SearchToggleProps
   extends Omit<ComponentProps<"button">, "color">,
@@ -53,6 +54,7 @@ export function LargeSearchToggle({
   hideIfDisabled?: boolean;
 }) {
   const { enabled, hotKey, setOpenSearch } = useSearchContext();
+  const { locale } = useGeneralSiteSettings();
   const { text } = useI18n();
   if (hideIfDisabled && !enabled) return null;
 
@@ -70,7 +72,9 @@ export function LargeSearchToggle({
       }}
     >
       <Search className="size-4" />
-      {text.search}
+      {/* {text.search} */}
+      {/**intl적용전 general locale 적용 */}
+      {locale.COMMON.ENTER_SEARCH_TERM}
       <div className="ms-auto inline-flex gap-0.5">
         {hotKey.map((k, i) => (
           <kbd key={i} className="rounded-md border bg-fd-background px-1.5">
