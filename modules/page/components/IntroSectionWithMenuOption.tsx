@@ -25,7 +25,7 @@ const IntroSectionWithMenuOption = ({
         DESC: "",
       };
   return (
-    <div className="flex flex-row justify-between items-end">
+    <div className="flex flex-col md:flex-row justify-between items-end">
       <div className="">
         {introTrue && (
           <div className="text-start mb-6 flex flex-col gap-2">

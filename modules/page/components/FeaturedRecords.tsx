@@ -14,6 +14,7 @@ import {
   TagIcon,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { substringWithNumberDots } from "@/lib/utils/general";
 
 type Props = {
   type: string;
@@ -49,11 +50,13 @@ const FeaturedRecords = ({
 
   // useMemo를 사용하여 필터링 로직 최적화
   const { filteredPages, allOptions } = useMemo(() => {
-    const featuredPages = pages.filter(
-      (page) =>
-        page.data.favorite === true &&
-        (type !== "" ? page.data.type === type : true)
-    );
+    const featuredPages = pages
+      .filter(
+        (page) =>
+          page.data.favorite === true &&
+          (type !== "" ? page.data.type === type : true)
+      )
+      .slice(0, 10);
 
     // currentRecordType값 있으면 추가 필터링
     const filtered =
@@ -70,7 +73,7 @@ const FeaturedRecords = ({
     // 중복되지 않는 고유한 타입만 추출 (전체 프로젝트 페이지 기준)
     const uniqueTypeOptions = Array.from(
       new Set(
-        pages
+        featuredPages
           .map((item) => item?.data?.type)
           .filter((data): data is string => Boolean(data))
       )
@@ -225,7 +228,7 @@ const FeaturedRecords = ({
                   {/* 요약 */}
                   {currentPage.data.summary && (
                     <p className="text-neutral-600 dark:text-neutral-300 text-sm leading-relaxed mb-6">
-                      {currentPage.data.summary}
+                      {substringWithNumberDots(currentPage.data.summary, 100)}
                     </p>
                   )}
 
@@ -253,7 +256,7 @@ const FeaturedRecords = ({
             </div>
 
             {/* 오른쪽: 이미지 영역 */}
-            <div className="flex-1 relative  flex items-center justify-center h-[250px]  ">
+            <div className="flex-1 relative  flex items-center justify-center  overflow-hidden  ">
               {/* 페이지 커버 이미지가 있으면 표시, 없으면 기본 일러스트레이션 */}
               {currentPage.data.pageCover ? (
                 <LazyImage
@@ -299,7 +302,7 @@ const FeaturedRecords = ({
         )}
         {/* 슬라이더 인디케이터 */}
         {filteredPages.length > 1 && (
-          <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2">
+          <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2 overflow-hidden">
             {filteredPages.map((_, index) => (
               <button
                 key={index}

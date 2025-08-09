@@ -181,21 +181,21 @@ const EntireRecords = ({
               )}
 
               {/* 메타 정보 */}
-              <div className="flex items-center gap-4 text-sm text-neutral-500 dark:text-neutral-400">
+              <div className="flex flex-col md:flex-row md:items-center gap-4 text-sm text-neutral-500 dark:text-neutral-400">
                 {/* 타입 */}
-                <div className="flex items-center gap-1">
+                <div className="flex flex-row items-center gap-1">
                   <FolderClosedIcon className="w-4 h-4" />
                   <span>{page.data.type}</span>
                 </div>
                 {/* sub_type */}
                 {page.data.sub_type && (
-                  <div className="flex items-center gap-1">
+                  <div className="flex flex-row items-center gap-1">
                     <TagIcon className="w-4 h-4" />
                     <span>{page.data.sub_type}</span>
                   </div>
                 )}
                 {/* 날짜 */}
-                <div className="flex items-center gap-1">
+                <div className="flex flex-row items-center gap-1">
                   <CalendarIcon className="w-4 h-4" />
                   <span>
                     {getYearMonthDay(

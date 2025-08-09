@@ -6,7 +6,7 @@ export const ENG_LANG = {
   INTRO: {
     FEATURED: {
       TITLE: "Featured Records",
-      DESC: "Display the records checked as favorite.",
+      DESC: "Display up to 10 records checked as favorite.",
     },
     LATEST: {
       TITLE: "Latest Records",

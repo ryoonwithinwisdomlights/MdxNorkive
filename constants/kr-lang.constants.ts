@@ -4,7 +4,7 @@ export const KOR_LANG = {
   INTRO: {
     FEATURED: {
       TITLE: "주요 레코드",
-      DESC: "favourite으로 체크된 레코드들을 가져옵니다.",
+      DESC: "favourite으로 체크된 레코드 10개를 가져옵니다.",
     },
     LATEST: {
       TITLE: "최근 레코드",
