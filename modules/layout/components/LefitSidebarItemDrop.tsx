@@ -17,6 +17,7 @@ export const LefitSidebarItemDrop = (props) => {
 
   const router = useRouter();
   const hasSubMenu = menuData?.subMenus?.length > 0;
+
   const onClickUrl = (sLink) => {
     if (sLink) {
       const href = sLink?.type === "SubMenuPage" ? sLink?.url : sLink?.slug;
@@ -33,7 +34,11 @@ export const LefitSidebarItemDrop = (props) => {
   const renderMainMenus = () => {
     const icon = parseIcon(menuData.icon);
     return (
-      <div className="p-2  rounded-lg  flex justify-start cursor-pointer flex-row items-center gap-2 hover:bg-neutral-200/50 dark:hover:bg-neutral-700">
+      <div
+        className="p-2  rounded-lg  flex justify-start cursor-pointer 
+      flex-row items-center gap-2
+       hover:bg-neutral-200/50 dark:hover:bg-neutral-700"
+      >
         {icon && <FontAwesomeIcon icon={icon} className="w-3 h-3" />}
         <span className="text-sm">{menuData.title}</span>
       </div>

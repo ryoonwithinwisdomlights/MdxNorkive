@@ -1,50 +1,48 @@
 "use client";
-import { parseIcon } from "@/lib/utils/general";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ChevronDownIcon } from "lucide-react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ChevronDownIcon } from "lucide-react";
+import { parseIcon } from "@/lib/utils/general";
 
-export const MenuItemDrop = ({ link }) => {
-  const [show, changeShow] = useState(false);
-  const pathname = usePathname();
-
-  if (!link) {
+export const MenuItemDrop = ({ menuData }) => {
+  if (!menuData) {
     return null;
   }
-  const hasSubMenu = link?.subMenus?.length > 0;
-  const selected = pathname === link.url;
+  const [show, changeShow] = useState(false);
+  const pathname = usePathname();
+  const hasSubMenu = menuData?.subMenus?.length > 0;
+  const selected = pathname === menuData.url;
   const router = useRouter();
-  const onClickUrl = (sLink) => {
-    if (sLink) {
-      const href = sLink?.type === "SubMenuPages" ? sLink?.url : sLink?.slug;
 
-      if (sLink?.slug?.includes("http")) {
-        window.open(sLink.slug, "_blank");
+  const onClickUrl = (data) => {
+    if (data) {
+      const href = data?.type === "SubMenuPages" ? data?.url : data?.slug;
+
+      if (data?.slug?.includes("http")) {
+        window.open(data.slug, "_blank");
       } else {
         // SubMenuPage의 경우 절대 경로로 처리
-        const finalHref = sLink?.type === "SubMenuPages" ? `/${href}` : href;
+        const finalHref = data?.type === "SubMenuPages" ? `/${href}` : href;
         router.push(finalHref);
       }
     }
   };
 
   const renderMainMenus = () => {
-    // console.log("renderMainMenus:::", link);
-    const icon = parseIcon(link.icon);
+    const icon = parseIcon(menuData.icon);
     return (
       <div
-        className={
-          "px-2 h-full whitespace-nowrap duration-300 text-sm justify-between text-neutral-700  dark:text-neutral-300 cursor-pointer flex flex-nowrap items-center " +
-          (selected
-            ? "bg-neutral-100 rounded-lg h-4/5 text-neutral-700 hover:text-neutral-700 dark:text-neutral-700  dark:hover:text-black "
-            : "hover:text-black dark:hover:text-[#ffffff]")
-        }
+        className="p-2 h-full whitespace-nowrap duration-300 text-sm 
+      justify-between  hover:text-black
+       dark:hover:text-white  rounded-lg  
+        hover:bg-neutral-200/50 dark:hover:bg-neutral-700/50 cursor-pointer 
+        flex flex-nowrap items-center "
       >
-        <div className="flex flex-row items-center ">
-          {icon && <FontAwesomeIcon icon={icon} className="mr-1" />}{" "}
-          {link?.title}
+        <div className="flex flex-row items-center gap-2">
+          {icon && <FontAwesomeIcon icon={icon} className="w-3 h-3" />}
+          <span className="text-sm ">{menuData?.title}</span>
           {hasSubMenu && (
             <ChevronDownIcon
               className={`p-1 duration-500 transition-all ${
@@ -58,23 +56,24 @@ export const MenuItemDrop = ({ link }) => {
   };
 
   const renderMainMenusWithNoSubMenus = () => {
-    const icon = parseIcon(link.icon);
+    const icon = parseIcon(menuData.icon);
 
     return (
       <div
         className={
-          "px-2 h-full  whitespace-nowrap duration-300 text-sm justify-between text-neutral-700  dark:text-neutral-300 cursor-pointer flex flex-nowrap items-center " +
+          "px-2 h-full  whitespace-nowrap duration-300 text-sm justify-between  ursor-pointer flex flex-nowrap items-center " +
           (selected
-            ? "bg-neutral-100 rounded-lg h-4/5 text-neutral-700 hover:text-neutral-900 dark:text-neutral-700 dark:hover:text-black "
+            ? "bg-neutral-100 rounded-lg h-4/5  hover:text-neutral-900  dark:hover:text-black "
             : " hover:text-black  dark:hover:text-[#ffffff]")
         }
       >
         <Link
-          href={link?.slug}
-          target={link?.slug?.indexOf("http") === 0 ? "_blank" : "_self"}
+          href={menuData?.slug}
+          target={menuData?.slug?.indexOf("http") === 0 ? "_blank" : "_self"}
+          className="flex flex-row items-center gap-2"
         >
-          {icon && <FontAwesomeIcon icon={icon} className="mr-1" />} &nbsp;
-          {link?.title}
+          {icon && <FontAwesomeIcon icon={icon} className="w-3 h-3 " />}
+          <span className="text-xs ">{menuData?.title}</span>
         </Link>
       </div>
     );
@@ -87,33 +86,35 @@ export const MenuItemDrop = ({ link }) => {
       <ul
         className={`${
           show ? "visible top-12 " : "invisible opacity-0 top-10 "
-        } border-neutral-100 bg-white dark:bg-neutral-700  dark:border-neutral-900 
+        } border-neutral-100 bg-white dark:bg-neutral-800  dark:border-neutral-900 
         transition-all duration-300 z-20 absolute block drop-shadow-lg rounded-lg `}
       >
-        {link?.subMenus?.map((sLink, index) => {
+        {menuData?.subMenus?.map((sLink, index) => {
           const iconForRenderSubmenus = parseIcon(sLink.icon);
 
           return (
             <div key={index} className="h-full w-full">
               <li
                 className="not:last-child:border-b-0 border-b
-           text-neutral-700 dark:text-neutral-200
-            tracking-widest transition-all duration-200  dark:border-neutral-800 py-3 pr-6 pl-3"
+            tracking-widest transition-all duration-200  dark:border-neutral-800 p-4"
               >
                 <div
-                  className="hover:bg-neutral-100  px-2 hover:rounded-lg hover:h-4/5 w-full"
+                  className="hover:bg-neutral-200/50 dark:hover:bg-neutral-700/50 p-2 hover:rounded-lg hover:h-4/5 w-full"
                   onClick={() => {
                     onClickUrl(sLink);
                   }}
                 >
-                  <span className="text-xs  hover:text-black   ">
+                  <span
+                    className="text-xs 
+                   hover:text-black dark:hover:text-white flex flex-row items-center gap-2"
+                  >
                     {iconForRenderSubmenus && (
                       <FontAwesomeIcon
                         icon={iconForRenderSubmenus}
-                        className="mr-1"
+                        className="w-3 h-3 "
                       />
                     )}
-                    &nbsp;{sLink.title}
+                    <span className="text-xs ">{sLink.title}</span>
                   </span>
                 </div>
               </li>
@@ -126,7 +127,7 @@ export const MenuItemDrop = ({ link }) => {
 
   return (
     <li
-      className="cursor-pointer list-none hidden md:flex  md:flex-row justify-center items-center mx-2 bg-white dark:bg-neutral-900"
+      className="cursor-pointer dark:text-neutral-200  text-neutral-600 list-none hidden md:flex  md:flex-row justify-center items-center mx-2 "
       onMouseOver={() => changeShow(true)}
       onMouseOut={() => changeShow(false)}
     >

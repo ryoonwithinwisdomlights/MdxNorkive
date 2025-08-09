@@ -17,10 +17,8 @@ const NavigationForPC = () => {
           hideIfDisabled
           className="hidden md:flex w-[40%]
           hover:text-neutral-800 dark:hover:text-neutral-200
-           bg-gradient-to-br from-white to-white
-            dark:from-neutral-900 dark:to-neutral-700
-             hover:from-white hover:to-neutral-200/50
-              dark:hover:from-neutral-900 dark:hover:to-neutral-700/50"
+           bg-gradient-to-br from-white to-neutral-200/50
+              dark:from-neutral-900 dark:to-neutral-700/50"
         />
         <div
           id="top-nav-pc"
@@ -28,7 +26,7 @@ const NavigationForPC = () => {
         >
           {links &&
             links?.map((link, index) => (
-              <MenuItemDrop key={index} link={link} />
+              <MenuItemDrop key={index} menuData={link} />
             ))}
 
           <SettingButton />

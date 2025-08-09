@@ -33,8 +33,7 @@ const NavigationForMobile = ({ collapseRef }) => {
         <LogoBar />
         <div className="mr-1 flex justify-end items-center space-x-4 font-serif dark:text-neutral-200">
           <SearchToggle
-            className="cursor-pointer 
-    rounded-lg  bg-fd-secondary/50 p-1.5  text-sm
+            className="cursor-pointer rounded-lg bg-fd-secondary/50 p-1.5  text-sm
    transition-colors hover:bg-fd-accent text-neutral-800 dark:text-neutral-200"
           />
           <SettingToggle />

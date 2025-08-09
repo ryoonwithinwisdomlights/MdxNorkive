@@ -17,7 +17,10 @@ const SettingModal = () => {
 
   return (
     <Dialog open={setting} onOpenChange={handleSettings}>
-      <DialogContent className="max-w-md w-full top-1/4 border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900">
+      <DialogContent
+        aria-describedby={undefined}
+        className="max-w-md w-full top-1/4 border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900"
+      >
         <VisuallyHidden>
           <DialogTitle></DialogTitle>
         </VisuallyHidden>

@@ -127,7 +127,7 @@ const RecordBodyForPage = ({ records }: { records: any[] }) => {
                       id="notion-page-card"
                       className={`group w-full max-md:h-72 flex p-2 justify-between md:flex-row flex-col-reverse ${
                         index % 2 === 1 ? "md:flex-row-reverse" : ""
-                      } overflow-hidden border dark:border-black bg-white dark:bg-neutral-700 rounded-lg shadow-md`}
+                      } overflow-hidden border dark:border-black rounded-lg shadow-md  bg-gradient-to-br from-white to-white dark:from-neutral-900 dark:to-neutral-700 `}
                     >
                       <InformationCard
                         page={item}
