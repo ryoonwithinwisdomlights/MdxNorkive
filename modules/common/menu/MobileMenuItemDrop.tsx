@@ -59,7 +59,7 @@ export const MobileMenuItemDrop = ({ link, onHeightChange }) => {
       >
         <div>
           <div className={`${link.icon} text-center w-4 mr-4`} />
-          {icon && <FontAwesomeIcon icon={icon} />} {link.name}
+          {icon && <FontAwesomeIcon icon={icon} />} {link.title}
         </div>
         <div className="inline-flex items-center ">
           <ChevronRightIcon
@@ -81,7 +81,7 @@ export const MobileMenuItemDrop = ({ link, onHeightChange }) => {
       >
         <div>
           <div className={`${link.icon} text-center w-4 mr-4`} />
-          {icon && <FontAwesomeIcon icon={icon} />} {link.name}
+          {icon && <FontAwesomeIcon icon={icon} />} {link.title}
         </div>
       </Link>
     );

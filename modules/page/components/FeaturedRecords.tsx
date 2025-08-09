@@ -172,7 +172,7 @@ const FeaturedRecords = ({
        "
       >
         {currentPage?.data && (
-          <div className="flex flex-col lg:flex-row gap-4">
+          <div className="flex  lg:flex-row gap-4 flex-col-reverse md:flex-row-reverse">
             {/* 왼쪽: 텍스트 내용 */}
             <div className="flex-1">
               <div className="flex flex-col h-full justify-between">
@@ -260,7 +260,7 @@ const FeaturedRecords = ({
                   alt={currentPage.data.title}
                   priority={true}
                   src={currentPage.data.pageCover}
-                  className="h-[250px] w-full border border-neutral-200 dark:border-neutral-700  rounded-xl object-cover object-center 
+                  className=" h-56 w-full border border-neutral-200 dark:border-neutral-700  rounded-xl object-cover object-center 
              "
                 />
               ) : (
