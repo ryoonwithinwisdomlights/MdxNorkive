@@ -164,7 +164,6 @@ export default function CustomedMDXPage({ className, slug, resource }) {
             </DocsBody>
             <ShareBar data={page.data} />
           </DocsPage>
-          {/* <Comment frontMatter={page.data} className="  max-w-6xl mx-auto" /> */}
         </div>
       )}
     </article>

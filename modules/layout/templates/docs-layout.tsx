@@ -117,7 +117,7 @@ export function DocsLayout({
               (searchToggle.components?.lg ?? (
                 <LargeSearchToggle hideIfDisabled className="max-md:hidden" />
               ))} */}
-            {/* <LayoutNavSearch /> */}
+
             {tabs.length > 0 && <RootToggle options={tabs} />}
 
             {sidebarBanner}
@@ -168,7 +168,6 @@ export function DocsLayout({
         >
           {sidebarEnabled && sidebar}
           <Suspense fallback={<Loading />}>{children}</Suspense>
-          {/* {children} */}
         </LayoutBody>
       </NavProvider>
     </TreeContextProvider>
