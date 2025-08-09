@@ -309,8 +309,8 @@ const fixUnclosedTags = (content: string): string => {
 const sanitizeUnsafeTags = (content: string): string => {
   return content.replace(MDX_CONTENT_PATTERNS.HTML_TAG, (match, tagContent) => {
     const tagContentFirst = tagContent.trim().split(/[\s='"]+/)[0];
-    const tagName = tagContentFirst.toLowerCase();
-
+    // const tagName = tagContentFirst.toLowerCase();
+    const tagName = tagContentFirst;
     // 1. 허용된 HTML 태그는 그대로 유지
     if (
       ALLOWED_HTML_TAGS.includes(tagName as any) ||

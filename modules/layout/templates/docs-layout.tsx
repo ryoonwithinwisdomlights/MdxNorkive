@@ -30,9 +30,7 @@ import { BaseLayoutProps, getLinks } from "fumadocs-ui/layouts/shared";
 import { NavProvider } from "fumadocs-ui/provider";
 import { SidebarIcon } from "lucide-react";
 import { HTMLAttributes, type ReactNode, Suspense, useMemo } from "react";
-import { LargeSearchToggle, SearchToggle } from "../components/search-toggle";
-import HeaderSearch from "@/modules/shared/HeaderSearch";
-import LayoutNavSearch from "@/modules/shared/LayoutNavSearch";
+import { SearchToggle } from "../components/search-toggle";
 
 export interface DocsLayoutProps extends BaseLayoutProps {
   tree: PageTree.Root;

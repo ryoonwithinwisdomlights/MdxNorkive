@@ -1,6 +1,6 @@
 import NotFound from "@/app/not-found";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import TypeCarousel, { OptionItem } from "@/modules/shared/TypeCarousel";
+import OptionCarousel, { OptionItem } from "@/modules/shared/OptionCarousel";
 import LazyImage from "@/modules/shared/LazyImage";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
@@ -95,9 +95,11 @@ const RecordBodyForPage = ({ records }: { records: any[] }) => {
   return (
     <div className="flex flex-col w-full items-center gap-6 ">
       <div className="flex flex-col  w-full ">
-        <TypeCarousel
+        <OptionCarousel
           allOptions={allOptions}
-          handleRecordTypeChange={handleRecordTypeChange}
+          currentOption={currentRecordType}
+          handleOptionTypeChange={handleRecordTypeChange}
+          className="w-full overflow-hidden md:max-w-3xl max-md:max-w-full"
         />
         <PageIndicator
           currentPage={currentPage}

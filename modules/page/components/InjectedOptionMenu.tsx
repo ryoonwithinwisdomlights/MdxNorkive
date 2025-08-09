@@ -7,11 +7,13 @@ type Props = {
   currentRecordType: string;
   allOptions: any[];
   handleRecordTypeChange: (option: string) => void;
+  initString?: string;
 };
 
 const InjectedOptionMenu = ({
   currentRecordType = "",
   allOptions,
+  initString,
   handleRecordTypeChange,
 }: Props) => {
   const { locale } = useGeneralSiteSettings();
@@ -30,7 +32,11 @@ const InjectedOptionMenu = ({
      data-hover:dark:bg-neutral-600
      "
       >
-        {currentRecordType === "" ? locale.COMMON.ALL : currentRecordType}
+        {currentRecordType !== ""
+          ? currentRecordType
+          : initString
+          ? initString
+          : locale.COMMON.ALL}
         <ChevronDownIcon className="size-4 fill-white/60" />
       </MenuButton>
       <MenuItems
