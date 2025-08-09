@@ -21,7 +21,7 @@ const InjectedOptionMenu = ({
     <Menu>
       <MenuButton
         className="w-40  inline-flex items-center justify-center
-  gap-2 rounded-md bg-neutral-50 dark:bg-neutral-700 
+  gap-2 rounded-md bg-neutral-50 dark:bg-neutral-800 
   dark:border-neutral-100
   border border-neutral-200 
   px-3 py-1.5 text-sm font-semibold
@@ -29,7 +29,7 @@ const InjectedOptionMenu = ({
 
     data-focus:outline-white
      data-hover:bg-neutral-100
-     data-hover:dark:bg-neutral-600
+     data-hover:dark:bg-neutral-700
      "
       >
         {currentRecordType !== ""

@@ -92,7 +92,7 @@ export default function OptionCarousel({
         className={`absolute left-24 top-1/2 z-20 -translate-y-1/2
           p-2 shadow-lg rounded-md border transition-colors ${
             canScrollLeft
-              ? "bg-neutral-300 dark:bg-black border-neutral-500 dark:border-neutral-400 hover:border-neutral-800 dark:hover:border-neutral-100 cursor-pointer"
+              ? "bg-neutral-200 dark:bg-black border-neutral-400 dark:border-neutral-400 hover:border-neutral-600 dark:hover:border-neutral-100 cursor-pointer"
               : "bg-neutral-200 dark:bg-neutral-800 border-neutral-300 dark:border-neutral-600 cursor-not-allowed opacity-50"
           }`}
         onClick={() => canScrollLeft && scrollBy(-200)}
@@ -127,7 +127,7 @@ export default function OptionCarousel({
         className={`absolute right-0 top-1/2 z-20 -translate-y-1/2 
           p-2 shadow-lg rounded-md border transition-colors ${
             canScrollRight
-              ? "bg-neutral-300 dark:bg-black border-neutral-500 dark:border-neutral-400 hover:border-neutral-800 dark:hover:border-neutral-100 cursor-pointer"
+              ? "bg-neutral-200 dark:bg-black border-neutral-400 dark:border-neutral-400 hover:border-neutral-600 dark:hover:border-neutral-100 cursor-pointer"
               : "bg-neutral-200 dark:bg-neutral-800 border-neutral-300 dark:border-neutral-600 cursor-not-allowed opacity-50"
           }`}
         onClick={() => canScrollRight && scrollBy(200)}
