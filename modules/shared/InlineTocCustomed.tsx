@@ -8,10 +8,12 @@ import {
 } from "fumadocs-ui/components/ui/collapsible";
 import { TOCItemType } from "fumadocs-core/server";
 import { cn } from "@/lib/utils/general";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 export interface InlineTocProps extends ComponentProps<typeof Collapsible> {
   items: TOCItemType[];
 }
 const InlineTocCustomed = ({ items, ...props }: InlineTocProps) => {
+  const { locale } = useGeneralSiteSettings();
   return (
     <Collapsible
       {...props}
@@ -21,7 +23,7 @@ const InlineTocCustomed = ({ items, ...props }: InlineTocProps) => {
       )}
     >
       <CollapsibleTrigger className="group inline-flex w-full items-center justify-between px-4 py-2.5 font-medium">
-        {props.children ?? "Table of Contents"}
+        {locale.COMMON.TABLE_OF_CONTENTS}
         <ChevronDown className="size-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
       </CollapsibleTrigger>
       <CollapsibleContent>

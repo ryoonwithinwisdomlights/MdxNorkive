@@ -11,7 +11,10 @@ import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils/date";
 import ShareBar from "@/modules/shared/ShareBar";
 import { MDXContent } from "@content-collections/mdx/react";
 import { InlineTOC } from "fumadocs-ui/components/inline-toc";
-import { DocsBody, DocsPage } from "fumadocs-ui/page";
+import {
+  DocsBody,
+  DocsPage,
+} from "@/modules/layout/templates/docs-page-layout";
 import { useSidebar } from "fumadocs-ui/provider";
 import { Book, CalendarIcon, Rocket } from "lucide-react";
 import { notFound } from "next/navigation";
@@ -32,19 +35,10 @@ function getResource(resource: string) {
 }
 
 export default function CustomedMDXPage({ className, slug, resource }) {
-  // let modSlug = slug.map((s) => decodeURIComponent(s));
-  // console.log("slug:", slug);
-  // console.log("modSlug:", modSlug);
-  // const temp = getResource(resource)
-  //   ?.getPages()
-  //   .map((page) => ({
-  //     slug: page.slugs,
-  //   }));
-  // console.log("temp:", temp);
   const page = getResource(resource)?.getPage(slug);
 
   if (!page) notFound();
-  // Article lock🔐
+
   const [lock, setLock] = useState(page?.data?.password !== "");
   const { body, toc, lastEditedDate } = page.data;
 
@@ -71,7 +65,6 @@ export default function CustomedMDXPage({ className, slug, resource }) {
     return false;
   };
 
-  // console.log("page::", page);
   return (
     <article
       className={`flex flex-col   pb-20  justify-center items-center w-full h-full ${className}`}
@@ -81,8 +74,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
       ) : (
         <div className="flex flex-col  w-full">
           <DocsPage
-            // toc={toc}
-
+            toc={toc}
             full={page.data.full}
             lastUpdate={lastEditedDate}
             breadcrumb={{ enabled: false }}
@@ -157,6 +149,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
             {toc.length > 0 && (
               <InlineTOC
                 items={toc}
+                children={locale.COMMON.TABLE_OF_CONTENTS}
                 className="block md:hidden bg-neutral-100 dark:bg-neutral-800 mb-4"
               />
             )}
@@ -166,7 +159,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
             </DocsBody>
             <ShareBar data={page.data} />
           </DocsPage>
-          <Comment frontMatter={page.data} className="  max-w-6xl mx-auto" />
+          {/* <Comment frontMatter={page.data} className="  max-w-6xl mx-auto" /> */}
         </div>
       )}
     </article>

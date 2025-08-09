@@ -12,13 +12,14 @@ const AuthorInfoCard = () => {
   console.log("tocContent:", tocContent);
   return (
     <div className=" items-center justify-center flex flex-col gap-2">
-      {tocContent.length > 0 && (
+      {/* {tocContent.length > 0 && (
         <InlineTocCustomed
           items={tocContent}
           defaultOpen={true}
           className=" bg-fd-accent/50 dark:bg-neutral-800 mb-4"
         />
-      )}
+      )} */}
+
       <Link
         href={BLOG.LINK || "/"}
         className="hover:scale-105 transform duration-200 cursor-pointer flex justify-center"

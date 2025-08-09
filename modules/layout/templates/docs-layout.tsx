@@ -1,7 +1,8 @@
 "use client";
-import { buttonVariants } from "@/modules/shared/ui/DocButton";
+import Loading from "@/app/loading";
 import { cn } from "@/lib/utils/general";
 import Footer from "@/modules/layout/components/Footer";
+import { buttonVariants } from "@/modules/shared/ui/DocButton";
 import { HideIfEmpty } from "fumadocs-core/hide-if-empty";
 import Link from "fumadocs-core/link";
 import type { PageTree } from "fumadocs-core/server";
@@ -9,7 +10,6 @@ import { RootToggle } from "fumadocs-ui/components/layout/root-toggle";
 import {
   Sidebar,
   SidebarCollapseTrigger,
-  SidebarFooter,
   SidebarHeader,
   SidebarPageTree,
   SidebarViewport,
@@ -26,12 +26,14 @@ import {
   SidebarLinkItem,
   SidebarOptions,
 } from "fumadocs-ui/layouts/docs/shared";
-import { BaseLinkItem } from "fumadocs-ui/layouts/links";
 import { BaseLayoutProps, getLinks } from "fumadocs-ui/layouts/shared";
 import { NavProvider } from "fumadocs-ui/provider";
 import { SidebarIcon } from "lucide-react";
 import { HTMLAttributes, type ReactNode, Suspense, useMemo } from "react";
-import Loading from "@/app/loading";
+import {
+  LargeSearchToggle,
+  SearchToggle,
+} from "../components/layout/search-toggle";
 
 export interface DocsLayoutProps extends BaseLayoutProps {
   tree: PageTree.Root;
@@ -112,10 +114,10 @@ export function DocsLayout({
                 </SidebarCollapseTrigger>
               )}
             </div>
-            {/* {searchToggle.enabled !== false &&
+            {searchToggle.enabled !== false &&
               (searchToggle.components?.lg ?? (
                 <LargeSearchToggle hideIfDisabled className="max-md:hidden" />
-              ))} */}
+              ))}
             {tabs.length > 0 && <RootToggle options={tabs} />}
 
             {sidebarBanner}
@@ -135,34 +137,11 @@ export function DocsLayout({
         </SidebarViewport>
         <HideIfEmpty>
           <Footer />
-          {/* <SidebarFooter className="data-[empty=true]:hidden">
-            <div className="flex items-center justify-end empty:hidden">
-              {links
-                .filter((item) => item.type === "icon")
-                .map((item, i, arr) => (
-                  <BaseLinkItem
-                    key={i}
-                    item={item}
-                    className={cn(
-                      buttonVariants({ size: "icon", color: "ghost" }),
-                      "text-fd-muted-foreground md:[&_svg]:size-4.5",
-                      i === arr.length - 1 && "me-auto"
-                    )}
-                    aria-label={item.label}
-                  >
-                    {item.icon}
-                  </BaseLinkItem>
-                ))}
-            </div>
-            {sidebarFooter}
-          </SidebarFooter> */}
         </HideIfEmpty>
       </Sidebar>
     </>
   );
-  // console.log("nav.children::", nav.children);
 
-  // console.log("props.tree::", props.tree);
   return (
     <TreeContextProvider tree={props.tree}>
       <NavProvider transparentMode={transparentMode}>
@@ -176,10 +155,10 @@ export function DocsLayout({
                 {nav.title}
               </Link>
               <div className="flex-1">{nav.children}</div>
-              {/* {searchToggle?.enabled !== false &&
+              {searchToggle?.enabled !== false &&
                 (searchToggle.components?.sm ?? (
                   <SearchToggle className="p-2" hideIfDisabled />
-                ))} */}
+                ))}
               <NavbarSidebarTrigger className="p-2 -me-1.5 md:hidden" />
             </Navbar>
           ))}
