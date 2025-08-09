@@ -1,78 +1,13 @@
-import { ReactElement, ReactNode } from "react";
 import { bookSource } from "@/lib/source";
-import { DocsLayout } from "@/modules/layout/templates/docs-min";
-import { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
 import RightSideInfoBar from "@/modules/layout/components/RightSideInfoBar";
+import { DocsLayout } from "@/modules/layout/templates/docs-min";
 import { basicDocsClass } from "@/styles/layout.styles";
-interface Root {
-  $id?: string;
-  name: ReactNode;
-  children: Node[];
-}
-type Node = Item | Separator | Folder;
-interface Item {
-  $id?: string;
-  /**
-   * @internal
-   */
-  $ref?: {
-    file: string;
-  };
-  type: "page";
-  name: ReactNode;
-  url: string;
-  external?: boolean;
-  description?: ReactNode;
-  icon?: ReactElement;
-}
-interface Separator {
-  $id?: string;
-  type: "separator";
-  name?: ReactNode;
-  icon?: ReactElement;
-}
-interface Folder {
-  $id?: string;
-  /**
-   * @internal
-   */
-  $ref?: {
-    metaFile?: string;
-  };
-  type: "folder";
-  name: ReactNode;
-  description?: ReactNode;
-  root?: boolean;
-  defaultOpen?: boolean;
-  index?: Item;
-  icon?: ReactElement;
-  children: Node[];
-}
+import { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
 
 const baseOptions: Partial<DocsLayoutProps> = {
   nav: {
-    title: (
-      <>
-        {/* <svg
-          width="24"
-          height="24"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-label="Logo"
-        >
-          <circle cx={12} cy={12} r={12} fill="currentColor" />
-        </svg> */}
-        {/* <LazyImage
-          src={BLOG.AVATAR}
-          width={24}
-          height={24}
-          alt={BLOG.AUTHOR}
-          className="mr-2  "
-        />
-        {BLOG.TITLE} */}
-      </>
-    ),
+    title: <></>,
   },
-  // see https://fumadocs.dev/docs/ui/navigation/links
   links: [],
 };
 const pageOptions: DocsLayoutProps = {

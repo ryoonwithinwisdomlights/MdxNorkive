@@ -6,8 +6,20 @@ import { basicDocsClass } from "@/styles/layout.styles";
 
 const baseOptions: Partial<DocsLayoutProps> = {
   nav: {
-    title: <></>,
+    title: (
+      <>
+        {/* <LazyImage
+          src={BLOG.AVATAR}
+          width={24}
+          height={24}
+          alt={BLOG.AUTHOR}
+          className="mr-2  "
+        />
+        {BLOG.TITLE} */}
+      </>
+    ),
   },
+  // see https://fumadocs.dev/docs/ui/navigation/links
   links: [],
 };
 const pageOptions: DocsLayoutProps = {
