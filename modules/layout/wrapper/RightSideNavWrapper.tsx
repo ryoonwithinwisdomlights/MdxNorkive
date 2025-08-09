@@ -12,11 +12,11 @@ const RightSideNavWrapper = () => {
   }, []);
   return (
     <div
-      className="hidden md:w-[300px] z-10 py-16 h-screen md:fixed xl:block m-0
+      className="hidden md:w-[300px] z-10 py-16  md:fixed xl:block m-0  h-full overflow-y-auto
 right-0 border-l bg-fd-background dark:bg-transparent border-neutral-200 dark:border-transparent 
 "
     >
-      <div className="  overflow-hidden w-full h-[calc(100vh-150px)] relative  flex flex-col gap-2 ">
+      <div className="  w-full  relative  flex flex-col gap-2 ">
         {rightSideInfoBarMode === "info" ? (
           <NorKiveInfoCard />
         ) : (

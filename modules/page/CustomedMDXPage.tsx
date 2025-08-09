@@ -48,6 +48,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
     handleSetTocContent,
   } = useGeneralSiteSettings();
   const { setCollapsed } = useSidebar();
+
   useEffect(() => {
     setCollapsed(false);
     handleSetTocContent(toc);
