@@ -2,12 +2,13 @@
 import { projectSource } from "@/lib/source";
 import ProjectIntro from "@/modules/page/intropage/intro/ProjectIntro";
 import RecordsBodyWithTwoOptions from "./body/RecordsBodyWithTwoOptions";
+import { generalIntroPageClass } from "@/types";
 
 const ProjectRecordsPage = () => {
   const pages = projectSource.getPages();
 
   return (
-    <div className="w-full max-w-6xl mx-auto flex flex-col items-center p-10 gap-10">
+    <div className={generalIntroPageClass}>
       <ProjectIntro />
       <RecordsBodyWithTwoOptions records={pages} />
     </div>

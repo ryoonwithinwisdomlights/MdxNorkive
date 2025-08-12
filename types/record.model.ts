@@ -3,7 +3,8 @@
  * ----------------------------------------------------------------------/
  */
 
-import { RecordFrontMatter } from "./mdx.model";
+import { ReactNode } from "react";
+import { RecordFrontMatter } from "@/types";
 
 export interface mainRecordProps {
   type: string;
@@ -98,4 +99,10 @@ export type PageSearchParams = Promise<{
 export type TotalPageParams = {
   params: PageParams;
   searchParams: PageSearchParams;
+};
+
+export type TOCItemType = {
+  title: ReactNode;
+  url: string;
+  depth: number;
 };

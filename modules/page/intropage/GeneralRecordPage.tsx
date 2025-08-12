@@ -5,6 +5,7 @@ import { isObjectNotEmpty } from "@/lib/utils/general";
 import { setAllPagesGetSortedGroupedByDate } from "@/lib/utils/records";
 import BookGeneralRecordsBody from "@/modules/page/intropage/body/BookGeneralRecordsBody";
 import GeneralIntro from "@/modules/page/intropage/intro/GeneralIntro";
+import { generalIntroPageClass } from "@/types";
 
 const GeneralRecordPage = () => {
   const pages = recordSource.getPages();
@@ -14,7 +15,7 @@ const GeneralRecordPage = () => {
   if (!isAble) NotFound();
   const modAllPages = setAllPagesGetSortedGroupedByDate(pages);
   return (
-    <div className="w-full  max-w-6xl mx-auto flex flex-col items-center p-10 gap-10">
+    <div className={generalIntroPageClass}>
       <GeneralIntro />
 
       <BookGeneralRecordsBody

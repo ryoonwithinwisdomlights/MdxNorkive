@@ -6,7 +6,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "fumadocs-ui/components/ui/collapsible";
-import { TOCItemType } from "fumadocs-core/server";
+import { TOCItemType } from "@/types";
 import { cn } from "@/lib/utils/general";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 export interface InlineTocProps extends ComponentProps<typeof Collapsible> {

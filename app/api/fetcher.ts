@@ -1,32 +1,34 @@
 import { cache } from "react";
 import "server-only";
-import { NOTION_DATABASE_ID } from "./clients";
 
+//************* Custom adapter ************* */
 import {
   NotionDataBaseMetaDataAdapter,
   NotionPageListAdapter,
 } from "@/app/api/adapter";
+
+//*************  clients ************* */
+import { NOTION_DATABASE_ID } from "./clients";
 import { notion } from "@/app/api/clients";
 
+//*************  utils ************* */
+import { getSiteInfo } from "@/lib/utils/site";
+
+//*************  types ************* */
 import type {
   DataBaseMetaDataResponse,
   ModifiedQueryDatabaseResponseArray,
   QueryPageResponse,
 } from "@/types/notion.client.model";
-import { RecordFrontMatter } from "@/types/mdx.model";
-import { MenuItem } from "@/types/record.model";
+import type { RecordFrontMatter } from "@/types/mdx.model";
+import type { MenuItem } from "@/types/record.model";
 import type {
   GetBlockResponse,
   ImageBlockObjectResponse,
   ListBlockChildrenResponse,
 } from "@notionhq/client/build/src/api-endpoints";
-// import { ENG_LANG } from "@/constants/en-lang.constants";
-// import { KOR_LANG } from "@/constants/kr-lang.constants";
-import { getSiteInfo } from "@/lib/utils/site";
 
 export const fetchMenuList = cache(async (): Promise<MenuItem[]> => {
-  // console.log("🔍 fetchMenuList 시작");
-
   try {
     const queryResponse = await notion.databases.query({
       database_id: NOTION_DATABASE_ID,

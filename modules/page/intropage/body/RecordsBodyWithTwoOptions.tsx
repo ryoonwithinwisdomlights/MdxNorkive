@@ -1,3 +1,6 @@
+"use client";
+import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import NotFound from "@/app/not-found";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { transferDataForCardProps } from "@/lib/utils/records";
@@ -5,10 +8,9 @@ import InformationCard from "@/modules/page/components/InformationCard";
 import NoRecordFound from "@/modules/shared/NoRecordFound";
 import PageIndicator from "@/modules/page/components/PageIndicator";
 import LazyImage from "@/modules/shared/LazyImage";
-import OptionCarousel, { OptionItem } from "@/modules/shared/OptionCarousel";
-import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
-import InjectedOptionMenu from "../../components/InjectedOptionMenu";
+import OptionCarousel from "@/modules/shared/OptionCarousel";
+import InjectedOptionMenu from "@/modules/page/components/InjectedOptionMenu";
+import { OptionItem } from "@/types";
 
 const RecordsBodyWithTwoOptions = ({ records }: { records: any[] }) => {
   const pages = records;

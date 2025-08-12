@@ -21,6 +21,7 @@
       "@/modules/*": ["modules/*"],
       "@/types/*": ["types/*"],
       "@/constants/*": ["constants/*"],
+      "@/config/*": ["config/*"],
       "content-collections": ["./.content-collections/generated"]
     },
     "forceConsistentCasingInFileNames": true,

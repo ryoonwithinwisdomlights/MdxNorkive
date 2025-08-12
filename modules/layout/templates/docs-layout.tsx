@@ -1,11 +1,13 @@
 "use client";
-import { cn } from "@/lib/utils/general";
-import DocFooter from "@/modules/layout/components/doc-footer";
-import LoadingCover from "@/modules/shared/LoadingCover";
-import { buttonVariants } from "@/modules/shared/ui/DocButton";
+import { HTMLAttributes, Suspense, useMemo } from "react";
+import type { ReactNode } from "react";
+
+//************* Fumadocs core ************* */
 import { HideIfEmpty } from "fumadocs-core/hide-if-empty";
 import Link from "fumadocs-core/link";
 import type { PageTree } from "fumadocs-core/server";
+
+//************* Fumadocs UI ************* */
 import { RootToggle } from "fumadocs-ui/components/layout/root-toggle";
 import {
   Sidebar,
@@ -14,7 +16,7 @@ import {
   SidebarPageTree,
   SidebarViewport,
 } from "fumadocs-ui/components/layout/sidebar";
-import { TreeContextProvider } from "fumadocs-ui/contexts/tree";
+
 import {
   CollapsibleControl,
   LayoutBody,
@@ -26,11 +28,19 @@ import {
   SidebarLinkItem,
   SidebarOptions,
 } from "fumadocs-ui/layouts/docs/shared";
+import { TreeContextProvider } from "fumadocs-ui/contexts/tree";
 import { BaseLayoutProps, getLinks } from "fumadocs-ui/layouts/shared";
 import { NavProvider } from "fumadocs-ui/provider";
+
+//************* Lucide ************* */
 import { SidebarIcon } from "lucide-react";
-import { HTMLAttributes, type ReactNode, Suspense, useMemo } from "react";
-import { SearchToggle } from "../components/search-toggle";
+
+//************* Custom components ************* */
+import DocFooter from "@/modules/layout/components/doc-footer";
+import LoadingCover from "@/modules/shared/LoadingCover";
+import { buttonVariants } from "@/modules/shared/ui/DocButton";
+import { SearchToggle } from "@/modules/layout/components/search-toggle";
+import { cn } from "@/lib/utils/general";
 
 export interface DocsLayoutProps extends BaseLayoutProps {
   tree: PageTree.Root;

@@ -1,8 +1,10 @@
-import { MenuItem } from "@/types/record.model";
-import { RecordFrontMatter } from "@/types/mdx.model";
 import { Dispatch, SetStateAction } from "react";
-import { SiteInfoModel } from "./index";
-import { TOCItemType } from "fumadocs-core/server";
+import {
+  MenuItem,
+  RecordFrontMatter,
+  TOCItemType,
+  SiteInfoModel,
+} from "@/types";
 
 export type SerializedPage = {
   file: {
@@ -49,7 +51,7 @@ export interface GeneralSiteSettingsProps {
 }
 
 export interface GlobalNavInfoProps {
-  recordList: RecordFrontMatter[];
+  recordList?: RecordFrontMatter[];
   serializedAllPages: SerializedPage[];
   menuList: MenuItem[];
 }

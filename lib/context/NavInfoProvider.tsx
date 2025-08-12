@@ -1,14 +1,12 @@
 "use client";
 
-import { MenuItem } from "@/types/record.model";
-import { RecordFrontMatter } from "@/types/mdx.model";
-import { GlobalNavInfoProps, SerializedPage } from "@/types";
-import NextNProgress from "nextjs-progressbar";
+import { GlobalNavInfoProps } from "@/types";
 import { createContext, ReactNode, useContext } from "react";
 
-const GlobalContext = createContext<GlobalNavInfoProps | undefined>(undefined);
+const NavInfoContext = createContext<GlobalNavInfoProps | undefined>(undefined);
+
 /**
- *A Global provider that initializes the site with essential values.
+ *A NavInfo provider that initializes the site with essential values.
  * @param children
  * @returns {JSX.Element}
  * @constructor
@@ -16,35 +14,28 @@ const GlobalContext = createContext<GlobalNavInfoProps | undefined>(undefined);
 export function NavInfoProvider({
   children,
   from = "index",
-  recordList,
-  serializedAllPages,
-  menuList,
+  ...props
 }: {
   children: ReactNode;
   from?: string;
-  recordList: RecordFrontMatter[];
-  serializedAllPages: SerializedPage[];
-  menuList: MenuItem[];
-}) {
-  // console.log("allPages::", allPages);
+} & GlobalNavInfoProps) {
   return (
-    <GlobalContext.Provider
+    <NavInfoContext.Provider
       value={{
-        recordList,
-        serializedAllPages,
-        menuList,
+        recordList: props.recordList,
+        serializedAllPages: props.serializedAllPages,
+        menuList: props.menuList,
       }}
     >
       {children}
-      <NextNProgress />
-    </GlobalContext.Provider>
+    </NavInfoContext.Provider>
   );
 }
 
 export const useNav = ({ from }: { from?: string }): GlobalNavInfoProps => {
-  const context = useContext(GlobalContext);
+  const context = useContext(NavInfoContext);
   if (!context) {
-    throw new Error("useGlobal must be used within a GlobalContext.Provider");
+    throw new Error("useNav must be used within a NavInfoProvider");
   }
   return context;
 };

@@ -85,7 +85,7 @@ const baseConfig: NextConfig = {
   },
   webpack: (config, { dev, isServer }) => {
     config.resolve.alias["@"] = path.resolve(__dirname);
-    if (process.env.NODE_ENV_API === "development") {
+    if (process.env.NODE_ENV === "development") {
       config.devtool = "source-map";
     }
 
@@ -93,17 +93,16 @@ const baseConfig: NextConfig = {
       config.resolve.fallback = {
         fs: false, // 클라이언트 번들에서 fs 제거
       };
-      // externals에서 @headlessui/react 제거
     }
 
     // lightningcss 문제 해결
-    if (process.env.VERCEL) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        path: false,
-      };
-    }
+    // if (process.env.VERCEL) {
+    //   config.resolve.fallback = {
+    //     ...config.resolve.fallback,
+    //     fs: false,
+    //     path: false,
+    //   };
+    // }
 
     return config;
   },

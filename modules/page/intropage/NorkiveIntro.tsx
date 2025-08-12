@@ -1,8 +1,10 @@
 "use client";
 import { useNav } from "@/lib/context/NavInfoProvider";
+import { cn } from "@/lib/utils/general";
 import EntireRecords from "@/modules/page/components/EntireRecords";
 import FeaturedRecords from "@/modules/page/components/FeaturedRecords";
 import LatestRecords from "@/modules/page/components/LatestRecords";
+import { generalIntroPageClass } from "@/types";
 
 const NorkiveIntro = () => {
   const { serializedAllPages } = useNav({ from: "NorkiveIntro" });
@@ -10,7 +12,7 @@ const NorkiveIntro = () => {
   return (
     <div
       id="norkive-intro"
-      className="w-full max-w-6xl  items-center justify-center mx-auto flex flex-col p-10   gap-10"
+      className={cn("justify-center mx-auto", generalIntroPageClass)}
     >
       <FeaturedRecords
         type=""

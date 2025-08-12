@@ -5,6 +5,7 @@ import { isObjectNotEmpty } from "@/lib/utils/general";
 import { setAllPagesGetSortedGroupedByDate } from "@/lib/utils/records";
 import BookGeneralRecordsBody from "@/modules/page/intropage/body/BookGeneralRecordsBody";
 import BookIntro from "@/modules/page/intropage/intro/BookIntro";
+import { generalIntroPageClass } from "@/types";
 
 const BookRecordsPage = () => {
   const pages = bookSource.getPages();
@@ -13,7 +14,7 @@ const BookRecordsPage = () => {
   const isAble = isObjectNotEmpty(pages);
   const modAllPages = setAllPagesGetSortedGroupedByDate(pages);
   return (
-    <div className="w-full  max-w-6xl mx-auto flex flex-col items-center p-10 gap-10">
+    <div className={generalIntroPageClass}>
       <BookIntro />
       <BookGeneralRecordsBody
         modAllPages={modAllPages}

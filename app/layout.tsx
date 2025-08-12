@@ -1,27 +1,33 @@
-import { BLOG } from "@/blog.config";
-import "@fortawesome/fontawesome-svg-core/styles.css";
-import { RootProvider } from "fumadocs-ui/provider";
-import { GeistSans } from "geist/font/sans";
-import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
+import { BLOG } from "@/blog.config";
+
+//************* Font Awesome ************* */
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+//************* Geist ************* */
+import { GeistSans } from "geist/font/sans";
+
+//************* Next ************* */
+import type { Metadata, Viewport } from "next";
+
+//************* Custom styles ************* */
 import "./../styles/globals.css";
 
+//************* Custom context ************* */
 import { GeneralSiteSettingsProvider } from "@/lib/context/GeneralSiteSettingsProvider";
-
 import { ModalProvider } from "@/lib/context/ModalProvider";
-
 import { NavInfoProvider } from "@/lib/context/NavInfoProvider";
+import { RootProvider } from "fumadocs-ui/provider";
 
+//************* All Record sources ************* */
 import {
   bookSource,
   engineeringSource,
   projectSource,
   recordSource,
 } from "@/lib/source";
-import { config } from "@fortawesome/fontawesome-svg-core";
-import { LoaderConfig, Page } from "fumadocs-core/source";
-import { fetchAllRecordList, fetchMenuList } from "./api/fetcher";
 
+//************* Custom components ************* */
 import MobileRightSidebarWrapper from "@/modules/common/right-sidebar/MobileRightSidebarWrapper";
 import DefaultSearchDialog from "@/modules/common/search/search";
 import AuxiliaryBlogComponent from "@/modules/layout/components/AuxiliaryComponent";
@@ -30,8 +36,13 @@ import TopNavigationWrapper from "@/modules/layout/wrapper/TopNavigationWrapper"
 import JumpToBackButton from "@/modules/shared/JumpToBackButton";
 import JumpToTopButton from "@/modules/shared/JumpToTopButton";
 import LoadingCover from "@/modules/shared/LoadingCover";
-import { RecordFrontMatter } from "@/types/mdx.model";
 
+//************* Fetcher ************* */
+import { fetchAllRecordList, fetchMenuList } from "./api/fetcher";
+
+//*************  types ************* */
+import { RecordFrontMatter } from "@/types/mdx.model";
+import { LoaderConfig, Page } from "fumadocs-core/source";
 config.autoAddCss = false;
 
 export const viewport: Viewport = {
@@ -47,7 +58,6 @@ export const metadata: Metadata = {
   metadataBase: BLOG.isProd
     ? new URL(BLOG.LINK as string)
     : new URL("http://localhost:3000"),
-  // title: BLOG.APP_NAME as string,
   title: {
     template: "Norkive - %s",
     default: BLOG.APP_NAME as string, // 템플릿을 설정할때 default는 필수 요소입니다.
@@ -83,12 +93,8 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  /**
-   * 메뉴데이터
-   * globalNotionData 따로
-   */
   const menuList = await fetchMenuList();
-  const recordList = await fetchAllRecordList();
+  // const recordList = await fetchAllRecordList();
   const recordPages = recordSource.getPages();
   const bookPages = bookSource.getPages();
   const engineeringPages = engineeringSource.getPages();
@@ -132,7 +138,7 @@ export default async function RootLayout({
           theme={{ enabled: false }}
         >
           <NavInfoProvider
-            recordList={recordList}
+            // recordList={recordList}
             serializedAllPages={serializedAllPages}
             menuList={menuList}
           >

@@ -2,22 +2,9 @@
 "use client";
 
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { OptionCarouselProps } from "@/types";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-
-export interface OptionItem {
-  id: number;
-  title: string;
-  option?: any;
-  isActive?: boolean; // 현재 선택된지 확인
-}
-type Props = {
-  allOptions: OptionItem[];
-  handleOptionTypeChange: (option: string) => void;
-  className?: string;
-  currentOption?: string;
-  initString?: string;
-};
 
 export default function OptionCarousel({
   allOptions,
@@ -25,7 +12,7 @@ export default function OptionCarousel({
   initString,
   handleOptionTypeChange,
   className,
-}: Props) {
+}: OptionCarouselProps) {
   const { locale } = useGeneralSiteSettings();
   const containerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);

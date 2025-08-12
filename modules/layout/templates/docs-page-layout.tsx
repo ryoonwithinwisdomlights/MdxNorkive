@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils/general";
 import Comment from "@/modules/shared/Comment";
 import { buttonVariants } from "@/modules/shared/ui/DocButton";
-import type { TOCItemType } from "fumadocs-core/server";
+import { TOCItemType } from "@/types";
 import type { AnchorProviderProps } from "fumadocs-core/toc";
 import { I18nLabel } from "fumadocs-ui/contexts/i18n";
 import {

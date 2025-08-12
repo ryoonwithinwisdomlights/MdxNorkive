@@ -8,18 +8,17 @@ import {
 import { AdvancedIndex, createSearchAPI } from "fumadocs-core/search/server";
 import { tokenize } from "@/modules/common/search/tokenizer";
 
-// it should be cached forever
 /**
- * revalidate = false의 효과
-빌드 타임에 한 번만 실행: 모든 페이지 데이터를 한 번만 가져와서 인덱스 생성
-캐시 영구 보존: 생성된 검색 인덱스를 계속 재사용
-성능 향상: 매번 새로운 검색 인덱스를 만들지 않음
-비용 절약: 불필요한 API 호출과 데이터 처리 방지
-만약 revalidate = false를 설정하지 않으면
-매번 검색 요청마다 새로운 인덱스 생성
-페이지 데이터를 다시 가져오고 처리
-검색 속도가 느려짐
-서버 리소스 낭비
+ * revalidate = true?
+ *  검색 요청마다 새롭게 인덱스를 생성 & 페이지 데이터를 가져오면서 검색 속도가 느려지고 서버 리소스 낭비 하게 됨.
+ *
+ * revalidate = false의 효과 => 빌드 타임에 한 번만 실행하고 캐시 영구 보존하여 성능 향상 & 비용 절약 가능.
+ * 1. 빌드 타임에 한 번만 실행: 모든 페이지 데이터를 한 번만 가져와서 인덱스 생성하고 캐시 영구 보존하여 성능 향상
+ * 2. 캐시 영구 보존: 생성된 검색 인덱스를 계속 재사용
+ * 3. 성능 향상: 매번 새로운 검색 인덱스를 만들지 않음
+ * 4. 비용 절약: 불필요한 API 호출과 데이터 처리 방지
+ *
+ *
  */
 export const revalidate = false;
 

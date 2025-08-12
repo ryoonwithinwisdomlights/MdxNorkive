@@ -1,6 +1,4 @@
 "use client";
-import { BLOG } from "@/blog.config";
-import { GeneralSiteSettingsProps } from "@/types";
 import {
   createContext,
   ReactNode,
@@ -9,6 +7,8 @@ import {
   useRef,
   useState,
 } from "react";
+import { BLOG } from "@/blog.config";
+import { GeneralSiteSettingsProps, TOCItemType } from "@/types";
 
 import {
   generateLocaleDict,
@@ -18,8 +18,7 @@ import {
 } from "@/lib/utils/lang";
 import { initDarkMode, setThemeByLocalStorage } from "@/lib/utils/theme";
 import { toast } from "sonner";
-import { TOCItemType } from "fumadocs-core/server";
-
+import NextNProgress from "nextjs-progressbar";
 const GeneralSiteSettings = createContext<GeneralSiteSettingsProps | null>(
   null
 );
@@ -151,6 +150,7 @@ export const GeneralSiteSettingsProvider: React.FC<{
   return (
     <GeneralSiteSettings.Provider value={value}>
       {children}
+      <NextNProgress />
     </GeneralSiteSettings.Provider>
   );
 };

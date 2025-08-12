@@ -16,16 +16,11 @@ export async function generateStaticParams() {
 
 export default async function Page({ params, searchParams }: TotalPageParams) {
   const { categoryName } = await params;
-  const { pagenum } = await searchParams;
-  const decodedName = decodeURIComponent(categoryName);
+  // const { pagenum } = await searchParams;
+  // const decodedName = decodeURIComponent(categoryName);
   if (!categoryName) {
     <ErrorComponent />;
   }
-  //   const result = await getCategoryAndTagPageById({
-  //     decodedName: decodedName,
-  //     pageProperty: "category",
-  //     pagenum: pagenum !== undefined ? pagenum : 1,
-  //   });
 
   return (
     <GeneralRecordTypePageWrapper>

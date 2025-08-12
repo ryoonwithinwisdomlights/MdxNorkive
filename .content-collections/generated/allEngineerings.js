@@ -10,8 +10,8 @@ export default [
     "password": "",
     "type": "ENGINEERINGS",
     "description": "",
-    "date": new Date("2025-07-14T00:00:00.000Z"),
-    "lastEditedDate": new Date("2025-08-09T14:49:00.000Z"),
+    "date": "2025-07-14T00:00:00.000Z",
+    "lastEditedDate": "2025-08-09T14:49:00.000Z",
     "sub_type": "TIL",
     "category": "TIL",
     "tags": [

@@ -13,8 +13,8 @@ export async function generateStaticParams() {
 
 export default async function Page({ params, searchParams }: TotalPageParams) {
   const { tagName } = await params;
-  const { pagenum } = await searchParams;
-  const decodedName = decodeURIComponent(tagName);
+  // const { pagenum } = await searchParams;
+  // const decodedName = decodeURIComponent(tagName);
   if (!tagName) {
     <ErrorComponent />;
   }

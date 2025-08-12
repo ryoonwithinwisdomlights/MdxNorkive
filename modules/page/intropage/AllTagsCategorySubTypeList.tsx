@@ -9,15 +9,8 @@ import { ChevronLeft } from "lucide-react";
 import PaginationSimple from "@/modules/page/components/PaginationSimple";
 import SubstringedTitleNav from "@/modules/common/SubstringedTitleNav";
 import NavPostListEmpty from "@/modules/common/NavPostListEmpty";
-/**
- * Archive list pagination table
- * @param page current page
- * @param records All Archives
- * @param tags All tags
- * @returns {JSX.Element}
- * @constructor
- */
-const AllRecordsList = ({
+
+const AllTagsCategorySubTypeList = ({
   pagenum = 1,
   allPages = [],
   pageCount,
@@ -64,4 +57,4 @@ const AllRecordsList = ({
   );
 };
 
-export default AllRecordsList;
+export default AllTagsCategorySubTypeList;

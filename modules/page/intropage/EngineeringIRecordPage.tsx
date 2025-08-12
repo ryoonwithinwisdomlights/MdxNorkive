@@ -2,12 +2,13 @@
 import { engineeringSource } from "@/lib/source";
 import EngineeringIntro from "@/modules/page/intropage/intro/EngineeringIntro";
 import RecordsBodyWithTwoOptions from "./body/RecordsBodyWithTwoOptions";
+import { generalIntroPageClass } from "@/types";
 
 const EngineeringIRecordPage = () => {
   const pages = engineeringSource.getPages();
 
   return (
-    <div className="w-full max-w-6xl mx-auto flex flex-col items-center p-10 gap-10">
+    <div className={generalIntroPageClass}>
       <EngineeringIntro />
       <RecordsBodyWithTwoOptions records={pages} />
     </div>
