@@ -135,10 +135,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
                 <div className="flex items-center gap-2 text-white">
                   <CalendarIcon className="w-4 h-4" />
                   <span className="text-sm">
-                    {getYearMonthDay(
-                      page.data.date,
-                      locale.LOCALE === "kr-KR" ? "kr-KR" : "en-US"
-                    )}{" "}
+                    {getYearMonthDay(page.data.date, locale.LOCALE)}{" "}
                     {getDistanceFromToday(page.data.date, lang)}
                   </span>
                 </div>

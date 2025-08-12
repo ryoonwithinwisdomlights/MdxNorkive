@@ -29,10 +29,12 @@ export function formatDateFmt(timestamp, fmt) {
   return fmt.trim();
 }
 
-export const getYearMonthDay = (date: Date | string, lang: string) => {
-  // console.log(lang);
-  // const locale = lang === "ko" ? ko : enUS;
-  const formatString = lang === "kr-KR" ? "yyyy년 LL월 dd일" : "yyyy-LL-dd";
+export const getYearMonthDay = (date: Date | string, locale: string) => {
+  const formats = {
+    "kr-KR": "yyyy년 LL월 dd일",
+    "en-US": "yyyy-LL-dd",
+  };
+  const formatString = formats[locale] || "yyyy-LL-dd";
   return format(new Date(date), formatString);
 };
 

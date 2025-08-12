@@ -1,6 +1,7 @@
 import { BLOG } from "@/blog.config";
 import { formatDateFmt, getDistanceFromToday, getYearMonthDay } from "./date";
 import { TransferedDataProps } from "@/types";
+import { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
 
 /**
  * 사용자 친화적 슬러그 생성 (sub_type-title, 한글/영어/숫자만, 중복 방지)
@@ -62,7 +63,6 @@ export function setPageGroupedByDate(array) {
 }
 
 export function getMainRecentRecords(pages: any, lang: string, sliceNum = 6) {
-  // console.log("pages:", pages);
   const sortedPage = pages
     .sort((a, b) => {
       return (
@@ -128,4 +128,35 @@ export const paginationString = (
       locale.PAGINATION.OF
     } ${totalPages}`;
   }
+};
+
+export const pageOptionsGenerator = (
+  source: any,
+  title?: string
+): DocsLayoutProps => {
+  const baseOptions: Partial<DocsLayoutProps> = {
+    nav: {
+      title: title,
+      //   <>
+      //   <LazyImage
+      //     src={BLOG.AVATAR}
+      //     width={24}
+      //     height={24}
+      //     alt={BLOG.AUTHOR}
+      //     className="mr-2  "
+      //   />
+      //   {BLOG.TITLE}
+      // </>
+    },
+    links: [],
+  };
+
+  return {
+    ...baseOptions,
+    tree: source.getPageTree(),
+    nav: {
+      ...baseOptions.nav,
+      transparentMode: "none",
+    },
+  };
 };

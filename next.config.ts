@@ -85,7 +85,7 @@ const baseConfig: NextConfig = {
   },
   webpack: (config, { dev, isServer }) => {
     config.resolve.alias["@"] = path.resolve(__dirname);
-    if (process.env.NODE_ENV === "development") {
+    if (process.env.NODE_ENV_API === "development") {
       config.devtool = "source-map";
     }
 

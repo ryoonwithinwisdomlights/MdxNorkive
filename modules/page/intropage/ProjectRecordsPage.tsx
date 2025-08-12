@@ -8,7 +8,7 @@ const ProjectRecordsPage = () => {
   const pages = projectSource.getPages();
 
   return (
-    <div className={generalIntroPageClass}>
+    <div className={generalIntroPageClass({ className: "" })}>
       <ProjectIntro />
       <RecordsBodyWithTwoOptions records={pages} />
     </div>

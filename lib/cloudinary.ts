@@ -1,17 +1,13 @@
-import "dotenv/config";
-import { config } from "dotenv";
-import path from "path";
-import { v2 as cloudinary } from "cloudinary";
+import { EXTERNAL_CONFIG } from "@/config/external.config";
 import { CloudinaryUploadResult } from "@/types/cloudinaty.model";
-
-// .env.local 파일을 명시적으로 로드
-config({ path: path.resolve(process.cwd(), ".env.local") });
+import { v2 as cloudinary } from "cloudinary";
 
 // Cloudinary 설정
 const cloudinaryConfig = {
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
-  api_key: process.env.CLOUDINARY_API_KEY!,
-  api_secret: process.env.CLOUDINARY_API_SECRET!,
+  cloud_name: EXTERNAL_CONFIG.CLOUDINARY_CLOUD_NAME,
+  api_key: EXTERNAL_CONFIG.CLOUDINARY_API_KEY,
+  api_secret: EXTERNAL_CONFIG.CLOUDINARY_API_SECRET,
+  folder: EXTERNAL_CONFIG.CLOUDINARY_UPLOAD_FOLDER,
 };
 
 // 설정 확인 및 초기화
@@ -64,7 +60,7 @@ export async function uploadImageToCloudinary(
     // 업로드 옵션 설정
     const uploadOptions: any = {
       resource_type: "image",
-      folder: process.env.CLOUDINARY_UPLOAD_FOLDER!,
+      folder: cloudinaryConfig.folder,
       public_id: `${Date.now()}-${fileName.replace(/\.[^/.]+$/, "")}`,
       overwrite: false,
     };
@@ -114,7 +110,7 @@ export async function uploadImageFromUrl(
 
     // Cloudinary에 업로드
     return await uploadImageToCloudinary(imageBuffer, fileName, {
-      folder: process.env.CLOUDINARY_UPLOAD_FOLDER!,
+      folder: cloudinaryConfig.folder,
       // transformation: "f_auto,q_auto", // 자동 포맷, 자동 품질 (일부 계정에서 지원되지 않을 수 있음)
     });
   } catch (error) {
@@ -187,7 +183,7 @@ export async function uploadPdfToCloudinary(
     // 업로드 옵션 설정
     const uploadOptions: any = {
       resource_type: "raw",
-      folder: process.env.CLOUDINARY_UPLOAD_FOLDER!,
+      folder: cloudinaryConfig.folder,
       public_id: `${Date.now()}-${fileName.replace(/\.pdf$/, "")}`,
       overwrite: false,
     };
@@ -232,7 +228,7 @@ export async function uploadPdfFromUrl(
 
     // Cloudinary에 업로드
     return await uploadPdfToCloudinary(pdfBuffer, fileName, {
-      folder: process.env.CLOUDINARY_UPLOAD_FOLDER!,
+      folder: cloudinaryConfig.folder,
     });
   } catch (error) {
     console.error("URL에서 PDF Cloudinary 업로드 실패:", error);

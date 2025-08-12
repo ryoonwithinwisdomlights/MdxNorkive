@@ -1,10 +1,10 @@
+import { EXTERNAL_CONFIG } from "@/config/external.config";
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
-import { DEV_CONFIG } from "@/config/dev.config";
 
-const NOTION_ACCESS_TOKEN = DEV_CONFIG.NOTION_ACCESS_TOKEN!;
+const NOTION_ACCESS_TOKEN = EXTERNAL_CONFIG.NOTION_ACCESS_TOKEN!;
 
-export const NOTION_DATABASE_ID = DEV_CONFIG.NOTION_DATABASE_ID!;
+export const NOTION_DATABASE_ID = EXTERNAL_CONFIG.NOTION_DATABASE_ID!;
 
 export const notion = new Client({
   auth: NOTION_ACCESS_TOKEN,

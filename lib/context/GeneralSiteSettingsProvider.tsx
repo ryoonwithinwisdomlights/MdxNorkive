@@ -6,6 +6,7 @@ import {
   useEffect,
   useRef,
   useState,
+  useCallback,
 } from "react";
 import { BLOG } from "@/blog.config";
 import { GeneralSiteSettingsProps, TOCItemType } from "@/types";
@@ -20,7 +21,7 @@ import {
 } from "@/lib/utils";
 
 import { toast } from "sonner";
-import NextNProgress from "nextjs-progressbar";
+
 const GeneralSiteSettings = createContext<GeneralSiteSettingsProps | null>(
   null
 );
@@ -44,7 +45,7 @@ export const GeneralSiteSettingsProvider: React.FC<{
 
   const [rightSideInfoBarMode, changeRightSideInfoBarMode] = useState<
     "info" | "author"
-  >("info");
+  >("author");
   const [isMobileTopNavOpen, changeMobileTopNavOpen] = useState<boolean>(false);
 
   const [isMobileLeftSidebarOpen, changeMobileLeftSidebarOpen] =
@@ -101,9 +102,12 @@ export const GeneralSiteSettingsProvider: React.FC<{
   const handleSettings = () => {
     SetSettingState((prev) => !prev);
   };
-  const handleChangeRightSideInfoBarMode = (newMode: "info" | "author") => {
-    changeRightSideInfoBarMode(newMode);
-  };
+  const handleChangeRightSideInfoBarMode = useCallback(
+    (newMode: "info" | "author") => {
+      changeRightSideInfoBarMode(newMode);
+    },
+    []
+  );
   const value: GeneralSiteSettingsProps = {
     onLoading,
     setOnLoading,
@@ -152,7 +156,6 @@ export const GeneralSiteSettingsProvider: React.FC<{
   return (
     <GeneralSiteSettings.Provider value={value}>
       {children}
-      <NextNProgress />
     </GeneralSiteSettings.Provider>
   );
 };

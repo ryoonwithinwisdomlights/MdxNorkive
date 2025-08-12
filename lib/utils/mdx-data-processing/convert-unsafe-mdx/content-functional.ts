@@ -154,6 +154,25 @@ const createContext = (): ProcessingContext => ({
   blockquoteIndex: 0,
 });
 
+// HTML 엔티티를 원래 태그로 디코딩하는 함수
+const decodeHtmlEntities = (content: string): string => {
+  return content
+    .replace(/&lt;strong&gt;/g, "<strong>")
+    .replace(/&lt;\/strong&gt;/g, "</strong>")
+    .replace(/&lt;em&gt;/g, "<em>")
+    .replace(/&lt;\/em&gt;/g, "</em>")
+    .replace(/&lt;code&gt;/g, "<code>")
+    .replace(/&lt;\/code&gt;/g, "</code>")
+    .replace(/&lt;a\s+href=/g, "<a href=")
+    .replace(/&lt;\/a&gt;/g, "</a>")
+    .replace(/&lt;b&gt;/g, "<b>")
+    .replace(/&lt;\/b&gt;/g, "</b>")
+    .replace(/&lt;i&gt;/g, "<i>")
+    .replace(/&lt;\/i&gt;/g, "</i>")
+    .replace(/&lt;u&gt;/g, "<u>")
+    .replace(/&lt;\/u&gt;/g, "</u>");
+};
+
 // ===== 콘텐츠 보호 함수들 =====
 const protectCodeBlocks: ContentTransformer = (content, context) => {
   return content.replace(MDX_CONTENT_PATTERNS.CODE_BLOCK, (match) => {
@@ -225,9 +244,7 @@ const fixTableBlocks = (content: string): string => {
   return content.replace(MDX_CONTENT_PATTERNS.TABLE, (tableMatch) => {
     return tableMatch.replace(/\|([^|]*)\|/g, (cellMatch, cellContent) => {
       // 1단계: 이미 HTML 엔티티로 변환된 허용된 태그들을 원래대로 되돌리기
-      let sanitizedContent = cellContent;
-      // .replace(/&lt;strong&gt;/g, "<strong>")
-      // .replace(/&lt;\/strong&gt;/g, "</strong>");
+      let sanitizedContent = decodeHtmlEntities(cellContent);
 
       // 2단계: 테이블 셀 내부의 HTML 태그들을 안전하게 이스케이프
       sanitizedContent = sanitizedContent.replace(
@@ -263,6 +280,10 @@ const fixTableBlocks = (content: string): string => {
           return `&lt;${tagContent}&gt;`;
         }
       );
+
+      // 3단계: 테이블 셀 끝에 잘못된 태그가 있는지 확인하고 정리
+      sanitizedContent = sanitizedContent.replace(/\|\<\/strong\>+$/, "");
+
       return `|${sanitizedContent}|`;
     });
   });
@@ -437,6 +458,7 @@ const contentTransformPipeline = (context: ProcessingContext) =>
     fixUnclosedTags,
     sanitizeUnsafeTags,
     (content: string) => restoreProtectedContent(content, context),
+    decodeHtmlEntities, // HTML 엔티티를 원래 태그로 디코딩
     (content: string) => content.replace(MDX_CONTENT_PATTERNS.MDX_EXTENSION, "") // MDX 확장 문법 제거
   );
 

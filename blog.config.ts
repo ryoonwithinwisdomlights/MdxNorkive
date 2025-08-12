@@ -8,9 +8,6 @@ import { SITE_CONFIG } from "@/config/site.config";
 
 export const BLOG = {
   APP_NAME: "Norkive",
-  NOTION_DATABASE_ID: process.env.NOTION_DATABASE_ID,
-  NOTION_ACTIVE_USER: process.env.NOTION_ACTIVE_USER || "",
-  NOTION_ACCESS_TOKEN: process.env.NOTION_ACCESS_TOKEN, // Useful if you prefer not to make your database public
   LANG: process.env.NEXT_PUBLIC_LANG || "kr-KR", // e.g ,'en-US'  see /lib/constants for more.
   SINCE: process.env.NEXT_PUBLIC_SINCE || 2024, // e.g if leave this empty, current year will be used.
 

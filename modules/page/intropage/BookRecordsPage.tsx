@@ -16,7 +16,7 @@ const BookRecordsPage = () => {
   const isAble = isObjectNotEmpty(pages);
   const modAllPages = setAllPagesGetSortedGroupedByDate(pages);
   return (
-    <div className={generalIntroPageClass}>
+    <div className={generalIntroPageClass({ className: "" })}>
       <BookIntro />
       <BookGeneralRecordsBody
         modAllPages={modAllPages}

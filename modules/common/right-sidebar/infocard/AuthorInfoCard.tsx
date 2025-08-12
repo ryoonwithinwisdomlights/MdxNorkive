@@ -11,7 +11,7 @@ const AuthorInfoCard = () => {
   const { tocContent } = useGeneralSiteSettings();
 
   return (
-    <div className=" items-center justify-center flex flex-col gap-2">
+    <div className="w-full  items-center justify-center flex flex-col gap-2">
       {tocContent.length > 0 && (
         <InlineTocCustomed
           items={tocContent}

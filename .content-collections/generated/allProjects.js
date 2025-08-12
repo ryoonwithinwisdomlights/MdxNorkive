@@ -246,8 +246,8 @@ export default [
     "title": "[Giving] 24.05 주임신부님 영명축일 기념 포스터 제작",
     "icon": "",
     "full": false,
-    "summary": "Hey-Taxi(헤이택시) is a Full Stack Next.Js 13 ver. Taxi Booking App w/ NextJs, React.js, Tailwindcss, Mapbox and Stripe",
-    "pageCover": "https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641075/norkive-notion-images/1754641074860-KakaoTalk_Photo_2024-06-19-21-11-02.jpg",
+    "summary": "",
+    "pageCover": "https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004642/norkive-notion-images/1755004642071-KakaoTalk_Photo_2024-06-19-21-11-02.jpg",
     "password": "",
     "type": "PROJECTS",
     "description": "",
@@ -262,13 +262,13 @@ export default [
     ],
     "draft": false,
     "favorite": true,
-    "readingTime": 1,
-    "wordCount": 35,
-    "lastModified": "2025-08-08",
+    "readingTime": 7,
+    "wordCount": 1216,
+    "lastModified": "2025-08-12",
     "version": "1.0.0",
     "status": "published",
-    "author": "ryoon",
-    "content": "# AS IS\n\n\n![KakaoTalk_Photo_2024-06-19-21-08-51.png](https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641067/norkive-notion-images/1754641067687-KakaoTalk_Photo_2024-06-19-21-08-51.png)\n\n\n![KakaoTalk_Photo_2024-06-19-21-12-25_003.png](https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641069/norkive-notion-images/1754641069019-KakaoTalk_Photo_2024-06-19-21-12-25_003.png)\n\n\n# TO BE\n\n\n![KakaoTalk_Photo_2024-06-19-22-55-37_021.jpeg](https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641070/norkive-notion-images/1754641070424-KakaoTalk_Photo_2024-06-19-22-55-37_021.jpg)\n\n\n![KakaoTalk_Photo_2024-06-19-21-12-25_002.jpeg](https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641071/norkive-notion-images/1754641071668-KakaoTalk_Photo_2024-06-19-21-12-25_002.jpg)\n\n\n![KakaoTalk_Photo_2024-06-19-21-11-02.jpeg](https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641073/norkive-notion-images/1754641073132-KakaoTalk_Photo_2024-06-19-21-11-02.jpg)\n\n\n\n홍보부 동아리 아이들과 다 같이 제작한 포스터이다. “아이들이 만든 것과 같은 느낌이 나는 포스터”를 원하시다는 니즈에 맞춰 조금은 엉성하고 어설픈 느낌이 나도 그대로 두었다. 크레파스가 번진 자국도, 서투르게 칠한 색연필 자국도 지워지지 않은 데생의 흔적도 모두 아름답다. 어려웠을텐데도 의도대로 잘 따라와주고 즐겁게 작업을 함께 해준 나의 10대 어린 친구들에게 감사하다.",
+    "author": "ryoonwithinwisdomlights",
+    "content": "# AS IS\n\n\n![KakaoTalk_Photo_2024-06-19-21-08-51.png](https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004633/norkive-notion-images/1755004632998-KakaoTalk_Photo_2024-06-19-21-08-51.png)\n\n\n![KakaoTalk_Photo_2024-06-19-21-12-25_003.png](https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004635/norkive-notion-images/1755004634814-KakaoTalk_Photo_2024-06-19-21-12-25_003.png)\n\n\n# TO BE\n\n\n![KakaoTalk_Photo_2024-06-19-22-55-37_021.jpeg](https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004636/norkive-notion-images/1755004636447-KakaoTalk_Photo_2024-06-19-22-55-37_021.jpg)\n\n\n![KakaoTalk_Photo_2024-06-19-21-12-25_002.jpeg](https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004638/norkive-notion-images/1755004637938-KakaoTalk_Photo_2024-06-19-21-12-25_002.jpg)\n\n\n![KakaoTalk_Photo_2024-06-19-21-11-02.jpeg](https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004640/norkive-notion-images/1755004639911-KakaoTalk_Photo_2024-06-19-21-11-02.jpg)\n\n\n\n홍보부 동아리 아이들과 다 같이 제작한 포스터이다. “아이들이 만든 것과 같은 느낌이 나는 포스터”를 원하시다는 니즈에 맞춰 조금은 엉성하고 어설픈 느낌이 나도 그대로 두었다. 크레파스가 번진 자국도, 서투르게 칠한 색연필 자국도 지워지지 않은 데생의 흔적도 모두 아름답다. 어려웠을텐데도 의도대로 잘 따라와주고 즐겁게 작업을 함께 해준 나의 10대 어린 친구들에게 감사하다.",
     "_meta": {
       "filePath": "projects-Giving-24-05-주임신부님-영명축일-기념-포스터.mdx",
       "fileName": "projects-Giving-24-05-주임신부님-영명축일-기념-포스터.mdx",
@@ -306,7 +306,135 @@ export default [
         }
       ]
     },
-    "body": "var Component=(()=>{var c=Object.create;var e=Object.defineProperty;var _=Object.getOwnPropertyDescriptor;var m=Object.getOwnPropertyNames;var p=Object.getPrototypeOf,k=Object.prototype.hasOwnProperty;var u=(a,o)=>()=>(o||a((o={exports:{}}).exports,o),o.exports),j=(a,o)=>{for(var n in o)e(a,n,{get:o[n],enumerable:!0})},r=(a,o,n,d)=>{if(o&&typeof o==\"object\"||typeof o==\"function\")for(let i of m(o))!k.call(a,i)&&i!==n&&e(a,i,{get:()=>o[i],enumerable:!(d=_(o,i))||d.enumerable});return a};var y=(a,o,n)=>(n=a!=null?c(p(a)):{},r(o||!a||!a.__esModule?e(n,\"default\",{value:a,enumerable:!0}):n,a)),T=a=>r(e({},\"__esModule\",{value:!0}),a);var l=u((P,h)=>{h.exports=_jsx_runtime});var v={};j(v,{default:()=>g});var t=y(l());function s(a){let o={h1:\"h1\",img:\"img\",p:\"p\",...a.components};return(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)(o.h1,{id:\"as-is\",children:\"AS IS\"}),`\n`,(0,t.jsx)(o.p,{children:(0,t.jsx)(o.img,{alt:\"KakaoTalk_Photo_2024-06-19-21-08-51.png\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641067/norkive-notion-images/1754641067687-KakaoTalk_Photo_2024-06-19-21-08-51.png\",width:\"1230\",height:\"1032\"})}),`\n`,(0,t.jsx)(o.p,{children:(0,t.jsx)(o.img,{alt:\"KakaoTalk_Photo_2024-06-19-21-12-25_003.png\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641069/norkive-notion-images/1754641069019-KakaoTalk_Photo_2024-06-19-21-12-25_003.png\",width:\"1104\",height:\"1120\"})}),`\n`,(0,t.jsx)(o.h1,{id:\"to-be\",children:\"TO BE\"}),`\n`,(0,t.jsx)(o.p,{children:(0,t.jsx)(o.img,{alt:\"KakaoTalk_Photo_2024-06-19-22-55-37_021.jpeg\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641070/norkive-notion-images/1754641070424-KakaoTalk_Photo_2024-06-19-22-55-37_021.jpg\",width:\"1440\",height:\"1081\"})}),`\n`,(0,t.jsx)(o.p,{children:(0,t.jsx)(o.img,{alt:\"KakaoTalk_Photo_2024-06-19-21-12-25_002.jpeg\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641071/norkive-notion-images/1754641071668-KakaoTalk_Photo_2024-06-19-21-12-25_002.jpg\",width:\"1080\",height:\"1440\"})}),`\n`,(0,t.jsx)(o.p,{children:(0,t.jsx)(o.img,{alt:\"KakaoTalk_Photo_2024-06-19-21-11-02.jpeg\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641073/norkive-notion-images/1754641073132-KakaoTalk_Photo_2024-06-19-21-11-02.jpg\",width:\"2331\",height:\"2068\"})}),`\n`,(0,t.jsx)(o.p,{children:\"\\uD64D\\uBCF4\\uBD80 \\uB3D9\\uC544\\uB9AC \\uC544\\uC774\\uB4E4\\uACFC \\uB2E4 \\uAC19\\uC774 \\uC81C\\uC791\\uD55C \\uD3EC\\uC2A4\\uD130\\uC774\\uB2E4. \\u201C\\uC544\\uC774\\uB4E4\\uC774 \\uB9CC\\uB4E0 \\uAC83\\uACFC \\uAC19\\uC740 \\uB290\\uB08C\\uC774 \\uB098\\uB294 \\uD3EC\\uC2A4\\uD130\\u201D\\uB97C \\uC6D0\\uD558\\uC2DC\\uB2E4\\uB294 \\uB2C8\\uC988\\uC5D0 \\uB9DE\\uCDB0 \\uC870\\uAE08\\uC740 \\uC5C9\\uC131\\uD558\\uACE0 \\uC5B4\\uC124\\uD508 \\uB290\\uB08C\\uC774 \\uB098\\uB3C4 \\uADF8\\uB300\\uB85C \\uB450\\uC5C8\\uB2E4. \\uD06C\\uB808\\uD30C\\uC2A4\\uAC00 \\uBC88\\uC9C4 \\uC790\\uAD6D\\uB3C4, \\uC11C\\uD22C\\uB974\\uAC8C \\uCE60\\uD55C \\uC0C9\\uC5F0\\uD544 \\uC790\\uAD6D\\uB3C4 \\uC9C0\\uC6CC\\uC9C0\\uC9C0 \\uC54A\\uC740 \\uB370\\uC0DD\\uC758 \\uD754\\uC801\\uB3C4 \\uBAA8\\uB450 \\uC544\\uB984\\uB2F5\\uB2E4. \\uC5B4\\uB824\\uC6E0\\uC744\\uD150\\uB370\\uB3C4 \\uC758\\uB3C4\\uB300\\uB85C \\uC798 \\uB530\\uB77C\\uC640\\uC8FC\\uACE0 \\uC990\\uAC81\\uAC8C \\uC791\\uC5C5\\uC744 \\uD568\\uAED8 \\uD574\\uC900 \\uB098\\uC758 10\\uB300 \\uC5B4\\uB9B0 \\uCE5C\\uAD6C\\uB4E4\\uC5D0\\uAC8C \\uAC10\\uC0AC\\uD558\\uB2E4.\"})]})}function g(a={}){let{wrapper:o}=a.components||{};return o?(0,t.jsx)(o,{...a,children:(0,t.jsx)(s,{...a})}):s(a)}return T(v);})();\n;return Component;"
+    "body": "var Component=(()=>{var c=Object.create;var e=Object.defineProperty;var _=Object.getOwnPropertyDescriptor;var m=Object.getOwnPropertyNames;var p=Object.getPrototypeOf,k=Object.prototype.hasOwnProperty;var u=(a,o)=>()=>(o||a((o={exports:{}}).exports,o),o.exports),j=(a,o)=>{for(var n in o)e(a,n,{get:o[n],enumerable:!0})},r=(a,o,n,d)=>{if(o&&typeof o==\"object\"||typeof o==\"function\")for(let i of m(o))!k.call(a,i)&&i!==n&&e(a,i,{get:()=>o[i],enumerable:!(d=_(o,i))||d.enumerable});return a};var y=(a,o,n)=>(n=a!=null?c(p(a)):{},r(o||!a||!a.__esModule?e(n,\"default\",{value:a,enumerable:!0}):n,a)),T=a=>r(e({},\"__esModule\",{value:!0}),a);var l=u((P,h)=>{h.exports=_jsx_runtime});var v={};j(v,{default:()=>g});var t=y(l());function s(a){let o={h1:\"h1\",img:\"img\",p:\"p\",...a.components};return(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)(o.h1,{id:\"as-is\",children:\"AS IS\"}),`\n`,(0,t.jsx)(o.p,{children:(0,t.jsx)(o.img,{alt:\"KakaoTalk_Photo_2024-06-19-21-08-51.png\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004633/norkive-notion-images/1755004632998-KakaoTalk_Photo_2024-06-19-21-08-51.png\",width:\"1230\",height:\"1032\"})}),`\n`,(0,t.jsx)(o.p,{children:(0,t.jsx)(o.img,{alt:\"KakaoTalk_Photo_2024-06-19-21-12-25_003.png\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004635/norkive-notion-images/1755004634814-KakaoTalk_Photo_2024-06-19-21-12-25_003.png\",width:\"1104\",height:\"1120\"})}),`\n`,(0,t.jsx)(o.h1,{id:\"to-be\",children:\"TO BE\"}),`\n`,(0,t.jsx)(o.p,{children:(0,t.jsx)(o.img,{alt:\"KakaoTalk_Photo_2024-06-19-22-55-37_021.jpeg\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004636/norkive-notion-images/1755004636447-KakaoTalk_Photo_2024-06-19-22-55-37_021.jpg\",width:\"1440\",height:\"1081\"})}),`\n`,(0,t.jsx)(o.p,{children:(0,t.jsx)(o.img,{alt:\"KakaoTalk_Photo_2024-06-19-21-12-25_002.jpeg\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004638/norkive-notion-images/1755004637938-KakaoTalk_Photo_2024-06-19-21-12-25_002.jpg\",width:\"1080\",height:\"1440\"})}),`\n`,(0,t.jsx)(o.p,{children:(0,t.jsx)(o.img,{alt:\"KakaoTalk_Photo_2024-06-19-21-11-02.jpeg\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004640/norkive-notion-images/1755004639911-KakaoTalk_Photo_2024-06-19-21-11-02.jpg\",width:\"2331\",height:\"2068\"})}),`\n`,(0,t.jsx)(o.p,{children:\"\\uD64D\\uBCF4\\uBD80 \\uB3D9\\uC544\\uB9AC \\uC544\\uC774\\uB4E4\\uACFC \\uB2E4 \\uAC19\\uC774 \\uC81C\\uC791\\uD55C \\uD3EC\\uC2A4\\uD130\\uC774\\uB2E4. \\u201C\\uC544\\uC774\\uB4E4\\uC774 \\uB9CC\\uB4E0 \\uAC83\\uACFC \\uAC19\\uC740 \\uB290\\uB08C\\uC774 \\uB098\\uB294 \\uD3EC\\uC2A4\\uD130\\u201D\\uB97C \\uC6D0\\uD558\\uC2DC\\uB2E4\\uB294 \\uB2C8\\uC988\\uC5D0 \\uB9DE\\uCDB0 \\uC870\\uAE08\\uC740 \\uC5C9\\uC131\\uD558\\uACE0 \\uC5B4\\uC124\\uD508 \\uB290\\uB08C\\uC774 \\uB098\\uB3C4 \\uADF8\\uB300\\uB85C \\uB450\\uC5C8\\uB2E4. \\uD06C\\uB808\\uD30C\\uC2A4\\uAC00 \\uBC88\\uC9C4 \\uC790\\uAD6D\\uB3C4, \\uC11C\\uD22C\\uB974\\uAC8C \\uCE60\\uD55C \\uC0C9\\uC5F0\\uD544 \\uC790\\uAD6D\\uB3C4 \\uC9C0\\uC6CC\\uC9C0\\uC9C0 \\uC54A\\uC740 \\uB370\\uC0DD\\uC758 \\uD754\\uC801\\uB3C4 \\uBAA8\\uB450 \\uC544\\uB984\\uB2F5\\uB2E4. \\uC5B4\\uB824\\uC6E0\\uC744\\uD150\\uB370\\uB3C4 \\uC758\\uB3C4\\uB300\\uB85C \\uC798 \\uB530\\uB77C\\uC640\\uC8FC\\uACE0 \\uC990\\uAC81\\uAC8C \\uC791\\uC5C5\\uC744 \\uD568\\uAED8 \\uD574\\uC900 \\uB098\\uC758 10\\uB300 \\uC5B4\\uB9B0 \\uCE5C\\uAD6C\\uB4E4\\uC5D0\\uAC8C \\uAC10\\uC0AC\\uD558\\uB2E4.\"})]})}function g(a={}){let{wrapper:o}=a.components||{};return o?(0,t.jsx)(o,{...a,children:(0,t.jsx)(s,{...a})}):s(a)}return T(v);})();\n;return Component;"
+  },
+  {
+    "notionId": "500857953e6d4991b119398d0f1b0f43",
+    "title": "[Giving] 24.06 부주임신부님 영명축일 기념 롤링페이퍼 제작",
+    "icon": "",
+    "full": false,
+    "summary": "",
+    "pageCover": "https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004629/norkive-notion-images/1755004629562-E1_84_89_E1_85_B3_E1_84_8F_E1_85_B3_E1_84_85_E1_85_B5_E1_86_AB_E1_84_89_E1_85_A3_E1_86_BA_2024-06-19_E1_84_8B_E1_85_A9_E1_84_92_E1_85_AE_9.16.27.png",
+    "password": "",
+    "type": "PROJECTS",
+    "description": "",
+    "date": "2024-06-18T00:00:00.000Z",
+    "lastEditedDate": "2025-08-05T03:07:00.000Z",
+    "sub_type": "Product",
+    "category": "Product",
+    "tags": [
+      "신앙봉사",
+      "주일학교",
+      "영명축일"
+    ],
+    "draft": false,
+    "favorite": true,
+    "readingTime": 36,
+    "wordCount": 7052,
+    "lastModified": "2025-08-12",
+    "version": "1.0.0",
+    "status": "published",
+    "author": "ryoonwithinwisdomlights",
+    "content": "# 1. 참고 레퍼런스\n\n\n[전기가오리](https://philo-electro-ray.org/) - 천 논문도 한 문장부터 42호의 굿즈를 본 따 영명축일 롤링페이퍼를 제작하기로 했다.\n\n\n![KakaoTalk_Photo_2024-06-18-18-52-17_001.jpeg](https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004596/norkive-notion-images/1755004593689-KakaoTalk_Photo_2024-06-18-18-52-17_001.jpg)\n\n\n![KakaoTalk_Photo_2024-06-18-18-52-17_002.jpeg](https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004600/norkive-notion-images/1755004599611-KakaoTalk_Photo_2024-06-18-18-52-17_002.jpg)\n\n\n![KakaoTalk_Photo_2024-06-19-16-47-38.jpeg](https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004602/norkive-notion-images/1755004602225-KakaoTalk_Photo_2024-06-19-16-47-38.jpg)\n\n\n![그림1.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/056ff9f5-a9ef-486f-8acb-9eef51d06a2d/8262e9a3-3253-4af4-beda-c506a3a379ac/%E1%84%80%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B71.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466T3LNEC2O%2F20250812%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20250812T131624Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMz%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCeto%2FYry3szZ9kvJ2aVkLcpSbrGZu7j5NFUROdxdxGFwIgYXEKdjjquOFUuLRMUdzMxiUU7AIAHKlJfTOUVzmRFK0q%2FwMIFRAAGgw2Mzc0MjMxODM4MDUiDEnydawTa7icPa2sSyrcA1thilK2xVW4Q96j3noV%2F%2FcaB7KgeLHlNJc8siIC5L%2Fuec%2BJjqYxBSimldTFlmR5DzhEU%2F08W2bQ1f5381dfCKSzbubeY2b9sPieZ0SPy1bsfZ3Ip4zEDoSkaM9Fv22yqAKG7LnhIltFJNAzBhSWQprckVzia%2BdQgQw7UPw08klyeXmEjTk0oeDAMVB2Rj8DRtDQsDT54RXcyCdTgtKFS0V9WwxMRnz%2B5q4T8EcuMuq5RNCZs5JvJXaeyk82KsPyMtlwlXyrd4jFwx7TXgTrcs%2Fjxxkl6ol9iuZvfDPLmxTKlIoem33ZN%2B54oTxuYArlkglL7AF7slRjM9oImMeWru5%2Ft2EYormMpKb6tlZqm%2F9ShVSM76veSvP9wyOLA8ftcsRozGQ86%2B5lsCvRJzAVWXvmnexBsKe9Ph3ucDkG1zJZnwraNzgBL4cEQYKLLVDMRvhVCw1zRvmwcJJDMiDb0x6igpH1UnC%2BYrHvsWeXBs3%2FxYe31pocEXoeEqkhXIzOXvQS9uHrDajAnfkvK67Z%2FLBRfJhPkpt5wuc%2BVnVqIL0QWaNHDh0%2FUA37gJ9X1KDl4ufjfPbuABvFg127cIPKNUyMfQ4Cj%2BGWdb0wKZ%2BiV5Oy5FT50GHbLYCy%2FsAzML7W7MQGOqUBRRATBQFmYq6j%2F%2FiV0hpC%2F3ECCNLzWBC0XnTjnVmDiTVxjlM5LG6u9QYFm9k1znE1RNaS8HL1rKQ6r2yF15EvOuMqu9az2BMRZDOZ2QXfbHaCzwwf4QJEKWYgftIhbOK8KBdWmmVm27TEMN8zZ%2BT7VJuA6xCt2XhGDF%2BhohyRTdz1%2B2URKCQi7O96USCMQpFjTNnNBCWFTjqNf27yhbDRhTwW4aKb&X-Amz-Signature=9ae362497dde7bf8074154e2976fbe033f6c9a2af5ab44a39b3be8ceae4eb9cb&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)\n\n\n맨 오른쪽의 인트로 부터 시작해서 각기 다른 문장의 엇갈리는 중첩으로 전개되는 디자인을 착안하기로 했다.\n\n\n# 2. 제작 1차 ing\n\n- 오른쪽 Intro 부분은 신부님 인스타그램의 성경문구로 starting 포인트를 잡기로 결정\n- 1차 제작 예시안\n\n    ![KakaoTalk_Photo_2024-06-19-16-51-58.png](https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004607/norkive-notion-images/1755004606657-KakaoTalk_Photo_2024-06-19-16-51-58.png)\n\n- 인트로 디자인/배치 3개 선택 옵션 제시\n\n    ![KakaoTalk_Photo_2024-06-19-16-48-35_001.png](https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004608/norkive-notion-images/1755004608010-KakaoTalk_Photo_2024-06-19-16-48-35_001.png)\n\n\n    ![KakaoTalk_Photo_2024-06-19-16-48-35_002.png](https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004609/norkive-notion-images/1755004609315-KakaoTalk_Photo_2024-06-19-16-48-35_002.png)\n\n\n    ![KakaoTalk_Photo_2024-06-19-16-48-35_003.png](https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004611/norkive-notion-images/1755004610797-KakaoTalk_Photo_2024-06-19-16-48-35_003.png)\n\n- 최종 아래의 디자인으로 과반수 투표 선택완료\n\n    ![KakaoTalk_Photo_2024-06-19-16-52-33.png](https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004612/norkive-notion-images/1755004612355-KakaoTalk_Photo_2024-06-19-16-52-33.png)\n\n\n    그냥 a4용지에 인쇄하는 것은 그 질감 표현이 탁월하지 못할 것 같아서 조금 고민중이다. 또 봉투도 직접 인쇄해서 작업하는 편이 나을 것 같기도 하고. \n    \n    \n\n\n    [24.06.18_주임신부님_영명축일기념_롤링페이퍼.pptx](https://res.cloudinary.com/dyrdul1dd/raw/upload/v1755004626/norkive-notion-images/1755004625778-24.06.18_%E1%84%8C%E1%85%AE%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%89%E1%85%B5%E1%86%AB%E1%84%87%E1%85%AE%E1%84%82%E1%85%B5%E1%86%B7_%E1%84%8B%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A7%E1%86%BC%E1%84%8E%E1%85%AE%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%80%E1%85%B5%E1%84%82%E1%85%A7%E1%86%B7_%E1%84%85%E1%85%A9%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BC%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%A5.pptx)\n\n\n    음  봉투도안도 직접 제작해보자.\n\n- 롤링페이퍼 봉투 도안\n\n    ![스크린샷_2024-06-19_오후_5.35.10.png](https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004614/norkive-notion-images/1755004613812-E1_84_89_E1_85_B3_E1_84_8F_E1_85_B3_E1_84_85_E1_85_B5_E1_86_AB_E1_84_89_E1_85_A3_E1_86_BA_2024-06-19_E1_84_8B_E1_85_A9_E1_84_92_E1_85_AE_5.35.10.png)\n\n\n    ![스크린샷_2024-06-19_오후_5.35.04.png](https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004615/norkive-notion-images/1755004615116-E1_84_89_E1_85_B3_E1_84_8F_E1_85_B3_E1_84_85_E1_85_B5_E1_86_AB_E1_84_89_E1_85_A3_E1_86_BA_2024-06-19_E1_84_8B_E1_85_A9_E1_84_92_E1_85_AE_5.35.04.png)\n\n\n    ![스크린샷_2024-06-19_오후_5.34.55.png](https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004617/norkive-notion-images/1755004616743-E1_84_89_E1_85_B3_E1_84_8F_E1_85_B3_E1_84_85_E1_85_B5_E1_86_AB_E1_84_89_E1_85_A3_E1_86_BA_2024-06-19_E1_84_8B_E1_85_A9_E1_84_92_E1_85_AE_5.34.55.png)\n\n\n    [24.06.19_주임신부님_영명축일기념_롤링페이퍼__봉투_도안.pptx](https://res.cloudinary.com/dyrdul1dd/raw/upload/v1755004628/norkive-notion-images/1755004627567-24.06.19_%E1%84%8C%E1%85%AE%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%89%E1%85%B5%E1%86%AB%E1%84%87%E1%85%AE%E1%84%82%E1%85%B5%E1%86%B7_%E1%84%8B%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A7%E1%86%BC%E1%84%8E%E1%85%AE%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%80%E1%85%B5%E1%84%82%E1%85%A7%E1%86%B7_%E1%84%85%E1%85%A9%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BC%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%A5__%E1%84%87%E1%85%A9%E1%86%BC%E1%84%90%E1%85%AE_%E1%84%83%E1%85%A9%E1%84%8B%E1%85%A1%E1%86%AB.pptx)\n\n- <strong>봉투</strong> - 신부님이 좋아 하신다던 분홍색 또는 경건한 느낌의 크래프트지 색감 나는 갈색으로 제작\n- <strong>롤링페이퍼지</strong> - a4의 순백색보다는 파피루스지 같은 약간의 아이보리느낌의 종이로 제작\n\n# 3. 최종 - (24.06.22) 작업진행중\n\n\n⇒ 제작 및 전달 완료. 바쁜 일정들로 이루어진 날이었던지라 미쳐 실물사진 기록은 남기지 못했으나, 선명한 주황색의 봉투에 gray ver. 롤링페이퍼를 담아서 전달드렸다. 생각보다 선명한 붉은 주황색봉투와 잘어울려서 미감이 꽤 괜찮아서 좋았다. 물론 동료교사들의 진심어린 상투적이지 않으면 너무나 날것의 맑고 순수한 메시지들 덕에 더 롤링페이퍼가 그 기능 이상으로 가치롭게 보이게 됐지만.\n\n\n![KakaoTalk_Photo_2024-06-28-17-02-54_002.jpeg](https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004618/norkive-notion-images/1755004618218-KakaoTalk_Photo_2024-06-28-17-02-54_002.jpg)\n\n\n![KakaoTalk_Photo_2024-06-28-17-04-30.jpeg](https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004620/norkive-notion-images/1755004619863-KakaoTalk_Photo_2024-06-28-17-04-30.jpg)\n\n\n![KakaoTalk_Photo_2024-06-28-17-02-54_001.jpeg](https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004621/norkive-notion-images/1755004621320-KakaoTalk_Photo_2024-06-28-17-02-54_001.jpg)\n\n\n![IMG_1133.jpeg](https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004622/norkive-notion-images/1755004622552-IMG_1133.jpg)\n\n\n![IMG_1132.jpeg](https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004624/norkive-notion-images/1755004623952-IMG_1132.jpg)",
+    "_meta": {
+      "filePath": "projects-Giving-24-06-부주임신부님-영명축일-기념-롤링.mdx",
+      "fileName": "projects-Giving-24-06-부주임신부님-영명축일-기념-롤링.mdx",
+      "directory": ".",
+      "extension": "mdx",
+      "path": "projects-Giving-24-06-부주임신부님-영명축일-기념-롤링"
+    },
+    "toc": [
+      {
+        "title": "1. 참고 레퍼런스",
+        "url": "#1-참고-레퍼런스",
+        "depth": 1
+      },
+      {
+        "title": "2. 제작 1차 ing",
+        "url": "#2-제작-1차-ing",
+        "depth": 1
+      },
+      {
+        "title": "3. 최종 - (24.06.22) 작업진행중",
+        "url": "#3-최종---240622-작업진행중",
+        "depth": 1
+      }
+    ],
+    "structuredData": {
+      "contents": [
+        {
+          "heading": "1-참고-레퍼런스",
+          "content": "전기가오리 - 천 논문도 한 문장부터 42호의 굿즈를 본 따 영명축일 롤링페이퍼를 제작하기로 했다."
+        },
+        {
+          "heading": "1-참고-레퍼런스",
+          "content": "맨 오른쪽의 인트로 부터 시작해서 각기 다른 문장의 엇갈리는 중첩으로 전개되는 디자인을 착안하기로 했다."
+        },
+        {
+          "heading": "2-제작-1차-ing",
+          "content": "오른쪽 Intro 부분은 신부님 인스타그램의 성경문구로 starting 포인트를 잡기로 결정"
+        },
+        {
+          "heading": "2-제작-1차-ing",
+          "content": "1차 제작 예시안"
+        },
+        {
+          "heading": "2-제작-1차-ing",
+          "content": "인트로 디자인/배치 3개 선택 옵션 제시"
+        },
+        {
+          "heading": "2-제작-1차-ing",
+          "content": "최종 아래의 디자인으로 과반수 투표 선택완료"
+        },
+        {
+          "heading": "2-제작-1차-ing",
+          "content": "그냥 a4용지에 인쇄하는 것은 그 질감 표현이 탁월하지 못할 것 같아서 조금 고민중이다. 또 봉투도 직접 인쇄해서 작업하는 편이 나을 것 같기도 하고."
+        },
+        {
+          "heading": "2-제작-1차-ing",
+          "content": "24.06.18_주임신부님_영명축일기념_롤링페이퍼.pptx"
+        },
+        {
+          "heading": "2-제작-1차-ing",
+          "content": "음  봉투도안도 직접 제작해보자."
+        },
+        {
+          "heading": "2-제작-1차-ing",
+          "content": "롤링페이퍼 봉투 도안"
+        },
+        {
+          "heading": "2-제작-1차-ing",
+          "content": "24.06.19_주임신부님_영명축일기념_롤링페이퍼__봉투_도안.pptx"
+        },
+        {
+          "heading": "2-제작-1차-ing",
+          "content": "봉투 - 신부님이 좋아 하신다던 분홍색 또는 경건한 느낌의 크래프트지 색감 나는 갈색으로 제작"
+        },
+        {
+          "heading": "2-제작-1차-ing",
+          "content": "롤링페이퍼지 - a4의 순백색보다는 파피루스지 같은 약간의 아이보리느낌의 종이로 제작"
+        },
+        {
+          "heading": "3-최종---240622-작업진행중",
+          "content": "⇒ 제작 및 전달 완료. 바쁜 일정들로 이루어진 날이었던지라 미쳐 실물사진 기록은 남기지 못했으나, 선명한 주황색의 봉투에 gray ver. 롤링페이퍼를 담아서 전달드렸다. 생각보다 선명한 붉은 주황색봉투와 잘어울려서 미감이 꽤 괜찮아서 좋았다. 물론 동료교사들의 진심어린 상투적이지 않으면 너무나 날것의 맑고 순수한 메시지들 덕에 더 롤링페이퍼가 그 기능 이상으로 가치롭게 보이게 됐지만."
+        }
+      ],
+      "headings": [
+        {
+          "id": "1-참고-레퍼런스",
+          "content": "1. 참고 레퍼런스"
+        },
+        {
+          "id": "2-제작-1차-ing",
+          "content": "2. 제작 1차 ing"
+        },
+        {
+          "id": "3-최종---240622-작업진행중",
+          "content": "3. 최종 - (24.06.22) 작업진행중"
+        }
+      ]
+    },
+    "body": "var Component=(()=>{var c=Object.create;var a=Object.defineProperty;var g=Object.getOwnPropertyDescriptor;var p=Object.getOwnPropertyNames;var s=Object.getPrototypeOf,m=Object.prototype.hasOwnProperty;var u=(_,n)=>()=>(n||_((n={exports:{}}).exports,n),n.exports),B=(_,n)=>{for(var e in n)a(_,e,{get:n[e],enumerable:!0})},t=(_,n,e,d)=>{if(n&&typeof n==\"object\"||typeof n==\"function\")for(let o of p(n))!m.call(_,o)&&o!==e&&a(_,o,{get:()=>n[o],enumerable:!(d=g(n,o))||d.enumerable});return _};var A=(_,n,e)=>(e=_!=null?c(s(_)):{},t(n||!_||!_.__esModule?a(e,\"default\",{value:_,enumerable:!0}):e,_)),k=_=>t(a({},\"__esModule\",{value:!0}),_);var l=u((v,r)=>{r.exports=_jsx_runtime});var F={};B(F,{default:()=>E});var i=A(l());function h(_){let n={a:\"a\",h1:\"h1\",img:\"img\",li:\"li\",p:\"p\",ul:\"ul\",..._.components};return(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)(n.h1,{id:\"1-\\uCC38\\uACE0-\\uB808\\uD37C\\uB7F0\\uC2A4\",children:\"1. \\uCC38\\uACE0 \\uB808\\uD37C\\uB7F0\\uC2A4\"}),`\n`,(0,i.jsxs)(n.p,{children:[(0,i.jsx)(n.a,{href:\"https://philo-electro-ray.org/\",children:\"\\uC804\\uAE30\\uAC00\\uC624\\uB9AC\"}),\" - \\uCC9C \\uB17C\\uBB38\\uB3C4 \\uD55C \\uBB38\\uC7A5\\uBD80\\uD130 42\\uD638\\uC758 \\uAD7F\\uC988\\uB97C \\uBCF8 \\uB530 \\uC601\\uBA85\\uCD95\\uC77C \\uB864\\uB9C1\\uD398\\uC774\\uD37C\\uB97C \\uC81C\\uC791\\uD558\\uAE30\\uB85C \\uD588\\uB2E4.\"]}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.img,{alt:\"KakaoTalk_Photo_2024-06-18-18-52-17_001.jpeg\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004596/norkive-notion-images/1755004593689-KakaoTalk_Photo_2024-06-18-18-52-17_001.jpg\",width:\"4032\",height:\"3024\"})}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.img,{alt:\"KakaoTalk_Photo_2024-06-18-18-52-17_002.jpeg\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004600/norkive-notion-images/1755004599611-KakaoTalk_Photo_2024-06-18-18-52-17_002.jpg\",width:\"3559\",height:\"2766\"})}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.img,{alt:\"KakaoTalk_Photo_2024-06-19-16-47-38.jpeg\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004602/norkive-notion-images/1755004602225-KakaoTalk_Photo_2024-06-19-16-47-38.jpg\",width:\"4032\",height:\"3024\"})}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.img,{alt:\"\\u1100\\u1173\\u1105\\u1175\\u11B71.png\",src:\"https://prod-files-secure.s3.us-west-2.amazonaws.com/056ff9f5-a9ef-486f-8acb-9eef51d06a2d/8262e9a3-3253-4af4-beda-c506a3a379ac/\\u1100\\u1173\\u1105\\u1175\\u11B71.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466T3LNEC2O%2F20250812%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20250812T131624Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMz%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCeto%2FYry3szZ9kvJ2aVkLcpSbrGZu7j5NFUROdxdxGFwIgYXEKdjjquOFUuLRMUdzMxiUU7AIAHKlJfTOUVzmRFK0q%2FwMIFRAAGgw2Mzc0MjMxODM4MDUiDEnydawTa7icPa2sSyrcA1thilK2xVW4Q96j3noV%2F%2FcaB7KgeLHlNJc8siIC5L%2Fuec%2BJjqYxBSimldTFlmR5DzhEU%2F08W2bQ1f5381dfCKSzbubeY2b9sPieZ0SPy1bsfZ3Ip4zEDoSkaM9Fv22yqAKG7LnhIltFJNAzBhSWQprckVzia%2BdQgQw7UPw08klyeXmEjTk0oeDAMVB2Rj8DRtDQsDT54RXcyCdTgtKFS0V9WwxMRnz%2B5q4T8EcuMuq5RNCZs5JvJXaeyk82KsPyMtlwlXyrd4jFwx7TXgTrcs%2Fjxxkl6ol9iuZvfDPLmxTKlIoem33ZN%2B54oTxuYArlkglL7AF7slRjM9oImMeWru5%2Ft2EYormMpKb6tlZqm%2F9ShVSM76veSvP9wyOLA8ftcsRozGQ86%2B5lsCvRJzAVWXvmnexBsKe9Ph3ucDkG1zJZnwraNzgBL4cEQYKLLVDMRvhVCw1zRvmwcJJDMiDb0x6igpH1UnC%2BYrHvsWeXBs3%2FxYe31pocEXoeEqkhXIzOXvQS9uHrDajAnfkvK67Z%2FLBRfJhPkpt5wuc%2BVnVqIL0QWaNHDh0%2FUA37gJ9X1KDl4ufjfPbuABvFg127cIPKNUyMfQ4Cj%2BGWdb0wKZ%2BiV5Oy5FT50GHbLYCy%2FsAzML7W7MQGOqUBRRATBQFmYq6j%2F%2FiV0hpC%2F3ECCNLzWBC0XnTjnVmDiTVxjlM5LG6u9QYFm9k1znE1RNaS8HL1rKQ6r2yF15EvOuMqu9az2BMRZDOZ2QXfbHaCzwwf4QJEKWYgftIhbOK8KBdWmmVm27TEMN8zZ%2BT7VJuA6xCt2XhGDF%2BhohyRTdz1%2B2URKCQi7O96USCMQpFjTNnNBCWFTjqNf27yhbDRhTwW4aKb&X-Amz-Signature=9ae362497dde7bf8074154e2976fbe033f6c9a2af5ab44a39b3be8ceae4eb9cb&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject\",width:\"3607\",height:\"2475\"})}),`\n`,(0,i.jsx)(n.p,{children:\"\\uB9E8 \\uC624\\uB978\\uCABD\\uC758 \\uC778\\uD2B8\\uB85C \\uBD80\\uD130 \\uC2DC\\uC791\\uD574\\uC11C \\uAC01\\uAE30 \\uB2E4\\uB978 \\uBB38\\uC7A5\\uC758 \\uC5C7\\uAC08\\uB9AC\\uB294 \\uC911\\uCCA9\\uC73C\\uB85C \\uC804\\uAC1C\\uB418\\uB294 \\uB514\\uC790\\uC778\\uC744 \\uCC29\\uC548\\uD558\\uAE30\\uB85C \\uD588\\uB2E4.\"}),`\n`,(0,i.jsx)(n.h1,{id:\"2-\\uC81C\\uC791-1\\uCC28-ing\",children:\"2. \\uC81C\\uC791 1\\uCC28 ing\"}),`\n`,(0,i.jsxs)(n.ul,{children:[`\n`,(0,i.jsxs)(n.li,{children:[`\n`,(0,i.jsx)(n.p,{children:\"\\uC624\\uB978\\uCABD Intro \\uBD80\\uBD84\\uC740 \\uC2E0\\uBD80\\uB2D8 \\uC778\\uC2A4\\uD0C0\\uADF8\\uB7A8\\uC758 \\uC131\\uACBD\\uBB38\\uAD6C\\uB85C starting \\uD3EC\\uC778\\uD2B8\\uB97C \\uC7A1\\uAE30\\uB85C \\uACB0\\uC815\"}),`\n`]}),`\n`,(0,i.jsxs)(n.li,{children:[`\n`,(0,i.jsx)(n.p,{children:\"1\\uCC28 \\uC81C\\uC791 \\uC608\\uC2DC\\uC548\"}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.img,{alt:\"KakaoTalk_Photo_2024-06-19-16-51-58.png\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004607/norkive-notion-images/1755004606657-KakaoTalk_Photo_2024-06-19-16-51-58.png\",width:\"2071\",height:\"1435\"})}),`\n`]}),`\n`,(0,i.jsxs)(n.li,{children:[`\n`,(0,i.jsx)(n.p,{children:\"\\uC778\\uD2B8\\uB85C \\uB514\\uC790\\uC778/\\uBC30\\uCE58 3\\uAC1C \\uC120\\uD0DD \\uC635\\uC158 \\uC81C\\uC2DC\"}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.img,{alt:\"KakaoTalk_Photo_2024-06-19-16-48-35_001.png\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004608/norkive-notion-images/1755004608010-KakaoTalk_Photo_2024-06-19-16-48-35_001.png\",width:\"2068\",height:\"1438\"})}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.img,{alt:\"KakaoTalk_Photo_2024-06-19-16-48-35_002.png\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004609/norkive-notion-images/1755004609315-KakaoTalk_Photo_2024-06-19-16-48-35_002.png\",width:\"2071\",height:\"1438\"})}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.img,{alt:\"KakaoTalk_Photo_2024-06-19-16-48-35_003.png\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004611/norkive-notion-images/1755004610797-KakaoTalk_Photo_2024-06-19-16-48-35_003.png\",width:\"2071\",height:\"1436\"})}),`\n`]}),`\n`,(0,i.jsxs)(n.li,{children:[`\n`,(0,i.jsx)(n.p,{children:\"\\uCD5C\\uC885 \\uC544\\uB798\\uC758 \\uB514\\uC790\\uC778\\uC73C\\uB85C \\uACFC\\uBC18\\uC218 \\uD22C\\uD45C \\uC120\\uD0DD\\uC644\\uB8CC\"}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.img,{alt:\"KakaoTalk_Photo_2024-06-19-16-52-33.png\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004612/norkive-notion-images/1755004612355-KakaoTalk_Photo_2024-06-19-16-52-33.png\",width:\"2063\",height:\"1432\"})}),`\n`,(0,i.jsx)(n.p,{children:\"\\uADF8\\uB0E5 a4\\uC6A9\\uC9C0\\uC5D0 \\uC778\\uC1C4\\uD558\\uB294 \\uAC83\\uC740 \\uADF8 \\uC9C8\\uAC10 \\uD45C\\uD604\\uC774 \\uD0C1\\uC6D4\\uD558\\uC9C0 \\uBABB\\uD560 \\uAC83 \\uAC19\\uC544\\uC11C \\uC870\\uAE08 \\uACE0\\uBBFC\\uC911\\uC774\\uB2E4. \\uB610 \\uBD09\\uD22C\\uB3C4 \\uC9C1\\uC811 \\uC778\\uC1C4\\uD574\\uC11C \\uC791\\uC5C5\\uD558\\uB294 \\uD3B8\\uC774 \\uB098\\uC744 \\uAC83 \\uAC19\\uAE30\\uB3C4 \\uD558\\uACE0.\"}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.a,{href:\"https://res.cloudinary.com/dyrdul1dd/raw/upload/v1755004626/norkive-notion-images/1755004625778-24.06.18_%E1%84%8C%E1%85%AE%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%89%E1%85%B5%E1%86%AB%E1%84%87%E1%85%AE%E1%84%82%E1%85%B5%E1%86%B7_%E1%84%8B%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A7%E1%86%BC%E1%84%8E%E1%85%AE%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%80%E1%85%B5%E1%84%82%E1%85%A7%E1%86%B7_%E1%84%85%E1%85%A9%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BC%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%A5.pptx\",children:\"24.06.18_\\u110C\\u116E\\u110B\\u1175\\u11B7\\u1109\\u1175\\u11AB\\u1107\\u116E\\u1102\\u1175\\u11B7_\\u110B\\u1167\\u11BC\\u1106\\u1167\\u11BC\\u110E\\u116E\\u11A8\\u110B\\u1175\\u11AF\\u1100\\u1175\\u1102\\u1167\\u11B7_\\u1105\\u1169\\u11AF\\u1105\\u1175\\u11BC\\u1111\\u1166\\u110B\\u1175\\u1111\\u1165.pptx\"})}),`\n`,(0,i.jsx)(n.p,{children:\"\\uC74C  \\uBD09\\uD22C\\uB3C4\\uC548\\uB3C4 \\uC9C1\\uC811 \\uC81C\\uC791\\uD574\\uBCF4\\uC790.\"}),`\n`]}),`\n`,(0,i.jsxs)(n.li,{children:[`\n`,(0,i.jsx)(n.p,{children:\"\\uB864\\uB9C1\\uD398\\uC774\\uD37C \\uBD09\\uD22C \\uB3C4\\uC548\"}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.img,{alt:\"\\u1109\\u1173\\u110F\\u1173\\u1105\\u1175\\u11AB\\u1109\\u1163\\u11BA_2024-06-19_\\u110B\\u1169\\u1112\\u116E_5.35.10.png\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004614/norkive-notion-images/1755004613812-E1_84_89_E1_85_B3_E1_84_8F_E1_85_B3_E1_84_85_E1_85_B5_E1_86_AB_E1_84_89_E1_85_A3_E1_86_BA_2024-06-19_E1_84_8B_E1_85_A9_E1_84_92_E1_85_AE_5.35.10.png\",width:\"956\",height:\"1383\"})}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.img,{alt:\"\\u1109\\u1173\\u110F\\u1173\\u1105\\u1175\\u11AB\\u1109\\u1163\\u11BA_2024-06-19_\\u110B\\u1169\\u1112\\u116E_5.35.04.png\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004615/norkive-notion-images/1755004615116-E1_84_89_E1_85_B3_E1_84_8F_E1_85_B3_E1_84_85_E1_85_B5_E1_86_AB_E1_84_89_E1_85_A3_E1_86_BA_2024-06-19_E1_84_8B_E1_85_A9_E1_84_92_E1_85_AE_5.35.04.png\",width:\"964\",height:\"1389\"})}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.img,{alt:\"\\u1109\\u1173\\u110F\\u1173\\u1105\\u1175\\u11AB\\u1109\\u1163\\u11BA_2024-06-19_\\u110B\\u1169\\u1112\\u116E_5.34.55.png\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004617/norkive-notion-images/1755004616743-E1_84_89_E1_85_B3_E1_84_8F_E1_85_B3_E1_84_85_E1_85_B5_E1_86_AB_E1_84_89_E1_85_A3_E1_86_BA_2024-06-19_E1_84_8B_E1_85_A9_E1_84_92_E1_85_AE_5.34.55.png\",width:\"916\",height:\"1341\"})}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.a,{href:\"https://res.cloudinary.com/dyrdul1dd/raw/upload/v1755004628/norkive-notion-images/1755004627567-24.06.19_%E1%84%8C%E1%85%AE%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%89%E1%85%B5%E1%86%AB%E1%84%87%E1%85%AE%E1%84%82%E1%85%B5%E1%86%B7_%E1%84%8B%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A7%E1%86%BC%E1%84%8E%E1%85%AE%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%80%E1%85%B5%E1%84%82%E1%85%A7%E1%86%B7_%E1%84%85%E1%85%A9%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BC%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%A5__%E1%84%87%E1%85%A9%E1%86%BC%E1%84%90%E1%85%AE_%E1%84%83%E1%85%A9%E1%84%8B%E1%85%A1%E1%86%AB.pptx\",children:\"24.06.19_\\u110C\\u116E\\u110B\\u1175\\u11B7\\u1109\\u1175\\u11AB\\u1107\\u116E\\u1102\\u1175\\u11B7_\\u110B\\u1167\\u11BC\\u1106\\u1167\\u11BC\\u110E\\u116E\\u11A8\\u110B\\u1175\\u11AF\\u1100\\u1175\\u1102\\u1167\\u11B7_\\u1105\\u1169\\u11AF\\u1105\\u1175\\u11BC\\u1111\\u1166\\u110B\\u1175\\u1111\\u1165__\\u1107\\u1169\\u11BC\\u1110\\u116E_\\u1103\\u1169\\u110B\\u1161\\u11AB.pptx\"})}),`\n`]}),`\n`,(0,i.jsxs)(n.li,{children:[`\n`,(0,i.jsxs)(n.p,{children:[(0,i.jsx)(\"strong\",{children:\"\\uBD09\\uD22C\"}),\" - \\uC2E0\\uBD80\\uB2D8\\uC774 \\uC88B\\uC544 \\uD558\\uC2E0\\uB2E4\\uB358 \\uBD84\\uD64D\\uC0C9 \\uB610\\uB294 \\uACBD\\uAC74\\uD55C \\uB290\\uB08C\\uC758 \\uD06C\\uB798\\uD504\\uD2B8\\uC9C0 \\uC0C9\\uAC10 \\uB098\\uB294 \\uAC08\\uC0C9\\uC73C\\uB85C \\uC81C\\uC791\"]}),`\n`]}),`\n`,(0,i.jsxs)(n.li,{children:[`\n`,(0,i.jsxs)(n.p,{children:[(0,i.jsx)(\"strong\",{children:\"\\uB864\\uB9C1\\uD398\\uC774\\uD37C\\uC9C0\"}),\" - a4\\uC758 \\uC21C\\uBC31\\uC0C9\\uBCF4\\uB2E4\\uB294 \\uD30C\\uD53C\\uB8E8\\uC2A4\\uC9C0 \\uAC19\\uC740 \\uC57D\\uAC04\\uC758 \\uC544\\uC774\\uBCF4\\uB9AC\\uB290\\uB08C\\uC758 \\uC885\\uC774\\uB85C \\uC81C\\uC791\"]}),`\n`]}),`\n`]}),`\n`,(0,i.jsx)(n.h1,{id:\"3-\\uCD5C\\uC885---240622-\\uC791\\uC5C5\\uC9C4\\uD589\\uC911\",children:\"3. \\uCD5C\\uC885 - (24.06.22) \\uC791\\uC5C5\\uC9C4\\uD589\\uC911\"}),`\n`,(0,i.jsx)(n.p,{children:\"\\u21D2 \\uC81C\\uC791 \\uBC0F \\uC804\\uB2EC \\uC644\\uB8CC. \\uBC14\\uC05C \\uC77C\\uC815\\uB4E4\\uB85C \\uC774\\uB8E8\\uC5B4\\uC9C4 \\uB0A0\\uC774\\uC5C8\\uB358\\uC9C0\\uB77C \\uBBF8\\uCCD0 \\uC2E4\\uBB3C\\uC0AC\\uC9C4 \\uAE30\\uB85D\\uC740 \\uB0A8\\uAE30\\uC9C0 \\uBABB\\uD588\\uC73C\\uB098, \\uC120\\uBA85\\uD55C \\uC8FC\\uD669\\uC0C9\\uC758 \\uBD09\\uD22C\\uC5D0 gray ver. \\uB864\\uB9C1\\uD398\\uC774\\uD37C\\uB97C \\uB2F4\\uC544\\uC11C \\uC804\\uB2EC\\uB4DC\\uB838\\uB2E4. \\uC0DD\\uAC01\\uBCF4\\uB2E4 \\uC120\\uBA85\\uD55C \\uBD89\\uC740 \\uC8FC\\uD669\\uC0C9\\uBD09\\uD22C\\uC640 \\uC798\\uC5B4\\uC6B8\\uB824\\uC11C \\uBBF8\\uAC10\\uC774 \\uAF64 \\uAD1C\\uCC2E\\uC544\\uC11C \\uC88B\\uC558\\uB2E4. \\uBB3C\\uB860 \\uB3D9\\uB8CC\\uAD50\\uC0AC\\uB4E4\\uC758 \\uC9C4\\uC2EC\\uC5B4\\uB9B0 \\uC0C1\\uD22C\\uC801\\uC774\\uC9C0 \\uC54A\\uC73C\\uBA74 \\uB108\\uBB34\\uB098 \\uB0A0\\uAC83\\uC758 \\uB9D1\\uACE0 \\uC21C\\uC218\\uD55C \\uBA54\\uC2DC\\uC9C0\\uB4E4 \\uB355\\uC5D0 \\uB354 \\uB864\\uB9C1\\uD398\\uC774\\uD37C\\uAC00 \\uADF8 \\uAE30\\uB2A5 \\uC774\\uC0C1\\uC73C\\uB85C \\uAC00\\uCE58\\uB86D\\uAC8C \\uBCF4\\uC774\\uAC8C \\uB410\\uC9C0\\uB9CC.\"}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.img,{alt:\"KakaoTalk_Photo_2024-06-28-17-02-54_002.jpeg\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004618/norkive-notion-images/1755004618218-KakaoTalk_Photo_2024-06-28-17-02-54_002.jpg\",width:\"2028\",height:\"1141\"})}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.img,{alt:\"KakaoTalk_Photo_2024-06-28-17-04-30.jpeg\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004620/norkive-notion-images/1755004619863-KakaoTalk_Photo_2024-06-28-17-04-30.jpg\",width:\"3520\",height:\"1980\"})}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.img,{alt:\"KakaoTalk_Photo_2024-06-28-17-02-54_001.jpeg\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004621/norkive-notion-images/1755004621320-KakaoTalk_Photo_2024-06-28-17-02-54_001.jpg\",width:\"2028\",height:\"1141\"})}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.img,{alt:\"IMG_1133.jpeg\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004622/norkive-notion-images/1755004622552-IMG_1133.jpg\",width:\"1170\",height:\"1611\"})}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.img,{alt:\"IMG_1132.jpeg\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004624/norkive-notion-images/1755004623952-IMG_1132.jpg\",width:\"1170\",height:\"1626\"})})]})}function E(_={}){let{wrapper:n}=_.components||{};return n?(0,i.jsx)(n,{..._,children:(0,i.jsx)(h,{..._})}):h(_)}return k(F);})();\n;return Component;"
   },
   {
     "notionId": "2a9af520dcc1413a8e3fc77612391278",
@@ -360,10 +488,10 @@ export default [
     "icon": "",
     "full": false,
     "summary": "Hey-Taxi(헤이택시) is a Full Stack Next.Js 13 ver. Taxi Booking App w/ NextJs, React.js, Tailwindcss, Mapbox and Stripe",
-    "pageCover": "https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641174/norkive-notion-images/1754641172762-E1_84_89_E1_85_B3_E1_84_8F_E1_85_B3_E1_84_85_E1_85_B5_E1_86_AB_E1_84_89_E1_85_A3_E1_86_BA_2023-12-04_E1_84_8B_E1_85_A9_E1_84_92_E1_85_AE_1.30.01.png",
+    "pageCover": "https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004656/norkive-notion-images/1755004655388-E1_84_89_E1_85_B3_E1_84_8F_E1_85_B3_E1_84_85_E1_85_B5_E1_86_AB_E1_84_89_E1_85_A3_E1_86_BA_2023-12-04_E1_84_8B_E1_85_A9_E1_84_92_E1_85_AE_1.30.01.png",
     "password": "",
     "type": "PROJECTS",
-    "description": "",
+    "description": "Hey-Taxi(헤이택시) is a Full Stack Next.Js 13 ver. Taxi Booking App w/ NextJs, React.js, Tailwindcss, Mapbox and Stripe",
     "date": "2023-11-29T00:00:00.000Z",
     "lastEditedDate": "2025-08-05T03:08:00.000Z",
     "sub_type": "Dev",
@@ -378,12 +506,12 @@ export default [
     ],
     "draft": false,
     "favorite": false,
-    "readingTime": 1,
-    "wordCount": 19,
-    "lastModified": "2025-08-08",
+    "readingTime": 5,
+    "wordCount": 909,
+    "lastModified": "2025-08-12",
     "version": "1.0.0",
     "status": "published",
-    "author": "ryoon",
+    "author": "ryoonwithinwisdomlights",
     "content": "# 1. 리포지토리\n\n\n[link_preview](https://github.com/ryoon-with-wisdomtrees/HeyTaxi)\n\n\n# 2. 사이트\n\n\n<BookMarkWrapper names={\"bookmark\"} urls={\"https://hey-taxi.vercel.app/\"} />\n\n\n# 3. Hey-taxi(헤이택시)\n\n\n![hey-taxi.gif](https://github.com/ryoon-with-wisdomtrees/HeyTaxi/raw/main/public/hey-taxi.gif)\n\n\n# 4. 제작과정\n\n- 기술스택 - Next.js 13, React.js, Tailwind CSS, Mapbox, MapboxGl, react-map-gl, ContextProvicer and Stripe.\n- 제작기간 - 3일\n\n이 헤이택시(Full Stack Uber Clone Web App)는 [React NextJs 13 Taxi Booking App : NextJs 13, Tailwind Css, Typescript, Mapbox, Stripe | Full Course](https://youtu.be/1DXV4LCWkic?list=PLzRr9la40O_RQIXxWO_VNmA8y9qRUeuK9)유튜브강의를 참고하여 에러사항과 작업날짜 기준 deprecated된 부분 및 미흡한 부분, 그리고 한국에서 지원되지 않는 부분에 대한 이슈들을 보강하고 수정하고 커스터마이징하여 제작한 웹앱입니다.\n\n\n이 앱 역시 Mapping library에 대한 사용 및 발전 경험을 얻고 싶어서 제작한 웹앱이었습니다. 비교하기는 섣부르지만, google map보다 훨씬 유려한 ui와 다양하게 사용할 수 있는 서비스등이 있어서 내내 재미에 푹 빠져 작업할 수 있었습니다.",
     "_meta": {
       "filePath": "projects-SP-Hey-Taxi-헤이택시.mdx",

@@ -1,10 +1,16 @@
 import "dotenv/config";
+import { config } from "dotenv";
 import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
 import { imageCacheManager } from "@/lib/cache/image_cache_manager";
+import { EXTERNAL_CONFIG } from "@/config/external.config";
 
-const BASE_OUTPUT_DIR = path.join(process.cwd(), "content");
+if (process.env.NODE_ENV !== "production" && !process.env.VERCEL) {
+  config({ path: path.resolve(process.cwd(), ".env.local") });
+}
+
+const BASE_OUTPUT_DIR = path.join(process.cwd(), EXTERNAL_CONFIG.DIR_NAME);
 
 interface ProcessedImage {
   originalUrl: string;

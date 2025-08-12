@@ -150,10 +150,7 @@ const LatestRecords = ({
             key={`${article.data.notionId}`}
             title={article.data.title}
             description={article.data.summary}
-            date={getYearMonthDay(
-              article.data.date,
-              locale === "kr-KR" ? "kr-KR" : "en-US"
-            )}
+            date={getYearMonthDay(article.data.date, locale.LOCALE)}
             type={article.data.type}
             subType={article.data.sub_type}
             author={article.data.author}

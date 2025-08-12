@@ -36,6 +36,7 @@ import TopNavigationWrapper from "@/modules/layout/wrapper/TopNavigationWrapper"
 import JumpToBackButton from "@/modules/shared/JumpToBackButton";
 import JumpToTopButton from "@/modules/shared/JumpToTopButton";
 import LoadingCover from "@/modules/shared/LoadingCover";
+import ProgressBar from "@/modules/shared/ProgressBar";
 
 //************* Fetcher ************* */
 import { fetchAllRecordList, fetchMenuList } from "./api/fetcher";
@@ -127,45 +128,47 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={GeistSans.className}>
       <body>
-        <RootProvider
-          search={{
-            SearchDialog: DefaultSearchDialog,
-            options: {
-              defaultTag: "All",
-              api: "/api/search",
-            },
-          }}
-          theme={{ enabled: false }}
-        >
-          <NavInfoProvider
-            // recordList={recordList}
-            serializedAllPages={serializedAllPages}
-            menuList={menuList}
+        <ProgressBar>
+          <RootProvider
+            search={{
+              SearchDialog: DefaultSearchDialog,
+              options: {
+                defaultTag: "All",
+                api: "/api/search",
+              },
+            }}
+            theme={{ enabled: false }}
           >
-            <GeneralSiteSettingsProvider>
-              <div
-                id="norkive-main"
-                className={` w-screen h-screen justify-center dark:text-neutral-300  pb-16  md:pb-0 `}
-              >
-                <AuxiliaryBlogComponent />
+            <NavInfoProvider
+              // recordList={recordList}
+              serializedAllPages={serializedAllPages}
+              menuList={menuList}
+            >
+              <GeneralSiteSettingsProvider>
+                <div
+                  id="norkive-main"
+                  className={` w-screen h-screen justify-center dark:text-neutral-300  pb-16  md:pb-0 `}
+                >
+                  <AuxiliaryBlogComponent />
 
-                <TopNavigationWrapper />
+                  <TopNavigationWrapper />
 
-                <div className=" dark:bg-black dark:text-neutral-300 py-10 flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain ">
-                  <Suspense fallback={<LoadingCover />}>{children}</Suspense>
+                  <div className=" dark:bg-black dark:text-neutral-300 py-10 flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain ">
+                    <Suspense fallback={<LoadingCover />}>{children}</Suspense>
+                  </div>
+
+                  <JumpToTopButton />
+                  <JumpToBackButton />
+
+                  <MobileRightSidebarWrapper />
+                  <MobileFooter />
+
+                  <ModalProvider />
                 </div>
-
-                <JumpToTopButton />
-                <JumpToBackButton />
-
-                <MobileRightSidebarWrapper />
-                <MobileFooter />
-
-                <ModalProvider />
-              </div>
-            </GeneralSiteSettingsProvider>
-          </NavInfoProvider>
-        </RootProvider>
+              </GeneralSiteSettingsProvider>
+            </NavInfoProvider>
+          </RootProvider>
+        </ProgressBar>
       </body>
     </html>
   );

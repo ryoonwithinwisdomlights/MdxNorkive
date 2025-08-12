@@ -1,14 +1,12 @@
 import { config } from "dotenv";
 import "dotenv/config";
+import fs from "fs/promises";
 import path from "path";
 
 // .env.local 파일을 명시적으로 로드
-config({ path: path.resolve(process.cwd(), ".env.local") });
-
-import fs from "fs/promises";
-
-import { Client } from "@notionhq/client";
-import { NotionToMarkdown } from "notion-to-md";
+if (process.env.NODE_ENV !== "production" && !process.env.VERCEL) {
+  config({ path: path.resolve(process.cwd(), ".env.local") });
+}
 
 import { generateUserFriendlySlug } from "@/lib/utils";
 
@@ -26,28 +24,28 @@ import {
 
 import {
   printDocumentStats,
-  processDocumentLinks,
-  resetDocumentStats,
   printImageStats,
+  processDocumentLinks,
   processNotionImages,
   processPageCover,
+  resetDocumentStats,
   resetImageStats,
 } from "@/lib/utils/mdx-data-processing/cloudinary";
 
+import { EXTERNAL_CONFIG } from "@/config/external.config";
 import {
   ModifiedQueryDatabaseResponseArray,
   QueryPageResponse,
 } from "@/types/notion.client.model";
 
+import { n2m, notion } from "./clients";
 // === ✅ 환경변수 및 설정 ===
-const NOTION_TOKEN = process.env.NOTION_ACCESS_TOKEN!;
-const DATABASE_ID = process.env.NOTION_DATABASE_ID!;
-const DIR_NAME = process.env.DIR_NAME!;
-const TEST_ID = process.env.TEST_ID!;
-const TEST_TYPE = process.env.TEST_TYPE!;
-const BASE_OUTPUT_DIR = path.join(process.cwd(), DIR_NAME);
-const notion = new Client({ auth: NOTION_TOKEN });
-const n2m = new NotionToMarkdown({ notionClient: notion });
+
+const DATABASE_ID = EXTERNAL_CONFIG.NOTION_DATABASE_ID!;
+const BASE_OUTPUT_DIR = path.join(process.cwd(), EXTERNAL_CONFIG.DIR_NAME_TEST);
+
+const TEST_ID = EXTERNAL_CONFIG.TEST_ID!;
+const TEST_TYPE = EXTERNAL_CONFIG.TEST_TYPE!;
 
 // ✅ 슬러그 중복 방지용 매니저
 const slugManager = new SlugManager();
@@ -61,14 +59,14 @@ async function main() {
   try {
     await fs.rm(BASE_OUTPUT_DIR, { recursive: true, force: true });
     console.log(
-      `🗑️  기존 ${DIR_NAME} 디렉토리를 삭제했습니다: ${BASE_OUTPUT_DIR}`
+      `🗑️  기존 ${EXTERNAL_CONFIG.DIR_NAME_TEST} 디렉토리를 삭제했습니다: ${BASE_OUTPUT_DIR}`
     );
   } catch (error) {
     // 디렉토리가 없어도 무시
   }
 
   console.log(
-    `📁 새로운 ${DIR_NAME}  디렉토리를 생성합니다: ${BASE_OUTPUT_DIR}`
+    `📁 새로운 ${EXTERNAL_CONFIG.DIR_NAME_TEST}  디렉토리를 생성합니다: ${BASE_OUTPUT_DIR}`
   );
   await fs.mkdir(BASE_OUTPUT_DIR, { recursive: true });
 

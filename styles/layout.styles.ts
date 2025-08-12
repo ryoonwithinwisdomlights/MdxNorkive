@@ -1,9 +1,16 @@
 import { cn } from "@/lib/utils/general";
-export const basicDocsClass =
-  "xl:w-[calc(100vw-600px)]  mt-[20px] w-full  flex flex-col justify-center items-center  pb-20   ";
 
-export const generalIntroPageClass =
-  "w-full  max-w-6xl mx-auto flex flex-col items-center p-10 gap-10";
+export const basicDocsClass = ({ className }: { className?: string }) =>
+  cn(
+    "xl:w-[calc(100vw-600px)]  mt-[20px] w-full  flex flex-col justify-center items-center  pb-20   ",
+    className
+  );
+
+export const generalIntroPageClass = ({ className }: { className?: string }) =>
+  cn(
+    "w-full  max-w-6xl mx-auto flex flex-col items-center p-10 gap-10",
+    className
+  );
 
 type variationStyleProps = {
   isCompact?: boolean;
@@ -103,7 +110,7 @@ export const combinedTitleClasses = ({
   className,
 }: variationStyleProps) =>
   cn(
-    "line-clamp-2 font-normal text-neutral-800 dark:text-white leading-tight  cursor-pointer hover:underline",
+    "line-clamp-2 font-normal  text-neutral-800 dark:text-white  cursor-pointer hover:underline",
     isCompact && "text-lg",
     isDefault && "text-xl",
     isLarge && "text-2xl",

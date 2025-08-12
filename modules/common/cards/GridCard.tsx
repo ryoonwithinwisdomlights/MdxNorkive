@@ -42,6 +42,7 @@ const GridCard = React.forwardRef<HTMLDivElement, GridCardProps>(
     },
     ref
   ) => {
+    console.log(title);
     const isCompact = variant === "compact";
     const isLarge = variant === "large";
     const isDefault = variant === "default";
@@ -70,7 +71,7 @@ const GridCard = React.forwardRef<HTMLDivElement, GridCardProps>(
       isCompact,
       isLarge,
       isDefault,
-      className: "font-semibold leading-0",
+      className: "font-semibold leading-tight",
     });
 
     const descriptionClasses = combinedDescriptionClasses({
@@ -129,7 +130,7 @@ const GridCard = React.forwardRef<HTMLDivElement, GridCardProps>(
 
         {/* 콘텐츠 영역 */}
         <div className={contentClasses}>
-          <div className="flex flex-col items-start">
+          <div className="flex flex-col items-start gap-2">
             {/* 타입 */}
             <span className="text-xs text-neutral-500 dark:text-neutral-400  uppercase tracking-wide">
               {type} / {subType}

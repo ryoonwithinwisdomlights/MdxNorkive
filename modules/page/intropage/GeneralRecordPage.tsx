@@ -18,7 +18,7 @@ const GeneralRecordPage = () => {
   if (!isAble) NotFound();
   const modAllPages = setAllPagesGetSortedGroupedByDate(pages);
   return (
-    <div className={generalIntroPageClass}>
+    <div className={generalIntroPageClass({ className: "" })}>
       <GeneralIntro />
 
       <BookGeneralRecordsBody

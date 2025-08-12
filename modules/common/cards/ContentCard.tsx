@@ -32,10 +32,12 @@ const ContentCard = React.forwardRef<HTMLDivElement, ContentCardProps>(
   ) => {
     const isCompact = variant === "compact";
     const isFeatured = variant === "featured";
-
+    const isDefault = variant === "default";
     const titleClasses = combinedTitleClasses({
       isCompact,
+      isDefault,
       isFeatured,
+      className: "font-semibold  leading-tight",
     });
 
     const handleClick = () => {
@@ -53,6 +55,7 @@ const ContentCard = React.forwardRef<HTMLDivElement, ContentCardProps>(
           "flex flex-col justify-between items-start text-start gap-2",
           isCompact ? "p-3" : "p-4",
           isFeatured && "p-6",
+          isDefault && "p-4",
           className
         )}
         onClick={handleClick}
@@ -63,7 +66,7 @@ const ContentCard = React.forwardRef<HTMLDivElement, ContentCardProps>(
         background="gradient"
         {...props}
       >
-        {/* 타입  "mb-0 text-xs flex-row"*/}
+        {/* 타입  */}
         <span
           className={combinedMetaClasses({
             className: "mb-0 text-xs flex-row",
@@ -71,6 +74,7 @@ const ContentCard = React.forwardRef<HTMLDivElement, ContentCardProps>(
         >
           {data.type} / {data.subType}
         </span>
+
         {/* 제목 */}
         <div
           className={cn(
@@ -107,10 +111,7 @@ const ContentCard = React.forwardRef<HTMLDivElement, ContentCardProps>(
               <div className="flex items-center gap-2">
                 <CalendarIcon className="w-3 h-3" />
                 <span>
-                  {getYearMonthDay(
-                    data.date,
-                    locale?.LOCALE === "kr-KR" ? "kr-KR" : "en-US"
-                  )}
+                  {getYearMonthDay(data.date, locale?.LOCALE)}
                   &nbsp; &nbsp;
                   {getDistanceFromToday(data.date, lang)}
                 </span>

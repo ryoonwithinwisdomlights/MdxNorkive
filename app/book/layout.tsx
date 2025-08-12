@@ -1,28 +1,15 @@
 import { bookSource } from "@/lib/source";
-import RightSideNavWrapper from "@/modules/layout/wrapper/RightSideNavWrapper";
+import { pageOptionsGenerator } from "@/lib/utils";
 import { DocsLayout } from "@/modules/layout/templates/docs-layout";
+import RightSideNavWrapper from "@/modules/layout/wrapper/RightSideNavWrapper";
 import { basicDocsClass } from "@/styles/layout.styles";
-import { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
 
-const baseOptions: Partial<DocsLayoutProps> = {
-  nav: {
-    title: <></>,
-  },
-  links: [],
-};
-const pageOptions: DocsLayoutProps = {
-  ...baseOptions,
-  tree: bookSource.pageTree,
-  nav: {
-    ...baseOptions.nav,
-    transparentMode: "none",
-  },
-};
 export default async function Layout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const pageOptions = pageOptionsGenerator(bookSource);
   return (
     <DocsLayout
       {...pageOptions}
@@ -30,7 +17,7 @@ export default async function Layout({
       themeSwitch={{ enabled: false }}
       sidebar={{ defaultOpenLevel: 0, collapsible: false }}
     >
-      <div className={basicDocsClass}>{children}</div>
+      <div className={basicDocsClass({ className: "" })}>{children}</div>
       <RightSideNavWrapper />
     </DocsLayout>
   );

@@ -1,8 +1,14 @@
 import "dotenv/config";
+import { config } from "dotenv";
 import { validateMdxDirectory } from "@/lib/utils/mdx-data-processing/mdx-validator";
 import path from "path";
+import { EXTERNAL_CONFIG } from "@/config/external.config";
 
-const CONTENT_DIR = path.join(process.cwd(), "content");
+if (process.env.NODE_ENV !== "production" && !process.env.VERCEL) {
+  config({ path: path.resolve(process.cwd(), ".env.local") });
+}
+
+const CONTENT_DIR = path.join(process.cwd(), EXTERNAL_CONFIG.DIR_NAME);
 
 async function main() {
   console.log("🔍 MDX 파일 검증 및 수정을 시작합니다...");

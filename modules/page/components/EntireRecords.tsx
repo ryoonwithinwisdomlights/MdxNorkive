@@ -26,6 +26,7 @@ type Props = {
 const titleClasses = combinedTitleClasses({
   isCompact: false,
   isFeatured: false,
+  className: "font-semibold  leading-tight",
 });
 
 const metaClasses = combinedMetaClasses({
@@ -196,12 +197,7 @@ const EntireRecords = ({
                 {/* 날짜 */}
                 <div className="flex flex-row items-center gap-1">
                   <CalendarIcon className="w-4 h-4" />
-                  <span>
-                    {getYearMonthDay(
-                      page.data.date,
-                      locale === "kr-KR" ? "kr-KR" : "en-US"
-                    )}
-                  </span>
+                  <span>{getYearMonthDay(page.data.date, locale.LOCALE)}</span>
                 </div>
               </div>
 

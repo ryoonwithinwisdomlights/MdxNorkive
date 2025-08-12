@@ -1,14 +1,11 @@
 import { config } from "dotenv";
 import "dotenv/config";
+import fs from "fs/promises";
 import path from "path";
 
-// .env.local 파일을 명시적으로 로드
-config({ path: path.resolve(process.cwd(), ".env.local") });
-
-import fs from "fs/promises";
-
-import { Client } from "@notionhq/client";
-import { NotionToMarkdown } from "notion-to-md";
+if (process.env.NODE_ENV !== "production" && !process.env.VERCEL) {
+  config({ path: path.resolve(process.cwd(), ".env.local") });
+}
 
 import { generateUserFriendlySlug } from "@/lib/utils";
 
@@ -26,26 +23,26 @@ import {
 
 import {
   printDocumentStats,
-  processDocumentLinks,
-  resetDocumentStats,
   printImageStats,
+  processDocumentLinks,
   processNotionImages,
   processPageCover,
+  resetDocumentStats,
   resetImageStats,
 } from "@/lib/utils/mdx-data-processing/cloudinary";
 
+import { DEV_CONFIG } from "@/config/dev.config";
+import { EXTERNAL_CONFIG } from "@/config/external.config";
 import {
   ModifiedQueryDatabaseResponseArray,
   QueryPageResponse,
 } from "@/types/notion.client.model";
-import { BLOG } from "@/blog.config";
+import { n2m, notion } from "./clients";
 
 // === ✅ 환경변수 및 설정 ===
-const NOTION_TOKEN = process.env.NOTION_ACCESS_TOKEN!;
-const DATABASE_ID = process.env.NOTION_DATABASE_ID!;
-const BASE_OUTPUT_DIR = path.join(process.cwd(), BLOG.DIR_NAME);
-const notion = new Client({ auth: NOTION_TOKEN });
-const n2m = new NotionToMarkdown({ notionClient: notion });
+
+const DATABASE_ID = EXTERNAL_CONFIG.NOTION_DATABASE_ID!;
+const BASE_OUTPUT_DIR = path.join(process.cwd(), DEV_CONFIG.DIR_NAME);
 
 // ✅ 슬러그 중복 방지용 매니저
 const slugManager = new SlugManager();

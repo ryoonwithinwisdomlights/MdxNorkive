@@ -44,7 +44,6 @@ import { cn } from "@/lib/utils/general";
 
 export interface DocsLayoutProps extends BaseLayoutProps {
   tree: PageTree.Root;
-
   sidebar?: Partial<SidebarOptions> & {
     enabled?: boolean;
     component?: ReactNode;

@@ -1,14 +1,9 @@
-import "dotenv/config";
-import { config } from "dotenv";
+import { EXTERNAL_CONFIG } from "@/config/external.config";
 import { Redis } from "@upstash/redis";
-import path from "path";
-
-// .env.local 파일을 명시적으로 로드
-config({ path: path.resolve(process.cwd(), ".env.local") });
 
 // Redis 설정 확인
-const redisUrl = process.env.UPSTASH_REDIS_REST_URL!;
-const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN!;
+const redisUrl = EXTERNAL_CONFIG.UPSTASH_REDIS_REST_URL!;
+const redisToken = EXTERNAL_CONFIG.UPSTASH_REDIS_REST_TOKEN!;
 
 if (!redisUrl || !redisToken) {
   console.warn("⚠️ Redis 환경변수가 설정되지 않았습니다:");

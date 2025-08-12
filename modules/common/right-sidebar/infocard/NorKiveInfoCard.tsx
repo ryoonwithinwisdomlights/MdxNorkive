@@ -3,7 +3,7 @@ import LazyImage from "@/modules/shared/LazyImage";
 
 const NorKiveInfoCard = () => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="w-full flex flex-col gap-2">
       <div className="flex flex-col items-center gap-1  ">
         <div
           className="flex flex-row 

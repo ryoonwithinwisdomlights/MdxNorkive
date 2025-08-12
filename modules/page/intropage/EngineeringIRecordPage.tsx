@@ -8,7 +8,7 @@ const EngineeringIRecordPage = () => {
   const pages = engineeringSource.getPages();
 
   return (
-    <div className={generalIntroPageClass}>
+    <div className={generalIntroPageClass({ className: "" })}>
       <EngineeringIntro />
       <RecordsBodyWithTwoOptions records={pages} />
     </div>
