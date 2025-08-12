@@ -10,30 +10,29 @@ import fs from "fs/promises";
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
 
+import { generateUserFriendlySlug } from "@/lib/utils";
+
+import {
+  generateCompleteMdxFile,
+  getExistingEndDates,
+  SlugManager,
+} from "@/lib/utils/mdx-data-processing";
+
 import {
   decodeUrlEncodedLinks,
   processMdxContentWithLoggingFn,
   validateAndFixMdxContent,
-} from "@/lib/utils/mdx-data-processing/convert-unsafe-mdx/content-functional";
+} from "@/lib/utils/mdx-data-processing/convert-unsafe-mdx";
 
-// 모듈화된 유틸리티들
 import {
   printDocumentStats,
   processDocumentLinks,
   resetDocumentStats,
-} from "@/lib/utils/mdx-data-processing/cloudinary/document-processor";
-import {
   printImageStats,
   processNotionImages,
   processPageCover,
   resetImageStats,
-} from "@/lib/utils/mdx-data-processing/cloudinary/image-processor";
-import {
-  generateCompleteMdxFile,
-  generateUserFriendlySlug,
-  getExistingEndDates,
-  SlugManager,
-} from "@/lib/utils/mdx-data-processing/data-manager";
+} from "@/lib/utils/mdx-data-processing/cloudinary";
 
 import {
   ModifiedQueryDatabaseResponseArray,
@@ -43,12 +42,13 @@ import {
 // === ✅ 환경변수 및 설정 ===
 const NOTION_TOKEN = process.env.NOTION_ACCESS_TOKEN!;
 const DATABASE_ID = process.env.NOTION_DATABASE_ID!;
-const DIR_NAME = "TEST";
+const DIR_NAME = process.env.DIR_NAME!;
+const TEST_ID = process.env.TEST_ID!;
+const TEST_TYPE = process.env.TEST_TYPE!;
 const BASE_OUTPUT_DIR = path.join(process.cwd(), DIR_NAME);
 const notion = new Client({ auth: NOTION_TOKEN });
 const n2m = new NotionToMarkdown({ notionClient: notion });
-const TEST_ID = "2231eb5c0337804eadfce7368b604088";
-const TEST_TYPE = "ENGINEERINGS";
+
 // ✅ 슬러그 중복 방지용 매니저
 const slugManager = new SlugManager();
 

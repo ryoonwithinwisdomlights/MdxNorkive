@@ -1,30 +1,11 @@
-import React from "react";
 import { cn } from "@/lib/utils/general";
-import CardBase from "./CardBase";
-import ContentCard from "./ContentCard";
-import LazyImage from "@/modules/shared/LazyImage";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { TransferedDataProps } from "@/types";
+import React from "react";
 
-export interface ImageCardProps {
-  data: TransferedDataProps;
-  onClick?: () => void;
-  className?: string;
-  variant?: "default" | "horizontal" | "vertical" | "featured";
-  showMeta?: boolean;
-  showTags?: boolean;
-  showSummary?: boolean;
-  locale?: any;
-  lang: string;
-  // 슬라이더 관련 props
-  isSlider?: boolean;
-  onPrevious?: () => void;
-  onNext?: () => void;
-  showNavigation?: boolean;
-  currentIndex?: number;
-  totalSlides?: number;
-  onSlideChange?: (index: number) => void;
-}
+import CardBase from "@/modules/common/cards/CardBase";
+import ContentCard from "@/modules/common/cards/ContentCard";
+import LazyImage from "@/modules/shared/LazyImage";
+import { ImageCardProps } from "@/types";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const ImageCard = React.forwardRef<HTMLDivElement, ImageCardProps>(
   (

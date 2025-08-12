@@ -1,4 +1,5 @@
 export const DEV_CONFIG = {
+  DIR_NAME: "content",
   DEBUG: process.env.NEXT_PUBLIC_DEBUG || false,
   BACKGROUND_LIGHT: "#eeeeee", // use hex value, don't forget '#' e.g #fffefc
   BACKGROUND_DARK: "#000000", // use hex value, don't forget '#'

@@ -28,7 +28,7 @@
     "typeRoots": [
       "./node_modules/@types"
     ],
-    "strictNullChecks": true,
+
     "plugins": [
       {
         "name": "next"

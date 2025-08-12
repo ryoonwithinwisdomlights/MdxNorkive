@@ -10,40 +10,40 @@ import fs from "fs/promises";
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
 
+import { generateUserFriendlySlug } from "@/lib/utils";
+
+import {
+  generateCompleteMdxFile,
+  getExistingEndDates,
+  SlugManager,
+} from "@/lib/utils/mdx-data-processing";
+
 import {
   decodeUrlEncodedLinks,
   processMdxContentWithLoggingFn,
   validateAndFixMdxContent,
-} from "@/lib/utils/mdx-data-processing/convert-unsafe-mdx/content-functional";
+} from "@/lib/utils/mdx-data-processing/convert-unsafe-mdx";
 
-// 모듈화된 유틸리티들
 import {
   printDocumentStats,
   processDocumentLinks,
   resetDocumentStats,
-} from "@/lib/utils/mdx-data-processing/cloudinary/document-processor";
-import {
   printImageStats,
   processNotionImages,
   processPageCover,
   resetImageStats,
-} from "@/lib/utils/mdx-data-processing/cloudinary/image-processor";
-import {
-  generateCompleteMdxFile,
-  generateUserFriendlySlug,
-  getExistingEndDates,
-  SlugManager,
-} from "@/lib/utils/mdx-data-processing/data-manager";
+} from "@/lib/utils/mdx-data-processing/cloudinary";
 
 import {
   ModifiedQueryDatabaseResponseArray,
   QueryPageResponse,
 } from "@/types/notion.client.model";
+import { BLOG } from "@/blog.config";
 
 // === ✅ 환경변수 및 설정 ===
 const NOTION_TOKEN = process.env.NOTION_ACCESS_TOKEN!;
 const DATABASE_ID = process.env.NOTION_DATABASE_ID!;
-const BASE_OUTPUT_DIR = path.join(process.cwd(), "content");
+const BASE_OUTPUT_DIR = path.join(process.cwd(), BLOG.DIR_NAME);
 const notion = new Client({ auth: NOTION_TOKEN });
 const n2m = new NotionToMarkdown({ notionClient: notion });
 

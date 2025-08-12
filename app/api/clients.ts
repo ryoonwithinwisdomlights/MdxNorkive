@@ -1,4 +1,3 @@
-import "server-only";
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
 import "dotenv/config";

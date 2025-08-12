@@ -1,33 +1,10 @@
-import React from "react";
 import { cn, substringWithNumberDots } from "@/lib/utils/general";
-import CardBase from "./CardBase";
+import TagItemMini from "@/modules/common/tag/TagItemMini";
 import LazyImage from "@/modules/shared/LazyImage";
 import { CalendarIcon, PencilLineIcon } from "lucide-react";
-import Link from "next/link";
-import TagItemMini from "@/modules/common/tag/TagItemMini";
-import { Pencil1Icon, Pencil2Icon } from "@radix-ui/react-icons";
-
-export interface GridCardProps {
-  title: string;
-  type?: string;
-  subType?: string;
-  author?: string;
-  description?: string;
-  date?: string;
-  distanceFromToday?: string;
-  tags?: string[];
-  imageUrl?: string;
-  imageAlt?: string;
-  url: string;
-  onClick?: () => void;
-  className?: string;
-  variant?: "default" | "compact" | "large";
-  showImage?: boolean;
-  showMeta?: boolean;
-  showTags?: boolean;
-  showDescription?: boolean;
-  locale?: any;
-}
+import React from "react";
+import CardBase from "@/modules/common/cards/CardBase";
+import { GridCardProps } from "@/types";
 
 const GridCard = React.forwardRef<HTMLDivElement, GridCardProps>(
   (

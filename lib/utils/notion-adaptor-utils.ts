@@ -4,7 +4,7 @@ import {
   QueryPageResponse,
   RecordFrontMatter,
 } from "@/types";
-import { generateUserFriendlySlug } from "./mdx-data-processing/data-manager";
+import { generateUserFriendlySlug } from "@/lib/utils";
 
 export async function generateChildRelations(
   childRelations: Array<{ id: string }>

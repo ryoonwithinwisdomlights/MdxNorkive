@@ -1,30 +1,10 @@
 import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils/date";
 import { cn, substringWithNumberDots } from "@/lib/utils/general";
 import TagItemMini from "@/modules/common/tag/TagItemMini";
-import {
-  CalendarIcon,
-  LockIcon,
-  PencilLineIcon,
-  UserPenIcon,
-} from "lucide-react";
+import { ContentCardProps } from "@/types";
+import { CalendarIcon, LockIcon, UserPenIcon } from "lucide-react";
 import React from "react";
 import CardBase from "./CardBase";
-import { TransferedDataProps } from "@/types";
-
-export interface ContentCardProps {
-  data: TransferedDataProps;
-  onClick?: () => void;
-  className?: string;
-  variant?: "default" | "compact" | "featured";
-  showMeta?: boolean;
-  showTags?: boolean;
-  showSummary?: boolean;
-  locale?: any;
-  lang: string;
-  hover?: boolean;
-  border?: boolean;
-  background?: "default" | "gradient" | "transparent";
-}
 
 const ContentCard = React.forwardRef<HTMLDivElement, ContentCardProps>(
   (
