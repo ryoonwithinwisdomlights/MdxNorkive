@@ -1,7 +1,12 @@
 import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils/date";
 import { cn, substringWithNumberDots } from "@/lib/utils/general";
 import TagItemMini from "@/modules/common/tag/TagItemMini";
-import { ContentCardProps } from "@/types";
+import {
+  combinedMetaClasses,
+  combinedTitleClasses,
+  ContentCardProps,
+  combinedSummaryClasses,
+} from "@/types";
 import { CalendarIcon, LockIcon, UserPenIcon } from "lucide-react";
 import React from "react";
 import CardBase from "./CardBase";
@@ -28,21 +33,10 @@ const ContentCard = React.forwardRef<HTMLDivElement, ContentCardProps>(
     const isCompact = variant === "compact";
     const isFeatured = variant === "featured";
 
-    const titleClasses = cn(
-      "line-clamp-2 font-normal text-neutral-800 dark:text-white leading-tight",
-      isCompact && "text-lg",
-      isFeatured && "text-2xl lg:text-3xl font-bold",
-      !isCompact && !isFeatured && "text-2xl font-semibold",
-      onClick && "cursor-pointer hover:underline"
-    );
-
-    const metaClasses = cn(
-      "flex flex-col items-start gap-2 text-neutral-500 dark:text-neutral-400 text-xs"
-    );
-
-    const summaryClasses = cn(
-      "py-4 text-neutral-500 dark:text-neutral-200 text-sm font-light"
-    );
+    const titleClasses = combinedTitleClasses({
+      isCompact,
+      isFeatured,
+    });
 
     const handleClick = () => {
       if (onClick) {
@@ -69,8 +63,12 @@ const ContentCard = React.forwardRef<HTMLDivElement, ContentCardProps>(
         background="gradient"
         {...props}
       >
-        {/* 타입 */}
-        <span className={cn(metaClasses, "mb-0 text-xs flex-row")}>
+        {/* 타입  "mb-0 text-xs flex-row"*/}
+        <span
+          className={combinedMetaClasses({
+            className: "mb-0 text-xs flex-row",
+          })}
+        >
           {data.type} / {data.subType}
         </span>
         {/* 제목 */}
@@ -95,7 +93,7 @@ const ContentCard = React.forwardRef<HTMLDivElement, ContentCardProps>(
 
         {/* 메타데이터 */}
         {showMeta && (data.type || data.date) && (
-          <div className={metaClasses}>
+          <div className={combinedMetaClasses({ className: "" })}>
             {/* 작성자 */}
             {data.author && (
               <div className="flex gap-2 items-center  ">
@@ -123,7 +121,7 @@ const ContentCard = React.forwardRef<HTMLDivElement, ContentCardProps>(
 
         {/* 요약 */}
         {showSummary && data.summary && (
-          <p className={summaryClasses}>
+          <p className={combinedSummaryClasses({ className: "" })}>
             {substringWithNumberDots(data.summary, 100)}
           </p>
         )}

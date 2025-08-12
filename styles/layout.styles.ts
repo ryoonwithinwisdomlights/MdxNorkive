@@ -5,6 +5,16 @@ export const basicDocsClass =
 export const generalIntroPageClass =
   "w-full  max-w-6xl mx-auto flex flex-col items-center p-10 gap-10";
 
+type variationStyleProps = {
+  isCompact?: boolean;
+  isDefault?: boolean;
+  isLarge?: boolean;
+  isFeatured?: boolean;
+  isHorizontal?: boolean;
+  isVertical?: boolean;
+  className?: string;
+};
+
 export const cardBaseClass = (
   background: "default" | "gradient" | "transparent",
   border: boolean,
@@ -59,3 +69,107 @@ export const cardBaseClass = (
 
     className
   );
+
+export const combinedCardClasses = ({
+  isHorizontal,
+  isVertical,
+  isFeatured,
+  className,
+}: variationStyleProps) =>
+  cn(
+    isHorizontal && "flex flex-col md:flex-row md:flex-row-reverse gap-4",
+    isVertical && "flex flex-col",
+    isFeatured && "relative flex flex-col gap-4",
+    className
+  );
+
+export const combinedSummaryClasses = ({ className }: { className?: string }) =>
+  cn(
+    "py-4 text-neutral-500 dark:text-neutral-200 text-sm font-light",
+    className
+  );
+
+export const combinedMetaClasses = ({ className }: { className?: string }) =>
+  cn(
+    "flex flex-col items-start gap-2 text-neutral-500 dark:text-neutral-400 text-xs",
+    className
+  );
+
+export const combinedTitleClasses = ({
+  isCompact,
+  isFeatured,
+  isLarge,
+  isDefault,
+  className,
+}: variationStyleProps) =>
+  cn(
+    "line-clamp-2 font-normal text-neutral-800 dark:text-white leading-tight  cursor-pointer hover:underline",
+    isCompact && "text-lg",
+    isDefault && "text-xl",
+    isLarge && "text-2xl",
+    isFeatured && "text-2xl lg:text-3xl font-bold",
+    className
+  );
+
+export const combinedDescriptionClasses = ({
+  isCompact,
+  className,
+}: variationStyleProps) =>
+  cn(
+    "text-neutral-600 dark:text-neutral-300 text-sm  line-clamp-3",
+    isCompact && "line-clamp-2",
+    className
+  );
+
+export const combinedImageContainerClasses = ({
+  isHorizontal,
+  isVertical,
+  isFeatured,
+  isCompact,
+  isLarge,
+  className,
+}: variationStyleProps) =>
+  cn(
+    isHorizontal && "md:w-5/12 relative",
+    isVertical && "h-48",
+    isFeatured && "flex-1 relative flex items-center justify-center",
+    isCompact ? "h-40" : "h-48",
+    isLarge && "h-64",
+    className
+  );
+
+export const combinedImageClasses = ({
+  isHorizontal,
+  isVertical,
+  isFeatured,
+  isCompact,
+  className,
+}: variationStyleProps) =>
+  cn(
+    "w-full h-full object-cover object-center transition-transform duration-300 hover:scale-110",
+    isHorizontal && "h-56",
+    isVertical && "h-48",
+    isFeatured && "h-56 w-full",
+    isCompact ? "h-40 " : "h-48",
+    className
+  );
+
+export const combinedContentContainerClasses = ({
+  isHorizontal,
+  isVertical,
+  isFeatured,
+  className,
+}: variationStyleProps) =>
+  cn(
+    isHorizontal && "md:w-7/12 ",
+    isVertical && "p-6",
+    isFeatured && "flex-1",
+    className
+  );
+
+export const combinedContentClasses = ({
+  isCompact,
+  isLarge,
+  className,
+}: variationStyleProps) =>
+  cn(isCompact ? "p-4" : "p-6", isLarge && "p-8", className);

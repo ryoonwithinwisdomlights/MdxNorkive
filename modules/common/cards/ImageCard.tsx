@@ -1,10 +1,19 @@
-import { cn } from "@/lib/utils/general";
 import React from "react";
+
+import { cn } from "@/lib/utils/general";
+
+import {
+  combinedCardClasses,
+  combinedContentContainerClasses,
+  combinedImageClasses,
+  combinedImageContainerClasses,
+  ImageCardProps,
+} from "@/types";
 
 import CardBase from "@/modules/common/cards/CardBase";
 import ContentCard from "@/modules/common/cards/ContentCard";
 import LazyImage from "@/modules/shared/LazyImage";
-import { ImageCardProps } from "@/types";
+
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const ImageCard = React.forwardRef<HTMLDivElement, ImageCardProps>(
@@ -34,36 +43,33 @@ const ImageCard = React.forwardRef<HTMLDivElement, ImageCardProps>(
     const isVertical = variant === "vertical";
     const isFeatured = variant === "featured";
 
-    const cardClasses = cn(
-      "group overflow-hidden",
-      isHorizontal && "flex flex-col md:flex-row",
-      isHorizontal && "md:flex-row-reverse gap-4",
-      isVertical && "flex flex-col",
-      isFeatured && "relative flex flex-col gap-4",
-      className
-    );
+    const cardClasses = combinedCardClasses({
+      isHorizontal,
+      isVertical,
+      isFeatured,
+      className: "group overflow-hidden",
+    });
 
-    const imageContainerClasses = cn(
-      "overflow-hidden rounded-xl ",
-      isHorizontal && "md:w-5/12 relative",
-      isVertical && "h-48",
-      isFeatured && "flex-1 relative flex items-center justify-center"
-    );
+    const imageContainerClasses = combinedImageContainerClasses({
+      isHorizontal,
+      isVertical,
+      isFeatured,
+      className: "overflow-hidden rounded-xl",
+    });
 
-    const contentContainerClasses = cn(
-      "flex flex-col justify-between",
-      isHorizontal && "md:w-7/12 ",
-      isVertical && "p-6",
-      isFeatured && "flex-1"
-    );
+    const contentContainerClasses = combinedContentContainerClasses({
+      isHorizontal,
+      isVertical,
+      isFeatured,
+      className: "flex flex-col justify-between",
+    });
 
-    const imageClasses = cn(
-      "w-full h-full object-cover object-center rounded-xl ",
-      isHorizontal && "h-56",
-      isVertical && "h-48",
-      isFeatured && "h-56 w-full  ",
-      "border border-neutral-200 dark:border-neutral-700 transition-transform duration-500 hover:scale-110"
-    );
+    const imageClasses = combinedImageClasses({
+      isHorizontal,
+      isVertical,
+      isFeatured,
+      className: "rounded-xl border border-neutral-200 dark:border-neutral-700",
+    });
 
     const handleClick = () => {
       if (onClick) {
@@ -77,7 +83,6 @@ const ImageCard = React.forwardRef<HTMLDivElement, ImageCardProps>(
       <CardBase
         ref={ref}
         className={cn("w-full p-4 md:p-8")}
-        // className={cn("w-full p-4 md:p-8", isHorizontal && "md:max-md:h-72")}
         onClick={handleClick}
         hover={true}
         shadow="md"

@@ -1,10 +1,20 @@
-import { cn, substringWithNumberDots } from "@/lib/utils/general";
+import React from "react";
+
+import { substringWithNumberDots } from "@/lib/utils/general";
+import {
+  combinedCardClasses,
+  combinedContentClasses,
+  combinedDescriptionClasses,
+  combinedImageClasses,
+  combinedImageContainerClasses,
+  combinedTitleClasses,
+  GridCardProps,
+} from "@/types";
+
+import CardBase from "@/modules/common/cards/CardBase";
 import TagItemMini from "@/modules/common/tag/TagItemMini";
 import LazyImage from "@/modules/shared/LazyImage";
 import { CalendarIcon, PencilLineIcon } from "lucide-react";
-import React from "react";
-import CardBase from "@/modules/common/cards/CardBase";
-import { GridCardProps } from "@/types";
 
 const GridCard = React.forwardRef<HTMLDivElement, GridCardProps>(
   (
@@ -34,36 +44,38 @@ const GridCard = React.forwardRef<HTMLDivElement, GridCardProps>(
   ) => {
     const isCompact = variant === "compact";
     const isLarge = variant === "large";
+    const isDefault = variant === "default";
 
-    const cardClasses = cn("h-full overflow-hidden ", className);
+    const cardClasses = combinedCardClasses({
+      className: "h-full overflow-hidden",
+    });
+    const imageContainerClasses = combinedImageContainerClasses({
+      isCompact,
+      isLarge,
+      className:
+        "flex md:flex-0 flex-1 rounded-lg items-start justify-center w-full",
+    });
 
-    const imageContainerClasses = cn(
-      " flex md:flex-0 flex-1 rounded-lg items-start justify-center w-full ",
-      isCompact ? "h-40" : "h-48",
-      isLarge && "h-64"
-    );
+    const imageClasses = combinedImageClasses({
+      isCompact,
+      className: "md:rounded-none rounded-r-lg",
+    });
+    const contentClasses = combinedContentClasses({
+      isCompact,
+      isLarge,
+      className: "flex flex-1 flex-col items-start  justify-start gap-3 ",
+    });
 
-    const imageClasses = cn(
-      "w-full h-full object-cover object-center ",
-      isCompact ? "h-40 " : "h-48",
-      "md:rounded-none rounded-r-lg transition-all duration-300 hover:scale-110 "
-    );
-    const contentClasses = cn(
-      "flex flex-1 flex-col items-start  justify-start gap-3 ",
-      isCompact ? "p-4" : "p-6",
-      isLarge && "p-8"
-    );
+    const titleClasses = combinedTitleClasses({
+      isCompact,
+      isLarge,
+      isDefault,
+      className: "font-semibold leading-0",
+    });
 
-    const titleClasses = cn(
-      "font-semibold text-neutral-800 dark:text-white  line-clamp-2 hover:underline",
-      isCompact ? "text-lg" : "text-xl",
-      isLarge && "text-2xl"
-    );
-
-    const descriptionClasses = cn(
-      "text-neutral-600 dark:text-neutral-300 text-sm  line-clamp-3",
-      isCompact && "line-clamp-2"
-    );
+    const descriptionClasses = combinedDescriptionClasses({
+      isCompact,
+    });
 
     const handleClick = () => {
       if (onClick) {

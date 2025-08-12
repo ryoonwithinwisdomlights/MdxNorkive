@@ -1,15 +1,20 @@
 "use client";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 
+import { getYearMonthDay, substringWithNumberDots } from "@/lib/utils";
 import { CalendarIcon, LockIcon, UserPenIcon } from "lucide-react";
-import { cn, substringWithNumberDots, getYearMonthDay } from "@/lib/utils";
 
-import { SerializedPage } from "@/types";
 import TagItemMini from "@/modules/common/tag/TagItemMini";
 import IntroSectionWithMenuOption from "@/modules/page/components/IntroSectionWithMenuOption";
 import PageIndicator from "@/modules/page/components/PageIndicator";
+import {
+  combinedMetaClasses,
+  combinedSummaryClasses,
+  combinedTitleClasses,
+  SerializedPage,
+} from "@/types";
 
 type Props = {
   type: string;
@@ -18,17 +23,15 @@ type Props = {
   records: SerializedPage[];
 };
 
-const titleClasses = cn(
-  "line-clamp-2 text-xl font-semibold text-neutral-800 dark:text-white leading-tight",
-  "cursor-pointer hover:underline"
-);
+const titleClasses = combinedTitleClasses({
+  isCompact: false,
+  isFeatured: false,
+});
 
-const metaClasses = cn(
-  "flex flex-col md:flex-row md:items-center gap-4  items-start  text-neutral-500 dark:text-neutral-400 text-xs"
-);
-const summaryClasses = cn(
-  "py-4 text-neutral-500 dark:text-neutral-200 text-sm font-light"
-);
+const metaClasses = combinedMetaClasses({
+  className: "md:flex-row md:items-center gap-4",
+});
+
 const EntireRecords = ({
   type,
   records,
@@ -176,7 +179,7 @@ const EntireRecords = ({
 
               {/* 요약 */}
               {page.data.summary && (
-                <p className={summaryClasses}>
+                <p className={combinedSummaryClasses({ className: "" })}>
                   {substringWithNumberDots(page.data.summary, 100)}
                 </p>
               )}
