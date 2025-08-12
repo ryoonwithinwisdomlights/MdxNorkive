@@ -68,7 +68,7 @@ const DebugPanel = () => {
           onClick={toggleShow}
         >
           <div className="mr-2 bg-neutral-100 dark:bg-neutral-700  rounded w-full px-2">
-            사이트 구성 [blog.config.js]
+            {locale.SITE.DEBUG_PANEL_TITLE}
           </div>
           <XIcon className="w-5 bg-neutral-100 dark:bg-neutral-700 dark:hover:text-white hover:bg-neutral-300  dark:hover:bg-neutral-600  rounded-md py-1" />
         </div>

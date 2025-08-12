@@ -104,5 +104,6 @@ export const KOR_LANG = {
     LOCALE: "언어 설정",
     DISPLAY_LIGHT: "디스플레이 밝기 설정",
     LANG_CHANGE_SUCCESS_MSG: "사이트 언어가 변경되었습니다.",
+    DEBUG_PANEL_TITLE: "사이트 구성 [blog.config.js]",
   },
 };

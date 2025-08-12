@@ -70,7 +70,14 @@ function extractFileName(url: string): string {
       fileName = fileName.split("?")[0];
     }
 
-    return fileName;
+    // 안전한 파일명으로 변환
+    const safeFileName = fileName
+      .replace(/[^a-zA-Z0-9가-힣._-]/g, "_") // 안전하지 않은 문자를 _로 변경
+      .replace(/_{2,}/g, "_") // 연속된 _를 하나로
+      .replace(/^_|_$/g, "") // 앞뒤 _ 제거
+      .substring(0, 50); // 최대 50자로 제한
+
+    return safeFileName || `image_${Date.now()}.jpg`;
   } catch (error) {
     return `image_${Date.now()}.jpg`;
   }

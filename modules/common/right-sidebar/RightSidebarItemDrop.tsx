@@ -1,10 +1,9 @@
 "use client"; // 클라이언트 컴포넌트
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { parseIcon } from "@/lib/utils/general";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
-// 사전에 사용할 아이콘 추가
 
 /**
  * Collapse menu
@@ -13,20 +12,21 @@ import { useRouter } from "next/navigation";
  */
 export const RightSidebarItemDrop = (props) => {
   const { menuData } = props;
-
+  const { toggleMobileLeftSidebarOpen } = useGeneralSiteSettings();
   const router = useRouter();
   const hasSubMenu = menuData?.subMenus?.length > 0;
 
   const onClickUrl = (sLink) => {
     if (sLink) {
-      const href = sLink?.type === "SubMenuPage" ? sLink?.url : sLink?.slug;
+      const href = sLink?.type === "SubMenuPages" ? sLink?.url : sLink?.slug;
       if (sLink?.slug?.includes("http")) {
         window.open(sLink.slug, "_blank");
       } else {
         // SubMenuPage의 경우 절대 경로로 처리
-        const finalHref = sLink?.type === "SubMenuPage" ? `/${href}` : href;
+        const finalHref = sLink?.type === "SubMenuPages" ? `/${href}` : href;
         router.push(finalHref);
       }
+      toggleMobileLeftSidebarOpen();
     }
   };
 

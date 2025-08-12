@@ -108,5 +108,6 @@ export const ENG_LANG = {
     LOCALE: "Language settings",
     DISPLAY_LIGHT: "Display brightness settings",
     LANG_CHANGE_SUCCESS_MSG: "The Site Language has been changed",
+    DEBUG_PANEL_TITLE: "Site Configuration [blog.config.js]",
   },
 };

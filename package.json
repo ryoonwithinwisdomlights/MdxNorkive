@@ -26,7 +26,7 @@
     "bundle-report": "ANALYZE=true yarn build",
     "generate:mdx": "npx tsx scripts/notion-mdx-all-in-one.ts",
     "validate:mdx": "npx tsx scripts/validate-mdx-files.ts",
-    "one:mdx": "npx tsx backup/test-one-record-mdx.ts",
+    "one:mdx": "npx tsx scripts/test-one-record-mdx.ts",
     "process-redis-images": "npx tsx scripts/redis-image-processor.ts",
     "cron-process-mdx": "curl -X GET http://localhost:3000/api/cron/process-notion-mdx",
     "clean:lockfiles": "find . -name 'package-lock.json' ! -path './package-lock.json' -delete && find . -name 'yarn.lock' ! -path './yarn.lock' -delete && find . -name 'pnpm-lock.yaml' ! -path './pnpm-lock.yaml' -delete",

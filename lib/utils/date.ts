@@ -38,11 +38,15 @@ export const getYearMonthDay = (date: Date | string, locale: string) => {
   return format(new Date(date), formatString);
 };
 
-export const getDistanceFromToday = (date: Date | string, lang: string) => {
+export const getDistanceFromToday = (date: Date | string, locale: string) => {
   // console.log(lang);
-  const locale = lang === "kr-KR" ? ko : enUS;
+
+  const formats = {
+    "kr-KR": ko,
+    "en-US": enUS,
+  };
   return formatDistanceToNowStrict(new Date(date), {
-    locale: locale,
+    locale: formats[locale],
     addSuffix: true,
   });
 };

@@ -30,8 +30,8 @@ export default function FileWrapper(props: FileWrapperProps) {
         {...props}
       >
         <FileTextIcon className="w-4 h-4 mr-2" />
-        pdf&nbsp;-&nbsp;
-        {names}.pdf
+        file&nbsp;-&nbsp;
+        {names}
       </a>
     </div>
   );

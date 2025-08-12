@@ -244,8 +244,8 @@ const fixTableBlocks = (content: string): string => {
   return content.replace(MDX_CONTENT_PATTERNS.TABLE, (tableMatch) => {
     return tableMatch.replace(/\|([^|]*)\|/g, (cellMatch, cellContent) => {
       // 1단계: 이미 HTML 엔티티로 변환된 허용된 태그들을 원래대로 되돌리기
-      let sanitizedContent = decodeHtmlEntities(cellContent);
-
+      // let sanitizedContent = decodeHtmlEntities(cellContent);
+      let sanitizedContent = cellContent;
       // 2단계: 테이블 셀 내부의 HTML 태그들을 안전하게 이스케이프
       sanitizedContent = sanitizedContent.replace(
         /<([^>]+)>/g,
@@ -544,7 +544,15 @@ export async function validateAndFixMdxContent(
         }`
       );
 
-      const fallbackContent = MDX_CONSTANTS.DEFAULT_DOCUMENT_TEMPLATE(filename);
+      const frontmatterEndIndex = content.indexOf("---", 3);
+      const frontmatter = content.substring(0, frontmatterEndIndex + 3);
+
+      // frontmatter에서 title 값 추출 예시
+      // const title = extractFrontmatterValue(frontmatter, "title");
+      // console.log("추출된 title:", title);
+
+      const fallbackContent =
+        frontmatter + "\n" + MDX_CONSTANTS.DEFAULT_DOCUMENT_TEMPLATE(filename);
       return { isValid: false, content: fallbackContent, errors };
     }
   }

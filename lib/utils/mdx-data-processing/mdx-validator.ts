@@ -24,7 +24,8 @@ import { processMdxContentFn } from "./convert-unsafe-mdx/content-functional";
 import { MdxDirectoryValidationResult } from "@/types/mdx.model";
 
 import { MDX_CONSTANTS } from "@/constants/mdx.constants";
-
+import grayMatter from "gray-matter";
+import { extractFrontmatterValue } from "./data-manager";
 // ===== 검증 전용 함수들 =====
 
 /**
@@ -85,9 +86,13 @@ export async function validateMdxContent(
         `❌ MDX 강제 수정 실패: ${frontmatter} - ${secondError.message}`
       );
 
+      // frontmatter에서 title 값 추출 예시
+      const title = extractFrontmatterValue(frontmatter, "title");
+      console.log("추출된 title:", title);
+
       // 최후의 수단: 기본 템플릿
       const fallbackContent =
-        MDX_CONSTANTS.DEFAULT_DOCUMENT_TEMPLATE(frontmatter);
+        frontmatter + "\n" + MDX_CONSTANTS.DEFAULT_DOCUMENT_TEMPLATE(title);
       return { isValid: false, content: fallbackContent, errors };
     }
   }

@@ -11,6 +11,39 @@ import { QueryPageResponse } from "@/types/notion.client.model";
 import { BLOG } from "@/blog.config";
 
 /**
+ * MDX frontmatter 전체를 파싱하여 객체로 반환
+ * ex) const frontmatter = parseFrontmatter(content);
+ *     결과: { title: '...', slug: '...', summary: '', ... }
+ */
+export function parseFrontmatter(content: string): Record<string, any> {
+  try {
+    const { data } = matter(content);
+    return data;
+  } catch (error) {
+    console.warn(`Frontmatter 파싱 실패: ${error}`);
+    return {};
+  }
+}
+
+/**
+ * MDX frontmatter에서 특정 값을 추출
+ * ex) const title = extractFrontmatterValue(content, 'title');
+ *     결과: '궁극의 아키텍처 로드맵: Notion → MDX → 정적 블로그'
+ */
+export function extractFrontmatterValue(
+  content: string,
+  key: string
+): string | undefined {
+  try {
+    const { data } = matter(content);
+    return data[key];
+  } catch (error) {
+    console.warn(`Frontmatter 파싱 실패: ${error}`);
+    return undefined;
+  }
+}
+
+/**
  * Notion 페이지 데이터로부터 RecordFrontMatter 메타데이터 생성
  *
  * @param props Notion 페이지 속성

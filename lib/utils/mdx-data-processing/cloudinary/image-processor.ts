@@ -3,6 +3,7 @@
  * Notion에서 가져온 이미지들을 Cloudinary로 변환하고 캐시 관리
  */
 
+import { IMAGE_EXTENSIONS } from "@/constants/mdx.constants";
 import { imageCacheManager } from "@/lib/cache/image_cache_manager";
 import { uploadImageFromUrl } from "@/lib/cloudinary";
 
@@ -53,7 +54,7 @@ export async function processNotionImages(content: string): Promise<string> {
     const [fullMatch, alt, imageUrl] = match;
 
     // alt 텍스트에 파일 확장자가 있고, 그 확장자가 이미지이고, URL이 Notion URL인 경우만 처리
-    if (alt && isImageFile(alt) && isNotionImageUrl(imageUrl)) {
+    if (alt && isImageFile(alt) && isNotionImageOrFileUrl(imageUrl)) {
       console.log(`🖼️ 이미지 파일 감지: ${alt}`);
       const cloudinaryUrl = await getOrCreateCloudinaryUrl(imageUrl, "content");
       const newImageTag = `![${alt}](${cloudinaryUrl})`;
@@ -69,7 +70,7 @@ export async function processNotionImages(content: string): Promise<string> {
   for (const match of htmlMatches) {
     const [fullMatch, imageUrl] = match;
 
-    if (isNotionImageUrl(imageUrl)) {
+    if (isNotionImageOrFileUrl(imageUrl)) {
       const cloudinaryUrl = await getOrCreateCloudinaryUrl(imageUrl, "content");
       const newImageTag = fullMatch.replace(imageUrl, cloudinaryUrl);
       processedContent = processedContent.replace(fullMatch, newImageTag);
@@ -168,7 +169,7 @@ export function isNotionExpiringImageUrl(url: string): boolean {
 /**
  * 노션 이미지 URL인지 확인
  */
-export function isNotionImageUrl(url: string): boolean {
+export function isNotionImageOrFileUrl(url: string): boolean {
   return (
     url.includes("prod-files-secure.s3.us-west-2.amazonaws.com") ||
     url.includes("s3.us-west-2.amazonaws.com") ||
@@ -180,28 +181,7 @@ export function isNotionImageUrl(url: string): boolean {
  * 파일 확장자가 이미지인지 확인
  */
 export function isImageFile(fileName: string): boolean {
-  const imageExtensions = [
-    "jpg",
-    "jpeg",
-    "png",
-    "gif",
-    "webp",
-    "svg",
-    "bmp",
-    "tiff",
-    "ico",
-    "JPG",
-    "JPEG",
-    "PNG",
-    "GIF",
-    "WEBP",
-    "SVG",
-    "BMP",
-    "TIFF",
-    "ICO",
-  ];
-
-  return imageExtensions.some((ext) =>
+  return IMAGE_EXTENSIONS.some((ext) =>
     fileName.toLowerCase().endsWith(`.${ext}`)
   );
 }

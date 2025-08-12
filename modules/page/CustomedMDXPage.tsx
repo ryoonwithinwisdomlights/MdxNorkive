@@ -47,6 +47,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
     handleChangeRightSideInfoBarMode,
     handleSetTocContent,
   } = useGeneralSiteSettings();
+  const { RECORD } = locale;
   const { setCollapsed } = useSidebar();
 
   useEffect(() => {
@@ -56,8 +57,6 @@ export default function CustomedMDXPage({ className, slug, resource }) {
   }, []);
 
   const validPassword = (passInput) => {
-    // const encrypt = md5(passInput);
-
     if (passInput === page?.data?.password) {
       setLock(false);
       return true;
@@ -67,7 +66,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
 
   return (
     <article
-      className={`flex flex-col   pb-20  justify-center items-center w-full h-full ${className}`}
+      className={`flex flex-col pb-20 justify-center items-center w-full h-full ${className}`}
     >
       {lock ? (
         <LockedPage validPassword={validPassword} />
@@ -113,18 +112,18 @@ export default function CustomedMDXPage({ className, slug, resource }) {
                     <Book className="w-4 h-4" />
                     <div className="flex flex-row gap-2 items-center">
                       <span className="text-white text-sm">
-                        {locale.RECORD.READING_TIME}
+                        {RECORD.READING_TIME ?? "Reading Time"}
                       </span>
                       -
                       <span className="text-white text-sm">
-                        {page.data.readingTime} {locale.RECORD.MINUTE}
+                        {page.data.readingTime} {RECORD.MINUTE ?? "min"}
                       </span>
                     </div>
                   </div>
                   <div className="flex flex-row gap-2 items-center">
                     <span className=" flex flex-row gap-2 items-center text-white text-sm">
                       <Rocket className="w-4 h-4" />
-                      <span>{locale.RECORD.VIEW}</span>
+                      <span>{RECORD.VIEW ?? "View"}</span>
                       <span className=" busuanzi_value_page_pv" />
                     </span>
                   </div>
@@ -135,8 +134,11 @@ export default function CustomedMDXPage({ className, slug, resource }) {
                 <div className="flex items-center gap-2 text-white">
                   <CalendarIcon className="w-4 h-4" />
                   <span className="text-sm">
-                    {getYearMonthDay(page.data.date, locale.LOCALE)}{" "}
-                    {getDistanceFromToday(page.data.date, lang)}
+                    {getYearMonthDay(page.data.date, locale.LOCALE ?? "en-US")}{" "}
+                    {getDistanceFromToday(
+                      page.data.date,
+                      locale.LOCALE ?? "en-US"
+                    )}
                   </span>
                 </div>
                 {page.data.tags && page.data.tags.length > 0 && (
@@ -150,7 +152,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
             {toc.length > 0 && (
               <InlineTOC
                 items={toc}
-                children={locale.RECORD.TABLE_OF_CONTENTS}
+                children={RECORD.TABLE_OF_CONTENTS ?? "Table Of Contents"}
                 className="block md:hidden bg-neutral-100 dark:bg-neutral-800 mb-4"
               />
             )}

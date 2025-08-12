@@ -5,7 +5,8 @@
 
 import { imageCacheManager } from "@/lib/cache/image_cache_manager";
 import { uploadPdfFromUrl } from "@/lib/cloudinary";
-import { isNotionImageUrl } from "./image-processor";
+import { isNotionImageOrFileUrl } from "./image-processor";
+import { FILE_EXTENSIONS } from "@/constants/mdx.constants";
 
 // 문서 처리 통계
 export let processedFilesCount = 0;
@@ -25,7 +26,11 @@ export async function processDocumentLinks(content: string): Promise<string> {
     const [fullMatch, fileName, documentUrl] = match;
 
     // 파일명이 문서 확장자를 가지고 있고, URL이 Notion URL인 경우만 처리
-    if (fileName && isDocumentFile(fileName) && isNotionImageUrl(documentUrl)) {
+    if (
+      fileName &&
+      isDocumentFile(fileName) &&
+      isNotionImageOrFileUrl(documentUrl)
+    ) {
       try {
         console.log(`📄 문서 처리 중: ${fileName} (${documentUrl})`);
 
@@ -83,38 +88,7 @@ export async function processDocumentLinks(content: string): Promise<string> {
  * 파일 확장자가 문서인지 확인
  */
 export function isDocumentFile(fileName: string): boolean {
-  const documentExtensions = [
-    "pdf",
-    "doc",
-    "docx",
-    "rtf",
-    "txt",
-    "md",
-    "odt",
-    "pages",
-    "key",
-    "numbers",
-    "xls",
-    "xlsx",
-    "ppt",
-    "pptx",
-    "PDF",
-    "DOC",
-    "DOCX",
-    "RTF",
-    "TXT",
-    "MD",
-    "ODT",
-    "PAGES",
-    "KEY",
-    "NUMBERS",
-    "XLS",
-    "XLSX",
-    "PPT",
-    "PPTX",
-  ];
-
-  return documentExtensions.some((ext) =>
+  return FILE_EXTENSIONS.some((ext) =>
     fileName.toLowerCase().endsWith(`.${ext}`)
   );
 }

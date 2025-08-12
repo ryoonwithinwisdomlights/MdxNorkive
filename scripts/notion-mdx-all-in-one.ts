@@ -61,9 +61,6 @@ async function main() {
     await fs.mkdir(BASE_OUTPUT_DIR, { recursive: true });
   }
 
-  // Cloudinary 이미지 처리 시스템 초기화
-  // console.log("☁️ Cloudinary 이미지 처리 시스템 준비 완료");
-
   let posts;
   try {
     posts = await notion.databases.query({
@@ -119,7 +116,6 @@ async function main() {
   const existingEndDates = await getExistingEndDates();
 
   // 배치 처리를 위한 배열
-
   const pagesToProcess = (
     posts.results as ModifiedQueryDatabaseResponseArray
   ).filter((page) => {
@@ -133,14 +129,13 @@ async function main() {
     if (isNewPage) {
       console.log(`🆕 새로 추가된 페이지: ${id}`);
     } else if (isChanged) {
-      console.log(`🔄 변경된 페이지: ${id}`);
-    } else {
-      console.log(`✅ 변경 없음: ${id}`);
+      console.log(
+        `🔄 변경된 페이지: ${id} \n🔍 기존: ${existingTime}, 현재: ${last_edited_time}, 변경됨: ${isChanged}`
+      );
     }
-
-    console.log(
-      `🔍 ID: ${id}, \n기존: ${existingTime}, 현재: ${last_edited_time}, 변경됨: ${isChanged}`
-    );
+    // else {
+    //   console.log(`✅ 변경 없음: ${id}`);
+    // }
     return isChanged;
   });
 
@@ -188,6 +183,20 @@ async function main() {
 
         let enhancedContent = content;
 
+        // 노션 이미지를 Cloudinary URL로 변환
+        console.log(`🖼️ 이미지 처리 시작: ${slug}`);
+        enhancedContent = await processNotionImages(enhancedContent);
+
+        // 문서 링크를 Cloudinary URL로 변환
+        console.log(`📄 문서 링크 처리 시작: ${slug}`);
+        enhancedContent = await processDocumentLinks(enhancedContent);
+
+        // pageCover 이미지를 Cloudinary URL로 변환
+        if (pageCover) {
+          console.log(`🖼️ pageCover 처리 시작: ${slug}`);
+          pageCover = await processPageCover(pageCover);
+        }
+
         // 함수형 파이프라인을 사용한 MDX 처리
         console.log(`🔄 함수형 MDX 파이프라인 처리 시작: ${slug}`);
 
@@ -214,21 +223,6 @@ async function main() {
             console.warn(`⚠️ MDX 검증 실패, 기본 템플릿 사용: ${slug}`);
           }
         }
-
-        // 노션 이미지를 Cloudinary URL로 변환
-        console.log(`🖼️ 이미지 처리 시작: ${slug}`);
-        enhancedContent = await processNotionImages(enhancedContent);
-
-        // 문서 링크를 Cloudinary URL로 변환
-        console.log(`📄 문서 링크 처리 시작: ${slug}`);
-        enhancedContent = await processDocumentLinks(enhancedContent);
-
-        // pageCover 이미지를 Cloudinary URL로 변환
-        if (pageCover) {
-          console.log(`🖼️ pageCover 처리 시작: ${slug}`);
-          pageCover = await processPageCover(pageCover);
-        }
-
         // 메타데이터 생성 (data-manager.ts의 함수 사용)
         const frontMatter = generateCompleteMdxFile(
           props,

@@ -41,7 +41,7 @@ class RedisImageProcessor {
     for (const match of markdownMatches) {
       const [fullMatch, alt, imageUrl] = match;
 
-      if (this.isNotionImageUrl(imageUrl)) {
+      if (this.isNotionImageOrFileUrl(imageUrl)) {
         const proxyUrl = await this.getOrCreateProxyUrl(imageUrl);
         const newImageTag = `![${alt}](${proxyUrl})`;
         processedContent = processedContent.replace(fullMatch, newImageTag);
@@ -61,7 +61,7 @@ class RedisImageProcessor {
     for (const match of htmlMatches) {
       const [fullMatch, imageUrl] = match;
 
-      if (this.isNotionImageUrl(imageUrl)) {
+      if (this.isNotionImageOrFileUrl(imageUrl)) {
         const proxyUrl = await this.getOrCreateProxyUrl(imageUrl);
         const newImageTag = fullMatch.replace(imageUrl, proxyUrl);
         processedContent = processedContent.replace(fullMatch, newImageTag);
@@ -80,7 +80,7 @@ class RedisImageProcessor {
   /**
    * 노션 이미지 URL인지 확인
    */
-  private isNotionImageUrl(url: string): boolean {
+  private isNotionImageOrFileUrl(url: string): boolean {
     return (
       url.includes("prod-files-secure.s3.us-west-2.amazonaws.com") ||
       url.includes("s3.us-west-2.amazonaws.com") ||

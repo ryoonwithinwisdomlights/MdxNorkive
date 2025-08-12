@@ -143,6 +143,21 @@ async function main() {
           let enhancedContent = content;
           // 함수형 파이프라인을 사용한 MDX 처리
           console.log(`🔄 함수형 MDX 파이프라인 처리 시작: ${slug}`);
+
+          // 노션 이미지를 Cloudinary URL로 변환
+          console.log(`🖼️ 이미지 처리 시작: ${slug}`);
+          enhancedContent = await processNotionImages(enhancedContent);
+
+          // 문서 링크를 Cloudinary URL로 변환
+          console.log(`📄 문서 링크 처리 시작: ${slug}`);
+          enhancedContent = await processDocumentLinks(enhancedContent);
+
+          // // pageCover 이미지를 Cloudinary URL로 변환
+          if (pageCover) {
+            console.log(`🖼️ pageCover 처리 시작: ${slug}`);
+            pageCover = await processPageCover(pageCover);
+          }
+
           try {
             // 1단계: URL 디코딩
             enhancedContent = decodeUrlEncodedLinks(enhancedContent);
@@ -166,19 +181,7 @@ async function main() {
               console.warn(`⚠️ MDX 검증 실패, 기본 템플릿 사용: ${slug}`);
             }
           }
-          // 노션 이미지를 Cloudinary URL로 변환
-          console.log(`🖼️ 이미지 처리 시작: ${slug}`);
-          enhancedContent = await processNotionImages(enhancedContent);
 
-          // 문서 링크를 Cloudinary URL로 변환
-          console.log(`📄 문서 링크 처리 시작: ${slug}`);
-          enhancedContent = await processDocumentLinks(enhancedContent);
-
-          // // pageCover 이미지를 Cloudinary URL로 변환
-          if (pageCover) {
-            console.log(`🖼️ pageCover 처리 시작: ${slug}`);
-            pageCover = await processPageCover(pageCover);
-          }
           // 메타데이터 생성 (data-manager.ts의 함수 사용)
           const frontMatter = generateCompleteMdxFile(
             props,

@@ -2,6 +2,21 @@
 import { loadExternalResource } from "@/lib/utils/general";
 import { useEffect, useRef, useLayoutEffect, useState } from "react";
 
+/**
+ * VConsoleTs Component
+ *
+ * A hidden debugging tool that loads vConsole for mobile development.
+ * Activates when user clicks 8 times consecutively within 1 second in the center area.
+ *
+ * Features:
+ * - Dynamically loads vConsole library for mobile debugging
+ * - Hidden activation pattern prevents accidental activation
+ * - Provides developer tools in mobile environment
+ * - Auto-resets counter if 8 clicks aren't completed within 1 second
+ * - Only works in center 100x100 pixel area of the screen
+ *
+ * Use case: Mobile development, production debugging, remote user support
+ */
 const VConsoleTs = () => {
   const [currentTime, setTime] = useState<number>();
   useLayoutEffect(() => {
@@ -10,10 +25,14 @@ const VConsoleTs = () => {
     const now = Date.now();
     setTime(now);
   }, []);
-  const clickCountRef = useRef<number>(0); // 클릭 횟수
-  const lastClickTimeRef = useRef<number>(0); // 마지막 클릭 시간 타임스탬프
-  const timerRef = useRef<NodeJS.Timeout | null>(null); // 타이머 참조 NodeJS.Timeout 타입을 사용하여 타이머에 대한 참조를 저장합니다. 이는 Node.js와 브라우저 둘 다에서 작동하는 타입입니다.
+  const clickCountRef = useRef<number>(0); // Click counter
+  const lastClickTimeRef = useRef<number>(0); // Last click timestamp
+  const timerRef = useRef<NodeJS.Timeout | null>(null); // Timer reference using NodeJS.Timeout type to store timer references that work in both Node.js and browser environments
 
+  /**
+   * Loads vConsole library dynamically from CDN
+   * Creates and initializes vConsole instance for mobile debugging
+   */
   const loadVConsole = async (): Promise<void> => {
     try {
       const url = await loadExternalResource(
@@ -23,7 +42,7 @@ const VConsoleTs = () => {
       if (!url) {
         return;
       }
-      const VConsole = (window as any).VConsole; //window 객체에 VConsole이 없는 관계로 (window as any).VConsole을 사용하여 타입스크립트의 타입 검사를 우회
+      const VConsole = (window as any).VConsole; // VConsole is not available on window object, so using (window as any).VConsole to bypass TypeScript type checking
       const vConsole = new VConsole();
       return vConsole;
     } catch (error) {
@@ -32,9 +51,15 @@ const VConsoleTs = () => {
   };
 
   /**
-   * 이 코드는 브라우저에서 8번 연속으로 클릭 이벤트가 발생하면
-   * vConsole을 로드하는 방식으로 작동합니다.
-   * 각 클릭 이벤트는 중앙에서 100x100 픽셀 범위 내에서 발생해야 합니다.
+   * This code works by detecting 8 consecutive click events in the browser
+   * to load vConsole. Each click event must occur within a 100x100 pixel
+   * range from the center of the screen.
+   *
+   * Activation Logic:
+   * - Detects clicks in center 100x100 pixel area
+   * - Counts consecutive clicks within 1 second
+   * - Activates vConsole after 8 successful clicks
+   * - Auto-resets counter if timing requirement not met
    */
   useEffect(() => {
     if (currentTime) {
@@ -58,9 +83,9 @@ const VConsoleTs = () => {
           clickCountRef.current + 1 === 8
         ) {
           loadVConsole();
-          clickCountRef.current = 0; // 계수기 초기화
+          clickCountRef.current = 0; // Reset counter
           if (timerRef.current) {
-            clearTimeout(timerRef.current); // 타이머 초기화
+            clearTimeout(timerRef.current); // Clear timer
           }
           window.removeEventListener("click", clickListener);
         } else {

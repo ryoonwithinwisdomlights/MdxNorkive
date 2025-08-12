@@ -22,6 +22,61 @@
  * @lastModified 2025-08-08
  */
 
+export const IMAGE_EXTENSIONS = [
+  "jpg",
+  "jpeg",
+  "png",
+  "gif",
+  "webp",
+  "svg",
+  "bmp",
+  "tiff",
+  "ico",
+  "JPG",
+  "JPEG",
+  "PNG",
+  "GIF",
+  "WEBP",
+  "SVG",
+  "BMP",
+  "TIFF",
+  "ICO",
+];
+
+/**
+ * 파일 확장자 목록
+ */
+export const FILE_EXTENSIONS = [
+  "pdf",
+  "doc",
+  "docx",
+  "rtf",
+  "txt",
+  "md",
+  "odt",
+  "pages",
+  "key",
+  "numbers",
+  "xls",
+  "xlsx",
+  "ppt",
+  "pptx",
+  "PDF",
+  "DOC",
+  "DOCX",
+  "RTF",
+  "TXT",
+  "MD",
+  "ODT",
+  "PAGES",
+  "KEY",
+  "NUMBERS",
+  "XLS",
+  "XLSX",
+  "PPT",
+  "PPTX",
+];
+
 /**
  * MDX에서 허용되는 HTML 태그 목록
  *
@@ -283,7 +338,7 @@ export const MDX_LINK_PATTERNS = {
   EMBED: /\[embed\]\((https?:\/\/[^\s)]+)\)/g,
 
   // 파일 링크 패턴
-  FILE: /\[([^\]]+\.(pdf|doc|docx|rtf|txt|md|odt))\]\(([^)]+)\)/gi,
+  FILE: /\[([^\]]+\.(pdf|doc|docx|rtf|txt|md|odt|pages|key|numbers|xls|xlsx|ppt|pptx))\]\(([^)]+)\)/gi,
 
   // Google Drive 링크 패턴
   GOOGLE_DRIVE:
