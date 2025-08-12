@@ -1,15 +1,16 @@
 import NotFound from "@/app/not-found";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import OptionCarousel, { OptionItem } from "@/modules/shared/OptionCarousel";
+import { transferDataForCardProps } from "@/lib/utils/records";
+import InformationCard from "@/modules/page/components/InformationCard";
+import NoRecordFound from "@/modules/shared/NoRecordFound";
+import PageIndicator from "@/modules/page/components/PageIndicator";
 import LazyImage from "@/modules/shared/LazyImage";
+import OptionCarousel, { OptionItem } from "@/modules/shared/OptionCarousel";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import NoRecordFound from "@/modules/page/components/NoRecordFound";
-import PageIndicator from "@/modules/page/components/PageIndicator";
-import InformationCard from "@/modules/page/components/InformationCard";
 import InjectedOptionMenu from "../../components/InjectedOptionMenu";
 
-const EngineeringRecordsBody = ({ records }: { records: any[] }) => {
+const RecordsBodyWithTwoOptions = ({ records }: { records: any[] }) => {
   const pages = records;
   if (!pages) NotFound();
   pages.sort((a, b) => {
@@ -125,21 +126,11 @@ const EngineeringRecordsBody = ({ records }: { records: any[] }) => {
     }, [pages, currentRecordType, currentTag, currentPage]); // currentTag 의존성 추가
 
   const TOTAL_PAGES = Math.ceil(filteredPages.length / CARDS_PER_PAGE);
+
   useEffect(() => {
     setCurrentPage(0);
   }, [currentRecordType]);
 
-  const nextPage = () => {
-    if (currentPage < TOTAL_PAGES - 1) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const prevPage = () => {
-    if (currentPage > 0) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
   const handleRecordTypeChange = (sub_type: string) => {
     setCurrentRecordType(sub_type);
   };
@@ -167,9 +158,8 @@ const EngineeringRecordsBody = ({ records }: { records: any[] }) => {
 
         <PageIndicator
           currentPage={currentPage}
-          TOTAL_PAGES={TOTAL_PAGES}
-          prevPage={prevPage}
-          nextPage={nextPage}
+          totalPages={TOTAL_PAGES}
+          setCurrentPage={setCurrentPage}
         />
       </div>
 
@@ -178,40 +168,40 @@ const EngineeringRecordsBody = ({ records }: { records: any[] }) => {
           {modAllRecords && modAllRecords.length > 0 ? (
             modAllRecords.map((item: any, index) => {
               const showPageCover = item?.data?.pageCover;
+              const data = transferDataForCardProps(item);
               return (
                 <div key={item?.data?.notionId || index} className="w-full ">
-                  <div className="hover:scale-105 transition-all duration-150">
-                    <div
-                      onClick={() => {
-                        router.push(item?.url);
-                      }}
-                      data-aos="fade-up"
-                      data-aos-easing="ease-in-out"
-                      data-aos-duration="800"
-                      data-aos-once="false"
-                      data-aos-anchor-placement="top-bottom"
-                      id="notion-page-card"
-                      className={`group w-full max-md:h-72 flex p-2 justify-between md:flex-row flex-col-reverse ${
-                        index % 2 === 1 ? "md:flex-row-reverse" : ""
-                      } overflow-hidden border dark:border-black rounded-lg shadow-md  bg-gradient-to-br from-white to-white dark:from-neutral-900 dark:to-neutral-700 `}
-                    >
-                      <InformationCard
-                        page={item}
-                        showPageCover={showPageCover}
-                        showPreview={true}
-                        showSummary={true}
-                      />
-                      {showPageCover && (
-                        <div className="md:w-5/12 rounded-xl overflow-hidden">
-                          <LazyImage
-                            alt=""
-                            priority={index === 1}
-                            src={item?.data?.pageCover}
-                            className="h-56 w-full rounded-xl object-cover object-center group-hover:scale-110 duration-500"
-                          />
-                        </div>
-                      )}
-                    </div>
+                  <div
+                    onClick={() => {
+                      router.push(item?.url);
+                    }}
+                    data-aos="fade-up"
+                    data-aos-easing="ease-in-out"
+                    data-aos-duration="800"
+                    data-aos-once="false"
+                    data-aos-anchor-placement="top-bottom"
+                    id="notion-page-card"
+                    className={`hover:scale-105 transition-all duration-150 group w-full max-md:h-72 flex p-2 justify-between md:flex-row flex-col-reverse ${
+                      index % 2 === 1 ? "md:flex-row-reverse" : ""
+                    } overflow-hidden border dark:border-black rounded-lg shadow-md  bg-gradient-to-br from-white to-white dark:from-neutral-900 dark:to-neutral-700 `}
+                  >
+                    <InformationCard
+                      // page={item}
+                      data={data}
+                      // showPageCover={showPageCover}
+                      showPreview={true}
+                      showSummary={true}
+                    />
+                    {showPageCover && (
+                      <div className="md:w-5/12 rounded-xl overflow-hidden">
+                        <LazyImage
+                          alt=""
+                          priority={index === 1}
+                          src={item?.data?.pageCover}
+                          className="h-56 w-full rounded-xl object-cover object-center group-hover:scale-110 duration-500"
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
               );
@@ -225,4 +215,4 @@ const EngineeringRecordsBody = ({ records }: { records: any[] }) => {
   );
 };
 
-export default EngineeringRecordsBody;
+export default RecordsBodyWithTwoOptions;

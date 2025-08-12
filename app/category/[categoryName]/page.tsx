@@ -2,6 +2,7 @@ import ErrorComponent from "@/modules/shared/ErrorComponent";
 import GeneralRecordTypePageWrapper from "@/modules/layout/templates/home-page-layout";
 
 import { TotalPageParams } from "@/types";
+import NoRecordFound from "@/modules/shared/NoRecordFound";
 
 export async function generateStaticParams() {
   const records = [
@@ -33,7 +34,7 @@ export default async function Page({ params, searchParams }: TotalPageParams) {
         pageCount={result.pageCount!}
         allPages={result.allPages}
       /> */}
-      <div>No result</div>
+      <NoRecordFound />
     </GeneralRecordTypePageWrapper>
   );
 }

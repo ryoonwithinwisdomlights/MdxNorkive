@@ -25,7 +25,7 @@ export default function NotFound() {
         className="hidden dark:block"
       />
       <h2 className="text-xl font-medium mb-6">
-        {locale.COMMON.ERROR_OCCURRED}
+        {locale.COMMON.NO_RECORD_FOUND}
       </h2>
       <Button asChild>
         <Link href={"/"}> Go Back</Link>

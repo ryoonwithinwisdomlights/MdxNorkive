@@ -25,7 +25,7 @@ const InjectedOptionMenu = ({
   dark:border-neutral-100
   border border-neutral-200 
   px-3 py-1.5 text-sm font-semibold
-    text-neutral-900 dark:text-white shadow-inner shadow-white/10 
+    text-neutral-800 dark:text-white shadow-inner shadow-white/10 
 
     data-focus:outline-white
      data-hover:bg-neutral-100
@@ -50,7 +50,7 @@ const InjectedOptionMenu = ({
               className="group flex w-full items-center gap-2 rounded-lg px-3 
               py-1.5 data-focus:bg-neutral-100 dark:data-focus:bg-neutral-700"
             >
-              <Book className="size-4 text-neutral-500 dark:text-neutral-400" />{" "}
+              <Book className="size-4 text-neutral-500 dark:text-neutral-400" />
               {item.title}
             </button>
           </MenuItem>

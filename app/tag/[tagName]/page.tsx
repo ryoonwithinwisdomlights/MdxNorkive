@@ -2,6 +2,7 @@ import { TotalPageParams } from "@/types";
 
 import ErrorComponent from "@/modules/shared/ErrorComponent";
 import GeneralRecordTypePageWrapper from "@/modules/layout/templates/home-page-layout";
+import NoRecordFound from "@/modules/shared/NoRecordFound";
 
 export async function generateStaticParams() {
   const records = [{ tagId: "기술로그" }, { tagId: "another-Tags" }];
@@ -29,7 +30,7 @@ export default async function Page({ params, searchParams }: TotalPageParams) {
         pageCount={result.pageCount!}
         allPages={result.allPages}
       /> */}
-      <div>No result</div>
+      <NoRecordFound />
     </GeneralRecordTypePageWrapper>
   );
 }

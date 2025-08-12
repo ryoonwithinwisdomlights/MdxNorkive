@@ -1,22 +1,31 @@
+"use client";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { paginationString } from "@/lib/utils/records";
 import React from "react";
 
 type Props = {
   currentPage: number;
-  TOTAL_PAGES: number;
-  prevPage: () => void;
-  nextPage: () => void;
+  totalPages: number;
+  setCurrentPage: (page: number) => void;
 };
 
-const PageIndicator = ({
-  currentPage,
-  TOTAL_PAGES,
-  prevPage,
-  nextPage,
-}: Props) => {
+const PageIndicator = ({ currentPage, totalPages, setCurrentPage }: Props) => {
+  const { locale } = useGeneralSiteSettings();
+  const prevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  const nextPage = () => {
+    if (currentPage < totalPages - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   return (
-    <div className="flex justify-between items-center mt-8">
+    <div className="flex justify-between items-center ">
       <div className="text-sm text-neutral-500 dark:text-neutral-400">
-        Page {currentPage + 1} of {TOTAL_PAGES}
+        {paginationString(locale, totalPages, currentPage)}
       </div>
       <div className="flex space-x-4">
         <button
@@ -45,11 +54,11 @@ const PageIndicator = ({
         <button
           onClick={nextPage}
           className={`p-2 rounded-full transition-all duration-300 ease-in-out transform hover:scale-110 ${
-            currentPage === TOTAL_PAGES - 1
+            currentPage === totalPages - 1
               ? "bg-neutral-100 dark:bg-neutral-700 opacity-50 cursor-not-allowed"
               : "bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600"
           }`}
-          disabled={currentPage === TOTAL_PAGES - 1}
+          disabled={currentPage === totalPages - 1}
         >
           <svg
             className="w-5 h-5 text-neutral-600 dark:text-neutral-300"

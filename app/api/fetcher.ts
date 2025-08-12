@@ -20,7 +20,8 @@ import type {
   ImageBlockObjectResponse,
   ListBlockChildrenResponse,
 } from "@notionhq/client/build/src/api-endpoints";
-
+// import { ENG_LANG } from "@/constants/en-lang.constants";
+// import { KOR_LANG } from "@/constants/kr-lang.constants";
 import { getSiteInfo } from "@/lib/utils/site";
 
 export const fetchMenuList = cache(async (): Promise<MenuItem[]> => {

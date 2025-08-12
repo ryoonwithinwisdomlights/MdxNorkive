@@ -15,6 +15,7 @@ export default function DateSortedRecords({
 }: BasicPageDivProps) {
   const router = useRouter();
   const { locale } = useGeneralSiteSettings();
+  const { LOCKED } = locale.LOCKED;
   const handleRouter = (page: any) => {
     router.push(page.url);
   };
@@ -54,7 +55,7 @@ export default function DateSortedRecords({
                   {page.data.password !== "" && (
                     <div className="pl-2 flex flex-row gap-1 text-sm justify-start items-center">
                       <LockIcon className="w-3 h-3" />
-                      <span className="">{locale.COMMON.LOCKED}</span>
+                      <span className="">{LOCKED.LOCKED}</span>
                     </div>
                   )}
                 </div>

@@ -14,7 +14,7 @@ export const isNil = (input: unknown): input is null => {
   return input === null;
 };
 
-export function substringWithNumberDots(str, number) {
+export function substringWithNumberDots(str: string, number: number) {
   const result = str.length > number ? str.substring(0, number) + "..." : str;
   return result;
 }

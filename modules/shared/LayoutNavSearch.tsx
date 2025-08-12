@@ -86,7 +86,7 @@ export default function LayoutNavSearch() {
         </span>
         <input
           type="text"
-          placeholder={locale.COMMON.ENTER_SEARCH_TERM}
+          placeholder={locale.SEARCH.ENTER_SEARCH_TERM}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="
@@ -157,7 +157,7 @@ export default function LayoutNavSearch() {
           </ul>
         ) : query.trim().length > 0 ? (
           <div className="p-3 text-neutral-500 dark:text-neutral-300 ">
-            No results found.
+            {locale.COMMON.NO_RECORD_FOUND}
           </div>
         ) : null}
       </div>

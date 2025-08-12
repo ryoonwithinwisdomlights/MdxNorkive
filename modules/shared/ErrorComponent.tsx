@@ -23,8 +23,11 @@ export default function ErrorComponent() {
         alt="Error"
         className="hidden dark:block"
       />
+      <h1 className="text-xl font-medium mb-6">
+        {locale.ERROR.ERROR_OCCURRED}
+      </h1>
       <h2 className="text-xl font-medium mb-6">
-        {locale.COMMON.INVALID_RECORD}
+        {locale.ERROR.INVALID_RECORD}
       </h2>
       <Button asChild>
         <Link href={"/"}>{locale.SITE.BACK}</Link>

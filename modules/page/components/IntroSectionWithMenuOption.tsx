@@ -25,10 +25,10 @@ const IntroSectionWithMenuOption = ({
         DESC: "",
       };
   return (
-    <div className="flex flex-col md:flex-row justify-between items-end">
+    <div className="flex flex-col md:flex-row justify-between items-end gap-4">
       <div className="">
         {introTrue && (
-          <div className="text-start mb-6 flex flex-col gap-2">
+          <div className="text-start flex flex-col gap-2">
             <h2 className="text-4xl font-bold text-neutral-900 dark:text-white  ">
               {introText.TITLE}
             </h2>
@@ -40,7 +40,7 @@ const IntroSectionWithMenuOption = ({
       </div>
       <div>
         {allOptions.length > 0 && (
-          <div className="w-52 text-right relative flex flex-col justify-end items-end mb-6  ">
+          <div className="w-52 text-right relative flex flex-col justify-end items-end">
             <InjectedOptionMenu
               currentRecordType={currentRecordType}
               allOptions={allOptions}

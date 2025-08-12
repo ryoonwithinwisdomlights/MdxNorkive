@@ -10,9 +10,5 @@ export default function Page() {
     setCollapsed(true);
   });
 
-  return (
-    <div className="w-full max-w-6xl mx-auto flex flex-col items-center p-10 gap-10">
-      <GeneralRecordPage />
-    </div>
-  );
+  return <GeneralRecordPage />;
 }

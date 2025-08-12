@@ -74,7 +74,7 @@ export function LargeSearchToggle({
       <Search className="size-4" />
       {/* {text.search} */}
       {/**intl적용전 general locale 적용 */}
-      {locale.COMMON.ENTER_SEARCH_TERM}
+      {locale.SEARCH.ENTER_SEARCH_TERM}
       <div className="ms-auto inline-flex gap-0.5">
         {hotKey.map((k, i) => (
           <kbd key={i} className="rounded-md border bg-fd-background px-1.5">

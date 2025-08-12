@@ -246,7 +246,7 @@ export default [
     "title": "[Giving] 24.05 주임신부님 영명축일 기념 포스터 제작",
     "icon": "",
     "full": false,
-    "summary": "",
+    "summary": "Hey-Taxi(헤이택시) is a Full Stack Next.Js 13 ver. Taxi Booking App w/ NextJs, React.js, Tailwindcss, Mapbox and Stripe",
     "pageCover": "https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641075/norkive-notion-images/1754641074860-KakaoTalk_Photo_2024-06-19-21-11-02.jpg",
     "password": "",
     "type": "PROJECTS",

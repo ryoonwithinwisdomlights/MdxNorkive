@@ -5,6 +5,26 @@
 
 import { RecordFrontMatter } from "./mdx.model";
 
+export interface mainRecordProps {
+  type: string;
+  subType: boolean;
+  introTrue: boolean;
+  records: any[];
+}
+export interface TransferedDataProps {
+  title: string;
+  summary?: string;
+  type?: string;
+  subType?: string;
+  date?: string;
+  author?: string;
+  tags?: string[];
+  isLocked?: boolean;
+  url?: string;
+  imageUrl?: string;
+  imageAlt?: string;
+}
+
 export type RecommendPage = {
   id: string;
   type: string;
@@ -57,9 +77,9 @@ export type PaginationDivProps = {
 };
 
 export type CardInfoDivProps = {
-  page: any;
+  data: TransferedDataProps;
   showPreview: boolean;
-  showPageCover: boolean;
+
   showSummary: boolean;
 };
 export type NavListDivProps = {

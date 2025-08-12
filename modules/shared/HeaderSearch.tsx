@@ -83,7 +83,7 @@ export default function HeaderSearch() {
         </span>
         <input
           type="text"
-          placeholder={locale.COMMON.ENTER_SEARCH_TERM}
+          placeholder={locale.SEARCH.ENTER_SEARCH_TERM}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="

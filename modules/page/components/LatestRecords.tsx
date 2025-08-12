@@ -1,132 +1,111 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
+import { GridCard, ImageCard } from "@/modules/common/cards";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import {
-  getCurrentRecordsWithPagination,
-  getMainRecentRecords,
-} from "@/lib/utils/records";
-import IntroSectionWithMenuOption from "@/modules/page/components/IntroSectionWithMenuOption";
-import PageIndicator from "@/modules/page/components/PageIndicator";
-import LazyImage from "@/modules/shared/LazyImage";
-import { LockIcon } from "lucide-react";
+import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils/date";
+import { transferDataForCardProps } from "@/lib/utils/records";
+import { useMemo, useState } from "react";
+import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
+import PageIndicator from "./PageIndicator";
+import { mainRecordProps } from "@/types";
 
-type Props = {
-  type: string;
-  subType: boolean;
-  introTrue: boolean;
-  records: any[];
-};
-
-const LatestRecords = ({ records, introTrue, subType = false }: Props) => {
+const LatestRecords = ({
+  type,
+  introTrue,
+  records,
+  subType,
+}: mainRecordProps) => {
   const pages = records;
   if (!pages) return null;
-  const { lang, locale } = useGeneralSiteSettings();
+
+  const { locale, lang } = useGeneralSiteSettings();
   const [currentPage, setCurrentPage] = useState(0);
   const [currentRecordType, setCurrentRecordType] = useState("");
 
   // useMemo를 사용하여 필터링 로직 최적화
-  const { firstArticle, restArticles, filteredPages, allOptions } =
-    useMemo(() => {
-      // 기본 필터링: Project 타입만
-      const latestPages = pages;
+  const { filteredPages, allOptions } = useMemo(() => {
+    const filteredPages =
+      currentRecordType !== ""
+        ? pages.filter((page) => {
+            const pageType = subType ? page?.data?.sub_type : page?.data?.type;
+            if (!pageType) return false;
 
-      // 카테고리 파라미터가 있으면 추가 필터링
-      const filtered =
-        currentRecordType !== ""
-          ? latestPages.filter((page) => {
-              const pageType = subType
-                ? page?.data?.sub_type
-                : page?.data?.type;
-              if (!pageType) return false;
+            // 대소문자 구분 없이 비교
+            return pageType.toLowerCase() === currentRecordType.toLowerCase();
+          })
+        : pages;
 
-              // 대소문자 구분 없이 비교
-              return pageType.toLowerCase() === currentRecordType.toLowerCase();
-            })
-          : latestPages;
+    // 중복되지 않는 고유한 타입만 추출
+    const uniqueTypeOptions = Array.from(
+      new Set(
+        pages //타입은 전체 페이지 기준
+          .map((item) => item?.data?.type)
+          .filter((data): data is string => Boolean(data))
+      )
+    );
+    const uniqueSubTypeOptions = Array.from(
+      new Set(
+        filteredPages //서브타입은 필터링된 페이지 기준
+          .map((item) => item?.data?.sub_type)
+          .filter((data): data is string => Boolean(data))
+      )
+    );
 
-      // 중복되지 않는 고유한 카테고리만 추출 (전체 프로젝트 페이지 기준)
-      const uniqueTypeOptions = Array.from(
-        new Set(
-          pages
-            .map((item) => item?.data?.type)
-            .filter((data): data is string => Boolean(data))
-        )
-      );
+    // "전체" 아이템을 맨 앞에 추가
+    const typeOptions: any[] = [
+      {
+        id: -1,
+        title: locale.COMMON.ALL,
+        option: "",
+      },
+      ...uniqueTypeOptions.map((option, index) => ({
+        id: index,
+        title: option,
+        option: option,
+      })),
+    ];
 
-      const uniqueSubTypeOptions = Array.from(
-        new Set(
-          filtered
-            .map((item) => item?.data?.sub_type)
-            .filter((data): data is string => Boolean(data))
-        )
-      );
+    const subTypeOptions: any[] = [
+      {
+        id: -1,
+        title: locale.COMMON.ALL,
+        option: "",
+      },
+      ...uniqueSubTypeOptions.map((option, index) => ({
+        id: index,
+        title: option,
+        option: option,
+      })),
+    ];
 
-      // "전체" 아이템을 맨 앞에 추가
-      const typeOptions: any[] = [
-        {
-          id: -1,
-          title: locale.COMMON.ALL,
-          option: "",
-        },
-        ...uniqueTypeOptions.map((option, index) => ({
-          id: index,
-          title: option,
-          option: option,
-        })),
-      ];
-
-      // "전체" 아이템을 맨 앞에 추가
-      const subTypeOptions: any[] = [
-        {
-          id: -1,
-          title: locale.COMMON.ALL,
-          option: "",
-        },
-        ...uniqueSubTypeOptions.map((option, index) => ({
-          id: index,
-          title: option,
-          option: option,
-        })),
-      ];
-      const allOptions = subType ? subTypeOptions : typeOptions;
-      const articles = getMainRecentRecords(filtered, lang, 7);
-      const firstArticle = articles[0];
-      const restArticles = articles.slice(1, articles.length);
-
-      return {
-        firstArticle,
-        restArticles,
-        filteredPages: filtered,
-        allOptions: allOptions,
-      };
-    }, [pages, currentRecordType]);
-
-  const CARDS_PER_PAGE = 3;
-  const TOTAL_PAGES = Math.ceil(restArticles.length / CARDS_PER_PAGE);
-
-  useEffect(() => {
-    setCurrentPage(0);
-  }, [currentRecordType]);
-
-  const nextPage = () => {
-    if (currentPage < TOTAL_PAGES - 1) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const prevPage = () => {
-    if (currentPage > 0) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
+    const allOptions = subType ? subTypeOptions : typeOptions;
+    return {
+      filteredPages,
+      allOptions: allOptions,
+    };
+  }, [pages, type, currentRecordType, locale.COMMON.ALL]);
 
   const handleRecordTypeChange = (option: string) => {
     setCurrentRecordType(option);
+    setCurrentPage(0); // 페이지 변경 시 첫 페이지로 이동
   };
 
+  const getCurrentRecordsWithPagination = (
+    records: any[],
+    page: number,
+    perPage: number
+  ) => {
+    const startIndex = page * perPage;
+    const endIndex = startIndex + perPage;
+    return records.slice(startIndex, endIndex);
+  };
+
+  const CARDS_PER_PAGE = 3;
+  const firstArticle = filteredPages[0];
+  const restArticles = filteredPages.slice(1, filteredPages.length);
+  const totalPages = Math.ceil(restArticles.length / CARDS_PER_PAGE);
+
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 py-8">
+    <div className="w-full max-w-6xl mx-auto px-4 flex flex-col gap-8">
       {/* Section Title */}
       <IntroSectionWithMenuOption
         introTrue={introTrue}
@@ -137,115 +116,58 @@ const LatestRecords = ({ records, introTrue, subType = false }: Props) => {
       />
 
       {/* Main Featured Article */}
-      <div
-        className=" bg-gradient-to-br from-white to-white dark:from-neutral-900 dark:to-neutral-700 rounded-lg shadow-md overflow-hidden mb-8 
-      border border-neutral-200 dark:border-neutral-700
-       hover:border-neutral-300 dark:hover:border-neutral-500"
-      >
-        <div className="flex flex-col md:flex-row  md:h-60 ">
-          {/* Left Side - Image */}
-          <LazyImage
-            alt={firstArticle.title}
-            priority={true}
-            src={firstArticle.pageCover}
-            className="md:w-1/2  h-60 w-full 
-            transition-all duration-300 hover:scale-105  
-            rounded-l-lg hover:border-neutral-300 dark:hover:border-neutral-600
-            object-cover object-center 
-             "
-          />
-          {/* Right Side - Content */}
-          <div className="md:w-1/2   h-60 p-6 flex flex-col justify-between  items-start  ">
-            <div className="flex flex-col">
-              <span className="text-xs  text-neutral-500 dark:text-neutral-400  uppercase tracking-wide mb-2">
-                {firstArticle.type} / {firstArticle.sub_type}
-              </span>
-              <Link
-                href={firstArticle.url}
-                className=" hover:underline text-xl font-bold text-neutral-900 dark:text-white mb-4 leading-tight"
-              >
-                {firstArticle.title}
-              </Link>
-              {firstArticle.password !== "" && (
-                <div className="flex flex-row  gap-1 text-sm justify-start items-center">
-                  <LockIcon className="w-4 h-4" />
-                  <span className="text-sm">{locale.COMMON.LOCKED}</span>
-                </div>
-              )}
-            </div>
+      {firstArticle && (
+        <ImageCard
+          data={transferDataForCardProps(firstArticle)}
+          variant="featured"
+          showMeta={true}
+          showTags={true}
+          showSummary={true}
+          locale={locale}
+          lang={lang}
+          isSlider={false}
+        />
+      )}
 
-            <h3 className="  text-black mt-1 line-clamp-2">
-              {firstArticle.description}
-              {/* Barely half of banks' own employees would recommend their inter... */}
-            </h3>
-            <div className="flex items-center text-sm text-neutral-500 dark:text-neutral-400 ">
-              <span>{firstArticle.author}</span>
-              <span className="mx-2">•</span>
-              <span>{firstArticle.date}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Smaller Featured Articles */}
+      {/* Pagination */}
+      <PageIndicator
+        currentPage={currentPage}
+        totalPages={totalPages}
+        setCurrentPage={setCurrentPage}
+      />
+      {/* Grid Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Article 1 */}
         {getCurrentRecordsWithPagination(
           restArticles,
           currentPage,
           CARDS_PER_PAGE
         ).map((article) => (
-          <div
-            key={`${article.id}-${currentPage}`}
-            className="bg-gradient-to-br from-white to-white dark:from-neutral-900 dark:to-neutral-700  rounded-lg shadow-md overflow-hidden
-              border border-neutral-200 dark:border-neutral-700
-       hover:border-neutral-300 dark:hover:border-neutral-500"
-          >
-            <div className="flex flex-row md:flex-col">
-              <div className="md:w-full w-30 h-40 bg-neutral-800 flex items-center justify-center">
-                <LazyImage
-                  alt={article.title}
-                  priority={true}
-                  src={article.pageCover}
-                  className="w-full h-full
-                  transition-all duration-300 hover:scale-105  
-                  rounded-l-lg hover:border-neutral-300 dark:hover:border-neutral-600
-                  object-cover object-center  "
-                />
-              </div>
-              <div className="flex-1 p-4 flex flex-col justify-between items-start">
-                <span className="text-xs text-neutral-500 dark:text-neutral-400  uppercase tracking-wide">
-                  {article.type} / {article.sub_type}
-                </span>
-                <Link href={firstArticle.url} className="">
-                  <span className=" hover:underline text-sm font-semibold text-neutral-900 dark:text-white mt-1 line-clamp-2">
-                    {article.title}
-                  </span>
-                </Link>
-                {article.password !== "" && (
-                  <div className="mt-1 text-neutral-500 dark:text-neutral-400 flex flex-row  gap-1 text-sm justify-start items-center">
-                    <LockIcon className="w-2 h-2" />
-                    <span className="text-xs">{locale.COMMON.LOCKED}</span>
-                  </div>
-                )}
-                <h5 className="text-sm font-semibold text-neutral-500 dark:text-neutral-400  mt-1 line-clamp-2">
-                  {article.description}
-                </h5>
-                <div className="flex flex-col items-start text-xs text-neutral-500 dark:text-neutral-400  mt-2">
-                  <span>{article.author.substr(0, 10)}...</span>
-                  <span>{article.date}</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <GridCard
+            key={`${article.data.notionId}`}
+            title={article.data.title}
+            description={article.data.summary}
+            date={getYearMonthDay(
+              article.data.date,
+              locale === "kr-KR" ? "kr-KR" : "en-US"
+            )}
+            type={article.data.type}
+            subType={article.data.sub_type}
+            author={article.data.author}
+            distanceFromToday={getDistanceFromToday(article.data.date, lang)}
+            tags={article.data.tags}
+            imageUrl={article.data.pageCover}
+            imageAlt={article.data.title}
+            url={article.url}
+            variant="compact"
+            showImage={true}
+            showMeta={true}
+            showTags={true}
+            showDescription={true}
+            locale={locale}
+            className="flex md:flex-col flex-row    "
+          />
         ))}
       </div>
-      <PageIndicator
-        currentPage={currentPage}
-        TOTAL_PAGES={TOTAL_PAGES}
-        prevPage={prevPage}
-        nextPage={nextPage}
-      />
     </div>
   );
 };

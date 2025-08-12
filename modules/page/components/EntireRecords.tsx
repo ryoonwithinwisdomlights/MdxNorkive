@@ -6,6 +6,7 @@ import {
   FolderClosedIcon,
   LockIcon,
   TagIcon,
+  UserPenIcon,
 } from "lucide-react";
 
 import { useRouter } from "next/navigation";
@@ -14,6 +15,7 @@ import TagItemMini from "@/modules/common/tag/TagItemMini";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import PageIndicator from "./PageIndicator";
 import { SerializedPage } from "@/types";
+import { cn, substringWithNumberDots } from "@/lib/utils/general";
 
 type Props = {
   type: string;
@@ -21,6 +23,18 @@ type Props = {
   introTrue: boolean;
   records: SerializedPage[];
 };
+
+const titleClasses = cn(
+  "line-clamp-2 text-xl font-semibold text-neutral-800 dark:text-white leading-tight",
+  "cursor-pointer hover:underline"
+);
+
+const metaClasses = cn(
+  "flex flex-col md:flex-row md:items-center gap-4  items-start  text-neutral-500 dark:text-neutral-400 text-xs"
+);
+const summaryClasses = cn(
+  "py-4 text-neutral-500 dark:text-neutral-200 text-sm font-light"
+);
 const EntireRecords = ({
   type,
   records,
@@ -33,6 +47,7 @@ const EntireRecords = ({
   const CARDS_PER_PAGE = 4;
 
   const { locale } = useGeneralSiteSettings();
+  const { LOCKED } = locale.LOCKED;
   const [currentPage, setCurrentPage] = useState(0);
   const [currentRecordType, setCurrentRecordType] = useState("");
 
@@ -106,34 +121,22 @@ const EntireRecords = ({
   }, [pages, currentRecordType, currentPage]);
 
   const TOTAL_PAGES = Math.ceil(filteredPages.length / CARDS_PER_PAGE);
+
   useEffect(() => {
     setCurrentPage(0);
   }, [currentRecordType]);
 
-  const nextPage = () => {
-    if (currentPage < TOTAL_PAGES - 1) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const prevPage = () => {
-    if (currentPage > 0) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
   const handleRecordTypeChange = (option: string) => {
     setCurrentRecordType(option);
   };
 
   const handleRouter = (page: any) => {
-    // if (page.data.password === "") {
     console.log("page.url:", page.url);
     router.push(page.url);
-    // }
   };
 
   return (
-    <section className="w-full max-w-6xl mx-auto px-4 py-8">
+    <section className="w-full max-w-6xl mx-auto px-4 py-8 flex flex-col gap-8">
       {/* 섹션 제목 */}
       <IntroSectionWithMenuOption
         introTrue={introTrue}
@@ -149,51 +152,50 @@ const EntireRecords = ({
           <article
             key={page.data.notionId}
             className="group relative bg-gradient-to-br from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-700 rounded-lg border border-neutral-200
-              dark:border-neutral-700 p-6 hover:shadow-lg transition-all duration-300 hover:scale-95  hover:border-neutral-300 dark:hover:border-neutral-600"
+              dark:border-neutral-700 p-6 hover:shadow-lg  hover:border-neutral-300 dark:hover:border-neutral-600"
           >
             <div
               onClick={() => handleRouter(page)}
-              className=" flex flex-col gap-5 hover:cursor-pointer"
+              className=" flex flex-col  gap-2 hover:cursor-pointer"
             >
-              {/* 제목 */}
-              <div className="flex flex-row justify-start items-center gap-2">
-                <h3
-                  className="text-xl font-semibold
-               text-neutral-700 dark:text-neutral-200 
-                group-hover:text-black group-hover:underline 
-                 dark:group-hover:text-white transition-colors"
-                >
-                  {page.data.title}
-                </h3>
-                {page.data.password !== "" && (
-                  <div className="text-neutral-500 dark:text-neutral-400 flex flex-row  gap-2  text-sm justify-start items-center">
-                    <LockIcon className="w-4 h-4" />
-                    <span className="text-sm">{locale.COMMON.LOCKED}</span>
+              <div className="flex flex-col gap-2">
+                {/* 메타 정보 */}
+                <div className={metaClasses}>
+                  {/* 타입 */}
+                  <div className="flex flex-row items-center gap-1">
+                    <span>
+                      {page.data.type} / {page.data.sub_type}
+                    </span>
                   </div>
-                )}
+                </div>
+                {/* 제목 */}
+                <div className="flex flex-row justify-start items-center gap-2">
+                  <h3 className={titleClasses}>{page.data.title}</h3>
+                  {page.data.password !== "" && (
+                    <div className="text-neutral-500 dark:text-neutral-400 flex flex-row  gap-2  text-sm justify-start items-center">
+                      <LockIcon className="w-4 h-4" />
+                      <span className="text-sm">{LOCKED.LOCKED}</span>
+                    </div>
+                  )}
+                </div>
               </div>
 
               {/* 요약 */}
               {page.data.summary && (
-                <p className="text-neutral-600 dark:text-neutral-300 line-clamp-2">
-                  {page.data.summary}
+                <p className={summaryClasses}>
+                  {substringWithNumberDots(page.data.summary, 100)}
                 </p>
               )}
 
               {/* 메타 정보 */}
-              <div className="flex flex-col md:flex-row md:items-center gap-4 text-sm text-neutral-500 dark:text-neutral-400">
+              <div className={metaClasses}>
                 {/* 타입 */}
-                <div className="flex flex-row items-center gap-1">
-                  <FolderClosedIcon className="w-4 h-4" />
-                  <span>{page.data.type}</span>
+                <div className="flex gap-2 items-center  ">
+                  <UserPenIcon className="w-3 h-3" />
+                  <span>{substringWithNumberDots(page.data.author, 10)}</span>
                 </div>
                 {/* sub_type */}
-                {page.data.sub_type && (
-                  <div className="flex flex-row items-center gap-1">
-                    <TagIcon className="w-4 h-4" />
-                    <span>{page.data.sub_type}</span>
-                  </div>
-                )}
+
                 {/* 날짜 */}
                 <div className="flex flex-row items-center gap-1">
                   <CalendarIcon className="w-4 h-4" />
@@ -205,11 +207,12 @@ const EntireRecords = ({
                   </span>
                 </div>
               </div>
+
               {/* 태그 */}
               {page.data.tags && page.data.tags.length > 0 && (
                 <TagItemMini
                   tags={page.data.tags}
-                  className="bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300"
+                  className="bg-neutral-200 dark:bg-neutral-500 text-neutral-500 dark:text-neutral-200"
                 />
               )}
             </div>
@@ -218,9 +221,8 @@ const EntireRecords = ({
       </div>
       <PageIndicator
         currentPage={currentPage}
-        TOTAL_PAGES={TOTAL_PAGES}
-        prevPage={prevPage}
-        nextPage={nextPage}
+        totalPages={TOTAL_PAGES}
+        setCurrentPage={setCurrentPage}
       />
     </section>
   );

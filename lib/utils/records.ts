@@ -1,5 +1,15 @@
 import { BLOG } from "@/blog.config";
 import { formatDateFmt, getDistanceFromToday, getYearMonthDay } from "./date";
+import { TransferedDataProps } from "@/types";
+
+export function setAllPagesGetSortedGroupedByDate(allPages) {
+  let result = allPages;
+  const pageSortedByDate = setPageSortedByDate(allPages);
+  const pageGroupedByDate = setPageGroupedByDate(pageSortedByDate);
+  result = pageGroupedByDate;
+
+  return result;
+}
 
 export function setPageSortedByDate(obj) {
   const recordsSortByDate = Object.create(obj);
@@ -61,4 +71,36 @@ export const getCurrentRecordsWithPagination = (
   const startIndex = currentPage * cardsPerPage;
   const modArticles = array.slice(1, array.length);
   return modArticles.slice(startIndex, startIndex + cardsPerPage);
+};
+
+export const transferDataForCardProps = (page: any): TransferedDataProps => {
+  return {
+    title: page.data.title,
+    summary: page.data.summary,
+    type: page.data.type,
+    subType: page.data.sub_type,
+    date: page.data.date,
+    author: page.data.author,
+    tags: page.data.tags,
+    isLocked: page.data.password !== "",
+    url: page.url,
+    imageUrl: page.data.pageCover,
+    imageAlt: page.data.title,
+  };
+};
+
+export const paginationString = (
+  locale: any,
+  totalPages: number,
+  currentPage: number
+) => {
+  if (locale.LOCALE === "kr-KR") {
+    return `${totalPages}${locale.PAGINATION.PAGE} ${locale.PAGINATION.OF} ${
+      currentPage + 1
+    }${locale.PAGINATION.PAGE} `;
+  } else {
+    return `${locale.PAGINATION.PAGE} ${currentPage + 1} ${
+      locale.PAGINATION.OF
+    } ${totalPages}`;
+  }
 };

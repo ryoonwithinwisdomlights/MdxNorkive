@@ -15,14 +15,14 @@ const LockedPage = (props) => {
   const { validPassword } = props;
 
   const { locale } = useGeneralSiteSettings();
-  const router = useRouter();
+  const { LOCKED } = locale.LOCKED;
   const [tempPassword, setTempPassword] = useState<string>("");
   const submitPassword = () => {
     if (!validPassword(tempPassword)) {
       const tips = document.getElementById("tips");
       if (tips) {
         tips.innerHTML = "";
-        tips.innerHTML = `<div class='pt-4 font-semibold text-red-500  dark:text-red-500 animate__shakeX animate__animated'>${locale.COMMON.PASSWORD_ERROR}</div>`;
+        tips.innerHTML = `<div class='pt-4 font-semibold text-red-500  dark:text-red-500 animate__shakeX animate__animated'>${LOCKED.PASSWORD_ERROR}</div>`;
       }
     }
   };
@@ -46,10 +46,10 @@ const LockedPage = (props) => {
           <div className="hidden md:flex w-full flex-row items-center justify-center">
             <div className=" flex flex-col items-start text-neutral-700 dark:text-neutral-200">
               <div className="font-semibold text-lg p-0 mr-4 ">
-                {locale.COMMON.PASSWORD_SUBMIT}
+                {LOCKED.PASSWORD_SUBMIT}
               </div>
 
-              <p className="text-sm">{locale.COMMON.ARCHIVE_LOCK_TIPS}</p>
+              <p className="text-sm">{LOCKED.ARCHIVE_LOCK_TIPS}</p>
             </div>
             <div className="flex ">
               <input
@@ -73,7 +73,7 @@ const LockedPage = (props) => {
                 <KeyRoundIcon className="duration-200 cursor-pointer w-4 h-4 " />
 
                 <span className="font-semibold text-center">
-                  &nbsp;{locale.COMMON.SUBMIT}
+                  &nbsp;{LOCKED.SUBMIT}
                 </span>
               </div>
             </div>
@@ -82,9 +82,9 @@ const LockedPage = (props) => {
           <div className="lg:hidden sm:hidden md:hidden text-center w-full justify-center flex flex-col gap-2 py-4 dark:text-neutral-100">
             <div className=" ">
               <div className="font-semibold text-lg p-0 m-0 text-neutral-700">
-                {locale.COMMON.PASSWORD_SUBMIT}
+                {LOCKED.PASSWORD_SUBMIT}
               </div>
-              <p className="text-sm">{locale.COMMON.ARCHIVE_LOCK_TIPS}</p>
+              <p className="text-sm">{LOCKED.ARCHIVE_LOCK_TIPS}</p>
             </div>
             <div className="flex w-full pt-4">
               <input
@@ -108,7 +108,7 @@ const LockedPage = (props) => {
                 <KeyRoundIcon className="duration-200 cursor-pointer " />
 
                 <span className="font-semibold text-center ">
-                  &nbsp;{locale.COMMON.SUBMIT}
+                  &nbsp;{LOCKED.SUBMIT}
                 </span>
               </div>
             </div>

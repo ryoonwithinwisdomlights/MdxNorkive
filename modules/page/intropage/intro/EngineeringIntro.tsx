@@ -2,31 +2,42 @@
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 
 const EngineeringIntro = () => {
-  const { lang } = useGeneralSiteSettings();
+  const { locale } = useGeneralSiteSettings();
+
+  const { ENGINEERING } = locale.INTRO;
+
   return (
     <div className="flex flex-col w-full items-center">
       <div className="pr-3 flex flex-row justify-end text-sm  text-neutral-600 font-extralight dark:text-neutral-200 hover:text-neutral-800 ">
-        Browsing all the engineering related records you have
-        learned&nbsp;&nbsp;
+        {ENGINEERING.SUBTITLE}
       </div>
       <div className="text-7xl   dark:text-neutral-100 flex flex-row justify-end ">
-        Software Engineering.
+        {ENGINEERING.TITLE}
       </div>
-      {lang === "kr-KR" ? (
+      {locale.LOCALE === "kr-KR" ? (
         <div className=" dark:text-neutral-200 md:px-2 text-neutral-700  text-right mt-1  my-2  text-2xl ">
-          배우고 기록한 좋은
-          <span className="font-semibold "> 지식, 정보, 앎</span>에 대한
-          <span className="font-bold"> 아카이브.</span>
+          {ENGINEERING.DESCRIPTION_PREFIX}
+          <span className="font-semibold ">
+            {" "}
+            {ENGINEERING.DESCRIPTION_HIGHLIGHT_1}
+          </span>
+          {ENGINEERING.DESCRIPTION_SUFFIX}
+          <span className="font-bold">
+            {" "}
+            {ENGINEERING.DESCRIPTION_HIGHLIGHT_2}
+          </span>
         </div>
       ) : (
         <div className=" dark:text-neutral-200 md:px-2 text-neutral-700 mt-1  my-2 ">
-          <span className=" font-bold">An archive </span>
-          of good
+          <span className=" font-bold">
+            {ENGINEERING.DESCRIPTION_HIGHLIGHT_1}{" "}
+          </span>
+          {ENGINEERING.DESCRIPTION_SUFFIX}
           <span className="font-semibold ">
             {" "}
-            knowledge, information, studies{" "}
+            {ENGINEERING.DESCRIPTION_HIGHLIGHT_2}{" "}
           </span>
-          learned and recorded
+          {ENGINEERING.DESCRIPTION_END}
         </div>
       )}
     </div>

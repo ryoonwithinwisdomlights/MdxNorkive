@@ -113,18 +113,18 @@ export default function CustomedMDXPage({ className, slug, resource }) {
                     <Book className="w-4 h-4" />
                     <div className="flex flex-row gap-2 items-center">
                       <span className="text-white text-sm">
-                        {locale.COMMON.READING_TIME}
+                        {locale.RECORD.READING_TIME}
                       </span>
                       -
                       <span className="text-white text-sm">
-                        {page.data.readingTime} {locale.COMMON.MINUTE}
+                        {page.data.readingTime} {locale.RECORD.MINUTE}
                       </span>
                     </div>
                   </div>
                   <div className="flex flex-row gap-2 items-center">
                     <span className=" flex flex-row gap-2 items-center text-white text-sm">
                       <Rocket className="w-4 h-4" />
-                      <span>{locale.COMMON.VIEWS}</span>
+                      <span>{locale.RECORD.VIEW}</span>
                       <span className=" busuanzi_value_page_pv" />
                     </span>
                   </div>
@@ -137,7 +137,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
                   <span className="text-sm">
                     {getYearMonthDay(
                       page.data.date,
-                      locale === "kr-KR" ? "kr-KR" : "en-US"
+                      locale.LOCALE === "kr-KR" ? "kr-KR" : "en-US"
                     )}
                     &nbsp; &nbsp;
                     {getDistanceFromToday(page.data.date, lang)}
@@ -154,7 +154,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
             {toc.length > 0 && (
               <InlineTOC
                 items={toc}
-                children={locale.COMMON.TABLE_OF_CONTENTS}
+                children={locale.RECORD.TABLE_OF_CONTENTS}
                 className="block md:hidden bg-neutral-100 dark:bg-neutral-800 mb-4"
               />
             )}
