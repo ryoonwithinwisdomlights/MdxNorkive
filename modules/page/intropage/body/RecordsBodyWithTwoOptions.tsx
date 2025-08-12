@@ -181,14 +181,12 @@ const RecordsBodyWithTwoOptions = ({ records }: { records: any[] }) => {
                     data-aos-once="false"
                     data-aos-anchor-placement="top-bottom"
                     id="notion-page-card"
-                    className={`hover:scale-105 transition-all duration-150 group w-full max-md:h-72 flex p-2 justify-between md:flex-row flex-col-reverse ${
+                    className={`hover:scale-105 transition-all duration-150 group w-full  flex p-2 justify-between md:flex-row flex-col-reverse ${
                       index % 2 === 1 ? "md:flex-row-reverse" : ""
                     } overflow-hidden border dark:border-black rounded-lg shadow-md  bg-gradient-to-br from-white to-white dark:from-neutral-900 dark:to-neutral-700 `}
                   >
                     <InformationCard
-                      // page={item}
                       data={data}
-                      // showPageCover={showPageCover}
                       showPreview={true}
                       showSummary={true}
                     />

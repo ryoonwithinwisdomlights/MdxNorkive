@@ -22,15 +22,15 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import { LoaderConfig, Page } from "fumadocs-core/source";
 import { fetchAllRecordList, fetchMenuList } from "./api/fetcher";
 
-import MobileFooter from "@/modules/layout/components/mobile-footer";
+import MobileRightSidebarWrapper from "@/modules/common/right-sidebar/MobileRightSidebarWrapper";
 import DefaultSearchDialog from "@/modules/common/search/search";
 import AuxiliaryBlogComponent from "@/modules/layout/components/AuxiliaryComponent";
+import MobileFooter from "@/modules/layout/components/mobile-footer";
 import TopNavigationWrapper from "@/modules/layout/wrapper/TopNavigationWrapper";
 import JumpToBackButton from "@/modules/shared/JumpToBackButton";
 import JumpToTopButton from "@/modules/shared/JumpToTopButton";
+import LoadingCover from "@/modules/shared/LoadingCover";
 import { RecordFrontMatter } from "@/types/mdx.model";
-import Loading from "./loading";
-import MobileRightSidebarWrapper from "@/modules/common/right-sidebar/MobileRightSidebarWrapper";
 
 config.autoAddCss = false;
 
@@ -146,7 +146,7 @@ export default async function RootLayout({
                 <TopNavigationWrapper />
 
                 <div className=" dark:bg-black dark:text-neutral-300 py-10 flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain ">
-                  <Suspense fallback={<Loading />}>{children}</Suspense>
+                  <Suspense fallback={<LoadingCover />}>{children}</Suspense>
                 </div>
 
                 <JumpToTopButton />

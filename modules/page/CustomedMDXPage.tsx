@@ -138,8 +138,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
                     {getYearMonthDay(
                       page.data.date,
                       locale.LOCALE === "kr-KR" ? "kr-KR" : "en-US"
-                    )}
-                    &nbsp; &nbsp;
+                    )}{" "}
                     {getDistanceFromToday(page.data.date, lang)}
                   </span>
                 </div>
@@ -162,7 +161,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
             <DocsBody className="  ">
               <MDXContent code={body} components={getMDXComponents()} />
             </DocsBody>
-            <ShareBar data={page.data} />
+            <ShareBar data={page.data} url={page.url} />
           </DocsPage>
         </div>
       )}

@@ -78,8 +78,9 @@ export const BLOG = {
   BACKGROUND_DARK: "#000000", // use hex value, don't forget '#'
 
   RECORD_SHARE_SERVICE:
-    process.env.NEXT_PUBLIC_RECORD_SHARE_SERVICES || "email,twitter,link", // Shared services, displayed in order, separated by commas
-  // All supported sharing services: link (copy link), email (mail),facebook,twitter,telegram,messenger,line,reddit,whatsapp,linkedin,instapaper
+    process.env.NEXT_PUBLIC_RECORD_SHARE_SERVICES ||
+    "email,twitter,facebook,linkedin,link", // Shared services, displayed in order, separated by commas
+  // All supported sharing services: link (copy link), email (mail),facebook,twitter,linkedin
 
   RECORD_PER_PAGE: 12, // record counts per page
 

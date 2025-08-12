@@ -1,7 +1,7 @@
 "use client";
-import Loading from "@/app/loading";
 import { cn } from "@/lib/utils/general";
 import DocFooter from "@/modules/layout/components/doc-footer";
+import LoadingCover from "@/modules/shared/LoadingCover";
 import { buttonVariants } from "@/modules/shared/ui/DocButton";
 import { HideIfEmpty } from "fumadocs-core/hide-if-empty";
 import Link from "fumadocs-core/link";
@@ -165,7 +165,7 @@ export function DocsLayout({
           className={cn(variables, props.containerProps?.className)}
         >
           {sidebarEnabled && sidebar}
-          <Suspense fallback={<Loading />}>{children}</Suspense>
+          <Suspense fallback={<LoadingCover />}>{children}</Suspense>
         </LayoutBody>
       </NavProvider>
     </TreeContextProvider>

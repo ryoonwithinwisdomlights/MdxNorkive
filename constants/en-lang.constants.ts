@@ -54,11 +54,13 @@ export const ENG_LANG = {
     TYPES: "All Types",
     NO_TAG: "NoTag",
     CATEGORY: "Category",
+    SHARE: "Share Record",
     URL_COPIED: "URL has copied!",
     COPYRIGHT_NOTICE:
       "All articles in this blog, except for special statements, adopt BY-NC-SA agreement. Please indicate the source!",
     DEBUG_OPEN: "Debug",
     DEBUG_CLOSE: "Close",
+    LOADING: "Loading...",
     ANNOUNCEMENT: "Announcement",
     NO_RECORD_FOUND: "No relevant archive records found.",
   },

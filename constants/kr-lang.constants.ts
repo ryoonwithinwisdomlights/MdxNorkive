@@ -50,11 +50,13 @@ export const KOR_LANG = {
     TYPES: "전체 타입",
     NO_TAG: "태그없음",
     CATEGORY: "카테고리",
+    SHARE: "공유하기",
     URL_COPIED: "URL이 복사됐습니다",
     COPYRIGHT_NOTICE:
       "이 블로그의 모든 기사는 특별한 진술을 제외하고 BY-NC-SA 계약을 채택하고 있습니다. 출처를 알려주세요.",
     DEBUG_OPEN: "디버그",
     DEBUG_CLOSE: "닫기",
+    LOADING: "로딩중...",
     ANNOUNCEMENT: "공지사항",
     NO_RECORD_FOUND: "관련 아카이브 레코드가 없습니다.",
   },

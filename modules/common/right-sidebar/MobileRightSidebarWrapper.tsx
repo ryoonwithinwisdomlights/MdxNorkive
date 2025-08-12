@@ -22,7 +22,7 @@ const MobileRightSidebarWrapper = () => {
     <MobileRightSidebar collapseRef={collapseRef}>
       <div
         id="left-sidebar-mobile-content"
-        className="p-4  overflow-hidden w-full h-[calc(100vh-150px)] relative flex flex-col gap-2 "
+        className="p-4  overflow-hidden w-full h-100vh relative flex flex-col gap-2 "
       >
         <div className="flex flex-row justify-end gap-2">
           <Link
