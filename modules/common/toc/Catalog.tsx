@@ -3,7 +3,6 @@
 import throttle from "lodash.throttle";
 
 import { useCallback, useEffect, useState } from "react";
-import { useMediaQuery } from "usehooks-ts";
 
 import { uuidToId } from "@/lib/utils/general";
 /**

@@ -1,8 +1,12 @@
 "use client";
 import { GridCard, ImageCard } from "@/modules/common/cards";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils/date";
-import { transferDataForCardProps } from "@/lib/utils/records";
+import {
+  getDistanceFromToday,
+  getYearMonthDay,
+  transferDataForCardProps,
+} from "@/lib/utils";
+
 import { useMemo, useState } from "react";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import PageIndicator from "./PageIndicator";

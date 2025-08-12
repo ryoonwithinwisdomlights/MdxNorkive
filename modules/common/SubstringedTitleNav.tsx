@@ -28,7 +28,7 @@ const SubstringedTitleNav = ({
         >
           <span className="text-xs pr-1">{record.icon} </span>
           {substr
-            ? substringWithNumberDots(record.title, substrNumber)
+            ? substringWithNumberDots(record.title, substrNumber || 0)
             : record.title}
         </div>
       </div>

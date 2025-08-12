@@ -15,8 +15,10 @@ import {
   getFilteredDictionaryListKey,
   initLocale,
   saveLangToLocalStorage,
-} from "@/lib/utils/lang";
-import { initDarkMode, setThemeByLocalStorage } from "@/lib/utils/theme";
+  initDarkMode,
+  setThemeByLocalStorage,
+} from "@/lib/utils";
+
 import { toast } from "sonner";
 import NextNProgress from "nextjs-progressbar";
 const GeneralSiteSettings = createContext<GeneralSiteSettingsProps | null>(

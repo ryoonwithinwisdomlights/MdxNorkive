@@ -1,7 +1,6 @@
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { cn } from "@/lib/utils/general";
 import Collapse from "@/modules/shared/Collapse";
-import { useSidebar } from "fumadocs-ui/provider";
 import React from "react";
 
 type Props = {

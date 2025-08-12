@@ -1,21 +1,15 @@
 "use client";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { getYearMonthDay } from "@/lib/utils/date";
-import {
-  CalendarIcon,
-  FolderClosedIcon,
-  LockIcon,
-  TagIcon,
-  UserPenIcon,
-} from "lucide-react";
-
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import TagItemMini from "@/modules/common/tag/TagItemMini";
-import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
-import PageIndicator from "./PageIndicator";
+import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+
+import { CalendarIcon, LockIcon, UserPenIcon } from "lucide-react";
+import { cn, substringWithNumberDots, getYearMonthDay } from "@/lib/utils";
+
 import { SerializedPage } from "@/types";
-import { cn, substringWithNumberDots } from "@/lib/utils/general";
+import TagItemMini from "@/modules/common/tag/TagItemMini";
+import IntroSectionWithMenuOption from "@/modules/page/components/IntroSectionWithMenuOption";
+import PageIndicator from "@/modules/page/components/PageIndicator";
 
 type Props = {
   type: string;

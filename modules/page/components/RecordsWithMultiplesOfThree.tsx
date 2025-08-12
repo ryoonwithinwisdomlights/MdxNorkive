@@ -1,9 +1,8 @@
 "use client";
-import { useState, useMemo } from "react";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { getDistanceFromToday } from "@/lib/utils/date";
-import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import { GridCard } from "@/modules/common/cards";
+import { useMemo, useState } from "react";
+import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import PaginationSimple from "./PaginationSimple";
 
 type Props = {
