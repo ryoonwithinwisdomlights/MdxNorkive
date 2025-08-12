@@ -3,7 +3,7 @@ import { pageOptionsGenerator } from "@/lib/utils";
 import { LargeSearchToggle } from "@/modules/layout/components/search-toggle";
 import { DocsLayout } from "@/modules/layout/templates/docs-layout";
 import RightSideNavWrapper from "@/modules/layout/wrapper/RightSideNavWrapper";
-import { basicDocsClass } from "@/styles/layout.styles";
+import { basicDocsClass } from "@/lib/utils/layout.styles";
 
 export default async function Layout({
   children,

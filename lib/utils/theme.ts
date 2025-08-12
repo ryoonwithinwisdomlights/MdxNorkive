@@ -71,13 +71,6 @@ export const saveDarkModeToLocalStorage = (newTheme) => {
   localStorage.setItem("darkMode", newTheme);
 };
 
-// export const loadDarkModeFromCookies = () => {
-//   return cookie.load("darkMode");
-// };
-
-// export const saveDarkModeToCookies = (newTheme) => {
-//   cookie.save("darkMode", newTheme, { path: "/" });
-// };
 /**
  * Read dark mode
  * @returns {*}

@@ -24,7 +24,6 @@ import { processMdxContentFn } from "./convert-unsafe-mdx/content-functional";
 import { MdxDirectoryValidationResult } from "@/types/mdx.model";
 
 import { MDX_CONSTANTS } from "@/constants/mdx.constants";
-import grayMatter from "gray-matter";
 import { extractFrontmatterValue } from "./data-manager";
 // ===== 검증 전용 함수들 =====
 
