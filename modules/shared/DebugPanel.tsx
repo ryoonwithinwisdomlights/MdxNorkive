@@ -21,6 +21,7 @@ const DebugPanel = () => {
   function toggleShow() {
     setShow(!show);
   }
+
   function filterResult(text) {
     switch (text) {
       case "true":
@@ -80,7 +81,7 @@ const DebugPanel = () => {
                 <span className="bg-neutral-200 dark:bg-neutral-700 p-0.5 rounded dark:text-white mr-2 px-1">
                   {k}
                 </span>
-                <span className="whitespace-break-spaces">
+                <span className="text-white">
                   {filterResult(siteConfig[k] + "")}
                 </span>
               </div>
@@ -90,4 +91,5 @@ const DebugPanel = () => {
     </div>
   );
 };
+
 export default DebugPanel;

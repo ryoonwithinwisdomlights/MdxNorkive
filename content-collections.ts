@@ -205,8 +205,11 @@ export default defineConfig({
       transformerTab,
     ],
     rehypePlugins: [rehypeCode],
-    // format: "mdx",
-    // development: false, // 항상 프로덕션 모드로 설정
+    format: "mdx",
+    development: false, // 항상 프로덕션 모드로 설정
   },
+  // 빌드 성능 최적화
+  parallel: true, // 병렬 처리 활성화
+  incremental: true, // 증분 빌드 지원
   collections: [records, subMenuPages, metas, books, engineerings, projects],
 });

@@ -5,7 +5,7 @@ import { BLOG } from "@/blog.config";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 //************* Geist ************* */
-import { GeistSans } from "geist/font/sans";
+// import { GeistSans } from "geist/font/sans";
 
 //************* Next ************* */
 import type { Metadata, Viewport } from "next";
@@ -126,7 +126,7 @@ export default async function RootLayout({
   }));
 
   return (
-    <html lang="en" suppressHydrationWarning className={GeistSans.className}>
+    <html lang={BLOG.LANG} suppressHydrationWarning>
       <body>
         <ProgressBar>
           <RootProvider
