@@ -25,6 +25,7 @@
     "export": "next build && next export",
     "bundle-report": "ANALYZE=true yarn build",
     "generate:mdx": "npx tsx scripts/enhanced-notion-mdx.ts",
+    "test:search": "npx tsx scripts/test-search-index.ts",
     "validate:mdx": "npx tsx scripts/validate-mdx-files.ts",
     "one:mdx": "npx tsx scripts/test-one-record-mdx.ts",
     "process-redis-images": "npx tsx scripts/redis-image-processor.ts",
