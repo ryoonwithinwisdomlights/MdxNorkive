@@ -7,6 +7,7 @@ import {
   useRef,
   useState,
   useCallback,
+  useMemo,
 } from "react";
 import { BLOG } from "@/blog.config";
 import { GeneralSiteSettingsProps, TOCItemType } from "@/types";
@@ -60,30 +61,36 @@ export const GeneralSiteSettingsProvider: React.FC<{
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const isFirstRender = useRef(true);
 
-  const toggleMobileLeftSidebarOpen = () => {
-    changeMobileLeftSidebarOpen(!isMobileLeftSidebarOpen);
-  };
+  // 모든 함수들을 useCallback으로 최적화
+  const toggleMobileLeftSidebarOpen = useCallback(() => {
+    changeMobileLeftSidebarOpen((prev) => !prev);
+  }, []);
 
-  const toggleMobileTopNavOpen = () => {
-    changeMobileTopNavOpen(!isMobileTopNavOpen);
-  };
+  const toggleMobileTopNavOpen = useCallback(() => {
+    changeMobileTopNavOpen((prev) => !prev);
+  }, []);
 
-  const handleSetTocContent = (toc: TOCItemType[]) => {
+  const handleSetTocContent = useCallback((toc: TOCItemType[]) => {
     setTocContent(toc);
-  };
-  const handleTOCVisible = () => setTOCVisible(!tocVisible);
+  }, []);
 
-  const handleLeftNavVisible = () => setPageNavVisible(!pageNavVisible);
+  const handleTOCVisible = useCallback(() => {
+    setTOCVisible((prev) => !prev);
+  }, []);
 
-  function changeLang(lang) {
+  const handleLeftNavVisible = useCallback(() => {
+    setPageNavVisible((prev) => !prev);
+  }, []);
+
+  const changeLang = useCallback((lang) => {
     if (lang) {
       saveLangToLocalStorage(lang);
       updateLang(lang);
       updateLocale(generateLocaleDict(lang));
     }
-  }
+  }, []);
 
-  function changeOppositeLang() {
+  const changeOppositeLang = useCallback(() => {
     const resLang = getFilteredDictionaryListKey(locale.LOCALE);
 
     if (resLang) {
@@ -91,50 +98,75 @@ export const GeneralSiteSettingsProvider: React.FC<{
       updateLang(resLang);
       updateLocale(generateLocaleDict(resLang));
     }
-  }
-  const handleChangeDarkMode = (newStatus = !isDarkMode) => {
-    setThemeByLocalStorage(newStatus);
-    updateDarkMode(newStatus);
-    const htmlElement = document.getElementsByTagName("html")[0];
-    htmlElement.classList?.remove(newStatus ? "light" : "dark");
-    htmlElement.classList?.add(newStatus ? "dark" : "light");
-  };
-  const handleSettings = () => {
+  }, [locale.LOCALE]);
+
+  const handleChangeDarkMode = useCallback(
+    (newStatus = !isDarkMode) => {
+      setThemeByLocalStorage(newStatus);
+      updateDarkMode(newStatus);
+      const htmlElement = document.getElementsByTagName("html")[0];
+      htmlElement.classList?.remove(newStatus ? "light" : "dark");
+      htmlElement.classList?.add(newStatus ? "dark" : "light");
+    },
+    [isDarkMode]
+  );
+
+  const handleSettings = useCallback(() => {
     SetSettingState((prev) => !prev);
-  };
+  }, []);
+
   const handleChangeRightSideInfoBarMode = useCallback(
     (newMode: "info" | "author") => {
       changeRightSideInfoBarMode(newMode);
     },
     []
   );
-  const value: GeneralSiteSettingsProps = {
-    onLoading,
-    setOnLoading,
-    searchKeyword,
-    setSearchKeyword,
-    tocVisible,
-    handleTOCVisible,
-    pageNavVisible,
-    handleLeftNavVisible,
-    isDarkMode,
-    handleChangeDarkMode,
-    locale,
-    updateLocale,
-    lang,
-    changeLang,
-    changeOppositeLang,
-    setting,
-    handleSettings,
-    isMobileTopNavOpen,
-    toggleMobileTopNavOpen,
-    rightSideInfoBarMode,
-    handleChangeRightSideInfoBarMode,
-    tocContent,
-    handleSetTocContent,
-    isMobileLeftSidebarOpen,
-    toggleMobileLeftSidebarOpen,
-  };
+
+  // value 객체를 useMemo로 최적화하여 불필요한 리렌더링 방지
+  const value: GeneralSiteSettingsProps = useMemo(
+    () => ({
+      onLoading,
+      setOnLoading,
+      searchKeyword,
+      setSearchKeyword,
+      tocVisible,
+      handleTOCVisible,
+      pageNavVisible,
+      handleLeftNavVisible,
+      isDarkMode,
+      handleChangeDarkMode,
+      locale,
+      updateLocale,
+      lang,
+      changeLang,
+      changeOppositeLang,
+      setting,
+      handleSettings,
+      isMobileTopNavOpen,
+      toggleMobileTopNavOpen,
+      rightSideInfoBarMode,
+      handleChangeRightSideInfoBarMode,
+      tocContent,
+      handleSetTocContent,
+      isMobileLeftSidebarOpen,
+      toggleMobileLeftSidebarOpen,
+    }),
+    [
+      onLoading,
+      searchKeyword,
+      tocVisible,
+      pageNavVisible,
+      isDarkMode,
+      locale,
+      lang,
+      setting,
+      isMobileTopNavOpen,
+      rightSideInfoBarMode,
+      tocContent,
+      isMobileLeftSidebarOpen,
+      // 함수들은 useCallback으로 이미 최적화되어 있어서 의존성 배열에 포함하지 않음
+    ]
+  );
 
   useEffect(() => {
     initDarkMode(updateDarkMode);
@@ -151,7 +183,7 @@ export const GeneralSiteSettingsProvider: React.FC<{
     initLocale(lang, locale, updateLang, updateLocale);
     setOnLoading(false);
     toast.success(`${locale.SITE.LANG_CHANGE_SUCCESS_MSG} `);
-  }, [lang]);
+  }, [lang, locale]);
 
   return (
     <GeneralSiteSettings.Provider value={value}>

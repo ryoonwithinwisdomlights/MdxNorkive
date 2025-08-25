@@ -1,7 +1,7 @@
 "use client";
 
 import { GlobalNavInfoProps } from "@/types";
-import { createContext, ReactNode, useContext } from "react";
+import { createContext, ReactNode, useContext, useMemo } from "react";
 
 const NavInfoContext = createContext<GlobalNavInfoProps | undefined>(undefined);
 
@@ -19,16 +19,18 @@ export function NavInfoProvider({
   children: ReactNode;
   from?: string;
 } & GlobalNavInfoProps) {
+  // value 객체를 useMemo로 최적화하여 props가 변경되지 않으면 리렌더링 방지
+  const value = useMemo(
+    () => ({
+      recordList: props.recordList,
+      serializedAllPages: props.serializedAllPages,
+      menuList: props.menuList,
+    }),
+    [props.recordList, props.serializedAllPages, props.menuList]
+  );
+
   return (
-    <NavInfoContext.Provider
-      value={{
-        recordList: props.recordList,
-        serializedAllPages: props.serializedAllPages,
-        menuList: props.menuList,
-      }}
-    >
-      {children}
-    </NavInfoContext.Provider>
+    <NavInfoContext.Provider value={value}>{children}</NavInfoContext.Provider>
   );
 }
 

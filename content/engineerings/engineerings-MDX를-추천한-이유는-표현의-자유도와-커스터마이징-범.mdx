@@ -27,6 +27,7 @@ author: ryoonwithinwisdomlights
 version: 1.0.0
 ---
 
+
 정확하게 질문 잘했어. 그리고 <strong>“왜 MDX냐?”</strong>를 딱 짚은 거야.
 결론부터 말하자면:
 
@@ -176,13 +177,13 @@ version: 1.0.0
 
 | <strong>단계</strong>                                       | <strong>진행상태</strong>                     |
 | -------------------------------------------- | ---------------------------- |
-| <strong>1. Notion API로 데이터 가져오기</strong>                  | ✅ 완료                         |
+| <strong>1. Notion API로 데이터 가져오기</strong>                  | ✅ 완료                         |</strong>
 | <strong>2. notion-to-md로 Markdown 문자열 변환</strong>         | ✅ 완료                         |
-| <strong>3. gray-matter로 frontmatter 붙이기</strong>          | ✅ 완료                         |
+| <strong>3. gray-matter로 frontmatter 붙이기</strong>          | ✅ 완료                         |</strong>
 | <strong>4. .mdx 파일로 저장 (content/record)</strong>          | ✅ 완료                         |
-| <strong>5. @content-collections/core로 컬렉션 분석</strong>     | ✅ 완료 (content.config.ts 설정됨) |
+| <strong>5. @content-collections/core로 컬렉션 분석</strong>     | ✅ 완료 (content.config.ts 설정됨) |</strong>
 | <strong>6. @content-collections/mdx로 render() 생성</strong> | ✅ 완료 (.mdx → render 생성됨)     |
-| <strong>7. MDXContent로 렌더링</strong>                       | 🟡 지금 여기!                    |
+| <strong>7. MDXContent로 렌더링</strong>                       | 🟡 지금 여기!                    |</strong>
 | <strong>8. 커스텀 블록(MDX 컴포넌트) 확장</strong>                   | ⏳ 추후 단계                      |
 
 
@@ -284,7 +285,7 @@ draft: false
 | <strong>예전 방식 (notion-client 기반)</strong> | <strong>새로운 방식 (정적 MDX 기반)</strong>        |
 | ---------------------------- | ----------------------------- |
 | 서버에서 직접 요청 (getPage etc.)    | notion-to-mdx.ts 실행 시 변환 후 저장 |
-| 매 요청마다 캐시 필요                 | <strong>빌드 시점에 모두 캐시됨</strong> (SSG)       |
+| 매 요청마다 캐시 필요                 | <strong>빌드 시점에 모두 캐시됨</strong> (SSG)       |</strong>
 | Redis 등으로 getPage 캐싱         | 더이상 필요 없음 (파일 시스템 기반 정적 캐시)   |
 
 
