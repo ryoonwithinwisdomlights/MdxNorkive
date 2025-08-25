@@ -24,7 +24,7 @@
     "prettier:check": "prettier --check --ignore-unknown .",
     "export": "next build && next export",
     "bundle-report": "ANALYZE=true yarn build",
-    "generate:mdx": "npx tsx scripts/enhanced-notion-mdx.ts",
+    "generate:mdx": "npx tsx scripts/notion-mdx-all-in-one.ts",
     "validate:mdx": "npx tsx scripts/validate-mdx-files.ts",
     "one:mdx": "npx tsx scripts/test-one-record-mdx.ts",
     "process-redis-images": "npx tsx scripts/redis-image-processor.ts",

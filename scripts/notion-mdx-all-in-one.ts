@@ -31,6 +31,12 @@ import {
   resetImageStats,
 } from "@/lib/utils/mdx-data-processing/cloudinary";
 
+// 이미지 최적화 기능 추가
+import {
+  processMdxImagesToWebP,
+  processPageCoverToWebP,
+} from "@/lib/utils/mdx-data-processing/cloudinary/enhanced-image-processor";
+
 import { DEV_CONFIG } from "@/config/dev.config";
 import { EXTERNAL_CONFIG } from "@/config/external.config";
 import {
@@ -79,12 +85,12 @@ async function main() {
               does_not_equal: "Menu",
             },
           },
-          {
-            property: "type",
-            select: {
-              does_not_equal: "SubMenuPages",
-            },
-          },
+          // {
+          //   property: "type",
+          //   select: {
+          //     does_not_equal: "SubMenuPages",
+          //   },
+          // },
           {
             property: "type",
             select: {
@@ -195,6 +201,25 @@ async function main() {
         if (pageCover) {
           console.log(`🖼️ pageCover 처리 시작: ${slug}`);
           pageCover = await processPageCover(pageCover);
+        }
+
+        // 🆕 WebP 이미지 최적화 적용
+        console.log(`🔄 WebP 이미지 최적화 시작: ${slug}`);
+        try {
+          enhancedContent = await processMdxImagesToWebP(enhancedContent, {
+            quality: 85,
+            progressive: true,
+          });
+
+          if (pageCover) {
+            pageCover = await processPageCoverToWebP(pageCover, {
+              quality: 90,
+              progressive: true,
+            });
+          }
+          console.log(`✅ WebP 이미지 최적화 완료: ${slug}`);
+        } catch (error) {
+          console.warn(`⚠️ WebP 이미지 최적화 실패, 원본 사용: ${slug}`, error);
         }
 
         // 함수형 파이프라인을 사용한 MDX 처리

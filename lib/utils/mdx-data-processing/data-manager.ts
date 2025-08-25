@@ -9,6 +9,7 @@ import matter from "gray-matter";
 import { MdxMetadata, RecordFrontMatter } from "@/types/mdx.model";
 import { QueryPageResponse } from "@/types/notion.client.model";
 import { BLOG } from "@/blog.config";
+import { EXTERNAL_CONFIG } from "@/config/external.config";
 
 /**
  * MDX frontmatter 전체를 파싱하여 객체로 반환
@@ -55,6 +56,7 @@ export function extractFrontmatterValue(
  */
 export function generateRecordFrontMatter(
   props: QueryPageResponse["properties"],
+  slug: string,
   id: string,
   last_edited_time: string,
   pageCover: string | null,
@@ -73,8 +75,25 @@ export function generateRecordFrontMatter(
   const favorite = props.favorite?.checkbox || false;
   const category = props.category?.select?.name ?? "";
   const tags = props.tags?.multi_select?.map((t: any) => t.name) ?? [];
-  const date = props.date?.date?.start || new Date().toISOString();
-  const lastEditedDate = last_edited_time ? new Date(last_edited_time) : date;
+  const date = props.date?.date?.start;
+  // last_edited_time 유효성 검사 및 안전한 날짜 생성
+  let lastEditedDate: Date;
+  if (last_edited_time) {
+    const parsedDate = new Date(last_edited_time);
+    if (isNaN(parsedDate.getTime())) {
+      // last_edited_time이 유효하지 않은 경우 date 사용
+      lastEditedDate = date ? new Date(date) : new Date();
+    } else {
+      lastEditedDate = parsedDate;
+    }
+  } else {
+    lastEditedDate = date ? new Date(date) : new Date();
+  }
+
+  // 최종 유효성 검사
+  if (isNaN(lastEditedDate.getTime())) {
+    lastEditedDate = new Date();
+  }
   const summary = props.summary?.rich_text?.[0]?.plain_text?.trim() || "";
   const password = props.password?.rich_text?.[0]?.plain_text?.trim() || "";
   const type = props.type?.select?.name || "RECORDS";
@@ -87,7 +106,7 @@ export function generateRecordFrontMatter(
 
   return {
     title,
-    slug: "", // slug는 별도로 생성해야 함
+    slug, // slug는 별도로 생성해야 함
     summary,
     pageCover,
     notionId: id,
@@ -97,8 +116,8 @@ export function generateRecordFrontMatter(
     category,
     tags,
     favorite,
-    date: date.slice(0, 10),
-    last_edited_time,
+    date: date ? date.slice(0, 10) : new Date().toISOString().slice(0, 10),
+    last_edited_time: last_edited_time || new Date().toISOString(),
     lastEditedDate,
     draft: false,
     description,
@@ -148,6 +167,7 @@ export function generateCompleteMdxFile(
 ): string {
   const frontMatter = generateRecordFrontMatter(
     props,
+    slug,
     id,
     last_edited_time,
     pageCover,
@@ -155,7 +175,7 @@ export function generateCompleteMdxFile(
   );
 
   // slug 설정
-  frontMatter.slug = slug;
+  // frontMatter.slug = slug;
 
   return stringifyFrontMatter(frontMatter, enhancedContent);
 }
@@ -164,10 +184,10 @@ export function generateCompleteMdxFile(
  * 기존 MDX 파일의 notionId → endDate 매핑 생성
  */
 export async function getExistingEndDates(
-  baseDir: string = path.join(process.cwd(), "content")
+  baseDir: string = path.join(process.cwd(), EXTERNAL_CONFIG.DIR_NAME)
 ): Promise<Map<string, string>> {
   const map = new Map<string, string>();
-
+  console.log("baseDir::", baseDir);
   try {
     const typeDirs = await fs.readdir(baseDir);
 

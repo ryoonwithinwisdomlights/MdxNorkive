@@ -3776,6 +3776,11 @@ export interface QueryPageResponse
       };
       id: string;
     };
+    last_edited_time: {
+      type: "last_edited_time";
+      last_edited_time: string;
+      id: string;
+    };
     title: {
       type: "title";
       title: Array<TextRichTextItemResponse>;
