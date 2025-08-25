@@ -18,7 +18,7 @@ const InlineTocCustomed = ({ items, ...props }: InlineTocProps) => {
     <Collapsible
       {...props}
       className={cn(
-        "not-prose rounded-lg border md:w-[225px] bg-fd-card text-fd-card-foreground",
+        "not-prose rounded-lg border md:w-[225px] bg-fd-card text-fd-card-foreground ",
         props.className
       )}
     >
@@ -28,7 +28,7 @@ const InlineTocCustomed = ({ items, ...props }: InlineTocProps) => {
         </span>
         <ChevronDown className="size-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
       </CollapsibleTrigger>
-      <CollapsibleContent>
+      <CollapsibleContent className="h-56 overflow-y-auto">
         <div className="flex flex-col p-4 pt-0 text-sm text-fd-muted-foreground">
           {items.map((item) => (
             <a

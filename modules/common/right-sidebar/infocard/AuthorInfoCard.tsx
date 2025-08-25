@@ -15,7 +15,7 @@ const AuthorInfoCard = () => {
       {tocContent.length > 0 && (
         <InlineTocCustomed
           items={tocContent}
-          defaultOpen={true}
+          defaultOpen={false}
           className=" bg-fd-accent/50 dark:bg-neutral-800 mb-4"
         />
       )}
