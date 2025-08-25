@@ -1,7 +1,7 @@
 import { cardBaseClass, CardBaseProps } from "@/types";
-import React from "react";
+import React, { useMemo } from "react";
 
-const CardBase = React.forwardRef<HTMLDivElement, CardBaseProps>(
+const CardBase = React.memo(React.forwardRef<HTMLDivElement, CardBaseProps>(
   (
     {
       children,
@@ -17,7 +17,8 @@ const CardBase = React.forwardRef<HTMLDivElement, CardBaseProps>(
     },
     ref
   ) => {
-    const baseClasses = cardBaseClass(
+    // baseClasses 계산을 useMemo로 최적화
+    const baseClasses = useMemo(() => cardBaseClass(
       background,
       border,
       rounded,
@@ -26,7 +27,7 @@ const CardBase = React.forwardRef<HTMLDivElement, CardBaseProps>(
       hover,
       onClick ? true : false,
       className || ""
-    );
+    ), [background, border, rounded, shadow, padding, hover, onClick, className]);
 
     return (
       <div ref={ref} className={baseClasses} onClick={onClick} {...props}>
@@ -34,7 +35,7 @@ const CardBase = React.forwardRef<HTMLDivElement, CardBaseProps>(
       </div>
     );
   }
-);
+));
 
 CardBase.displayName = "CardBase";
 

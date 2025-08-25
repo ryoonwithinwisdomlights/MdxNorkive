@@ -27,11 +27,21 @@ export function convertToJSON(str) {
   if (!str) {
     return {};
   }
+
+  // 문자열이 아닌 경우 문자열로 변환
+  const stringValue = typeof str === "string" ? str : String(str);
+
   // Use regular expressions to remove spaces and newlines. The latest article is marked with a red dot.
   try {
-    return JSON.parse(str.replace(/\s/g, ""));
+    // 더 안전한 정리 과정
+    const cleanedString = stringValue
+      .replace(/\s+/g, " ") // 연속된 공백을 하나로
+      .replace(/[\u0000-\u001F\u007F-\u009F]/g, "") // 제어 문자 제거
+      .trim();
+
+    return JSON.parse(cleanedString);
   } catch (error) {
-    console.warn("Invalid JSON", str);
+    console.warn("Invalid JSON", stringValue, error);
     return {};
   }
 }

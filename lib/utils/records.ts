@@ -99,18 +99,30 @@ export const getCurrentRecordsWithPagination = (
 };
 
 export const transferDataForCardProps = (page: any): TransferedDataProps => {
+  // 안전한 데이터 접근을 위한 헬퍼 함수
+  const safeGet = (obj: any, path: string, defaultValue: any = "") => {
+    try {
+      return (
+        path.split(".").reduce((current, key) => current?.[key], obj) ??
+        defaultValue
+      );
+    } catch {
+      return defaultValue;
+    }
+  };
+
   return {
-    title: page.data.title,
-    summary: page.data.summary,
-    type: page.data.type,
-    subType: page.data.sub_type,
-    date: page.data.date,
-    author: page.data.author,
-    tags: page.data.tags,
-    isLocked: page.data.password !== "",
-    url: page.url,
-    imageUrl: page.data.pageCover,
-    imageAlt: page.data.title,
+    title: safeGet(page, "data.title", "제목 없음"),
+    summary: safeGet(page, "data.summary", ""),
+    type: safeGet(page, "data.type", "RECORDS"),
+    subType: safeGet(page, "data.sub_type", ""),
+    date: safeGet(page, "data.date", ""),
+    author: safeGet(page, "data.author", ""),
+    tags: safeGet(page, "data.tags", []),
+    isLocked: safeGet(page, "data.password", "") !== "",
+    url: safeGet(page, "url", "#"),
+    imageUrl: safeGet(page, "data.pageCover", ""),
+    imageAlt: safeGet(page, "data.title", "이미지"),
   };
 };
 

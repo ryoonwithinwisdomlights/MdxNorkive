@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 
 import { substringWithNumberDots } from "@/lib/utils/general";
 import {
@@ -16,7 +16,7 @@ import TagItemMini from "@/modules/common/tag/TagItemMini";
 import LazyImage from "@/modules/shared/LazyImage";
 import { CalendarIcon, PencilLineIcon } from "lucide-react";
 
-const GridCard = React.forwardRef<HTMLDivElement, GridCardProps>(
+const GridCard = React.memo(React.forwardRef<HTMLDivElement, GridCardProps>(
   (
     {
       title,
@@ -42,49 +42,109 @@ const GridCard = React.forwardRef<HTMLDivElement, GridCardProps>(
     },
     ref
   ) => {
-    console.log(title);
-    const isCompact = variant === "compact";
-    const isLarge = variant === "large";
-    const isDefault = variant === "default";
+    // 변수들을 useMemo로 최적화
+    const isCompact = useMemo(() => variant === "compact", [variant]);
+    const isLarge = useMemo(() => variant === "large", [variant]);
+    const isDefault = useMemo(() => variant === "default", [variant]);
 
-    const cardClasses = combinedCardClasses({
+    // 클래스 계산을 useMemo로 최적화
+    const cardClasses = useMemo(() => combinedCardClasses({
       className: "h-full overflow-hidden",
-    });
-    const imageContainerClasses = combinedImageContainerClasses({
+    }), []);
+    
+    const imageContainerClasses = useMemo(() => combinedImageContainerClasses({
       isCompact,
       isLarge,
       className:
         "flex md:flex-0 flex-1 rounded-lg items-start justify-center w-full",
-    });
+    }), [isCompact, isLarge]);
 
-    const imageClasses = combinedImageClasses({
+    const imageClasses = useMemo(() => combinedImageClasses({
       isCompact,
       className: "md:rounded-none rounded-r-lg",
-    });
-    const contentClasses = combinedContentClasses({
+    }), [isCompact]);
+    
+    const contentClasses = useMemo(() => combinedContentClasses({
       isCompact,
       isLarge,
       className: "flex flex-1 flex-col items-start  justify-start gap-3 ",
-    });
+    }), [isCompact, isLarge]);
 
-    const titleClasses = combinedTitleClasses({
+    const titleClasses = useMemo(() => combinedTitleClasses({
       isCompact,
       isLarge,
       isDefault,
       className: "font-semibold leading-tight",
-    });
+    }), [isCompact, isLarge, isDefault]);
 
-    const descriptionClasses = combinedDescriptionClasses({
+    const descriptionClasses = useMemo(() => combinedDescriptionClasses({
       isCompact,
-    });
+    }), [isCompact]);
 
-    const handleClick = () => {
+    // handleClick을 useCallback으로 최적화
+    const handleClick = useCallback(() => {
       if (onClick) {
         onClick();
       } else if (url) {
         window.location.href = url;
       }
-    };
+    }, [onClick, url]);
+
+    // 메타데이터 렌더링을 useMemo로 최적화
+    const metaContent = useMemo(() => {
+      if (!showMeta || (!type && !date)) return null;
+      
+      return (
+        <div className="flex flex-col gap-2 text-sm text-neutral-500 dark:text-neutral-400">
+          {type && (
+            <div className="flex items-center gap-2">
+              <PencilLineIcon className="w-3 h-3" />
+              <span>{type} / {subType}</span>
+            </div>
+          )}
+          {date && (
+            <div className="flex items-center gap-2">
+              <CalendarIcon className="w-3 h-3" />
+              <span>{date}</span>
+              {distanceFromToday && (
+                <span className="text-xs">({distanceFromToday})</span>
+              )}
+            </div>
+          )}
+        </div>
+      );
+    }, [showMeta, type, subType, date, distanceFromToday]);
+
+    // 태그 렌더링을 useMemo로 최적화
+    const tagsContent = useMemo(() => {
+      if (!showTags || !tags || tags.length === 0) return null;
+      
+      return (
+        <div className="flex flex-wrap gap-2">
+          <TagItemMini
+            tags={tags}
+            className="bg-neutral-200 dark:bg-neutral-500 text-neutral-500 dark:text-neutral-200"
+          />
+        </div>
+      );
+    }, [showTags, tags]);
+
+    // 이미지 렌더링을 useMemo로 최적화
+    const imageContent = useMemo(() => {
+      if (!showImage || !imageUrl) return null;
+      
+      return (
+        <div className={imageContainerClasses}>
+          <LazyImage
+            src={imageUrl}
+            alt={imageAlt || title}
+            className={imageClasses}
+            width={isCompact ? 120 : 200}
+            height={isCompact ? 80 : 150}
+          />
+        </div>
+      );
+    }, [showImage, imageUrl, imageAlt, title, imageContainerClasses, imageClasses, isCompact]);
 
     return (
       <CardBase
@@ -99,89 +159,35 @@ const GridCard = React.forwardRef<HTMLDivElement, GridCardProps>(
         padding="none"
         {...props}
       >
-        {/* 이미지 영역 */}
-        {showImage && (
-          <div className={imageContainerClasses}>
-            {imageUrl ? (
-              <LazyImage
-                alt={imageAlt || title}
-                priority={false}
-                src={imageUrl}
-                className={imageClasses}
-              />
-            ) : (
-              <div
-                className="md:w-full w-40 h-40  bg-gradient-to-br from-neutral-400 to-blue-400 flex items-center justify-center"
-                style={{
-                  backgroundImage: imageUrl ? `url(${imageUrl})` : "none",
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              >
-                {!imageUrl && (
-                  <span className="text-white text-4xl font-bold">
-                    {title.charAt(0)}
-                  </span>
-                )}
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* 콘텐츠 영역 */}
-        <div className={contentClasses}>
-          <div className="flex flex-col items-start gap-2">
-            {/* 타입 */}
-            <span className="text-xs text-neutral-500 dark:text-neutral-400  uppercase tracking-wide">
-              {type} / {subType}
-            </span>
+        <div className="flex flex-row gap-4 p-4">
+          {/* 이미지 영역 */}
+          {imageContent}
+          
+          {/* 콘텐츠 영역 */}
+          <div className={contentClasses}>
             {/* 제목 */}
-            <h3 className={titleClasses}>{title}</h3>
-          </div>
-
-          {/* 설명 */}
-          {showDescription && description && (
-            <p className={descriptionClasses}>{description}...</p>
-          )}
-          {/* 메타데이터 */}
-          <div className="flex flex-col gap-2">
-            {/* 작성자 */}
-            {author && (
-              <div className="flex gap-2 items-center text-xs text-neutral-500 dark:text-neutral-400 ">
-                <PencilLineIcon className="w-3 h-3" />
-                <span className="text-xs text-neutral-500 dark:text-neutral-400 ">
-                  {substringWithNumberDots(author, 10)}
-                </span>
-              </div>
+            <h3 className={titleClasses}>
+              {substringWithNumberDots(title, isCompact ? 30 : 50)}
+            </h3>
+            
+            {/* 메타데이터 */}
+            {metaContent}
+            
+            {/* 설명 */}
+            {showDescription && description && (
+              <p className={descriptionClasses}>
+                {substringWithNumberDots(description, isCompact ? 80 : 120)}
+              </p>
             )}
-            {/* 날짜 */}
-            {showMeta && date && (
-              <div className="flex gap-2 items-center text-xs text-neutral-500 dark:text-neutral-400">
-                <CalendarIcon className="w-3 h-3" />
-                <span>
-                  {date} &nbsp; &nbsp;{distanceFromToday}
-                </span>
-              </div>
-            )}
+            
             {/* 태그 */}
-            {showTags && tags && tags.length > 0 && (
-              <div className="flex gap-2 items-start break-all">
-                <TagItemMini
-                  tags={tags}
-                  className="bg-neutral-200
-                   dark:bg-neutral-700 text-neutral-600
-                    dark:text-neutral-300 
-                    line-clamp-1
-                    "
-                />
-              </div>
-            )}
+            {tagsContent}
           </div>
         </div>
       </CardBase>
     );
   }
-);
+));
 
 GridCard.displayName = "GridCard";
 

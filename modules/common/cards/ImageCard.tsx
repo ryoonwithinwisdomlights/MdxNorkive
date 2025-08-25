@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 
 import { cn } from "@/lib/utils/general";
 
@@ -39,9 +39,13 @@ const ImageCard = React.forwardRef<HTMLDivElement, ImageCardProps>(
     },
     ref
   ) => {
-    const isHorizontal = variant === "horizontal";
-    const isVertical = variant === "vertical";
-    const isFeatured = variant === "featured";
+    // const isHorizontal = variant === "horizontal";
+    // const isVertical = variant === "vertical";
+    // const isFeatured = variant === "featured";
+    // 변수들을 useMemo로 최적화
+    const isHorizontal = useMemo(() => variant === "horizontal", [variant]);
+    const isVertical = useMemo(() => variant === "vertical", [variant]);
+    const isFeatured = useMemo(() => variant === "featured", [variant]);
 
     const cardClasses = combinedCardClasses({
       isHorizontal,
@@ -71,13 +75,27 @@ const ImageCard = React.forwardRef<HTMLDivElement, ImageCardProps>(
       className: "rounded-xl border border-neutral-200 dark:border-neutral-700",
     });
 
-    const handleClick = () => {
+    // handleClick을 useCallback으로 최적화
+    const handleClick = useCallback(() => {
       if (onClick) {
         onClick();
       } else if (data.url) {
         window.location.href = data.url;
       }
-    };
+    }, [onClick, data.url]);
+
+    // 네비게이션 핸들러들을 useCallback으로 최적화
+    const handlePrevious = useCallback(() => {
+      if (onPrevious) {
+        onPrevious();
+      }
+    }, [onPrevious]);
+
+    const handleNext = useCallback(() => {
+      if (onNext) {
+        onNext();
+      }
+    }, [onNext]);
 
     return (
       <CardBase
@@ -109,7 +127,7 @@ const ImageCard = React.forwardRef<HTMLDivElement, ImageCardProps>(
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      onPrevious?.();
+                      handlePrevious();
                     }}
                     className={cn(
                       "absolute hover:cursor-pointer left-10 top-1/2 transform -translate-y-1/2 w-8 h-8 border border-neutral-200 bg-white dark:bg-neutral-800 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
@@ -120,7 +138,7 @@ const ImageCard = React.forwardRef<HTMLDivElement, ImageCardProps>(
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      onNext?.();
+                      handleNext();
                     }}
                     className="absolute hover:cursor-pointer right-10 top-1/2 transform -translate-y-1/2 w-8 h-8 border border-neutral-200 bg-white dark:bg-neutral-800 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
                   >
