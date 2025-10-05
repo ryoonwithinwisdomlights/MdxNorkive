@@ -10,7 +10,7 @@ export default function FileWrapper(props: FileWrapperProps) {
 
   if (!urls) return null;
   return (
-    <div className="my-4" data-tooltip={"PDF Open in new tab"}>
+    <div className="my-4" data-tooltip={"File Open in new tab"}>
       <a
         href={urls}
         target="_blank"

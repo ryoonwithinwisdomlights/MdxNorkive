@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, lazy } from "react";
 import { BLOG } from "@/blog.config";
 
 //************* Font Awesome ************* */
@@ -30,16 +30,22 @@ import {
 //************* Custom components ************* */
 import MobileRightSidebarWrapper from "@/modules/common/right-sidebar/MobileRightSidebarWrapper";
 import DefaultSearchDialog from "@/modules/common/search/search";
-import AuxiliaryBlogComponent from "@/modules/layout/components/AuxiliaryComponent";
 import MobileFooter from "@/modules/layout/components/mobile-footer";
 import TopNavigationWrapper from "@/modules/layout/wrapper/TopNavigationWrapper";
-import JumpToBackButton from "@/modules/shared/JumpToBackButton";
-import JumpToTopButton from "@/modules/shared/JumpToTopButton";
-import LoadingCover from "@/modules/shared/LoadingCover";
 import ProgressBar from "@/modules/shared/ProgressBar";
 
+// 동적 import로 코드 스플리팅 적용 (사용 빈도가 낮은 컴포넌트들)
+const AuxiliaryBlogComponent = lazy(
+  () => import("@/modules/layout/components/AuxiliaryComponent")
+);
+const LoadingCover = lazy(() => import("@/modules/shared/LoadingCover"));
+const JumpToTopButton = lazy(() => import("@/modules/shared/JumpToTopButton"));
+const JumpToBackButton = lazy(
+  () => import("@/modules/shared/JumpToBackButton")
+);
+
 //************* Fetcher ************* */
-import { fetchAllRecordList, fetchMenuList } from "./api/fetcher";
+import { fetchMenuList } from "./api/fetcher";
 
 //*************  types ************* */
 import { RecordFrontMatter } from "@/types/mdx.model";
@@ -149,7 +155,13 @@ export default async function RootLayout({
                   id="norkive-main"
                   className={` w-screen h-screen justify-center dark:text-neutral-300  pb-16  md:pb-0 `}
                 >
-                  <AuxiliaryBlogComponent />
+                  <Suspense
+                    fallback={
+                      <div className="h-16 bg-neutral-100 dark:bg-neutral-800" />
+                    }
+                  >
+                    <AuxiliaryBlogComponent />
+                  </Suspense>
 
                   <TopNavigationWrapper />
 
@@ -157,8 +169,12 @@ export default async function RootLayout({
                     <Suspense fallback={<LoadingCover />}>{children}</Suspense>
                   </div>
 
-                  <JumpToTopButton />
-                  <JumpToBackButton />
+                  <Suspense fallback={<div className="h-8 w-8" />}>
+                    <JumpToTopButton />
+                  </Suspense>
+                  <Suspense fallback={<div className="h-8 w-8" />}>
+                    <JumpToBackButton />
+                  </Suspense>
 
                   <MobileRightSidebarWrapper />
                   <MobileFooter />
