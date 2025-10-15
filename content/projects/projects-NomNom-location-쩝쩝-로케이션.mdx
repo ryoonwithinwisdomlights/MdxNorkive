@@ -1,0 +1,415 @@
+---
+title: NomNom-location(쩝쩝 로케이션)
+slug: projects-NomNom-location-쩝쩝-로케이션
+summary: >-
+  NomNom-location(쩝쩝 로케이션) is a Next.js 13 ver Location based Web App(w/
+  Googlemap & GooglePlace API) with TS
+pageCover: >-
+  https://res.cloudinary.com/dyrdul1dd/image/upload/v1760535018/norkive-notion-images/png_1760535017762_amo%3D.webp?format=webp&quality=90
+notionId: 7304db9c83fc468fb7a8a3a87218ffc9
+password: ''
+type: PROJECTS
+sub_type: Dev
+category: DevProject
+tags:
+  - Portfolio
+  - Next.js13
+  - Google Place Api
+  - Google Map
+  - TailwindCSS
+favorite: true
+date: '2023-11-29'
+last_edited_time: '2025-10-15T13:20:00.000Z'
+lastEditedDate: 2025-10-15T13:20:00.000Z
+draft: false
+description: >-
+  NomNom-location(쩝쩝 로케이션) is a Next.js 13 ver Location based Web App(w/
+  Googlemap & GooglePlace API) with TS
+icon: ''
+full: false
+lastModified: '2025-10-15'
+readingTime: 73
+wordCount: 14505
+status: published
+author: ryoonwithinwisdomlights
+version: 1.0.0
+---
+
+# <strong>🥨 쩝쩝Location (NomNom Location)</strong>
+
+> Location-Based Restaurant Discovery Platform with Real-time Map Integration
+
+### 1. 리포지토리
+
+
+[link_preview](https://github.com/ryoon-with-wisdomtrees/nomnom-location)
+
+
+### 2. 사이트
+
+
+<BookMarkWrapper names={"bookmark"} urls={"https://ryoon-with-nomnom-googlemap.vercel.app/login"} />
+
+
+![스크린샷_2024-06-23_오전_12.24.23.png](https://res.cloudinary.com/dyrdul1dd/image/upload/v1760535016/norkive-notion-images/png_1760535013994_RTFfODRfOD.webp?format=webp&quality=85)
+
+
+## <strong>📋 프로젝트 개요</strong>
+
+
+---
+
+
+| <strong>항목</strong>    | <strong>내용</strong>                                                                                    |
+| --------- | ----------------------------------------------------------------------------------------- |
+| <strong>개발 기간</strong> | 3일 (집중 개발)                                                                                |
+| <strong>개발 범위</strong> | 기획 · 설계 · 개발 · 배포 전 과정 100% 단독 수행                                                         |
+| <strong>배포 환경</strong> | [Vercel](https://vercel.com/)                                                             |
+| <strong>레퍼런스</strong>  | [Build Location-Based NextJs13 App](https://youtu.be/SGsDxZukodQ) (JS → TS로 재작성)          |
+| <strong>데모 링크</strong> | [ryoon-with-nomnom-googlemap.vercel.app](https://ryoon-with-nomnom-googlemap.vercel.app/) |
+
+
+<strong>쩝쩝Location</strong>은 사용자의 위치를 기반으로 주변 맛집을 실시간으로 발견하고 탐색할 수 있는 위치 기반 서비스(LBS) 웹 애플리케이션입니다.
+
+
+Google Maps API와 Google Places API를 활용하여 직관적인 지도 인터페이스와 상세한 장소 정보를 제공하며,
+
+
+NextAuth.js를 통한 Google 소셜 로그인 기능을 구현했습니다.
+
+
+## <strong>⚙️ 기술 스택</strong>
+
+
+---
+
+
+| <strong>영역</strong>               | <strong>기술</strong>                                                                   |
+| -------------------- | ------------------------------------------------------------------------ |
+| <strong>Frontend</strong>         | Next.js 14 (App Router), TypeScript, React, Tailwind CSS                 |
+| <strong>Maps & Location</strong>  | Google Maps JavaScript API, Google Places API (Nearby Search)            |
+| <strong>Authentication</strong>   | NextAuth.js (Google OAuth 2.0)                                           |
+| <strong>State Management</strong> | React Context API (UserLocationContext, SelectedBusinessContext)         |
+| <strong>Custom Hooks</strong>     | useGeolocation (Geolocation API)                                         |
+| <strong>UI/UX</strong>            | Radix UI (Dropdown), Custom Skeleton Loading, Responsive Design          |
+| <strong>API Architecture</strong> | Next.js API Routes (<code>/api/google-place</code>, <code>/api/auth/[...nextauth]</code>)      |
+| <strong>Infra / Deploy</strong>   | Vercel, Environment Variables Configuration                              |
+| <strong>Type Safety</strong>      | TypeScript Interfaces (<code>interface/response.ts</code>), Strict Type Definitions |
+
+
+## <strong>🧩 주요 기능 (Key Features)</strong>
+
+
+---
+
+
+<strong>🗺️ Interactive Map Experience</strong>
+
+- <strong>Google Maps 실시간 통합</strong> — 사용자 위치 기반 동적 지도 렌더링
+- <strong>Custom Markers</strong> — 선택된 비즈니스의 시각적 강조 표시
+- <strong>반응형 지도 인터페이스</strong> — 모바일부터 데스크탑까지 최적화된 뷰포트
+
+<strong>📍 Location-Based Search</strong>
+
+- <strong>Geolocation API 활용</strong> — 사용자의 현재 위치 자동 감지
+- <strong>Nearby Search (Places API)</strong> — 주변 맛집 실시간 검색
+- <strong>반경 필터링</strong> — 500m ~ 5km 범위 내 거리 기반 검색
+- <strong>평점 필터</strong> — 별점 기준으로 고품질 장소 필터링
+
+<strong>🍽️ Category-Based Discovery</strong>
+
+- <strong>커스텀 카테고리 시스템</strong> — 마라탕, 족발, 타코, 파스타 등 큐레이션된 음식 카테고리
+- <strong>아이콘 기반 UI</strong> — 직관적인 카테고리 선택 인터페이스
+- <strong>동적 카테고리 검색</strong> — 선택한 카테고리에 따른 실시간 장소 업데이트
+
+<strong>🔐 Authentication</strong>
+
+- <strong>Google OAuth 2.0</strong> — NextAuth.js 기반 소셜 로그인
+- <strong>세션 관리</strong> — 서버 사이드 세션 처리
+
+<strong>📱 Business Information</strong>
+
+- <strong>상세 정보 표시</strong> — 이름, 주소, 평점, 영업 상태, 리뷰 수
+- <strong>장소 사진</strong> — Google Places의 장소 사진 표시
+- <strong>Google Maps 연동</strong> — 장소 클릭 시 Google Maps로 바로 이동
+
+<strong>🎨 User Experience</strong>
+
+- <strong>Skeleton Loading</strong> — 데이터 로딩 중 시각적 피드백
+- <strong>Responsive Design</strong> — 완전한 반응형 레이아웃
+- <strong>에러 핸들링</strong> — Geolocation 권한 거부, API 에러 등 엣지 케이스 처리
+
+---
+
+
+## <strong>💡 기술적 인사이트 및 주요 구현 사항</strong>
+
+
+<strong>Google Maps API와 Next.js App Router를 활용한 위치 기반 서비스 구현</strong>
+
+
+| <strong>역량 영역</strong>                        | <strong>설명</strong>                                                                                                      |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| <strong>Full Ownership</strong>               | 기획 → 설계 → 개발 → 배포 전 과정을 단독 수행. JavaScript 레퍼런스를 TypeScript로 재작성.                                            |
+| <strong>Location-Based Service (LBS)</strong> | Geolocation API, Google Maps JavaScript API, Google Places API를 통합한 위치 기반 서비스 구현. 브라우저 권한 처리, 위치 업데이트 등 구현. |
+| <strong>API Integration</strong>              | Next.js API Routes로 서버 사이드 API 프록시 구현. Google Places API 호출을 백엔드에서 처리하여 API 키 보안 강화.                        |
+| <strong>Type-Safe Development</strong>        | TypeScript 기반 코드베이스 구성. <code>interface/response.ts</code>에서 Google Places API 응답 타입 정의.                               |
+| <strong>State Management</strong>             | Context API로 전역 상태 관리 (<code>UserLocationContext</code>, <code>SelectedBusinessContext</code>).                                   |
+| <strong>Custom Hooks</strong>                 | <code>useGeolocation</code> 훅을 구현하여 Geolocation API를 React 생명주기와 통합. 권한 요청, 에러 처리 등 구현.                                |
+| <strong>Component Architecture</strong>       | <code>CategoryList</code>, <code>BusinessList</code>, <code>BusinessItem</code>, <code>Markers</code> 등으로 컴포넌트 분리.                                      |
+| <strong>UX</strong>                           | Skeleton Loading으로 로딩 상태 시각화.                                                                               |
+| <strong>Authentication</strong>               | NextAuth.js의 OAuth 플로우 이해. Google Provider 설정 및 세션 처리 구현.                                                   |
+| <strong>Environment Setup</strong>            | Vercel 배포 환경에서 환경 변수 관리. 로컬/프로덕션 환경 분리.                                                                     |
+| <strong>TypeScript Migration</strong>         | JavaScript 레퍼런스를 TypeScript로 재작성. 타입 정의 및 에러 핸들링 추가.                                                        |
+
+> 🎯 한 줄 요약:
+>
+> "JavaScript 레퍼런스를 TypeScript로 재작성하며 Google Maps API와 위치 기반 서비스를 학습한 프로젝트입니다."
+>
+>
+
+## <strong>🧠 제작 과정 및 학습 포인트</strong>
+
+
+---
+
+
+> 이 프로젝트는 **Mapping 라이브러리 경험 확보**를 목표로 시작하여, Google Maps API와 위치 기반 서비스의 기본 구조를 학습할 수 있었습니다.
+
+
+<strong>🔄 TypeScript Migration</strong>
+
+- 원본 강의는 JavaScript 기반이었으나, 타입 안정성을 위해 TypeScript로 재작성.
+- Google Maps API와 Google Places API의 응답 구조에 맞춰 인터페이스 정의.
+- NextAuth.js의 타입 정의 학습.
+
+<strong>🗺️ Google Maps API</strong>
+
+- Google Maps JavaScript API의 <code>Map</code>, <code>Marker</code> 클래스 활용.
+- Google Places API의 Nearby Search를 통해 <code>location</code>, <code>radius</code>, <code>type</code>, <code>keyword</code> 파라미터 활용.
+- API 키 관리 및 기본적인 에러 핸들링 구현.
+
+<strong>🎯 Location-Based Service</strong>
+
+- Geolocation API의 <code>getCurrentPosition</code>을 활용한 현재 위치 감지.
+- 위치 권한 요청 플로우 구현.
+
+<strong>🔐 OAuth 2.0</strong>
+
+- NextAuth.js를 통한 Google OAuth 2.0 구현.
+- Google Cloud Console에서 OAuth 2.0 클라이언트 설정.
+
+<strong>🚀 Next.js App Router</strong>
+
+- <code>app/</code> 디렉토리 구조에서 Server Component, Client Component 구분.
+- API Routes (<code>app/api/</code>)로 서버 사이드 API 프록시 구현하여 API 키 보안.
+
+## <strong>🚀 실행 및 환경 구성</strong>
+
+
+---
+
+
+### <strong>Prerequisites</strong>
+
+- Node.js 18+
+- Google Cloud Platform 계정 (Maps API, Places API 활성화 필요)
+- Google OAuth 2.0 클라이언트 ID/Secret
+
+### <strong>환경 변수 설정</strong>
+
+
+프로젝트 루트에 <code>.env.local</code> 파일을 생성하고 아래 변수를 설정하세요:
+
+
+```plain text
+# Google OAuth (NextAuth.js)
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+# Google Maps & Places API
+NEXT_PUBLIC_GOOGLE_API_KEY=your_google_maps_api_key
+NEXT_PUBLIC_GOOGLE_MAP_ID=your_google_map_id
+
+# NextAuth Secret (Production)
+# 로컬 개발 시에는 자동 생성되지만, 프로덕션 배포 시 필수
+SECRET=your_nextauth_secret
+```
+
+
+### <strong>환경 변수 상세 설명</strong>
+
+
+| <strong>변수</strong>                       | <strong>설명</strong>                                                                                                                                                         |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <code>GOOGLE_CLIENT_ID</code>           | Google Cloud Console에서 발급받은 OAuth 2.0 클라이언트 ID. [Google Cloud Console - Credentials](https://console.cloud.google.com/apis/credentials)                        |
+| <code>GOOGLE_CLIENT_SECRET</code>       | OAuth 2.0 클라이언트 시크릿 키.                                                                                                                                         |
+| <code>NEXT_PUBLIC_GOOGLE_API_KEY</code> | Google Maps JavaScript API 및 Places API 사용을 위한 API 키.                                                                                                          |
+| <code>NEXT_PUBLIC_GOOGLE_MAP_ID</code>  | Google Cloud Console에서 생성한 Map ID. (고급 마커 스타일링 등에 사용)                                                                                                          |
+| <code>SECRET</code>                     | NextAuth.js 세션 암호화를 위한 시크릿. 프로덕션 배포 시 필수. [생성 방법 참고](https://medium.com/@prodmxle/setting-up-nextauth-js-application-and-deploying-it-via-vercel-d6b02bf98397) |
+
+
+![env1.png](https://github.com/ryoonwithinwisdomlights/nomnom-location/raw/main/public/env1.webp?format=webp&quality=85)
+
+
+![env2.png](https://github.com/ryoonwithinwisdomlights/nomnom-location/raw/main/public/env2.webp?format=webp&quality=85)
+
+
+### <strong>Google Cloud Platform 설정</strong>
+
+
+<strong>1. Maps & Places API 활성화</strong>
+
+- [Google Cloud Console](https://console.cloud.google.com/)에서 프로젝트 생성
+- "APIs & Services" → "Enable APIs and Services"에서 다음 API 활성화:
+    - Maps JavaScript API
+    - Places API
+    - Geocoding API (선택사항)
+
+<strong>2. API 키 생성 및 제한</strong>
+
+- "Credentials" → "Create Credentials" → "API Key"
+- API 키 제한 설정 (보안 강화):
+    - Application restrictions: HTTP referrers (웹사이트)
+    - API restrictions: Maps JavaScript API, Places API만 허용
+
+<strong>3. OAuth 2.0 클라이언트 생성</strong>
+
+- "Credentials" → "Create Credentials" → "OAuth client ID"
+- Application type: Web application
+- Authorized redirect URIs:
+    - <code>http://localhost:3000/api/auth/callback/google</code> (개발)
+    - <code>https://your-domain.vercel.app/api/auth/callback/google</code> (프로덕션)
+
+## <strong>로컬 개발 실행</strong>
+
+
+```plain text
+# 의존성 설치
+npm install
+
+# 개발 서버 실행
+npm run dev
+```
+
+
+브라우저에서 [http://localhost:3000](http://localhost:3000/) 접속
+
+
+## <strong>프로덕션 배포 (Vercel)</strong>
+
+
+```plain text
+# Vercel CLI 설치 (선택사항)
+npm i -g vercel
+
+# Vercel에 배포
+vercel
+
+# 프로덕션 배포
+vercel --prod
+```
+
+
+### <strong>Vercel Dashboard에서 환경 변수 설정:</strong>
+
+- Project Settings → Environment Variables에서 위의 모든 환경 변수 추가
+- <code>SECRET</code> 변수는 프로덕션 환경에 필수로 설정 ([생성 방법](https://medium.com/@prodmxle/setting-up-nextauth-js-application-and-deploying-it-via-vercel-d6b02bf98397))
+
+## <strong>📂 프로젝트 구조</strong>
+
+
+---
+
+
+```plain text
+restaurant-rate-app/
+├── app/
+│   ├── api/
+│   │   ├── auth/[...nextauth]/route.ts    # NextAuth.js 설정
+│   │   └── google-place/route.ts          # Google Places API 프록시
+│   ├── components/
+│   │   ├── HeaderNavbar.tsx               # 네비게이션 바 & 인증 UI
+│   │   ├── Home/
+│   │   │   ├── BusinessItem.tsx           # 개별 비즈니스 카드
+│   │   │   ├── BusinessList.tsx           # 비즈니스 목록 컨테이너
+│   │   │   ├── CategoryList.tsx           # 카테고리 선택 UI
+│   │   │   ├── GoogleMapView.tsx          # 지도 통합 컴포넌트
+│   │   │   ├── Markers.tsx                # 지도 마커 관리
+│   │   │   ├── RangeSelect.tsx            # 반경 필터
+│   │   │   └── SelectRating.tsx           # 평점 필터
+│   │   └── SkeltonLoading.tsx             # 로딩 스켈레톤
+│   ├── login/page.tsx                     # 로그인 페이지
+│   ├── about/page.tsx                     # About 페이지
+│   ├── page.tsx                           # 메인 페이지
+│   ├── layout.tsx                         # 루트 레이아웃
+│   └── globals.css                        # 글로벌 스타일
+├── context/
+│   ├── SelectedBusinessContext.ts         # 선택된 비즈니스 상태
+│   └── UserLocationContext.ts             # 사용자 위치 상태
+├── hooks/
+│   └── use-geolocation.tsx                # Geolocation 커스텀 훅
+├── interface/
+│   └── response.ts                        # API 응답 타입 정의
+├── SharedData/
+│   ├── Data.ts                            # 카테고리 데이터
+│   └── GlobalApi.ts                       # API 호출 유틸리티
+└── components/ui/
+    └── dropdown-menu.tsx                  # Radix UI 컴포넌트
+```
+
+
+## <strong>🔜 향후 개선 하면 좋은 부분</strong>
+
+
+---
+
+
+<strong>🔍 Search Functionality</strong>
+
+
+현재 Search 컴포넌트의 구조만 구현되어 있으며, 실제 검색 기능은 추가 예정입니다.
+
+- <strong>Google Places Text Search API</strong> 통합 ([공식 문서](https://developers.google.com/maps/documentation/places/web-service/text-search?hl=ko))
+- 자동완성(Autocomplete) 기능 추가
+- 검색 히스토리 저장
+
+<strong>🎨 UI/UX Enhancement</strong>
+
+- Dark Mode 지원
+- 장소 상세 페이지 (리뷰, 사진 갤러리, 영업시간 등)
+- 즐겨찾기(Bookmark) 기능
+
+<strong>🗺️ Map Features</strong>
+
+- Directions API 통합 (경로 안내)
+- 여러 장소 비교 모드
+- 클러스터링(많은 마커 처리)
+
+<strong>📊 Data & Analytics</strong>
+
+- 사용자 리뷰/평점 작성 기능
+- 방문 기록 저장
+- 추천 알고리즘 (ML 기반)
+
+## <strong>참고 링크</strong>
+
+
+---
+
+- <strong>Live Demo:</strong> [https://ryoon-with-nomnom-googlemap.vercel.app/](https://ryoon-with-nomnom-googlemap.vercel.app/)
+- <strong>Reference Tutorial:</strong> [Build Location-Based NextJs13 App](https://youtu.be/SGsDxZukodQ)
+- <strong>Google Maps JavaScript API:</strong> [Documentation](https://developers.google.com/maps/documentation/javascript)
+- <strong>Google Places API:</strong> [Documentation](https://developers.google.com/maps/documentation/places/web-service)
+- <strong>NextAuth.js:</strong> [Documentation](https://next-auth.js.org/)
+- <strong>NextAuth.js Vercel Deployment Guide:</strong> [Medium Article](https://medium.com/@prodmxle/setting-up-nextauth-js-application-and-deploying-it-via-vercel-d6b02bf98397)
+
+## <strong>👨‍💻 Author</strong>
+
+
+---
+
+
+<strong>Seryun Cheon (Ryoon)</strong>
+
+- GitHub: [@ryoonwithinwisdomlights](https://github.com/ryoonwithinwisdomlights)

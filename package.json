@@ -14,14 +14,17 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "rm -rf .next && next build",
+    "build": "rm -rf .next && next build && npm run generate:mdx",
     "build:vercel": "NODE_OPTIONS='--max-old-space-size=4096 --no-warnings' next build",
     "start": "NODE_OPTIONS='--inspect' next build && next start",
     "lint": "next lint",
+    "generate:mdx": "npx tsx scripts/notion-mdx-all-in-one.ts",
     "validate:mdx": "npx tsx scripts/validate-mdx-files.ts",
+    "one:mdx": "npx tsx scripts/test-one-record-mdx.ts",
     "prettier:check": "prettier --check --ignore-unknown .",
     "prettier:write": "prettier --write --ignore-unknown .",
     "check:validity": "npm run validate:mdx && npm run prettier:check",
+    "process-redis-images": "npx tsx scripts/redis-image-processor.ts",
     "analyze": "ANALYZE=true npm run build",
     "bundle-report": "ANALYZE=true yarn build",
     "bundle:analyze": "cross-env ANALYZE=true npm run build"

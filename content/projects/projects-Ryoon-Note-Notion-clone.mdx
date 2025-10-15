@@ -1,0 +1,211 @@
+---
+title: Ryoon-Note(Notion-clone)
+slug: projects-Ryoon-Note-Notion-clone
+summary: A full-featured Notion-style application
+pageCover: >-
+  https://res.cloudinary.com/dyrdul1dd/image/upload/v1760534999/norkive-notion-images/png_1760534997116_bm90ZTJfc2.webp?format=webp&quality=90
+notionId: aafebe4fe33a4bd5a1174db79635dfa7
+password: ''
+type: PROJECTS
+sub_type: Dev
+category: DevProject
+tags:
+  - Portfolio
+  - Next.js13
+  - Google Map
+  - Google Place Api
+favorite: true
+date: '2023-11-29'
+last_edited_time: '2025-10-15T13:13:00.000Z'
+lastEditedDate: 2025-10-15T13:13:00.000Z
+draft: false
+description: A full-featured Notion-style application
+icon: ''
+full: false
+lastModified: '2025-10-15'
+readingTime: 38
+wordCount: 7494
+status: published
+author: ryoonwithinwisdomlights
+version: 1.0.0
+---
+
+# <strong>📙 Ryoon Note — Notion-like Fullstack Web App (Next.js 13)</strong>
+
+
+### 1. 리포지토리
+
+
+### 2. 사이트
+
+
+[link_preview](https://github.com/ryoon-with-wisdomtrees/Ryoon-Note-like-notion)
+
+
+<BookMarkWrapper names={"bookmark"} urls={"https://seryoon-note-app.vercel.app/"} />
+
+
+![main_screenshot.png](https://github.com/ryoon-with-wisdomtrees/Ryoon-Note-like-notion/raw/main/public/main_screenshot.webp?format=webp&quality=85)
+
+> A full-featured Notion-style application built with Next.js 13, TypeScript, Convex, Clerk, and BlockNote.
+>
+> Real-time collaborative editing, nested documents, publishing, cover images, file storage, and more — all in one app.
+>
+>
+> 🪶 Try writing and publishing your own post with **Ryoon Note**:
+>
+>
+> [Demo → ryoon-with-nomnom-googlemap.vercel.app](https://ryoon-with-nomnom-googlemap.vercel.app/)
+>
+>
+> ✏️ My sample published document: [Read here](https://seryoon-note-app.vercel.app/preview/3n251s3kyh03ff9h3sdr8y749kdy2dg/)
+>
+>
+
+![note1_screenshot.png](https://github.com/ryoon-with-wisdomtrees/Ryoon-Note-like-notion/raw/main/public/note1_screenshot.webp?format=webp&quality=85)
+
+
+![note3_screenshot.png](https://github.com/ryoon-with-wisdomtrees/Ryoon-Note-like-notion/raw/main/public/note3_screenshot.webp?format=webp&quality=85)
+
+
+## <strong>📘 프로젝트 개요</strong>
+
+
+<strong>Ryoon Note</strong>는 <strong>Notion의 UI/UX를 그대로 재현한 풀스택 클론 웹앱</strong>입니다.
+
+
+단순한 클론을 넘어, 실제 배포 가능한 수준의 <strong>실시간 동기화, 인증, 파일 업로드, 문서 관리, 퍼블리싱 시스템</strong>을 직접 구현했습니다.
+
+
+| <strong>구분</strong>    | <strong>내용</strong>                                                                                    |
+| --------- | ----------------------------------------------------------------------------------------- |
+| <strong>개발 기간</strong> | 약 1주일 (집중 개발)                                                                             |
+| <strong>개발 범위</strong> | 기획 · 설계 · 개발 · 배포 전 과정 100% 단독 수행                                                         |
+| <strong>배포 환경</strong> | [Vercel](https://vercel.com/)                                                             |
+| <strong>레퍼런스</strong>  | [Fullstack Notion Clone – YouTube](https://youtu.be/0OaDyjB9Ib8)                          |
+| <strong>데모 링크</strong> | [ryoon-with-nomnom-googlemap.vercel.app](https://ryoon-with-nomnom-googlemap.vercel.app/) |
+
+
+---
+
+
+## <strong>⚙️ 기술 스택</strong>
+
+
+| <strong>영역</strong>                 | <strong>기술</strong>                                            |
+| ---------------------- | ------------------------------------------------- |
+| <strong>Frontend</strong>           | Next.js 13 (App Router), TypeScript, Tailwind CSS |
+| <strong>Backend / Database</strong> | Convex (Realtime Database)                        |
+| <strong>Auth / Identity</strong>    | Clerk                                             |
+| <strong>State Management</strong>   | Zustand                                           |
+| <strong>File Storage</strong>       | EdgeStore                                         |
+| <strong>Rich Editor</strong>        | BlockNote (based on ProseMirror)                  |
+| <strong>Infra / Deploy</strong>     | Vercel (CI/CD), Env-based Config                  |
+| <strong>Tooling</strong>            | ESLint, Prettier, GitHub, .env 구성 분리              |
+
+
+---
+
+
+## <strong>🧩 주요 기능 (Key Features)</strong>
+
+- 📝 <strong>Notion-style Editor</strong> — BlockNote 기반의 WYSIWYG 문서 편집
+- 🌲 <strong>Infinite Nested Documents</strong> — 무한 트리 구조 문서 계층 지원
+- 🔐 <strong>Clerk Authentication</strong> — 사용자별 로그인/로그아웃 및 세션 관리
+- 🌐 <strong>Publish & Share</strong> — 작성 문서를 외부 공개 및 링크 공유
+- 🖼️ <strong>Cover Image Upload</strong> — 문서별 커버 이미지 지정 및 변경
+- 🌠 <strong>Emoji-based Document Icon Picker</strong> — 실시간 변경 반영
+- 🌓 <strong>Light / Dark Mode</strong> — UI 전역 테마 관리
+- 🗑️ <strong>Soft Delete & Trash Recovery</strong> — 문서 복구 기능 포함
+- ↔️ <strong>Expandable Sidebar</strong> — 접기/펼치기 지원 및 반응형 대응
+- 🔄 <strong>Real-time Updates (Convex)</strong> — 모든 변경사항이 즉시 반영
+- 📱 <strong>Full Mobile Responsiveness</strong> — 완전한 반응형 인터페이스
+
+---
+
+
+## <strong>🧠 제작 과정 및 학습 포인트</strong>
+
+
+> 이 프로젝트는 단순한 튜토리얼 복제가 아니라,  
+> **“Next.js App Router + Convex + Clerk + Zustand” 조합의 완전한 이해와 확장 실험**을 목표로 진행되었습니다.
+
+- 처음에는 강의의 코드를 그대로 따라가기보다,각 기술(Convex, Clerk, Zustand, EdgeStore)이 <strong>왜, 어떤 설계 철학으로 쓰였는지</strong>를 이해하려 노력했습니다.
+- 예를 들어 <strong>Convex의 실시간 쿼리 시스템</strong>을 직접 분석하며, Firebase나 Supabase와의 차이를 체감했고,클라이언트 상태(Zustand)와 서버 상태(Convex)의 <strong>일관성 관리 패턴</strong>을 실험했습니다.
+- <strong>BlockNote</strong> 라이브러리를 통해 ProseMirror → TipTap → BlockNote로 이어지는 에디터 생태계를 이해했고,리치 텍스트 구조의 DOM-Node 모델을 직접 탐색했습니다.
+- 작업 중 여러 실험(EdgeStore 파일 교체, 다크모드 유지, React Suspense 활용 등)을 병행하며“UI 상태 → DB 이벤트 → 실시간 반영”의 파이프라인을 명확히 정립했습니다.
+
+---
+
+
+## <strong>💡 기술적 인사이트 및 엔지니어링 기여 (Technical Insights & Contributions)</strong>
+
+
+이 프로젝트는 단순한 Notion 클론이 아니라,
+
+- <em>새로운 기술 스택을 조립하고, 구조적으로 문제를 해결한 ‘엔지니어링 실험’</em>*이었습니다.
+
+각 기술을 도입할 때마다 단순히 동작만 구현하는 것이 아니라,
+
+
+그 내부의 설계 철학과 아키텍처를 이해하고 직접 최적화하는 데 초점을 두었습니다.
+
+
+| <strong>역량 영역</strong>                     | <strong>설명</strong>                                                                                                           |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| <strong>Full Ownership</strong>            | 기획 → 설계 → 개발 → 테스트 → 배포 전 과정을 <strong>100% 단독 수행</strong>.기능 구현뿐 아니라 아키텍처 구성, 상태 관리, 인증/스토리지 통합, CI/CD까지 책임지고 완성.             |
+| <strong>Technical Insights</strong>        | Convex의 실시간 리스너 구조, Clerk의 세션 공유 방식, EdgeStore의 파일 버전 관리 등 새로운 기술의 동작 원리를 실험적으로 탐구하고 비교 분석.                      |
+| <strong>Frontend Architecture</strong>     | Next.js 13 App Router 기반의 컴포넌트 구조화, Zustand를 이용한 글로벌 상태 관리, Tailwind로의 UI/UX 일관성 확보.                             |
+| <strong>Editor Engineering</strong>        | BlockNote를 활용한 리치 텍스트 편집기 구성. ProseMirror → TipTap → BlockNote로 이어지는 에디터 생태계의 구조적 이해.                            |
+| <strong>Problem Solving</strong>           | 강의 내 생략된 로직을 직접 재구현하며, 타입 불일치·렌더 타이밍·SSR 관련 이슈를 구조적으로 해결.                                                        |
+| <strong>Developer Experience (DX)</strong> | ESLint, Prettier, pnpm 기반 스크립트 구성으로 빌드 재현성과 팀 협업 확장성 확보.                                                         |
+| <strong>UX & Interaction</strong>          | Notion의 UX 철학을 반영해 커버 이미지 업로드, 아이콘 선택, 실시간 제목 반영, 다크모드, 서치, 반응형 사이드바 등 완전한 사용자 흐름 재현.                            |
+| <strong>Learning & Growth Mindset</strong> | Convex, Clerk, EdgeStore, BlockNote 등 기존에 다뤄보지 않은 기술들을 짧은 시간 내에 분석·적용.단순한 복제보다는 ‘왜 이렇게 작동하는가’를 파고드는 접근으로 지식 내재화. |
+
+> 🎯 한 줄 요약:
+>
+> “기술을 단순히 사용하는 수준이 아니라,
+>
+>
+> **새로운 기술 스택을 실전 환경에서 조립하고 원리를 이해하고 문제를 구조적으로 해결하여 시스템으로 재구성할 줄 아는 엔지니어**로 성장한 과정이었습니다.”
+>
+>
+
+---
+
+
+## <strong>🔧 실행 및 환경 구성</strong>
+
+
+### <strong>개발/로컬 환경</strong>
+
+
+`# .env (개발용)
+CONVEX_DEPLOYMENT=
+NEXT_PUBLIC_CONVEX_URL=
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+EDGE_STORE_ACCESS_KEY=
+EDGE_STORE_SECRET_KEY=`
+
+
+### <strong>프로덕션 환경</strong>
+
+
+`# .env (운영용)
+CI=false
+CONVEX_DEPLOY_KEY=
+NEXT_PUBLIC_CONVEX_URL=
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+EDGE_STORE_ACCESS_KEY=
+EDGE_STORE_SECRET_KEY=`
+
+
+### Clerk & Convex 연동 가이드:
+
+
+ `- Clerk와 Convex 연동 관련하여 auth.config.js 파일의 생성 및 수정이 필요합니다. 자세한 사항은 아래의 링크들을 참고하세요.
+	•<code>	[</code>Convex Auth with Clerk`](https://docs.convex.dev/auth/clerk)
+	<code>•</code>	[<code>Integrate Convex with Clerk</code>](/aafebe4fe33a4bd5a1174db79635dfa7)
+
