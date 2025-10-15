@@ -14,14 +14,16 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "build": "rm -rf .next && next build",
+    "build:vercel": "NODE_OPTIONS='--max-old-space-size=4096 --no-warnings' next build",
+    "start": "NODE_OPTIONS='--inspect' next build && next start",
     "lint": "next lint",
     "validate:mdx": "npx tsx scripts/validate-mdx-files.ts",
     "prettier:check": "prettier --check --ignore-unknown .",
     "prettier:write": "prettier --write --ignore-unknown .",
     "check:validity": "npm run validate:mdx && npm run prettier:check",
     "analyze": "ANALYZE=true npm run build",
+    "bundle-report": "ANALYZE=true yarn build",
     "bundle:analyze": "cross-env ANALYZE=true npm run build"
   },
   "dependencies": {
