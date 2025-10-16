@@ -14,7 +14,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "rm -rf .next && next build && npm run generate:mdx",
+    "build": "rm -rf .next && npm run generate:mdx && next build",
     "build:vercel": "NODE_OPTIONS='--max-old-space-size=4096 --no-warnings' next build",
     "start": "NODE_OPTIONS='--inspect' next build && next start",
     "lint": "next lint",
