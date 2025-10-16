@@ -1,6 +1,661 @@
 
 export default [
   {
+    "notionId": "6d024cbb14494f2e8be392ff915a2daa",
+    "title": "DDui-DDui-Ride(뛰뛰라이드)",
+    "icon": "",
+    "full": false,
+    "summary": "DDui-DDui-Ride(뛰뛰라이드) is a Full Stack NextJs 13 Uber Clone Web App w/ NextJs, React.js, Tailwindcss, Google Map, Stripe with TypeScript",
+    "pageCover": "https://res.cloudinary.com/dyrdul1dd/image/upload/v1760541654/norkive-notion-images/png_1760541654162_RTFfODRfOD.webp?format=webp&quality=90",
+    "password": "",
+    "type": "PROJECTS",
+    "description": "DDui-DDui-Ride(뛰뛰라이드) is a Full Stack NextJs 13 Uber Clone Web App w/ NextJs, React.js, Tailwindcss, Google Map, Stripe with TypeScript",
+    "date": "2023-11-29T00:00:00.000Z",
+    "lastEditedDate": "2025-10-15T13:39:00.000Z",
+    "sub_type": "Dev",
+    "category": "DevProject",
+    "tags": [
+      "Portfolio",
+      "Next.js13",
+      "TailwindCSS",
+      "Stripe",
+      "Google Place Api",
+      "Google Map"
+    ],
+    "draft": false,
+    "favorite": true,
+    "readingTime": 47,
+    "wordCount": 9349,
+    "lastModified": "2025-10-15",
+    "version": "1.0.0",
+    "status": "published",
+    "author": "ryoonwithinwisdomlights",
+    "content": "# [DDui-DDui-Ride(뛰뛰라이드)](https://github.com/ryoonwithinwisdomlights/DDui-DDui-Ride)\n\n\n> **실시간 경로 계산과 결제 기능을 갖춘 풀스택 차량 호출 서비스**  \n> [🌐 Live Demo](https://ddui-ddui-ride.vercel.app/) | [📹 프로젝트 영상](https://ddui-ddui-ride.vercel.app/)\n\n\n![Untitled.gif](https://prod-files-secure.s3.us-west-2.amazonaws.com/056ff9f5-a9ef-486f-8acb-9eef51d06a2d/d43dcd16-d203-4ef2-9a02-2b48d729d26e/Untitled.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664XS3BBEN%2F20251015%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251015T152042Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEM%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQD0rOfc2XMRcyFvjWYjnqJ849KQvlkJFzt9rID2OC6YVgIhAOQ%2B8io%2BKCDfd6vWWse9xk61M5h28cAQxLNui2%2FNCVqYKv8DCHgQABoMNjM3NDIzMTgzODA1Igx%2F%2BeB3NwM7A5mp9kAq3AOo1OCja3G8W1TlK3nbOvksCsQJkvdZ0UI4CnHuIUGeoLAFmqq%2FttWatJB6D%2Fp55rWrHhWhGeqJxW0BSa0LJ4bhsVWM6%2BriEf8LAKXx%2F9czJA06%2BzDYQuVHL%2FZcFvyM7MAQPrJo0IsHaYwiCkMQn3Rv3iv4oM59odY9ztW8BGI7vzwodMNRGzsNC0%2BwzqGIIDXiZveBaPfVAL580fcp5VBHyPhJCJYZIGQ9TMPDZTrqNYswkgS3nuIgv%2BDtH%2BLGPFG2Jq6DRBo9AcgMFpSGGiZwz47JcoEAlULnMYmmdGPqtZs3b806Pj09qnDfKWwSU5cTxKTvObgWN5tzVh%2FlrUVBja9eLryHsTH%2FEJgNqaVbcrT%2BvrFhQFw1qYLg5eK31Ooop4U%2F4JNwzSpjGJjP8vJPrTIeqci3bb86JGbDr1vqC3k04S96Iu%2F7o8Hrc09pUAfn62TiSIvzUNLPh6L3XoIrzoMRykZAGRZZz04GjPssnSPNuuhjh3cH%2BhRYttfOdAK%2BGrtHErJXeA04PTPPPZGu4FB4Z9zSDK%2BQnrIs4VU2x%2BVx4i660gKdLfw7k7Tt9PVAGzC%2Bz4YKfzQiTtmzHFgtypChx7VfMhKKfm73Sw8bRNJKVNlorRa%2Bq5zQbjCk3r7HBjqkAYbf3JJcz5AmemTystHgV3tylNAHuZTzyxeS0fC8WGt78gSuZoldJDA%2B7bZHtIpybcWHZEUo%2Fs%2BDY6uPLbfYejXyUU%2BCRo1BW%2Fp2w27Ah0F2AlE46bj832MawLYUtzbcEY4PU%2FiSQYzNKO%2FPinFD3rtMpcnQ5zUTkIHqPUUnYIpRcPO1yhhas8FJVXlMbzUNf%2FZVg7WG61P28jdRfYmQqBuM56JB&X-Amz-Signature=7e50fa9081ba0fc4ac1af3a6630ec168663e7a8f6b911b4c4d20b22fd37c2a86&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)\n\n\n## <strong>📌 프로젝트 소개</strong>\n\n- <strong>DDui-DDui-Ride</strong>는 Uber와 유사한 차량 호출 서비스를 구현한 풀스택 웹 애플리케이션입니다. Google Maps API를 활용하여 실시간 경로 계산 및 시각화를 제공하며, Stripe를 통한 안전한 결제 처리를 지원합니다.\n- <strong>개발 기간</strong>: 2024년 (3일)\n\n## <strong>🎯 프로젝트 목표</strong>\n\n\n---\n\n- <strong>Google Maps API 심층 학습</strong>: Mapping library의 다양한 기능(Places API, Directions API, Custom Markers 등)을 실전에서 활용\n- <strong>한국 환경 최적화</strong>: 해외 튜토리얼 기반 프로젝트를 한국 환경에 맞게 커스터마이징\n- <strong>풀스택 개발 경험</strong>: 프론트엔드부터 결제 시스템까지 전체 플로우 구현\n\n## <strong>✨ 주요 기능</strong>\n\n\n---\n\n\n<strong>🗺️ 지도 및 경로 기능</strong>\n\n- <strong>실시간 장소 검색</strong>: Google Places Autocomplete API를 활용한 출발지/도착지 검색\n- <strong>경로 시각화</strong>: DirectionsRenderer를 통한 최적 경로 표시\n- <strong>커스텀 마커</strong>: 출발지와 도착지를 구분하는 맞춤형 마커 및 레이블\n- <strong>동적 지도 이동</strong>: 장소 선택 시 자동으로 해당 위치로 지도 중심 이동\n\n<strong>🚘 차량 선택 시스템</strong>\n\n- <strong>다양한 차량 옵션</strong>: Uber X, Comfort, XL, Pet, Black 등 5가지 차량 타입\n- <strong>실시간 요금 계산</strong>: 거리 기반 동적 요금 산정\n- <strong>차량별 상세 정보</strong>: 좌석 수, 특징, 가격 정보 제공\n\n<strong>💳 결제 시스템</strong>\n\n- <strong>Stripe 통합</strong>: 안전한 카드 결제 처리\n- <strong>결제 확인 페이지</strong>: 결제 완료 후 예약 확인 화면\n\n<strong>🔐 사용자 인증</strong>\n\n- <strong>Clerk 인증 시스템</strong>: 안전한 회원가입 및 로그인\n- <strong>보호된 라우트</strong>: 인증된 사용자만 서비스 이용 가능\n\n## <strong>🛠️ 기술 스택</strong>\n\n\n---\n\n\n### <strong>Frontend</strong>\n\n- <strong>Framework</strong>: Next.js 14 (App Router)\n- <strong>Language</strong>: TypeScript\n- <strong>UI Library</strong>: React 18\n- <strong>Styling</strong>: Tailwind CSS\n- <strong>UI Components</strong>: shadcn/ui, Radix UI\n- <strong>State Management</strong>: Recoil\n\n### <strong>Backend & Services</strong>\n\n- <strong>API Routes</strong>: Next.js API Routes\n- <strong>Maps</strong>: Google Maps JavaScript API, @react-google-maps/api\n- <strong>Places</strong>: Google Places API, react-google-places-autocomplete\n- <strong>Payment</strong>: Stripe\n- <strong>Authentication</strong>: Clerk\n\n### <strong>Development Tools</strong>\n\n- <strong>Package Manager</strong>: npm\n- <strong>Linting</strong>: ESLint\n- <strong>Deployment</strong>: Vercel\n\n## <strong>📁 프로젝트 구조</strong>\n\n\n---\n\n\n```plain text\nuber-eats-clone/\n├── app/\n│   ├── api/\n│   │   └── create-intent/          # Stripe 결제 인텐트 생성 API\n│   ├── components/\n│   │   ├── Header.tsx              # 전역 헤더 컴포넌트\n│   │   └── Home/\n│   │       ├── SearchSection.tsx   # 출발지/도착지 검색 섹션\n│   │       ├── GoogleMapSection.tsx # 지도 및 경로 표시\n│   │       ├── CarListOptions.tsx  # 차량 선택 옵션\n│   │       ├── CarListItem.tsx     # 개별 차량 아이템\n│   │       ├── CheckoutForm.tsx    # 결제 폼\n│   │       └── InputItem.tsx       # 검색 입력 컴포넌트\n│   ├── payment/                    # 결제 페이지\n│   ├── payment-confirm/            # 결제 확인 페이지\n│   ├── sign-in/                    # 로그인 페이지\n│   └── sign-up/                    # 회원가입 페이지\n├── components/ui/                  # shadcn/ui 컴포넌트\n├── context/                        # React Context\n│   ├── SourceContext.ts\n│   └── DestinationContext.ts\n├── lib/\n│   ├── states.ts                   # Recoil 상태 정의\n│   └── utils.ts                    # 유틸리티 함수\n├── utils/\n│   └── CarListData.ts              # 차량 데이터\n└── middleware.ts                   # Clerk 인증 미들웨어\n```\n\n\n## <strong>🚀 시작하기</strong>\n\n\n---\n\n\n### <strong>사전 요구사항</strong>\n\n- Node.js 18.0 이상\n- npm 또는 yarn\n- Google Maps API Key\n- Stripe API Key\n- Clerk API Key\n\n### <strong>설치 및 실행</strong>\n\n1. <strong>레포지토리 클론</strong>\n\n```plain text\ngit clone https://github.com/yourusername/uber-eats-clone.git\ncd uber-eats-clone\n```\n\n1. <strong>의존성 설치</strong>\n\n```plain text\nnpm install\n```\n\n1. <strong>환경 변수 설정</strong>\n\n<code>.env.local</code> 파일을 생성하고 다음 환경 변수를 추가합니다:\n\n\n```plain text\n# Google Maps\nNEXT_PUBLIC_GOOGLE_API_KEY=your_google_maps_api_key\nNEXT_PUBLIC_GOOGLE_MAP_API=your_google_map_id\n\n# Stripe\nNEXT_PUBLIC_STRIPE_PUBLISHER_KEY=your_stripe_publishable_key\nSTRIPE_SECRET_KEY=your_stripe_secret_key\n\n# Clerk\nNEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key\nCLERK_SECRET_KEY=your_clerk_secret_key\n```\n\n1. <strong>개발 서버 실행</strong>\n\n```plain text\nnpm run dev\n```\n\n1. <strong>브라우저에서 확인</strong>\n\n```plain text\nhttp://localhost:3000\n```\n\n\n## <strong>💡 핵심 구현 내용</strong>\n\n\n---\n\n\n### <strong>1. Google Maps API 통합</strong>\n\n\n<strong>GoogleMapSection 컴포넌트</strong>에서 복잡한 지도 기능을 구현했습니다:\n\n\n```plain text\n// 출발지/도착지 상태 변경 시 자동으로 지도 중심 이동\nuseEffect(() => {\n  if (!isEmptyObj(source) && map) {\n    map.panTo({ lat: source.lat, lng: source.lng });\n    setCenter({ lat: source.lat, lng: source.lng });\n  }\n}, [source]);\n\n// DirectionsRenderer를 통한 경로 표시\n<DirectionsRenderer\n  directions={directionRoutePoints}\n  options={{\n    polylineOptions: {\n      strokeColor: \"#393938\",\n      strokeWeight: 10,\n    },\n    suppressMarkers: true,\n  }}\n/>\n```\n\n\n### <strong>2. 상태 관리 (Recoil)</strong>\n\n\n전역 상태를 Recoil atom으로 관리하여 컴포넌트 간 데이터 공유:\n\n- <code>sourceState</code>: 출발지 정보\n- <code>destinationState</code>: 도착지 정보\n- <code>directionRoutePoints</code>: 경로 정보\n- <code>centerState</code>: 지도 중심 좌표\n\n### <strong>3. Stripe 결제 통합</strong>\n\n\nAPI Route를 통한 안전한 결제 인텐트 생성:\n\n\n```plain text\n// app/api/create-intent/route.ts\nconst paymentIntent = await stripe.paymentIntents.create({\n  amount: amount * 100, // 센트 단위로 변환\n  currency: 'krw',\n});\n```\n\n\n## <strong>🔧 트러블슈팅 및 해결 과제</strong>\n\n\n---\n\n\n### <strong>1. 한국 환경에서의 Google Maps API 제약</strong>\n\n\n<strong>문제</strong>: Google Maps의 일부 기능(Transit Directions 등)이 한국에서 제한적으로 지원됨\n\n\n<strong>해결</strong>:\n\n- Places API와 Directions API를 활용하여 기본 경로 계산 기능 구현\n- 커스텀 마커와 오버레이를 사용하여 사용자 경험 개선\n\n### <strong>2. 비동기 지도 로딩 처리</strong>\n\n\n<strong>문제</strong>: Google Maps API 로딩 전에 컴포넌트가 렌더링되어 에러 발생\n\n\n<strong>해결</strong>:\n\n- <code>LoadScript</code> 컴포넌트로 API 로딩 관리\n- 조건부 렌더링으로 데이터 존재 여부 확인 후 UI 표시\n\n```plain text\n{!isEmptyObj(source) && !isEmptyObj(destination) && (\n  <DirectionsRenderer directions={directionRoutePoints} />\n)}\n```\n\n\n### <strong>3. 타입 안정성 확보</strong>\n\n\n<strong>문제</strong>: Google Maps API의 복잡한 타입 처리\n\n\n<strong>해결</strong>:\n\n- TypeScript를 활용한 타입 안전성 확보\n- <code>@react-google-maps/api</code>의 타입 정의 활용\n\n## <strong>📚 배운 점 & 성장 경험</strong>\n\n\n---\n\n\n### <strong>기술적 성장</strong>\n\n- <strong>Google Maps API 심층 이해</strong>: Places, Directions, Marker, Overlay 등 다양한 API의 실전 활용 경험\n- <strong>상태 관리 전략</strong>: Recoil을 활용한 효율적인 전역 상태 관리 패턴 학습\n- <strong>결제 시스템 구현</strong>: Stripe를 통한 안전한 결제 플로우 구현 경험\n- <strong>인증 시스템</strong>: Clerk를 활용한 모던 인증 시스템 통합\n\n### <strong>문제 해결 능력</strong>\n\n- 해외 튜토리얼을 한국 환경에 맞게 커스터마이징하는 과정에서 발생한 다양한 이슈 해결\n- Google Maps API의 지역별 제약사항을 파악하고 대안 마련\n- TypeScript 환경에서의 외부 라이브러리 타입 처리 경험\n\n### <strong>프로젝트 관리</strong>\n\n- 3일이라는 짧은 기간 내에 MVP 완성을 위한 우선순위 설정\n- 기능 단위 개발 및 점진적 개선 방식 적용\n\n## <strong>🎨 주요 화면</strong>\n\n\n---\n\n\n### <strong>메인 화면</strong>\n\n- 출발지/도착지 검색\n- 실시간 지도 업데이트\n- 차량 선택 옵션\n\n### <strong>결제 화면</strong>\n\n- Stripe 카드 입력 폼\n- 예상 요금 표시\n\n### <strong>결제 완료</strong>\n\n- 예약 확인 정보\n- 차량 및 경로 요약\n\n## <strong>🔮 향후 개선 하면 좋은 기능</strong>\n\n\n---\n\n- [ ] 실시간 차량 위치 추적 기능\n- [ ] 운전자-승객 실시간 채팅\n- [ ] 예약 내역 관리 페이지\n- [ ] 다국어 지원 (i18n)\n- [ ] PWA 구현으로 모바일 앱 경험 제공\n- [ ] 즐겨찾기 장소 저장 기능\n- [ ] 카카오맵 API 통합 (한국 환경 최적화)\n\n## <strong>🙏 참고 자료</strong>\n\n\n---\n\n\n이 프로젝트는 [Build Full Stack NextJs 13 Uber Clone Web App](https://www.youtube.com/watch?v=pwsjvnADNGk&t=6594s) 강의를 참고하여 제작되었으며, 한국 환경에 맞게 커스터마이징 및 기능을 추가했습니다.\n\n\n## <strong>👤 Author</strong>\n\n\n---\n\n\n[<strong>Seryun Cheon (Ryoon)</strong>](https://github.com/ryoonwithinwisdomlights)\n\n\nGitHub: [@ryoonwithinwisdomlights](https://github.com/ryoonwithinwisdomlights)",
+    "_meta": {
+      "filePath": "projects-DDui-DDui-Ride-뛰뛰라이드.mdx",
+      "fileName": "projects-DDui-DDui-Ride-뛰뛰라이드.mdx",
+      "directory": ".",
+      "extension": "mdx",
+      "path": "projects-DDui-DDui-Ride-뛰뛰라이드"
+    },
+    "toc": [
+      {
+        "title": "DDui-DDui-Ride(뛰뛰라이드)",
+        "url": "#ddui-ddui-ride뛰뛰라이드",
+        "depth": 1
+      },
+      {
+        "title": "📌 프로젝트 소개",
+        "url": "#-프로젝트-소개",
+        "depth": 2
+      },
+      {
+        "title": "🎯 프로젝트 목표",
+        "url": "#-프로젝트-목표",
+        "depth": 2
+      },
+      {
+        "title": "✨ 주요 기능",
+        "url": "#-주요-기능",
+        "depth": 2
+      },
+      {
+        "title": "🛠️ 기술 스택",
+        "url": "#️-기술-스택",
+        "depth": 2
+      },
+      {
+        "title": "Frontend",
+        "url": "#frontend",
+        "depth": 3
+      },
+      {
+        "title": "Backend & Services",
+        "url": "#backend--services",
+        "depth": 3
+      },
+      {
+        "title": "Development Tools",
+        "url": "#development-tools",
+        "depth": 3
+      },
+      {
+        "title": "📁 프로젝트 구조",
+        "url": "#-프로젝트-구조",
+        "depth": 2
+      },
+      {
+        "title": "🚀 시작하기",
+        "url": "#-시작하기",
+        "depth": 2
+      },
+      {
+        "title": "사전 요구사항",
+        "url": "#사전-요구사항",
+        "depth": 3
+      },
+      {
+        "title": "설치 및 실행",
+        "url": "#설치-및-실행",
+        "depth": 3
+      },
+      {
+        "title": "💡 핵심 구현 내용",
+        "url": "#-핵심-구현-내용",
+        "depth": 2
+      },
+      {
+        "title": "1. Google Maps API 통합",
+        "url": "#1-google-maps-api-통합",
+        "depth": 3
+      },
+      {
+        "title": "2. 상태 관리 (Recoil)",
+        "url": "#2-상태-관리-recoil",
+        "depth": 3
+      },
+      {
+        "title": "3. Stripe 결제 통합",
+        "url": "#3-stripe-결제-통합",
+        "depth": 3
+      },
+      {
+        "title": "🔧 트러블슈팅 및 해결 과제",
+        "url": "#-트러블슈팅-및-해결-과제",
+        "depth": 2
+      },
+      {
+        "title": "1. 한국 환경에서의 Google Maps API 제약",
+        "url": "#1-한국-환경에서의-google-maps-api-제약",
+        "depth": 3
+      },
+      {
+        "title": "2. 비동기 지도 로딩 처리",
+        "url": "#2-비동기-지도-로딩-처리",
+        "depth": 3
+      },
+      {
+        "title": "3. 타입 안정성 확보",
+        "url": "#3-타입-안정성-확보",
+        "depth": 3
+      },
+      {
+        "title": "📚 배운 점 & 성장 경험",
+        "url": "#-배운-점--성장-경험",
+        "depth": 2
+      },
+      {
+        "title": "기술적 성장",
+        "url": "#기술적-성장",
+        "depth": 3
+      },
+      {
+        "title": "문제 해결 능력",
+        "url": "#문제-해결-능력",
+        "depth": 3
+      },
+      {
+        "title": "프로젝트 관리",
+        "url": "#프로젝트-관리",
+        "depth": 3
+      },
+      {
+        "title": "🎨 주요 화면",
+        "url": "#-주요-화면",
+        "depth": 2
+      },
+      {
+        "title": "메인 화면",
+        "url": "#메인-화면",
+        "depth": 3
+      },
+      {
+        "title": "결제 화면",
+        "url": "#결제-화면",
+        "depth": 3
+      },
+      {
+        "title": "결제 완료",
+        "url": "#결제-완료",
+        "depth": 3
+      },
+      {
+        "title": "🔮 향후 개선 하면 좋은 기능",
+        "url": "#-향후-개선-하면-좋은-기능",
+        "depth": 2
+      },
+      {
+        "title": "🙏 참고 자료",
+        "url": "#-참고-자료",
+        "depth": 2
+      },
+      {
+        "title": "👤 Author",
+        "url": "#-author",
+        "depth": 2
+      }
+    ],
+    "structuredData": {
+      "contents": [
+        {
+          "heading": "ddui-ddui-ride뛰뛰라이드",
+          "content": "실시간 경로 계산과 결제 기능을 갖춘 풀스택 차량 호출 서비스🌐 Live Demo | 📹 프로젝트 영상"
+        },
+        {
+          "heading": "-프로젝트-소개",
+          "content": "DDui-DDui-Ride는 Uber와 유사한 차량 호출 서비스를 구현한 풀스택 웹 애플리케이션입니다. Google Maps API를 활용하여 실시간 경로 계산 및 시각화를 제공하며, Stripe를 통한 안전한 결제 처리를 지원합니다."
+        },
+        {
+          "heading": "-프로젝트-소개",
+          "content": "개발 기간: 2024년 (3일)"
+        },
+        {
+          "heading": "-프로젝트-목표",
+          "content": "Google Maps API 심층 학습: Mapping library의 다양한 기능(Places API, Directions API, Custom Markers 등)을 실전에서 활용"
+        },
+        {
+          "heading": "-프로젝트-목표",
+          "content": "한국 환경 최적화: 해외 튜토리얼 기반 프로젝트를 한국 환경에 맞게 커스터마이징"
+        },
+        {
+          "heading": "-프로젝트-목표",
+          "content": "풀스택 개발 경험: 프론트엔드부터 결제 시스템까지 전체 플로우 구현"
+        },
+        {
+          "heading": "-주요-기능",
+          "content": "실시간 장소 검색: Google Places Autocomplete API를 활용한 출발지/도착지 검색"
+        },
+        {
+          "heading": "-주요-기능",
+          "content": "경로 시각화: DirectionsRenderer를 통한 최적 경로 표시"
+        },
+        {
+          "heading": "-주요-기능",
+          "content": "커스텀 마커: 출발지와 도착지를 구분하는 맞춤형 마커 및 레이블"
+        },
+        {
+          "heading": "-주요-기능",
+          "content": "동적 지도 이동: 장소 선택 시 자동으로 해당 위치로 지도 중심 이동"
+        },
+        {
+          "heading": "-주요-기능",
+          "content": "다양한 차량 옵션: Uber X, Comfort, XL, Pet, Black 등 5가지 차량 타입"
+        },
+        {
+          "heading": "-주요-기능",
+          "content": "실시간 요금 계산: 거리 기반 동적 요금 산정"
+        },
+        {
+          "heading": "-주요-기능",
+          "content": "차량별 상세 정보: 좌석 수, 특징, 가격 정보 제공"
+        },
+        {
+          "heading": "-주요-기능",
+          "content": "Stripe 통합: 안전한 카드 결제 처리"
+        },
+        {
+          "heading": "-주요-기능",
+          "content": "결제 확인 페이지: 결제 완료 후 예약 확인 화면"
+        },
+        {
+          "heading": "-주요-기능",
+          "content": "Clerk 인증 시스템: 안전한 회원가입 및 로그인"
+        },
+        {
+          "heading": "-주요-기능",
+          "content": "보호된 라우트: 인증된 사용자만 서비스 이용 가능"
+        },
+        {
+          "heading": "frontend",
+          "content": "Framework: Next.js 14 (App Router)"
+        },
+        {
+          "heading": "frontend",
+          "content": "Language: TypeScript"
+        },
+        {
+          "heading": "frontend",
+          "content": "UI Library: React 18"
+        },
+        {
+          "heading": "frontend",
+          "content": "Styling: Tailwind CSS"
+        },
+        {
+          "heading": "frontend",
+          "content": "UI Components: shadcn/ui, Radix UI"
+        },
+        {
+          "heading": "frontend",
+          "content": "State Management: Recoil"
+        },
+        {
+          "heading": "backend--services",
+          "content": "API Routes: Next.js API Routes"
+        },
+        {
+          "heading": "backend--services",
+          "content": "Maps: Google Maps JavaScript API, @react-google-maps/api"
+        },
+        {
+          "heading": "backend--services",
+          "content": "Places: Google Places API, react-google-places-autocomplete"
+        },
+        {
+          "heading": "backend--services",
+          "content": "Payment: Stripe"
+        },
+        {
+          "heading": "backend--services",
+          "content": "Authentication: Clerk"
+        },
+        {
+          "heading": "development-tools",
+          "content": "Package Manager: npm"
+        },
+        {
+          "heading": "development-tools",
+          "content": "Linting: ESLint"
+        },
+        {
+          "heading": "development-tools",
+          "content": "Deployment: Vercel"
+        },
+        {
+          "heading": "사전-요구사항",
+          "content": "Node.js 18.0 이상"
+        },
+        {
+          "heading": "사전-요구사항",
+          "content": "npm 또는 yarn"
+        },
+        {
+          "heading": "사전-요구사항",
+          "content": "Google Maps API Key"
+        },
+        {
+          "heading": "사전-요구사항",
+          "content": "Stripe API Key"
+        },
+        {
+          "heading": "사전-요구사항",
+          "content": "Clerk API Key"
+        },
+        {
+          "heading": "설치-및-실행",
+          "content": ".env.local 파일을 생성하고 다음 환경 변수를 추가합니다:"
+        },
+        {
+          "heading": "1-google-maps-api-통합",
+          "content": "GoogleMapSection 컴포넌트에서 복잡한 지도 기능을 구현했습니다:"
+        },
+        {
+          "heading": "2-상태-관리-recoil",
+          "content": "전역 상태를 Recoil atom으로 관리하여 컴포넌트 간 데이터 공유:"
+        },
+        {
+          "heading": "2-상태-관리-recoil",
+          "content": "sourceState: 출발지 정보"
+        },
+        {
+          "heading": "2-상태-관리-recoil",
+          "content": "destinationState: 도착지 정보"
+        },
+        {
+          "heading": "2-상태-관리-recoil",
+          "content": "directionRoutePoints: 경로 정보"
+        },
+        {
+          "heading": "2-상태-관리-recoil",
+          "content": "centerState: 지도 중심 좌표"
+        },
+        {
+          "heading": "3-stripe-결제-통합",
+          "content": "API Route를 통한 안전한 결제 인텐트 생성:"
+        },
+        {
+          "heading": "1-한국-환경에서의-google-maps-api-제약",
+          "content": "문제: Google Maps의 일부 기능(Transit Directions 등)이 한국에서 제한적으로 지원됨"
+        },
+        {
+          "heading": "1-한국-환경에서의-google-maps-api-제약",
+          "content": "해결:"
+        },
+        {
+          "heading": "1-한국-환경에서의-google-maps-api-제약",
+          "content": "Places API와 Directions API를 활용하여 기본 경로 계산 기능 구현"
+        },
+        {
+          "heading": "1-한국-환경에서의-google-maps-api-제약",
+          "content": "커스텀 마커와 오버레이를 사용하여 사용자 경험 개선"
+        },
+        {
+          "heading": "2-비동기-지도-로딩-처리",
+          "content": "문제: Google Maps API 로딩 전에 컴포넌트가 렌더링되어 에러 발생"
+        },
+        {
+          "heading": "2-비동기-지도-로딩-처리",
+          "content": "해결:"
+        },
+        {
+          "heading": "2-비동기-지도-로딩-처리",
+          "content": "LoadScript 컴포넌트로 API 로딩 관리"
+        },
+        {
+          "heading": "2-비동기-지도-로딩-처리",
+          "content": "조건부 렌더링으로 데이터 존재 여부 확인 후 UI 표시"
+        },
+        {
+          "heading": "3-타입-안정성-확보",
+          "content": "문제: Google Maps API의 복잡한 타입 처리"
+        },
+        {
+          "heading": "3-타입-안정성-확보",
+          "content": "해결:"
+        },
+        {
+          "heading": "3-타입-안정성-확보",
+          "content": "TypeScript를 활용한 타입 안전성 확보"
+        },
+        {
+          "heading": "3-타입-안정성-확보",
+          "content": "@react-google-maps/api의 타입 정의 활용"
+        },
+        {
+          "heading": "기술적-성장",
+          "content": "Google Maps API 심층 이해: Places, Directions, Marker, Overlay 등 다양한 API의 실전 활용 경험"
+        },
+        {
+          "heading": "기술적-성장",
+          "content": "상태 관리 전략: Recoil을 활용한 효율적인 전역 상태 관리 패턴 학습"
+        },
+        {
+          "heading": "기술적-성장",
+          "content": "결제 시스템 구현: Stripe를 통한 안전한 결제 플로우 구현 경험"
+        },
+        {
+          "heading": "기술적-성장",
+          "content": "인증 시스템: Clerk를 활용한 모던 인증 시스템 통합"
+        },
+        {
+          "heading": "문제-해결-능력",
+          "content": "해외 튜토리얼을 한국 환경에 맞게 커스터마이징하는 과정에서 발생한 다양한 이슈 해결"
+        },
+        {
+          "heading": "문제-해결-능력",
+          "content": "Google Maps API의 지역별 제약사항을 파악하고 대안 마련"
+        },
+        {
+          "heading": "문제-해결-능력",
+          "content": "TypeScript 환경에서의 외부 라이브러리 타입 처리 경험"
+        },
+        {
+          "heading": "프로젝트-관리",
+          "content": "3일이라는 짧은 기간 내에 MVP 완성을 위한 우선순위 설정"
+        },
+        {
+          "heading": "프로젝트-관리",
+          "content": "기능 단위 개발 및 점진적 개선 방식 적용"
+        },
+        {
+          "heading": "메인-화면",
+          "content": "출발지/도착지 검색"
+        },
+        {
+          "heading": "메인-화면",
+          "content": "실시간 지도 업데이트"
+        },
+        {
+          "heading": "메인-화면",
+          "content": "차량 선택 옵션"
+        },
+        {
+          "heading": "결제-화면",
+          "content": "Stripe 카드 입력 폼"
+        },
+        {
+          "heading": "결제-화면",
+          "content": "예상 요금 표시"
+        },
+        {
+          "heading": "결제-완료",
+          "content": "예약 확인 정보"
+        },
+        {
+          "heading": "결제-완료",
+          "content": "차량 및 경로 요약"
+        },
+        {
+          "heading": "-향후-개선-하면-좋은-기능",
+          "content": "실시간 차량 위치 추적 기능"
+        },
+        {
+          "heading": "-향후-개선-하면-좋은-기능",
+          "content": "운전자-승객 실시간 채팅"
+        },
+        {
+          "heading": "-향후-개선-하면-좋은-기능",
+          "content": "예약 내역 관리 페이지"
+        },
+        {
+          "heading": "-향후-개선-하면-좋은-기능",
+          "content": "다국어 지원 (i18n)"
+        },
+        {
+          "heading": "-향후-개선-하면-좋은-기능",
+          "content": "PWA 구현으로 모바일 앱 경험 제공"
+        },
+        {
+          "heading": "-향후-개선-하면-좋은-기능",
+          "content": "즐겨찾기 장소 저장 기능"
+        },
+        {
+          "heading": "-향후-개선-하면-좋은-기능",
+          "content": "카카오맵 API 통합 (한국 환경 최적화)"
+        },
+        {
+          "heading": "-참고-자료",
+          "content": "이 프로젝트는 Build Full Stack NextJs 13 Uber Clone Web App 강의를 참고하여 제작되었으며, 한국 환경에 맞게 커스터마이징 및 기능을 추가했습니다."
+        },
+        {
+          "heading": "-author",
+          "content": "Seryun Cheon (Ryoon)"
+        },
+        {
+          "heading": "-author",
+          "content": "GitHub: @ryoonwithinwisdomlights"
+        }
+      ],
+      "headings": [
+        {
+          "id": "ddui-ddui-ride뛰뛰라이드",
+          "content": "DDui-DDui-Ride(뛰뛰라이드)"
+        },
+        {
+          "id": "-프로젝트-소개",
+          "content": "📌 프로젝트 소개"
+        },
+        {
+          "id": "-프로젝트-목표",
+          "content": "🎯 프로젝트 목표"
+        },
+        {
+          "id": "-주요-기능",
+          "content": "✨ 주요 기능"
+        },
+        {
+          "id": "️-기술-스택",
+          "content": "🛠️ 기술 스택"
+        },
+        {
+          "id": "frontend",
+          "content": "Frontend"
+        },
+        {
+          "id": "backend--services",
+          "content": "Backend & Services"
+        },
+        {
+          "id": "development-tools",
+          "content": "Development Tools"
+        },
+        {
+          "id": "-프로젝트-구조",
+          "content": "📁 프로젝트 구조"
+        },
+        {
+          "id": "-시작하기",
+          "content": "🚀 시작하기"
+        },
+        {
+          "id": "사전-요구사항",
+          "content": "사전 요구사항"
+        },
+        {
+          "id": "설치-및-실행",
+          "content": "설치 및 실행"
+        },
+        {
+          "id": "-핵심-구현-내용",
+          "content": "💡 핵심 구현 내용"
+        },
+        {
+          "id": "1-google-maps-api-통합",
+          "content": "1. Google Maps API 통합"
+        },
+        {
+          "id": "2-상태-관리-recoil",
+          "content": "2. 상태 관리 (Recoil)"
+        },
+        {
+          "id": "3-stripe-결제-통합",
+          "content": "3. Stripe 결제 통합"
+        },
+        {
+          "id": "-트러블슈팅-및-해결-과제",
+          "content": "🔧 트러블슈팅 및 해결 과제"
+        },
+        {
+          "id": "1-한국-환경에서의-google-maps-api-제약",
+          "content": "1. 한국 환경에서의 Google Maps API 제약"
+        },
+        {
+          "id": "2-비동기-지도-로딩-처리",
+          "content": "2. 비동기 지도 로딩 처리"
+        },
+        {
+          "id": "3-타입-안정성-확보",
+          "content": "3. 타입 안정성 확보"
+        },
+        {
+          "id": "-배운-점--성장-경험",
+          "content": "📚 배운 점 & 성장 경험"
+        },
+        {
+          "id": "기술적-성장",
+          "content": "기술적 성장"
+        },
+        {
+          "id": "문제-해결-능력",
+          "content": "문제 해결 능력"
+        },
+        {
+          "id": "프로젝트-관리",
+          "content": "프로젝트 관리"
+        },
+        {
+          "id": "-주요-화면",
+          "content": "🎨 주요 화면"
+        },
+        {
+          "id": "메인-화면",
+          "content": "메인 화면"
+        },
+        {
+          "id": "결제-화면",
+          "content": "결제 화면"
+        },
+        {
+          "id": "결제-완료",
+          "content": "결제 완료"
+        },
+        {
+          "id": "-향후-개선-하면-좋은-기능",
+          "content": "🔮 향후 개선 하면 좋은 기능"
+        },
+        {
+          "id": "-참고-자료",
+          "content": "🙏 참고 자료"
+        },
+        {
+          "id": "-author",
+          "content": "👤 Author"
+        }
+      ]
+    },
+    "body": "var Component=(()=>{var p=Object.create;var c=Object.defineProperty;var g=Object.getOwnPropertyDescriptor;var m=Object.getOwnPropertyNames;var u=Object.getPrototypeOf,k=Object.prototype.hasOwnProperty;var N=(i,e)=>()=>(e||i((e={exports:{}}).exports,e),e.exports),b=(i,e)=>{for(var l in e)c(i,l,{get:e[l],enumerable:!0})},h=(i,e,l,s)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let r of m(e))!k.call(i,r)&&r!==l&&c(i,r,{get:()=>e[r],enumerable:!(s=g(e,r))||s.enumerable});return i};var C=(i,e,l)=>(l=i!=null?p(u(i)):{},h(e||!i||!i.__esModule?c(l,\"default\",{value:i,enumerable:!0}):l,i)),A=i=>h(c({},\"__esModule\",{value:!0}),i);var a=N((I,d)=>{d.exports=_jsx_runtime});var f={};b(f,{default:()=>o});var n=C(a());function t(i){let e={a:\"a\",blockquote:\"blockquote\",br:\"br\",code:\"code\",h1:\"h1\",h2:\"h2\",h3:\"h3\",hr:\"hr\",img:\"img\",input:\"input\",li:\"li\",ol:\"ol\",p:\"p\",pre:\"pre\",span:\"span\",strong:\"strong\",ul:\"ul\",...i.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e.h1,{id:\"ddui-ddui-ride\\uB6F0\\uB6F0\\uB77C\\uC774\\uB4DC\",children:(0,n.jsx)(e.a,{href:\"https://github.com/ryoonwithinwisdomlights/DDui-DDui-Ride\",children:\"DDui-DDui-Ride(\\uB6F0\\uB6F0\\uB77C\\uC774\\uB4DC)\"})}),`\n`,(0,n.jsxs)(e.blockquote,{children:[`\n`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:\"\\uC2E4\\uC2DC\\uAC04 \\uACBD\\uB85C \\uACC4\\uC0B0\\uACFC \\uACB0\\uC81C \\uAE30\\uB2A5\\uC744 \\uAC16\\uCD98 \\uD480\\uC2A4\\uD0DD \\uCC28\\uB7C9 \\uD638\\uCD9C \\uC11C\\uBE44\\uC2A4\"}),(0,n.jsx)(e.br,{}),`\n`,(0,n.jsx)(e.a,{href:\"https://ddui-ddui-ride.vercel.app/\",children:\"\\u{1F310} Live Demo\"}),\"\\xA0|\\xA0\",(0,n.jsx)(e.a,{href:\"https://ddui-ddui-ride.vercel.app/\",children:\"\\u{1F4F9} \\uD504\\uB85C\\uC81D\\uD2B8 \\uC601\\uC0C1\"})]}),`\n`]}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.img,{alt:\"Untitled.gif\",src:\"https://prod-files-secure.s3.us-west-2.amazonaws.com/056ff9f5-a9ef-486f-8acb-9eef51d06a2d/d43dcd16-d203-4ef2-9a02-2b48d729d26e/Untitled.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664XS3BBEN%2F20251015%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251015T152042Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEM%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQD0rOfc2XMRcyFvjWYjnqJ849KQvlkJFzt9rID2OC6YVgIhAOQ%2B8io%2BKCDfd6vWWse9xk61M5h28cAQxLNui2%2FNCVqYKv8DCHgQABoMNjM3NDIzMTgzODA1Igx%2F%2BeB3NwM7A5mp9kAq3AOo1OCja3G8W1TlK3nbOvksCsQJkvdZ0UI4CnHuIUGeoLAFmqq%2FttWatJB6D%2Fp55rWrHhWhGeqJxW0BSa0LJ4bhsVWM6%2BriEf8LAKXx%2F9czJA06%2BzDYQuVHL%2FZcFvyM7MAQPrJo0IsHaYwiCkMQn3Rv3iv4oM59odY9ztW8BGI7vzwodMNRGzsNC0%2BwzqGIIDXiZveBaPfVAL580fcp5VBHyPhJCJYZIGQ9TMPDZTrqNYswkgS3nuIgv%2BDtH%2BLGPFG2Jq6DRBo9AcgMFpSGGiZwz47JcoEAlULnMYmmdGPqtZs3b806Pj09qnDfKWwSU5cTxKTvObgWN5tzVh%2FlrUVBja9eLryHsTH%2FEJgNqaVbcrT%2BvrFhQFw1qYLg5eK31Ooop4U%2F4JNwzSpjGJjP8vJPrTIeqci3bb86JGbDr1vqC3k04S96Iu%2F7o8Hrc09pUAfn62TiSIvzUNLPh6L3XoIrzoMRykZAGRZZz04GjPssnSPNuuhjh3cH%2BhRYttfOdAK%2BGrtHErJXeA04PTPPPZGu4FB4Z9zSDK%2BQnrIs4VU2x%2BVx4i660gKdLfw7k7Tt9PVAGzC%2Bz4YKfzQiTtmzHFgtypChx7VfMhKKfm73Sw8bRNJKVNlorRa%2Bq5zQbjCk3r7HBjqkAYbf3JJcz5AmemTystHgV3tylNAHuZTzyxeS0fC8WGt78gSuZoldJDA%2B7bZHtIpybcWHZEUo%2Fs%2BDY6uPLbfYejXyUU%2BCRo1BW%2Fp2w27Ah0F2AlE46bj832MawLYUtzbcEY4PU%2FiSQYzNKO%2FPinFD3rtMpcnQ5zUTkIHqPUUnYIpRcPO1yhhas8FJVXlMbzUNf%2FZVg7WG61P28jdRfYmQqBuM56JB&X-Amz-Signature=7e50fa9081ba0fc4ac1af3a6630ec168663e7a8f6b911b4c4d20b22fd37c2a86&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject\",width:\"2554\",height:\"1154\"})}),`\n`,(0,n.jsx)(e.h2,{id:\"-\\uD504\\uB85C\\uC81D\\uD2B8-\\uC18C\\uAC1C\",children:(0,n.jsx)(\"strong\",{children:\"\\u{1F4CC} \\uD504\\uB85C\\uC81D\\uD2B8 \\uC18C\\uAC1C\"})}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"DDui-DDui-Ride\"}),\"\\uB294 Uber\\uC640 \\uC720\\uC0AC\\uD55C \\uCC28\\uB7C9 \\uD638\\uCD9C \\uC11C\\uBE44\\uC2A4\\uB97C \\uAD6C\\uD604\\uD55C \\uD480\\uC2A4\\uD0DD \\uC6F9 \\uC560\\uD50C\\uB9AC\\uCF00\\uC774\\uC158\\uC785\\uB2C8\\uB2E4. Google Maps API\\uB97C \\uD65C\\uC6A9\\uD558\\uC5EC \\uC2E4\\uC2DC\\uAC04 \\uACBD\\uB85C \\uACC4\\uC0B0 \\uBC0F \\uC2DC\\uAC01\\uD654\\uB97C \\uC81C\\uACF5\\uD558\\uBA70, Stripe\\uB97C \\uD1B5\\uD55C \\uC548\\uC804\\uD55C \\uACB0\\uC81C \\uCC98\\uB9AC\\uB97C \\uC9C0\\uC6D0\\uD569\\uB2C8\\uB2E4.\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uAC1C\\uBC1C \\uAE30\\uAC04\"}),\": 2024\\uB144 (3\\uC77C)\"]}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"-\\uD504\\uB85C\\uC81D\\uD2B8-\\uBAA9\\uD45C\",children:(0,n.jsx)(\"strong\",{children:\"\\u{1F3AF} \\uD504\\uB85C\\uC81D\\uD2B8 \\uBAA9\\uD45C\"})}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"Google Maps API \\uC2EC\\uCE35 \\uD559\\uC2B5\"}),\": Mapping library\\uC758 \\uB2E4\\uC591\\uD55C \\uAE30\\uB2A5(Places API, Directions API, Custom Markers \\uB4F1)\\uC744 \\uC2E4\\uC804\\uC5D0\\uC11C \\uD65C\\uC6A9\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uD55C\\uAD6D \\uD658\\uACBD \\uCD5C\\uC801\\uD654\"}),\": \\uD574\\uC678 \\uD29C\\uD1A0\\uB9AC\\uC5BC \\uAE30\\uBC18 \\uD504\\uB85C\\uC81D\\uD2B8\\uB97C \\uD55C\\uAD6D \\uD658\\uACBD\\uC5D0 \\uB9DE\\uAC8C \\uCEE4\\uC2A4\\uD130\\uB9C8\\uC774\\uC9D5\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uD480\\uC2A4\\uD0DD \\uAC1C\\uBC1C \\uACBD\\uD5D8\"}),\": \\uD504\\uB860\\uD2B8\\uC5D4\\uB4DC\\uBD80\\uD130 \\uACB0\\uC81C \\uC2DC\\uC2A4\\uD15C\\uAE4C\\uC9C0 \\uC804\\uCCB4 \\uD50C\\uB85C\\uC6B0 \\uAD6C\\uD604\"]}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"-\\uC8FC\\uC694-\\uAE30\\uB2A5\",children:(0,n.jsx)(\"strong\",{children:\"\\u2728 \\uC8FC\\uC694 \\uAE30\\uB2A5\"})}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(\"strong\",{children:\"\\u{1F5FA}\\uFE0F \\uC9C0\\uB3C4 \\uBC0F \\uACBD\\uB85C \\uAE30\\uB2A5\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uC2E4\\uC2DC\\uAC04 \\uC7A5\\uC18C \\uAC80\\uC0C9\"}),\": Google Places Autocomplete API\\uB97C \\uD65C\\uC6A9\\uD55C \\uCD9C\\uBC1C\\uC9C0/\\uB3C4\\uCC29\\uC9C0 \\uAC80\\uC0C9\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uACBD\\uB85C \\uC2DC\\uAC01\\uD654\"}),\": DirectionsRenderer\\uB97C \\uD1B5\\uD55C \\uCD5C\\uC801 \\uACBD\\uB85C \\uD45C\\uC2DC\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uCEE4\\uC2A4\\uD140 \\uB9C8\\uCEE4\"}),\": \\uCD9C\\uBC1C\\uC9C0\\uC640 \\uB3C4\\uCC29\\uC9C0\\uB97C \\uAD6C\\uBD84\\uD558\\uB294 \\uB9DE\\uCDA4\\uD615 \\uB9C8\\uCEE4 \\uBC0F \\uB808\\uC774\\uBE14\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uB3D9\\uC801 \\uC9C0\\uB3C4 \\uC774\\uB3D9\"}),\": \\uC7A5\\uC18C \\uC120\\uD0DD \\uC2DC \\uC790\\uB3D9\\uC73C\\uB85C \\uD574\\uB2F9 \\uC704\\uCE58\\uB85C \\uC9C0\\uB3C4 \\uC911\\uC2EC \\uC774\\uB3D9\"]}),`\n`]}),`\n`,(0,n.jsx)(\"strong\",{children:\"\\u{1F698} \\uCC28\\uB7C9 \\uC120\\uD0DD \\uC2DC\\uC2A4\\uD15C\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uB2E4\\uC591\\uD55C \\uCC28\\uB7C9 \\uC635\\uC158\"}),\": Uber X, Comfort, XL, Pet, Black \\uB4F1 5\\uAC00\\uC9C0 \\uCC28\\uB7C9 \\uD0C0\\uC785\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uC2E4\\uC2DC\\uAC04 \\uC694\\uAE08 \\uACC4\\uC0B0\"}),\": \\uAC70\\uB9AC \\uAE30\\uBC18 \\uB3D9\\uC801 \\uC694\\uAE08 \\uC0B0\\uC815\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uCC28\\uB7C9\\uBCC4 \\uC0C1\\uC138 \\uC815\\uBCF4\"}),\": \\uC88C\\uC11D \\uC218, \\uD2B9\\uC9D5, \\uAC00\\uACA9 \\uC815\\uBCF4 \\uC81C\\uACF5\"]}),`\n`]}),`\n`,(0,n.jsx)(\"strong\",{children:\"\\u{1F4B3} \\uACB0\\uC81C \\uC2DC\\uC2A4\\uD15C\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"Stripe \\uD1B5\\uD569\"}),\": \\uC548\\uC804\\uD55C \\uCE74\\uB4DC \\uACB0\\uC81C \\uCC98\\uB9AC\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uACB0\\uC81C \\uD655\\uC778 \\uD398\\uC774\\uC9C0\"}),\": \\uACB0\\uC81C \\uC644\\uB8CC \\uD6C4 \\uC608\\uC57D \\uD655\\uC778 \\uD654\\uBA74\"]}),`\n`]}),`\n`,(0,n.jsx)(\"strong\",{children:\"\\u{1F510} \\uC0AC\\uC6A9\\uC790 \\uC778\\uC99D\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"Clerk \\uC778\\uC99D \\uC2DC\\uC2A4\\uD15C\"}),\": \\uC548\\uC804\\uD55C \\uD68C\\uC6D0\\uAC00\\uC785 \\uBC0F \\uB85C\\uADF8\\uC778\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uBCF4\\uD638\\uB41C \\uB77C\\uC6B0\\uD2B8\"}),\": \\uC778\\uC99D\\uB41C \\uC0AC\\uC6A9\\uC790\\uB9CC \\uC11C\\uBE44\\uC2A4 \\uC774\\uC6A9 \\uAC00\\uB2A5\"]}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"\\uFE0F-\\uAE30\\uC220-\\uC2A4\\uD0DD\",children:(0,n.jsx)(\"strong\",{children:\"\\u{1F6E0}\\uFE0F \\uAE30\\uC220 \\uC2A4\\uD0DD\"})}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.h3,{id:\"frontend\",children:(0,n.jsx)(\"strong\",{children:\"Frontend\"})}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"Framework\"}),\": Next.js 14 (App Router)\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"Language\"}),\": TypeScript\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"UI Library\"}),\": React 18\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"Styling\"}),\": Tailwind CSS\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"UI Components\"}),\": shadcn/ui, Radix UI\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"State Management\"}),\": Recoil\"]}),`\n`]}),`\n`,(0,n.jsx)(e.h3,{id:\"backend--services\",children:(0,n.jsx)(\"strong\",{children:\"Backend & Services\"})}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"API Routes\"}),\": Next.js API Routes\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"Maps\"}),\": Google Maps JavaScript API, @react-google-maps/api\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"Places\"}),\": Google Places API, react-google-places-autocomplete\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"Payment\"}),\": Stripe\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"Authentication\"}),\": Clerk\"]}),`\n`]}),`\n`,(0,n.jsx)(e.h3,{id:\"development-tools\",children:(0,n.jsx)(\"strong\",{children:\"Development Tools\"})}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"Package Manager\"}),\": npm\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"Linting\"}),\": ESLint\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"Deployment\"}),\": Vercel\"]}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"-\\uD504\\uB85C\\uC81D\\uD2B8-\\uAD6C\\uC870\",children:(0,n.jsx)(\"strong\",{children:\"\\u{1F4C1} \\uD504\\uB85C\\uC81D\\uD2B8 \\uAD6C\\uC870\"})}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(e.pre,{className:\"shiki shiki-themes github-light github-dark\",style:{\"--shiki-light\":\"#24292e\",\"--shiki-dark\":\"#e1e4e8\",\"--shiki-light-bg\":\"#fff\",\"--shiki-dark-bg\":\"#24292e\"},tabIndex:\"0\",icon:'<svg viewBox=\"0 0 24 24\"><path d=\"M 6,1 C 4.354992,1 3,2.354992 3,4 v 16 c 0,1.645008 1.354992,3 3,3 h 12 c 1.645008,0 3,-1.354992 3,-3 V 8 7 A 1.0001,1.0001 0 0 0 20.707031,6.2929687 l -5,-5 A 1.0001,1.0001 0 0 0 15,1 h -1 z m 0,2 h 7 v 3 c 0,1.645008 1.354992,3 3,3 h 3 v 11 c 0,0.564129 -0.435871,1 -1,1 H 6 C 5.4358712,21 5,20.564129 5,20 V 4 C 5,3.4358712 5.4358712,3 6,3 Z M 15,3.4140625 18.585937,7 H 16 C 15.435871,7 15,6.5641288 15,6 Z\" fill=\"currentColor\" /></svg>',children:(0,n.jsxs)(e.code,{children:[(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"uber-eats-clone/\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u251C\\u2500\\u2500 app/\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u2502   \\u251C\\u2500\\u2500 api/\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u2502   \\u2502   \\u2514\\u2500\\u2500 create-intent/          # Stripe \\uACB0\\uC81C \\uC778\\uD150\\uD2B8 \\uC0DD\\uC131 API\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u2502   \\u251C\\u2500\\u2500 components/\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u2502   \\u2502   \\u251C\\u2500\\u2500 Header.tsx              # \\uC804\\uC5ED \\uD5E4\\uB354 \\uCEF4\\uD3EC\\uB10C\\uD2B8\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u2502   \\u2502   \\u2514\\u2500\\u2500 Home/\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u2502   \\u2502       \\u251C\\u2500\\u2500 SearchSection.tsx   # \\uCD9C\\uBC1C\\uC9C0/\\uB3C4\\uCC29\\uC9C0 \\uAC80\\uC0C9 \\uC139\\uC158\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u2502   \\u2502       \\u251C\\u2500\\u2500 GoogleMapSection.tsx # \\uC9C0\\uB3C4 \\uBC0F \\uACBD\\uB85C \\uD45C\\uC2DC\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u2502   \\u2502       \\u251C\\u2500\\u2500 CarListOptions.tsx  # \\uCC28\\uB7C9 \\uC120\\uD0DD \\uC635\\uC158\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u2502   \\u2502       \\u251C\\u2500\\u2500 CarListItem.tsx     # \\uAC1C\\uBCC4 \\uCC28\\uB7C9 \\uC544\\uC774\\uD15C\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u2502   \\u2502       \\u251C\\u2500\\u2500 CheckoutForm.tsx    # \\uACB0\\uC81C \\uD3FC\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u2502   \\u2502       \\u2514\\u2500\\u2500 InputItem.tsx       # \\uAC80\\uC0C9 \\uC785\\uB825 \\uCEF4\\uD3EC\\uB10C\\uD2B8\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u2502   \\u251C\\u2500\\u2500 payment/                    # \\uACB0\\uC81C \\uD398\\uC774\\uC9C0\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u2502   \\u251C\\u2500\\u2500 payment-confirm/            # \\uACB0\\uC81C \\uD655\\uC778 \\uD398\\uC774\\uC9C0\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u2502   \\u251C\\u2500\\u2500 sign-in/                    # \\uB85C\\uADF8\\uC778 \\uD398\\uC774\\uC9C0\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u2502   \\u2514\\u2500\\u2500 sign-up/                    # \\uD68C\\uC6D0\\uAC00\\uC785 \\uD398\\uC774\\uC9C0\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u251C\\u2500\\u2500 components/ui/                  # shadcn/ui \\uCEF4\\uD3EC\\uB10C\\uD2B8\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u251C\\u2500\\u2500 context/                        # React Context\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u2502   \\u251C\\u2500\\u2500 SourceContext.ts\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u2502   \\u2514\\u2500\\u2500 DestinationContext.ts\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u251C\\u2500\\u2500 lib/\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u2502   \\u251C\\u2500\\u2500 states.ts                   # Recoil \\uC0C1\\uD0DC \\uC815\\uC758\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u2502   \\u2514\\u2500\\u2500 utils.ts                    # \\uC720\\uD2F8\\uB9AC\\uD2F0 \\uD568\\uC218\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u251C\\u2500\\u2500 utils/\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u2502   \\u2514\\u2500\\u2500 CarListData.ts              # \\uCC28\\uB7C9 \\uB370\\uC774\\uD130\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\u2514\\u2500\\u2500 middleware.ts                   # Clerk \\uC778\\uC99D \\uBBF8\\uB4E4\\uC6E8\\uC5B4\"})})]})})}),`\n`,(0,n.jsx)(e.h2,{id:\"-\\uC2DC\\uC791\\uD558\\uAE30\",children:(0,n.jsx)(\"strong\",{children:\"\\u{1F680} \\uC2DC\\uC791\\uD558\\uAE30\"})}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.h3,{id:\"\\uC0AC\\uC804-\\uC694\\uAD6C\\uC0AC\\uD56D\",children:(0,n.jsx)(\"strong\",{children:\"\\uC0AC\\uC804 \\uC694\\uAD6C\\uC0AC\\uD56D\"})}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"Node.js 18.0 \\uC774\\uC0C1\"}),`\n`,(0,n.jsx)(e.li,{children:\"npm \\uB610\\uB294 yarn\"}),`\n`,(0,n.jsx)(e.li,{children:\"Google Maps API Key\"}),`\n`,(0,n.jsx)(e.li,{children:\"Stripe API Key\"}),`\n`,(0,n.jsx)(e.li,{children:\"Clerk API Key\"}),`\n`]}),`\n`,(0,n.jsx)(e.h3,{id:\"\\uC124\\uCE58-\\uBC0F-\\uC2E4\\uD589\",children:(0,n.jsx)(\"strong\",{children:\"\\uC124\\uCE58 \\uBC0F \\uC2E4\\uD589\"})}),`\n`,(0,n.jsxs)(e.ol,{children:[`\n`,(0,n.jsxs)(e.li,{children:[`\n`,(0,n.jsx)(\"strong\",{children:\"\\uB808\\uD3EC\\uC9C0\\uD1A0\\uB9AC \\uD074\\uB860\"}),`\n`]}),`\n`]}),`\n`,(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(e.pre,{className:\"shiki shiki-themes github-light github-dark\",style:{\"--shiki-light\":\"#24292e\",\"--shiki-dark\":\"#e1e4e8\",\"--shiki-light-bg\":\"#fff\",\"--shiki-dark-bg\":\"#24292e\"},tabIndex:\"0\",icon:'<svg viewBox=\"0 0 24 24\"><path d=\"M 6,1 C 4.354992,1 3,2.354992 3,4 v 16 c 0,1.645008 1.354992,3 3,3 h 12 c 1.645008,0 3,-1.354992 3,-3 V 8 7 A 1.0001,1.0001 0 0 0 20.707031,6.2929687 l -5,-5 A 1.0001,1.0001 0 0 0 15,1 h -1 z m 0,2 h 7 v 3 c 0,1.645008 1.354992,3 3,3 h 3 v 11 c 0,0.564129 -0.435871,1 -1,1 H 6 C 5.4358712,21 5,20.564129 5,20 V 4 C 5,3.4358712 5.4358712,3 6,3 Z M 15,3.4140625 18.585937,7 H 16 C 15.435871,7 15,6.5641288 15,6 Z\" fill=\"currentColor\" /></svg>',children:(0,n.jsxs)(e.code,{children:[(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"git clone https://github.com/yourusername/uber-eats-clone.git\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"cd uber-eats-clone\"})})]})})}),`\n`,(0,n.jsxs)(e.ol,{children:[`\n`,(0,n.jsxs)(e.li,{children:[`\n`,(0,n.jsx)(\"strong\",{children:\"\\uC758\\uC874\\uC131 \\uC124\\uCE58\"}),`\n`]}),`\n`]}),`\n`,(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(e.pre,{className:\"shiki shiki-themes github-light github-dark\",style:{\"--shiki-light\":\"#24292e\",\"--shiki-dark\":\"#e1e4e8\",\"--shiki-light-bg\":\"#fff\",\"--shiki-dark-bg\":\"#24292e\"},tabIndex:\"0\",icon:'<svg viewBox=\"0 0 24 24\"><path d=\"M 6,1 C 4.354992,1 3,2.354992 3,4 v 16 c 0,1.645008 1.354992,3 3,3 h 12 c 1.645008,0 3,-1.354992 3,-3 V 8 7 A 1.0001,1.0001 0 0 0 20.707031,6.2929687 l -5,-5 A 1.0001,1.0001 0 0 0 15,1 h -1 z m 0,2 h 7 v 3 c 0,1.645008 1.354992,3 3,3 h 3 v 11 c 0,0.564129 -0.435871,1 -1,1 H 6 C 5.4358712,21 5,20.564129 5,20 V 4 C 5,3.4358712 5.4358712,3 6,3 Z M 15,3.4140625 18.585937,7 H 16 C 15.435871,7 15,6.5641288 15,6 Z\" fill=\"currentColor\" /></svg>',children:(0,n.jsx)(e.code,{children:(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"npm install\"})})})})}),`\n`,(0,n.jsxs)(e.ol,{children:[`\n`,(0,n.jsxs)(e.li,{children:[`\n`,(0,n.jsx)(\"strong\",{children:\"\\uD658\\uACBD \\uBCC0\\uC218 \\uC124\\uC815\"}),`\n`]}),`\n`]}),`\n`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(\"code\",{children:\".env.local\"}),\"\\xA0\\uD30C\\uC77C\\uC744 \\uC0DD\\uC131\\uD558\\uACE0 \\uB2E4\\uC74C \\uD658\\uACBD \\uBCC0\\uC218\\uB97C \\uCD94\\uAC00\\uD569\\uB2C8\\uB2E4:\"]}),`\n`,(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(e.pre,{className:\"shiki shiki-themes github-light github-dark\",style:{\"--shiki-light\":\"#24292e\",\"--shiki-dark\":\"#e1e4e8\",\"--shiki-light-bg\":\"#fff\",\"--shiki-dark-bg\":\"#24292e\"},tabIndex:\"0\",icon:'<svg viewBox=\"0 0 24 24\"><path d=\"M 6,1 C 4.354992,1 3,2.354992 3,4 v 16 c 0,1.645008 1.354992,3 3,3 h 12 c 1.645008,0 3,-1.354992 3,-3 V 8 7 A 1.0001,1.0001 0 0 0 20.707031,6.2929687 l -5,-5 A 1.0001,1.0001 0 0 0 15,1 h -1 z m 0,2 h 7 v 3 c 0,1.645008 1.354992,3 3,3 h 3 v 11 c 0,0.564129 -0.435871,1 -1,1 H 6 C 5.4358712,21 5,20.564129 5,20 V 4 C 5,3.4358712 5.4358712,3 6,3 Z M 15,3.4140625 18.585937,7 H 16 C 15.435871,7 15,6.5641288 15,6 Z\" fill=\"currentColor\" /></svg>',children:(0,n.jsxs)(e.code,{children:[(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"# Google Maps\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"NEXT_PUBLIC_GOOGLE_API_KEY=your_google_maps_api_key\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"NEXT_PUBLIC_GOOGLE_MAP_API=your_google_map_id\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"# Stripe\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"NEXT_PUBLIC_STRIPE_PUBLISHER_KEY=your_stripe_publishable_key\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"STRIPE_SECRET_KEY=your_stripe_secret_key\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"# Clerk\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"CLERK_SECRET_KEY=your_clerk_secret_key\"})})]})})}),`\n`,(0,n.jsxs)(e.ol,{children:[`\n`,(0,n.jsxs)(e.li,{children:[`\n`,(0,n.jsx)(\"strong\",{children:\"\\uAC1C\\uBC1C \\uC11C\\uBC84 \\uC2E4\\uD589\"}),`\n`]}),`\n`]}),`\n`,(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(e.pre,{className:\"shiki shiki-themes github-light github-dark\",style:{\"--shiki-light\":\"#24292e\",\"--shiki-dark\":\"#e1e4e8\",\"--shiki-light-bg\":\"#fff\",\"--shiki-dark-bg\":\"#24292e\"},tabIndex:\"0\",icon:'<svg viewBox=\"0 0 24 24\"><path d=\"M 6,1 C 4.354992,1 3,2.354992 3,4 v 16 c 0,1.645008 1.354992,3 3,3 h 12 c 1.645008,0 3,-1.354992 3,-3 V 8 7 A 1.0001,1.0001 0 0 0 20.707031,6.2929687 l -5,-5 A 1.0001,1.0001 0 0 0 15,1 h -1 z m 0,2 h 7 v 3 c 0,1.645008 1.354992,3 3,3 h 3 v 11 c 0,0.564129 -0.435871,1 -1,1 H 6 C 5.4358712,21 5,20.564129 5,20 V 4 C 5,3.4358712 5.4358712,3 6,3 Z M 15,3.4140625 18.585937,7 H 16 C 15.435871,7 15,6.5641288 15,6 Z\" fill=\"currentColor\" /></svg>',children:(0,n.jsx)(e.code,{children:(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"npm run dev\"})})})})}),`\n`,(0,n.jsxs)(e.ol,{children:[`\n`,(0,n.jsxs)(e.li,{children:[`\n`,(0,n.jsx)(\"strong\",{children:\"\\uBE0C\\uB77C\\uC6B0\\uC800\\uC5D0\\uC11C \\uD655\\uC778\"}),`\n`]}),`\n`]}),`\n`,(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(e.pre,{className:\"shiki shiki-themes github-light github-dark\",style:{\"--shiki-light\":\"#24292e\",\"--shiki-dark\":\"#e1e4e8\",\"--shiki-light-bg\":\"#fff\",\"--shiki-dark-bg\":\"#24292e\"},tabIndex:\"0\",icon:'<svg viewBox=\"0 0 24 24\"><path d=\"M 6,1 C 4.354992,1 3,2.354992 3,4 v 16 c 0,1.645008 1.354992,3 3,3 h 12 c 1.645008,0 3,-1.354992 3,-3 V 8 7 A 1.0001,1.0001 0 0 0 20.707031,6.2929687 l -5,-5 A 1.0001,1.0001 0 0 0 15,1 h -1 z m 0,2 h 7 v 3 c 0,1.645008 1.354992,3 3,3 h 3 v 11 c 0,0.564129 -0.435871,1 -1,1 H 6 C 5.4358712,21 5,20.564129 5,20 V 4 C 5,3.4358712 5.4358712,3 6,3 Z M 15,3.4140625 18.585937,7 H 16 C 15.435871,7 15,6.5641288 15,6 Z\" fill=\"currentColor\" /></svg>',children:(0,n.jsx)(e.code,{children:(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"http://localhost:3000\"})})})})}),`\n`,(0,n.jsx)(e.h2,{id:\"-\\uD575\\uC2EC-\\uAD6C\\uD604-\\uB0B4\\uC6A9\",children:(0,n.jsx)(\"strong\",{children:\"\\u{1F4A1} \\uD575\\uC2EC \\uAD6C\\uD604 \\uB0B4\\uC6A9\"})}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.h3,{id:\"1-google-maps-api-\\uD1B5\\uD569\",children:(0,n.jsx)(\"strong\",{children:\"1. Google Maps API \\uD1B5\\uD569\"})}),`\n`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(\"strong\",{children:\"GoogleMapSection \\uCEF4\\uD3EC\\uB10C\\uD2B8\"}),\"\\uC5D0\\uC11C \\uBCF5\\uC7A1\\uD55C \\uC9C0\\uB3C4 \\uAE30\\uB2A5\\uC744 \\uAD6C\\uD604\\uD588\\uC2B5\\uB2C8\\uB2E4:\"]}),`\n`,(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(e.pre,{className:\"shiki shiki-themes github-light github-dark\",style:{\"--shiki-light\":\"#24292e\",\"--shiki-dark\":\"#e1e4e8\",\"--shiki-light-bg\":\"#fff\",\"--shiki-dark-bg\":\"#24292e\"},tabIndex:\"0\",icon:'<svg viewBox=\"0 0 24 24\"><path d=\"M 6,1 C 4.354992,1 3,2.354992 3,4 v 16 c 0,1.645008 1.354992,3 3,3 h 12 c 1.645008,0 3,-1.354992 3,-3 V 8 7 A 1.0001,1.0001 0 0 0 20.707031,6.2929687 l -5,-5 A 1.0001,1.0001 0 0 0 15,1 h -1 z m 0,2 h 7 v 3 c 0,1.645008 1.354992,3 3,3 h 3 v 11 c 0,0.564129 -0.435871,1 -1,1 H 6 C 5.4358712,21 5,20.564129 5,20 V 4 C 5,3.4358712 5.4358712,3 6,3 Z M 15,3.4140625 18.585937,7 H 16 C 15.435871,7 15,6.5641288 15,6 Z\" fill=\"currentColor\" /></svg>',children:(0,n.jsxs)(e.code,{children:[(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"// \\uCD9C\\uBC1C\\uC9C0/\\uB3C4\\uCC29\\uC9C0 \\uC0C1\\uD0DC \\uBCC0\\uACBD \\uC2DC \\uC790\\uB3D9\\uC73C\\uB85C \\uC9C0\\uB3C4 \\uC911\\uC2EC \\uC774\\uB3D9\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"useEffect(() => {\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"  if (!isEmptyObj(source) && map) {\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"    map.panTo({ lat: source.lat, lng: source.lng });\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"    setCenter({ lat: source.lat, lng: source.lng });\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"  }\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"}, [source]);\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"// DirectionsRenderer\\uB97C \\uD1B5\\uD55C \\uACBD\\uB85C \\uD45C\\uC2DC\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"<DirectionsRenderer\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"  directions={directionRoutePoints}\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"  options={{\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"    polylineOptions: {\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:'      strokeColor: \"#393938\",'})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"      strokeWeight: 10,\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"    },\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"    suppressMarkers: true,\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"  }}\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"/>\"})})]})})}),`\n`,(0,n.jsx)(e.h3,{id:\"2-\\uC0C1\\uD0DC-\\uAD00\\uB9AC-recoil\",children:(0,n.jsx)(\"strong\",{children:\"2. \\uC0C1\\uD0DC \\uAD00\\uB9AC (Recoil)\"})}),`\n`,(0,n.jsx)(e.p,{children:\"\\uC804\\uC5ED \\uC0C1\\uD0DC\\uB97C Recoil atom\\uC73C\\uB85C \\uAD00\\uB9AC\\uD558\\uC5EC \\uCEF4\\uD3EC\\uB10C\\uD2B8 \\uAC04 \\uB370\\uC774\\uD130 \\uACF5\\uC720:\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"code\",{children:\"sourceState\"}),\": \\uCD9C\\uBC1C\\uC9C0 \\uC815\\uBCF4\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"code\",{children:\"destinationState\"}),\": \\uB3C4\\uCC29\\uC9C0 \\uC815\\uBCF4\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"code\",{children:\"directionRoutePoints\"}),\": \\uACBD\\uB85C \\uC815\\uBCF4\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"code\",{children:\"centerState\"}),\": \\uC9C0\\uB3C4 \\uC911\\uC2EC \\uC88C\\uD45C\"]}),`\n`]}),`\n`,(0,n.jsx)(e.h3,{id:\"3-stripe-\\uACB0\\uC81C-\\uD1B5\\uD569\",children:(0,n.jsx)(\"strong\",{children:\"3. Stripe \\uACB0\\uC81C \\uD1B5\\uD569\"})}),`\n`,(0,n.jsx)(e.p,{children:\"API Route\\uB97C \\uD1B5\\uD55C \\uC548\\uC804\\uD55C \\uACB0\\uC81C \\uC778\\uD150\\uD2B8 \\uC0DD\\uC131:\"}),`\n`,(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(e.pre,{className:\"shiki shiki-themes github-light github-dark\",style:{\"--shiki-light\":\"#24292e\",\"--shiki-dark\":\"#e1e4e8\",\"--shiki-light-bg\":\"#fff\",\"--shiki-dark-bg\":\"#24292e\"},tabIndex:\"0\",icon:'<svg viewBox=\"0 0 24 24\"><path d=\"M 6,1 C 4.354992,1 3,2.354992 3,4 v 16 c 0,1.645008 1.354992,3 3,3 h 12 c 1.645008,0 3,-1.354992 3,-3 V 8 7 A 1.0001,1.0001 0 0 0 20.707031,6.2929687 l -5,-5 A 1.0001,1.0001 0 0 0 15,1 h -1 z m 0,2 h 7 v 3 c 0,1.645008 1.354992,3 3,3 h 3 v 11 c 0,0.564129 -0.435871,1 -1,1 H 6 C 5.4358712,21 5,20.564129 5,20 V 4 C 5,3.4358712 5.4358712,3 6,3 Z M 15,3.4140625 18.585937,7 H 16 C 15.435871,7 15,6.5641288 15,6 Z\" fill=\"currentColor\" /></svg>',children:(0,n.jsxs)(e.code,{children:[(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"// app/api/create-intent/route.ts\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"const paymentIntent = await stripe.paymentIntents.create({\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"  amount: amount * 100, // \\uC13C\\uD2B8 \\uB2E8\\uC704\\uB85C \\uBCC0\\uD658\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"  currency: 'krw',\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"});\"})})]})})}),`\n`,(0,n.jsx)(e.h2,{id:\"-\\uD2B8\\uB7EC\\uBE14\\uC288\\uD305-\\uBC0F-\\uD574\\uACB0-\\uACFC\\uC81C\",children:(0,n.jsx)(\"strong\",{children:\"\\u{1F527} \\uD2B8\\uB7EC\\uBE14\\uC288\\uD305 \\uBC0F \\uD574\\uACB0 \\uACFC\\uC81C\"})}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.h3,{id:\"1-\\uD55C\\uAD6D-\\uD658\\uACBD\\uC5D0\\uC11C\\uC758-google-maps-api-\\uC81C\\uC57D\",children:(0,n.jsx)(\"strong\",{children:\"1. \\uD55C\\uAD6D \\uD658\\uACBD\\uC5D0\\uC11C\\uC758 Google Maps API \\uC81C\\uC57D\"})}),`\n`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(\"strong\",{children:\"\\uBB38\\uC81C\"}),\": Google Maps\\uC758 \\uC77C\\uBD80 \\uAE30\\uB2A5(Transit Directions \\uB4F1)\\uC774 \\uD55C\\uAD6D\\uC5D0\\uC11C \\uC81C\\uD55C\\uC801\\uC73C\\uB85C \\uC9C0\\uC6D0\\uB428\"]}),`\n`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(\"strong\",{children:\"\\uD574\\uACB0\"}),\":\"]}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"Places API\\uC640 Directions API\\uB97C \\uD65C\\uC6A9\\uD558\\uC5EC \\uAE30\\uBCF8 \\uACBD\\uB85C \\uACC4\\uC0B0 \\uAE30\\uB2A5 \\uAD6C\\uD604\"}),`\n`,(0,n.jsx)(e.li,{children:\"\\uCEE4\\uC2A4\\uD140 \\uB9C8\\uCEE4\\uC640 \\uC624\\uBC84\\uB808\\uC774\\uB97C \\uC0AC\\uC6A9\\uD558\\uC5EC \\uC0AC\\uC6A9\\uC790 \\uACBD\\uD5D8 \\uAC1C\\uC120\"}),`\n`]}),`\n`,(0,n.jsx)(e.h3,{id:\"2-\\uBE44\\uB3D9\\uAE30-\\uC9C0\\uB3C4-\\uB85C\\uB529-\\uCC98\\uB9AC\",children:(0,n.jsx)(\"strong\",{children:\"2. \\uBE44\\uB3D9\\uAE30 \\uC9C0\\uB3C4 \\uB85C\\uB529 \\uCC98\\uB9AC\"})}),`\n`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(\"strong\",{children:\"\\uBB38\\uC81C\"}),\": Google Maps API \\uB85C\\uB529 \\uC804\\uC5D0 \\uCEF4\\uD3EC\\uB10C\\uD2B8\\uAC00 \\uB80C\\uB354\\uB9C1\\uB418\\uC5B4 \\uC5D0\\uB7EC \\uBC1C\\uC0DD\"]}),`\n`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(\"strong\",{children:\"\\uD574\\uACB0\"}),\":\"]}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"code\",{children:\"LoadScript\"}),\"\\xA0\\uCEF4\\uD3EC\\uB10C\\uD2B8\\uB85C API \\uB85C\\uB529 \\uAD00\\uB9AC\"]}),`\n`,(0,n.jsx)(e.li,{children:\"\\uC870\\uAC74\\uBD80 \\uB80C\\uB354\\uB9C1\\uC73C\\uB85C \\uB370\\uC774\\uD130 \\uC874\\uC7AC \\uC5EC\\uBD80 \\uD655\\uC778 \\uD6C4 UI \\uD45C\\uC2DC\"}),`\n`]}),`\n`,(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(e.pre,{className:\"shiki shiki-themes github-light github-dark\",style:{\"--shiki-light\":\"#24292e\",\"--shiki-dark\":\"#e1e4e8\",\"--shiki-light-bg\":\"#fff\",\"--shiki-dark-bg\":\"#24292e\"},tabIndex:\"0\",icon:'<svg viewBox=\"0 0 24 24\"><path d=\"M 6,1 C 4.354992,1 3,2.354992 3,4 v 16 c 0,1.645008 1.354992,3 3,3 h 12 c 1.645008,0 3,-1.354992 3,-3 V 8 7 A 1.0001,1.0001 0 0 0 20.707031,6.2929687 l -5,-5 A 1.0001,1.0001 0 0 0 15,1 h -1 z m 0,2 h 7 v 3 c 0,1.645008 1.354992,3 3,3 h 3 v 11 c 0,0.564129 -0.435871,1 -1,1 H 6 C 5.4358712,21 5,20.564129 5,20 V 4 C 5,3.4358712 5.4358712,3 6,3 Z M 15,3.4140625 18.585937,7 H 16 C 15.435871,7 15,6.5641288 15,6 Z\" fill=\"currentColor\" /></svg>',children:(0,n.jsxs)(e.code,{children:[(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"{!isEmptyObj(source) && !isEmptyObj(destination) && (\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"  <DirectionsRenderer directions={directionRoutePoints} />\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\")}\"})})]})})}),`\n`,(0,n.jsx)(e.h3,{id:\"3-\\uD0C0\\uC785-\\uC548\\uC815\\uC131-\\uD655\\uBCF4\",children:(0,n.jsx)(\"strong\",{children:\"3. \\uD0C0\\uC785 \\uC548\\uC815\\uC131 \\uD655\\uBCF4\"})}),`\n`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(\"strong\",{children:\"\\uBB38\\uC81C\"}),\": Google Maps API\\uC758 \\uBCF5\\uC7A1\\uD55C \\uD0C0\\uC785 \\uCC98\\uB9AC\"]}),`\n`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(\"strong\",{children:\"\\uD574\\uACB0\"}),\":\"]}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"TypeScript\\uB97C \\uD65C\\uC6A9\\uD55C \\uD0C0\\uC785 \\uC548\\uC804\\uC131 \\uD655\\uBCF4\"}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"code\",{children:\"@react-google-maps/api\"}),\"\\uC758 \\uD0C0\\uC785 \\uC815\\uC758 \\uD65C\\uC6A9\"]}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"-\\uBC30\\uC6B4-\\uC810--\\uC131\\uC7A5-\\uACBD\\uD5D8\",children:(0,n.jsx)(\"strong\",{children:\"\\u{1F4DA} \\uBC30\\uC6B4 \\uC810 & \\uC131\\uC7A5 \\uACBD\\uD5D8\"})}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.h3,{id:\"\\uAE30\\uC220\\uC801-\\uC131\\uC7A5\",children:(0,n.jsx)(\"strong\",{children:\"\\uAE30\\uC220\\uC801 \\uC131\\uC7A5\"})}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"Google Maps API \\uC2EC\\uCE35 \\uC774\\uD574\"}),\": Places, Directions, Marker, Overlay \\uB4F1 \\uB2E4\\uC591\\uD55C API\\uC758 \\uC2E4\\uC804 \\uD65C\\uC6A9 \\uACBD\\uD5D8\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uC0C1\\uD0DC \\uAD00\\uB9AC \\uC804\\uB7B5\"}),\": Recoil\\uC744 \\uD65C\\uC6A9\\uD55C \\uD6A8\\uC728\\uC801\\uC778 \\uC804\\uC5ED \\uC0C1\\uD0DC \\uAD00\\uB9AC \\uD328\\uD134 \\uD559\\uC2B5\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uACB0\\uC81C \\uC2DC\\uC2A4\\uD15C \\uAD6C\\uD604\"}),\": Stripe\\uB97C \\uD1B5\\uD55C \\uC548\\uC804\\uD55C \\uACB0\\uC81C \\uD50C\\uB85C\\uC6B0 \\uAD6C\\uD604 \\uACBD\\uD5D8\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uC778\\uC99D \\uC2DC\\uC2A4\\uD15C\"}),\": Clerk\\uB97C \\uD65C\\uC6A9\\uD55C \\uBAA8\\uB358 \\uC778\\uC99D \\uC2DC\\uC2A4\\uD15C \\uD1B5\\uD569\"]}),`\n`]}),`\n`,(0,n.jsx)(e.h3,{id:\"\\uBB38\\uC81C-\\uD574\\uACB0-\\uB2A5\\uB825\",children:(0,n.jsx)(\"strong\",{children:\"\\uBB38\\uC81C \\uD574\\uACB0 \\uB2A5\\uB825\"})}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"\\uD574\\uC678 \\uD29C\\uD1A0\\uB9AC\\uC5BC\\uC744 \\uD55C\\uAD6D \\uD658\\uACBD\\uC5D0 \\uB9DE\\uAC8C \\uCEE4\\uC2A4\\uD130\\uB9C8\\uC774\\uC9D5\\uD558\\uB294 \\uACFC\\uC815\\uC5D0\\uC11C \\uBC1C\\uC0DD\\uD55C \\uB2E4\\uC591\\uD55C \\uC774\\uC288 \\uD574\\uACB0\"}),`\n`,(0,n.jsx)(e.li,{children:\"Google Maps API\\uC758 \\uC9C0\\uC5ED\\uBCC4 \\uC81C\\uC57D\\uC0AC\\uD56D\\uC744 \\uD30C\\uC545\\uD558\\uACE0 \\uB300\\uC548 \\uB9C8\\uB828\"}),`\n`,(0,n.jsx)(e.li,{children:\"TypeScript \\uD658\\uACBD\\uC5D0\\uC11C\\uC758 \\uC678\\uBD80 \\uB77C\\uC774\\uBE0C\\uB7EC\\uB9AC \\uD0C0\\uC785 \\uCC98\\uB9AC \\uACBD\\uD5D8\"}),`\n`]}),`\n`,(0,n.jsx)(e.h3,{id:\"\\uD504\\uB85C\\uC81D\\uD2B8-\\uAD00\\uB9AC\",children:(0,n.jsx)(\"strong\",{children:\"\\uD504\\uB85C\\uC81D\\uD2B8 \\uAD00\\uB9AC\"})}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"3\\uC77C\\uC774\\uB77C\\uB294 \\uC9E7\\uC740 \\uAE30\\uAC04 \\uB0B4\\uC5D0 MVP \\uC644\\uC131\\uC744 \\uC704\\uD55C \\uC6B0\\uC120\\uC21C\\uC704 \\uC124\\uC815\"}),`\n`,(0,n.jsx)(e.li,{children:\"\\uAE30\\uB2A5 \\uB2E8\\uC704 \\uAC1C\\uBC1C \\uBC0F \\uC810\\uC9C4\\uC801 \\uAC1C\\uC120 \\uBC29\\uC2DD \\uC801\\uC6A9\"}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"-\\uC8FC\\uC694-\\uD654\\uBA74\",children:(0,n.jsx)(\"strong\",{children:\"\\u{1F3A8} \\uC8FC\\uC694 \\uD654\\uBA74\"})}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.h3,{id:\"\\uBA54\\uC778-\\uD654\\uBA74\",children:(0,n.jsx)(\"strong\",{children:\"\\uBA54\\uC778 \\uD654\\uBA74\"})}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"\\uCD9C\\uBC1C\\uC9C0/\\uB3C4\\uCC29\\uC9C0 \\uAC80\\uC0C9\"}),`\n`,(0,n.jsx)(e.li,{children:\"\\uC2E4\\uC2DC\\uAC04 \\uC9C0\\uB3C4 \\uC5C5\\uB370\\uC774\\uD2B8\"}),`\n`,(0,n.jsx)(e.li,{children:\"\\uCC28\\uB7C9 \\uC120\\uD0DD \\uC635\\uC158\"}),`\n`]}),`\n`,(0,n.jsx)(e.h3,{id:\"\\uACB0\\uC81C-\\uD654\\uBA74\",children:(0,n.jsx)(\"strong\",{children:\"\\uACB0\\uC81C \\uD654\\uBA74\"})}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"Stripe \\uCE74\\uB4DC \\uC785\\uB825 \\uD3FC\"}),`\n`,(0,n.jsx)(e.li,{children:\"\\uC608\\uC0C1 \\uC694\\uAE08 \\uD45C\\uC2DC\"}),`\n`]}),`\n`,(0,n.jsx)(e.h3,{id:\"\\uACB0\\uC81C-\\uC644\\uB8CC\",children:(0,n.jsx)(\"strong\",{children:\"\\uACB0\\uC81C \\uC644\\uB8CC\"})}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"\\uC608\\uC57D \\uD655\\uC778 \\uC815\\uBCF4\"}),`\n`,(0,n.jsx)(e.li,{children:\"\\uCC28\\uB7C9 \\uBC0F \\uACBD\\uB85C \\uC694\\uC57D\"}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"-\\uD5A5\\uD6C4-\\uAC1C\\uC120-\\uD558\\uBA74-\\uC88B\\uC740-\\uAE30\\uB2A5\",children:(0,n.jsx)(\"strong\",{children:\"\\u{1F52E} \\uD5A5\\uD6C4 \\uAC1C\\uC120 \\uD558\\uBA74 \\uC88B\\uC740 \\uAE30\\uB2A5\"})}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsxs)(e.ul,{className:\"contains-task-list\",children:[`\n`,(0,n.jsxs)(e.li,{className:\"task-list-item\",children:[(0,n.jsx)(e.input,{type:\"checkbox\",disabled:!0}),\" \",\"\\uC2E4\\uC2DC\\uAC04 \\uCC28\\uB7C9 \\uC704\\uCE58 \\uCD94\\uC801 \\uAE30\\uB2A5\"]}),`\n`,(0,n.jsxs)(e.li,{className:\"task-list-item\",children:[(0,n.jsx)(e.input,{type:\"checkbox\",disabled:!0}),\" \",\"\\uC6B4\\uC804\\uC790-\\uC2B9\\uAC1D \\uC2E4\\uC2DC\\uAC04 \\uCC44\\uD305\"]}),`\n`,(0,n.jsxs)(e.li,{className:\"task-list-item\",children:[(0,n.jsx)(e.input,{type:\"checkbox\",disabled:!0}),\" \",\"\\uC608\\uC57D \\uB0B4\\uC5ED \\uAD00\\uB9AC \\uD398\\uC774\\uC9C0\"]}),`\n`,(0,n.jsxs)(e.li,{className:\"task-list-item\",children:[(0,n.jsx)(e.input,{type:\"checkbox\",disabled:!0}),\" \",\"\\uB2E4\\uAD6D\\uC5B4 \\uC9C0\\uC6D0 (i18n)\"]}),`\n`,(0,n.jsxs)(e.li,{className:\"task-list-item\",children:[(0,n.jsx)(e.input,{type:\"checkbox\",disabled:!0}),\" \",\"PWA \\uAD6C\\uD604\\uC73C\\uB85C \\uBAA8\\uBC14\\uC77C \\uC571 \\uACBD\\uD5D8 \\uC81C\\uACF5\"]}),`\n`,(0,n.jsxs)(e.li,{className:\"task-list-item\",children:[(0,n.jsx)(e.input,{type:\"checkbox\",disabled:!0}),\" \",\"\\uC990\\uACA8\\uCC3E\\uAE30 \\uC7A5\\uC18C \\uC800\\uC7A5 \\uAE30\\uB2A5\"]}),`\n`,(0,n.jsxs)(e.li,{className:\"task-list-item\",children:[(0,n.jsx)(e.input,{type:\"checkbox\",disabled:!0}),\" \",\"\\uCE74\\uCE74\\uC624\\uB9F5 API \\uD1B5\\uD569 (\\uD55C\\uAD6D \\uD658\\uACBD \\uCD5C\\uC801\\uD654)\"]}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"-\\uCC38\\uACE0-\\uC790\\uB8CC\",children:(0,n.jsx)(\"strong\",{children:\"\\u{1F64F} \\uCC38\\uACE0 \\uC790\\uB8CC\"})}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsxs)(e.p,{children:[\"\\uC774 \\uD504\\uB85C\\uC81D\\uD2B8\\uB294\\xA0\",(0,n.jsx)(e.a,{href:\"https://www.youtube.com/watch?v=pwsjvnADNGk&t=6594s\",children:\"Build Full Stack NextJs 13 Uber Clone Web App\"}),\"\\xA0\\uAC15\\uC758\\uB97C \\uCC38\\uACE0\\uD558\\uC5EC \\uC81C\\uC791\\uB418\\uC5C8\\uC73C\\uBA70, \\uD55C\\uAD6D \\uD658\\uACBD\\uC5D0 \\uB9DE\\uAC8C \\uCEE4\\uC2A4\\uD130\\uB9C8\\uC774\\uC9D5 \\uBC0F \\uAE30\\uB2A5\\uC744 \\uCD94\\uAC00\\uD588\\uC2B5\\uB2C8\\uB2E4.\"]}),`\n`,(0,n.jsx)(e.h2,{id:\"-author\",children:(0,n.jsx)(\"strong\",{children:\"\\u{1F464} Author\"})}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.a,{href:\"https://github.com/ryoonwithinwisdomlights\",children:(0,n.jsx)(\"strong\",{children:\"Seryun Cheon (Ryoon)\"})})}),`\n`,(0,n.jsxs)(e.p,{children:[\"GitHub:\\xA0\",(0,n.jsx)(e.a,{href:\"https://github.com/ryoonwithinwisdomlights\",children:\"@ryoonwithinwisdomlights\"})]})]})}function o(i={}){let{wrapper:e}=i.components||{};return e?(0,n.jsx)(e,{...i,children:(0,n.jsx)(t,{...i})}):t(i)}return A(f);})();\n;return Component;"
+  },
+  {
     "notionId": "b496addf09be4523a1c7bfe8e4ad1e0c",
     "title": "[Giving] 24.04.27 주일학교 만들기 교리 - 열매와 성취 - 제작",
     "icon": "",
@@ -189,121 +844,17 @@ export default [
     "body": "var Component=(()=>{var c=Object.create;var r=Object.defineProperty;var m=Object.getOwnPropertyDescriptor;var g=Object.getOwnPropertyNames;var l=Object.getPrototypeOf,B=Object.prototype.hasOwnProperty;var u=(n,_)=>()=>(_||n((_={exports:{}}).exports,_),_.exports),h=(n,_)=>{for(var e in _)r(n,e,{get:_[e],enumerable:!0})},i=(n,_,e,E)=>{if(_&&typeof _==\"object\"||typeof _==\"function\")for(let t of g(_))!B.call(n,t)&&t!==e&&r(n,t,{get:()=>_[t],enumerable:!(E=m(_,t))||E.enumerable});return n};var A=(n,_,e)=>(e=n!=null?c(l(n)):{},i(_||!n||!n.__esModule?r(e,\"default\",{value:n,enumerable:!0}):e,n)),k=n=>i(r({},\"__esModule\",{value:!0}),n);var a=u((v,d)=>{d.exports=_jsx_runtime});var y={};h(y,{default:()=>p});var o=A(a());function s(n){let _={img:\"img\",p:\"p\",...n.components},{BookMarkWrapper:e}=_;return e||x(\"BookMarkWrapper\",!0),(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)(_.p,{children:(0,o.jsx)(_.img,{alt:\"\\u1109\\u1173\\u110F\\u1173\\u1105\\u1175\\u11AB\\u1109\\u1163\\u11BA_2024-06-23_\\u110B\\u1169\\u110C\\u1165\\u11AB_1.24.05.png\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641213/norkive-notion-images/1754641213068-E1_84_89_E1_85_B3_E1_84_8F_E1_85_B3_E1_84_85_E1_85_B5_E1_86_AB_E1_84_89_E1_85_A3_E1_86_BA_2024-06-23_E1_84_8B_E1_85_A9_E1_84_8C_E1_85_A5_E1_86_AB_1.24.05.png\",width:\"2146\",height:\"1180\"})}),`\n`,(0,o.jsx)(_.p,{children:(0,o.jsx)(_.img,{alt:\"\\u1109\\u1173\\u110F\\u1173\\u1105\\u1175\\u11AB\\u1109\\u1163\\u11BA_2024-06-23_\\u110B\\u1169\\u110C\\u1165\\u11AB_1.23.46.png\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641214/norkive-notion-images/1754641214371-E1_84_89_E1_85_B3_E1_84_8F_E1_85_B3_E1_84_85_E1_85_B5_E1_86_AB_E1_84_89_E1_85_A3_E1_86_BA_2024-06-23_E1_84_8B_E1_85_A9_E1_84_8C_E1_85_A5_E1_86_AB_1.23.46.png\",width:\"2138\",height:\"1170\"})}),`\n`,(0,o.jsx)(_.p,{children:(0,o.jsx)(_.img,{alt:\"\\u1109\\u1173\\u110F\\u1173\\u1105\\u1175\\u11AB\\u1109\\u1163\\u11BA_2024-06-23_\\u110B\\u1169\\u110C\\u1165\\u11AB_1.23.54.png\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641215/norkive-notion-images/1754641215620-E1_84_89_E1_85_B3_E1_84_8F_E1_85_B3_E1_84_85_E1_85_B5_E1_86_AB_E1_84_89_E1_85_A3_E1_86_BA_2024-06-23_E1_84_8B_E1_85_A9_E1_84_8C_E1_85_A5_E1_86_AB_1.23.54.png\",width:\"2141\",height:\"1179\"})}),`\n`,(0,o.jsx)(_.p,{children:\"\\uCC45:\"}),`\n`,(0,o.jsx)(e,{names:\"bookmark\",urls:\"https://product.kyobobook.co.kr/detail/S000000780676\"})]})}function p(n={}){let{wrapper:_}=n.components||{};return _?(0,o.jsx)(_,{...n,children:(0,o.jsx)(s,{...n})}):s(n)}function x(n,_){throw new Error(\"Expected \"+(_?\"component\":\"object\")+\" `\"+n+\"` to be defined: you likely forgot to import, pass, or provide it.\")}return k(y);})();\n;return Component;"
   },
   {
-    "notionId": "681dddb737354a8bb261cd68bb7a4f75",
-    "title": "[SP] Hey-Taxi(헤이택시)",
-    "icon": "",
-    "full": false,
-    "summary": "Hey-Taxi(헤이택시) is a Full Stack Next.Js 13 ver. Taxi Booking App w/ NextJs, React.js, Tailwindcss, Mapbox and Stripe",
-    "pageCover": "https://res.cloudinary.com/dyrdul1dd/image/upload/v1755004656/norkive-notion-images/1755004655388-E1_84_89_E1_85_B3_E1_84_8F_E1_85_B3_E1_84_85_E1_85_B5_E1_86_AB_E1_84_89_E1_85_A3_E1_86_BA_2023-12-04_E1_84_8B_E1_85_A9_E1_84_92_E1_85_AE_1.30.01.png",
-    "password": "",
-    "type": "PROJECTS",
-    "description": "Hey-Taxi(헤이택시) is a Full Stack Next.Js 13 ver. Taxi Booking App w/ NextJs, React.js, Tailwindcss, Mapbox and Stripe",
-    "date": "2023-11-29T00:00:00.000Z",
-    "lastEditedDate": "2025-08-05T03:08:00.000Z",
-    "sub_type": "Dev",
-    "category": "DevProject",
-    "tags": [
-      "Portfolio",
-      "Next.js13",
-      "TailwindCSS",
-      "MapBoxGL",
-      "MapBox",
-      "Stripe"
-    ],
-    "draft": false,
-    "favorite": false,
-    "readingTime": 5,
-    "wordCount": 909,
-    "lastModified": "2025-08-12",
-    "version": "1.0.0",
-    "status": "published",
-    "author": "ryoonwithinwisdomlights",
-    "content": "# 1. 리포지토리\n\n\n[link_preview](https://github.com/ryoon-with-wisdomtrees/HeyTaxi)\n\n\n# 2. 사이트\n\n\n<BookMarkWrapper names={\"bookmark\"} urls={\"https://hey-taxi.vercel.app/\"} />\n\n\n# 3. Hey-taxi(헤이택시)\n\n\n![hey-taxi.gif](https://github.com/ryoon-with-wisdomtrees/HeyTaxi/raw/main/public/hey-taxi.gif)\n\n\n# 4. 제작과정\n\n- 기술스택 - Next.js 13, React.js, Tailwind CSS, Mapbox, MapboxGl, react-map-gl, ContextProvicer and Stripe.\n- 제작기간 - 3일\n\n이 헤이택시(Full Stack Uber Clone Web App)는 [React NextJs 13 Taxi Booking App : NextJs 13, Tailwind Css, Typescript, Mapbox, Stripe | Full Course](https://youtu.be/1DXV4LCWkic?list=PLzRr9la40O_RQIXxWO_VNmA8y9qRUeuK9)유튜브강의를 참고하여 에러사항과 작업날짜 기준 deprecated된 부분 및 미흡한 부분, 그리고 한국에서 지원되지 않는 부분에 대한 이슈들을 보강하고 수정하고 커스터마이징하여 제작한 웹앱입니다.\n\n\n이 앱 역시 Mapping library에 대한 사용 및 발전 경험을 얻고 싶어서 제작한 웹앱이었습니다. 비교하기는 섣부르지만, google map보다 훨씬 유려한 ui와 다양하게 사용할 수 있는 서비스등이 있어서 내내 재미에 푹 빠져 작업할 수 있었습니다.",
-    "_meta": {
-      "filePath": "projects-SP-Hey-Taxi-헤이택시.mdx",
-      "fileName": "projects-SP-Hey-Taxi-헤이택시.mdx",
-      "directory": ".",
-      "extension": "mdx",
-      "path": "projects-SP-Hey-Taxi-헤이택시"
-    },
-    "toc": [
-      {
-        "title": "1. 리포지토리",
-        "url": "#1-리포지토리",
-        "depth": 1
-      },
-      {
-        "title": "2. 사이트",
-        "url": "#2-사이트",
-        "depth": 1
-      },
-      {
-        "title": "3. Hey-taxi(헤이택시)",
-        "url": "#3-hey-taxi헤이택시",
-        "depth": 1
-      },
-      {
-        "title": "4. 제작과정",
-        "url": "#4-제작과정",
-        "depth": 1
-      }
-    ],
-    "structuredData": {
-      "contents": [
-        {
-          "heading": "1-리포지토리",
-          "content": "link_preview"
-        },
-        {
-          "heading": "4-제작과정",
-          "content": "기술스택 - Next.js 13, React.js, Tailwind CSS, Mapbox, MapboxGl, react-map-gl, ContextProvicer and Stripe."
-        },
-        {
-          "heading": "4-제작과정",
-          "content": "제작기간 - 3일"
-        },
-        {
-          "heading": "4-제작과정",
-          "content": "이 헤이택시(Full Stack Uber Clone Web App)는 React NextJs 13 Taxi Booking App : NextJs 13, Tailwind Css, Typescript, Mapbox, Stripe | Full Course유튜브강의를 참고하여 에러사항과 작업날짜 기준 deprecated된 부분 및 미흡한 부분, 그리고 한국에서 지원되지 않는 부분에 대한 이슈들을 보강하고 수정하고 커스터마이징하여 제작한 웹앱입니다."
-        },
-        {
-          "heading": "4-제작과정",
-          "content": "이 앱 역시 Mapping library에 대한 사용 및 발전 경험을 얻고 싶어서 제작한 웹앱이었습니다. 비교하기는 섣부르지만, google map보다 훨씬 유려한 ui와 다양하게 사용할 수 있는 서비스등이 있어서 내내 재미에 푹 빠져 작업할 수 있었습니다."
-        }
-      ],
-      "headings": [
-        {
-          "id": "1-리포지토리",
-          "content": "1. 리포지토리"
-        },
-        {
-          "id": "2-사이트",
-          "content": "2. 사이트"
-        },
-        {
-          "id": "3-hey-taxi헤이택시",
-          "content": "3. Hey-taxi(헤이택시)"
-        },
-        {
-          "id": "4-제작과정",
-          "content": "4. 제작과정"
-        }
-      ]
-    },
-    "body": "var Component=(()=>{var d=Object.create;var o=Object.defineProperty;var x=Object.getOwnPropertyDescriptor;var m=Object.getOwnPropertyNames;var u=Object.getPrototypeOf,g=Object.prototype.hasOwnProperty;var y=(i,e)=>()=>(e||i((e={exports:{}}).exports,e),e.exports),b=(i,e)=>{for(var n in e)o(i,n,{get:e[n],enumerable:!0})},l=(i,e,n,a)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let r of m(e))!g.call(i,r)&&r!==n&&o(i,r,{get:()=>e[r],enumerable:!(a=x(e,r))||a.enumerable});return i};var f=(i,e,n)=>(n=i!=null?d(u(i)):{},l(e||!i||!i.__esModule?o(n,\"default\",{value:i,enumerable:!0}):n,i)),w=i=>l(o({},\"__esModule\",{value:!0}),i);var p=y((j,c)=>{c.exports=_jsx_runtime});var _={};b(_,{default:()=>s});var t=f(p());function h(i){let e={a:\"a\",h1:\"h1\",img:\"img\",li:\"li\",p:\"p\",ul:\"ul\",...i.components},{BookMarkWrapper:n}=e;return n||k(\"BookMarkWrapper\",!0),(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)(e.h1,{id:\"1-\\uB9AC\\uD3EC\\uC9C0\\uD1A0\\uB9AC\",children:\"1. \\uB9AC\\uD3EC\\uC9C0\\uD1A0\\uB9AC\"}),`\n`,(0,t.jsx)(e.p,{children:(0,t.jsx)(e.a,{href:\"https://github.com/ryoon-with-wisdomtrees/HeyTaxi\",children:\"link_preview\"})}),`\n`,(0,t.jsx)(e.h1,{id:\"2-\\uC0AC\\uC774\\uD2B8\",children:\"2. \\uC0AC\\uC774\\uD2B8\"}),`\n`,(0,t.jsx)(n,{names:\"bookmark\",urls:\"https://hey-taxi.vercel.app/\"}),`\n`,(0,t.jsx)(e.h1,{id:\"3-hey-taxi\\uD5E4\\uC774\\uD0DD\\uC2DC\",children:\"3. Hey-taxi(\\uD5E4\\uC774\\uD0DD\\uC2DC)\"}),`\n`,(0,t.jsx)(e.p,{children:(0,t.jsx)(e.img,{alt:\"hey-taxi.gif\",src:\"https://github.com/ryoon-with-wisdomtrees/HeyTaxi/raw/main/public/hey-taxi.gif\",width:\"2290\",height:\"1194\"})}),`\n`,(0,t.jsx)(e.h1,{id:\"4-\\uC81C\\uC791\\uACFC\\uC815\",children:\"4. \\uC81C\\uC791\\uACFC\\uC815\"}),`\n`,(0,t.jsxs)(e.ul,{children:[`\n`,(0,t.jsx)(e.li,{children:\"\\uAE30\\uC220\\uC2A4\\uD0DD - Next.js 13, React.js, Tailwind CSS, Mapbox, MapboxGl, react-map-gl, ContextProvicer and Stripe.\"}),`\n`,(0,t.jsx)(e.li,{children:\"\\uC81C\\uC791\\uAE30\\uAC04 - 3\\uC77C\"}),`\n`]}),`\n`,(0,t.jsxs)(e.p,{children:[\"\\uC774 \\uD5E4\\uC774\\uD0DD\\uC2DC(Full Stack Uber Clone Web App)\\uB294\\xA0\",(0,t.jsx)(e.a,{href:\"https://youtu.be/1DXV4LCWkic?list=PLzRr9la40O_RQIXxWO_VNmA8y9qRUeuK9\",children:\"React NextJs 13 Taxi Booking App : NextJs 13, Tailwind Css, Typescript, Mapbox, Stripe | Full Course\"}),\"\\uC720\\uD29C\\uBE0C\\uAC15\\uC758\\uB97C \\uCC38\\uACE0\\uD558\\uC5EC \\uC5D0\\uB7EC\\uC0AC\\uD56D\\uACFC \\uC791\\uC5C5\\uB0A0\\uC9DC \\uAE30\\uC900 deprecated\\uB41C \\uBD80\\uBD84 \\uBC0F \\uBBF8\\uD761\\uD55C \\uBD80\\uBD84, \\uADF8\\uB9AC\\uACE0 \\uD55C\\uAD6D\\uC5D0\\uC11C \\uC9C0\\uC6D0\\uB418\\uC9C0 \\uC54A\\uB294 \\uBD80\\uBD84\\uC5D0 \\uB300\\uD55C \\uC774\\uC288\\uB4E4\\uC744 \\uBCF4\\uAC15\\uD558\\uACE0 \\uC218\\uC815\\uD558\\uACE0 \\uCEE4\\uC2A4\\uD130\\uB9C8\\uC774\\uC9D5\\uD558\\uC5EC \\uC81C\\uC791\\uD55C \\uC6F9\\uC571\\uC785\\uB2C8\\uB2E4.\"]}),`\n`,(0,t.jsx)(e.p,{children:\"\\uC774 \\uC571 \\uC5ED\\uC2DC Mapping library\\uC5D0 \\uB300\\uD55C \\uC0AC\\uC6A9 \\uBC0F \\uBC1C\\uC804 \\uACBD\\uD5D8\\uC744 \\uC5BB\\uACE0 \\uC2F6\\uC5B4\\uC11C \\uC81C\\uC791\\uD55C \\uC6F9\\uC571\\uC774\\uC5C8\\uC2B5\\uB2C8\\uB2E4. \\uBE44\\uAD50\\uD558\\uAE30\\uB294 \\uC123\\uBD80\\uB974\\uC9C0\\uB9CC, google map\\uBCF4\\uB2E4 \\uD6E8\\uC52C \\uC720\\uB824\\uD55C ui\\uC640 \\uB2E4\\uC591\\uD558\\uAC8C \\uC0AC\\uC6A9\\uD560 \\uC218 \\uC788\\uB294 \\uC11C\\uBE44\\uC2A4\\uB4F1\\uC774 \\uC788\\uC5B4\\uC11C \\uB0B4\\uB0B4 \\uC7AC\\uBBF8\\uC5D0 \\uD479 \\uBE60\\uC838 \\uC791\\uC5C5\\uD560 \\uC218 \\uC788\\uC5C8\\uC2B5\\uB2C8\\uB2E4.\"})]})}function s(i={}){let{wrapper:e}=i.components||{};return e?(0,t.jsx)(e,{...i,children:(0,t.jsx)(h,{...i})}):h(i)}function k(i,e){throw new Error(\"Expected \"+(e?\"component\":\"object\")+\" `\"+i+\"` to be defined: you likely forgot to import, pass, or provide it.\")}return w(_);})();\n;return Component;"
-  },
-  {
     "notionId": "9cc0c832caf149a4a24381ec3c548824",
-    "title": "[SP] R.W.W.T 블로그 (현재 사이트)",
+    "title": "R.W.W.T 블로그",
     "icon": "",
     "full": false,
     "summary": "RWWT.world is a static Gitbook-themed-Blog built with Next.js 13, Notion API, Tailwind-CSS and Vercel, reinterpreted & created by ryoon.with.wisdomtrees, inspired by NotionNext",
-    "pageCover": "https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641203/norkive-notion-images/1754641202603-E1_84_83_E1_85_A1_E1_84_8B_E1_85_AE_E1_86_AB_E1_84_85_E1_85_A9_E1_84_83_E1_85_B3.png",
+    "pageCover": "https://res.cloudinary.com/dyrdul1dd/image/upload/v1760541691/norkive-notion-images/png_1760541691151_RTFfODRfOD.webp?format=webp&quality=90",
     "password": "",
     "type": "PROJECTS",
-    "description": "",
+    "description": "RWWT.world is a static Gitbook-themed-Blog built with Next.js 13, Notion API, Tailwind-CSS and Vercel, reinterpreted & created by ryoon.with.wisdomtrees, inspired by NotionNext",
     "date": "2023-11-29T00:00:00.000Z",
-    "lastEditedDate": "2025-08-05T03:08:00.000Z",
+    "lastEditedDate": "2025-10-15T14:32:00.000Z",
     "sub_type": "Dev",
     "category": "DevProject",
     "tags": [
@@ -313,585 +864,516 @@ export default [
     ],
     "draft": false,
     "favorite": true,
-    "readingTime": 1,
-    "wordCount": 25,
-    "lastModified": "2025-08-08",
+    "readingTime": 24,
+    "wordCount": 4778,
+    "lastModified": "2025-10-15",
     "version": "1.0.0",
     "status": "published",
-    "author": "ryoon",
-    "content": "![RyoonLog.gif](https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641200/norkive-notion-images/1754641198627-RyoonLog.gif)\n\n\n# 1. 리포지토리\n\n\n[link_preview](https://github.com/ryoon-with-wisdomtrees/ryoon-gitbook-next)\n\n\n# 2. 사이트\n\n\n<BookMarkWrapper names={\"bookmark\"} urls={\"http://ryoonwithwisdomtrees.world\"} />\n\n\n# 3.RWWT(ryoonwithwisdomtrees.world)\n\n    - RWWT.world is a static Gitbook-themed-Blog built with Next.js 13, Notion API, Tailwind-CSS and Vercel, reinterpreted & created by ryoon.with.wisdomtrees, inspired by NotionNext\n    - [tangly1024](https://github.com/tangly1024)님의 [NotionNext](https://docs.tangly1024.com/about) 블로그에 영감을 받아, 재해석 하여 제작한 Next.js와 Notion API기반의 Gitbook-themed 정적 블로그입니다.\n    - 블로그가 블로그로서의 본연의 기능을 가장 최적으로 수행할 수 있도록 불필요한 기능과 모듈은 전부 제거하고, 가장 심플하고 essential한 뼈대와 구조만으로 이루어지게 변경하였습니다.\n    - 모바일과 PC환경에 친화적이며 간단한 다크모드도 지원합니다.\n    - 작년 9월부터 24년도 6월까지 장기간에 걸쳐 틈틈이 개발 및 유지보수 작업을 진행하였습니다.\n    - 처음에는 기존과 같이 Multi theme(전체 레이아웃이 바뀌는 기능)을 적용하였으나, 누군가에게 과시적으로 보여주기 위한 용도이기보다는 온전히 저에게 진실되며 또 방문자에게도 진실된 공간으로 만들고자 하는 욕구가 더 컸으므로 기존에 개발한 건은 과감하게 드롭하고 오직 gitbook theme에 집중한 지금의 블로그로 작업을 이어나갔습니다.\n\n# 4. <strong>구성 : 사용된 기술 / 지원하는 기능</strong>\n\n\n    ## <strong>4-1. 사용된 기술</strong>\n\n    - <strong>Technical Framework</strong>: [Next.js](https://nextjs.org/) 13\n    - <strong>Deploy</strong>: [Vercel](https://vercel.com/)\n    - <strong>Styles</strong>: [Tailwind CSS](https://www.tailwindcss.cn/)\n    - <strong>Rendering Tool</strong>: [React-notion-x](https://github.com/NotionX/react-notion-x)\n    - <strong>COMMENT</strong>: [Giscus](https://giscus.app/zh-CN)\n    - <strong>ICON</strong>: [Fontawesome](https://fontawesome.com/v6/icons/)\n\n    ## 4-1. 지원하는 기능\n\n    - <strong>GoogleAdsense</strong>: client key만 env에 적용시 바로 사용가능\n\n    ###  <strong>Site statistics</strong>\n\n    - <strong>Google Site Verification(seo)</strong>: client key만 env에 적용시 바로 사용가능\n    - <strong>busuanzi</strong>: 접속 url 별 website reading volume과 방문자 수 바로 확인 가능 (http://busuanzi.ibruce.info/)\n\n# 5. 구성 : 블로그 KV, Color, 배치\n\n\n    ## 1.색상\n\n    - 주 Key Visual이 되는 색상은 [Yellow(amber-400)](https://flowbite.com/docs/customize/colors/) 으로 설정하였습니다.\n    - 메인컬로를 기준으로, Orange, Red의 색깔들로만 디자인적 강조를 두게 하였습니다.\n    - 전체 텍스트 색상, 다크모드시의 배경 및 메뉴색상등은 전부 neutral-400을 바탕으로 + -를 두어 적용하였습니다.\n\n    ## 2.블로그 메뉴\n\n    - Top Nav는 가장 주요한 5개의 메뉴로만 구성해두었습니다.\n\n        ### 1-1. 🍋Logs\n\n        - 첫 진입시 마주하는 🍋Logs에는 이 개인블로그에서 작성하는 전체글을 전부 확인할 수 있습니다.\n        - 🍋 : 우리 모두는 삶에서 경험하는 레몬들을 적립하여 자신만의 레시피로 레몬에이드를 만드는 중인 레몬에이드 메이커라 생각합니다. 그 모든 레몬들에 대한 기록이라는 은유적 표현으로 레몬을 메뉴 아이콘으로 적용하였습니다.\n        - Key Visual 색상인 Yellow(amber-400)으로만 간결하게 집중과 강조를 표현하였습니다.\n        - 제가 설정한 글의 TYPE은 라이프로그/개발로그/글쓰기모음(독후감,문장수집,에세이 등)/재능기부 & 창작기록/ 영감기록으로 총 5개로 이루어져 있습니다.\n        - 5개 분야의 글로 이루어져 있다는 것을 어떻게 표현해야 불필요하지 않고 소모적이지 않으며 지금의 Gitbook theme과 자연스럽게 녹아져내리도록 직관적으로 소구할 수 있을지에 대한 부분을 고려하며 레이아웃 및 디자인 작업을 진행하였습니다.\n\n        ### 1-2. 🍋 Logs By\n\n        - Logs by는 글의 Category타입별로 전체 블로그글을 볼 수 있는 메뉴입니다.\n        - 전체 5개 메뉴에 대한 디자인/레이아웃 작업을 진행 하였습니다.\n        - <strong>TIL Tech Logs:</strong>\n            - 개인블로그이긴 하지만 직업으로서의 개발자의 삶을 이루어 나아가고 있음으로 TIL Tech Logs를 Logs By 메뉴의 가장 선두에 두었습니다.\n            - TIL Tech Logs의 메인 컬러는 Orange입니다. 불타오르는 오렌지 색상같이 기술은 자칫 딱딱하고 이성적으로만 비춰지곤 하지만 조용하게 끓어오르는 열정으로 주변을 밝히는 전등과도 불씨와도 같다고 생각하기 때문입니다.\n            - 완료주의 > 완성주의. 이 진리는 모든 배움에 적용 된다고 생각합니다. 해당 문장을 자주 보면서 개발일지를 적을 수 있도록 상단에 배치하였습니다.\n            - 또한 개발글들은 시각적으로 자칫 재미없고 밋밋하게 느껴질 수도 있기 때문에 Photo-card 형식의 목록으로 전체글을 표현할 수 있도록 작업하였습니다.\n            - 각 글에 대하여 색상이 적용된 태그값으로 해당 글이 어떤 기술에 대한 글인지 확인할 수 있습니다.\n        - <strong>Life logs</strong>:\n            - 저의 개인적이고 아주 사적인 일기와 같은 삶의 조각들에 대한 글이 보관된 페이지입니다.\n            - 자신과 자기 삶에 정직하고 진실된 - 그게 설령 초라하고 쪽팔리고 어설픈 부분도 있을지라도 - 사람이 결국은 장/단기적으로 자기 앞의 생을 이루어 나가게 된다는 것을 지난 1년여간 몸소 체험하였습니다. 이를 주제로 메뉴 작업을 진행하였습니다.\n            - Life log의 메인 컬러는 Red입니다. 빨강은 가장 진실 되며 거짓 없는 삶의 심장과 같은 색이라고 생각합니다. 우리 신체에 흐르고 있는 피와 같이 삶을 관통하는 색이라고 생각하기 때문입니다. 라이프-로그라는 그 이름에 정직한 글들로만 앞으로도 적어내려 가고 싶은 욕심에 빨강색과 Omer시인의 문장 그리고 Red 와 Brown을 오가는 저의 사진들을 배경으로 적용하였습니다.\n            - 정직하고 순수하게 글로서만 그 기능을 하는 메뉴들은 전부 리스트 형식으로 전체글을 표현하였습니다.\n        - <strong>Writing</strong>:\n            - 큰 호흡과 주제가 있는 글/ 독후감 / 좋은 문장에 대한 필사와 저의 견해 등에 대한 기록이 보관된 페이지입니다.\n            - Writing의 메인 컬러는 Yellow입니다. 저의 글 뿐 아니라 세상의 글, 타인의 글, 인터넷의 글 등 다양한 글에 대한 사유와 기록으로 점철된 페이지이기 때문입니다. 이 블로그의 메인 컬러이기도 한 Yellow가 전체 블로그를 아우르는 Base색인 것과 같이, 전체를 탐험하고 오고가는 문장들에 대하여 볼 수 있는 페이지 이기 때문에 블로그 메인 컬러와 동일한 색상으로 적용하였습니다.\n            - 정직하고 순수하게 글로서만 그 기능을 하는 메뉴들은 전부 리스트 형식으로 전체글을 표현하였습니다.\n        - <strong>Giving Records</strong>:\n            - 저에게 존재하는 작은 재능들로 나누고, 봉사하고, 만들어낸 개발 외적인 사이드프로젝트들에 대한 기록이 보관된 페이지입니다.\n            - Giving Records의 메인 컬러는 따로 없지만 메인 Visual은 있습니다.어떤 색으로 한계나 규정을 짓지않는 🎨팔레트 입니다. LogsBy중 유일하게 Key Visual Icon이 있는 페이지입니다.\n            - 봉사와 나눔이 왜 인간의 삶을 이롭게 하는지는 [우리는 다시 연결되어야 한다](https://www.aladin.co.kr/m/mproduct.aspx?ItemId=247420735)를 비롯하여 수 많은 자기계발서에서 언제나 강조하는 부분입니다. 그러나 20대 때는 가슴으로 깨닫지 못했습니다. 지난 9개월간 봉사를 하며 이 말의 진리를 알게 됐습니다. 수 많은 것들에 작게 다재다능한 사람들이 의례 그러하듯이 저 역시 삶에 대한 전반적이며 여러 분야를 두루 포괄하는 광범위한 호기심을 바탕으로 다양한 것들을 경험하고 만들고 제작하고 제안하고 창작하며 20대를 관통했습니다. 그래서 자기사고와 창작이라는 기준값이 기본값으로 내재돼 있는 소프트웨어 엔지니어링을 좋아하게된 것도 있습니다. 그러나 시간의 흐름에 따라 20대 때 즐겁게 연마해두었던 작은 재능들은 이제는 실제의 삶 속에서 꺼내어 올바르게 쓰임을 다하기는 어려운 생을 살고 있었습니다. 그런데 봉사를 시작함으로써 저의 개인적 욕구와 이타적 성취를 동반 쟁취하는 Giver로서의 삶으로 변화하고 발전해 나아가게 됐습니다. 이를 비롯한 기록들이 보관된 페이지입니다. 적다보니 든 생각인데 개발자들은 다들 일부분 타고난 Giver기질이 본능적으로 있는 사람들인 것 같네요. 그래서 이렇게 오픈소스 생태계가 활발하고 세상에 기여하는 생태계가 오래오래 유지되는 것 같습니다.\n        - <strong>Inspiration Log:</strong>\n            - [이숭희 마케터](https://campaign.naver.com/blogpeople/?5=)님 및 [장인성 작가](https://www.yes24.com/Product/Goods/59438439)님에게 자극을 받아 기록하는 삶이 시작 됐습니다.\n            - 자주 건강하게 질투하고, 부러워하고, 남으로 부터 잘 배워서 저의 인생을 다채롭게 일구어아가고 있고 앞으로도 그럴 것 입니다. 이에 대한 기록이 보관된 페이지입니다.\n            - Inspiration Log의 메인 컬러는 Yellow이며 이유는 Writing로그와 같습니다.\n\n# + 추가 작업 진행중\n\n\n    ### 24.06월 기준\n\n        - 이 블로그 Format을 누구나 사용할 수 있게 Skeleton 리포지토리 작업 및 상세 명세서 작업을 진행하고 있습니다\n        - 배움에 해당하는 카테고리와 하위 메뉴 기능개선 작업을 진행하는 중입니다.\n\n            ![스크린샷_2024-06-24_오후_3.48.57.png](https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641201/norkive-notion-images/1754641201364-E1_84_89_E1_85_B3_E1_84_8F_E1_85_B3_E1_84_85_E1_85_B5_E1_86_AB_E1_84_89_E1_85_A3_E1_86_BA_2024-06-24_E1_84_8B_E1_85_A9_E1_84_92_E1_85_AE_3.48.57.png)\n\n        - Next.js 14 ver으로 변경작업 진행중입니다.\n        - Typescript로의 마이그레이션 작업 진행중에 있습니다.\n\n### 제목 없음",
+    "author": "ryoonwithinwisdomlights",
+    "content": "# <strong>RWWT-log</strong>\n\n> Next.js 13과 Notion API를 활용한 프로덕션 레디 정적 블로그 플랫폼. Gitbook 스타일의 모던한 UI/UX 디자인을 제공합니다.\n\n🌐 <strong>Live Demo</strong>: [https://mdx-norkive.vercel.app/](https://mdx-norkive.vercel.app/)\n\n\n📦 <strong>Repository</strong>: [GitHub](https://github.com/ryoonwithinwisdomlights/norkive)\n\n\n![image.png](https://res.cloudinary.com/dyrdul1dd/image/upload/v1760541689/norkive-notion-images/png_1760541689069_aW1hZ2U%3D.webp?format=webp&quality=85)\n\n\n## <strong>개요</strong>\n\n\n---\n\n\nNotion 페이지를 백엔드 없이 완전한 기능을 갖춘 블로그로 변환하는 서버리스 정적 사이트 생성기입니다. 최신 웹 기술로 구축되었으며 성능, SEO, 사용자 경험에 최적화되어 있습니다.\n\n\n## <strong>주요 기능</strong>\n\n\n---\n\n- <strong>🚀 모던 스택</strong>: Next.js 13 App Router, React 18, Tailwind CSS\n- <strong>📝 Notion 통합</strong>: Notion API를 통한 원활한 콘텐츠 관리\n- <strong>🎨 Gitbook 테마</strong>: 기술 콘텐츠에 최적화된 깔끔하고 전문적인 레이아웃\n- <strong>📱 반응형 디자인</strong>: 모바일 우선 접근 방식의 적응형 레이아웃\n- <strong>🌙 다크 모드</strong>: 완전히 구현된 다크/라이트 테마 전환\n- <strong>⚡ 성능 최적화</strong>: ISR(Incremental Static Regeneration)을 활용한 정적 생성\n- <strong>🔍 SEO 최적화</strong>: 사이트맵, robots.txt, 메타 태그 최적화 내장\n- <strong>💬 댓글 시스템</strong>: GitHub 기반 Giscus 통합\n- <strong>📊 분석 도구</strong>: Google Analytics 및 Busuanzi 방문자 추적\n- <strong>🏷️ 풍부한 분류</strong>: 카테고리 및 태그 기반 콘텐츠 구조화\n- <strong>🔎 검색 기능</strong>: 전체 게시물 전문 검색\n- <strong>📄 다양한 콘텐츠 타입</strong>: TIL, 라이프로그, 글쓰기, 프로젝트 쇼케이스 지원\n\n## <strong>기술 스택</strong>\n\n\n### <strong>Core</strong>\n\n- <strong>프레임워크</strong>: [Next.js 13](https://nextjs.org/)\n- <strong>언어</strong>: JavaScript/TypeScript\n- <strong>스타일링</strong>: [Tailwind CSS](https://tailwindcss.com/)\n- <strong>콘텐츠 소스</strong>: [Notion API](https://developers.notion.com/)\n\n### <strong>라이브러리 & 도구</strong>\n\n- <strong>렌더링</strong>: [react-notion-x](https://github.com/NotionX/react-notion-x)\n- <strong>댓글</strong>: [Giscus](https://giscus.app/)\n- <strong>아이콘</strong>: [Font Awesome](https://fontawesome.com/)\n- <strong>수식 렌더링</strong>: KaTeX\n- <strong>코드 하이라이팅</strong>: Prism.js (커스텀 테마)\n- <strong>배포</strong>: [Vercel](https://vercel.com/)\n\n## <strong>시작하기</strong>\n\n\n---\n\n\n### <strong>필수 요구사항</strong>\n\n\n```plain text\nnode >= 16.x\nnpm or yarn\n```\n\n\n### <strong>설치</strong>\n\n1. 레포지토리 클론:\n\n```plain text\ngit clone https://github.com/ryoonwithinwisdomlights/RWWT-log.git\ncd RWWT-log\n```\n\n1. 의존성 설치:\n\n```plain text\nnpm install\n# or\nyarn install\n```\n\n1. 환경 변수 설정:\n\n```plain text\ncp .env.example .env.local\n```\n\n\n필수 환경 변수:\n\n\n```plain text\nNOTION_TOKEN=your_notion_integration_token\nNOTION_DATABASE_ID=your_notion_database_id\nNEXT_PUBLIC_GISCUS_REPO=your_github_repo\nNEXT_PUBLIC_GA_ID=your_google_analytics_id\n```\n\n1. 개발 서버 실행:\n\n```plain text\nnpm run dev\n# or\nyarn dev\n```\n\n\n[http://localhost:3000](http://localhost:3000/)에서 애플리케이션을 확인하실 수 있습니다.\n\n\n### <strong>프로덕션 빌드</strong>\n\n\n```plain text\nnpm run build\nnpm run start\n```\n\n\n## <strong>프로젝트 구조</strong>\n\n\n---\n\n\n```plain text\nRWWT-log/\n├── components/          # 재사용 가능한 React 컴포넌트\n├── lib/\n│   ├── cache/          # 캐싱 전략 (메모리, 파일 기반)\n│   ├── notion/         # Notion API 통합\n│   └── lang/           # 다국어 지원\n├── pages/              # Next.js 페이지 및 API 라우트\n├── public/             # 정적 에셋\n├── styles/             # 글로벌 스타일 및 CSS 모듈\n├── themes/\n│   └── gitbook/        # Gitbook 테마 구현\n└── blog.config.js      # 블로그 설정\n```\n\n\n## <strong>설정</strong>\n\n\n---\n\n\n<code>blog.config.js</code>를 편집하여 다음 항목을 커스터마이징할 수 있습니다:\n\n- 사이트 메타데이터 (제목, 설명, 작성자)\n- 소셜 링크\n- 네비게이션 메뉴\n- 분석 도구 설정\n- 댓글 시스템\n- 테마 설정\n\n## <strong>주요 구현 사항</strong>\n\n\n---\n\n\n### <strong>성능 최적화</strong>\n\n- 커스텀 캐싱 레이어 구현 (메모리 + 파일 기반)\n- Next.js Image 컴포넌트를 활용한 이미지 최적화\n- 이미지 및 무거운 컴포넌트의 지연 로딩\n- 동적 콘텐츠를 위한 ISR을 활용한 정적 생성\n\n### <strong>SEO 최적화</strong>\n\n- 동적 사이트맵 생성\n- 구조화된 데이터 (JSON-LD)\n- Open Graph 및 Twitter Card 메타 태그\n- Robots.txt 설정\n- RSS 피드 생성\n\n### <strong>콘텐츠 관리</strong>\n\n- 카테고리 기반 구조 (Tech Logs, Life Logs, Writing, Projects, Inspiration)\n- 교차 참조를 위한 태그 시스템\n- 시간순 목록이 있는 아카이브 페이지\n- 모든 콘텐츠에 대한 검색 기능\n\n## <strong>배포</strong>\n\n\n---\n\n\n### <strong>Vercel (권장)</strong>\n\n1. GitHub에 코드 푸시\n2. Vercel에서 프로젝트 임포트\n3. 환경 변수 설정\n4. 배포\n\n### <strong>기타 플랫폼</strong>\n\n\nNext.js를 지원하는 모든 플랫폼과 호환됩니다:\n\n- Netlify\n- AWS Amplify\n- Cloudflare Pages\n- Docker (Dockerfile 포함)\n\n## <strong>개발 하이라이트</strong>\n\n\n---\n\n- <strong>아키텍처</strong>: 모듈화된 컴포넌트 구조로 관심사의 명확한 분리 구현\n- <strong>캐싱 전략</strong>: 다중 스토리지 백엔드를 지원하는 커스텀 캐시 매니저 구축\n- <strong>성능</strong>: 모든 메트릭에서 Lighthouse 90+ 점수 달성\n- <strong>코드 품질</strong>: ESLint 및 Prettier를 통한 일관된 코드 스타일 유지\n- <strong>확장성</strong>: 쉬운 테마 확장 및 기능 추가를 위한 설계\n\n## <strong>라이선스</strong>\n\n\n---\n\n\n[MIT License](https://github.com/ryoonwithinwisdomlights/RWWT-log/blob/main/LICENSE)\n\n\n## <strong>크레딧</strong>\n\n\n---\n\n\n[tangly1024](https://github.com/tangly1024)의 [NotionNext](https://github.com/tangly1024/NotionNext)에서 영감을 받아 제작되었습니다.\n\n\n---\n\n\n<strong>개발 기간</strong>: 2023.09 - 2024.06 (9개월)",
     "_meta": {
-      "filePath": "projects-SP-R-W-W-T-블로그-현재-사이트.mdx",
-      "fileName": "projects-SP-R-W-W-T-블로그-현재-사이트.mdx",
+      "filePath": "projects-R-W-W-T-블로그.mdx",
+      "fileName": "projects-R-W-W-T-블로그.mdx",
       "directory": ".",
       "extension": "mdx",
-      "path": "projects-SP-R-W-W-T-블로그-현재-사이트"
+      "path": "projects-R-W-W-T-블로그"
     },
     "toc": [
       {
-        "title": "1. 리포지토리",
-        "url": "#1-리포지토리",
+        "title": "RWWT-log",
+        "url": "#rwwt-log",
         "depth": 1
       },
       {
-        "title": "2. 사이트",
-        "url": "#2-사이트",
-        "depth": 1
-      },
-      {
-        "title": "3.RWWT(ryoonwithwisdomtrees.world)",
-        "url": "#3rwwtryoonwithwisdomtreesworld",
-        "depth": 1
-      },
-      {
-        "title": "4. 구성 : 사용된 기술 / 지원하는 기능",
-        "url": "#4-구성--사용된-기술--지원하는-기능",
-        "depth": 1
-      },
-      {
-        "title": "4-1. 사용된 기술",
-        "url": "#4-1-사용된-기술",
+        "title": "개요",
+        "url": "#개요",
         "depth": 2
       },
       {
-        "title": "4-1. 지원하는 기능",
-        "url": "#4-1-지원하는-기능",
+        "title": "주요 기능",
+        "url": "#주요-기능",
         "depth": 2
       },
       {
-        "title": "Site statistics",
-        "url": "#site-statistics",
-        "depth": 3
-      },
-      {
-        "title": "5. 구성 : 블로그 KV, Color, 배치",
-        "url": "#5-구성--블로그-kv-color-배치",
-        "depth": 1
-      },
-      {
-        "title": "1.색상",
-        "url": "#1색상",
+        "title": "기술 스택",
+        "url": "#기술-스택",
         "depth": 2
       },
       {
-        "title": "2.블로그 메뉴",
-        "url": "#2블로그-메뉴",
+        "title": "Core",
+        "url": "#core",
+        "depth": 3
+      },
+      {
+        "title": "라이브러리 & 도구",
+        "url": "#라이브러리--도구",
+        "depth": 3
+      },
+      {
+        "title": "시작하기",
+        "url": "#시작하기",
         "depth": 2
       },
       {
-        "title": "1-1. 🍋Logs",
-        "url": "#1-1-logs",
+        "title": "필수 요구사항",
+        "url": "#필수-요구사항",
         "depth": 3
       },
       {
-        "title": "1-2. 🍋 Logs By",
-        "url": "#1-2-logs-by",
+        "title": "설치",
+        "url": "#설치",
         "depth": 3
       },
       {
-        "title": "+ 추가 작업 진행중",
-        "url": "#-추가-작업-진행중",
-        "depth": 1
-      },
-      {
-        "title": "24.06월 기준",
-        "url": "#2406월-기준",
+        "title": "프로덕션 빌드",
+        "url": "#프로덕션-빌드",
         "depth": 3
       },
       {
-        "title": "제목 없음",
-        "url": "#제목-없음",
-        "depth": 3
-      }
-    ],
-    "structuredData": {
-      "contents": [
-        {
-          "heading": "1-리포지토리",
-          "content": "link_preview"
-        },
-        {
-          "heading": "3rwwtryoonwithwisdomtreesworld",
-          "content": "RWWT.world is a static Gitbook-themed-Blog built with Next.js 13, Notion API, Tailwind-CSS and Vercel, reinterpreted & created by ryoon.with.wisdomtrees, inspired by NotionNext"
-        },
-        {
-          "heading": "3rwwtryoonwithwisdomtreesworld",
-          "content": "tangly1024님의 NotionNext 블로그에 영감을 받아, 재해석 하여 제작한 Next.js와 Notion API기반의 Gitbook-themed 정적 블로그입니다."
-        },
-        {
-          "heading": "3rwwtryoonwithwisdomtreesworld",
-          "content": "블로그가 블로그로서의 본연의 기능을 가장 최적으로 수행할 수 있도록 불필요한 기능과 모듈은 전부 제거하고, 가장 심플하고 essential한 뼈대와 구조만으로 이루어지게 변경하였습니다."
-        },
-        {
-          "heading": "3rwwtryoonwithwisdomtreesworld",
-          "content": "모바일과 PC환경에 친화적이며 간단한 다크모드도 지원합니다."
-        },
-        {
-          "heading": "3rwwtryoonwithwisdomtreesworld",
-          "content": "작년 9월부터 24년도 6월까지 장기간에 걸쳐 틈틈이 개발 및 유지보수 작업을 진행하였습니다."
-        },
-        {
-          "heading": "3rwwtryoonwithwisdomtreesworld",
-          "content": "처음에는 기존과 같이 Multi theme(전체 레이아웃이 바뀌는 기능)을 적용하였으나, 누군가에게 과시적으로 보여주기 위한 용도이기보다는 온전히 저에게 진실되며 또 방문자에게도 진실된 공간으로 만들고자 하는 욕구가 더 컸으므로 기존에 개발한 건은 과감하게 드롭하고 오직 gitbook theme에 집중한 지금의 블로그로 작업을 이어나갔습니다."
-        },
-        {
-          "heading": "4-1-사용된-기술",
-          "content": "Technical Framework: Next.js 13"
-        },
-        {
-          "heading": "4-1-사용된-기술",
-          "content": "Deploy: Vercel"
-        },
-        {
-          "heading": "4-1-사용된-기술",
-          "content": "Styles: Tailwind CSS"
-        },
-        {
-          "heading": "4-1-사용된-기술",
-          "content": "Rendering Tool: React-notion-x"
-        },
-        {
-          "heading": "4-1-사용된-기술",
-          "content": "COMMENT: Giscus"
-        },
-        {
-          "heading": "4-1-사용된-기술",
-          "content": "ICON: Fontawesome"
-        },
-        {
-          "heading": "4-1-지원하는-기능",
-          "content": "GoogleAdsense: client key만 env에 적용시 바로 사용가능"
-        },
-        {
-          "heading": "site-statistics",
-          "content": "Google Site Verification(seo): client key만 env에 적용시 바로 사용가능"
-        },
-        {
-          "heading": "site-statistics",
-          "content": "busuanzi: 접속 url 별 website reading volume과 방문자 수 바로 확인 가능 (http://busuanzi.ibruce.info/)"
-        },
-        {
-          "heading": "1색상",
-          "content": "주 Key Visual이 되는 색상은 Yellow(amber-400) 으로 설정하였습니다."
-        },
-        {
-          "heading": "1색상",
-          "content": "메인컬로를 기준으로, Orange, Red의 색깔들로만 디자인적 강조를 두게 하였습니다."
-        },
-        {
-          "heading": "1색상",
-          "content": "전체 텍스트 색상, 다크모드시의 배경 및 메뉴색상등은 전부 neutral-400을 바탕으로 + -를 두어 적용하였습니다."
-        },
-        {
-          "heading": "2블로그-메뉴",
-          "content": "Top Nav는 가장 주요한 5개의 메뉴로만 구성해두었습니다."
-        },
-        {
-          "heading": "1-1-logs",
-          "content": "첫 진입시 마주하는 🍋Logs에는 이 개인블로그에서 작성하는 전체글을 전부 확인할 수 있습니다."
-        },
-        {
-          "heading": "1-1-logs",
-          "content": "🍋 : 우리 모두는 삶에서 경험하는 레몬들을 적립하여 자신만의 레시피로 레몬에이드를 만드는 중인 레몬에이드 메이커라 생각합니다. 그 모든 레몬들에 대한 기록이라는 은유적 표현으로 레몬을 메뉴 아이콘으로 적용하였습니다."
-        },
-        {
-          "heading": "1-1-logs",
-          "content": "Key Visual 색상인 Yellow(amber-400)으로만 간결하게 집중과 강조를 표현하였습니다."
-        },
-        {
-          "heading": "1-1-logs",
-          "content": "제가 설정한 글의 TYPE은 라이프로그/개발로그/글쓰기모음(독후감,문장수집,에세이 등)/재능기부 & 창작기록/ 영감기록으로 총 5개로 이루어져 있습니다."
-        },
-        {
-          "heading": "1-1-logs",
-          "content": "5개 분야의 글로 이루어져 있다는 것을 어떻게 표현해야 불필요하지 않고 소모적이지 않으며 지금의 Gitbook theme과 자연스럽게 녹아져내리도록 직관적으로 소구할 수 있을지에 대한 부분을 고려하며 레이아웃 및 디자인 작업을 진행하였습니다."
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "Logs by는 글의 Category타입별로 전체 블로그글을 볼 수 있는 메뉴입니다."
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "전체 5개 메뉴에 대한 디자인/레이아웃 작업을 진행 하였습니다."
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "개인블로그이긴 하지만 직업으로서의 개발자의 삶을 이루어 나아가고 있음으로 TIL Tech Logs를 Logs By 메뉴의 가장 선두에 두었습니다."
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "TIL Tech Logs의 메인 컬러는 Orange입니다. 불타오르는 오렌지 색상같이 기술은 자칫 딱딱하고 이성적으로만 비춰지곤 하지만 조용하게 끓어오르는 열정으로 주변을 밝히는 전등과도 불씨와도 같다고 생각하기 때문입니다."
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "완료주의 > 완성주의. 이 진리는 모든 배움에 적용 된다고 생각합니다. 해당 문장을 자주 보면서 개발일지를 적을 수 있도록 상단에 배치하였습니다."
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "또한 개발글들은 시각적으로 자칫 재미없고 밋밋하게 느껴질 수도 있기 때문에 Photo-card 형식의 목록으로 전체글을 표현할 수 있도록 작업하였습니다."
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "각 글에 대하여 색상이 적용된 태그값으로 해당 글이 어떤 기술에 대한 글인지 확인할 수 있습니다."
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "Life logs:"
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "저의 개인적이고 아주 사적인 일기와 같은 삶의 조각들에 대한 글이 보관된 페이지입니다."
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "자신과 자기 삶에 정직하고 진실된 - 그게 설령 초라하고 쪽팔리고 어설픈 부분도 있을지라도 - 사람이 결국은 장/단기적으로 자기 앞의 생을 이루어 나가게 된다는 것을 지난 1년여간 몸소 체험하였습니다. 이를 주제로 메뉴 작업을 진행하였습니다."
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "Life log의 메인 컬러는 Red입니다. 빨강은 가장 진실 되며 거짓 없는 삶의 심장과 같은 색이라고 생각합니다. 우리 신체에 흐르고 있는 피와 같이 삶을 관통하는 색이라고 생각하기 때문입니다. 라이프-로그라는 그 이름에 정직한 글들로만 앞으로도 적어내려 가고 싶은 욕심에 빨강색과 Omer시인의 문장 그리고 Red 와 Brown을 오가는 저의 사진들을 배경으로 적용하였습니다."
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "정직하고 순수하게 글로서만 그 기능을 하는 메뉴들은 전부 리스트 형식으로 전체글을 표현하였습니다."
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "Writing:"
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "큰 호흡과 주제가 있는 글/ 독후감 / 좋은 문장에 대한 필사와 저의 견해 등에 대한 기록이 보관된 페이지입니다."
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "Writing의 메인 컬러는 Yellow입니다. 저의 글 뿐 아니라 세상의 글, 타인의 글, 인터넷의 글 등 다양한 글에 대한 사유와 기록으로 점철된 페이지이기 때문입니다. 이 블로그의 메인 컬러이기도 한 Yellow가 전체 블로그를 아우르는 Base색인 것과 같이, 전체를 탐험하고 오고가는 문장들에 대하여 볼 수 있는 페이지 이기 때문에 블로그 메인 컬러와 동일한 색상으로 적용하였습니다."
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "정직하고 순수하게 글로서만 그 기능을 하는 메뉴들은 전부 리스트 형식으로 전체글을 표현하였습니다."
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "Giving Records:"
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "저에게 존재하는 작은 재능들로 나누고, 봉사하고, 만들어낸 개발 외적인 사이드프로젝트들에 대한 기록이 보관된 페이지입니다."
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "Giving Records의 메인 컬러는 따로 없지만 메인 Visual은 있습니다.어떤 색으로 한계나 규정을 짓지않는 🎨팔레트 입니다. LogsBy중 유일하게 Key Visual Icon이 있는 페이지입니다."
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "봉사와 나눔이 왜 인간의 삶을 이롭게 하는지는 우리는 다시 연결되어야 한다를 비롯하여 수 많은 자기계발서에서 언제나 강조하는 부분입니다. 그러나 20대 때는 가슴으로 깨닫지 못했습니다. 지난 9개월간 봉사를 하며 이 말의 진리를 알게 됐습니다. 수 많은 것들에 작게 다재다능한 사람들이 의례 그러하듯이 저 역시 삶에 대한 전반적이며 여러 분야를 두루 포괄하는 광범위한 호기심을 바탕으로 다양한 것들을 경험하고 만들고 제작하고 제안하고 창작하며 20대를 관통했습니다. 그래서 자기사고와 창작이라는 기준값이 기본값으로 내재돼 있는 소프트웨어 엔지니어링을 좋아하게된 것도 있습니다. 그러나 시간의 흐름에 따라 20대 때 즐겁게 연마해두었던 작은 재능들은 이제는 실제의 삶 속에서 꺼내어 올바르게 쓰임을 다하기는 어려운 생을 살고 있었습니다. 그런데 봉사를 시작함으로써 저의 개인적 욕구와 이타적 성취를 동반 쟁취하는 Giver로서의 삶으로 변화하고 발전해 나아가게 됐습니다. 이를 비롯한 기록들이 보관된 페이지입니다. 적다보니 든 생각인데 개발자들은 다들 일부분 타고난 Giver기질이 본능적으로 있는 사람들인 것 같네요. 그래서 이렇게 오픈소스 생태계가 활발하고 세상에 기여하는 생태계가 오래오래 유지되는 것 같습니다."
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "이숭희 마케터님 및 장인성 작가님에게 자극을 받아 기록하는 삶이 시작 됐습니다."
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "자주 건강하게 질투하고, 부러워하고, 남으로 부터 잘 배워서 저의 인생을 다채롭게 일구어아가고 있고 앞으로도 그럴 것 입니다. 이에 대한 기록이 보관된 페이지입니다."
-        },
-        {
-          "heading": "1-2-logs-by",
-          "content": "Inspiration Log의 메인 컬러는 Yellow이며 이유는 Writing로그와 같습니다."
-        },
-        {
-          "heading": "2406월-기준",
-          "content": "이 블로그 Format을 누구나 사용할 수 있게 Skeleton 리포지토리 작업 및 상세 명세서 작업을 진행하고 있습니다"
-        },
-        {
-          "heading": "2406월-기준",
-          "content": "배움에 해당하는 카테고리와 하위 메뉴 기능개선 작업을 진행하는 중입니다."
-        },
-        {
-          "heading": "2406월-기준",
-          "content": "Next.js 14 ver으로 변경작업 진행중입니다."
-        },
-        {
-          "heading": "2406월-기준",
-          "content": "Typescript로의 마이그레이션 작업 진행중에 있습니다."
-        }
-      ],
-      "headings": [
-        {
-          "id": "1-리포지토리",
-          "content": "1. 리포지토리"
-        },
-        {
-          "id": "2-사이트",
-          "content": "2. 사이트"
-        },
-        {
-          "id": "3rwwtryoonwithwisdomtreesworld",
-          "content": "3.RWWT(ryoonwithwisdomtrees.world)"
-        },
-        {
-          "id": "4-구성--사용된-기술--지원하는-기능",
-          "content": "4. 구성 : 사용된 기술 / 지원하는 기능"
-        },
-        {
-          "id": "4-1-사용된-기술",
-          "content": "4-1. 사용된 기술"
-        },
-        {
-          "id": "4-1-지원하는-기능",
-          "content": "4-1. 지원하는 기능"
-        },
-        {
-          "id": "site-statistics",
-          "content": "Site statistics"
-        },
-        {
-          "id": "5-구성--블로그-kv-color-배치",
-          "content": "5. 구성 : 블로그 KV, Color, 배치"
-        },
-        {
-          "id": "1색상",
-          "content": "1.색상"
-        },
-        {
-          "id": "2블로그-메뉴",
-          "content": "2.블로그 메뉴"
-        },
-        {
-          "id": "1-1-logs",
-          "content": "1-1. 🍋Logs"
-        },
-        {
-          "id": "1-2-logs-by",
-          "content": "1-2. 🍋 Logs By"
-        },
-        {
-          "id": "-추가-작업-진행중",
-          "content": "+ 추가 작업 진행중"
-        },
-        {
-          "id": "2406월-기준",
-          "content": "24.06월 기준"
-        },
-        {
-          "id": "제목-없음",
-          "content": "제목 없음"
-        }
-      ]
-    },
-    "body": "var Component=(()=>{var g=Object.create;var h=Object.defineProperty;var p=Object.getOwnPropertyDescriptor;var u=Object.getOwnPropertyNames;var m=Object.getPrototypeOf,_=Object.prototype.hasOwnProperty;var w=(e,i)=>()=>(i||e((i={exports:{}}).exports,i),i.exports),y=(e,i)=>{for(var l in i)h(e,l,{get:i[l],enumerable:!0})},o=(e,i,l,d)=>{if(i&&typeof i==\"object\"||typeof i==\"function\")for(let r of u(i))!_.call(e,r)&&r!==l&&h(e,r,{get:()=>i[r],enumerable:!(d=p(i,r))||d.enumerable});return e};var f=(e,i,l)=>(l=e!=null?g(m(e)):{},o(i||!e||!e.__esModule?h(l,\"default\",{value:e,enumerable:!0}):l,e)),b=e=>o(h({},\"__esModule\",{value:!0}),e);var t=w((E,c)=>{c.exports=_jsx_runtime});var x={};y(x,{default:()=>a});var n=f(t());function s(e){let i={a:\"a\",h1:\"h1\",h2:\"h2\",h3:\"h3\",img:\"img\",li:\"li\",p:\"p\",ul:\"ul\",...e.components},{BookMarkWrapper:l}=i;return l||k(\"BookMarkWrapper\",!0),(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(i.p,{children:(0,n.jsx)(i.img,{alt:\"RyoonLog.gif\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641200/norkive-notion-images/1754641198627-RyoonLog.gif\",width:\"600\",height:\"459\"})}),`\n`,(0,n.jsx)(i.h1,{id:\"1-\\uB9AC\\uD3EC\\uC9C0\\uD1A0\\uB9AC\",children:\"1. \\uB9AC\\uD3EC\\uC9C0\\uD1A0\\uB9AC\"}),`\n`,(0,n.jsx)(i.p,{children:(0,n.jsx)(i.a,{href:\"https://github.com/ryoon-with-wisdomtrees/ryoon-gitbook-next\",children:\"link_preview\"})}),`\n`,(0,n.jsx)(i.h1,{id:\"2-\\uC0AC\\uC774\\uD2B8\",children:\"2. \\uC0AC\\uC774\\uD2B8\"}),`\n`,(0,n.jsx)(l,{names:\"bookmark\",urls:\"http://ryoonwithwisdomtrees.world\"}),`\n`,(0,n.jsx)(i.h1,{id:\"3rwwtryoonwithwisdomtreesworld\",children:\"3.RWWT(ryoonwithwisdomtrees.world)\"}),`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsx)(i.li,{children:\"RWWT.world is a static Gitbook-themed-Blog built with Next.js 13, Notion API, Tailwind-CSS and Vercel, reinterpreted & created by ryoon.with.wisdomtrees, inspired by NotionNext\"}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(i.a,{href:\"https://github.com/tangly1024\",children:\"tangly1024\"}),\"\\uB2D8\\uC758\\xA0\",(0,n.jsx)(i.a,{href:\"https://docs.tangly1024.com/about\",children:\"NotionNext\"}),\" \\uBE14\\uB85C\\uADF8\\uC5D0 \\uC601\\uAC10\\uC744 \\uBC1B\\uC544, \\uC7AC\\uD574\\uC11D \\uD558\\uC5EC \\uC81C\\uC791\\uD55C Next.js\\uC640 Notion API\\uAE30\\uBC18\\uC758 Gitbook-themed \\uC815\\uC801 \\uBE14\\uB85C\\uADF8\\uC785\\uB2C8\\uB2E4.\"]}),`\n`,(0,n.jsx)(i.li,{children:\"\\uBE14\\uB85C\\uADF8\\uAC00 \\uBE14\\uB85C\\uADF8\\uB85C\\uC11C\\uC758 \\uBCF8\\uC5F0\\uC758 \\uAE30\\uB2A5\\uC744 \\uAC00\\uC7A5 \\uCD5C\\uC801\\uC73C\\uB85C \\uC218\\uD589\\uD560 \\uC218 \\uC788\\uB3C4\\uB85D \\uBD88\\uD544\\uC694\\uD55C \\uAE30\\uB2A5\\uACFC \\uBAA8\\uB4C8\\uC740 \\uC804\\uBD80 \\uC81C\\uAC70\\uD558\\uACE0, \\uAC00\\uC7A5 \\uC2EC\\uD50C\\uD558\\uACE0 essential\\uD55C \\uBF08\\uB300\\uC640 \\uAD6C\\uC870\\uB9CC\\uC73C\\uB85C \\uC774\\uB8E8\\uC5B4\\uC9C0\\uAC8C \\uBCC0\\uACBD\\uD558\\uC600\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uBAA8\\uBC14\\uC77C\\uACFC PC\\uD658\\uACBD\\uC5D0 \\uCE5C\\uD654\\uC801\\uC774\\uBA70 \\uAC04\\uB2E8\\uD55C \\uB2E4\\uD06C\\uBAA8\\uB4DC\\uB3C4 \\uC9C0\\uC6D0\\uD569\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uC791\\uB144 9\\uC6D4\\uBD80\\uD130 24\\uB144\\uB3C4 6\\uC6D4\\uAE4C\\uC9C0 \\uC7A5\\uAE30\\uAC04\\uC5D0 \\uAC78\\uCCD0 \\uD2C8\\uD2C8\\uC774 \\uAC1C\\uBC1C \\uBC0F \\uC720\\uC9C0\\uBCF4\\uC218 \\uC791\\uC5C5\\uC744 \\uC9C4\\uD589\\uD558\\uC600\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uCC98\\uC74C\\uC5D0\\uB294 \\uAE30\\uC874\\uACFC \\uAC19\\uC774 Multi theme(\\uC804\\uCCB4 \\uB808\\uC774\\uC544\\uC6C3\\uC774 \\uBC14\\uB00C\\uB294 \\uAE30\\uB2A5)\\uC744 \\uC801\\uC6A9\\uD558\\uC600\\uC73C\\uB098, \\uB204\\uAD70\\uAC00\\uC5D0\\uAC8C \\uACFC\\uC2DC\\uC801\\uC73C\\uB85C \\uBCF4\\uC5EC\\uC8FC\\uAE30 \\uC704\\uD55C \\uC6A9\\uB3C4\\uC774\\uAE30\\uBCF4\\uB2E4\\uB294 \\uC628\\uC804\\uD788 \\uC800\\uC5D0\\uAC8C \\uC9C4\\uC2E4\\uB418\\uBA70 \\uB610 \\uBC29\\uBB38\\uC790\\uC5D0\\uAC8C\\uB3C4 \\uC9C4\\uC2E4\\uB41C \\uACF5\\uAC04\\uC73C\\uB85C \\uB9CC\\uB4E4\\uACE0\\uC790 \\uD558\\uB294 \\uC695\\uAD6C\\uAC00 \\uB354 \\uCEF8\\uC73C\\uBBC0\\uB85C \\uAE30\\uC874\\uC5D0 \\uAC1C\\uBC1C\\uD55C \\uAC74\\uC740 \\uACFC\\uAC10\\uD558\\uAC8C \\uB4DC\\uB86D\\uD558\\uACE0 \\uC624\\uC9C1 gitbook theme\\uC5D0 \\uC9D1\\uC911\\uD55C \\uC9C0\\uAE08\\uC758 \\uBE14\\uB85C\\uADF8\\uB85C \\uC791\\uC5C5\\uC744 \\uC774\\uC5B4\\uB098\\uAC14\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`]}),`\n`,(0,n.jsxs)(i.h1,{id:\"4-\\uAD6C\\uC131--\\uC0AC\\uC6A9\\uB41C-\\uAE30\\uC220--\\uC9C0\\uC6D0\\uD558\\uB294-\\uAE30\\uB2A5\",children:[\"4. \",(0,n.jsx)(\"strong\",{children:\"\\uAD6C\\uC131 : \\uC0AC\\uC6A9\\uB41C \\uAE30\\uC220 / \\uC9C0\\uC6D0\\uD558\\uB294 \\uAE30\\uB2A5\"})]}),`\n`,(0,n.jsx)(i.h2,{id:\"4-1-\\uC0AC\\uC6A9\\uB41C-\\uAE30\\uC220\",children:(0,n.jsx)(\"strong\",{children:\"4-1. \\uC0AC\\uC6A9\\uB41C \\uAE30\\uC220\"})}),`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"Technical Framework\"}),\":\\xA0\",(0,n.jsx)(i.a,{href:\"https://nextjs.org/\",children:\"Next.js\"}),\" 13\"]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"Deploy\"}),\": \",(0,n.jsx)(i.a,{href:\"https://vercel.com/\",children:\"Vercel\"})]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"Styles\"}),\":\\xA0\",(0,n.jsx)(i.a,{href:\"https://www.tailwindcss.cn/\",children:\"Tailwind CSS\"})]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"Rendering Tool\"}),\":\\xA0\",(0,n.jsx)(i.a,{href:\"https://github.com/NotionX/react-notion-x\",children:\"React-notion-x\"})]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"COMMENT\"}),\":\\xA0\",(0,n.jsx)(i.a,{href:\"https://giscus.app/zh-CN\",children:\"Giscus\"})]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"ICON\"}),\":\\xA0\",(0,n.jsx)(i.a,{href:\"https://fontawesome.com/v6/icons/\",children:\"Fontawesome\"})]}),`\n`]}),`\n`,(0,n.jsx)(i.h2,{id:\"4-1-\\uC9C0\\uC6D0\\uD558\\uB294-\\uAE30\\uB2A5\",children:\"4-1. \\uC9C0\\uC6D0\\uD558\\uB294 \\uAE30\\uB2A5\"}),`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"GoogleAdsense\"}),\": client key\\uB9CC env\\uC5D0 \\uC801\\uC6A9\\uC2DC \\uBC14\\uB85C \\uC0AC\\uC6A9\\uAC00\\uB2A5\"]}),`\n`]}),`\n`,(0,n.jsx)(i.h3,{id:\"site-statistics\",children:(0,n.jsx)(\"strong\",{children:\"Site statistics\"})}),`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"Google Site Verification(seo)\"}),\": client key\\uB9CC env\\uC5D0 \\uC801\\uC6A9\\uC2DC \\uBC14\\uB85C \\uC0AC\\uC6A9\\uAC00\\uB2A5\"]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"busuanzi\"}),\": \\uC811\\uC18D url \\uBCC4 website reading volume\\uACFC \\uBC29\\uBB38\\uC790 \\uC218 \\uBC14\\uB85C \\uD655\\uC778 \\uAC00\\uB2A5 (\",(0,n.jsx)(i.a,{href:\"http://busuanzi.ibruce.info/\",children:\"http://busuanzi.ibruce.info/\"}),\")\"]}),`\n`]}),`\n`,(0,n.jsx)(i.h1,{id:\"5-\\uAD6C\\uC131--\\uBE14\\uB85C\\uADF8-kv-color-\\uBC30\\uCE58\",children:\"5. \\uAD6C\\uC131 : \\uBE14\\uB85C\\uADF8 KV, Color, \\uBC30\\uCE58\"}),`\n`,(0,n.jsx)(i.h2,{id:\"1\\uC0C9\\uC0C1\",children:\"1.\\uC0C9\\uC0C1\"}),`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsxs)(i.li,{children:[\"\\uC8FC Key Visual\\uC774 \\uB418\\uB294 \\uC0C9\\uC0C1\\uC740 \",(0,n.jsx)(i.a,{href:\"https://flowbite.com/docs/customize/colors/\",children:\"Yellow(amber-400)\"}),\" \\uC73C\\uB85C \\uC124\\uC815\\uD558\\uC600\\uC2B5\\uB2C8\\uB2E4.\"]}),`\n`,(0,n.jsx)(i.li,{children:\"\\uBA54\\uC778\\uCEEC\\uB85C\\uB97C \\uAE30\\uC900\\uC73C\\uB85C, Orange, Red\\uC758 \\uC0C9\\uAE54\\uB4E4\\uB85C\\uB9CC \\uB514\\uC790\\uC778\\uC801 \\uAC15\\uC870\\uB97C \\uB450\\uAC8C \\uD558\\uC600\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uC804\\uCCB4 \\uD14D\\uC2A4\\uD2B8 \\uC0C9\\uC0C1, \\uB2E4\\uD06C\\uBAA8\\uB4DC\\uC2DC\\uC758 \\uBC30\\uACBD \\uBC0F \\uBA54\\uB274\\uC0C9\\uC0C1\\uB4F1\\uC740 \\uC804\\uBD80 neutral-400\\uC744 \\uBC14\\uD0D5\\uC73C\\uB85C + -\\uB97C \\uB450\\uC5B4 \\uC801\\uC6A9\\uD558\\uC600\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`]}),`\n`,(0,n.jsx)(i.h2,{id:\"2\\uBE14\\uB85C\\uADF8-\\uBA54\\uB274\",children:\"2.\\uBE14\\uB85C\\uADF8 \\uBA54\\uB274\"}),`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsxs)(i.li,{children:[`\n`,(0,n.jsx)(i.p,{children:\"Top Nav\\uB294 \\uAC00\\uC7A5 \\uC8FC\\uC694\\uD55C 5\\uAC1C\\uC758 \\uBA54\\uB274\\uB85C\\uB9CC \\uAD6C\\uC131\\uD574\\uB450\\uC5C8\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.h3,{id:\"1-1-logs\",children:\"1-1. \\u{1F34B}Logs\"}),`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsx)(i.li,{children:\"\\uCCAB \\uC9C4\\uC785\\uC2DC \\uB9C8\\uC8FC\\uD558\\uB294 \\u{1F34B}Logs\\uC5D0\\uB294 \\uC774 \\uAC1C\\uC778\\uBE14\\uB85C\\uADF8\\uC5D0\\uC11C \\uC791\\uC131\\uD558\\uB294 \\uC804\\uCCB4\\uAE00\\uC744 \\uC804\\uBD80 \\uD655\\uC778\\uD560 \\uC218 \\uC788\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\u{1F34B}\\xA0: \\uC6B0\\uB9AC \\uBAA8\\uB450\\uB294 \\uC0B6\\uC5D0\\uC11C \\uACBD\\uD5D8\\uD558\\uB294 \\uB808\\uBAAC\\uB4E4\\uC744 \\uC801\\uB9BD\\uD558\\uC5EC \\uC790\\uC2E0\\uB9CC\\uC758 \\uB808\\uC2DC\\uD53C\\uB85C \\uB808\\uBAAC\\uC5D0\\uC774\\uB4DC\\uB97C \\uB9CC\\uB4DC\\uB294 \\uC911\\uC778 \\uB808\\uBAAC\\uC5D0\\uC774\\uB4DC \\uBA54\\uC774\\uCEE4\\uB77C \\uC0DD\\uAC01\\uD569\\uB2C8\\uB2E4. \\uADF8 \\uBAA8\\uB4E0 \\uB808\\uBAAC\\uB4E4\\uC5D0 \\uB300\\uD55C \\uAE30\\uB85D\\uC774\\uB77C\\uB294 \\uC740\\uC720\\uC801 \\uD45C\\uD604\\uC73C\\uB85C \\uB808\\uBAAC\\uC744 \\uBA54\\uB274 \\uC544\\uC774\\uCF58\\uC73C\\uB85C \\uC801\\uC6A9\\uD558\\uC600\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.li,{children:\"Key Visual \\uC0C9\\uC0C1\\uC778 Yellow(amber-400)\\uC73C\\uB85C\\uB9CC \\uAC04\\uACB0\\uD558\\uAC8C \\uC9D1\\uC911\\uACFC \\uAC15\\uC870\\uB97C \\uD45C\\uD604\\uD558\\uC600\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uC81C\\uAC00 \\uC124\\uC815\\uD55C \\uAE00\\uC758 TYPE\\uC740 \\uB77C\\uC774\\uD504\\uB85C\\uADF8/\\uAC1C\\uBC1C\\uB85C\\uADF8/\\uAE00\\uC4F0\\uAE30\\uBAA8\\uC74C(\\uB3C5\\uD6C4\\uAC10,\\uBB38\\uC7A5\\uC218\\uC9D1,\\uC5D0\\uC138\\uC774 \\uB4F1)/\\uC7AC\\uB2A5\\uAE30\\uBD80 & \\uCC3D\\uC791\\uAE30\\uB85D/ \\uC601\\uAC10\\uAE30\\uB85D\\uC73C\\uB85C \\uCD1D 5\\uAC1C\\uB85C \\uC774\\uB8E8\\uC5B4\\uC838 \\uC788\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.li,{children:\"5\\uAC1C \\uBD84\\uC57C\\uC758 \\uAE00\\uB85C \\uC774\\uB8E8\\uC5B4\\uC838 \\uC788\\uB2E4\\uB294 \\uAC83\\uC744 \\uC5B4\\uB5BB\\uAC8C \\uD45C\\uD604\\uD574\\uC57C \\uBD88\\uD544\\uC694\\uD558\\uC9C0 \\uC54A\\uACE0 \\uC18C\\uBAA8\\uC801\\uC774\\uC9C0 \\uC54A\\uC73C\\uBA70 \\uC9C0\\uAE08\\uC758 Gitbook theme\\uACFC \\uC790\\uC5F0\\uC2A4\\uB7FD\\uAC8C \\uB179\\uC544\\uC838\\uB0B4\\uB9AC\\uB3C4\\uB85D \\uC9C1\\uAD00\\uC801\\uC73C\\uB85C \\uC18C\\uAD6C\\uD560 \\uC218 \\uC788\\uC744\\uC9C0\\uC5D0 \\uB300\\uD55C \\uBD80\\uBD84\\uC744 \\uACE0\\uB824\\uD558\\uBA70 \\uB808\\uC774\\uC544\\uC6C3 \\uBC0F \\uB514\\uC790\\uC778 \\uC791\\uC5C5\\uC744 \\uC9C4\\uD589\\uD558\\uC600\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`]}),`\n`,(0,n.jsx)(i.h3,{id:\"1-2-logs-by\",children:\"1-2. \\u{1F34B}\\xA0Logs By\"}),`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsx)(i.li,{children:\"Logs by\\uB294 \\uAE00\\uC758 Category\\uD0C0\\uC785\\uBCC4\\uB85C \\uC804\\uCCB4 \\uBE14\\uB85C\\uADF8\\uAE00\\uC744 \\uBCFC \\uC218 \\uC788\\uB294 \\uBA54\\uB274\\uC785\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uC804\\uCCB4 5\\uAC1C \\uBA54\\uB274\\uC5D0 \\uB300\\uD55C \\uB514\\uC790\\uC778/\\uB808\\uC774\\uC544\\uC6C3 \\uC791\\uC5C5\\uC744 \\uC9C4\\uD589 \\uD558\\uC600\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsxs)(i.li,{children:[`\n`,(0,n.jsx)(\"strong\",{children:\"TIL Tech Logs:\"}),`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsx)(i.li,{children:\"\\uAC1C\\uC778\\uBE14\\uB85C\\uADF8\\uC774\\uAE34 \\uD558\\uC9C0\\uB9CC \\uC9C1\\uC5C5\\uC73C\\uB85C\\uC11C\\uC758 \\uAC1C\\uBC1C\\uC790\\uC758 \\uC0B6\\uC744 \\uC774\\uB8E8\\uC5B4 \\uB098\\uC544\\uAC00\\uACE0 \\uC788\\uC74C\\uC73C\\uB85C TIL Tech Logs\\uB97C Logs By \\uBA54\\uB274\\uC758 \\uAC00\\uC7A5 \\uC120\\uB450\\uC5D0 \\uB450\\uC5C8\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.li,{children:\"TIL Tech Logs\\uC758 \\uBA54\\uC778 \\uCEEC\\uB7EC\\uB294 Orange\\uC785\\uB2C8\\uB2E4. \\uBD88\\uD0C0\\uC624\\uB974\\uB294 \\uC624\\uB80C\\uC9C0 \\uC0C9\\uC0C1\\uAC19\\uC774 \\uAE30\\uC220\\uC740 \\uC790\\uCE6B \\uB531\\uB531\\uD558\\uACE0 \\uC774\\uC131\\uC801\\uC73C\\uB85C\\uB9CC \\uBE44\\uCDB0\\uC9C0\\uACE4 \\uD558\\uC9C0\\uB9CC \\uC870\\uC6A9\\uD558\\uAC8C \\uB053\\uC5B4\\uC624\\uB974\\uB294 \\uC5F4\\uC815\\uC73C\\uB85C \\uC8FC\\uBCC0\\uC744 \\uBC1D\\uD788\\uB294 \\uC804\\uB4F1\\uACFC\\uB3C4 \\uBD88\\uC528\\uC640\\uB3C4 \\uAC19\\uB2E4\\uACE0 \\uC0DD\\uAC01\\uD558\\uAE30 \\uB54C\\uBB38\\uC785\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uC644\\uB8CC\\uC8FC\\uC758 > \\uC644\\uC131\\uC8FC\\uC758. \\uC774 \\uC9C4\\uB9AC\\uB294 \\uBAA8\\uB4E0 \\uBC30\\uC6C0\\uC5D0 \\uC801\\uC6A9 \\uB41C\\uB2E4\\uACE0 \\uC0DD\\uAC01\\uD569\\uB2C8\\uB2E4. \\uD574\\uB2F9 \\uBB38\\uC7A5\\uC744 \\uC790\\uC8FC \\uBCF4\\uBA74\\uC11C \\uAC1C\\uBC1C\\uC77C\\uC9C0\\uB97C \\uC801\\uC744 \\uC218 \\uC788\\uB3C4\\uB85D \\uC0C1\\uB2E8\\uC5D0 \\uBC30\\uCE58\\uD558\\uC600\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uB610\\uD55C \\uAC1C\\uBC1C\\uAE00\\uB4E4\\uC740 \\uC2DC\\uAC01\\uC801\\uC73C\\uB85C \\uC790\\uCE6B \\uC7AC\\uBBF8\\uC5C6\\uACE0 \\uBC0B\\uBC0B\\uD558\\uAC8C \\uB290\\uAEF4\\uC9C8 \\uC218\\uB3C4 \\uC788\\uAE30 \\uB54C\\uBB38\\uC5D0 Photo-card \\uD615\\uC2DD\\uC758 \\uBAA9\\uB85D\\uC73C\\uB85C \\uC804\\uCCB4\\uAE00\\uC744 \\uD45C\\uD604\\uD560 \\uC218 \\uC788\\uB3C4\\uB85D \\uC791\\uC5C5\\uD558\\uC600\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uAC01 \\uAE00\\uC5D0 \\uB300\\uD558\\uC5EC \\uC0C9\\uC0C1\\uC774 \\uC801\\uC6A9\\uB41C \\uD0DC\\uADF8\\uAC12\\uC73C\\uB85C \\uD574\\uB2F9 \\uAE00\\uC774 \\uC5B4\\uB5A4 \\uAE30\\uC220\\uC5D0 \\uB300\\uD55C \\uAE00\\uC778\\uC9C0 \\uD655\\uC778\\uD560 \\uC218 \\uC788\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`]}),`\n`]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"Life logs\"}),\":\",`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsx)(i.li,{children:\"\\uC800\\uC758 \\uAC1C\\uC778\\uC801\\uC774\\uACE0 \\uC544\\uC8FC \\uC0AC\\uC801\\uC778 \\uC77C\\uAE30\\uC640 \\uAC19\\uC740 \\uC0B6\\uC758 \\uC870\\uAC01\\uB4E4\\uC5D0 \\uB300\\uD55C \\uAE00\\uC774 \\uBCF4\\uAD00\\uB41C \\uD398\\uC774\\uC9C0\\uC785\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uC790\\uC2E0\\uACFC \\uC790\\uAE30 \\uC0B6\\uC5D0 \\uC815\\uC9C1\\uD558\\uACE0 \\uC9C4\\uC2E4\\uB41C - \\uADF8\\uAC8C \\uC124\\uB839 \\uCD08\\uB77C\\uD558\\uACE0 \\uCABD\\uD314\\uB9AC\\uACE0 \\uC5B4\\uC124\\uD508 \\uBD80\\uBD84\\uB3C4 \\uC788\\uC744\\uC9C0\\uB77C\\uB3C4 - \\uC0AC\\uB78C\\uC774 \\uACB0\\uAD6D\\uC740 \\uC7A5/\\uB2E8\\uAE30\\uC801\\uC73C\\uB85C \\uC790\\uAE30 \\uC55E\\uC758 \\uC0DD\\uC744 \\uC774\\uB8E8\\uC5B4 \\uB098\\uAC00\\uAC8C \\uB41C\\uB2E4\\uB294 \\uAC83\\uC744 \\uC9C0\\uB09C 1\\uB144\\uC5EC\\uAC04 \\uBAB8\\uC18C \\uCCB4\\uD5D8\\uD558\\uC600\\uC2B5\\uB2C8\\uB2E4. \\uC774\\uB97C \\uC8FC\\uC81C\\uB85C \\uBA54\\uB274 \\uC791\\uC5C5\\uC744 \\uC9C4\\uD589\\uD558\\uC600\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.li,{children:\"Life log\\uC758 \\uBA54\\uC778 \\uCEEC\\uB7EC\\uB294 Red\\uC785\\uB2C8\\uB2E4. \\uBE68\\uAC15\\uC740 \\uAC00\\uC7A5 \\uC9C4\\uC2E4 \\uB418\\uBA70 \\uAC70\\uC9D3 \\uC5C6\\uB294 \\uC0B6\\uC758 \\uC2EC\\uC7A5\\uACFC \\uAC19\\uC740 \\uC0C9\\uC774\\uB77C\\uACE0 \\uC0DD\\uAC01\\uD569\\uB2C8\\uB2E4. \\uC6B0\\uB9AC \\uC2E0\\uCCB4\\uC5D0 \\uD750\\uB974\\uACE0 \\uC788\\uB294 \\uD53C\\uC640 \\uAC19\\uC774 \\uC0B6\\uC744 \\uAD00\\uD1B5\\uD558\\uB294 \\uC0C9\\uC774\\uB77C\\uACE0 \\uC0DD\\uAC01\\uD558\\uAE30 \\uB54C\\uBB38\\uC785\\uB2C8\\uB2E4. \\uB77C\\uC774\\uD504-\\uB85C\\uADF8\\uB77C\\uB294 \\uADF8 \\uC774\\uB984\\uC5D0 \\uC815\\uC9C1\\uD55C \\uAE00\\uB4E4\\uB85C\\uB9CC \\uC55E\\uC73C\\uB85C\\uB3C4 \\uC801\\uC5B4\\uB0B4\\uB824 \\uAC00\\uACE0 \\uC2F6\\uC740 \\uC695\\uC2EC\\uC5D0 \\uBE68\\uAC15\\uC0C9\\uACFC Omer\\uC2DC\\uC778\\uC758 \\uBB38\\uC7A5 \\uADF8\\uB9AC\\uACE0 Red \\uC640 Brown\\uC744 \\uC624\\uAC00\\uB294 \\uC800\\uC758 \\uC0AC\\uC9C4\\uB4E4\\uC744 \\uBC30\\uACBD\\uC73C\\uB85C \\uC801\\uC6A9\\uD558\\uC600\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uC815\\uC9C1\\uD558\\uACE0 \\uC21C\\uC218\\uD558\\uAC8C \\uAE00\\uB85C\\uC11C\\uB9CC \\uADF8 \\uAE30\\uB2A5\\uC744 \\uD558\\uB294 \\uBA54\\uB274\\uB4E4\\uC740 \\uC804\\uBD80 \\uB9AC\\uC2A4\\uD2B8 \\uD615\\uC2DD\\uC73C\\uB85C \\uC804\\uCCB4\\uAE00\\uC744 \\uD45C\\uD604\\uD558\\uC600\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`]}),`\n`]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"Writing\"}),\":\",`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsx)(i.li,{children:\"\\uD070 \\uD638\\uD761\\uACFC \\uC8FC\\uC81C\\uAC00 \\uC788\\uB294 \\uAE00/ \\uB3C5\\uD6C4\\uAC10 / \\uC88B\\uC740 \\uBB38\\uC7A5\\uC5D0 \\uB300\\uD55C \\uD544\\uC0AC\\uC640 \\uC800\\uC758 \\uACAC\\uD574 \\uB4F1\\uC5D0 \\uB300\\uD55C \\uAE30\\uB85D\\uC774 \\uBCF4\\uAD00\\uB41C \\uD398\\uC774\\uC9C0\\uC785\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.li,{children:\"Writing\\uC758 \\uBA54\\uC778 \\uCEEC\\uB7EC\\uB294 Yellow\\uC785\\uB2C8\\uB2E4. \\uC800\\uC758 \\uAE00 \\uBFD0 \\uC544\\uB2C8\\uB77C \\uC138\\uC0C1\\uC758 \\uAE00, \\uD0C0\\uC778\\uC758 \\uAE00, \\uC778\\uD130\\uB137\\uC758 \\uAE00 \\uB4F1 \\uB2E4\\uC591\\uD55C \\uAE00\\uC5D0 \\uB300\\uD55C \\uC0AC\\uC720\\uC640 \\uAE30\\uB85D\\uC73C\\uB85C \\uC810\\uCCA0\\uB41C \\uD398\\uC774\\uC9C0\\uC774\\uAE30 \\uB54C\\uBB38\\uC785\\uB2C8\\uB2E4. \\uC774 \\uBE14\\uB85C\\uADF8\\uC758 \\uBA54\\uC778 \\uCEEC\\uB7EC\\uC774\\uAE30\\uB3C4 \\uD55C Yellow\\uAC00 \\uC804\\uCCB4 \\uBE14\\uB85C\\uADF8\\uB97C \\uC544\\uC6B0\\uB974\\uB294 Base\\uC0C9\\uC778 \\uAC83\\uACFC \\uAC19\\uC774, \\uC804\\uCCB4\\uB97C \\uD0D0\\uD5D8\\uD558\\uACE0 \\uC624\\uACE0\\uAC00\\uB294 \\uBB38\\uC7A5\\uB4E4\\uC5D0 \\uB300\\uD558\\uC5EC \\uBCFC \\uC218 \\uC788\\uB294 \\uD398\\uC774\\uC9C0 \\uC774\\uAE30 \\uB54C\\uBB38\\uC5D0 \\uBE14\\uB85C\\uADF8 \\uBA54\\uC778 \\uCEEC\\uB7EC\\uC640 \\uB3D9\\uC77C\\uD55C \\uC0C9\\uC0C1\\uC73C\\uB85C \\uC801\\uC6A9\\uD558\\uC600\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uC815\\uC9C1\\uD558\\uACE0 \\uC21C\\uC218\\uD558\\uAC8C \\uAE00\\uB85C\\uC11C\\uB9CC \\uADF8 \\uAE30\\uB2A5\\uC744 \\uD558\\uB294 \\uBA54\\uB274\\uB4E4\\uC740 \\uC804\\uBD80 \\uB9AC\\uC2A4\\uD2B8 \\uD615\\uC2DD\\uC73C\\uB85C \\uC804\\uCCB4\\uAE00\\uC744 \\uD45C\\uD604\\uD558\\uC600\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`]}),`\n`]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"Giving Records\"}),\":\",`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsx)(i.li,{children:\"\\uC800\\uC5D0\\uAC8C \\uC874\\uC7AC\\uD558\\uB294 \\uC791\\uC740 \\uC7AC\\uB2A5\\uB4E4\\uB85C \\uB098\\uB204\\uACE0, \\uBD09\\uC0AC\\uD558\\uACE0, \\uB9CC\\uB4E4\\uC5B4\\uB0B8 \\uAC1C\\uBC1C \\uC678\\uC801\\uC778 \\uC0AC\\uC774\\uB4DC\\uD504\\uB85C\\uC81D\\uD2B8\\uB4E4\\uC5D0 \\uB300\\uD55C \\uAE30\\uB85D\\uC774 \\uBCF4\\uAD00\\uB41C \\uD398\\uC774\\uC9C0\\uC785\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.li,{children:\"Giving Records\\uC758 \\uBA54\\uC778 \\uCEEC\\uB7EC\\uB294 \\uB530\\uB85C \\uC5C6\\uC9C0\\uB9CC \\uBA54\\uC778 Visual\\uC740 \\uC788\\uC2B5\\uB2C8\\uB2E4.\\uC5B4\\uB5A4 \\uC0C9\\uC73C\\uB85C \\uD55C\\uACC4\\uB098 \\uADDC\\uC815\\uC744 \\uC9D3\\uC9C0\\uC54A\\uB294 \\u{1F3A8}\\uD314\\uB808\\uD2B8 \\uC785\\uB2C8\\uB2E4. LogsBy\\uC911 \\uC720\\uC77C\\uD558\\uAC8C Key Visual Icon\\uC774 \\uC788\\uB294 \\uD398\\uC774\\uC9C0\\uC785\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsxs)(i.li,{children:[\"\\uBD09\\uC0AC\\uC640 \\uB098\\uB214\\uC774 \\uC65C \\uC778\\uAC04\\uC758 \\uC0B6\\uC744 \\uC774\\uB86D\\uAC8C \\uD558\\uB294\\uC9C0\\uB294 \",(0,n.jsx)(i.a,{href:\"https://www.aladin.co.kr/m/mproduct.aspx?ItemId=247420735\",children:\"\\uC6B0\\uB9AC\\uB294 \\uB2E4\\uC2DC \\uC5F0\\uACB0\\uB418\\uC5B4\\uC57C \\uD55C\\uB2E4\"}),\"\\uB97C \\uBE44\\uB86F\\uD558\\uC5EC \\uC218 \\uB9CE\\uC740 \\uC790\\uAE30\\uACC4\\uBC1C\\uC11C\\uC5D0\\uC11C \\uC5B8\\uC81C\\uB098 \\uAC15\\uC870\\uD558\\uB294 \\uBD80\\uBD84\\uC785\\uB2C8\\uB2E4. \\uADF8\\uB7EC\\uB098 20\\uB300 \\uB54C\\uB294 \\uAC00\\uC2B4\\uC73C\\uB85C \\uAE68\\uB2EB\\uC9C0 \\uBABB\\uD588\\uC2B5\\uB2C8\\uB2E4. \\uC9C0\\uB09C 9\\uAC1C\\uC6D4\\uAC04 \\uBD09\\uC0AC\\uB97C \\uD558\\uBA70 \\uC774 \\uB9D0\\uC758 \\uC9C4\\uB9AC\\uB97C \\uC54C\\uAC8C \\uB410\\uC2B5\\uB2C8\\uB2E4. \\uC218 \\uB9CE\\uC740 \\uAC83\\uB4E4\\uC5D0 \\uC791\\uAC8C \\uB2E4\\uC7AC\\uB2E4\\uB2A5\\uD55C \\uC0AC\\uB78C\\uB4E4\\uC774 \\uC758\\uB840 \\uADF8\\uB7EC\\uD558\\uB4EF\\uC774 \\uC800 \\uC5ED\\uC2DC \\uC0B6\\uC5D0 \\uB300\\uD55C \\uC804\\uBC18\\uC801\\uC774\\uBA70 \\uC5EC\\uB7EC \\uBD84\\uC57C\\uB97C \\uB450\\uB8E8 \\uD3EC\\uAD04\\uD558\\uB294 \\uAD11\\uBC94\\uC704\\uD55C \\uD638\\uAE30\\uC2EC\\uC744 \\uBC14\\uD0D5\\uC73C\\uB85C \\uB2E4\\uC591\\uD55C \\uAC83\\uB4E4\\uC744 \\uACBD\\uD5D8\\uD558\\uACE0 \\uB9CC\\uB4E4\\uACE0 \\uC81C\\uC791\\uD558\\uACE0 \\uC81C\\uC548\\uD558\\uACE0 \\uCC3D\\uC791\\uD558\\uBA70 20\\uB300\\uB97C \\uAD00\\uD1B5\\uD588\\uC2B5\\uB2C8\\uB2E4. \\uADF8\\uB798\\uC11C \\uC790\\uAE30\\uC0AC\\uACE0\\uC640 \\uCC3D\\uC791\\uC774\\uB77C\\uB294 \\uAE30\\uC900\\uAC12\\uC774 \\uAE30\\uBCF8\\uAC12\\uC73C\\uB85C \\uB0B4\\uC7AC\\uB3FC \\uC788\\uB294 \\uC18C\\uD504\\uD2B8\\uC6E8\\uC5B4 \\uC5D4\\uC9C0\\uB2C8\\uC5B4\\uB9C1\\uC744 \\uC88B\\uC544\\uD558\\uAC8C\\uB41C \\uAC83\\uB3C4 \\uC788\\uC2B5\\uB2C8\\uB2E4. \\uADF8\\uB7EC\\uB098 \\uC2DC\\uAC04\\uC758 \\uD750\\uB984\\uC5D0 \\uB530\\uB77C 20\\uB300 \\uB54C \\uC990\\uAC81\\uAC8C \\uC5F0\\uB9C8\\uD574\\uB450\\uC5C8\\uB358 \\uC791\\uC740 \\uC7AC\\uB2A5\\uB4E4\\uC740 \\uC774\\uC81C\\uB294 \\uC2E4\\uC81C\\uC758 \\uC0B6 \\uC18D\\uC5D0\\uC11C \\uAEBC\\uB0B4\\uC5B4 \\uC62C\\uBC14\\uB974\\uAC8C \\uC4F0\\uC784\\uC744 \\uB2E4\\uD558\\uAE30\\uB294 \\uC5B4\\uB824\\uC6B4 \\uC0DD\\uC744 \\uC0B4\\uACE0 \\uC788\\uC5C8\\uC2B5\\uB2C8\\uB2E4. \\uADF8\\uB7F0\\uB370 \\uBD09\\uC0AC\\uB97C \\uC2DC\\uC791\\uD568\\uC73C\\uB85C\\uC368 \\uC800\\uC758 \\uAC1C\\uC778\\uC801 \\uC695\\uAD6C\\uC640 \\uC774\\uD0C0\\uC801 \\uC131\\uCDE8\\uB97C \\uB3D9\\uBC18 \\uC7C1\\uCDE8\\uD558\\uB294 Giver\\uB85C\\uC11C\\uC758 \\uC0B6\\uC73C\\uB85C \\uBCC0\\uD654\\uD558\\uACE0 \\uBC1C\\uC804\\uD574 \\uB098\\uC544\\uAC00\\uAC8C \\uB410\\uC2B5\\uB2C8\\uB2E4. \\uC774\\uB97C \\uBE44\\uB86F\\uD55C \\uAE30\\uB85D\\uB4E4\\uC774 \\uBCF4\\uAD00\\uB41C \\uD398\\uC774\\uC9C0\\uC785\\uB2C8\\uB2E4. \\uC801\\uB2E4\\uBCF4\\uB2C8 \\uB4E0 \\uC0DD\\uAC01\\uC778\\uB370 \\uAC1C\\uBC1C\\uC790\\uB4E4\\uC740 \\uB2E4\\uB4E4 \\uC77C\\uBD80\\uBD84 \\uD0C0\\uACE0\\uB09C Giver\\uAE30\\uC9C8\\uC774 \\uBCF8\\uB2A5\\uC801\\uC73C\\uB85C \\uC788\\uB294 \\uC0AC\\uB78C\\uB4E4\\uC778 \\uAC83 \\uAC19\\uB124\\uC694. \\uADF8\\uB798\\uC11C \\uC774\\uB807\\uAC8C \\uC624\\uD508\\uC18C\\uC2A4 \\uC0DD\\uD0DC\\uACC4\\uAC00 \\uD65C\\uBC1C\\uD558\\uACE0 \\uC138\\uC0C1\\uC5D0 \\uAE30\\uC5EC\\uD558\\uB294 \\uC0DD\\uD0DC\\uACC4\\uAC00 \\uC624\\uB798\\uC624\\uB798 \\uC720\\uC9C0\\uB418\\uB294 \\uAC83 \\uAC19\\uC2B5\\uB2C8\\uB2E4.\"]}),`\n`]}),`\n`]}),`\n`,(0,n.jsxs)(i.li,{children:[`\n`,(0,n.jsx)(\"strong\",{children:\"Inspiration Log:\"}),`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(i.a,{href:\"https://campaign.naver.com/blogpeople/?5=\",children:\"\\uC774\\uC22D\\uD76C \\uB9C8\\uCF00\\uD130\"}),\"\\uB2D8 \\uBC0F \",(0,n.jsx)(i.a,{href:\"https://www.yes24.com/Product/Goods/59438439\",children:\"\\uC7A5\\uC778\\uC131 \\uC791\\uAC00\"}),\"\\uB2D8\\uC5D0\\uAC8C \\uC790\\uADF9\\uC744 \\uBC1B\\uC544 \\uAE30\\uB85D\\uD558\\uB294 \\uC0B6\\uC774 \\uC2DC\\uC791 \\uB410\\uC2B5\\uB2C8\\uB2E4.\"]}),`\n`,(0,n.jsx)(i.li,{children:\"\\uC790\\uC8FC \\uAC74\\uAC15\\uD558\\uAC8C \\uC9C8\\uD22C\\uD558\\uACE0, \\uBD80\\uB7EC\\uC6CC\\uD558\\uACE0, \\uB0A8\\uC73C\\uB85C \\uBD80\\uD130 \\uC798 \\uBC30\\uC6CC\\uC11C \\uC800\\uC758 \\uC778\\uC0DD\\uC744 \\uB2E4\\uCC44\\uB86D\\uAC8C \\uC77C\\uAD6C\\uC5B4\\uC544\\uAC00\\uACE0 \\uC788\\uACE0 \\uC55E\\uC73C\\uB85C\\uB3C4 \\uADF8\\uB7F4 \\uAC83 \\uC785\\uB2C8\\uB2E4. \\uC774\\uC5D0 \\uB300\\uD55C \\uAE30\\uB85D\\uC774 \\uBCF4\\uAD00\\uB41C \\uD398\\uC774\\uC9C0\\uC785\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.li,{children:\"Inspiration Log\\uC758 \\uBA54\\uC778 \\uCEEC\\uB7EC\\uB294 Yellow\\uC774\\uBA70 \\uC774\\uC720\\uB294 Writing\\uB85C\\uADF8\\uC640 \\uAC19\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`]}),`\n`]}),`\n`]}),`\n`]}),`\n`]}),`\n`,(0,n.jsx)(i.h1,{id:\"-\\uCD94\\uAC00-\\uC791\\uC5C5-\\uC9C4\\uD589\\uC911\",children:\"+ \\uCD94\\uAC00 \\uC791\\uC5C5 \\uC9C4\\uD589\\uC911\"}),`\n`,(0,n.jsx)(i.h3,{id:\"2406\\uC6D4-\\uAE30\\uC900\",children:\"24.06\\uC6D4 \\uAE30\\uC900\"}),`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsxs)(i.li,{children:[`\n`,(0,n.jsx)(i.p,{children:\"\\uC774 \\uBE14\\uB85C\\uADF8 Format\\uC744 \\uB204\\uAD6C\\uB098 \\uC0AC\\uC6A9\\uD560 \\uC218 \\uC788\\uAC8C Skeleton \\uB9AC\\uD3EC\\uC9C0\\uD1A0\\uB9AC \\uC791\\uC5C5 \\uBC0F \\uC0C1\\uC138 \\uBA85\\uC138\\uC11C \\uC791\\uC5C5\\uC744 \\uC9C4\\uD589\\uD558\\uACE0 \\uC788\\uC2B5\\uB2C8\\uB2E4\"}),`\n`]}),`\n`,(0,n.jsxs)(i.li,{children:[`\n`,(0,n.jsx)(i.p,{children:\"\\uBC30\\uC6C0\\uC5D0 \\uD574\\uB2F9\\uD558\\uB294 \\uCE74\\uD14C\\uACE0\\uB9AC\\uC640 \\uD558\\uC704 \\uBA54\\uB274 \\uAE30\\uB2A5\\uAC1C\\uC120 \\uC791\\uC5C5\\uC744 \\uC9C4\\uD589\\uD558\\uB294 \\uC911\\uC785\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.p,{children:(0,n.jsx)(i.img,{alt:\"\\u1109\\u1173\\u110F\\u1173\\u1105\\u1175\\u11AB\\u1109\\u1163\\u11BA_2024-06-24_\\u110B\\u1169\\u1112\\u116E_3.48.57.png\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641201/norkive-notion-images/1754641201364-E1_84_89_E1_85_B3_E1_84_8F_E1_85_B3_E1_84_85_E1_85_B5_E1_86_AB_E1_84_89_E1_85_A3_E1_86_BA_2024-06-24_E1_84_8B_E1_85_A9_E1_84_92_E1_85_AE_3.48.57.png\",width:\"1588\",height:\"204\"})}),`\n`]}),`\n`,(0,n.jsxs)(i.li,{children:[`\n`,(0,n.jsx)(i.p,{children:\"Next.js 14 ver\\uC73C\\uB85C \\uBCC0\\uACBD\\uC791\\uC5C5 \\uC9C4\\uD589\\uC911\\uC785\\uB2C8\\uB2E4.\"}),`\n`]}),`\n`,(0,n.jsxs)(i.li,{children:[`\n`,(0,n.jsx)(i.p,{children:\"Typescript\\uB85C\\uC758 \\uB9C8\\uC774\\uADF8\\uB808\\uC774\\uC158 \\uC791\\uC5C5 \\uC9C4\\uD589\\uC911\\uC5D0 \\uC788\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`]}),`\n`]}),`\n`,(0,n.jsx)(i.h3,{id:\"\\uC81C\\uBAA9-\\uC5C6\\uC74C\",children:\"\\uC81C\\uBAA9 \\uC5C6\\uC74C\"})]})}function a(e={}){let{wrapper:i}=e.components||{};return i?(0,n.jsx)(i,{...e,children:(0,n.jsx)(s,{...e})}):s(e)}function k(e,i){throw new Error(\"Expected \"+(i?\"component\":\"object\")+\" `\"+e+\"` to be defined: you likely forgot to import, pass, or provide it.\")}return b(x);})();\n;return Component;"
-  },
-  {
-    "notionId": "aafebe4fe33a4bd5a1174db79635dfa7",
-    "title": "[SP] Ryoon-Note(Notion-clone)",
-    "icon": "",
-    "full": false,
-    "summary": "Ryoon-Note(세륜노트) is a Next.js 13 ver end-to-end Fullstack notion-like Web App with TypeScript",
-    "pageCover": "https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641189/norkive-notion-images/1754641188066-note2_screenshot.png",
-    "password": "",
-    "type": "PROJECTS",
-    "description": "",
-    "date": "2023-11-29T00:00:00.000Z",
-    "lastEditedDate": "2025-08-05T03:08:00.000Z",
-    "sub_type": "Dev",
-    "category": "DevProject",
-    "tags": [
-      "Portfolio",
-      "Next.js13",
-      "Google Map",
-      "Google Place Api"
-    ],
-    "draft": false,
-    "favorite": true,
-    "readingTime": 1,
-    "wordCount": 29,
-    "lastModified": "2025-08-08",
-    "version": "1.0.0",
-    "status": "published",
-    "author": "ryoon",
-    "content": "![note1_screenshot.png](https://github.com/ryoon-with-wisdomtrees/Ryoon-Note-like-notion/raw/main/public/note1_screenshot.png)\n\n\n![note3_screenshot.png](https://github.com/ryoon-with-wisdomtrees/Ryoon-Note-like-notion/raw/main/public/note3_screenshot.png)\n\n\n# 1. 리포지토리\n\n\n[link_preview](https://github.com/ryoon-with-wisdomtrees/Ryoon-Note-like-notion)\n\n\n# 2. 사이트\n\n\n<BookMarkWrapper names={\"bookmark\"} urls={\"https://seryoon-note-app.vercel.app/\"} />\n\n\n![main_screenshot.png](https://github.com/ryoon-with-wisdomtrees/Ryoon-Note-like-notion/raw/main/public/main_screenshot.png)\n\n\n# 3. Ryoon-note(Next.js 13 Notion like app)\n\n- A end-to-end Fullstack Notion-like app, all with proper notion-style editor, cover images, nested documents, publishing documents to public, real-time database and more\n- Ryoon-note로 글을 작성하고 Publish해보세요.\n- 저도 제가 작성한 글을 [이 링크](https://seryoon-note-app.vercel.app/preview/3n251s3kyh03ff9h3sdr8y749kdy2dg/)에 남겨둡니다.📝\n\n# 4. 제작과정\n\n- 기술스택 - Next.js 13, Clerk, Zustand, Convex, EdgeStore, Tailwind CSS, Typescript, BlockNote\n- 제작기간 - 일주일\n\n이 Ryoon-note(notion-like app)는 [Fullstack Notion Clone: Next.js 13, React, Convex, Tailwind](https://youtu.be/0OaDyjB9Ib8)유튜브강의를 참고하여 TypeScript로 작성한 웹앱입니다.\n\n\n해당 강의를 들으면서 처음 Zustand,Convex, EdgeStore등을 알게 됐는데 꽤나 흥미로워서 몰입하여 작업한 기억이 납니다. 강의가 8시간 짜리이고, 중간 중간 왜 위치에서 왜 그런 방식으로 쓰였는지가 생략된 것들에 대하여 곱씹어보고 또 새로이 알게된 기술들에 대하여 연마하며 작업하다보니 꽤 작업기간이 길어졌지만 그만큼 배우는 재미가 커서 재밌게 작업했습니다.\n\n\n## Key Features\n\n\n유튜브 강의에 나와있는 피쳐들은 아래와 같은데요,\n\n- Real-time database 🔗\n- Notion-style editor 📝\n- Light and Dark mode 🌓\n- Infinite children documents 🌲\n- Trash can & soft delete 🗑️\n- Authentication 🔐\n- File upload\n- File deletion\n- File replacement Icons for each document (changes in real-time) 🌠 Expandable sidebar ➡️🔀⬅️ Full mobile responsiveness 📱 Publish your note to the web 🌐 Fully collapsable sidebar ↕️ Landing page 🛬 Cover image of each document 🖼️ Recover deleted files 🔄📄\n\n개인적으로는 노션이 제공하는 커버이미지업로드, emoji-picker-react를 사용한 아이콘지정, 페이지의 제목이 바뀜과 동시에 목록에서의 제목도 바뀌게 하는 것, Publish&Share기능, 말그대로 Infinite 자식 도큐먼트, 이제는 대부분의 앱에서 제공중인 다크모드와 서치기능등이 기억나고... 진짜 노션같은 늘어나고 접히며 줄어드는 leftSideBar를 만드는 과정도 흥미로웠습니다.\n\n\n또 Convex로 하는 CRUD작업이 너무 재밌었어요. 뭐 기본적인 것만 했으니 심화로 들어가진 않았지만 역시나 백엔드했던 가닥(?)이 조금 있다보니 프론트엔드로 넘어와서 새로운 기술들을 접하고 비즈니스와 모델레이어에 대한 작업을 할 때마다 문법이 익숙하지 않아서 그렇지 작업자체는 참 재밌습니다.\n\n\n또 이번에 [BlockNote](https://www.blocknotejs.org/) 라이브러리는 처음알게 됐는데(처음알게된 라이브러리가 참 많네요. 클론코딩할 때 제가 모르던 이런 새로운 기술들을 접할 수 있어서 또 재밌어서 더 하게 되는 거 같아요)참 감탄하며 작업했습니다. 덕분에 조상격인 Prosemirror와 TipTap도 알게되고.\n\n\n올해에 [LiveBlocks](https://liveblocks.io/)를 처음 접하고 사내 프로젝트에서 테스트해 볼때도 신선한 충격을 받았었는데 이번에도 그런 좋은 충격을 받았습니다. 새삼 오픈소스 라이브러리 작업자들에 언제나 그렇지만 또 감사하고 경이로움을 느낍니다. 또 저도언젠가는 그런 Receiver만이 아닌 창작자이자 Giver가 되길 바라기도 하구요.\n\n\n## 커스텀해서 사용하고 싶으시다면?\n\n- .env파일을 작성후 아래의 variable에 대한 값을 지정해주시면 되며, 저의 경우 배포는 vercel을 이용하였습니다.\n- 로컬에서 테스트할시와 운영서버에 적용할시에 작성할 .env파일은 각각 다릅니다.\n\n```plain text\n로컬/개발서버용 .env\nCONVEX_DEPLOYMENT=\nNEXT_PUBLIC_CONVEX_URL=\nNEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=\nCLERK_SECRET_KEY=클러크\nEDGE_STORE_ACCESS_KEY=\nEDGE_STORE_SECRET_KEY=\n```\n\n\n```plain text\nProduction 운영서버용 .env\nCI = false //https://stackoverflow.com/questions/66840942/vercel-deployment-error-command-npm-run-build-exited-with-1 이 글을 참고하세요\nCONVEX_DEPLOY_KEY= 운영배포용 키의 변수명이 다른점을 유의하세요\nNEXT_PUBLIC_CONVEX_URL=\nNEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=\nCLERK_SECRET_KEY=\nEDGE_STORE_ACCESS_KEY=\nEDGE_STORE_SECRET_KEY=\n```\n\n- Clerk와 Convex 연동 관련하여 auth.config.js 파일의 생성 및 수정이 필요합니다. 자세한 사항은 [이 링크](https://docs.convex.dev/auth/clerk)를 참조하시면 됩니다. 또한 이 링크도 참조하세요 [Integrate Convex with Clerk](https://clerk.com/docs/integrations/databases/convex)",
-    "_meta": {
-      "filePath": "projects-SP-Ryoon-Note-Notion-clone.mdx",
-      "fileName": "projects-SP-Ryoon-Note-Notion-clone.mdx",
-      "directory": ".",
-      "extension": "mdx",
-      "path": "projects-SP-Ryoon-Note-Notion-clone"
-    },
-    "toc": [
-      {
-        "title": "1. 리포지토리",
-        "url": "#1-리포지토리",
-        "depth": 1
-      },
-      {
-        "title": "2. 사이트",
-        "url": "#2-사이트",
-        "depth": 1
-      },
-      {
-        "title": "3. Ryoon-note(Next.js 13 Notion like app)",
-        "url": "#3-ryoon-notenextjs-13-notion-like-app",
-        "depth": 1
-      },
-      {
-        "title": "4. 제작과정",
-        "url": "#4-제작과정",
-        "depth": 1
-      },
-      {
-        "title": "Key Features",
-        "url": "#key-features",
+        "title": "프로젝트 구조",
+        "url": "#프로젝트-구조",
         "depth": 2
       },
       {
-        "title": "커스텀해서 사용하고 싶으시다면?",
-        "url": "#커스텀해서-사용하고-싶으시다면",
+        "title": "설정",
+        "url": "#설정",
+        "depth": 2
+      },
+      {
+        "title": "주요 구현 사항",
+        "url": "#주요-구현-사항",
+        "depth": 2
+      },
+      {
+        "title": "성능 최적화",
+        "url": "#성능-최적화",
+        "depth": 3
+      },
+      {
+        "title": "SEO 최적화",
+        "url": "#seo-최적화",
+        "depth": 3
+      },
+      {
+        "title": "콘텐츠 관리",
+        "url": "#콘텐츠-관리",
+        "depth": 3
+      },
+      {
+        "title": "배포",
+        "url": "#배포",
+        "depth": 2
+      },
+      {
+        "title": "Vercel (권장)",
+        "url": "#vercel-권장",
+        "depth": 3
+      },
+      {
+        "title": "기타 플랫폼",
+        "url": "#기타-플랫폼",
+        "depth": 3
+      },
+      {
+        "title": "개발 하이라이트",
+        "url": "#개발-하이라이트",
+        "depth": 2
+      },
+      {
+        "title": "라이선스",
+        "url": "#라이선스",
+        "depth": 2
+      },
+      {
+        "title": "크레딧",
+        "url": "#크레딧",
         "depth": 2
       }
     ],
     "structuredData": {
       "contents": [
         {
-          "heading": "1-리포지토리",
-          "content": "link_preview"
+          "heading": "rwwt-log",
+          "content": "Next.js 13과 Notion API를 활용한 프로덕션 레디 정적 블로그 플랫폼. Gitbook 스타일의 모던한 UI/UX 디자인을 제공합니다."
         },
         {
-          "heading": "3-ryoon-notenextjs-13-notion-like-app",
-          "content": "A end-to-end Fullstack Notion-like app, all with proper notion-style editor, cover images, nested documents, publishing documents to public, real-time database and more"
+          "heading": "rwwt-log",
+          "content": "🌐 Live Demo: https://mdx-norkive.vercel.app/"
         },
         {
-          "heading": "3-ryoon-notenextjs-13-notion-like-app",
-          "content": "Ryoon-note로 글을 작성하고 Publish해보세요."
+          "heading": "rwwt-log",
+          "content": "📦 Repository: GitHub"
         },
         {
-          "heading": "3-ryoon-notenextjs-13-notion-like-app",
-          "content": "저도 제가 작성한 글을 이 링크에 남겨둡니다.📝"
+          "heading": "개요",
+          "content": "Notion 페이지를 백엔드 없이 완전한 기능을 갖춘 블로그로 변환하는 서버리스 정적 사이트 생성기입니다. 최신 웹 기술로 구축되었으며 성능, SEO, 사용자 경험에 최적화되어 있습니다."
         },
         {
-          "heading": "4-제작과정",
-          "content": "기술스택 - Next.js 13, Clerk, Zustand, Convex, EdgeStore, Tailwind CSS, Typescript, BlockNote"
+          "heading": "주요-기능",
+          "content": "🚀 모던 스택: Next.js 13 App Router, React 18, Tailwind CSS"
         },
         {
-          "heading": "4-제작과정",
-          "content": "제작기간 - 일주일"
+          "heading": "주요-기능",
+          "content": "📝 Notion 통합: Notion API를 통한 원활한 콘텐츠 관리"
         },
         {
-          "heading": "4-제작과정",
-          "content": "이 Ryoon-note(notion-like app)는 Fullstack Notion Clone: Next.js 13, React, Convex, Tailwind유튜브강의를 참고하여 TypeScript로 작성한 웹앱입니다."
+          "heading": "주요-기능",
+          "content": "🎨 Gitbook 테마: 기술 콘텐츠에 최적화된 깔끔하고 전문적인 레이아웃"
         },
         {
-          "heading": "4-제작과정",
-          "content": "해당 강의를 들으면서 처음 Zustand,Convex, EdgeStore등을 알게 됐는데 꽤나 흥미로워서 몰입하여 작업한 기억이 납니다. 강의가 8시간 짜리이고, 중간 중간 왜 위치에서 왜 그런 방식으로 쓰였는지가 생략된 것들에 대하여 곱씹어보고 또 새로이 알게된 기술들에 대하여 연마하며 작업하다보니 꽤 작업기간이 길어졌지만 그만큼 배우는 재미가 커서 재밌게 작업했습니다."
+          "heading": "주요-기능",
+          "content": "📱 반응형 디자인: 모바일 우선 접근 방식의 적응형 레이아웃"
         },
         {
-          "heading": "key-features",
-          "content": "유튜브 강의에 나와있는 피쳐들은 아래와 같은데요,"
+          "heading": "주요-기능",
+          "content": "🌙 다크 모드: 완전히 구현된 다크/라이트 테마 전환"
         },
         {
-          "heading": "key-features",
-          "content": "Real-time database 🔗"
+          "heading": "주요-기능",
+          "content": "⚡ 성능 최적화: ISR(Incremental Static Regeneration)을 활용한 정적 생성"
         },
         {
-          "heading": "key-features",
-          "content": "Notion-style editor 📝"
+          "heading": "주요-기능",
+          "content": "🔍 SEO 최적화: 사이트맵, robots.txt, 메타 태그 최적화 내장"
         },
         {
-          "heading": "key-features",
-          "content": "Light and Dark mode 🌓"
+          "heading": "주요-기능",
+          "content": "💬 댓글 시스템: GitHub 기반 Giscus 통합"
         },
         {
-          "heading": "key-features",
-          "content": "Infinite children documents 🌲"
+          "heading": "주요-기능",
+          "content": "📊 분석 도구: Google Analytics 및 Busuanzi 방문자 추적"
         },
         {
-          "heading": "key-features",
-          "content": "Trash can & soft delete 🗑️"
+          "heading": "주요-기능",
+          "content": "🏷️ 풍부한 분류: 카테고리 및 태그 기반 콘텐츠 구조화"
         },
         {
-          "heading": "key-features",
-          "content": "Authentication 🔐"
+          "heading": "주요-기능",
+          "content": "🔎 검색 기능: 전체 게시물 전문 검색"
         },
         {
-          "heading": "key-features",
-          "content": "File upload"
+          "heading": "주요-기능",
+          "content": "📄 다양한 콘텐츠 타입: TIL, 라이프로그, 글쓰기, 프로젝트 쇼케이스 지원"
         },
         {
-          "heading": "key-features",
-          "content": "File deletion"
+          "heading": "core",
+          "content": "프레임워크: Next.js 13"
         },
         {
-          "heading": "key-features",
-          "content": "File replacement Icons for each document (changes in real-time) 🌠 Expandable sidebar ➡️🔀⬅️ Full mobile responsiveness 📱 Publish your note to the web 🌐 Fully collapsable sidebar ↕️ Landing page 🛬 Cover image of each document 🖼️ Recover deleted files 🔄📄"
+          "heading": "core",
+          "content": "언어: JavaScript/TypeScript"
         },
         {
-          "heading": "key-features",
-          "content": "개인적으로는 노션이 제공하는 커버이미지업로드, emoji-picker-react를 사용한 아이콘지정, 페이지의 제목이 바뀜과 동시에 목록에서의 제목도 바뀌게 하는 것, Publish&Share기능, 말그대로 Infinite 자식 도큐먼트, 이제는 대부분의 앱에서 제공중인 다크모드와 서치기능등이 기억나고... 진짜 노션같은 늘어나고 접히며 줄어드는 leftSideBar를 만드는 과정도 흥미로웠습니다."
+          "heading": "core",
+          "content": "스타일링: Tailwind CSS"
         },
         {
-          "heading": "key-features",
-          "content": "또 Convex로 하는 CRUD작업이 너무 재밌었어요. 뭐 기본적인 것만 했으니 심화로 들어가진 않았지만 역시나 백엔드했던 가닥(?)이 조금 있다보니 프론트엔드로 넘어와서 새로운 기술들을 접하고 비즈니스와 모델레이어에 대한 작업을 할 때마다 문법이 익숙하지 않아서 그렇지 작업자체는 참 재밌습니다."
+          "heading": "core",
+          "content": "콘텐츠 소스: Notion API"
         },
         {
-          "heading": "key-features",
-          "content": "또 이번에 BlockNote 라이브러리는 처음알게 됐는데(처음알게된 라이브러리가 참 많네요. 클론코딩할 때 제가 모르던 이런 새로운 기술들을 접할 수 있어서 또 재밌어서 더 하게 되는 거 같아요)참 감탄하며 작업했습니다. 덕분에 조상격인 Prosemirror와 TipTap도 알게되고."
+          "heading": "라이브러리--도구",
+          "content": "렌더링: react-notion-x"
         },
         {
-          "heading": "key-features",
-          "content": "올해에 LiveBlocks를 처음 접하고 사내 프로젝트에서 테스트해 볼때도 신선한 충격을 받았었는데 이번에도 그런 좋은 충격을 받았습니다. 새삼 오픈소스 라이브러리 작업자들에 언제나 그렇지만 또 감사하고 경이로움을 느낍니다. 또 저도언젠가는 그런 Receiver만이 아닌 창작자이자 Giver가 되길 바라기도 하구요."
+          "heading": "라이브러리--도구",
+          "content": "댓글: Giscus"
         },
         {
-          "heading": "커스텀해서-사용하고-싶으시다면",
-          "content": ".env파일을 작성후 아래의 variable에 대한 값을 지정해주시면 되며, 저의 경우 배포는 vercel을 이용하였습니다."
+          "heading": "라이브러리--도구",
+          "content": "아이콘: Font Awesome"
         },
         {
-          "heading": "커스텀해서-사용하고-싶으시다면",
-          "content": "로컬에서 테스트할시와 운영서버에 적용할시에 작성할 .env파일은 각각 다릅니다."
+          "heading": "라이브러리--도구",
+          "content": "수식 렌더링: KaTeX"
         },
         {
-          "heading": "커스텀해서-사용하고-싶으시다면",
-          "content": "Clerk와 Convex 연동 관련하여 auth.config.js 파일의 생성 및 수정이 필요합니다. 자세한 사항은 이 링크를 참조하시면 됩니다. 또한 이 링크도 참조하세요 Integrate Convex with Clerk"
+          "heading": "라이브러리--도구",
+          "content": "코드 하이라이팅: Prism.js (커스텀 테마)"
+        },
+        {
+          "heading": "라이브러리--도구",
+          "content": "배포: Vercel"
+        },
+        {
+          "heading": "설치",
+          "content": "레포지토리 클론:"
+        },
+        {
+          "heading": "설치",
+          "content": "의존성 설치:"
+        },
+        {
+          "heading": "설치",
+          "content": "환경 변수 설정:"
+        },
+        {
+          "heading": "설치",
+          "content": "필수 환경 변수:"
+        },
+        {
+          "heading": "설치",
+          "content": "개발 서버 실행:"
+        },
+        {
+          "heading": "설치",
+          "content": "http://localhost:3000에서 애플리케이션을 확인하실 수 있습니다."
+        },
+        {
+          "heading": "설정",
+          "content": "blog.config.js를 편집하여 다음 항목을 커스터마이징할 수 있습니다:"
+        },
+        {
+          "heading": "설정",
+          "content": "사이트 메타데이터 (제목, 설명, 작성자)"
+        },
+        {
+          "heading": "설정",
+          "content": "소셜 링크"
+        },
+        {
+          "heading": "설정",
+          "content": "네비게이션 메뉴"
+        },
+        {
+          "heading": "설정",
+          "content": "분석 도구 설정"
+        },
+        {
+          "heading": "설정",
+          "content": "댓글 시스템"
+        },
+        {
+          "heading": "설정",
+          "content": "테마 설정"
+        },
+        {
+          "heading": "성능-최적화",
+          "content": "커스텀 캐싱 레이어 구현 (메모리 + 파일 기반)"
+        },
+        {
+          "heading": "성능-최적화",
+          "content": "Next.js Image 컴포넌트를 활용한 이미지 최적화"
+        },
+        {
+          "heading": "성능-최적화",
+          "content": "이미지 및 무거운 컴포넌트의 지연 로딩"
+        },
+        {
+          "heading": "성능-최적화",
+          "content": "동적 콘텐츠를 위한 ISR을 활용한 정적 생성"
+        },
+        {
+          "heading": "seo-최적화",
+          "content": "동적 사이트맵 생성"
+        },
+        {
+          "heading": "seo-최적화",
+          "content": "구조화된 데이터 (JSON-LD)"
+        },
+        {
+          "heading": "seo-최적화",
+          "content": "Open Graph 및 Twitter Card 메타 태그"
+        },
+        {
+          "heading": "seo-최적화",
+          "content": "Robots.txt 설정"
+        },
+        {
+          "heading": "seo-최적화",
+          "content": "RSS 피드 생성"
+        },
+        {
+          "heading": "콘텐츠-관리",
+          "content": "카테고리 기반 구조 (Tech Logs, Life Logs, Writing, Projects, Inspiration)"
+        },
+        {
+          "heading": "콘텐츠-관리",
+          "content": "교차 참조를 위한 태그 시스템"
+        },
+        {
+          "heading": "콘텐츠-관리",
+          "content": "시간순 목록이 있는 아카이브 페이지"
+        },
+        {
+          "heading": "콘텐츠-관리",
+          "content": "모든 콘텐츠에 대한 검색 기능"
+        },
+        {
+          "heading": "vercel-권장",
+          "content": "GitHub에 코드 푸시"
+        },
+        {
+          "heading": "vercel-권장",
+          "content": "Vercel에서 프로젝트 임포트"
+        },
+        {
+          "heading": "vercel-권장",
+          "content": "환경 변수 설정"
+        },
+        {
+          "heading": "vercel-권장",
+          "content": "배포"
+        },
+        {
+          "heading": "기타-플랫폼",
+          "content": "Next.js를 지원하는 모든 플랫폼과 호환됩니다:"
+        },
+        {
+          "heading": "기타-플랫폼",
+          "content": "Netlify"
+        },
+        {
+          "heading": "기타-플랫폼",
+          "content": "AWS Amplify"
+        },
+        {
+          "heading": "기타-플랫폼",
+          "content": "Cloudflare Pages"
+        },
+        {
+          "heading": "기타-플랫폼",
+          "content": "Docker (Dockerfile 포함)"
+        },
+        {
+          "heading": "개발-하이라이트",
+          "content": "아키텍처: 모듈화된 컴포넌트 구조로 관심사의 명확한 분리 구현"
+        },
+        {
+          "heading": "개발-하이라이트",
+          "content": "캐싱 전략: 다중 스토리지 백엔드를 지원하는 커스텀 캐시 매니저 구축"
+        },
+        {
+          "heading": "개발-하이라이트",
+          "content": "성능: 모든 메트릭에서 Lighthouse 90+ 점수 달성"
+        },
+        {
+          "heading": "개발-하이라이트",
+          "content": "코드 품질: ESLint 및 Prettier를 통한 일관된 코드 스타일 유지"
+        },
+        {
+          "heading": "개발-하이라이트",
+          "content": "확장성: 쉬운 테마 확장 및 기능 추가를 위한 설계"
+        },
+        {
+          "heading": "라이선스",
+          "content": "MIT License"
+        },
+        {
+          "heading": "크레딧",
+          "content": "tangly1024의 NotionNext에서 영감을 받아 제작되었습니다."
+        },
+        {
+          "heading": "크레딧",
+          "content": "개발 기간: 2023.09 - 2024.06 (9개월)"
         }
       ],
       "headings": [
         {
-          "id": "1-리포지토리",
-          "content": "1. 리포지토리"
+          "id": "rwwt-log",
+          "content": "RWWT-log"
         },
         {
-          "id": "2-사이트",
-          "content": "2. 사이트"
+          "id": "개요",
+          "content": "개요"
         },
         {
-          "id": "3-ryoon-notenextjs-13-notion-like-app",
-          "content": "3. Ryoon-note(Next.js 13 Notion like app)"
+          "id": "주요-기능",
+          "content": "주요 기능"
         },
         {
-          "id": "4-제작과정",
-          "content": "4. 제작과정"
+          "id": "기술-스택",
+          "content": "기술 스택"
         },
         {
-          "id": "key-features",
-          "content": "Key Features"
+          "id": "core",
+          "content": "Core"
         },
         {
-          "id": "커스텀해서-사용하고-싶으시다면",
-          "content": "커스텀해서 사용하고 싶으시다면?"
+          "id": "라이브러리--도구",
+          "content": "라이브러리 & 도구"
+        },
+        {
+          "id": "시작하기",
+          "content": "시작하기"
+        },
+        {
+          "id": "필수-요구사항",
+          "content": "필수 요구사항"
+        },
+        {
+          "id": "설치",
+          "content": "설치"
+        },
+        {
+          "id": "프로덕션-빌드",
+          "content": "프로덕션 빌드"
+        },
+        {
+          "id": "프로젝트-구조",
+          "content": "프로젝트 구조"
+        },
+        {
+          "id": "설정",
+          "content": "설정"
+        },
+        {
+          "id": "주요-구현-사항",
+          "content": "주요 구현 사항"
+        },
+        {
+          "id": "성능-최적화",
+          "content": "성능 최적화"
+        },
+        {
+          "id": "seo-최적화",
+          "content": "SEO 최적화"
+        },
+        {
+          "id": "콘텐츠-관리",
+          "content": "콘텐츠 관리"
+        },
+        {
+          "id": "배포",
+          "content": "배포"
+        },
+        {
+          "id": "vercel-권장",
+          "content": "Vercel (권장)"
+        },
+        {
+          "id": "기타-플랫폼",
+          "content": "기타 플랫폼"
+        },
+        {
+          "id": "개발-하이라이트",
+          "content": "개발 하이라이트"
+        },
+        {
+          "id": "라이선스",
+          "content": "라이선스"
+        },
+        {
+          "id": "크레딧",
+          "content": "크레딧"
         }
       ]
     },
-    "body": "var Component=(()=>{var p=Object.create;var t=Object.defineProperty;var m=Object.getOwnPropertyDescriptor;var u=Object.getOwnPropertyNames;var g=Object.getPrototypeOf,E=Object.prototype.hasOwnProperty;var k=(i,e)=>()=>(e||i((e={exports:{}}).exports,e),e.exports),_=(i,e)=>{for(var l in e)t(i,l,{get:e[l],enumerable:!0})},c=(i,e,l,s)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let r of u(e))!E.call(i,r)&&r!==l&&t(i,r,{get:()=>e[r],enumerable:!(s=m(e,r))||s.enumerable});return i};var C=(i,e,l)=>(l=i!=null?p(g(i)):{},c(e||!i||!i.__esModule?t(l,\"default\",{value:i,enumerable:!0}):l,i)),v=i=>c(t({},\"__esModule\",{value:!0}),i);var o=k((y,h)=>{h.exports=_jsx_runtime});var N={};_(N,{default:()=>d});var n=C(o());function a(i){let e={a:\"a\",code:\"code\",h1:\"h1\",h2:\"h2\",img:\"img\",li:\"li\",p:\"p\",pre:\"pre\",span:\"span\",ul:\"ul\",...i.components},{BookMarkWrapper:l}=e;return l||b(\"BookMarkWrapper\",!0),(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e.p,{children:(0,n.jsx)(e.img,{alt:\"note1_screenshot.png\",src:\"https://github.com/ryoon-with-wisdomtrees/Ryoon-Note-like-notion/raw/main/public/note1_screenshot.png\",width:\"1468\",height:\"1206\"})}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.img,{alt:\"note3_screenshot.png\",src:\"https://github.com/ryoon-with-wisdomtrees/Ryoon-Note-like-notion/raw/main/public/note3_screenshot.png\",width:\"1472\",height:\"790\"})}),`\n`,(0,n.jsx)(e.h1,{id:\"1-\\uB9AC\\uD3EC\\uC9C0\\uD1A0\\uB9AC\",children:\"1. \\uB9AC\\uD3EC\\uC9C0\\uD1A0\\uB9AC\"}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.a,{href:\"https://github.com/ryoon-with-wisdomtrees/Ryoon-Note-like-notion\",children:\"link_preview\"})}),`\n`,(0,n.jsx)(e.h1,{id:\"2-\\uC0AC\\uC774\\uD2B8\",children:\"2. \\uC0AC\\uC774\\uD2B8\"}),`\n`,(0,n.jsx)(l,{names:\"bookmark\",urls:\"https://seryoon-note-app.vercel.app/\"}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.img,{alt:\"main_screenshot.png\",src:\"https://github.com/ryoon-with-wisdomtrees/Ryoon-Note-like-notion/raw/main/public/main_screenshot.png\",width:\"2084\",height:\"1146\"})}),`\n`,(0,n.jsx)(e.h1,{id:\"3-ryoon-notenextjs-13-notion-like-app\",children:\"3. Ryoon-note(Next.js 13 Notion like app)\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"A end-to-end Fullstack Notion-like app, all with proper notion-style editor, cover images, nested documents, publishing documents to public, real-time database and more\"}),`\n`,(0,n.jsx)(e.li,{children:\"Ryoon-note\\uB85C \\uAE00\\uC744 \\uC791\\uC131\\uD558\\uACE0 Publish\\uD574\\uBCF4\\uC138\\uC694.\"}),`\n`,(0,n.jsxs)(e.li,{children:[\"\\uC800\\uB3C4 \\uC81C\\uAC00 \\uC791\\uC131\\uD55C \\uAE00\\uC744\\xA0\",(0,n.jsx)(e.a,{href:\"https://seryoon-note-app.vercel.app/preview/3n251s3kyh03ff9h3sdr8y749kdy2dg/\",children:\"\\uC774 \\uB9C1\\uD06C\"}),\"\\uC5D0 \\uB0A8\\uACA8\\uB461\\uB2C8\\uB2E4.\\u{1F4DD}\"]}),`\n`]}),`\n`,(0,n.jsx)(e.h1,{id:\"4-\\uC81C\\uC791\\uACFC\\uC815\",children:\"4. \\uC81C\\uC791\\uACFC\\uC815\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"\\uAE30\\uC220\\uC2A4\\uD0DD - Next.js 13, Clerk, Zustand, Convex, EdgeStore, Tailwind CSS, Typescript, BlockNote\"}),`\n`,(0,n.jsx)(e.li,{children:\"\\uC81C\\uC791\\uAE30\\uAC04 - \\uC77C\\uC8FC\\uC77C\"}),`\n`]}),`\n`,(0,n.jsxs)(e.p,{children:[\"\\uC774 Ryoon-note(notion-like app)\\uB294\\xA0\",(0,n.jsx)(e.a,{href:\"https://youtu.be/0OaDyjB9Ib8\",children:\"Fullstack Notion Clone: Next.js 13, React, Convex, Tailwind\"}),\"\\uC720\\uD29C\\uBE0C\\uAC15\\uC758\\uB97C \\uCC38\\uACE0\\uD558\\uC5EC TypeScript\\uB85C \\uC791\\uC131\\uD55C \\uC6F9\\uC571\\uC785\\uB2C8\\uB2E4.\"]}),`\n`,(0,n.jsx)(e.p,{children:\"\\uD574\\uB2F9 \\uAC15\\uC758\\uB97C \\uB4E4\\uC73C\\uBA74\\uC11C \\uCC98\\uC74C Zustand,Convex, EdgeStore\\uB4F1\\uC744 \\uC54C\\uAC8C \\uB410\\uB294\\uB370 \\uAF64\\uB098 \\uD765\\uBBF8\\uB85C\\uC6CC\\uC11C \\uBAB0\\uC785\\uD558\\uC5EC \\uC791\\uC5C5\\uD55C \\uAE30\\uC5B5\\uC774 \\uB0A9\\uB2C8\\uB2E4. \\uAC15\\uC758\\uAC00 8\\uC2DC\\uAC04 \\uC9DC\\uB9AC\\uC774\\uACE0, \\uC911\\uAC04 \\uC911\\uAC04 \\uC65C \\uC704\\uCE58\\uC5D0\\uC11C \\uC65C \\uADF8\\uB7F0 \\uBC29\\uC2DD\\uC73C\\uB85C \\uC4F0\\uC600\\uB294\\uC9C0\\uAC00 \\uC0DD\\uB7B5\\uB41C \\uAC83\\uB4E4\\uC5D0 \\uB300\\uD558\\uC5EC \\uACF1\\uC539\\uC5B4\\uBCF4\\uACE0 \\uB610 \\uC0C8\\uB85C\\uC774 \\uC54C\\uAC8C\\uB41C \\uAE30\\uC220\\uB4E4\\uC5D0 \\uB300\\uD558\\uC5EC \\uC5F0\\uB9C8\\uD558\\uBA70 \\uC791\\uC5C5\\uD558\\uB2E4\\uBCF4\\uB2C8 \\uAF64 \\uC791\\uC5C5\\uAE30\\uAC04\\uC774 \\uAE38\\uC5B4\\uC84C\\uC9C0\\uB9CC \\uADF8\\uB9CC\\uD07C \\uBC30\\uC6B0\\uB294 \\uC7AC\\uBBF8\\uAC00 \\uCEE4\\uC11C \\uC7AC\\uBC0C\\uAC8C \\uC791\\uC5C5\\uD588\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(e.h2,{id:\"key-features\",children:\"Key Features\"}),`\n`,(0,n.jsx)(e.p,{children:\"\\uC720\\uD29C\\uBE0C \\uAC15\\uC758\\uC5D0 \\uB098\\uC640\\uC788\\uB294 \\uD53C\\uCCD0\\uB4E4\\uC740 \\uC544\\uB798\\uC640 \\uAC19\\uC740\\uB370\\uC694,\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"Real-time database \\u{1F517}\"}),`\n`,(0,n.jsx)(e.li,{children:\"Notion-style editor \\u{1F4DD}\"}),`\n`,(0,n.jsx)(e.li,{children:\"Light and Dark mode \\u{1F313}\"}),`\n`,(0,n.jsx)(e.li,{children:\"Infinite children documents \\u{1F332}\"}),`\n`,(0,n.jsx)(e.li,{children:\"Trash can & soft delete \\u{1F5D1}\\uFE0F\"}),`\n`,(0,n.jsx)(e.li,{children:\"Authentication \\u{1F510}\"}),`\n`,(0,n.jsx)(e.li,{children:\"File upload\"}),`\n`,(0,n.jsx)(e.li,{children:\"File deletion\"}),`\n`,(0,n.jsx)(e.li,{children:\"File replacement Icons for each document (changes in real-time) \\u{1F320} Expandable sidebar \\u27A1\\uFE0F\\u{1F500}\\u2B05\\uFE0F Full mobile responsiveness \\u{1F4F1} Publish your note to the web \\u{1F310} Fully collapsable sidebar\\xA0\\u2195\\uFE0F\\xA0Landing page \\u{1F6EC} Cover image of each document \\u{1F5BC}\\uFE0F Recover deleted files \\u{1F504}\\u{1F4C4}\"}),`\n`]}),`\n`,(0,n.jsx)(e.p,{children:\"\\uAC1C\\uC778\\uC801\\uC73C\\uB85C\\uB294 \\uB178\\uC158\\uC774 \\uC81C\\uACF5\\uD558\\uB294 \\uCEE4\\uBC84\\uC774\\uBBF8\\uC9C0\\uC5C5\\uB85C\\uB4DC, emoji-picker-react\\uB97C \\uC0AC\\uC6A9\\uD55C \\uC544\\uC774\\uCF58\\uC9C0\\uC815, \\uD398\\uC774\\uC9C0\\uC758 \\uC81C\\uBAA9\\uC774 \\uBC14\\uB01C\\uACFC \\uB3D9\\uC2DC\\uC5D0 \\uBAA9\\uB85D\\uC5D0\\uC11C\\uC758 \\uC81C\\uBAA9\\uB3C4 \\uBC14\\uB00C\\uAC8C \\uD558\\uB294 \\uAC83, Publish&Share\\uAE30\\uB2A5, \\uB9D0\\uADF8\\uB300\\uB85C Infinite \\uC790\\uC2DD \\uB3C4\\uD050\\uBA3C\\uD2B8, \\uC774\\uC81C\\uB294 \\uB300\\uBD80\\uBD84\\uC758 \\uC571\\uC5D0\\uC11C \\uC81C\\uACF5\\uC911\\uC778 \\uB2E4\\uD06C\\uBAA8\\uB4DC\\uC640 \\uC11C\\uCE58\\uAE30\\uB2A5\\uB4F1\\uC774 \\uAE30\\uC5B5\\uB098\\uACE0... \\uC9C4\\uC9DC \\uB178\\uC158\\uAC19\\uC740 \\uB298\\uC5B4\\uB098\\uACE0 \\uC811\\uD788\\uBA70 \\uC904\\uC5B4\\uB4DC\\uB294 leftSideBar\\uB97C \\uB9CC\\uB4DC\\uB294 \\uACFC\\uC815\\uB3C4 \\uD765\\uBBF8\\uB85C\\uC6E0\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(e.p,{children:\"\\uB610 Convex\\uB85C \\uD558\\uB294 CRUD\\uC791\\uC5C5\\uC774 \\uB108\\uBB34 \\uC7AC\\uBC0C\\uC5C8\\uC5B4\\uC694. \\uBB50 \\uAE30\\uBCF8\\uC801\\uC778 \\uAC83\\uB9CC \\uD588\\uC73C\\uB2C8 \\uC2EC\\uD654\\uB85C \\uB4E4\\uC5B4\\uAC00\\uC9C4 \\uC54A\\uC558\\uC9C0\\uB9CC \\uC5ED\\uC2DC\\uB098 \\uBC31\\uC5D4\\uB4DC\\uD588\\uB358 \\uAC00\\uB2E5(?)\\uC774 \\uC870\\uAE08 \\uC788\\uB2E4\\uBCF4\\uB2C8 \\uD504\\uB860\\uD2B8\\uC5D4\\uB4DC\\uB85C \\uB118\\uC5B4\\uC640\\uC11C \\uC0C8\\uB85C\\uC6B4 \\uAE30\\uC220\\uB4E4\\uC744 \\uC811\\uD558\\uACE0 \\uBE44\\uC988\\uB2C8\\uC2A4\\uC640 \\uBAA8\\uB378\\uB808\\uC774\\uC5B4\\uC5D0 \\uB300\\uD55C \\uC791\\uC5C5\\uC744 \\uD560 \\uB54C\\uB9C8\\uB2E4 \\uBB38\\uBC95\\uC774 \\uC775\\uC219\\uD558\\uC9C0 \\uC54A\\uC544\\uC11C \\uADF8\\uB807\\uC9C0 \\uC791\\uC5C5\\uC790\\uCCB4\\uB294 \\uCC38 \\uC7AC\\uBC0C\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsxs)(e.p,{children:[\"\\uB610 \\uC774\\uBC88\\uC5D0\\xA0\",(0,n.jsx)(e.a,{href:\"https://www.blocknotejs.org/\",children:\"BlockNote\"}),\"\\xA0\\uB77C\\uC774\\uBE0C\\uB7EC\\uB9AC\\uB294 \\uCC98\\uC74C\\uC54C\\uAC8C \\uB410\\uB294\\uB370(\\uCC98\\uC74C\\uC54C\\uAC8C\\uB41C \\uB77C\\uC774\\uBE0C\\uB7EC\\uB9AC\\uAC00 \\uCC38 \\uB9CE\\uB124\\uC694. \\uD074\\uB860\\uCF54\\uB529\\uD560 \\uB54C \\uC81C\\uAC00 \\uBAA8\\uB974\\uB358 \\uC774\\uB7F0 \\uC0C8\\uB85C\\uC6B4 \\uAE30\\uC220\\uB4E4\\uC744 \\uC811\\uD560 \\uC218 \\uC788\\uC5B4\\uC11C \\uB610 \\uC7AC\\uBC0C\\uC5B4\\uC11C \\uB354 \\uD558\\uAC8C \\uB418\\uB294 \\uAC70 \\uAC19\\uC544\\uC694)\\uCC38 \\uAC10\\uD0C4\\uD558\\uBA70 \\uC791\\uC5C5\\uD588\\uC2B5\\uB2C8\\uB2E4. \\uB355\\uBD84\\uC5D0 \\uC870\\uC0C1\\uACA9\\uC778 Prosemirror\\uC640 TipTap\\uB3C4 \\uC54C\\uAC8C\\uB418\\uACE0.\"]}),`\n`,(0,n.jsxs)(e.p,{children:[\"\\uC62C\\uD574\\uC5D0\\xA0\",(0,n.jsx)(e.a,{href:\"https://liveblocks.io/\",children:\"LiveBlocks\"}),\"\\uB97C \\uCC98\\uC74C \\uC811\\uD558\\uACE0 \\uC0AC\\uB0B4 \\uD504\\uB85C\\uC81D\\uD2B8\\uC5D0\\uC11C \\uD14C\\uC2A4\\uD2B8\\uD574 \\uBCFC\\uB54C\\uB3C4 \\uC2E0\\uC120\\uD55C \\uCDA9\\uACA9\\uC744 \\uBC1B\\uC558\\uC5C8\\uB294\\uB370 \\uC774\\uBC88\\uC5D0\\uB3C4 \\uADF8\\uB7F0 \\uC88B\\uC740 \\uCDA9\\uACA9\\uC744 \\uBC1B\\uC558\\uC2B5\\uB2C8\\uB2E4. \\uC0C8\\uC0BC \\uC624\\uD508\\uC18C\\uC2A4 \\uB77C\\uC774\\uBE0C\\uB7EC\\uB9AC \\uC791\\uC5C5\\uC790\\uB4E4\\uC5D0 \\uC5B8\\uC81C\\uB098 \\uADF8\\uB807\\uC9C0\\uB9CC \\uB610 \\uAC10\\uC0AC\\uD558\\uACE0 \\uACBD\\uC774\\uB85C\\uC6C0\\uC744 \\uB290\\uB08D\\uB2C8\\uB2E4. \\uB610 \\uC800\\uB3C4\\uC5B8\\uC820\\uAC00\\uB294 \\uADF8\\uB7F0 Receiver\\uB9CC\\uC774 \\uC544\\uB2CC \\uCC3D\\uC791\\uC790\\uC774\\uC790 Giver\\uAC00 \\uB418\\uAE38 \\uBC14\\uB77C\\uAE30\\uB3C4 \\uD558\\uAD6C\\uC694.\"]}),`\n`,(0,n.jsx)(e.h2,{id:\"\\uCEE4\\uC2A4\\uD140\\uD574\\uC11C-\\uC0AC\\uC6A9\\uD558\\uACE0-\\uC2F6\\uC73C\\uC2DC\\uB2E4\\uBA74\",children:\"\\uCEE4\\uC2A4\\uD140\\uD574\\uC11C \\uC0AC\\uC6A9\\uD558\\uACE0 \\uC2F6\\uC73C\\uC2DC\\uB2E4\\uBA74?\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\".env\\uD30C\\uC77C\\uC744 \\uC791\\uC131\\uD6C4 \\uC544\\uB798\\uC758 variable\\uC5D0 \\uB300\\uD55C \\uAC12\\uC744 \\uC9C0\\uC815\\uD574\\uC8FC\\uC2DC\\uBA74 \\uB418\\uBA70, \\uC800\\uC758 \\uACBD\\uC6B0 \\uBC30\\uD3EC\\uB294 vercel\\uC744 \\uC774\\uC6A9\\uD558\\uC600\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(e.li,{children:\"\\uB85C\\uCEEC\\uC5D0\\uC11C \\uD14C\\uC2A4\\uD2B8\\uD560\\uC2DC\\uC640 \\uC6B4\\uC601\\uC11C\\uBC84\\uC5D0 \\uC801\\uC6A9\\uD560\\uC2DC\\uC5D0 \\uC791\\uC131\\uD560 .env\\uD30C\\uC77C\\uC740 \\uAC01\\uAC01 \\uB2E4\\uB985\\uB2C8\\uB2E4.\"}),`\n`]}),`\n`,(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(e.pre,{className:\"shiki shiki-themes github-light github-dark\",style:{\"--shiki-light\":\"#24292e\",\"--shiki-dark\":\"#e1e4e8\",\"--shiki-light-bg\":\"#fff\",\"--shiki-dark-bg\":\"#24292e\"},tabIndex:\"0\",icon:'<svg viewBox=\"0 0 24 24\"><path d=\"M 6,1 C 4.354992,1 3,2.354992 3,4 v 16 c 0,1.645008 1.354992,3 3,3 h 12 c 1.645008,0 3,-1.354992 3,-3 V 8 7 A 1.0001,1.0001 0 0 0 20.707031,6.2929687 l -5,-5 A 1.0001,1.0001 0 0 0 15,1 h -1 z m 0,2 h 7 v 3 c 0,1.645008 1.354992,3 3,3 h 3 v 11 c 0,0.564129 -0.435871,1 -1,1 H 6 C 5.4358712,21 5,20.564129 5,20 V 4 C 5,3.4358712 5.4358712,3 6,3 Z M 15,3.4140625 18.585937,7 H 16 C 15.435871,7 15,6.5641288 15,6 Z\" fill=\"currentColor\" /></svg>',children:(0,n.jsxs)(e.code,{children:[(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"\\uB85C\\uCEEC/\\uAC1C\\uBC1C\\uC11C\\uBC84\\uC6A9 .env\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"CONVEX_DEPLOYMENT=\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"NEXT_PUBLIC_CONVEX_URL=\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"CLERK_SECRET_KEY=\\uD074\\uB7EC\\uD06C\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"EDGE_STORE_ACCESS_KEY=\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"EDGE_STORE_SECRET_KEY=\"})})]})})}),`\n`,(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(e.pre,{className:\"shiki shiki-themes github-light github-dark\",style:{\"--shiki-light\":\"#24292e\",\"--shiki-dark\":\"#e1e4e8\",\"--shiki-light-bg\":\"#fff\",\"--shiki-dark-bg\":\"#24292e\"},tabIndex:\"0\",icon:'<svg viewBox=\"0 0 24 24\"><path d=\"M 6,1 C 4.354992,1 3,2.354992 3,4 v 16 c 0,1.645008 1.354992,3 3,3 h 12 c 1.645008,0 3,-1.354992 3,-3 V 8 7 A 1.0001,1.0001 0 0 0 20.707031,6.2929687 l -5,-5 A 1.0001,1.0001 0 0 0 15,1 h -1 z m 0,2 h 7 v 3 c 0,1.645008 1.354992,3 3,3 h 3 v 11 c 0,0.564129 -0.435871,1 -1,1 H 6 C 5.4358712,21 5,20.564129 5,20 V 4 C 5,3.4358712 5.4358712,3 6,3 Z M 15,3.4140625 18.585937,7 H 16 C 15.435871,7 15,6.5641288 15,6 Z\" fill=\"currentColor\" /></svg>',children:(0,n.jsxs)(e.code,{children:[(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"Production \\uC6B4\\uC601\\uC11C\\uBC84\\uC6A9 .env\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"CI = false //https://stackoverflow.com/questions/66840942/vercel-deployment-error-command-npm-run-build-exited-with-1 \\uC774 \\uAE00\\uC744 \\uCC38\\uACE0\\uD558\\uC138\\uC694\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"CONVEX_DEPLOY_KEY= \\uC6B4\\uC601\\uBC30\\uD3EC\\uC6A9 \\uD0A4\\uC758 \\uBCC0\\uC218\\uBA85\\uC774 \\uB2E4\\uB978\\uC810\\uC744 \\uC720\\uC758\\uD558\\uC138\\uC694\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"NEXT_PUBLIC_CONVEX_URL=\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"CLERK_SECRET_KEY=\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"EDGE_STORE_ACCESS_KEY=\"})}),`\n`,(0,n.jsx)(e.span,{className:\"line\",children:(0,n.jsx)(e.span,{children:\"EDGE_STORE_SECRET_KEY=\"})})]})})}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[\"Clerk\\uC640 Convex \\uC5F0\\uB3D9 \\uAD00\\uB828\\uD558\\uC5EC auth.config.js \\uD30C\\uC77C\\uC758 \\uC0DD\\uC131 \\uBC0F \\uC218\\uC815\\uC774 \\uD544\\uC694\\uD569\\uB2C8\\uB2E4. \\uC790\\uC138\\uD55C \\uC0AC\\uD56D\\uC740\\xA0\",(0,n.jsx)(e.a,{href:\"https://docs.convex.dev/auth/clerk\",children:\"\\uC774 \\uB9C1\\uD06C\"}),\"\\uB97C \\uCC38\\uC870\\uD558\\uC2DC\\uBA74 \\uB429\\uB2C8\\uB2E4. \\uB610\\uD55C \\uC774 \\uB9C1\\uD06C\\uB3C4 \\uCC38\\uC870\\uD558\\uC138\\uC694\\xA0\",(0,n.jsx)(e.a,{href:\"https://clerk.com/docs/integrations/databases/convex\",children:\"Integrate Convex with Clerk\"})]}),`\n`]})]})}function d(i={}){let{wrapper:e}=i.components||{};return e?(0,n.jsx)(e,{...i,children:(0,n.jsx)(a,{...i})}):a(i)}function b(i,e){throw new Error(\"Expected \"+(e?\"component\":\"object\")+\" `\"+i+\"` to be defined: you likely forgot to import, pass, or provide it.\")}return v(N);})();\n;return Component;"
+    "body": "var Component=(()=>{var g=Object.create;var r=Object.defineProperty;var p=Object.getOwnPropertyDescriptor;var m=Object.getOwnPropertyNames;var k=Object.getPrototypeOf,u=Object.prototype.hasOwnProperty;var b=(e,i)=>()=>(i||e((i={exports:{}}).exports,i),i.exports),v=(e,i)=>{for(var l in i)r(e,l,{get:i[l],enumerable:!0})},d=(e,i,l,c)=>{if(i&&typeof i==\"object\"||typeof i==\"function\")for(let h of m(i))!u.call(e,h)&&h!==l&&r(e,h,{get:()=>i[h],enumerable:!(c=p(i,h))||c.enumerable});return e};var N=(e,i,l)=>(l=e!=null?g(k(e)):{},d(i||!e||!e.__esModule?r(l,\"default\",{value:e,enumerable:!0}):l,e)),f=e=>d(r({},\"__esModule\",{value:!0}),e);var t=b((y,s)=>{s.exports=_jsx_runtime});var C={};v(C,{default:()=>o});var n=N(t());function a(e){let i={a:\"a\",blockquote:\"blockquote\",code:\"code\",h1:\"h1\",h2:\"h2\",h3:\"h3\",hr:\"hr\",img:\"img\",li:\"li\",ol:\"ol\",p:\"p\",pre:\"pre\",span:\"span\",ul:\"ul\",...e.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(i.h1,{id:\"rwwt-log\",children:(0,n.jsx)(\"strong\",{children:\"RWWT-log\"})}),`\n`,(0,n.jsxs)(i.blockquote,{children:[`\n`,(0,n.jsx)(i.p,{children:\"Next.js 13\\uACFC Notion API\\uB97C \\uD65C\\uC6A9\\uD55C \\uD504\\uB85C\\uB355\\uC158 \\uB808\\uB514 \\uC815\\uC801 \\uBE14\\uB85C\\uADF8 \\uD50C\\uB7AB\\uD3FC. Gitbook \\uC2A4\\uD0C0\\uC77C\\uC758 \\uBAA8\\uB358\\uD55C UI/UX \\uB514\\uC790\\uC778\\uC744 \\uC81C\\uACF5\\uD569\\uB2C8\\uB2E4.\"}),`\n`]}),`\n`,(0,n.jsxs)(i.p,{children:[\"\\u{1F310}\\xA0\",(0,n.jsx)(\"strong\",{children:\"Live Demo\"}),\":\\xA0\",(0,n.jsx)(i.a,{href:\"https://mdx-norkive.vercel.app/\",children:\"https://mdx-norkive.vercel.app/\"})]}),`\n`,(0,n.jsxs)(i.p,{children:[\"\\u{1F4E6}\\xA0\",(0,n.jsx)(\"strong\",{children:\"Repository\"}),\":\\xA0\",(0,n.jsx)(i.a,{href:\"https://github.com/ryoonwithinwisdomlights/norkive\",children:\"GitHub\"})]}),`\n`,(0,n.jsx)(i.p,{children:(0,n.jsx)(i.img,{alt:\"image.png\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1760541689/norkive-notion-images/png_1760541689069_aW1hZ2U%3D.webp?format=webp&quality=85\",width:\"600\",height:\"459\"})}),`\n`,(0,n.jsx)(i.h2,{id:\"\\uAC1C\\uC694\",children:(0,n.jsx)(\"strong\",{children:\"\\uAC1C\\uC694\"})}),`\n`,(0,n.jsx)(i.hr,{}),`\n`,(0,n.jsx)(i.p,{children:\"Notion \\uD398\\uC774\\uC9C0\\uB97C \\uBC31\\uC5D4\\uB4DC \\uC5C6\\uC774 \\uC644\\uC804\\uD55C \\uAE30\\uB2A5\\uC744 \\uAC16\\uCD98 \\uBE14\\uB85C\\uADF8\\uB85C \\uBCC0\\uD658\\uD558\\uB294 \\uC11C\\uBC84\\uB9AC\\uC2A4 \\uC815\\uC801 \\uC0AC\\uC774\\uD2B8 \\uC0DD\\uC131\\uAE30\\uC785\\uB2C8\\uB2E4. \\uCD5C\\uC2E0 \\uC6F9 \\uAE30\\uC220\\uB85C \\uAD6C\\uCD95\\uB418\\uC5C8\\uC73C\\uBA70 \\uC131\\uB2A5, SEO, \\uC0AC\\uC6A9\\uC790 \\uACBD\\uD5D8\\uC5D0 \\uCD5C\\uC801\\uD654\\uB418\\uC5B4 \\uC788\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`,(0,n.jsx)(i.h2,{id:\"\\uC8FC\\uC694-\\uAE30\\uB2A5\",children:(0,n.jsx)(\"strong\",{children:\"\\uC8FC\\uC694 \\uAE30\\uB2A5\"})}),`\n`,(0,n.jsx)(i.hr,{}),`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\u{1F680} \\uBAA8\\uB358 \\uC2A4\\uD0DD\"}),\": Next.js 13 App Router, React 18, Tailwind CSS\"]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\u{1F4DD} Notion \\uD1B5\\uD569\"}),\": Notion API\\uB97C \\uD1B5\\uD55C \\uC6D0\\uD65C\\uD55C \\uCF58\\uD150\\uCE20 \\uAD00\\uB9AC\"]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\u{1F3A8} Gitbook \\uD14C\\uB9C8\"}),\": \\uAE30\\uC220 \\uCF58\\uD150\\uCE20\\uC5D0 \\uCD5C\\uC801\\uD654\\uB41C \\uAE54\\uB054\\uD558\\uACE0 \\uC804\\uBB38\\uC801\\uC778 \\uB808\\uC774\\uC544\\uC6C3\"]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\u{1F4F1} \\uBC18\\uC751\\uD615 \\uB514\\uC790\\uC778\"}),\": \\uBAA8\\uBC14\\uC77C \\uC6B0\\uC120 \\uC811\\uADFC \\uBC29\\uC2DD\\uC758 \\uC801\\uC751\\uD615 \\uB808\\uC774\\uC544\\uC6C3\"]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\u{1F319} \\uB2E4\\uD06C \\uBAA8\\uB4DC\"}),\": \\uC644\\uC804\\uD788 \\uAD6C\\uD604\\uB41C \\uB2E4\\uD06C/\\uB77C\\uC774\\uD2B8 \\uD14C\\uB9C8 \\uC804\\uD658\"]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\u26A1 \\uC131\\uB2A5 \\uCD5C\\uC801\\uD654\"}),\": ISR(Incremental Static Regeneration)\\uC744 \\uD65C\\uC6A9\\uD55C \\uC815\\uC801 \\uC0DD\\uC131\"]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\u{1F50D} SEO \\uCD5C\\uC801\\uD654\"}),\": \\uC0AC\\uC774\\uD2B8\\uB9F5, robots.txt, \\uBA54\\uD0C0 \\uD0DC\\uADF8 \\uCD5C\\uC801\\uD654 \\uB0B4\\uC7A5\"]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\u{1F4AC} \\uB313\\uAE00 \\uC2DC\\uC2A4\\uD15C\"}),\": GitHub \\uAE30\\uBC18 Giscus \\uD1B5\\uD569\"]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\u{1F4CA} \\uBD84\\uC11D \\uB3C4\\uAD6C\"}),\": Google Analytics \\uBC0F Busuanzi \\uBC29\\uBB38\\uC790 \\uCD94\\uC801\"]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\u{1F3F7}\\uFE0F \\uD48D\\uBD80\\uD55C \\uBD84\\uB958\"}),\": \\uCE74\\uD14C\\uACE0\\uB9AC \\uBC0F \\uD0DC\\uADF8 \\uAE30\\uBC18 \\uCF58\\uD150\\uCE20 \\uAD6C\\uC870\\uD654\"]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\u{1F50E} \\uAC80\\uC0C9 \\uAE30\\uB2A5\"}),\": \\uC804\\uCCB4 \\uAC8C\\uC2DC\\uBB3C \\uC804\\uBB38 \\uAC80\\uC0C9\"]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\u{1F4C4} \\uB2E4\\uC591\\uD55C \\uCF58\\uD150\\uCE20 \\uD0C0\\uC785\"}),\": TIL, \\uB77C\\uC774\\uD504\\uB85C\\uADF8, \\uAE00\\uC4F0\\uAE30, \\uD504\\uB85C\\uC81D\\uD2B8 \\uC1FC\\uCF00\\uC774\\uC2A4 \\uC9C0\\uC6D0\"]}),`\n`]}),`\n`,(0,n.jsx)(i.h2,{id:\"\\uAE30\\uC220-\\uC2A4\\uD0DD\",children:(0,n.jsx)(\"strong\",{children:\"\\uAE30\\uC220 \\uC2A4\\uD0DD\"})}),`\n`,(0,n.jsx)(i.h3,{id:\"core\",children:(0,n.jsx)(\"strong\",{children:\"Core\"})}),`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uD504\\uB808\\uC784\\uC6CC\\uD06C\"}),\":\\xA0\",(0,n.jsx)(i.a,{href:\"https://nextjs.org/\",children:\"Next.js 13\"})]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uC5B8\\uC5B4\"}),\": JavaScript/TypeScript\"]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uC2A4\\uD0C0\\uC77C\\uB9C1\"}),\":\\xA0\",(0,n.jsx)(i.a,{href:\"https://tailwindcss.com/\",children:\"Tailwind CSS\"})]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uCF58\\uD150\\uCE20 \\uC18C\\uC2A4\"}),\":\\xA0\",(0,n.jsx)(i.a,{href:\"https://developers.notion.com/\",children:\"Notion API\"})]}),`\n`]}),`\n`,(0,n.jsx)(i.h3,{id:\"\\uB77C\\uC774\\uBE0C\\uB7EC\\uB9AC--\\uB3C4\\uAD6C\",children:(0,n.jsx)(\"strong\",{children:\"\\uB77C\\uC774\\uBE0C\\uB7EC\\uB9AC & \\uB3C4\\uAD6C\"})}),`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uB80C\\uB354\\uB9C1\"}),\":\\xA0\",(0,n.jsx)(i.a,{href:\"https://github.com/NotionX/react-notion-x\",children:\"react-notion-x\"})]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uB313\\uAE00\"}),\":\\xA0\",(0,n.jsx)(i.a,{href:\"https://giscus.app/\",children:\"Giscus\"})]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uC544\\uC774\\uCF58\"}),\":\\xA0\",(0,n.jsx)(i.a,{href:\"https://fontawesome.com/\",children:\"Font Awesome\"})]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uC218\\uC2DD \\uB80C\\uB354\\uB9C1\"}),\": KaTeX\"]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uCF54\\uB4DC \\uD558\\uC774\\uB77C\\uC774\\uD305\"}),\": Prism.js (\\uCEE4\\uC2A4\\uD140 \\uD14C\\uB9C8)\"]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uBC30\\uD3EC\"}),\":\\xA0\",(0,n.jsx)(i.a,{href:\"https://vercel.com/\",children:\"Vercel\"})]}),`\n`]}),`\n`,(0,n.jsx)(i.h2,{id:\"\\uC2DC\\uC791\\uD558\\uAE30\",children:(0,n.jsx)(\"strong\",{children:\"\\uC2DC\\uC791\\uD558\\uAE30\"})}),`\n`,(0,n.jsx)(i.hr,{}),`\n`,(0,n.jsx)(i.h3,{id:\"\\uD544\\uC218-\\uC694\\uAD6C\\uC0AC\\uD56D\",children:(0,n.jsx)(\"strong\",{children:\"\\uD544\\uC218 \\uC694\\uAD6C\\uC0AC\\uD56D\"})}),`\n`,(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(i.pre,{className:\"shiki shiki-themes github-light github-dark\",style:{\"--shiki-light\":\"#24292e\",\"--shiki-dark\":\"#e1e4e8\",\"--shiki-light-bg\":\"#fff\",\"--shiki-dark-bg\":\"#24292e\"},tabIndex:\"0\",icon:'<svg viewBox=\"0 0 24 24\"><path d=\"M 6,1 C 4.354992,1 3,2.354992 3,4 v 16 c 0,1.645008 1.354992,3 3,3 h 12 c 1.645008,0 3,-1.354992 3,-3 V 8 7 A 1.0001,1.0001 0 0 0 20.707031,6.2929687 l -5,-5 A 1.0001,1.0001 0 0 0 15,1 h -1 z m 0,2 h 7 v 3 c 0,1.645008 1.354992,3 3,3 h 3 v 11 c 0,0.564129 -0.435871,1 -1,1 H 6 C 5.4358712,21 5,20.564129 5,20 V 4 C 5,3.4358712 5.4358712,3 6,3 Z M 15,3.4140625 18.585937,7 H 16 C 15.435871,7 15,6.5641288 15,6 Z\" fill=\"currentColor\" /></svg>',children:(0,n.jsxs)(i.code,{children:[(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"node >= 16.x\"})}),`\n`,(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"npm or yarn\"})})]})})}),`\n`,(0,n.jsx)(i.h3,{id:\"\\uC124\\uCE58\",children:(0,n.jsx)(\"strong\",{children:\"\\uC124\\uCE58\"})}),`\n`,(0,n.jsxs)(i.ol,{children:[`\n`,(0,n.jsx)(i.li,{children:\"\\uB808\\uD3EC\\uC9C0\\uD1A0\\uB9AC \\uD074\\uB860:\"}),`\n`]}),`\n`,(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(i.pre,{className:\"shiki shiki-themes github-light github-dark\",style:{\"--shiki-light\":\"#24292e\",\"--shiki-dark\":\"#e1e4e8\",\"--shiki-light-bg\":\"#fff\",\"--shiki-dark-bg\":\"#24292e\"},tabIndex:\"0\",icon:'<svg viewBox=\"0 0 24 24\"><path d=\"M 6,1 C 4.354992,1 3,2.354992 3,4 v 16 c 0,1.645008 1.354992,3 3,3 h 12 c 1.645008,0 3,-1.354992 3,-3 V 8 7 A 1.0001,1.0001 0 0 0 20.707031,6.2929687 l -5,-5 A 1.0001,1.0001 0 0 0 15,1 h -1 z m 0,2 h 7 v 3 c 0,1.645008 1.354992,3 3,3 h 3 v 11 c 0,0.564129 -0.435871,1 -1,1 H 6 C 5.4358712,21 5,20.564129 5,20 V 4 C 5,3.4358712 5.4358712,3 6,3 Z M 15,3.4140625 18.585937,7 H 16 C 15.435871,7 15,6.5641288 15,6 Z\" fill=\"currentColor\" /></svg>',children:(0,n.jsxs)(i.code,{children:[(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"git clone https://github.com/ryoonwithinwisdomlights/RWWT-log.git\"})}),`\n`,(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"cd RWWT-log\"})})]})})}),`\n`,(0,n.jsxs)(i.ol,{children:[`\n`,(0,n.jsx)(i.li,{children:\"\\uC758\\uC874\\uC131 \\uC124\\uCE58:\"}),`\n`]}),`\n`,(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(i.pre,{className:\"shiki shiki-themes github-light github-dark\",style:{\"--shiki-light\":\"#24292e\",\"--shiki-dark\":\"#e1e4e8\",\"--shiki-light-bg\":\"#fff\",\"--shiki-dark-bg\":\"#24292e\"},tabIndex:\"0\",icon:'<svg viewBox=\"0 0 24 24\"><path d=\"M 6,1 C 4.354992,1 3,2.354992 3,4 v 16 c 0,1.645008 1.354992,3 3,3 h 12 c 1.645008,0 3,-1.354992 3,-3 V 8 7 A 1.0001,1.0001 0 0 0 20.707031,6.2929687 l -5,-5 A 1.0001,1.0001 0 0 0 15,1 h -1 z m 0,2 h 7 v 3 c 0,1.645008 1.354992,3 3,3 h 3 v 11 c 0,0.564129 -0.435871,1 -1,1 H 6 C 5.4358712,21 5,20.564129 5,20 V 4 C 5,3.4358712 5.4358712,3 6,3 Z M 15,3.4140625 18.585937,7 H 16 C 15.435871,7 15,6.5641288 15,6 Z\" fill=\"currentColor\" /></svg>',children:(0,n.jsxs)(i.code,{children:[(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"npm install\"})}),`\n`,(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"# or\"})}),`\n`,(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"yarn install\"})})]})})}),`\n`,(0,n.jsxs)(i.ol,{children:[`\n`,(0,n.jsx)(i.li,{children:\"\\uD658\\uACBD \\uBCC0\\uC218 \\uC124\\uC815:\"}),`\n`]}),`\n`,(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(i.pre,{className:\"shiki shiki-themes github-light github-dark\",style:{\"--shiki-light\":\"#24292e\",\"--shiki-dark\":\"#e1e4e8\",\"--shiki-light-bg\":\"#fff\",\"--shiki-dark-bg\":\"#24292e\"},tabIndex:\"0\",icon:'<svg viewBox=\"0 0 24 24\"><path d=\"M 6,1 C 4.354992,1 3,2.354992 3,4 v 16 c 0,1.645008 1.354992,3 3,3 h 12 c 1.645008,0 3,-1.354992 3,-3 V 8 7 A 1.0001,1.0001 0 0 0 20.707031,6.2929687 l -5,-5 A 1.0001,1.0001 0 0 0 15,1 h -1 z m 0,2 h 7 v 3 c 0,1.645008 1.354992,3 3,3 h 3 v 11 c 0,0.564129 -0.435871,1 -1,1 H 6 C 5.4358712,21 5,20.564129 5,20 V 4 C 5,3.4358712 5.4358712,3 6,3 Z M 15,3.4140625 18.585937,7 H 16 C 15.435871,7 15,6.5641288 15,6 Z\" fill=\"currentColor\" /></svg>',children:(0,n.jsx)(i.code,{children:(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"cp .env.example .env.local\"})})})})}),`\n`,(0,n.jsx)(i.p,{children:\"\\uD544\\uC218 \\uD658\\uACBD \\uBCC0\\uC218:\"}),`\n`,(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(i.pre,{className:\"shiki shiki-themes github-light github-dark\",style:{\"--shiki-light\":\"#24292e\",\"--shiki-dark\":\"#e1e4e8\",\"--shiki-light-bg\":\"#fff\",\"--shiki-dark-bg\":\"#24292e\"},tabIndex:\"0\",icon:'<svg viewBox=\"0 0 24 24\"><path d=\"M 6,1 C 4.354992,1 3,2.354992 3,4 v 16 c 0,1.645008 1.354992,3 3,3 h 12 c 1.645008,0 3,-1.354992 3,-3 V 8 7 A 1.0001,1.0001 0 0 0 20.707031,6.2929687 l -5,-5 A 1.0001,1.0001 0 0 0 15,1 h -1 z m 0,2 h 7 v 3 c 0,1.645008 1.354992,3 3,3 h 3 v 11 c 0,0.564129 -0.435871,1 -1,1 H 6 C 5.4358712,21 5,20.564129 5,20 V 4 C 5,3.4358712 5.4358712,3 6,3 Z M 15,3.4140625 18.585937,7 H 16 C 15.435871,7 15,6.5641288 15,6 Z\" fill=\"currentColor\" /></svg>',children:(0,n.jsxs)(i.code,{children:[(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"NOTION_TOKEN=your_notion_integration_token\"})}),`\n`,(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"NOTION_DATABASE_ID=your_notion_database_id\"})}),`\n`,(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"NEXT_PUBLIC_GISCUS_REPO=your_github_repo\"})}),`\n`,(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"NEXT_PUBLIC_GA_ID=your_google_analytics_id\"})})]})})}),`\n`,(0,n.jsxs)(i.ol,{children:[`\n`,(0,n.jsx)(i.li,{children:\"\\uAC1C\\uBC1C \\uC11C\\uBC84 \\uC2E4\\uD589:\"}),`\n`]}),`\n`,(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(i.pre,{className:\"shiki shiki-themes github-light github-dark\",style:{\"--shiki-light\":\"#24292e\",\"--shiki-dark\":\"#e1e4e8\",\"--shiki-light-bg\":\"#fff\",\"--shiki-dark-bg\":\"#24292e\"},tabIndex:\"0\",icon:'<svg viewBox=\"0 0 24 24\"><path d=\"M 6,1 C 4.354992,1 3,2.354992 3,4 v 16 c 0,1.645008 1.354992,3 3,3 h 12 c 1.645008,0 3,-1.354992 3,-3 V 8 7 A 1.0001,1.0001 0 0 0 20.707031,6.2929687 l -5,-5 A 1.0001,1.0001 0 0 0 15,1 h -1 z m 0,2 h 7 v 3 c 0,1.645008 1.354992,3 3,3 h 3 v 11 c 0,0.564129 -0.435871,1 -1,1 H 6 C 5.4358712,21 5,20.564129 5,20 V 4 C 5,3.4358712 5.4358712,3 6,3 Z M 15,3.4140625 18.585937,7 H 16 C 15.435871,7 15,6.5641288 15,6 Z\" fill=\"currentColor\" /></svg>',children:(0,n.jsxs)(i.code,{children:[(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"npm run dev\"})}),`\n`,(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"# or\"})}),`\n`,(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"yarn dev\"})})]})})}),`\n`,(0,n.jsxs)(i.p,{children:[(0,n.jsx)(i.a,{href:\"http://localhost:3000/\",children:\"http://localhost:3000\"}),\"\\uC5D0\\uC11C \\uC560\\uD50C\\uB9AC\\uCF00\\uC774\\uC158\\uC744 \\uD655\\uC778\\uD558\\uC2E4 \\uC218 \\uC788\\uC2B5\\uB2C8\\uB2E4.\"]}),`\n`,(0,n.jsx)(i.h3,{id:\"\\uD504\\uB85C\\uB355\\uC158-\\uBE4C\\uB4DC\",children:(0,n.jsx)(\"strong\",{children:\"\\uD504\\uB85C\\uB355\\uC158 \\uBE4C\\uB4DC\"})}),`\n`,(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(i.pre,{className:\"shiki shiki-themes github-light github-dark\",style:{\"--shiki-light\":\"#24292e\",\"--shiki-dark\":\"#e1e4e8\",\"--shiki-light-bg\":\"#fff\",\"--shiki-dark-bg\":\"#24292e\"},tabIndex:\"0\",icon:'<svg viewBox=\"0 0 24 24\"><path d=\"M 6,1 C 4.354992,1 3,2.354992 3,4 v 16 c 0,1.645008 1.354992,3 3,3 h 12 c 1.645008,0 3,-1.354992 3,-3 V 8 7 A 1.0001,1.0001 0 0 0 20.707031,6.2929687 l -5,-5 A 1.0001,1.0001 0 0 0 15,1 h -1 z m 0,2 h 7 v 3 c 0,1.645008 1.354992,3 3,3 h 3 v 11 c 0,0.564129 -0.435871,1 -1,1 H 6 C 5.4358712,21 5,20.564129 5,20 V 4 C 5,3.4358712 5.4358712,3 6,3 Z M 15,3.4140625 18.585937,7 H 16 C 15.435871,7 15,6.5641288 15,6 Z\" fill=\"currentColor\" /></svg>',children:(0,n.jsxs)(i.code,{children:[(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"npm run build\"})}),`\n`,(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"npm run start\"})})]})})}),`\n`,(0,n.jsx)(i.h2,{id:\"\\uD504\\uB85C\\uC81D\\uD2B8-\\uAD6C\\uC870\",children:(0,n.jsx)(\"strong\",{children:\"\\uD504\\uB85C\\uC81D\\uD2B8 \\uAD6C\\uC870\"})}),`\n`,(0,n.jsx)(i.hr,{}),`\n`,(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(i.pre,{className:\"shiki shiki-themes github-light github-dark\",style:{\"--shiki-light\":\"#24292e\",\"--shiki-dark\":\"#e1e4e8\",\"--shiki-light-bg\":\"#fff\",\"--shiki-dark-bg\":\"#24292e\"},tabIndex:\"0\",icon:'<svg viewBox=\"0 0 24 24\"><path d=\"M 6,1 C 4.354992,1 3,2.354992 3,4 v 16 c 0,1.645008 1.354992,3 3,3 h 12 c 1.645008,0 3,-1.354992 3,-3 V 8 7 A 1.0001,1.0001 0 0 0 20.707031,6.2929687 l -5,-5 A 1.0001,1.0001 0 0 0 15,1 h -1 z m 0,2 h 7 v 3 c 0,1.645008 1.354992,3 3,3 h 3 v 11 c 0,0.564129 -0.435871,1 -1,1 H 6 C 5.4358712,21 5,20.564129 5,20 V 4 C 5,3.4358712 5.4358712,3 6,3 Z M 15,3.4140625 18.585937,7 H 16 C 15.435871,7 15,6.5641288 15,6 Z\" fill=\"currentColor\" /></svg>',children:(0,n.jsxs)(i.code,{children:[(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"RWWT-log/\"})}),`\n`,(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"\\u251C\\u2500\\u2500 components/          # \\uC7AC\\uC0AC\\uC6A9 \\uAC00\\uB2A5\\uD55C React \\uCEF4\\uD3EC\\uB10C\\uD2B8\"})}),`\n`,(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"\\u251C\\u2500\\u2500 lib/\"})}),`\n`,(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"\\u2502   \\u251C\\u2500\\u2500 cache/          # \\uCE90\\uC2F1 \\uC804\\uB7B5 (\\uBA54\\uBAA8\\uB9AC, \\uD30C\\uC77C \\uAE30\\uBC18)\"})}),`\n`,(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"\\u2502   \\u251C\\u2500\\u2500 notion/         # Notion API \\uD1B5\\uD569\"})}),`\n`,(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"\\u2502   \\u2514\\u2500\\u2500 lang/           # \\uB2E4\\uAD6D\\uC5B4 \\uC9C0\\uC6D0\"})}),`\n`,(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"\\u251C\\u2500\\u2500 pages/              # Next.js \\uD398\\uC774\\uC9C0 \\uBC0F API \\uB77C\\uC6B0\\uD2B8\"})}),`\n`,(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"\\u251C\\u2500\\u2500 public/             # \\uC815\\uC801 \\uC5D0\\uC14B\"})}),`\n`,(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"\\u251C\\u2500\\u2500 styles/             # \\uAE00\\uB85C\\uBC8C \\uC2A4\\uD0C0\\uC77C \\uBC0F CSS \\uBAA8\\uB4C8\"})}),`\n`,(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"\\u251C\\u2500\\u2500 themes/\"})}),`\n`,(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"\\u2502   \\u2514\\u2500\\u2500 gitbook/        # Gitbook \\uD14C\\uB9C8 \\uAD6C\\uD604\"})}),`\n`,(0,n.jsx)(i.span,{className:\"line\",children:(0,n.jsx)(i.span,{children:\"\\u2514\\u2500\\u2500 blog.config.js      # \\uBE14\\uB85C\\uADF8 \\uC124\\uC815\"})})]})})}),`\n`,(0,n.jsx)(i.h2,{id:\"\\uC124\\uC815\",children:(0,n.jsx)(\"strong\",{children:\"\\uC124\\uC815\"})}),`\n`,(0,n.jsx)(i.hr,{}),`\n`,(0,n.jsxs)(i.p,{children:[(0,n.jsx)(\"code\",{children:\"blog.config.js\"}),\"\\uB97C \\uD3B8\\uC9D1\\uD558\\uC5EC \\uB2E4\\uC74C \\uD56D\\uBAA9\\uC744 \\uCEE4\\uC2A4\\uD130\\uB9C8\\uC774\\uC9D5\\uD560 \\uC218 \\uC788\\uC2B5\\uB2C8\\uB2E4:\"]}),`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsx)(i.li,{children:\"\\uC0AC\\uC774\\uD2B8 \\uBA54\\uD0C0\\uB370\\uC774\\uD130 (\\uC81C\\uBAA9, \\uC124\\uBA85, \\uC791\\uC131\\uC790)\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uC18C\\uC15C \\uB9C1\\uD06C\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uB124\\uBE44\\uAC8C\\uC774\\uC158 \\uBA54\\uB274\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uBD84\\uC11D \\uB3C4\\uAD6C \\uC124\\uC815\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uB313\\uAE00 \\uC2DC\\uC2A4\\uD15C\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uD14C\\uB9C8 \\uC124\\uC815\"}),`\n`]}),`\n`,(0,n.jsx)(i.h2,{id:\"\\uC8FC\\uC694-\\uAD6C\\uD604-\\uC0AC\\uD56D\",children:(0,n.jsx)(\"strong\",{children:\"\\uC8FC\\uC694 \\uAD6C\\uD604 \\uC0AC\\uD56D\"})}),`\n`,(0,n.jsx)(i.hr,{}),`\n`,(0,n.jsx)(i.h3,{id:\"\\uC131\\uB2A5-\\uCD5C\\uC801\\uD654\",children:(0,n.jsx)(\"strong\",{children:\"\\uC131\\uB2A5 \\uCD5C\\uC801\\uD654\"})}),`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsx)(i.li,{children:\"\\uCEE4\\uC2A4\\uD140 \\uCE90\\uC2F1 \\uB808\\uC774\\uC5B4 \\uAD6C\\uD604 (\\uBA54\\uBAA8\\uB9AC + \\uD30C\\uC77C \\uAE30\\uBC18)\"}),`\n`,(0,n.jsx)(i.li,{children:\"Next.js Image \\uCEF4\\uD3EC\\uB10C\\uD2B8\\uB97C \\uD65C\\uC6A9\\uD55C \\uC774\\uBBF8\\uC9C0 \\uCD5C\\uC801\\uD654\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uC774\\uBBF8\\uC9C0 \\uBC0F \\uBB34\\uAC70\\uC6B4 \\uCEF4\\uD3EC\\uB10C\\uD2B8\\uC758 \\uC9C0\\uC5F0 \\uB85C\\uB529\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uB3D9\\uC801 \\uCF58\\uD150\\uCE20\\uB97C \\uC704\\uD55C ISR\\uC744 \\uD65C\\uC6A9\\uD55C \\uC815\\uC801 \\uC0DD\\uC131\"}),`\n`]}),`\n`,(0,n.jsx)(i.h3,{id:\"seo-\\uCD5C\\uC801\\uD654\",children:(0,n.jsx)(\"strong\",{children:\"SEO \\uCD5C\\uC801\\uD654\"})}),`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsx)(i.li,{children:\"\\uB3D9\\uC801 \\uC0AC\\uC774\\uD2B8\\uB9F5 \\uC0DD\\uC131\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uAD6C\\uC870\\uD654\\uB41C \\uB370\\uC774\\uD130 (JSON-LD)\"}),`\n`,(0,n.jsx)(i.li,{children:\"Open Graph \\uBC0F Twitter Card \\uBA54\\uD0C0 \\uD0DC\\uADF8\"}),`\n`,(0,n.jsx)(i.li,{children:\"Robots.txt \\uC124\\uC815\"}),`\n`,(0,n.jsx)(i.li,{children:\"RSS \\uD53C\\uB4DC \\uC0DD\\uC131\"}),`\n`]}),`\n`,(0,n.jsx)(i.h3,{id:\"\\uCF58\\uD150\\uCE20-\\uAD00\\uB9AC\",children:(0,n.jsx)(\"strong\",{children:\"\\uCF58\\uD150\\uCE20 \\uAD00\\uB9AC\"})}),`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsx)(i.li,{children:\"\\uCE74\\uD14C\\uACE0\\uB9AC \\uAE30\\uBC18 \\uAD6C\\uC870 (Tech Logs, Life Logs, Writing, Projects, Inspiration)\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uAD50\\uCC28 \\uCC38\\uC870\\uB97C \\uC704\\uD55C \\uD0DC\\uADF8 \\uC2DC\\uC2A4\\uD15C\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uC2DC\\uAC04\\uC21C \\uBAA9\\uB85D\\uC774 \\uC788\\uB294 \\uC544\\uCE74\\uC774\\uBE0C \\uD398\\uC774\\uC9C0\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uBAA8\\uB4E0 \\uCF58\\uD150\\uCE20\\uC5D0 \\uB300\\uD55C \\uAC80\\uC0C9 \\uAE30\\uB2A5\"}),`\n`]}),`\n`,(0,n.jsx)(i.h2,{id:\"\\uBC30\\uD3EC\",children:(0,n.jsx)(\"strong\",{children:\"\\uBC30\\uD3EC\"})}),`\n`,(0,n.jsx)(i.hr,{}),`\n`,(0,n.jsx)(i.h3,{id:\"vercel-\\uAD8C\\uC7A5\",children:(0,n.jsx)(\"strong\",{children:\"Vercel (\\uAD8C\\uC7A5)\"})}),`\n`,(0,n.jsxs)(i.ol,{children:[`\n`,(0,n.jsx)(i.li,{children:\"GitHub\\uC5D0 \\uCF54\\uB4DC \\uD478\\uC2DC\"}),`\n`,(0,n.jsx)(i.li,{children:\"Vercel\\uC5D0\\uC11C \\uD504\\uB85C\\uC81D\\uD2B8 \\uC784\\uD3EC\\uD2B8\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uD658\\uACBD \\uBCC0\\uC218 \\uC124\\uC815\"}),`\n`,(0,n.jsx)(i.li,{children:\"\\uBC30\\uD3EC\"}),`\n`]}),`\n`,(0,n.jsx)(i.h3,{id:\"\\uAE30\\uD0C0-\\uD50C\\uB7AB\\uD3FC\",children:(0,n.jsx)(\"strong\",{children:\"\\uAE30\\uD0C0 \\uD50C\\uB7AB\\uD3FC\"})}),`\n`,(0,n.jsx)(i.p,{children:\"Next.js\\uB97C \\uC9C0\\uC6D0\\uD558\\uB294 \\uBAA8\\uB4E0 \\uD50C\\uB7AB\\uD3FC\\uACFC \\uD638\\uD658\\uB429\\uB2C8\\uB2E4:\"}),`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsx)(i.li,{children:\"Netlify\"}),`\n`,(0,n.jsx)(i.li,{children:\"AWS Amplify\"}),`\n`,(0,n.jsx)(i.li,{children:\"Cloudflare Pages\"}),`\n`,(0,n.jsx)(i.li,{children:\"Docker (Dockerfile \\uD3EC\\uD568)\"}),`\n`]}),`\n`,(0,n.jsx)(i.h2,{id:\"\\uAC1C\\uBC1C-\\uD558\\uC774\\uB77C\\uC774\\uD2B8\",children:(0,n.jsx)(\"strong\",{children:\"\\uAC1C\\uBC1C \\uD558\\uC774\\uB77C\\uC774\\uD2B8\"})}),`\n`,(0,n.jsx)(i.hr,{}),`\n`,(0,n.jsxs)(i.ul,{children:[`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uC544\\uD0A4\\uD14D\\uCC98\"}),\": \\uBAA8\\uB4C8\\uD654\\uB41C \\uCEF4\\uD3EC\\uB10C\\uD2B8 \\uAD6C\\uC870\\uB85C \\uAD00\\uC2EC\\uC0AC\\uC758 \\uBA85\\uD655\\uD55C \\uBD84\\uB9AC \\uAD6C\\uD604\"]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uCE90\\uC2F1 \\uC804\\uB7B5\"}),\": \\uB2E4\\uC911 \\uC2A4\\uD1A0\\uB9AC\\uC9C0 \\uBC31\\uC5D4\\uB4DC\\uB97C \\uC9C0\\uC6D0\\uD558\\uB294 \\uCEE4\\uC2A4\\uD140 \\uCE90\\uC2DC \\uB9E4\\uB2C8\\uC800 \\uAD6C\\uCD95\"]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uC131\\uB2A5\"}),\": \\uBAA8\\uB4E0 \\uBA54\\uD2B8\\uB9AD\\uC5D0\\uC11C Lighthouse 90+ \\uC810\\uC218 \\uB2EC\\uC131\"]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uCF54\\uB4DC \\uD488\\uC9C8\"}),\": ESLint \\uBC0F Prettier\\uB97C \\uD1B5\\uD55C \\uC77C\\uAD00\\uB41C \\uCF54\\uB4DC \\uC2A4\\uD0C0\\uC77C \\uC720\\uC9C0\"]}),`\n`,(0,n.jsxs)(i.li,{children:[(0,n.jsx)(\"strong\",{children:\"\\uD655\\uC7A5\\uC131\"}),\": \\uC26C\\uC6B4 \\uD14C\\uB9C8 \\uD655\\uC7A5 \\uBC0F \\uAE30\\uB2A5 \\uCD94\\uAC00\\uB97C \\uC704\\uD55C \\uC124\\uACC4\"]}),`\n`]}),`\n`,(0,n.jsx)(i.h2,{id:\"\\uB77C\\uC774\\uC120\\uC2A4\",children:(0,n.jsx)(\"strong\",{children:\"\\uB77C\\uC774\\uC120\\uC2A4\"})}),`\n`,(0,n.jsx)(i.hr,{}),`\n`,(0,n.jsx)(i.p,{children:(0,n.jsx)(i.a,{href:\"https://github.com/ryoonwithinwisdomlights/RWWT-log/blob/main/LICENSE\",children:\"MIT License\"})}),`\n`,(0,n.jsx)(i.h2,{id:\"\\uD06C\\uB808\\uB527\",children:(0,n.jsx)(\"strong\",{children:\"\\uD06C\\uB808\\uB527\"})}),`\n`,(0,n.jsx)(i.hr,{}),`\n`,(0,n.jsxs)(i.p,{children:[(0,n.jsx)(i.a,{href:\"https://github.com/tangly1024\",children:\"tangly1024\"}),\"\\uC758\\xA0\",(0,n.jsx)(i.a,{href:\"https://github.com/tangly1024/NotionNext\",children:\"NotionNext\"}),\"\\uC5D0\\uC11C \\uC601\\uAC10\\uC744 \\uBC1B\\uC544 \\uC81C\\uC791\\uB418\\uC5C8\\uC2B5\\uB2C8\\uB2E4.\"]}),`\n`,(0,n.jsx)(i.hr,{}),`\n`,(0,n.jsxs)(i.p,{children:[(0,n.jsx)(\"strong\",{children:\"\\uAC1C\\uBC1C \\uAE30\\uAC04\"}),\": 2023.09 - 2024.06 (9\\uAC1C\\uC6D4)\"]})]})}function o(e={}){let{wrapper:i}=e.components||{};return i?(0,n.jsx)(i,{...e,children:(0,n.jsx)(a,{...e})}):a(e)}return f(C);})();\n;return Component;"
   },
   {
     "notionId": "38b9a2d6ac814610ae61bb47bbbdbb51",
-    "title": "[SP] sryn.netlify.app(개츠비로 작성한 정적 깃허브 블로그)",
+    "title": "sryn.netlify.app(개츠비로 작성한 정적 깃허브 블로그)",
     "icon": "",
     "full": false,
     "summary": "개츠비로 작성한 정적 깃허브 블로그",
-    "pageCover": "https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641248/norkive-notion-images/1754641247750-E1_84_89_E1_85_B3_E1_84_8F_E1_85_B3_E1_84_85_E1_85_B5_E1_86_AB_E1_84_89_E1_85_A3_E1_86_BA_2024-06-24_E1_84_8B_E1_85_A9_E1_84_92_E1_85_AE_4.52.25.png",
+    "pageCover": "https://res.cloudinary.com/dyrdul1dd/image/upload/v1760541694/norkive-notion-images/png_1760541694571_RTFfODRfOD.webp?format=webp&quality=90",
     "password": "",
     "type": "PROJECTS",
-    "description": "",
+    "description": "개츠비로 작성한 정적 깃허브 블로그",
     "date": "2021-01-19T00:00:00.000Z",
-    "lastEditedDate": "2025-08-07T13:38:00.000Z",
+    "lastEditedDate": "2025-10-15T12:44:00.000Z",
     "sub_type": "Dev",
     "category": "DevProject",
     "tags": [
@@ -899,19 +1381,19 @@ export default [
     ],
     "draft": false,
     "favorite": false,
-    "readingTime": 1,
-    "wordCount": 42,
-    "lastModified": "2025-08-08",
+    "readingTime": 3,
+    "wordCount": 421,
+    "lastModified": "2025-10-15",
     "version": "1.0.0",
     "status": "published",
-    "author": "ryoon",
-    "content": "![sryn.gif](https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641246/norkive-notion-images/1754641245859-sryn.gif)\n\n\n# 1. 리포지토리\n\n\n[link_preview](https://github.com/ryoon-with-wisdomtrees/sryn)\n\n\n# 2. 사이트\n\n\n<BookMarkWrapper names={\"bookmark\"} urls={\"https://sryn.netlify.app/\"} />\n\n\n# 3. sryn.netlify.app\n\n- Gatsby를 이용하여 3일 동안 만든 정적 깃허브 블로그입니다.\n- 배포는 netlify로 하였습니다.",
+    "author": "ryoonwithinwisdomlights",
+    "content": "![sryn.gif](https://res.cloudinary.com/dyrdul1dd/image/upload/v1760541693/norkive-notion-images/gif_1760541692987_c3J5bg%3D%3D.gif)\n\n\n# 1. 리포지토리\n\n\n[link_preview](https://github.com/ryoon-with-wisdomtrees/sryn)\n\n\n# 2. 사이트\n\n\n<BookMarkWrapper names={\"bookmark\"} urls={\"https://sryn.netlify.app/\"} />\n\n\n# 3. sryn.netlify.app\n\n- Gatsby를 이용하여 3일 동안 만든 정적 깃허브 블로그입니다.\n- 배포는 netlify로 하였습니다.",
     "_meta": {
-      "filePath": "projects-SP-sryn-netlify-app-개츠비로-작성한-정.mdx",
-      "fileName": "projects-SP-sryn-netlify-app-개츠비로-작성한-정.mdx",
+      "filePath": "projects-sryn-netlify-app-개츠비로-작성한-정적-깃.mdx",
+      "fileName": "projects-sryn-netlify-app-개츠비로-작성한-정적-깃.mdx",
       "directory": ".",
       "extension": "mdx",
-      "path": "projects-SP-sryn-netlify-app-개츠비로-작성한-정"
+      "path": "projects-sryn-netlify-app-개츠비로-작성한-정적-깃"
     },
     "toc": [
       {
@@ -960,6 +1442,6 @@ export default [
         }
       ]
     },
-    "body": "var Component=(()=>{var p=Object.create;var o=Object.defineProperty;var m=Object.getOwnPropertyDescriptor;var u=Object.getOwnPropertyNames;var y=Object.getPrototypeOf,f=Object.prototype.hasOwnProperty;var g=(e,n)=>()=>(n||e((n={exports:{}}).exports,n),n.exports),x=(e,n)=>{for(var i in n)o(e,i,{get:n[i],enumerable:!0})},l=(e,n,i,s)=>{if(n&&typeof n==\"object\"||typeof n==\"function\")for(let t of u(n))!f.call(e,t)&&t!==i&&o(e,t,{get:()=>n[t],enumerable:!(s=m(n,t))||s.enumerable});return e};var k=(e,n,i)=>(i=e!=null?p(y(e)):{},l(n||!e||!e.__esModule?o(i,\"default\",{value:e,enumerable:!0}):i,e)),_=e=>l(o({},\"__esModule\",{value:!0}),e);var a=g((b,d)=>{d.exports=_jsx_runtime});var j={};x(j,{default:()=>h});var r=k(a());function c(e){let n={a:\"a\",h1:\"h1\",img:\"img\",li:\"li\",p:\"p\",ul:\"ul\",...e.components},{BookMarkWrapper:i}=n;return i||w(\"BookMarkWrapper\",!0),(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(n.p,{children:(0,r.jsx)(n.img,{alt:\"sryn.gif\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1754641246/norkive-notion-images/1754641245859-sryn.gif\",width:\"600\",height:\"438\"})}),`\n`,(0,r.jsx)(n.h1,{id:\"1-\\uB9AC\\uD3EC\\uC9C0\\uD1A0\\uB9AC\",children:\"1. \\uB9AC\\uD3EC\\uC9C0\\uD1A0\\uB9AC\"}),`\n`,(0,r.jsx)(n.p,{children:(0,r.jsx)(n.a,{href:\"https://github.com/ryoon-with-wisdomtrees/sryn\",children:\"link_preview\"})}),`\n`,(0,r.jsx)(n.h1,{id:\"2-\\uC0AC\\uC774\\uD2B8\",children:\"2. \\uC0AC\\uC774\\uD2B8\"}),`\n`,(0,r.jsx)(i,{names:\"bookmark\",urls:\"https://sryn.netlify.app/\"}),`\n`,(0,r.jsx)(n.h1,{id:\"3-srynnetlifyapp\",children:\"3. sryn.netlify.app\"}),`\n`,(0,r.jsxs)(n.ul,{children:[`\n`,(0,r.jsx)(n.li,{children:\"Gatsby\\uB97C \\uC774\\uC6A9\\uD558\\uC5EC 3\\uC77C \\uB3D9\\uC548 \\uB9CC\\uB4E0 \\uC815\\uC801 \\uAE43\\uD5C8\\uBE0C \\uBE14\\uB85C\\uADF8\\uC785\\uB2C8\\uB2E4.\"}),`\n`,(0,r.jsx)(n.li,{children:\"\\uBC30\\uD3EC\\uB294 netlify\\uB85C \\uD558\\uC600\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`]})]})}function h(e={}){let{wrapper:n}=e.components||{};return n?(0,r.jsx)(n,{...e,children:(0,r.jsx)(c,{...e})}):c(e)}function w(e,n){throw new Error(\"Expected \"+(n?\"component\":\"object\")+\" `\"+e+\"` to be defined: you likely forgot to import, pass, or provide it.\")}return _(j);})();\n;return Component;"
+    "body": "var Component=(()=>{var p=Object.create;var o=Object.defineProperty;var m=Object.getOwnPropertyDescriptor;var u=Object.getOwnPropertyNames;var f=Object.getPrototypeOf,y=Object.prototype.hasOwnProperty;var g=(e,n)=>()=>(n||e((n={exports:{}}).exports,n),n.exports),_=(e,n)=>{for(var i in n)o(e,i,{get:n[i],enumerable:!0})},l=(e,n,i,s)=>{if(n&&typeof n==\"object\"||typeof n==\"function\")for(let t of u(n))!y.call(e,t)&&t!==i&&o(e,t,{get:()=>n[t],enumerable:!(s=m(n,t))||s.enumerable});return e};var x=(e,n,i)=>(i=e!=null?p(f(e)):{},l(n||!e||!e.__esModule?o(i,\"default\",{value:e,enumerable:!0}):i,e)),k=e=>l(o({},\"__esModule\",{value:!0}),e);var d=g((M,c)=>{c.exports=_jsx_runtime});var b={};_(b,{default:()=>h});var r=x(d());function a(e){let n={a:\"a\",h1:\"h1\",img:\"img\",li:\"li\",p:\"p\",ul:\"ul\",...e.components},{BookMarkWrapper:i}=n;return i||w(\"BookMarkWrapper\",!0),(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(n.p,{children:(0,r.jsx)(n.img,{alt:\"sryn.gif\",src:\"https://res.cloudinary.com/dyrdul1dd/image/upload/v1760541693/norkive-notion-images/gif_1760541692987_c3J5bg%3D%3D.gif\",width:\"600\",height:\"438\"})}),`\n`,(0,r.jsx)(n.h1,{id:\"1-\\uB9AC\\uD3EC\\uC9C0\\uD1A0\\uB9AC\",children:\"1. \\uB9AC\\uD3EC\\uC9C0\\uD1A0\\uB9AC\"}),`\n`,(0,r.jsx)(n.p,{children:(0,r.jsx)(n.a,{href:\"https://github.com/ryoon-with-wisdomtrees/sryn\",children:\"link_preview\"})}),`\n`,(0,r.jsx)(n.h1,{id:\"2-\\uC0AC\\uC774\\uD2B8\",children:\"2. \\uC0AC\\uC774\\uD2B8\"}),`\n`,(0,r.jsx)(i,{names:\"bookmark\",urls:\"https://sryn.netlify.app/\"}),`\n`,(0,r.jsx)(n.h1,{id:\"3-srynnetlifyapp\",children:\"3. sryn.netlify.app\"}),`\n`,(0,r.jsxs)(n.ul,{children:[`\n`,(0,r.jsx)(n.li,{children:\"Gatsby\\uB97C \\uC774\\uC6A9\\uD558\\uC5EC 3\\uC77C \\uB3D9\\uC548 \\uB9CC\\uB4E0 \\uC815\\uC801 \\uAE43\\uD5C8\\uBE0C \\uBE14\\uB85C\\uADF8\\uC785\\uB2C8\\uB2E4.\"}),`\n`,(0,r.jsx)(n.li,{children:\"\\uBC30\\uD3EC\\uB294 netlify\\uB85C \\uD558\\uC600\\uC2B5\\uB2C8\\uB2E4.\"}),`\n`]})]})}function h(e={}){let{wrapper:n}=e.components||{};return n?(0,r.jsx)(n,{...e,children:(0,r.jsx)(a,{...e})}):a(e)}function w(e,n){throw new Error(\"Expected \"+(n?\"component\":\"object\")+\" `\"+e+\"` to be defined: you likely forgot to import, pass, or provide it.\")}return k(b);})();\n;return Component;"
   }
 ]
