@@ -1,3 +1,5 @@
+![logo](/public/images/Norkive_intro.png)
+![logo](/public/images/Norkive_kv.png)
 # Norkive
 
 [![Next.js](https://img.shields.io/badge/Next.js-15.4.1-black?logo=next.js)](https://nextjs.org/)
