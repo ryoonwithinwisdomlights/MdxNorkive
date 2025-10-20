@@ -4,8 +4,8 @@ import { BLOG } from "@/blog.config";
 //************* Font Awesome ************* */
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
-//************* Geist ************* */
-// import { GeistSans } from "geist/font/sans";
+//************* font ************* */
+import { Noto_Sans, Noto_Serif } from "next/font/google";
 
 //************* Next ************* */
 import type { Metadata, Viewport } from "next";
@@ -52,6 +52,15 @@ import { RecordFrontMatter } from "@/types/mdx.model";
 import { LoaderConfig, Page } from "fumadocs-core/source";
 config.autoAddCss = false;
 
+const notoSans = Noto_Sans({
+  variable: "--font-sans",
+  subsets: ["latin"],
+});
+
+const notoSerif = Noto_Serif({
+  variable: "--font-serif",
+  subsets: ["latin"],
+});
 export const viewport: Viewport = {
   // themeColor: "normal",
   colorScheme: "normal",
@@ -132,7 +141,11 @@ export default async function RootLayout({
   }));
 
   return (
-    <html lang={BLOG.LANG} suppressHydrationWarning>
+    <html
+      lang={BLOG.LANG}
+      suppressHydrationWarning
+      className={`${notoSans.variable} ${notoSerif.variable}`}
+    >
       <body>
         <ProgressBar>
           <RootProvider

@@ -57,9 +57,9 @@ const DocFooter = () => {
             href="https://fuma-dev.vercel.app"
             rel="noreferrer noopener"
             target="_blank"
-            className="text-blue-500 font-medium"
+            className="text-gray-500 font-medium"
           >
-            Fuma
+            FumaDocs
           </a>
         </p>
       </div>
