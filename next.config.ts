@@ -156,6 +156,10 @@ const baseConfig: NextConfig = {
         protocol: "https",
         hostname: "res.cloudinary.com",
       },
+      {
+        protocol: "https",
+        hostname: "camo.githubusercontent.com",
+      },
     ],
   },
 
