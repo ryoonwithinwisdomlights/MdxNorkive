@@ -11,10 +11,12 @@ import { useEffect, useState } from "react";
  */
 const DebugPanel = () => {
   const [show, setShow] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { locale } = useGeneralSiteSettings();
   const [siteConfig, updateSiteConfig] = useState({});
 
   useEffect(() => {
+    setMounted(true);
     updateSiteConfig(Object.assign({}, BLOG));
   }, []);
 
@@ -32,6 +34,11 @@ const DebugPanel = () => {
         return "-";
     }
     return text;
+  }
+
+  // hydration 에러 방지: 클라이언트에서만 렌더링
+  if (!mounted) {
+    return null;
   }
 
   return (

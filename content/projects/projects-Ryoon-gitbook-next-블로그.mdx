@@ -1,0 +1,288 @@
+---
+title: "Ryoon-gitbook-next\_블로그"
+slug: projects-Ryoon-gitbook-next-블로그
+summary: >-
+  Ryoon-gitbook-next is a static Gitbook-themed-Blog built with Next.js 13,
+  Notion API, Tailwind-CSS and Vercel, reinterpreted & created by
+  ryoon.with.wisdomtrees, inspired by NotionNext
+pageCover: >-
+  https://res.cloudinary.com/dyrdul1dd/image/upload/v1760935489/norkive-notion-images/png_1760935489115_RTFfODRfOD.webp?format=webp&quality=90
+notionId: 9cc0c832caf149a4a24381ec3c548824
+password: ''
+type: PROJECTS
+sub_type: Dev
+category: DevProject
+tags:
+  - Portfolio
+  - Next.js13
+  - TailwindCSS
+favorite: true
+date: '2023-11-29'
+last_edited_time: '2025-10-19T06:20:00.000Z'
+lastEditedDate: 2025-10-19T06:20:00.000Z
+draft: false
+description: >-
+  Ryoon-gitbook-next is a static Gitbook-themed-Blog built with Next.js 13,
+  Notion API, Tailwind-CSS and Vercel, reinterpreted & created by
+  ryoon.with.wisdomtrees, inspired by NotionNext
+icon: ''
+full: false
+lastModified: '2025-10-20'
+readingTime: 25
+wordCount: 4881
+status: published
+author: ryoonwithinwisdomlights
+version: 1.0.0
+---
+
+# Ryoon-gitbook-next Blog
+
+> Next.js 13과 Notion API를 활용한 프로덕션 레디 정적 블로그 플랫폼. Gitbook 스타일의 모던한 UI/UX 디자인을 제공합니다.
+
+🌐 <strong>Live Demo</strong>: [https://ryoon-gitbook-next.vercel.app/archive](https://ryoon-gitbook-next.vercel.app/archive)
+
+
+📦 <strong>Repository</strong>: [https://github.com/ryoonwithinwisdomlights/Ryoon-gitbook-next](https://github.com/ryoonwithinwisdomlights/Ryoon-gitbook-next)
+
+
+![image.png](https://res.cloudinary.com/dyrdul1dd/image/upload/v1760935488/norkive-notion-images/png_1760935487992_aW1hZ2U%3D.webp?format=webp&quality=85)
+
+
+## <strong>개요</strong>
+
+
+---
+
+
+Notion 페이지를 백엔드 없이 완전한 기능을 갖춘 블로그로 변환하는 서버리스 정적 사이트 생성기입니다. 최신 웹 기술로 구축되었으며 성능, SEO, 사용자 경험에 최적화되어 있습니다.
+
+
+## <strong>주요 기능</strong>
+
+
+---
+
+- <strong>🚀 모던 스택</strong>: Next.js 13 App Router, React 18, Tailwind CSS
+- <strong>📝 Notion 통합</strong>: Notion API를 통한 원활한 콘텐츠 관리
+- <strong>🎨 Gitbook 테마</strong>: 기술 콘텐츠에 최적화된 깔끔하고 전문적인 레이아웃
+- <strong>📱 반응형 디자인</strong>: 모바일 우선 접근 방식의 적응형 레이아웃
+- <strong>🌙 다크 모드</strong>: 완전히 구현된 다크/라이트 테마 전환
+- <strong>⚡ 성능 최적화</strong>: ISR(Incremental Static Regeneration)을 활용한 정적 생성
+- <strong>🔍 SEO 최적화</strong>: 사이트맵, robots.txt, 메타 태그 최적화 내장
+- <strong>💬 댓글 시스템</strong>: GitHub 기반 Giscus 통합
+- <strong>📊 분석 도구</strong>: Google Analytics 및 Busuanzi 방문자 추적
+- <strong>🏷️ 풍부한 분류</strong>: 카테고리 및 태그 기반 콘텐츠 구조화
+- <strong>🔎 검색 기능</strong>: 전체 게시물 전문 검색
+- <strong>📄 다양한 콘텐츠 타입</strong>: TIL, 라이프로그, 글쓰기, 프로젝트 쇼케이스 지원
+
+## <strong>기술 스택</strong>
+
+
+### <strong>Core</strong>
+
+- <strong>프레임워크</strong>: [Next.js 13](https://nextjs.org/)
+- <strong>언어</strong>: JavaScript/TypeScript
+- <strong>스타일링</strong>: [Tailwind CSS](https://tailwindcss.com/)
+- <strong>콘텐츠 소스</strong>: [Notion API](https://developers.notion.com/)
+
+### <strong>라이브러리 & 도구</strong>
+
+- <strong>렌더링</strong>: [react-notion-x](https://github.com/NotionX/react-notion-x)
+- <strong>댓글</strong>: [Giscus](https://giscus.app/)
+- <strong>아이콘</strong>: [Font Awesome](https://fontawesome.com/)
+- <strong>수식 렌더링</strong>: KaTeX
+- <strong>코드 하이라이팅</strong>: Prism.js (커스텀 테마)
+- <strong>배포</strong>: [Vercel](https://vercel.com/)
+
+## <strong>시작하기</strong>
+
+
+---
+
+
+### <strong>필수 요구사항</strong>
+
+
+```plain text
+node >= 16.x
+npm or yarn
+```
+
+
+### <strong>설치</strong>
+
+1. 레포지토리 클론:
+
+```plain text
+git clone https://github.com/ryoonwithinwisdomlights/RWWT-log.git
+cd RWWT-log
+```
+
+1. 의존성 설치:
+
+```plain text
+npm install
+# or
+yarn install
+```
+
+1. 환경 변수 설정:
+
+```plain text
+cp .env.example .env.local
+```
+
+
+필수 환경 변수:
+
+
+```plain text
+NOTION_TOKEN=your_notion_integration_token
+NOTION_DATABASE_ID=your_notion_database_id
+NEXT_PUBLIC_GISCUS_REPO=your_github_repo
+NEXT_PUBLIC_GA_ID=your_google_analytics_id
+```
+
+1. 개발 서버 실행:
+
+```plain text
+npm run dev
+# or
+yarn dev
+```
+
+
+[http://localhost:3000](http://localhost:3000/)에서 애플리케이션을 확인하실 수 있습니다.
+
+
+### <strong>프로덕션 빌드</strong>
+
+
+```plain text
+npm run build
+npm run start
+```
+
+
+## <strong>프로젝트 구조</strong>
+
+
+---
+
+
+```plain text
+RWWT-log/
+├── components/          # 재사용 가능한 React 컴포넌트
+├── lib/
+│   ├── cache/          # 캐싱 전략 (메모리, 파일 기반)
+│   ├── notion/         # Notion API 통합
+│   └── lang/           # 다국어 지원
+├── pages/              # Next.js 페이지 및 API 라우트
+├── public/             # 정적 에셋
+├── styles/             # 글로벌 스타일 및 CSS 모듈
+├── themes/
+│   └── gitbook/        # Gitbook 테마 구현
+└── blog.config.js      # 블로그 설정
+```
+
+
+## <strong>설정</strong>
+
+
+---
+
+
+<code>blog.config.js</code>를 편집하여 다음 항목을 커스터마이징할 수 있습니다:
+
+- 사이트 메타데이터 (제목, 설명, 작성자)
+- 소셜 링크
+- 네비게이션 메뉴
+- 분석 도구 설정
+- 댓글 시스템
+- 테마 설정
+
+## <strong>주요 구현 사항</strong>
+
+
+---
+
+
+### <strong>성능 최적화</strong>
+
+- 커스텀 캐싱 레이어 구현 (메모리 + 파일 기반)
+- Next.js Image 컴포넌트를 활용한 이미지 최적화
+- 이미지 및 무거운 컴포넌트의 지연 로딩
+- 동적 콘텐츠를 위한 ISR을 활용한 정적 생성
+
+### <strong>SEO 최적화</strong>
+
+- 동적 사이트맵 생성
+- 구조화된 데이터 (JSON-LD)
+- Open Graph 및 Twitter Card 메타 태그
+- Robots.txt 설정
+- RSS 피드 생성
+
+### <strong>콘텐츠 관리</strong>
+
+- 카테고리 기반 구조 (Tech Logs, Life Logs, Writing, Projects, Inspiration)
+- 교차 참조를 위한 태그 시스템
+- 시간순 목록이 있는 아카이브 페이지
+- 모든 콘텐츠에 대한 검색 기능
+
+## <strong>배포</strong>
+
+
+---
+
+
+### <strong>Vercel (권장)</strong>
+
+1. GitHub에 코드 푸시
+2. Vercel에서 프로젝트 임포트
+3. 환경 변수 설정
+4. 배포
+
+### <strong>기타 플랫폼</strong>
+
+
+Next.js를 지원하는 모든 플랫폼과 호환됩니다:
+
+- Netlify
+- AWS Amplify
+- Cloudflare Pages
+- Docker (Dockerfile 포함)
+
+## <strong>개발 하이라이트</strong>
+
+
+---
+
+- <strong>아키텍처</strong>: 모듈화된 컴포넌트 구조로 관심사의 명확한 분리 구현
+- <strong>캐싱 전략</strong>: 다중 스토리지 백엔드를 지원하는 커스텀 캐시 매니저 구축
+- <strong>성능</strong>: 모든 메트릭에서 Lighthouse 90+ 점수 달성
+- <strong>코드 품질</strong>: ESLint 및 Prettier를 통한 일관된 코드 스타일 유지
+- <strong>확장성</strong>: 쉬운 테마 확장 및 기능 추가를 위한 설계
+
+## <strong>라이선스</strong>
+
+
+---
+
+
+[MIT License](https://github.com/ryoonwithinwisdomlights/RWWT-log/blob/main/LICENSE)
+
+
+## <strong>크레딧</strong>
+
+
+---
+
+
+[tangly1024](https://github.com/tangly1024)의 [NotionNext](https://github.com/tangly1024/NotionNext)에서 영감을 받아 제작되었습니다.
+
+
+---
+
+
+<strong>개발 기간</strong>: 2023.09 - 2024.06 (9개월)
+

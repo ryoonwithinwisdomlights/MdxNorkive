@@ -8,13 +8,6 @@ import GoogleAnalytics from "@/modules/shared/GoogleAnalytics";
 import VConsoleTs from "@/modules/shared/VConsoleTs";
 import { useEffect, useState } from "react";
 
-// const Analytics = dynamic(
-//   () =>
-//     import("@vercel/analytics/react").then((m) => {
-//       return m.Analytics;
-//     }),
-//   { ssr: false }
-// );
 const AuxiliaryBlogComponent = () => {
   const [isMounted, setIsMounted] = useState(false);
 
@@ -23,8 +16,8 @@ const AuxiliaryBlogComponent = () => {
   }, []);
 
   return (
-    <div>
-      {!BLOG.isProd && <DebugPanel />}
+    <>
+      {BLOG.DEBUG && <DebugPanel />}
       {!BLOG.CAN_COPY && <DisableCopy />}
       {ANALYTICS_CONFIG.ANALYTICS_BUSUANZI_ENABLE && isMounted && <Busuanzi />}
       {/* {ANALYTICS_CONFIG.ANALYTICS_VERCEL && <Analytics />} */}
@@ -34,7 +27,7 @@ const AuxiliaryBlogComponent = () => {
         />
       )}
       <VConsoleTs />
-    </div>
+    </>
   );
 };
 
