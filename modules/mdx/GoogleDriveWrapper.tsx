@@ -9,7 +9,7 @@ export default function GoogleDriveWrapper(props: GoogleDriveWrapperProps) {
   const { names, urls } = props;
   if (!urls) return null;
   return (
-    <div className="my-4" data-tooltip="Google Drive File Open in new tab">
+    <span className="my-4" data-tooltip="Google Drive File Open in new tab">
       <a
         href={urls}
         target="_blank"
@@ -33,6 +33,6 @@ export default function GoogleDriveWrapper(props: GoogleDriveWrapperProps) {
         drive&nbsp;-&nbsp;
         {names}
       </a>
-    </div>
+    </span>
   );
 }

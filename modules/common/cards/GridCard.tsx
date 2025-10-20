@@ -43,7 +43,7 @@ const GridCard = React.memo(
       },
       ref
     ) => {
-      console.log(title);
+      // console.log(title);
       const isCompact = variant === "compact";
       const isLarge = variant === "large";
       const isDefault = variant === "default";

@@ -52,15 +52,6 @@ import { RecordFrontMatter } from "@/types/mdx.model";
 import { LoaderConfig, Page } from "fumadocs-core/source";
 config.autoAddCss = false;
 
-// const notoSans = Noto_Sans({
-//   variable: "--font-sans",
-//   subsets: ["latin"],
-// });
-
-// const notoSerif = Noto_Serif({
-//   variable: "--font-serif",
-//   subsets: ["latin"],
-// });
 export const viewport: Viewport = {
   // themeColor: "normal",
   colorScheme: "normal",
@@ -141,11 +132,7 @@ export default async function RootLayout({
   }));
 
   return (
-    <html
-      lang={BLOG.LANG}
-      suppressHydrationWarning
-      // className={`${notoSans.variable} ${notoSerif.variable}`}
-    >
+    <html lang={BLOG.LANG} suppressHydrationWarning>
       <body>
         <ProgressBar>
           <RootProvider
