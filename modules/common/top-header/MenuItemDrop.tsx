@@ -83,7 +83,7 @@ export const MenuItemDrop = ({ menuData }) => {
   }
   const renderSubmenus = () => {
     return (
-      <ul
+      <ol
         className={`${
           show ? "visible top-12 " : "invisible opacity-0 top-10 "
         } border-neutral-100 bg-white dark:bg-neutral-800  dark:border-neutral-900 
@@ -93,7 +93,7 @@ export const MenuItemDrop = ({ menuData }) => {
           const iconForRenderSubmenus = parseIcon(sLink.icon);
 
           return (
-            <div key={index} className="h-full w-full">
+            <ol key={index} className="h-full w-full">
               <li
                 className="not:last-child:border-b-0 border-b
             tracking-widest transition-all duration-200  dark:border-neutral-800 p-4"
@@ -118,10 +118,10 @@ export const MenuItemDrop = ({ menuData }) => {
                   </span>
                 </div>
               </li>
-            </div>
+            </ol>
           );
         })}
-      </ul>
+      </ol>
     );
   };
 

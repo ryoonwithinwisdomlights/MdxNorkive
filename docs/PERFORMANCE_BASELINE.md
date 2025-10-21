@@ -462,3 +462,32 @@ mkdir -p performance-reports/lighthouse
 npm run measure:all
 ```
 
+---
+## 📊 측정 결과 확인
+
+모든 결과는 다음 위치에 저장됩니다:
+```
+performance-reports/
+├── baseline.json           # 📌 성능 기준선 (중요!)
+├── bundle-*.json          # 번들 측정 결과
+└── lighthouse/            # Lighthouse 리포트
+```
+---
+## 💡 빠른 명령어 참고
+
+```bash
+# 전체 측정 (빌드 + 번들 분석)
+npm run measure:all
+
+# 번들 크기만 측정 (이미 빌드된 경우)
+npm run measure:bundle
+
+# 번들 시각화 (브라우저에서 보기)
+npm run analyze
+
+# Lighthouse 측정 (개발 서버 실행 후)
+npm run measure:lighthouse
+
+# 기준선 확인
+cat performance-reports/baseline.json
+```
