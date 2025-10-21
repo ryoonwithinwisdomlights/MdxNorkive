@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import { withContentCollections } from "@content-collections/next";
+import withBundleAnalyzer from "@next/bundle-analyzer";
 import path from "path";
 
 /** @type {import('next').NextConfig} */
@@ -185,4 +186,9 @@ const baseConfig: NextConfig = {
   },
 };
 
-export default withContentCollections(baseConfig);
+// 번들 분석기 설정
+const bundleAnalyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
+
+export default bundleAnalyzer(withContentCollections(baseConfig));

@@ -33,6 +33,7 @@ import DefaultSearchDialog from "@/modules/common/search/search";
 import MobileFooter from "@/modules/layout/components/mobile-footer";
 import TopNavigationWrapper from "@/modules/layout/wrapper/TopNavigationWrapper";
 import ProgressBar from "@/modules/shared/ProgressBar";
+import { WebVitals } from "@/modules/shared/WebVitals";
 
 // 동적 import로 코드 스플리팅 적용 (사용 빈도가 낮은 컴포넌트들)
 const AuxiliaryBlogComponent = lazy(
@@ -134,6 +135,7 @@ export default async function RootLayout({
   return (
     <html lang={BLOG.LANG} suppressHydrationWarning>
       <body>
+        <WebVitals />
         <ProgressBar>
           <RootProvider
             search={{
