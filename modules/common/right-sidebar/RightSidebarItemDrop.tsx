@@ -1,7 +1,6 @@
 "use client"; // 클라이언트 컴포넌트
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { parseIcon } from "@/lib/utils/general";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { parseIcon } from "@/lib/utils/general";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -31,20 +30,20 @@ export const RightSidebarItemDrop = (props) => {
   };
 
   const renderMainMenus = () => {
-    const icon = parseIcon(menuData.icon);
+    // const icon = parseIcon(menuData.icon);
     return (
       <div
         className="p-2  rounded-lg  flex justify-start cursor-pointer 
       flex-row items-center gap-2
        hover:bg-neutral-200/50 dark:hover:bg-neutral-700"
       >
-        {icon && <FontAwesomeIcon icon={icon} className="w-3 h-3" />}
+        {/* {icon && <FontAwesomeIcon icon={icon} className="w-3 h-3" />} */}
         <span className="text-sm">{menuData.title}</span>
       </div>
     );
   };
   const renderMainMenusWithNoSubMenus = () => {
-    const icon = parseIcon(menuData.icon);
+    // const icon = parseIcon(menuData.icon);
     return (
       <Link
         href={menuData?.slug}
@@ -52,7 +51,7 @@ export const RightSidebarItemDrop = (props) => {
         className="p-2  rounded-lg  w-full my-auto items-center justify-between flex  "
       >
         <div className="flex flex-row items-center gap-2">
-          {icon && <FontAwesomeIcon icon={icon} />}
+          {/* {icon && <FontAwesomeIcon icon={icon} />} */}
           <span className="text-sm">{menuData.title}</span>
         </div>
       </Link>
@@ -63,7 +62,7 @@ export const RightSidebarItemDrop = (props) => {
     return (
       <div className={`overflow-hidden duration-200 flex flex-col gap-2 `}>
         {menuData?.subMenus?.map((sLink, index) => {
-          const icon = parseIcon(sLink.icon);
+          // const icon = parseIcon(sLink.icon);
           return (
             <div
               key={index}
@@ -78,9 +77,9 @@ export const RightSidebarItemDrop = (props) => {
                 }}
               >
                 <div className="flex flex-row gap-2 items-center justify-start">
-                  {icon && (
+                  {/* {icon && (
                     <FontAwesomeIcon icon={icon} className="text-xs w-3 h-3" />
-                  )}
+                  )} */}
                   <span className="text-sm">{sLink.title}</span>
                 </div>
               </div>

@@ -1,10 +1,9 @@
 "use client";
-import { useState } from "react";
+// import { parseIcon } from "@/lib/utils/general";
+import { ChevronDownIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ChevronDownIcon } from "lucide-react";
-import { parseIcon } from "@/lib/utils/general";
+import { useState } from "react";
 
 export const MenuItemDrop = ({ menuData }) => {
   if (!menuData) {
@@ -31,7 +30,7 @@ export const MenuItemDrop = ({ menuData }) => {
   };
 
   const renderMainMenus = () => {
-    const icon = parseIcon(menuData.icon);
+    // const icon = parseIcon(menuData.icon);
     return (
       <div
         className="p-2 h-full whitespace-nowrap duration-300 text-sm 
@@ -41,7 +40,7 @@ export const MenuItemDrop = ({ menuData }) => {
         flex flex-nowrap items-center "
       >
         <div className="flex flex-row items-center gap-2">
-          {icon && <FontAwesomeIcon icon={icon} className="w-3 h-3" />}
+          {/* {icon && <FontAwesomeIcon icon={icon} className="w-3 h-3" />} */}
           <span className="text-sm ">{menuData?.title}</span>
           {hasSubMenu && (
             <ChevronDownIcon
@@ -56,7 +55,7 @@ export const MenuItemDrop = ({ menuData }) => {
   };
 
   const renderMainMenusWithNoSubMenus = () => {
-    const icon = parseIcon(menuData.icon);
+    // const icon = parseIcon(menuData.icon);
 
     return (
       <div
@@ -72,7 +71,7 @@ export const MenuItemDrop = ({ menuData }) => {
           target={menuData?.slug?.indexOf("http") === 0 ? "_blank" : "_self"}
           className="flex flex-row items-center gap-2"
         >
-          {icon && <FontAwesomeIcon icon={icon} className="w-3 h-3 " />}
+          {/* {icon && <FontAwesomeIcon icon={icon} className="w-3 h-3 " />} */}
           <span className="text-xs ">{menuData?.title}</span>
         </Link>
       </div>
@@ -90,7 +89,7 @@ export const MenuItemDrop = ({ menuData }) => {
         transition-all duration-300 z-20 absolute block drop-shadow-lg rounded-lg `}
       >
         {menuData?.subMenus?.map((sLink, index) => {
-          const iconForRenderSubmenus = parseIcon(sLink.icon);
+          // const iconForRenderSubmenus = parseIcon(sLink.icon);
 
           return (
             <ol key={index} className="h-full w-full">
@@ -108,12 +107,12 @@ export const MenuItemDrop = ({ menuData }) => {
                     className="text-xs 
                    hover:text-black dark:hover:text-white flex flex-row items-center gap-2"
                   >
-                    {iconForRenderSubmenus && (
+                    {/* {iconForRenderSubmenus && (
                       <FontAwesomeIcon
                         icon={iconForRenderSubmenus}
                         className="w-3 h-3 "
                       />
-                    )}
+                    )} */}
                     <span className="text-xs ">{sLink.title}</span>
                   </span>
                 </div>

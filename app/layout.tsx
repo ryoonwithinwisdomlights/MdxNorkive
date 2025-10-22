@@ -2,8 +2,8 @@ import { Suspense, lazy } from "react";
 import { BLOG } from "@/blog.config";
 
 //************* Font Awesome ************* */
-import "@fortawesome/fontawesome-svg-core/styles.css";
-import { config } from "@fortawesome/fontawesome-svg-core";
+// import "@fortawesome/fontawesome-svg-core/styles.css";
+// import { config } from "@fortawesome/fontawesome-svg-core";
 //************* font ************* */
 // import { Noto_Sans, Noto_Serif } from "next/font/google";
 
@@ -51,7 +51,7 @@ import { fetchMenuList } from "./api/fetcher";
 //*************  types ************* */
 import { RecordFrontMatter } from "@/types/mdx.model";
 import { LoaderConfig, Page } from "fumadocs-core/source";
-config.autoAddCss = false;
+// config.autoAddCss = false;
 
 export const viewport: Viewport = {
   // themeColor: "normal",

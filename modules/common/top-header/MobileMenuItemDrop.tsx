@@ -1,8 +1,7 @@
 "use client"; // 클라이언트 컴포넌트
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { parseIcon } from "@/lib/utils/general";
+// import { parseIcon } from "@/lib/utils/general";
 import Collapse from "@/modules/shared/Collapse";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -51,7 +50,7 @@ export const MobileMenuItemDrop = ({ link, onHeightChange }) => {
   };
 
   const renderMainMenus = () => {
-    const icon = parseIcon(link.icon);
+    // const icon = parseIcon(link.icon);
     return (
       <div
         onClick={toggleOpenSubMenu}
@@ -59,7 +58,7 @@ export const MobileMenuItemDrop = ({ link, onHeightChange }) => {
       >
         <div>
           <div className={`${link.icon} text-center w-4 mr-4`} />
-          {icon && <FontAwesomeIcon icon={icon} />} {link.title}
+          {/* {icon && <FontAwesomeIcon icon={icon} />} {link.title} */}
         </div>
         <div className="inline-flex items-center ">
           <ChevronRightIcon
@@ -72,7 +71,7 @@ export const MobileMenuItemDrop = ({ link, onHeightChange }) => {
     );
   };
   const renderMainMenusWithNoSubMenus = () => {
-    const icon = parseIcon(link.icon);
+    // const icon = parseIcon(link.icon);
     return (
       <Link
         href={link?.slug}
@@ -81,7 +80,7 @@ export const MobileMenuItemDrop = ({ link, onHeightChange }) => {
       >
         <div>
           <div className={`${link.icon} text-center w-4 mr-4`} />
-          {icon && <FontAwesomeIcon icon={icon} />} {link.title}
+          {/* {icon && <FontAwesomeIcon icon={icon} />} {link.title} */}
         </div>
       </Link>
     );
@@ -91,7 +90,7 @@ export const MobileMenuItemDrop = ({ link, onHeightChange }) => {
     return (
       <Collapse isOpen={isOpen} onHeightChange={onHeightChange}>
         {link?.subMenus?.map((sLink, index) => {
-          const icon = parseIcon(sLink.icon);
+          // const icon = parseIcon(sLink.icon);
           return (
             <div
               key={index}
@@ -108,7 +107,7 @@ export const MobileMenuItemDrop = ({ link, onHeightChange }) => {
                   <div
                     className={`${sLink.icon} text-center w-3 mr-3 text-xs`}
                   />
-                  {icon && <FontAwesomeIcon icon={icon} />} {sLink.title}
+                  {/* {icon && <FontAwesomeIcon icon={icon} />} {sLink.title} */}
                 </div>
               </div>
             </div>

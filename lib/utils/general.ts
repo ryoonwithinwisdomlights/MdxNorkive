@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import * as Icons from "@fortawesome/free-solid-svg-icons"; // 모든 아이콘을 가져옴
+//import * as Icons from "@fortawesome/free-solid-svg-icons"; // 모든 아이콘을 가져옴
 import { type ClassValue, clsx } from "clsx";
 import React from "react";
 import { twMerge } from "tailwind-merge";
@@ -81,24 +81,24 @@ export function getLastSegmentFromUrl(url) {
   return segments[segments.length - 1];
 }
 
-export const parseIcon = (iconString: string) => {
-  if (!iconString) return null;
-  const [prefix, iconName] = iconString.split(" ");
-  if (!iconName) return null;
+// export const parseIcon = (iconString: string) => {
+//   if (!iconString) return null;
+//   const [prefix, iconName] = iconString.split(" ");
+//   if (!iconName) return null;
 
-  // fa- 이후의 단어를 CamelCase로 변환
-  const iconKey = iconName
-    .replace("fa-", "") // "fa-" 제거
-    .split("-") // "-"로 나누기
-    .map((word, index) => {
-      if (index === 0) return word; // 첫 단어는 소문자로 유지
-      return word.charAt(0).toUpperCase() + word.slice(1); // 나머지 단어는 첫 글자 대문자
-    })
-    .join("");
-  return (
-    Icons[`fa${iconKey.charAt(0).toUpperCase()}${iconKey.slice(1)}`] || null
-  );
-};
+//   // fa- 이후의 단어를 CamelCase로 변환
+//   const iconKey = iconName
+//     .replace("fa-", "") // "fa-" 제거
+//     .split("-") // "-"로 나누기
+//     .map((word, index) => {
+//       if (index === 0) return word; // 첫 단어는 소문자로 유지
+//       return word.charAt(0).toUpperCase() + word.slice(1); // 나머지 단어는 첫 글자 대문자
+//     })
+//     .join("");
+//   return (
+//     Icons[`fa${iconKey.charAt(0).toUpperCase()}${iconKey.slice(1)}`] || null
+//   );
+// };
 
 /**
  * Load external resources
