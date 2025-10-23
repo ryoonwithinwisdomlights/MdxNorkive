@@ -1,12 +1,10 @@
 "use client";
-import { useRef } from "react";
+import { useRef, lazy } from "react";
 import Link from "next/link";
 
 import { BLOG } from "@/blog.config";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { useNav } from "@/lib/context/NavInfoProvider";
-import ToggleDarkModeButton from "@/modules/layout/components/dark-mode-toggle";
-import SwitchLanguage from "@/modules/layout/components/switch-language-dropdown";
 
 import MobileRightSidebar from "./MobileRightSidebar";
 import { RightSidebarItemDrop } from "./RightSidebarItemDrop";
@@ -15,6 +13,12 @@ import { Label } from "@/modules/shared/ui/label";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { AlignRightIcon } from "lucide-react";
 
+const ToggleDarkModeButton = lazy(
+  () => import("@/modules/layout/components/dark-mode-toggle")
+);
+const SwitchLanguage = lazy(
+  () => import("@/modules/layout/components/switch-language-dropdown")
+);
 const MobileRightSidebarWrapper = () => {
   const { menuList } = useNav({ from: "LeftSidebar" });
   const { locale, toggleMobileLeftSidebarOpen } = useGeneralSiteSettings();

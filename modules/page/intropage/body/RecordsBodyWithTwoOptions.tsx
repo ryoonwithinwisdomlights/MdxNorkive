@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, lazy } from "react";
 import { useRouter } from "next/navigation";
 import NotFound from "@/app/not-found";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
@@ -9,8 +9,11 @@ import NoRecordFound from "@/modules/shared/NoRecordFound";
 import PageIndicator from "@/modules/page/components/PageIndicator";
 import LazyImage from "@/modules/shared/LazyImage";
 import OptionCarousel from "@/modules/shared/OptionCarousel";
-import InjectedOptionMenu from "@/modules/page/components/InjectedOptionMenu";
 import { OptionItem } from "@/types";
+
+const InjectedOptionMenu = lazy(
+  () => import("@/modules/page/components/InjectedOptionMenu")
+);
 
 const RecordsBodyWithTwoOptions = ({ records }: { records: any[] }) => {
   const pages = records;

@@ -1,6 +1,5 @@
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import InjectedOptionMenu from "@/modules/page/components/InjectedOptionMenu";
-import React from "react";
+import { lazy } from "react";
 
 type Props = {
   introTrue?: boolean;
@@ -9,6 +8,10 @@ type Props = {
   allOptions: any[];
   handleRecordTypeChange: (option: string) => void;
 };
+
+const InjectedOptionMenu = lazy(
+  () => import("@/modules/page/components/InjectedOptionMenu")
+);
 
 const IntroSectionWithMenuOption = ({
   introTrue = true,

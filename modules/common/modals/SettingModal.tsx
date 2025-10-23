@@ -1,8 +1,6 @@
 "use client";
-
+import { lazy } from "react";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import SwitchLanguage from "@/modules/layout/components/switch-language-dropdown";
-import ToggleDarkModeButton from "@/modules/layout/components/dark-mode-toggle";
 import {
   Dialog,
   DialogContent,
@@ -12,6 +10,12 @@ import { Label } from "@/modules/shared/ui/label";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
+const ToggleDarkModeButton = lazy(
+  () => import("@/modules/layout/components/dark-mode-toggle")
+);
+const SwitchLanguage = lazy(
+  () => import("@/modules/layout/components/switch-language-dropdown")
+);
 const SettingModal = () => {
   const { setting, handleSettings, locale } = useGeneralSiteSettings();
 
