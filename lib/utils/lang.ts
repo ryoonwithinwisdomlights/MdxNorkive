@@ -77,7 +77,11 @@ export function generateLocaleDict(langString: string): LocaleDict {
     }
   }
 
-  return mergeDeep({}, dictionaries["en-US"], userLocale) as LocaleDict;
+  return mergeDeep(
+    {},
+    dictionaries["en-US"] as unknown as Record<string, unknown>,
+    userLocale as unknown as Record<string, unknown>
+  ) as unknown as LocaleDict;
 }
 
 /**

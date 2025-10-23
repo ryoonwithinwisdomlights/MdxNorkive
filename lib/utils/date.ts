@@ -1,9 +1,12 @@
-import { ko, enUS } from "date-fns/locale";
+import { ko, enUS, type Locale } from "date-fns/locale";
 import { format, formatDistanceToNowStrict } from "date-fns";
 
-export function formatDateFmt(timestamp, fmt) {
+export function formatDateFmt(
+  timestamp: string | number | Date,
+  fmt: string
+): string {
   const date = new Date(timestamp);
-  const o = {
+  const o: Record<string, number> = {
     "M+": date.getMonth() + 1,
     "d+": date.getDate(),
     "h+": date.getHours(),
@@ -23,7 +26,7 @@ export function formatDateFmt(timestamp, fmt) {
       fmt = fmt.replace(
         RegExp.$1,
         RegExp.$1.length === 1
-          ? o[k]
+          ? String(o[k])
           : ("00" + o[k]).substring(("" + o[k]).length)
       );
     }
@@ -31,8 +34,11 @@ export function formatDateFmt(timestamp, fmt) {
   return fmt.trim();
 }
 
-export const getYearMonthDay = (date: Date | string, locale: string) => {
-  const formats = {
+export const getYearMonthDay = (
+  date: Date | string,
+  locale: string
+): string => {
+  const formats: Record<string, string> = {
     "kr-KR": "yyyy년 LL월 dd일",
     "en-US": "yyyy-LL-dd",
   };
@@ -40,8 +46,11 @@ export const getYearMonthDay = (date: Date | string, locale: string) => {
   return format(new Date(date), formatString);
 };
 
-export const getDistanceFromToday = (date: Date | string, locale: string) => {
-  const formats = {
+export const getDistanceFromToday = (
+  date: Date | string,
+  locale: string
+): string => {
+  const formats: Record<string, Locale> = {
     "kr-KR": ko,
     "en-US": enUS,
   };
@@ -51,7 +60,9 @@ export const getDistanceFromToday = (date: Date | string, locale: string) => {
   });
 };
 
-export function formatToKoreanDate(utcDateString): string {
+export function formatToKoreanDate(
+  utcDateString: string | number | Date
+): string {
   const date = new Date(utcDateString);
   const koreaTime = new Date(date.getTime() + 9 * 60 * 60 * 1000);
   const year = koreaTime.getFullYear();
@@ -69,8 +80,11 @@ export function formatToKoreanDate(utcDateString): string {
  * @param local
  * @returns {string}
  */
-export function formatDate(date, local) {
-  if (!date || !local) return date || "";
+export function formatDate(
+  date: string | number | Date | null | undefined,
+  local: string | null | undefined
+): string {
+  if (!date || !local) return typeof date === "string" ? date : "";
   const d = new Date(date);
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
