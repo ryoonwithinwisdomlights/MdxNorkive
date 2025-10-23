@@ -1,24 +1,22 @@
 "use client";
+import { BLOG } from "@/blog.config";
+import { GeneralSiteSettingsProps, TOCItemType } from "@/types";
 import {
   createContext,
   ReactNode,
+  useCallback,
   useContext,
   useEffect,
-  useRef,
-  useState,
-  useCallback,
   useMemo,
+  useState,
 } from "react";
-import { BLOG } from "@/blog.config";
-import { GeneralSiteSettingsProps, TOCItemType } from "@/types";
 
 import {
   generateLocaleDict,
   getFilteredDictionaryListKey,
-  initLocale,
-  saveLangToLocalStorage,
-  saveLangToCookies,
   initDarkMode,
+  saveLangToCookies,
+  saveLangToLocalStorage,
   setThemeByLocalStorage,
 } from "@/lib/utils";
 
@@ -64,7 +62,6 @@ export const GeneralSiteSettingsProvider: React.FC<{
   const [pageNavVisible, setPageNavVisible] = useState<boolean>(false);
 
   const [searchKeyword, setSearchKeyword] = useState<string>("");
-  const isFirstRender = useRef(true);
 
   // 모든 함수들을 useCallback으로 최적화
   const toggleMobileLeftSidebarOpen = useCallback(() => {
@@ -185,18 +182,6 @@ export const GeneralSiteSettingsProvider: React.FC<{
     // initLocale(lang, locale, updateLang, updateLocale);
     setOnLoading(false);
   }, []);
-
-  // 사용자가 언어를 수동으로 변경했을 때만 실행
-  // useEffect(() => {
-  //   if (isFirstRender.current) {
-  //     isFirstRender.current = false;
-  //     return;
-  //   }
-
-  //   initLocale(lang, locale, updateLang, updateLocale);
-  //   setOnLoading(false);
-  //   toast.success(`${locale.SITE.LANG_CHANGE_SUCCESS_MSG} `);
-  // }, [lang, locale]);
 
   return (
     <GeneralSiteSettings.Provider value={value}>

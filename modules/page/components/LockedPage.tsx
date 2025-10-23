@@ -1,5 +1,6 @@
 "use client";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { LockedSection } from "@/types";
 import { KeyRoundIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
@@ -11,11 +12,13 @@ import React, { useEffect, useRef, useState } from "react";
  * @param validPassword(bool) Callback function, verify that the correct callback input parameter is true
  * @returns
  */
-const LockedPage = (props) => {
+const LockedPage = (props: {
+  validPassword: (password: string) => boolean;
+}) => {
   const { validPassword } = props;
 
   const { locale } = useGeneralSiteSettings();
-  const { LOCKED } = locale.LOCKED;
+  const LOCKED = locale.LOCKED as LockedSection;
   const [tempPassword, setTempPassword] = useState<string>("");
   const submitPassword = () => {
     if (!validPassword(tempPassword)) {

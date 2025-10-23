@@ -1,4 +1,6 @@
-export const KOR_LANG = {
+import type { LocaleDict } from "@/types";
+
+export const KOR_LANG: LocaleDict = {
   LOCALE: "kr-KR",
   LANGUAGE: "한국어",
   LOADING: "로딩중...",

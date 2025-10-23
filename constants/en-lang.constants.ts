@@ -1,4 +1,6 @@
-export const ENG_LANG = {
+import type { LocaleDict } from "@/types";
+
+export const ENG_LANG: LocaleDict = {
   LOCALE: "en-US",
   LANGUAGE: "English",
   LOADING: "Loading...",
