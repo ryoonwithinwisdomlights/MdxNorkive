@@ -36,7 +36,9 @@ export class NotionPageListAdapter {
       const menuPromises = this.pageList.map(async (item) => {
         return await generateMenuItem(item as ModifiedQueryDatabaseResponse);
       });
-      menus = await Promise.all(menuPromises);
+      menus = (await Promise.all(menuPromises)).filter(
+        (item): item is MenuItem => item !== undefined
+      );
     }
 
     return menus;

@@ -3,28 +3,31 @@ import {
   ModifiedQueryDatabaseResponse,
   QueryPageResponse,
   RecordFrontMatter,
+  MenuItem,
 } from "@/types";
 import { generateUserFriendlySlug } from "@/lib/utils";
 
 export async function generateChildRelations(
   childRelations: Array<{ id: string }>
-) {
+): Promise<MenuItem[]> {
   const childIds = childRelations.map((rel) => rel.id);
   // 하위항목 id로 각각의 페이지 정보 가져오기
-  const children = await Promise.all(
-    childIds.map(async (childId) => {
+  const children: MenuItem[] = await Promise.all(
+    childIds.map(async (childId): Promise<MenuItem> => {
       const childPage = await notion.pages.retrieve({ page_id: childId });
-      const childProps = generateMenuItem(
+      const childProps = await generateMenuItem(
         childPage as ModifiedQueryDatabaseResponse
       );
-      return childProps;
+      return childProps!;
     })
   );
 
   return children;
 }
 
-export async function generateMenuItem(page: ModifiedQueryDatabaseResponse) {
+export async function generateMenuItem(
+  page: ModifiedQueryDatabaseResponse
+): Promise<MenuItem | undefined> {
   const slugSet = new Set<string>();
   const id = page.id.replace(/-/g, "");
   const props = page.properties as any;
@@ -38,7 +41,7 @@ export async function generateMenuItem(page: ModifiedQueryDatabaseResponse) {
   const title = props.title?.title?.[0]?.plain_text?.trim() || "Untitled";
   const icon = props.menuicon?.rich_text?.[0]?.plain_text?.trim() || "";
   const slug = props.slug?.rich_text?.[0]?.plain_text?.trim() || "";
-  const subMenus =
+  const subMenus: MenuItem[] =
     childRelations.length > 0
       ? await generateChildRelations(childRelations)
       : [];
@@ -61,7 +64,9 @@ export async function generateMenuItem(page: ModifiedQueryDatabaseResponse) {
   }
 }
 
-export function generateRecordItem(page: ModifiedQueryDatabaseResponse) {
+export function generateRecordItem(
+  page: ModifiedQueryDatabaseResponse
+): RecordFrontMatter {
   const slugSet = new Set<string>();
 
   const id = page.id.replace(/-/g, "");

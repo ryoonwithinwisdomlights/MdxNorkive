@@ -7,9 +7,11 @@ import { getQueryVariable } from "./general";
  * @param updateDarkMode Change themeChangeState function
  * @description Read the user theme stored in the localstorage
  */
-export const initDarkMode = (updateDarkMode) => {
+export const initDarkMode = (
+  updateDarkMode: (isDark: boolean) => void
+): void => {
   // Check if the user's device browser is in dark mode
-  let newDarkMode = isPreferDark();
+  let newDarkMode: boolean = isPreferDark();
 
   // Check whether the user record in localStorage is in dark mode
   const userDarkMode = loadDarkModeFromLocalStorage();
@@ -20,7 +22,7 @@ export const initDarkMode = (updateDarkMode) => {
 
   // Whether the dark mode is in the url query condition
   const queryMode = getQueryVariable("mode");
-  if (queryMode) {
+  if (queryMode && typeof queryMode === "string") {
     newDarkMode = queryMode === "dark";
   }
 
@@ -35,7 +37,7 @@ export const initDarkMode = (updateDarkMode) => {
  * Whether to give priority to dark mode is determined based on the system dark mode and the current time.
  * @returns {*}
  */
-export function isPreferDark() {
+export function isPreferDark(): boolean {
   if (BLOG.APPEARANCE === "dark") {
     return true;
   }
@@ -45,12 +47,16 @@ export function isPreferDark() {
     const prefersDarkMode = window.matchMedia(
       "(prefers-color-scheme: dark)"
     ).matches;
-    return (
-      prefersDarkMode ||
-      (BLOG.APPEARANCE_DARK_TIME &&
-        (date.getHours() >= Number(BLOG.APPEARANCE_DARK_TIME[0]) ||
-          date.getHours() < Number(BLOG.APPEARANCE_DARK_TIME[1])))
-    );
+
+    const darkTime = BLOG.APPEARANCE_DARK_TIME;
+    if (darkTime && darkTime[0] !== undefined && darkTime[1] !== undefined) {
+      return (
+        prefersDarkMode ||
+        date.getHours() >= Number(darkTime[0]) ||
+        date.getHours() < Number(darkTime[1])
+      );
+    }
+    return prefersDarkMode;
   }
   return false;
 }
@@ -67,8 +73,8 @@ export const loadDarkModeFromLocalStorage = () => {
  * Save dark mode
  * @param newTheme
  */
-export const saveDarkModeToLocalStorage = (newTheme) => {
-  localStorage.setItem("darkMode", newTheme);
+export const saveDarkModeToLocalStorage = (newTheme: boolean): void => {
+  localStorage.setItem("darkMode", String(newTheme));
 };
 
 /**
@@ -83,6 +89,6 @@ export const getThemeByLocalStorage = () => {
  * Save dark mode
  * @param newTheme
  */
-export const setThemeByLocalStorage = (newTheme) => {
-  localStorage.setItem("darkMode", newTheme);
+export const setThemeByLocalStorage = (newTheme: boolean): void => {
+  localStorage.setItem("darkMode", String(newTheme));
 };

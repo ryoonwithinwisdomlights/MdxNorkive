@@ -76,7 +76,10 @@ export function generateLocaleDict(langString: string): LocaleDict {
       userLocale = dictionaries[fallbackLocale];
     }
   }
-
+  //이중 캐스팅
+  // LocaleDict → unknown → Record<string, unknown> (입력 캐스팅)
+  // Record<string, unknown> → unknown → LocaleDict (출력 캐스팅)
+  // 이렇게 하면 TypeScript 캐스팅 검사를 우회할 수 있습니다.
   return mergeDeep(
     {},
     dictionaries["en-US"] as unknown as Record<string, unknown>,
