@@ -17,7 +17,6 @@ export default function NotFound() {
         alt="Error"
         className="dark:hidden"
         loading="lazy" // 레이지 로딩
-        placeholder="blur" // 블러 플레이스홀더
       />
       <Image
         src="/images/error-dark.png"
@@ -26,7 +25,6 @@ export default function NotFound() {
         alt="Error"
         className="hidden dark:block"
         loading="lazy" // 레이지 로딩
-        placeholder="blur" // 블러 플레이스홀더
       />
       <h2 className="text-xl font-medium mb-6">
         {locale.COMMON.NO_RECORD_FOUND}
