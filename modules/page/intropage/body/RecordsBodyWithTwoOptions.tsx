@@ -98,7 +98,7 @@ const RecordsBodyWithTwoOptions = ({ records }: { records: any[] }) => {
           id: -1,
           title: locale.COMMON.ALL,
           option: "",
-          isActive: currentRecordType === "",
+          isActive: currentRecordType === "" ? true : (false as boolean),
         },
         ...uniqueSubTypeOptions.map((option, index) => ({
           id: index,

@@ -3,6 +3,16 @@
 import { RecordsWrapper } from "@/modules/page/components/RecordsWrapper";
 import FeaturedRecords from "@/modules/page/components/FeaturedRecords";
 import NoRecordFound from "@/modules/shared/NoRecordFound";
+import type { SerializedPage } from "@/types";
+
+interface BookGeneralRecordsBodyProps {
+  modAllPages: Record<string, SerializedPage[]>;
+  isAble: boolean;
+  pages: SerializedPage[];
+  type: "BOOKS" | "PROJECTS" | "RECORDS" | "ENGINEERINGS";
+  subType: boolean;
+  introTrue: boolean;
+}
 
 const BookGeneralRecordsBody = ({
   modAllPages,
@@ -11,7 +21,7 @@ const BookGeneralRecordsBody = ({
   type,
   subType,
   introTrue,
-}) => {
+}: BookGeneralRecordsBodyProps) => {
   return (
     <>
       {isAble ? (

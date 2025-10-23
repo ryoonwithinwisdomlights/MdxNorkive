@@ -1,6 +1,6 @@
 import { BLOG } from "@/blog.config";
 import { formatDateFmt, getDistanceFromToday, getYearMonthDay } from "./date";
-import { TransferedDataProps } from "@/types";
+import { TransferedDataProps, SerializedPage, LocaleDict } from "@/types";
 import { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
 
 /**
@@ -28,17 +28,16 @@ export function generateUserFriendlySlug(
   return uniqueSlug;
 }
 
-export function setAllPagesGetSortedGroupedByDate(allPages) {
-  let result = allPages;
+export function setAllPagesGetSortedGroupedByDate(
+  allPages: SerializedPage[]
+): Record<string, SerializedPage[]> {
   const pageSortedByDate = setPageSortedByDate(allPages);
   const pageGroupedByDate = setPageGroupedByDate(pageSortedByDate);
-  result = pageGroupedByDate;
-
-  return result;
+  return pageGroupedByDate;
 }
 
-export function setPageSortedByDate(obj) {
-  const recordsSortByDate = Object.create(obj);
+export function setPageSortedByDate(obj: SerializedPage[]): SerializedPage[] {
+  const recordsSortByDate = [...obj];
 
   recordsSortByDate.sort((a, b) => {
     return (
@@ -48,8 +47,10 @@ export function setPageSortedByDate(obj) {
   return recordsSortByDate;
 }
 
-export function setPageGroupedByDate(array) {
-  const allrecords = {};
+export function setPageGroupedByDate(
+  array: SerializedPage[]
+): Record<string, SerializedPage[]> {
+  const allrecords: Record<string, SerializedPage[]> = {};
 
   array.forEach((record) => {
     const date = formatDateFmt(record.data.date, "yyyy-MM");
@@ -62,7 +63,11 @@ export function setPageGroupedByDate(array) {
   return allrecords;
 }
 
-export function getMainRecentRecords(pages: any, lang: string, sliceNum = 6) {
+export function getMainRecentRecords(
+  pages: SerializedPage[],
+  lang: string,
+  sliceNum = 6
+) {
   const sortedPage = pages
     .sort((a, b) => {
       return (
@@ -89,21 +94,29 @@ export function getMainRecentRecords(pages: any, lang: string, sliceNum = 6) {
 }
 
 export const getCurrentRecordsWithPagination = (
-  array,
-  currentPage,
-  cardsPerPage
-) => {
+  array: SerializedPage[],
+  currentPage: number,
+  cardsPerPage: number
+): SerializedPage[] => {
   const startIndex = currentPage * cardsPerPage;
   const modArticles = array.slice(1, array.length);
   return modArticles.slice(startIndex, startIndex + cardsPerPage);
 };
 
-export const transferDataForCardProps = (page: any): TransferedDataProps => {
+export const transferDataForCardProps = (
+  page: SerializedPage
+): TransferedDataProps => {
   // 안전한 데이터 접근을 위한 헬퍼 함수
-  const safeGet = (obj: any, path: string, defaultValue: any = "") => {
+  const safeGet = (
+    obj: Record<string, unknown>,
+    path: string,
+    defaultValue: unknown = ""
+  ) => {
     try {
       return (
-        path.split(".").reduce((current, key) => current?.[key], obj) ??
+        path
+          .split(".")
+          .reduce((current: any, key: string) => current?.[key], obj) ??
         defaultValue
       );
     } catch {
@@ -127,10 +140,10 @@ export const transferDataForCardProps = (page: any): TransferedDataProps => {
 };
 
 export const paginationString = (
-  locale: any,
+  locale: LocaleDict,
   totalPages: number,
   currentPage: number
-) => {
+): string => {
   if (locale.LOCALE === "kr-KR") {
     return `${totalPages}${locale.PAGINATION.PAGE} ${locale.PAGINATION.OF} ${
       currentPage + 1
@@ -143,7 +156,7 @@ export const paginationString = (
 };
 
 export const pageOptionsGenerator = (
-  source: any,
+  source: { getPageTree: () => any },
   title?: string
 ): DocsLayoutProps => {
   const baseOptions: Partial<DocsLayoutProps> = {

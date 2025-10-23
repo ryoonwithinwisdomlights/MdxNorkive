@@ -2,7 +2,7 @@
 
 /backup
 /TEST
-/documents-description
+
 /_Refactoring
 # dependencies
 /node_modules
@@ -54,3 +54,15 @@ yarn-error.log*
 # yarn
 package-lock.json
 # yarn.lock
+
+# performance reports
+/performance-reports
+
+# content collections (auto-generated cache files)
+# @content-collections/core는 빌드 시 .content-collections/ 디렉토리에 캐시와 생성 파일을 만듭니다. 이 파일들은:
+# 자동 생성
+# 빌드마다 갱신됨
+# .next/처럼 Git에서 제외해야 함
+.content-collections/
+
+/documents-description/*

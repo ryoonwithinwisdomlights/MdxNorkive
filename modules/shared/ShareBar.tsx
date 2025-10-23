@@ -1,7 +1,8 @@
 "use client";
+import { PageData } from "fumadocs-core/source";
 import ShareButtons from "./ShareButtons";
 import { lazy, Suspense } from "react";
-const ShareBar = ({ data, url }) => {
+const ShareBar = ({ data, url }: { data: PageData; url: string }) => {
   return (
     <div className="mt-16 overflow-x-auto">
       <Suspense fallback={<div className="h-8" />}>

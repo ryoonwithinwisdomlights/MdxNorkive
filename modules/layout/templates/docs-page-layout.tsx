@@ -189,7 +189,7 @@ export function DocsPage({
         </div>
         {footer.enabled !== false &&
           (footer.component ?? <PageFooter items={footer.items} />)}
-        <Comment frontMatter={children} className="mx-auto" />
+        <Comment children={children} className="mx-auto" />
       </PageArticle>
       {tocEnabled &&
         (tocReplace ?? (

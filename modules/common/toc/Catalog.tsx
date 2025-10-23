@@ -1,6 +1,6 @@
 "use client";
 
-import throttle from "lodash-es";
+import { throttle } from "lodash-es";
 
 import { useCallback, useEffect, useState } from "react";
 
@@ -10,7 +10,7 @@ import { uuidToId } from "@/lib/utils/general";
  * @returns {JSX.Element}
  * @constructor
  */
-const Catalog = ({ page }) => {
+const Catalog = ({ page }: { page: any }) => {
   const toc = page?.tableOfContents;
 
   if (toc.length < 1) {
@@ -18,7 +18,7 @@ const Catalog = ({ page }) => {
   }
 
   // Synchronize selected directory events
-  const [activeSection, setActiveSection] = useState(null);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   // listen for scroll events
   useEffect(() => {
@@ -53,8 +53,9 @@ const Catalog = ({ page }) => {
         // No need to continue loop, if last element has been detected
         break;
       }
-      setActiveSection(currentSectionId);
-      const tocIds = page?.tableOfContents?.map((t) => uuidToId(t.id)) || [];
+      setActiveSection(currentSectionId ?? null);
+      const tocIds =
+        page?.tableOfContents?.map((t: any) => uuidToId(t.id)) || [];
       const index = tocIds.indexOf(currentSectionId) || 0;
       if (tocIds?.length > 0) {
         for (const tocWrapper of document?.getElementsByClassName(
@@ -73,7 +74,7 @@ const Catalog = ({ page }) => {
       className="toc-wrapper-mobile overflow-y-auto my-2 max-h-80 overscroll-none scroll-hidden"
     >
       <nav className="h-full  ">
-        {toc.map((tocItem) => {
+        {toc.map((tocItem: any) => {
           const id = uuidToId(tocItem.id);
           return (
             <a

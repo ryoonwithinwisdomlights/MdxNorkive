@@ -12,7 +12,7 @@ import { useMediaQuery } from "usehooks-ts";
  * @returns {JSX.Element}
  * @constructor
  */
-const TableOfContentsDrawerMobile = ({ page }) => {
+const TableOfContentsDrawerMobile = ({ page }: { page: any }) => {
   const { locale, handleTOCVisible, tocVisible } = useGeneralSiteSettings();
   const isMobile = useMediaQuery("(max-width: 768px");
   // const [tocOn, setTocOn] = useState<boolean>(false);

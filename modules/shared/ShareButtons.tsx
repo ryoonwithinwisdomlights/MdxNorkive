@@ -14,8 +14,9 @@ import {
 } from "react-share";
 import { toast } from "sonner";
 import LoadingCover from "./LoadingCover";
+import { PageData } from "fumadocs-core/source";
 
-const ShareButtons = ({ data, url }: { data: any; url: string }) => {
+const ShareButtons = ({ data, url }: { data: PageData; url: string }) => {
   const services = BLOG.RECORD_SHARE_SERVICE.split(",");
   const [shareUrl, setShareUrl] = useState<string>("");
   const [titleWithSiteInfo, setTitleWithSiteInfo] = useState<string>("");
@@ -29,7 +30,7 @@ const ShareButtons = ({ data, url }: { data: any; url: string }) => {
     const fullUrl = `${window.location.origin}${url}`;
     const title = data.title + " | " + BLOG.TITLE;
     const bodyText =
-      data.title + " | " + BLOG.TITLE + " " + fullUrl + " " + data?.summary;
+      data.title + " | " + BLOG.TITLE + " " + fullUrl + " " + data?.description;
 
     setShareUrl(fullUrl);
     setTitleWithSiteInfo(title);

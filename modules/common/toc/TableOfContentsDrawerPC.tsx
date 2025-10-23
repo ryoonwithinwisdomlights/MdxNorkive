@@ -8,7 +8,7 @@ import TableOfContents from "./TableOfContents";
 /**
  * Mobile TableOfContents button
  */
-export default function TableOfContentsDrawerPC({ page }) {
+export default function TableOfContentsDrawerPC({ page }: { page: any }) {
   const { handleTOCVisible } = useGeneralSiteSettings();
   const isMobile = useMediaQuery("(max-width: 768px");
   useEffect(() => {

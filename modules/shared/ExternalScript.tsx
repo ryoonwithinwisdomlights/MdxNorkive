@@ -7,7 +7,7 @@ import { isBrowser } from "@/lib/utils/general";
  * The incoming parameters will be converted to <script>Label.
  * @returns
  */
-const ExternalScript = (props) => {
+const ExternalScript = (props: { src: string }) => {
   const { src } = props;
   if (!isBrowser || !src) {
     return null;

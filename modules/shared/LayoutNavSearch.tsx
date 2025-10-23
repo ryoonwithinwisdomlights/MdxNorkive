@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { useNav } from "@/lib/context/NavInfoProvider";
 import Fuse from "fuse.js";
-import debounce from "lodash-es";
+import { debounce } from "lodash-es";
 import { Search, XIcon } from "lucide-react";
 import SearchResultSkeleton from "@/modules/shared/ui/search-result-skeleton";
 

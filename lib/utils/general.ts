@@ -377,7 +377,7 @@ export const getLazyComponent = (componentImportFn: Function) =>
     return typeof obj.default === "function" ? obj : obj.default;
   });
 
-export const isObjectNotEmpty = (obj) => {
+export const isObjectNotEmpty = (obj: any): boolean => {
   if (!obj) {
     return false;
   } else {
@@ -389,6 +389,7 @@ export const isObjectNotEmpty = (obj) => {
       }
     }
   }
+  return false;
 };
 
 export const getUrlParams = (

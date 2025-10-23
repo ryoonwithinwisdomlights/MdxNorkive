@@ -2,7 +2,6 @@
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import AuthorInfoCard from "@/modules/common/right-sidebar/infocard/AuthorInfoCard";
 import NorKiveInfoCard from "@/modules/common/right-sidebar/infocard/NorKiveInfoCard";
-import { useEffect } from "react";
 
 const getInfoCard = (mode: string) => {
   switch (mode) {

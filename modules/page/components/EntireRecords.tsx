@@ -13,11 +13,14 @@ import {
   combinedMetaClasses,
   combinedSummaryClasses,
   combinedTitleClasses,
+  LockedSection,
+  OptionItem,
   SerializedPage,
+  mainRecordProps,
 } from "@/types";
 
 type Props = {
-  type: string;
+  type: "BOOKS" | "PROJECTS" | "RECORDS" | "ENGINEERINGS";
   subType: boolean;
   introTrue: boolean;
   records: SerializedPage[];
@@ -38,14 +41,14 @@ const EntireRecords = ({
   records,
   introTrue,
   subType = false,
-}: Props) => {
+}: mainRecordProps) => {
   const pages = records;
   if (!pages) return null;
   const router = useRouter();
   const CARDS_PER_PAGE = 4;
 
   const { locale } = useGeneralSiteSettings();
-  const { LOCKED } = locale.LOCKED;
+  const LOCKED = locale.LOCKED as LockedSection;
   const [currentPage, setCurrentPage] = useState(0);
   const [currentRecordType, setCurrentRecordType] = useState("");
 
@@ -85,7 +88,7 @@ const EntireRecords = ({
     );
 
     // "전체" 아이템을 맨 앞에 추가
-    const typeOptions: any[] = [
+    const typeOptions: OptionItem[] = [
       {
         id: -1,
         title: locale.COMMON.ALL,
@@ -97,7 +100,7 @@ const EntireRecords = ({
         option: option,
       })),
     ];
-    const subTypeOptions: any[] = [
+    const subTypeOptions: OptionItem[] = [
       {
         id: -1,
         title: locale.COMMON.ALL,
@@ -128,7 +131,7 @@ const EntireRecords = ({
     setCurrentRecordType(option);
   };
 
-  const handleRouter = (page: any) => {
+  const handleRouter = (page: SerializedPage) => {
     console.log("page.url:", page.url);
     router.push(page.url);
   };

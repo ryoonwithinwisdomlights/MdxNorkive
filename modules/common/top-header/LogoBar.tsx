@@ -9,7 +9,7 @@ import Link from "next/link";
  * @param {*} props
  * @returns
  */
-export default function LogoBar(props) {
+export default function LogoBar() {
   const siteInfo = getSiteInfo({});
   return (
     <div id="top-wrapper" className="flex  flex-row items-center   ">

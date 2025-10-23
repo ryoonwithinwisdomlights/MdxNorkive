@@ -1,11 +1,11 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 
-import throttle from "lodash-es";
+import { throttle } from "lodash-es";
 
 import { uuidToId } from "@/lib/utils/general";
 
-const TableOfContents = ({ page }) => {
+const TableOfContents = ({ page }: { page: any }) => {
   if (!page) {
     return null;
   } else if (page?.tableOfContents?.length === 0) {
@@ -14,7 +14,7 @@ const TableOfContents = ({ page }) => {
 
   const toc = page.tableOfContents;
   // Synchronize selected directory events
-  const [activeSection, setActiveSection] = useState(null);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   // listen for scroll events
   useEffect(() => {
@@ -25,7 +25,7 @@ const TableOfContents = ({ page }) => {
     };
   }, [page]);
 
-  function scrollTo(id) {
+  function scrollTo(id: string) {
     id = id.replaceAll("-", "");
     const target = document.querySelector(`.notion-block-${id}`);
     if (!target) return;
@@ -65,8 +65,9 @@ const TableOfContents = ({ page }) => {
         // No need to continue loop, if last element has been detected
         break;
       }
-      setActiveSection(currentSectionId);
-      const tocIds = page?.tableOfContents?.map((t) => uuidToId(t.id)) || [];
+      setActiveSection(currentSectionId ?? null);
+      const tocIds =
+        page?.tableOfContents?.map((t: any) => uuidToId(t.id)) || [];
       const index = tocIds.indexOf(currentSectionId) || 0;
       if (tocIds?.length > 0) {
         for (const tocWrapper of document?.getElementsByClassName(
@@ -88,7 +89,7 @@ const TableOfContents = ({ page }) => {
       className="toc-wrapper-pc overflow-y-auto overscroll-none scroll-hidden "
     >
       <nav className="h-full">
-        {toc.map((tocItem) => {
+        {toc.map((tocItem: any) => {
           const id = uuidToId(tocItem.id);
           return (
             <a

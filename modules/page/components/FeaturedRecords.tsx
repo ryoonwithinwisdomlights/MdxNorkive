@@ -4,14 +4,14 @@ import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvide
 import { transferDataForCardProps } from "@/lib/utils/records";
 import { useMemo, useState } from "react";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
-import { mainRecordProps } from "@/types";
+import { mainRecordProps, OptionItem } from "@/types";
 
 const FeaturedRecords = ({
-  type = "",
+  type,
   introTrue,
   records,
   subType = false,
-}: mainRecordProps) => {
+}: mainRecordProps): React.ReactElement | null => {
   const pages = records;
   if (!pages) return null;
 
@@ -30,8 +30,7 @@ const FeaturedRecords = ({
     const featuredPages = pages
       .filter(
         (page) =>
-          page.data.favorite === true &&
-          (type !== "" ? page.data.type === type : true)
+          page.data.favorite === true && (type ? page.data.type === type : true)
       )
       .slice(0, 10);
 
@@ -65,7 +64,7 @@ const FeaturedRecords = ({
     );
 
     // "전체" 아이템을 맨 앞에 추가
-    const typeOptions: any[] = [
+    const typeOptions: OptionItem[] = [
       {
         id: -1,
         title: locale.COMMON.ALL,
@@ -78,7 +77,7 @@ const FeaturedRecords = ({
       })),
     ];
 
-    const subTypeOptions: any[] = [
+    const subTypeOptions: OptionItem[] = [
       {
         id: -1,
         title: locale.COMMON.ALL,

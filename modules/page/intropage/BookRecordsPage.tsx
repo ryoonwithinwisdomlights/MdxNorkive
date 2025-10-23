@@ -14,14 +14,14 @@ const BookRecordsPage = () => {
   if (!pages) NotFound();
 
   const isAble = isObjectNotEmpty(pages);
-  const modAllPages = setAllPagesGetSortedGroupedByDate(pages);
+  const modAllPages = setAllPagesGetSortedGroupedByDate(pages as any);
   return (
     <div className={generalIntroPageClass({ className: "" })}>
       <BookIntro />
       <BookGeneralRecordsBody
         modAllPages={modAllPages}
         isAble={isAble}
-        pages={pages}
+        pages={pages as any}
         type="BOOKS"
         subType={true}
         introTrue={false}

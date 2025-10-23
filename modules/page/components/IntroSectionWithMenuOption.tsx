@@ -1,13 +1,14 @@
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { lazy } from "react";
+import type { OptionItem } from "@/types";
 
-type Props = {
+interface IntroSectionWithMenuOptionProps {
   introTrue?: boolean;
-  introType: string;
+  introType?: "FEATURED" | "ENTIRE" | "LATEST" | undefined;
   currentRecordType: string;
-  allOptions: any[];
+  allOptions: OptionItem[];
   handleRecordTypeChange: (option: string) => void;
-};
+}
 
 const InjectedOptionMenu = lazy(
   () => import("@/modules/page/components/InjectedOptionMenu")
@@ -15,18 +16,19 @@ const InjectedOptionMenu = lazy(
 
 const IntroSectionWithMenuOption = ({
   introTrue = true,
-  introType = "",
+  introType,
   currentRecordType = "",
   allOptions = [],
   handleRecordTypeChange = () => {},
-}: Props) => {
+}: IntroSectionWithMenuOptionProps) => {
   const { locale } = useGeneralSiteSettings();
-  const introText = introTrue
-    ? locale.INTRO[introType]
-    : {
-        TITLE: "",
-        DESC: "",
-      };
+  const introText =
+    introTrue && introType
+      ? locale.INTRO[introType]
+      : {
+          TITLE: "",
+          DESC: "",
+        };
   return (
     <div className="flex flex-col md:flex-row justify-between items-end gap-4">
       <div className="">

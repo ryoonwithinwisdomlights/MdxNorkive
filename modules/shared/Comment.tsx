@@ -3,7 +3,7 @@
 import { isBrowser } from "@/lib/utils/general";
 import Tabs from "@/modules/shared/ui/Tabs";
 import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import LoadingCover from "@/modules/shared/LoadingCover";
 import GiscusComponent from "@/modules/shared/Giscus";
 const COMMENT_GISCUS_REPONAME = process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPONAME;
@@ -12,7 +12,13 @@ const COMMENT_GISCUS_REPONAME = process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPONAME;
  * @param {*} param0
  * @returns
  */
-const Comment = ({ frontMatter, className }) => {
+const Comment = ({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className: string;
+}) => {
   const pathname = usePathname();
 
   const [shouldLoad, setShouldLoad] = useState(false);
@@ -41,7 +47,7 @@ const Comment = ({ frontMatter, className }) => {
         observer.unobserve(commentRef.current);
       }
     };
-  }, [frontMatter]);
+  }, [children]);
 
   // Jump to the comment area when there are special parameters in the connection
   if (
@@ -57,13 +63,12 @@ const Comment = ({ frontMatter, className }) => {
     }, 1000);
   }
 
-  if (!frontMatter) {
+  if (!children) {
     return <LoadingCover />;
   }
 
   return (
     <div
-      key={frontMatter?.notionId}
       id="comment"
       ref={commentRef}
       className={`justify-center items-center text-neutral-800 dark:text-neutral-300 w-full mx-auto ${className}`}

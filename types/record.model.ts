@@ -6,11 +6,13 @@
 import { ReactNode } from "react";
 import { RecordFrontMatter } from "@/types";
 
+import type { SerializedPage } from "./provider.model";
+
 export interface mainRecordProps {
-  type: string;
+  type: "BOOKS" | "PROJECTS" | "RECORDS" | "ENGINEERINGS" | "";
   subType: boolean;
   introTrue: boolean;
-  records: any[];
+  records: SerializedPage[];
 }
 export interface TransferedDataProps {
   title: string;
@@ -36,14 +38,14 @@ export interface TagItem {
   color: string;
   name?: string;
   id?: string;
-  options?: any[];
+  options?: string[];
   count?: number;
 }
 export interface CategoryItem {
   color: string;
   name?: string;
   id?: string;
-  options?: any[];
+  options?: string[];
   count?: number;
 }
 
@@ -66,9 +68,16 @@ export interface RecordTag {
   name: string;
 }
 
+export interface OptionItem {
+  id: number;
+  title: string;
+  option: string;
+  isActive?: boolean;
+}
+
 export type BasicPageDivProps = {
   title: string;
-  recordList: RecordFrontMatter[];
+  recordList: Record<string, SerializedPage[]>;
 };
 
 export type PaginationDivProps = {

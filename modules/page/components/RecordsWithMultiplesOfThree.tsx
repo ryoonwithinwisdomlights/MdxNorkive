@@ -74,7 +74,7 @@ const RecordsWithMultiplesOfThree = ({ type, introTrue, records }: Props) => {
       {/* Section Title */}
       <IntroSectionWithMenuOption
         introTrue={introTrue}
-        introType="RECENT"
+        introType="LATEST"
         currentRecordType={currentRecordType}
         allOptions={allOptions}
         handleRecordTypeChange={handleRecordTypeChange}

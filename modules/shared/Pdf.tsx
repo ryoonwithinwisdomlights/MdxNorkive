@@ -4,7 +4,7 @@
  * @param {*} file
  * @returns
  */
-export function Pdf({ file }) {
+export function Pdf({ file }: { file: string }) {
   const src =
     "https://docs.google.com/viewer?embedded=true&url=" +
     encodeURIComponent(file);

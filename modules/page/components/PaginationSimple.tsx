@@ -10,7 +10,13 @@ import { usePathname, useRouter } from "next/navigation";
  * @returns {JSX.Element}
  * @constructor
  */
-const PaginationSimple = ({ pagenum, totalPage }) => {
+const PaginationSimple = ({
+  pagenum,
+  totalPage,
+}: {
+  pagenum: number;
+  totalPage: number;
+}) => {
   const { locale } = useGeneralSiteSettings();
   const router = useRouter();
   const pathname = usePathname();
