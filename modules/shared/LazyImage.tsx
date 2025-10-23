@@ -65,7 +65,7 @@ export default function LazyImage({
   const imgProps: ImgProps = {
     ref: imageRef,
     src: imageLoaded ? src : placeholderSrc,
-    alt: alt,
+    alt: alt || "",
     onLoad: handleImageLoad,
     loading: "lazy",
     decoding: "async", // 비동기 디코딩으로 메인 스레드 방해 최소화

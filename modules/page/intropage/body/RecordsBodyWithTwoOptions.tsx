@@ -204,7 +204,7 @@ const RecordsBodyWithTwoOptions = ({
                         <LazyImage
                           alt=""
                           priority={index === 1}
-                          src={item?.data?.pageCover}
+                          src={item?.data?.pageCover || ""}
                           className="h-56 w-full rounded-xl object-cover object-center group-hover:scale-110 duration-500"
                         />
                       </div>

@@ -1,15 +1,15 @@
 export type LazyImageProps = {
-  priority?: any;
-  id?: any;
-  src: any;
-  alt?: any;
+  priority?: boolean;
+  id?: string;
+  src: string;
+  alt?: string;
   placeholderSrc?: string;
-  className?: any;
-  width?: any;
-  height?: any;
-  title?: any;
-  onLoad?: any;
-  style?: any;
+  className?: string;
+  width?: string | number;
+  height?: string | number;
+  title?: string;
+  onLoad?: () => void;
+  style?: React.CSSProperties;
   loading?: "lazy" | "eager";
 };
 export type ImgProps = {

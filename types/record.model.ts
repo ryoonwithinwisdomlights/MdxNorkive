@@ -4,7 +4,7 @@
  */
 
 import { ReactNode } from "react";
-import { RecordFrontMatter } from "@/types";
+import { LocaleDict, RecordFrontMatter } from "@/types";
 
 import type { SerializedPage } from "./provider.model";
 
@@ -136,7 +136,7 @@ export interface ContentCardProps {
   showMeta?: boolean;
   showTags?: boolean;
   showSummary?: boolean;
-  locale?: any;
+  locale?: LocaleDict;
   lang: string;
   hover?: boolean;
   border?: boolean;
@@ -150,7 +150,7 @@ export interface ImageCardProps {
   showMeta?: boolean;
   showTags?: boolean;
   showSummary?: boolean;
-  locale?: any;
+  locale?: LocaleDict;
   lang: string;
   // 슬라이더 관련 props
   isSlider?: boolean;
@@ -181,5 +181,5 @@ export interface GridCardProps {
   showMeta?: boolean;
   showTags?: boolean;
   showDescription?: boolean;
-  locale?: any;
+  locale?: LocaleDict;
 }
