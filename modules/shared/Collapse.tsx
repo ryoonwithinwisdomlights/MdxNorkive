@@ -1,13 +1,27 @@
 "use client";
 
-import React, { useEffect, useImperativeHandle } from "react";
+import React, { useEffect, useImperativeHandle, RefObject } from "react";
+
+interface CollapseProps {
+  type?: "horizontal" | "vertical";
+  isOpen?: boolean;
+  collapseRef?: RefObject<{
+    updateCollapseHeight: (params: {
+      height: number;
+      increase: boolean;
+    }) => void;
+  }>;
+  onHeightChange?: (params: { height: number; increase: boolean }) => void;
+  className?: string;
+  children?: React.ReactNode;
+}
 
 /**
  * Folding panel component, supports horizontal folding and vertical folding
  * @param {type:['horizontal','vertical'],isOpen} props
  * @returns
  */
-const Collapse = (props) => {
+const Collapse = (props: CollapseProps) => {
   const { collapseRef } = props;
   const ref = React.useRef<HTMLDivElement>(null);
   const type = props.type || "vertical";
@@ -18,9 +32,15 @@ const Collapse = (props) => {
        * When the height of the child element changes,
        *  this method can be called to update the height
        * of the collapsed component.
-       * @param {*} param0
+       * @param param0 - Height change parameters
        */
-      updateCollapseHeight: ({ height, increase }) => {
+      updateCollapseHeight: ({
+        height,
+        increase,
+      }: {
+        height: number;
+        increase: boolean;
+      }) => {
         if (ref.current) {
           ref.current.style.height = ref.current.scrollHeight.toString();
           ref.current.style.height = "auto";
@@ -31,9 +51,10 @@ const Collapse = (props) => {
 
   /**
    * fold
-   * @param {*} element
+   * @param element - Element to collapse
    */
-  const collapseSection = (element) => {
+  const collapseSection = (element: HTMLElement | null) => {
+    if (!element) return;
     const sectionHeight = element.scrollHeight;
     const sectionWidth = element.scrollWidth;
 
@@ -56,12 +77,14 @@ const Collapse = (props) => {
 
   /**
    * Expand
-   * @param {*} element
+   * @param element - Element to expand
    */
-  const expandSection = (element) => {
+  const expandSection = (element: HTMLElement | null) => {
+    if (!element) return;
+
     const sectionHeight = element.scrollHeight;
     const sectionWidth = element.scrollWidth;
-    let clearTime: any = 0;
+    let clearTime: NodeJS.Timeout | number = 0;
     switch (type) {
       case "horizontal":
         element.style.width = sectionWidth + "px";
@@ -86,13 +109,13 @@ const Collapse = (props) => {
       collapseSection(ref.current);
     }
     // Notify parent component of height change
-    props?.onHeightChange &&
-      ref.current &&
+    if (props?.onHeightChange && ref.current) {
       props.onHeightChange({
         height: ref.current.scrollHeight,
-        increase: props.isOpen,
+        increase: props.isOpen || false,
       });
-  }, [props.isOpen]);
+    }
+  }, [props.isOpen, props.onHeightChange]);
 
   return (
     <div
@@ -108,6 +131,5 @@ const Collapse = (props) => {
     </div>
   );
 };
-Collapse.defaultProps = { isOpen: false };
 
 export default Collapse;
