@@ -5,8 +5,12 @@ import { useRef } from "react";
 import NavigationForMobile from "../../common/top-header/NavigationForMobile";
 import NavigationForPC from "../../common/top-header/NavigationForPC";
 
+interface CollapseRefType {
+  updateCollapseHeight: (params: { height: number; increase: boolean }) => void;
+}
+
 const TopNavigationWrapper = () => {
-  const collapseRef = useRef<any>(null);
+  const collapseRef = useRef<CollapseRefType>(null);
 
   return (
     <div

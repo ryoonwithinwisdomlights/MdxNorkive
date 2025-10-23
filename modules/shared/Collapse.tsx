@@ -10,7 +10,7 @@ interface CollapseProps {
       height: number;
       increase: boolean;
     }) => void;
-  }>;
+  } | null>;
   onHeightChange?: (params: { height: number; increase: boolean }) => void;
   className?: string;
   children?: React.ReactNode;

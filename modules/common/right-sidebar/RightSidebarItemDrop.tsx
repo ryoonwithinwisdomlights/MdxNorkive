@@ -1,5 +1,6 @@
 "use client"; // 클라이언트 컴포넌트
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { MenuItem } from "@/types";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -8,13 +9,14 @@ import { useRouter } from "next/navigation";
  * @param {*} param0
  * @returns
  */
-export const RightSidebarItemDrop = (props) => {
+export const RightSidebarItemDrop = (props: { menuData: MenuItem }) => {
   const { menuData } = props;
   const { toggleMobileLeftSidebarOpen } = useGeneralSiteSettings();
   const router = useRouter();
-  const hasSubMenu = menuData?.subMenus?.length > 0;
+  const hasSubMenu =
+    menuData?.subMenus?.length && menuData?.subMenus?.length > 0;
 
-  const onClickUrl = (sLink) => {
+  const onClickUrl = (sLink: MenuItem) => {
     if (sLink) {
       const href = sLink?.type === "SubMenuPages" ? sLink?.url : sLink?.slug;
       if (sLink?.slug?.includes("http")) {
@@ -22,7 +24,7 @@ export const RightSidebarItemDrop = (props) => {
       } else {
         // SubMenuPage의 경우 절대 경로로 처리
         const finalHref = sLink?.type === "SubMenuPages" ? `/${href}` : href;
-        router.push(finalHref);
+        router.push(finalHref || "");
       }
       toggleMobileLeftSidebarOpen();
     }
@@ -44,7 +46,7 @@ export const RightSidebarItemDrop = (props) => {
     // const icon = parseIcon(menuData.icon);
     return (
       <Link
-        href={menuData?.slug}
+        href={menuData?.slug || ""}
         target={menuData?.slug?.indexOf("http") === 0 ? "_blank" : "_self"}
         className="p-2  rounded-lg  w-full my-auto items-center justify-between flex  "
       >
@@ -70,7 +72,7 @@ export const RightSidebarItemDrop = (props) => {
             >
               <div
                 onClick={() => {
-                  onClickUrl(sLink);
+                  onClickUrl(sLink as MenuItem);
                 }}
               >
                 <div className="flex flex-row gap-2 items-center justify-start">

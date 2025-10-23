@@ -2,7 +2,11 @@
 import { useNav } from "@/lib/context/NavInfoProvider";
 import { MobileMenuItemDrop } from "./MobileMenuItemDrop";
 
-export const MobileMenuBar = ({ onHeightChange }) => {
+interface MobileMenuBarProps {
+  onHeightChange: (params: { height: number; increase: boolean }) => void;
+}
+
+export const MobileMenuBar = ({ onHeightChange }: MobileMenuBarProps) => {
   const { menuList } = useNav({ from: "TopNavBar" });
 
   const links = menuList;

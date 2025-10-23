@@ -2,6 +2,7 @@
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 
 import Collapse from "@/modules/shared/Collapse";
+import { MenuItem } from "@/types";
 import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -14,18 +15,24 @@ import { useState } from "react";
  * @param {*} param0
  * @returns
  */
-export const MobileMenuItemDrop = ({ link, onHeightChange }) => {
+export const MobileMenuItemDrop = ({
+  link,
+  onHeightChange,
+}: {
+  link: MenuItem;
+  onHeightChange: (params: { height: number; increase: boolean }) => void;
+}) => {
   const { isMobileTopNavOpen, toggleMobileTopNavOpen } =
     useGeneralSiteSettings();
 
   const [show, changeShow] = useState(false);
-  const hasSubMenu = link?.subMenus?.length > 0;
+  const hasSubMenu = link?.subMenus?.length && link?.subMenus?.length > 0;
 
   const [isOpen, changeIsOpen] = useState(true);
 
   const router = useRouter();
 
-  const onClickUrl = (sLink) => {
+  const onClickUrl = (sLink: MenuItem) => {
     if (sLink) {
       const href = sLink?.type === "SubMenuPages" ? sLink?.url : sLink?.slug;
 
@@ -36,7 +43,7 @@ export const MobileMenuItemDrop = ({ link, onHeightChange }) => {
         // SubMenuPage의 경우 절대 경로로 처리
         const finalHref = sLink?.type === "SubMenuPages" ? `/${href}` : href;
         toggleMobileTopNavOpen();
-        router.push(finalHref);
+        router.push(finalHref || "");
       }
     }
   };
@@ -58,6 +65,7 @@ export const MobileMenuItemDrop = ({ link, onHeightChange }) => {
       >
         <div>
           <div className={`${link.icon} text-center w-4 mr-4`} />
+          {link.title}
         </div>
         <div className="inline-flex items-center ">
           <ChevronRightIcon
@@ -73,12 +81,13 @@ export const MobileMenuItemDrop = ({ link, onHeightChange }) => {
     // const icon = parseIcon(link.icon);
     return (
       <Link
-        href={link?.slug}
+        href={link?.slug || ""}
         target={link?.slug?.indexOf("http") === 0 ? "_blank" : "_self"}
         className="py-2 w-full my-auto items-center justify-between flex  "
       >
         <div>
           <div className={`${link.icon} text-center w-4 mr-4`} />
+          {link.title}
         </div>
       </Link>
     );
@@ -105,6 +114,7 @@ export const MobileMenuItemDrop = ({ link, onHeightChange }) => {
                   <div
                     className={`${sLink.icon} text-center w-3 mr-3 text-xs`}
                   />
+                  {sLink.title}
                 </div>
               </div>
             </div>
