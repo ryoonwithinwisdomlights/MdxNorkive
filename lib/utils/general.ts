@@ -23,7 +23,7 @@ export function substringWithNumberDots(str: string, number: number) {
  * @param {*} str
  * @returns
  */
-export function convertToJSON(str) {
+export function convertToJSON(str: unknown): Record<string, unknown> {
   if (!str) {
     return {};
   }
@@ -46,7 +46,9 @@ export function convertToJSON(str) {
   }
 }
 
-export function convertUrlStartWithOneSlash(str) {
+export function convertUrlStartWithOneSlash(
+  str: string | null | undefined
+): string {
   if (!str) {
     return "#";
   }
@@ -60,7 +62,7 @@ export function convertUrlStartWithOneSlash(str) {
   return str;
 }
 
-export const convertCleanJsonString = (val) => {
+export const convertCleanJsonString = (val: string): string => {
   // Use regular expressions to remove unnecessary spaces, newlines and tabs
   return val.replace(/\s+/g, " ").trim();
 };
@@ -70,7 +72,7 @@ export const convertCleanJsonString = (val) => {
  * @param {*} url
  * @returns
  */
-export function getLastSegmentFromUrl(url) {
+export function getLastSegmentFromUrl(url: string | null | undefined): string {
   if (!url) {
     return "";
   }
@@ -106,7 +108,10 @@ export function getLastSegmentFromUrl(url) {
  * @param type js or css
  * @returns {Promise<unknown>}
  */
-export function loadExternalResource(url, type) {
+export function loadExternalResource(
+  url: string,
+  type: "js" | "css" | "font"
+): Promise<string> {
   // Check if it already exists
   const elements =
     type === "js"
@@ -184,8 +189,8 @@ export const isMobile = () => {
  * @param item
  * @returns {boolean}
  */
-export function isObject(item) {
-  return item && typeof item === "object" && !Array.isArray(item);
+export function isObject(item: unknown): item is Record<string, unknown> {
+  return item !== null && typeof item === "object" && !Array.isArray(item);
 }
 
 /**
@@ -193,8 +198,13 @@ export function isObject(item) {
  * @param {*} obj
  * @returns
  */
-export function isIterable(obj) {
-  return obj != null && typeof obj[Symbol.iterator] === "function";
+export function isIterable(obj: unknown): obj is Iterable<unknown> {
+  return (
+    obj != null &&
+    typeof obj === "object" &&
+    typeof (obj as { [Symbol.iterator]?: unknown })[Symbol.iterator] ===
+      "function"
+  );
 }
 
 /**
@@ -202,27 +212,28 @@ export function isIterable(obj) {
  * @param {*} str
  * @returns
  */
-export function isUrl(str) {
+export function isUrl(str: string | null | undefined): boolean {
   if (!str) {
     return false;
   }
 
-  return str?.indexOf("/") === 0 || isStartWithHttp(str);
+  return str.indexOf("/") === 0 || isStartWithHttp(str);
 }
 
-export function isEmptyString(str) {
+export function isEmptyString(str: unknown): boolean {
   if (typeof str == "undefined" || str == null || str == "") return true;
   else return false;
 }
-export function isEmoji(str) {
+export function isEmoji(str: string): boolean {
   const emojiRegex =
     /[\u{1F300}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}\u{1F018}-\u{1F270}]/u;
   return emojiRegex.test(str);
 }
 // Check if there is an external link
-export function isStartWithHttp(str) {
+export function isStartWithHttp(str: string | null | undefined): boolean {
   // Check if string contains http
-  if (str?.indexOf("http:") === 0 || str?.indexOf("https:") === 0) {
+  if (!str) return false;
+  if (str.indexOf("http:") === 0 || str.indexOf("https:") === 0) {
     // If included, find the location of http
     return true;
   } else {
@@ -249,7 +260,7 @@ export function isHasKey<T extends object>(
  * @param {}} variable
  * @returns
  */
-export function getQueryVariable(key) {
+export function getQueryVariable(key: string): string | false {
   const query = isBrowser ? window.location.search.substring(1) : "";
   const vars = query.split("&");
   for (let i = 0; i < vars.length; i++) {
@@ -267,7 +278,7 @@ export function getQueryVariable(key) {
  * @param {string} param
  * @returns {string|null}
  */
-export function getQueryParam(url, param) {
+export function getQueryParam(url: string, param: string): string | null {
   const searchParams = new URLSearchParams(url.split("?")[1]);
   return searchParams.get(param);
 }
@@ -277,7 +288,10 @@ export function getQueryParam(url, param) {
  * @param target
  * @param sources
  */
-export function mergeDeep(target, ...sources) {
+export function mergeDeep(
+  target: Record<string, unknown>,
+  ...sources: Record<string, unknown>[]
+): Record<string, unknown> {
   if (!sources.length) return target;
   const source = sources.shift();
 
@@ -285,7 +299,10 @@ export function mergeDeep(target, ...sources) {
     for (const key in source) {
       if (isObject(source[key])) {
         if (!target[key]) Object.assign(target, { [key]: {} });
-        mergeDeep(target[key], source[key]);
+        mergeDeep(
+          target[key] as Record<string, unknown>,
+          source[key] as Record<string, unknown>
+        );
       } else {
         Object.assign(target, { [key]: source[key] });
       }
@@ -300,18 +317,19 @@ export function mergeDeep(target, ...sources) {
  * @param {*} obj
  * @returns
  */
-export function deepClone(obj) {
+export function deepClone(obj: unknown): unknown {
   if (Array.isArray(obj)) {
     // If obj is an array, create a new array and deep clone each element
     return obj.map((item) => deepClone(item));
   } else if (obj && typeof obj === "object") {
-    const newObj = {};
+    const newObj: Record<string, unknown> = {};
     for (const key in obj) {
       if (Object.prototype.hasOwnProperty.call(obj, key)) {
-        if (obj[key] instanceof Date) {
-          newObj[key] = new Date(obj[key].getTime()).toISOString();
+        const value = (obj as Record<string, unknown>)[key];
+        if (value instanceof Date) {
+          newObj[key] = new Date(value.getTime()).toISOString();
         } else {
-          newObj[key] = deepClone(obj[key]);
+          newObj[key] = deepClone(value);
         }
       }
     }
@@ -321,7 +339,7 @@ export function deepClone(obj) {
   }
 }
 
-function deepCloneGpt(value) {
+function deepCloneGpt(value: unknown): unknown {
   // 원시값은 그대로 리턴
   if (value === null || typeof value !== "object") {
     return value;
@@ -338,11 +356,11 @@ function deepCloneGpt(value) {
   }
 
   // Object 복사 (plain object만 대상)
-  if (value.constructor === Object) {
+  if (value && typeof value === "object" && value.constructor === Object) {
     return Object.keys(value).reduce((acc, key) => {
-      acc[key] = deepClone(value[key]);
+      acc[key] = deepClone((value as Record<string, unknown>)[key]);
       return acc;
-    }, {});
+    }, {} as Record<string, unknown>);
   }
 
   // Map, Set, Function, Symbol 등 특별 객체는 여기서 필요 시 추가 지원
@@ -363,7 +381,8 @@ export function calculateReadingTime(wordCount: number): string {
  * @param {*} ms
  * @returns
  */
-export const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+export const delay = (ms: number): Promise<void> =>
+  new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
  * Lazy load
@@ -416,7 +435,7 @@ export const getUrlParams = (
  * @param {*} str
  * @returns en|kr|xx
  */
-export function extractLangPrefix(str) {
+export function extractLangPrefix(str: string): string {
   const match = str.match(/^(.+?):/);
   if (match && match[1]) {
     return match[1];
@@ -430,7 +449,7 @@ export function extractLangPrefix(str) {
  * The format of notionPageId can be en:xxxxx   * @param {*} str
  * @returns xxxxx
  */
-export function extractLangId(str) {
+export function extractLangId(str: string): string {
   // If the match is successful, return the matched content
   const match = str.match(/:\s*(.+)/);
   // If the match is successful, return the matched content
