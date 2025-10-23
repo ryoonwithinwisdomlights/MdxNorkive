@@ -1,5 +1,6 @@
 export * from "./general.model";
 export * from "../lib/utils/layout.styles";
+export * from "./locale.model";
 export * from "./mdx.model";
 export * from "./notion.client.model";
 export * from "./provider.model";

@@ -21,8 +21,8 @@ export interface SiteInfoModel {
   title: string;
   description?: string;
   home_banner_image?: string;
-  icon?: any;
-  pageCover?: any;
+  icon?: string | undefined;
+  pageCover?: string | undefined;
   avatar?: string;
   link?: string;
   author?: string;

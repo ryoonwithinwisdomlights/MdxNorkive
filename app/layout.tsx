@@ -16,6 +16,10 @@ import { ModalProvider } from "@/lib/context/ModalProvider";
 import { NavInfoProvider } from "@/lib/context/NavInfoProvider";
 import { RootProvider } from "fumadocs-ui/provider";
 
+//************* Utils ************* */
+import { getCookie } from "@/lib/utils/cookies";
+import { generateLocaleDict } from "@/lib/utils/lang";
+
 //************* All Record sources ************* */
 import {
   bookSource,
@@ -110,6 +114,11 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // 서버에서 쿠키로부터 언어 설정 읽기
+  const userLang = await getCookie("lang");
+  const initialLang = userLang || BLOG.LANG;
+  const initialLocale = generateLocaleDict(initialLang);
+
   const menuList = await fetchMenuList();
   // const recordList = await fetchAllRecordList();
   const recordPages = recordSource.getPages();
@@ -165,7 +174,10 @@ export default async function RootLayout({
               serializedAllPages={serializedAllPages}
               menuList={menuList}
             >
-              <GeneralSiteSettingsProvider>
+              <GeneralSiteSettingsProvider
+                initialLang={initialLang}
+                initialLocale={initialLocale}
+              >
                 <div
                   id="norkive-main"
                   className={` w-screen h-screen justify-center dark:text-neutral-300  pb-16  md:pb-0 `}

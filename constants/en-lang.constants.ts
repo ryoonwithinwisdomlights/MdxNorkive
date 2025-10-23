@@ -1,5 +1,3 @@
-import { Feather } from "lucide-react";
-
 export const ENG_LANG = {
   LOCALE: "en-US",
   LANGUAGE: "English",
@@ -86,7 +84,7 @@ export const ENG_LANG = {
     OF: "of",
   },
   SEARCH: {
-    ARTICLES: "Search Articles",
+    ARCHIVE: "Search Archive",
     TAGS: "Search in Tags",
     CATEGORY: "Search in Category",
     SEARCH_TERM: "Search term",

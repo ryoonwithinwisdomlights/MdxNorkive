@@ -10,3 +10,4 @@ export * from "./site";
 export * from "./youtube";
 export * from "./records";
 export * from "./layout.styles";
+// cookies는 서버 전용이므로 여기서 export하지 않음

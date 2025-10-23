@@ -15,7 +15,7 @@ const EngineeringIntro = () => {
         {ENGINEERING.TITLE}
       </div>
       {locale.LOCALE === "kr-KR" ? (
-        <div className=" dark:text-neutral-200 md:px-2 text-neutral-700  text-right mt-1  my-2  text-2xl ">
+        <div className=" dark:text-neutral-200 md:px-2 text-neutral-700 text-right mt-1  my-2  text-2xl ">
           {ENGINEERING.DESCRIPTION_PREFIX}
           <span className="font-semibold ">
             {" "}

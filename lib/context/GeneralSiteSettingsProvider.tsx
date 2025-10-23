@@ -17,6 +17,7 @@ import {
   getFilteredDictionaryListKey,
   initLocale,
   saveLangToLocalStorage,
+  saveLangToCookies,
   initDarkMode,
   setThemeByLocalStorage,
 } from "@/lib/utils";
@@ -36,9 +37,13 @@ const GeneralSiteSettings = createContext<GeneralSiteSettingsProps | null>(
 
 export const GeneralSiteSettingsProvider: React.FC<{
   children: ReactNode;
-}> = ({ children }) => {
-  const [lang, updateLang] = useState<string>(BLOG.LANG); // default language
-  const [locale, updateLocale] = useState<any>(generateLocaleDict(BLOG.LANG));
+  initialLang?: string;
+  initialLocale?: any;
+}> = ({ children, initialLang, initialLocale }) => {
+  const [lang, updateLang] = useState<string>(initialLang || BLOG.LANG); // default language
+  const [locale, updateLocale] = useState<any>(
+    initialLocale || generateLocaleDict(BLOG.LANG)
+  );
   const [setting, SetSettingState] = useState<boolean>(false);
   const [isDarkMode, updateDarkMode] = useState<boolean>(
     BLOG.APPEARANCE === "dark"
@@ -82,11 +87,14 @@ export const GeneralSiteSettingsProvider: React.FC<{
     setPageNavVisible((prev) => !prev);
   }, []);
 
-  const changeLang = useCallback((lang) => {
+  const changeLang = useCallback((lang: string) => {
     if (lang) {
       saveLangToLocalStorage(lang);
+      saveLangToCookies(lang);
       updateLang(lang);
-      updateLocale(generateLocaleDict(lang));
+      const newLocale = generateLocaleDict(lang);
+      updateLocale(newLocale);
+      toast.success(`${newLocale.SITE.LANG_CHANGE_SUCCESS_MSG}`);
     }
   }, []);
 
@@ -95,8 +103,11 @@ export const GeneralSiteSettingsProvider: React.FC<{
 
     if (resLang) {
       saveLangToLocalStorage(resLang);
+      saveLangToCookies(resLang);
       updateLang(resLang);
-      updateLocale(generateLocaleDict(resLang));
+      const newLocale = generateLocaleDict(resLang);
+      updateLocale(newLocale);
+      toast.success(`${newLocale.SITE.LANG_CHANGE_SUCCESS_MSG}`);
     }
   }, [locale.LOCALE]);
 
@@ -170,20 +181,22 @@ export const GeneralSiteSettingsProvider: React.FC<{
 
   useEffect(() => {
     initDarkMode(updateDarkMode);
-    initLocale(lang, locale, updateLang, updateLocale);
+    // 첫 렌더링에서는 initLocale을 호출하지 않음 (서버에서 이미 올바른 locale 설정됨)
+    // initLocale(lang, locale, updateLang, updateLocale);
     setOnLoading(false);
   }, []);
 
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
+  // 사용자가 언어를 수동으로 변경했을 때만 실행
+  // useEffect(() => {
+  //   if (isFirstRender.current) {
+  //     isFirstRender.current = false;
+  //     return;
+  //   }
 
-    initLocale(lang, locale, updateLang, updateLocale);
-    setOnLoading(false);
-    toast.success(`${locale.SITE.LANG_CHANGE_SUCCESS_MSG} `);
-  }, [lang, locale]);
+  //   initLocale(lang, locale, updateLang, updateLocale);
+  //   setOnLoading(false);
+  //   toast.success(`${locale.SITE.LANG_CHANGE_SUCCESS_MSG} `);
+  // }, [lang, locale]);
 
   return (
     <GeneralSiteSettings.Provider value={value}>

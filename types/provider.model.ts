@@ -4,6 +4,7 @@ import {
   RecordFrontMatter,
   TOCItemType,
   SiteInfoModel,
+  LocaleDict,
 } from "@/types";
 
 export type SerializedPage = {
@@ -34,9 +35,9 @@ export interface GeneralSiteSettingsProps {
   handleLeftNavVisible: () => void;
   tocVisible: boolean;
   handleTOCVisible: () => void;
-  handleChangeDarkMode: (boolean) => void;
-  locale: any;
-  updateLocale: Dispatch<SetStateAction<string>>;
+  handleChangeDarkMode: (newStatus?: boolean) => void;
+  locale: LocaleDict;
+  updateLocale: Dispatch<SetStateAction<LocaleDict>>;
   lang: string;
   changeLang: (text: string) => void;
   changeOppositeLang: () => void;

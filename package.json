@@ -14,7 +14,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "rm -rf .next && npm run generate:mdx && next build",
+    "build": "rm -rf .next &&  next build",
     "build:vercel": "NODE_OPTIONS='--max-old-space-size=4096 --no-warnings' next build",
     "start": "NODE_OPTIONS='--inspect' next build && next start",
     "lint": "next lint",
@@ -23,7 +23,7 @@
     "one:mdx": "npx tsx scripts/test-one-record-mdx.ts",
     "prettier:check": "prettier --check --ignore-unknown .",
     "prettier:write": "prettier --write --ignore-unknown .",
-    "check:validity": "npm run validate:mdx && npm run prettier:check",
+    "check:validity": "npm run validate:mdx && npm run prettiㄴer:check",
     "process-redis-images": "npx tsx scripts/redis-image-processor.ts",
     "analyze": "ANALYZE=true npm run build",
     "bundle-report": "ANALYZE=true yarn build",
