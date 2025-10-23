@@ -15,6 +15,8 @@ export default function ErrorComponent() {
         width={300}
         alt="Error"
         className="dark:hidden"
+        loading="lazy" // 레이지 로딩
+        placeholder="blur" // 블러 플레이스홀더
       />
       <Image
         src="/images/error-dark.png"
@@ -22,6 +24,8 @@ export default function ErrorComponent() {
         width={300}
         alt="Error"
         className="hidden dark:block"
+        loading="lazy" // 레이지 로딩
+        placeholder="blur" // 블러 플레이스홀더
       />
       <h1 className="text-xl font-medium mb-6">
         {locale.ERROR.ERROR_OCCURRED}

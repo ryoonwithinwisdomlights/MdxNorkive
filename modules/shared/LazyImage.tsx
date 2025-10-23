@@ -39,13 +39,15 @@ export default function LazyImage({
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const lazyImage: any = entry.target;
-            lazyImage.src = src;
-            observer.unobserve(lazyImage);
+            setImageLoaded(true);
+            observer.unobserve(entry.target);
           }
         });
       },
-      { rootMargin: "0px 0px" } // Adjust the rootMargin as needed to trigger the loading earlier or later
+      {
+        rootMargin: "50px", // 50px 전에 미리 로드
+        threshold: 0.1, // 10%가 보이면 시작
+      }
     );
 
     if (imageRef.current) {
@@ -57,7 +59,7 @@ export default function LazyImage({
         observer.unobserve(imageRef.current);
       }
     };
-  }, [src]);
+  }, []);
 
   // Dynamically add width, height and className properties only if they are valid values
   const imgProps: ImgProps = {
@@ -65,6 +67,8 @@ export default function LazyImage({
     src: imageLoaded ? src : placeholderSrc,
     alt: alt,
     onLoad: handleImageLoad,
+    loading: "lazy",
+    decoding: "async", // 비동기 디코딩으로 메인 스레드 방해 최소화
   };
 
   if (id) {
@@ -88,16 +92,17 @@ export default function LazyImage({
   if (style) {
     imgProps.style = style;
   }
+
+  // priority가 true면 loading="eager"로 변경
+  if (priority) {
+    imgProps.loading = "eager";
+  } else {
+    imgProps.loading = "lazy";
+  }
+
   return (
     <>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img {...imgProps} />
-      {/* Preloading */}
-      {/* {priority && (
-        <Head>
-          <Link rel="preload" as="image" href={src} />
-        </Head>
-      )} */}
     </>
   );
 }
