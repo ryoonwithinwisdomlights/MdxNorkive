@@ -2,12 +2,12 @@
 import { BLOG } from "@/blog.config";
 import { useLayoutEffect, useState } from "react";
 
-function toBlogNumber(a: any) {
-  let tempVal: any;
+function toBlogNumber(a: string | number) {
+  let tempVal: number;
   if (typeof a === "string") {
-    tempVal = Number.isInteger(BLOG.SINCE);
+    tempVal = Number(BLOG.SINCE) as number;
   } else if (typeof a === "number") {
-    tempVal = BLOG.SINCE;
+    tempVal = BLOG.SINCE as number;
     return tempVal;
   }
 }
@@ -31,7 +31,11 @@ const MobileFooter = () => {
     const currentYear = time.getFullYear();
     const blogSince = toBlogNumber(BLOG.SINCE);
     copyrightDate = (function () {
-      if (Number.isInteger(BLOG.SINCE) && blogSince < currentYear) {
+      if (
+        Number.isInteger(BLOG.SINCE) &&
+        blogSince &&
+        blogSince < currentYear
+      ) {
         return BLOG.SINCE + "-" + currentYear;
       }
       return currentYear;

@@ -3,6 +3,29 @@ import { loadExternalResource } from "@/lib/utils/general";
 import { useEffect, useRef, useLayoutEffect, useState } from "react";
 
 /**
+ * VConsole type definition
+ * vConsole is a JavaScript library that provides console debugging for mobile devices
+ */
+interface VConsoleConstructor {
+  new (): VConsoleInstance;
+}
+
+interface VConsoleInstance {
+  show?: () => void;
+  hide?: () => void;
+  destroy?: () => void;
+}
+
+/**
+ * Extend Window interface to include VConsole
+ */
+declare global {
+  interface Window {
+    VConsole?: VConsoleConstructor;
+  }
+}
+
+/**
  * VConsoleTs Component
  *
  * A hidden debugging tool that loads vConsole for mobile development.
@@ -42,9 +65,12 @@ const VConsoleTs = () => {
       if (!url) {
         return;
       }
-      const VConsole = (window as any).VConsole; // VConsole is not available on window object, so using (window as any).VConsole to bypass TypeScript type checking
-      const vConsole = new VConsole();
-      return vConsole;
+      const VConsole = window.VConsole;
+      if (!VConsole) {
+        console.error("VConsole is not available on window object");
+        return;
+      }
+      new VConsole();
     } catch (error) {
       console.error("Failed to load vConsole:", error);
     }

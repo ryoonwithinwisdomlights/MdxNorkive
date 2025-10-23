@@ -1,6 +1,6 @@
 "use client";
 import { BLOG } from "@/blog.config";
-import { GeneralSiteSettingsProps, TOCItemType } from "@/types";
+import { GeneralSiteSettingsProps, LocaleDict, TOCItemType } from "@/types";
 import {
   createContext,
   ReactNode,
@@ -36,10 +36,10 @@ const GeneralSiteSettings = createContext<GeneralSiteSettingsProps | null>(
 export const GeneralSiteSettingsProvider: React.FC<{
   children: ReactNode;
   initialLang?: string;
-  initialLocale?: any;
+  initialLocale?: LocaleDict;
 }> = ({ children, initialLang, initialLocale }) => {
   const [lang, updateLang] = useState<string>(initialLang || BLOG.LANG); // default language
-  const [locale, updateLocale] = useState<any>(
+  const [locale, updateLocale] = useState<LocaleDict>(
     initialLocale || generateLocaleDict(BLOG.LANG)
   );
   const [setting, SetSettingState] = useState<boolean>(false);

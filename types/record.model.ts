@@ -68,12 +68,12 @@ export interface RecordTag {
   name: string;
 }
 
-export interface OptionItem {
-  id: number;
-  title: string;
-  option: string;
-  isActive?: boolean;
-}
+// export interface OptionItem {
+//   id: number;
+//   title: string;
+//   option: string;
+//   isActive?: boolean;
+// }
 
 export type BasicPageDivProps = {
   title: string;

@@ -8,6 +8,7 @@ import Fuse from "fuse.js";
 import { debounce } from "lodash-es";
 import { Search, XIcon } from "lucide-react";
 import SearchResultSkeleton from "@/modules/shared/ui/search-result-skeleton";
+import { SerializedPage } from "@/types";
 
 export default function HeaderSearch() {
   const { locale } = useGeneralSiteSettings();
@@ -16,7 +17,7 @@ export default function HeaderSearch() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<{ title: string; url: string }[]>([]);
   const [loading, setLoading] = useState(false);
-  const groupedArray = pages?.map((page: any) => {
+  const groupedArray = pages?.map((page: SerializedPage) => {
     return {
       id: page.data.notionId,
       category: page.data.category,

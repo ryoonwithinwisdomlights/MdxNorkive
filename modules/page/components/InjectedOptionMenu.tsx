@@ -1,11 +1,12 @@
 "use client";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { OptionItem } from "@/types/utils.model";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { Book, ChevronDownIcon } from "lucide-react";
 
 type Props = {
   currentRecordType: string;
-  allOptions: any[];
+  allOptions: OptionItem[];
   handleRecordTypeChange: (option: string) => void;
   initString?: string;
 };

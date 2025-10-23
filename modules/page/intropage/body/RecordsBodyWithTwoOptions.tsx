@@ -9,16 +9,20 @@ import NoRecordFound from "@/modules/shared/NoRecordFound";
 import PageIndicator from "@/modules/page/components/PageIndicator";
 import LazyImage from "@/modules/shared/LazyImage";
 import OptionCarousel from "@/modules/shared/OptionCarousel";
-import { OptionItem } from "@/types";
+import { OptionItem, SerializedPage } from "@/types";
 
 const InjectedOptionMenu = lazy(
   () => import("@/modules/page/components/InjectedOptionMenu")
 );
 
-const RecordsBodyWithTwoOptions = ({ records }: { records: any[] }) => {
+const RecordsBodyWithTwoOptions = ({
+  records,
+}: {
+  records: SerializedPage[];
+}) => {
   const pages = records;
   if (!pages) NotFound();
-  pages.sort((a, b) => {
+  pages.sort((a: SerializedPage, b: SerializedPage) => {
     return (
       new Date(b?.data?.date).getTime() - new Date(a?.data?.date).getTime()
     );
@@ -171,8 +175,8 @@ const RecordsBodyWithTwoOptions = ({ records }: { records: any[] }) => {
       <div className="flex flex-row justify-end w-full">
         <div className="space-y-6 w-full">
           {modAllRecords && modAllRecords.length > 0 ? (
-            modAllRecords.map((item: any, index) => {
-              const showPageCover = item?.data?.pageCover;
+            modAllRecords.map((item: SerializedPage, index: number) => {
+              const showPageCover = item?.data?.pageCover as string | undefined;
               const data = transferDataForCardProps(item);
               return (
                 <div key={item?.data?.notionId || index} className="w-full ">

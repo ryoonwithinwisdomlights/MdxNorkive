@@ -1,4 +1,5 @@
 import type {
+  BlockObjectResponse,
   DatabaseObjectResponse,
   PageObjectResponse,
   TextRichTextItemResponse,
@@ -3709,13 +3710,22 @@ export type PageIconResponse =
   | ExternalPageIconResponse
   | FilePageIconResponse
   | CustomEmojiPageIconResponse;
+
+export type RecordMap = Record<
+  string,
+  {
+    role: "block" | "page" | "workspace";
+    content: BlockObjectResponse[];
+    schema: BlockObjectResponse["type"];
+  }
+>;
 export type PageBlockDataProps = {
   pageId: string;
   from?: string;
   type?: string;
   slice?: number;
   retryAttempts?: number;
-  recordMap?: any;
+  recordMap?: RecordMap;
 };
 
 export type ExternalPageCoverResponse = {

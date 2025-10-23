@@ -8,7 +8,7 @@ import {
 
 import BookGeneralRecordsBody from "@/modules/page/intropage/body/BookGeneralRecordsBody";
 import GeneralIntro from "@/modules/page/intropage/intro/GeneralIntro";
-import { generalIntroPageClass } from "@/types";
+import { generalIntroPageClass, SerializedPage } from "@/types";
 
 const GeneralRecordPage = () => {
   const pages = recordSource.getPages();
@@ -16,7 +16,9 @@ const GeneralRecordPage = () => {
 
   const isAble = isObjectNotEmpty(pages);
   if (!isAble) NotFound();
-  const modAllPages = setAllPagesGetSortedGroupedByDate(pages as any);
+  const modAllPages = setAllPagesGetSortedGroupedByDate(
+    pages as unknown as SerializedPage[]
+  );
   return (
     <div className={generalIntroPageClass({ className: "" })}>
       <GeneralIntro />
@@ -24,7 +26,7 @@ const GeneralRecordPage = () => {
       <BookGeneralRecordsBody
         modAllPages={modAllPages}
         isAble={isAble}
-        pages={pages as any}
+        pages={pages as unknown as SerializedPage[]}
         type="RECORDS"
         subType={true}
         introTrue={false}

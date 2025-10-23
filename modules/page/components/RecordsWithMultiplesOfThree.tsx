@@ -4,18 +4,20 @@ import { GridCard } from "@/modules/common/cards";
 import { useMemo, useState } from "react";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import PaginationSimple from "./PaginationSimple";
+import { OptionItem, SerializedPage } from "@/types";
+import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils";
 
 type Props = {
   type: string;
   introTrue: boolean;
-  records: any[];
+  records: SerializedPage[];
 };
 
 const RecordsWithMultiplesOfThree = ({ type, introTrue, records }: Props) => {
   const pages = records;
   if (!pages) return null;
 
-  const { locale } = useGeneralSiteSettings();
+  const { locale, lang } = useGeneralSiteSettings();
   const [currentPage, setCurrentPage] = useState(1);
   const [currentRecordType, setCurrentRecordType] = useState("");
 
@@ -37,7 +39,7 @@ const RecordsWithMultiplesOfThree = ({ type, introTrue, records }: Props) => {
     );
 
     // "전체" 아이템을 맨 앞에 추가
-    const typeOptions: any[] = [
+    const typeOptions: OptionItem[] = [
       {
         id: -1,
         title: locale.COMMON.ALL,
@@ -87,14 +89,14 @@ const RecordsWithMultiplesOfThree = ({ type, introTrue, records }: Props) => {
       >
         {getCurrentArticles().map((article) => (
           <GridCard
-            key={`${article.id}-${currentPage}`}
-            title={article.title}
-            description={article.description}
-            date={article.date}
-            distanceFromToday={article.distanceFromToday}
-            tags={article.tags}
-            imageUrl={article.pageCover}
-            imageAlt={article.title}
+            key={`${article.data.notionId}-${currentPage}`}
+            title={article.data.title}
+            description={article.data.summary}
+            date={getYearMonthDay(article.data.date, locale.LOCALE)}
+            distanceFromToday={getDistanceFromToday(article.data.date, lang)}
+            tags={article.data.tags}
+            imageUrl={article.data.pageCover as string | undefined}
+            imageAlt={article.data.title}
             url={article.url}
             variant="default"
             showImage={true}

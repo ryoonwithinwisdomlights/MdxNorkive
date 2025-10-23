@@ -18,7 +18,7 @@ const ExternalScript = (props: { src: string }) => {
     return null;
   }
   const script: HTMLScriptElement = document.createElement("script");
-  Object.entries(props).forEach(([key, value]: any) => {
+  Object.entries(props).forEach(([key, value]: [string, string | number]) => {
     script.setAttribute(key, value.toString());
   });
   document.head.appendChild(script);

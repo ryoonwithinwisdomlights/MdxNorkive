@@ -10,7 +10,8 @@ import {
 import { useMemo, useState } from "react";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import PageIndicator from "./PageIndicator";
-import { mainRecordProps } from "@/types";
+import { mainRecordProps, SerializedPage } from "@/types";
+import { OptionItem } from "@/types/utils.model";
 
 const LatestRecords = ({
   type,
@@ -55,7 +56,7 @@ const LatestRecords = ({
     );
 
     // "전체" 아이템을 맨 앞에 추가
-    const typeOptions: any[] = [
+    const typeOptions: OptionItem[] = [
       {
         id: -1,
         title: locale.COMMON.ALL,
@@ -68,7 +69,7 @@ const LatestRecords = ({
       })),
     ];
 
-    const subTypeOptions: any[] = [
+    const subTypeOptions: OptionItem[] = [
       {
         id: -1,
         title: locale.COMMON.ALL,
@@ -94,7 +95,7 @@ const LatestRecords = ({
   };
 
   const getCurrentRecordsWithPagination = (
-    records: any[],
+    records: SerializedPage[],
     page: number,
     perPage: number
   ) => {
@@ -156,7 +157,7 @@ const LatestRecords = ({
             author={article.data.author}
             distanceFromToday={getDistanceFromToday(article.data.date, lang)}
             tags={article.data.tags}
-            imageUrl={article.data.pageCover}
+            imageUrl={article.data.pageCover as string | undefined}
             imageAlt={article.data.title}
             url={article.url}
             variant="compact"

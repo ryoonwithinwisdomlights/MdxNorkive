@@ -2,7 +2,7 @@
 import { projectSource } from "@/lib/source";
 import ProjectIntro from "@/modules/page/intropage/intro/ProjectIntro";
 import RecordsBodyWithTwoOptions from "./body/RecordsBodyWithTwoOptions";
-import { generalIntroPageClass } from "@/types";
+import { generalIntroPageClass, SerializedPage } from "@/types";
 
 const ProjectRecordsPage = () => {
   const pages = projectSource.getPages();
@@ -10,7 +10,9 @@ const ProjectRecordsPage = () => {
   return (
     <div className={generalIntroPageClass({ className: "" })}>
       <ProjectIntro />
-      <RecordsBodyWithTwoOptions records={pages} />
+      <RecordsBodyWithTwoOptions
+        records={pages as unknown as SerializedPage[]}
+      />
     </div>
   );
 };

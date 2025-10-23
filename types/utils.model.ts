@@ -34,7 +34,7 @@ export type WindowSize = {
 export type OptionItem = {
   id: number;
   title: string;
-  option?: any;
+  option: any;
   isActive?: boolean; // 현재 선택된지 확인
 };
 

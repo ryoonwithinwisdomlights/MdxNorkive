@@ -8,12 +8,12 @@
  */
 
 import { useReportWebVitals } from "next/web-vitals";
-import { reportWebVitals } from "@/lib/utils/web-vitals";
+import { reportWebVitals, WebVitalsMetric } from "@/lib/utils/web-vitals";
 
 export function WebVitals() {
   useReportWebVitals((metric) => {
     // Web Vitals 리포터에 전달
-    reportWebVitals(metric as any);
+    reportWebVitals(metric as WebVitalsMetric);
   });
 
   return null;
