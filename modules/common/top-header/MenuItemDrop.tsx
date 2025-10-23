@@ -1,5 +1,5 @@
 "use client";
-// import { parseIcon } from "@/lib/utils/general";
+
 import { ChevronDownIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -40,7 +40,6 @@ export const MenuItemDrop = ({ menuData }) => {
         flex flex-nowrap items-center "
       >
         <div className="flex flex-row items-center gap-2">
-          {/* {icon && <FontAwesomeIcon icon={icon} className="w-3 h-3" />} */}
           <span className="text-sm ">{menuData?.title}</span>
           {hasSubMenu && (
             <ChevronDownIcon
@@ -71,7 +70,6 @@ export const MenuItemDrop = ({ menuData }) => {
           target={menuData?.slug?.indexOf("http") === 0 ? "_blank" : "_self"}
           className="flex flex-row items-center gap-2"
         >
-          {/* {icon && <FontAwesomeIcon icon={icon} className="w-3 h-3 " />} */}
           <span className="text-xs ">{menuData?.title}</span>
         </Link>
       </div>
@@ -107,12 +105,6 @@ export const MenuItemDrop = ({ menuData }) => {
                     className="text-xs 
                    hover:text-black dark:hover:text-white flex flex-row items-center gap-2"
                   >
-                    {/* {iconForRenderSubmenus && (
-                      <FontAwesomeIcon
-                        icon={iconForRenderSubmenus}
-                        className="w-3 h-3 "
-                      />
-                    )} */}
                     <span className="text-xs ">{sLink.title}</span>
                   </span>
                 </div>

@@ -18,11 +18,13 @@ import { InlineTOC } from "fumadocs-ui/components/inline-toc";
 import { useSidebar } from "fumadocs-ui/provider";
 import { Book, CalendarIcon, Rocket } from "lucide-react";
 import { notFound } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense, lazy } from "react";
 
 import { getMDXComponents } from "@/getMDXComponents";
 import TagItemMini from "@/modules/common/tag/TagItemMini";
 import LockedPage from "@/modules/page/components/LockedPage";
+
+const LoadingCover = lazy(() => import("@/modules/shared/LoadingCover"));
 
 function getResource(resource: string) {
   if (resource === "engineering") return engineeringSource;
@@ -33,20 +35,40 @@ function getResource(resource: string) {
   else return null;
 }
 
+// 🎯 에러 바운더리 컴포넌트
+// function MDXErrorFallback({
+//   error,
+//   retry,
+// }: {
+//   error: Error;
+//   retry: () => void;
+// }) {
+//   return (
+//     <div className="flex flex-col items-center justify-center py-12">
+//       <div className="text-red-500 mb-4">
+//         콘텐츠 로딩 중 오류가 발생했습니다.
+//       </div>
+//       <button
+//         onClick={retry}
+//         className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+//       >
+//         다시 시도
+//       </button>
+//     </div>
+//   );
+// }
+
 export default function CustomedMDXPage({ className, slug, resource }) {
   const page = getResource(resource)?.getPage(slug);
 
   if (!page) notFound();
 
   const [lock, setLock] = useState(page?.data?.password !== "");
+
   const { body, toc, lastEditedDate } = page.data;
 
-  const {
-    locale,
-    lang,
-    handleChangeRightSideInfoBarMode,
-    handleSetTocContent,
-  } = useGeneralSiteSettings();
+  const { locale, handleChangeRightSideInfoBarMode, handleSetTocContent } =
+    useGeneralSiteSettings();
   const { RECORD } = locale;
   const { setCollapsed } = useSidebar();
 
@@ -71,9 +93,8 @@ export default function CustomedMDXPage({ className, slug, resource }) {
       {lock ? (
         <LockedPage validPassword={validPassword} />
       ) : (
-        <div className="flex flex-col  w-full">
+        <div className="flex flex-col w-full">
           <DocsPage
-            // toc={toc}
             full={page.data.full}
             lastUpdate={lastEditedDate}
             breadcrumb={{ enabled: false }}
@@ -94,7 +115,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
                 style={{
                   position: "absolute",
                   inset: 0,
-                  background: "rgba(39,39,42,0.75)", // bg-neutral-800 + 거의 불투명
+                  background: "rgba(39,39,42,0.75)",
                   pointerEvents: "none",
                   zIndex: 1,
                 }}
@@ -107,6 +128,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
                 <h1 className="mb-2 text-3xl font-bold text-white">
                   {page.data.title}
                 </h1>
+
                 <div className=" flex flex-row gap-4 items-center text-white text-sm">
                   <div className="flex flex-row gap-2 items-center">
                     <Book className="w-4 h-4" />
@@ -149,6 +171,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
                 )}
               </div>
             </div>
+
             {toc.length > 0 && (
               <InlineTOC
                 items={toc}
@@ -157,9 +180,12 @@ export default function CustomedMDXPage({ className, slug, resource }) {
               />
             )}
 
-            <DocsBody className="  ">
-              <MDXContent code={body} components={getMDXComponents()} />
+            <DocsBody className="">
+              <Suspense fallback={<LoadingCover />}>
+                <MDXContent code={body} components={getMDXComponents()} />
+              </Suspense>
             </DocsBody>
+
             <ShareBar data={page.data} url={page.url} />
           </DocsPage>
         </div>

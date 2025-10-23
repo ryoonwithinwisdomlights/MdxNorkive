@@ -8,7 +8,7 @@ export default function LoadingCover() {
   return (
     <div
       id="cover-loading"
-      className="z-50 opacity-50pointer-events-none transition-all 
+      className="z-50 opacity-50 pointer-events-none transition-all 
           duration-300 w-full h-full flex flex-row justify-center items-center"
     >
       <div className="w-full h-full flex flex-row justify-center items-center">

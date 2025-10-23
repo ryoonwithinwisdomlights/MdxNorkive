@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 
-import throttle from "lodash.throttle";
+import throttle from "lodash-es";
 
 import { uuidToId } from "@/lib/utils/general";
 

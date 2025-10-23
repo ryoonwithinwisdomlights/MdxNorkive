@@ -1,6 +1,6 @@
 "use client";
 
-import throttle from "lodash.throttle";
+import throttle from "lodash-es";
 
 import { useCallback, useEffect, useState } from "react";
 

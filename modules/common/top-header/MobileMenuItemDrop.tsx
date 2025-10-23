@@ -1,6 +1,6 @@
 "use client"; // 클라이언트 컴포넌트
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-// import { parseIcon } from "@/lib/utils/general";
+
 import Collapse from "@/modules/shared/Collapse";
 import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
@@ -58,7 +58,6 @@ export const MobileMenuItemDrop = ({ link, onHeightChange }) => {
       >
         <div>
           <div className={`${link.icon} text-center w-4 mr-4`} />
-          {/* {icon && <FontAwesomeIcon icon={icon} />} {link.title} */}
         </div>
         <div className="inline-flex items-center ">
           <ChevronRightIcon
@@ -80,7 +79,6 @@ export const MobileMenuItemDrop = ({ link, onHeightChange }) => {
       >
         <div>
           <div className={`${link.icon} text-center w-4 mr-4`} />
-          {/* {icon && <FontAwesomeIcon icon={icon} />} {link.title} */}
         </div>
       </Link>
     );
@@ -107,7 +105,6 @@ export const MobileMenuItemDrop = ({ link, onHeightChange }) => {
                   <div
                     className={`${sLink.icon} text-center w-3 mr-3 text-xs`}
                   />
-                  {/* {icon && <FontAwesomeIcon icon={icon} />} {sLink.title} */}
                 </div>
               </div>
             </div>

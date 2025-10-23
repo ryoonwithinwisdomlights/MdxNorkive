@@ -67,6 +67,7 @@
     "fuse.js": "^7.1.0",
     "glob": "^11.0.3",
     "gray-matter": "^4.0.3",
+    "lodash-es": "^4.17.21",
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "lucide-react": "^0.525.0",
