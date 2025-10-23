@@ -2,7 +2,7 @@ import { Suspense, lazy } from "react";
 import { BLOG } from "@/blog.config";
 
 //************* font ************* */
-// import { Noto_Sans, Noto_Serif } from "next/font/google";
+import { Noto_Sans, Noto_Serif } from "next/font/google";
 
 //************* Next ************* */
 import type { Metadata, Viewport } from "next";
@@ -92,6 +92,19 @@ export const metadata: Metadata = {
   },
 };
 
+const notoSans = Noto_Sans({
+  variable: "--font-sans",
+  subsets: ["latin", "latin-ext"],
+  display: "swap", // 폰트 로드 전까지 시스템 폰트 표시
+  preload: true, // 자동 preload
+});
+
+const notoSerif = Noto_Serif({
+  variable: "--font-serif",
+  subsets: ["latin", "latin-ext"],
+  display: "swap", // 폰트 로드 전까지 시스템 폰트 표시
+  preload: true, // 자동 preload
+});
 export default async function RootLayout({
   children,
 }: {
@@ -129,7 +142,11 @@ export default async function RootLayout({
   }));
 
   return (
-    <html lang={BLOG.LANG} suppressHydrationWarning>
+    <html
+      lang={BLOG.LANG}
+      className={`${notoSans.variable} ${notoSerif.variable}`}
+      suppressHydrationWarning
+    >
       <body>
         <WebVitals />
         <ProgressBar>

@@ -37,7 +37,10 @@ body{
     --input: 0 0% 89.8%;
     --ring: 0 0% 3.9%;
     --radius: 0.5rem;
-
+    
+    /* 폰트 변수 - Next.js 폰트 최적화 사용 */
+    --font-sans: var(--font-sans);
+    --font-serif: var(--font-serif);
   }
 
   .dark {
@@ -70,6 +73,8 @@ body{
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+    /* Next.js 최적화 폰트 적용 */
+    font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   }
   :root,
   #nd-docs-layout {
