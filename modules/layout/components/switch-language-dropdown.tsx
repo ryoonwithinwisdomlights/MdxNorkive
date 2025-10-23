@@ -40,7 +40,8 @@ export default function SwitchLanguage() {
               }}
             >
               {/* {item} */}
-              {dictionaries[item].LANGUAGE}
+              {/* {dictionaries[item].LANGUAGE} */}
+              {dictionaries[item as keyof typeof dictionaries].LANGUAGE}
             </DropdownMenuItem>
           ))}
         </DropdownMenuContent>

@@ -1,4 +1,10 @@
-const TagItemMini = ({ tags, className }) => {
+const TagItemMini = ({
+  tags,
+  className,
+}: {
+  tags: string[];
+  className: string;
+}) => {
   return (
     <div className="flex items-center gap-2">
       {tags.slice(0, 3).map((tag, index) => (

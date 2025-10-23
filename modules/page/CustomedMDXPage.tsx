@@ -35,30 +35,15 @@ function getResource(resource: string) {
   else return null;
 }
 
-// 🎯 에러 바운더리 컴포넌트
-// function MDXErrorFallback({
-//   error,
-//   retry,
-// }: {
-//   error: Error;
-//   retry: () => void;
-// }) {
-//   return (
-//     <div className="flex flex-col items-center justify-center py-12">
-//       <div className="text-red-500 mb-4">
-//         콘텐츠 로딩 중 오류가 발생했습니다.
-//       </div>
-//       <button
-//         onClick={retry}
-//         className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-//       >
-//         다시 시도
-//       </button>
-//     </div>
-//   );
-// }
-
-export default function CustomedMDXPage({ className, slug, resource }) {
+export default function CustomedMDXPage({
+  className,
+  slug,
+  resource,
+}: {
+  className: string;
+  slug: string[] | undefined;
+  resource: string;
+}) {
   const page = getResource(resource)?.getPage(slug);
 
   if (!page) notFound();
@@ -78,7 +63,7 @@ export default function CustomedMDXPage({ className, slug, resource }) {
     handleChangeRightSideInfoBarMode("author");
   }, []);
 
-  const validPassword = (passInput) => {
+  const validPassword = (passInput: string) => {
     if (passInput === page?.data?.password) {
       setLock(false);
       return true;

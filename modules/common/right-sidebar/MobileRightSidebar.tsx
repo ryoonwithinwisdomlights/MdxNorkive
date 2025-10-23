@@ -3,18 +3,22 @@ import { cn } from "@/lib/utils/general";
 import Collapse from "@/modules/shared/Collapse";
 import React from "react";
 
-type Props = {
+interface CollapseRefType {
+  updateCollapseHeight: (params: { height: number; increase: boolean }) => void;
+}
+
+interface MobileRightSidebarProps {
   children: React.ReactNode;
   className?: string;
-  collapseRef: React.RefObject<any>;
-};
+  collapseRef: React.RefObject<CollapseRefType | null>;
+}
 
 const MobileRightSidebar = ({
   collapseRef,
   children,
   className,
   ...props
-}: Props) => {
+}: MobileRightSidebarProps) => {
   const { isMobileLeftSidebarOpen, toggleMobileLeftSidebarOpen } =
     useGeneralSiteSettings();
   const state = isMobileLeftSidebarOpen ? "open" : "closed";

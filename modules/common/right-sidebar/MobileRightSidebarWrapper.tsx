@@ -19,10 +19,15 @@ const ToggleDarkModeButton = lazy(
 const SwitchLanguage = lazy(
   () => import("@/modules/layout/components/switch-language-dropdown")
 );
+
+interface CollapseRefType {
+  updateCollapseHeight: (params: { height: number; increase: boolean }) => void;
+}
+
 const MobileRightSidebarWrapper = () => {
   const { menuList } = useNav({ from: "LeftSidebar" });
   const { locale, toggleMobileLeftSidebarOpen } = useGeneralSiteSettings();
-  const collapseRef = useRef<any>(null);
+  const collapseRef = useRef<CollapseRefType>(null);
 
   return (
     <MobileRightSidebar collapseRef={collapseRef}>

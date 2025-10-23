@@ -22,7 +22,7 @@ const NavigationForMobile = ({ collapseRef }: NavigationForMobileProps) => {
 
   return (
     <div className="bg-neutral-50 dark:bg-neutral-800">
-      <Collapse
+      {/* <Collapse
         type="vertical"
         collapseRef={collapseRef}
         isOpen={isMobileTopNavOpen}
@@ -37,7 +37,7 @@ const NavigationForMobile = ({ collapseRef }: NavigationForMobileProps) => {
             }}
           />
         </div>
-      </Collapse>
+      </Collapse> */}
       <div className="md:hidden flex flex-row justify-between w-full h-14 shadow  px-7 items-between  bg-neutral-50 dark:bg-neutral-800">
         <LogoBar />
         <div className="mr-1 flex justify-end items-center space-x-4 font-serif dark:text-neutral-200">

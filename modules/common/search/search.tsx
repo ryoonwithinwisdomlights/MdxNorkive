@@ -158,7 +158,11 @@ export const SearchTags = ({
   return (
     <div className="flex flex-row gap-2 justify-between w-full">
       {items.length > 0 && (
-        <TagsList tag={tag} onTagChange={setTag} allowClear={allowClear}>
+        <TagsList
+          tag={tag || ""}
+          onTagChange={(tag) => setTag(tag || "")}
+          allowClear={allowClear}
+        >
           {items.map((item, i) => (
             <TagsListItem key={i} value={item.value || ""}>
               {item.name}

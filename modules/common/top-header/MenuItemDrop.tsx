@@ -1,21 +1,23 @@
 "use client";
 
+import { MenuItem } from "@/types";
 import { ChevronDownIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
-export const MenuItemDrop = ({ menuData }) => {
+export const MenuItemDrop = ({ menuData }: { menuData: MenuItem }) => {
   if (!menuData) {
     return null;
   }
   const [show, changeShow] = useState(false);
   const pathname = usePathname();
-  const hasSubMenu = menuData?.subMenus?.length > 0;
+  const hasSubMenu =
+    menuData?.subMenus?.length && menuData?.subMenus?.length > 0;
   const selected = pathname === menuData.url;
   const router = useRouter();
 
-  const onClickUrl = (data) => {
+  const onClickUrl = (data: MenuItem) => {
     if (data) {
       const href = data?.type === "SubMenuPages" ? data?.url : data?.slug;
 
@@ -24,7 +26,7 @@ export const MenuItemDrop = ({ menuData }) => {
       } else {
         // SubMenuPage의 경우 절대 경로로 처리
         const finalHref = data?.type === "SubMenuPages" ? `/${href}` : href;
-        router.push(finalHref);
+        router.push(finalHref || "");
       }
     }
   };
@@ -66,7 +68,7 @@ export const MenuItemDrop = ({ menuData }) => {
         }
       >
         <Link
-          href={menuData?.slug}
+          href={menuData?.slug || ""}
           target={menuData?.slug?.indexOf("http") === 0 ? "_blank" : "_self"}
           className="flex flex-row items-center gap-2"
         >
