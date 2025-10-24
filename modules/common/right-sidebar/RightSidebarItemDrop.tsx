@@ -1,6 +1,7 @@
 "use client"; // 클라이언트 컴포넌트
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { MenuItem } from "@/types";
+import { RightSidebarItemDropProps } from "@/types/components/navigation";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -9,8 +10,9 @@ import { useRouter } from "next/navigation";
  * @param {*} param0
  * @returns
  */
-export const RightSidebarItemDrop = (props: { menuData: MenuItem }) => {
-  const { menuData } = props;
+export const RightSidebarItemDrop = ({
+  menuData,
+}: RightSidebarItemDropProps) => {
   const { toggleMobileLeftSidebarOpen } = useGeneralSiteSettings();
   const router = useRouter();
   const hasSubMenu =

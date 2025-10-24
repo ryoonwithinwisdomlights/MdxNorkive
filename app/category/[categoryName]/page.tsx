@@ -1,8 +1,8 @@
-import ErrorComponent from "@/modules/shared/ErrorComponent";
 import GeneralRecordTypePageWrapper from "@/modules/layout/templates/home-page-layout";
+import ErrorComponent from "@/modules/shared/ErrorComponent";
 
-import { TotalPageParams } from "@/types";
 import NoRecordFound from "@/modules/shared/NoRecordFound";
+import { TotalPageParams } from "@/types";
 
 export async function generateStaticParams() {
   const records = [
@@ -14,7 +14,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function Page({ params, searchParams }: TotalPageParams) {
+export default async function Page({ params }: TotalPageParams) {
   const { categoryName } = await params;
   // const { pagenum } = await searchParams;
   // const decodedName = decodeURIComponent(categoryName);

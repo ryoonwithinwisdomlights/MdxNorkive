@@ -3,6 +3,7 @@ import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvide
 
 import Collapse from "@/modules/shared/Collapse";
 import { MenuItem } from "@/types";
+import { MobileMenuItemDropProps } from "@/types/components/navigation";
 import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -18,10 +19,7 @@ import { useState } from "react";
 export const MobileMenuItemDrop = ({
   link,
   onHeightChange,
-}: {
-  link: MenuItem;
-  onHeightChange: (params: { height: number; increase: boolean }) => void;
-}) => {
+}: MobileMenuItemDropProps) => {
   const { isMobileTopNavOpen, toggleMobileTopNavOpen } =
     useGeneralSiteSettings();
 

@@ -1,20 +1,7 @@
 "use client";
 
+import { CollapseProps } from "@/types/components/collapse";
 import React, { useEffect, useImperativeHandle, RefObject } from "react";
-
-interface CollapseProps {
-  type?: "horizontal" | "vertical";
-  isOpen?: boolean;
-  collapseRef?: RefObject<{
-    updateCollapseHeight: (params: {
-      height: number;
-      increase: boolean;
-    }) => void;
-  } | null>;
-  onHeightChange?: (params: { height: number; increase: boolean }) => void;
-  className?: string;
-  children?: React.ReactNode;
-}
 
 /**
  * Folding panel component, supports horizontal folding and vertical folding

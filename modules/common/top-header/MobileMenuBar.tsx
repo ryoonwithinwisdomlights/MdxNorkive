@@ -1,10 +1,7 @@
 "use client"; // 클라이언트 컴포넌트
 import { useNav } from "@/lib/context/NavInfoProvider";
 import { MobileMenuItemDrop } from "./MobileMenuItemDrop";
-
-interface MobileMenuBarProps {
-  onHeightChange: (params: { height: number; increase: boolean }) => void;
-}
+import { MobileMenuBarProps } from "@/types/components/navigation";
 
 export const MobileMenuBar = ({ onHeightChange }: MobileMenuBarProps) => {
   const { menuList } = useNav({ from: "TopNavBar" });

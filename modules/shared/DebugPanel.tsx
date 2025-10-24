@@ -24,7 +24,7 @@ const DebugPanel = () => {
     setShow(!show);
   }
 
-  function filterResult(text) {
+  function filterResult(text: string) {
     switch (text) {
       case "true":
         return <span className="text-green-500">true</span>;
@@ -89,7 +89,7 @@ const DebugPanel = () => {
                   {k}
                 </span>
                 <span className="text-white">
-                  {filterResult(siteConfig[k] + "")}
+                  {filterResult(siteConfig[k as keyof typeof siteConfig] + "")}
                 </span>
               </div>
             ))}

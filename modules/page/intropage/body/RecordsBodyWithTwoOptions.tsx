@@ -9,7 +9,8 @@ import NoRecordFound from "@/modules/shared/NoRecordFound";
 import PageIndicator from "@/modules/page/components/PageIndicator";
 import LazyImage from "@/modules/shared/LazyImage";
 import OptionCarousel from "@/modules/shared/OptionCarousel";
-import { OptionItem, SerializedPage } from "@/types";
+import { OptionItem } from "@/types/components/pageutils";
+import { SerializedPage } from "@/types/provider.model";
 
 const InjectedOptionMenu = lazy(
   () => import("@/modules/page/components/InjectedOptionMenu")

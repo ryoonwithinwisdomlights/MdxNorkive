@@ -1,18 +1,9 @@
 "use client";
 
-import { RecordsWrapper } from "@/modules/page/components/RecordsWrapper";
 import FeaturedRecords from "@/modules/page/components/FeaturedRecords";
+import { RecordsWrapper } from "@/modules/page/components/RecordsWrapper";
 import NoRecordFound from "@/modules/shared/NoRecordFound";
-import type { SerializedPage } from "@/types";
-
-interface BookGeneralRecordsBodyProps {
-  modAllPages: Record<string, SerializedPage[]>;
-  isAble: boolean;
-  pages: SerializedPage[];
-  type: "BOOKS" | "PROJECTS" | "RECORDS" | "ENGINEERINGS";
-  subType: boolean;
-  introTrue: boolean;
-}
+import { BookGeneralRecordsBodyProps } from "@/types/components/pageutils";
 
 const BookGeneralRecordsBody = ({
   modAllPages,

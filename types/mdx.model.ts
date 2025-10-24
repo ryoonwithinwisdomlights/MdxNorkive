@@ -254,18 +254,6 @@ export interface MdxProcessingStats {
 }
 
 /**
- * MDX 파일 메타데이터 타입
- */
-export interface MdxMetadata {
-  notionId?: string;
-  last_edited_time?: string;
-  title?: string;
-  slug?: string;
-  type?: string;
-  [key: string]: any;
-}
-
-/**
  * 타입 가드 함수들
  */
 
@@ -274,12 +262,12 @@ export interface MdxMetadata {
  * @param obj 검사할 객체
  * @returns ContentBlock인지 여부
  */
-export function isContentBlock(obj: any): obj is ContentBlock {
+export function isContentBlock(obj: unknown): obj is ContentBlock {
   return (
     typeof obj === "object" &&
     obj !== null &&
-    typeof obj.marker === "string" &&
-    typeof obj.content === "string"
+    typeof (obj as Record<string, unknown>).marker === "string" &&
+    typeof (obj as Record<string, unknown>).content === "string"
   );
 }
 
@@ -288,14 +276,14 @@ export function isContentBlock(obj: any): obj is ContentBlock {
  * @param obj 검사할 객체
  * @returns ProcessingContext인지 여부
  */
-export function isProcessingContext(obj: any): obj is ProcessingContext {
+export function isProcessingContext(obj: unknown): obj is ProcessingContext {
   return (
     typeof obj === "object" &&
     obj !== null &&
-    Array.isArray(obj.codeBlocks) &&
-    Array.isArray(obj.blockquotes) &&
-    typeof obj.codeBlockIndex === "number" &&
-    typeof obj.blockquoteIndex === "number"
+    Array.isArray((obj as Record<string, unknown>).codeBlocks) &&
+    Array.isArray((obj as Record<string, unknown>).blockquotes) &&
+    typeof (obj as Record<string, unknown>).codeBlockIndex === "number" &&
+    typeof (obj as Record<string, unknown>).blockquoteIndex === "number"
   );
 }
 
@@ -304,12 +292,14 @@ export function isProcessingContext(obj: any): obj is ProcessingContext {
  * @param obj 검사할 객체
  * @returns MdxValidationResult인지 여부
  */
-export function isMdxValidationResult(obj: any): obj is MdxValidationResult {
+export function isMdxValidationResult(
+  obj: unknown
+): obj is MdxValidationResult {
   return (
     typeof obj === "object" &&
     obj !== null &&
-    typeof obj.isValid === "boolean" &&
-    typeof obj.content === "string" &&
-    Array.isArray(obj.errors)
+    typeof (obj as Record<string, unknown>).isValid === "boolean" &&
+    typeof (obj as Record<string, unknown>).content === "string" &&
+    Array.isArray((obj as Record<string, unknown>).errors)
   );
 }

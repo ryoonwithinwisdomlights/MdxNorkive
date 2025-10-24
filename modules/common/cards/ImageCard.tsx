@@ -7,9 +7,9 @@ import {
   combinedContentContainerClasses,
   combinedImageClasses,
   combinedImageContainerClasses,
-  ImageCardProps,
-} from "@/types";
+} from "@/lib/styles/card.styles";
 
+import { ImageCardProps } from "@/types/components/cards";
 import CardBase from "@/modules/common/cards/CardBase";
 import ContentCard from "@/modules/common/cards/ContentCard";
 import LazyImage from "@/modules/shared/LazyImage";

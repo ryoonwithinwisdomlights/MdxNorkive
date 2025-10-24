@@ -2,7 +2,7 @@
 "use client";
 
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { OptionCarouselProps } from "@/types";
+import { OptionCarouselProps } from "@/types/components/pageutils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 

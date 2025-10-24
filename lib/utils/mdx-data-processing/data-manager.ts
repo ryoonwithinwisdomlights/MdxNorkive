@@ -6,7 +6,7 @@
 import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
-import { MdxMetadata, RecordFrontMatter } from "@/types/mdx.model";
+import { RecordFrontMatter } from "@/types/mdx.model";
 import { QueryPageResponse } from "@/types/notion.client.model";
 import { BLOG } from "@/blog.config";
 import { EXTERNAL_CONFIG } from "@/config/external.config";
@@ -276,48 +276,4 @@ export class SlugManager {
   clear(): void {
     this.slugSet.clear();
   }
-}
-
-/**
- * MDX 파일에서 메타데이터 추출
- */
-export async function extractMdxMetadata(
-  filePath: string
-): Promise<MdxMetadata | null> {
-  try {
-    const content = await fs.readFile(filePath, "utf-8");
-    const fm = matter(content);
-    return fm.data as MdxMetadata;
-  } catch (error) {
-    console.error(`❌ 메타데이터 추출 실패: ${filePath}`, error);
-    return null;
-  }
-}
-
-/**
- * 디렉토리 내 모든 MDX 파일의 메타데이터 수집
- */
-export async function collectMdxMetadata(
-  dirPath: string
-): Promise<Map<string, MdxMetadata>> {
-  const metadataMap = new Map<string, MdxMetadata>();
-
-  try {
-    const files = await fs.readdir(dirPath);
-
-    for (const file of files) {
-      if (file.endsWith(".mdx")) {
-        const filePath = path.join(dirPath, file);
-        const metadata = await extractMdxMetadata(filePath);
-
-        if (metadata && metadata.notionId) {
-          metadataMap.set(metadata.notionId, metadata);
-        }
-      }
-    }
-  } catch (error) {
-    console.error(`❌ 메타데이터 수집 실패: ${dirPath}`, error);
-  }
-
-  return metadataMap;
 }

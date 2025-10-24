@@ -71,8 +71,9 @@ export async function validateMdxContent(
     // (테이블 블록 수정 등이 적용되었을 수 있음)
     return { isValid: true, content: processedContent, errors: [] };
   } catch (error) {
-    errors.push(`변환 실패: ${error.message}`);
-    console.warn(`⚠️ MDX 변환 실패: ${frontmatter} - ${error.message}`);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    errors.push(`변환 실패: ${errorMessage}`);
+    console.warn(`⚠️ MDX 변환 실패: ${frontmatter} - ${errorMessage}`);
 
     // 최후의 수단: 강제 수정
     try {
@@ -80,9 +81,13 @@ export async function validateMdxContent(
       console.log(`✅ MDX 강제 수정 완료: ${frontmatter}`);
       return { isValid: true, content: processedContent, errors };
     } catch (secondError) {
-      errors.push(`강제 수정 실패: ${secondError.message}`);
+      const secondErrorMessage =
+        secondError instanceof Error
+          ? secondError.message
+          : String(secondError);
+      errors.push(`강제 수정 실패: ${secondErrorMessage}`);
       console.error(
-        `❌ MDX 강제 수정 실패: ${frontmatter} - ${secondError.message}`
+        `❌ MDX 강제 수정 실패: ${frontmatter} - ${secondErrorMessage}`
       );
 
       // frontmatter에서 title 값 추출 예시
@@ -91,7 +96,9 @@ export async function validateMdxContent(
 
       // 최후의 수단: 기본 템플릿
       const fallbackContent =
-        frontmatter + "\n" + MDX_CONSTANTS.DEFAULT_DOCUMENT_TEMPLATE(title);
+        frontmatter +
+        "\n" +
+        MDX_CONSTANTS.DEFAULT_DOCUMENT_TEMPLATE(title || "Untitled");
       return { isValid: false, content: fallbackContent, errors };
     }
   }
@@ -176,7 +183,9 @@ export async function validateMdxDirectory(
           }
         } catch (error) {
           results.failed++;
-          results.errors.push({ file: fullPath, errors: [error.message] });
+          const errorMessage =
+            error instanceof Error ? error.message : String(error);
+          results.errors.push({ file: fullPath, errors: [errorMessage] });
         }
       }
     }

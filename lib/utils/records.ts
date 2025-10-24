@@ -2,6 +2,7 @@ import { BLOG } from "@/blog.config";
 import { formatDateFmt, getDistanceFromToday, getYearMonthDay } from "./date";
 import { TransferedDataProps, SerializedPage, LocaleDict } from "@/types";
 import { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
+import { PageTree } from "fumadocs-core/server";
 
 /**
  * 사용자 친화적 슬러그 생성 (sub_type-title, 한글/영어/숫자만, 중복 방지)
@@ -155,8 +156,8 @@ export const paginationString = (
   }
 };
 
-export const pageOptionsGenerator = (
-  source: { getPageTree: () => any },
+export const pageOptionsGenerator = <T = unknown>(
+  source: { getPageTree: () => T },
   title?: string
 ): DocsLayoutProps => {
   const baseOptions: Partial<DocsLayoutProps> = {
@@ -178,7 +179,7 @@ export const pageOptionsGenerator = (
 
   return {
     ...baseOptions,
-    tree: source.getPageTree(),
+    tree: source.getPageTree() as PageTree.Root,
     nav: {
       ...baseOptions.nav,
       transparentMode: "none",

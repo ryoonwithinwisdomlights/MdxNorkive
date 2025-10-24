@@ -3,7 +3,7 @@ import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvide
 import AuthorInfoCard from "@/modules/common/right-sidebar/infocard/AuthorInfoCard";
 import NorKiveInfoCard from "@/modules/common/right-sidebar/infocard/NorKiveInfoCard";
 
-const getInfoCard = (mode: string) => {
+const getInfoCard = (mode: "info" | "author") => {
   switch (mode) {
     case "info":
       return <NorKiveInfoCard />;
@@ -13,6 +13,7 @@ const getInfoCard = (mode: string) => {
       return <NorKiveInfoCard />;
   }
 };
+
 const RightSideNavWrapper = () => {
   const { rightSideInfoBarMode } = useGeneralSiteSettings();
 

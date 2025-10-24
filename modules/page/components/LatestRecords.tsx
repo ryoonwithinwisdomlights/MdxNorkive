@@ -10,8 +10,9 @@ import {
 import { useMemo, useState } from "react";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import PageIndicator from "./PageIndicator";
-import { mainRecordProps, SerializedPage } from "@/types";
-import { OptionItem } from "@/types/utils.model";
+import { SerializedPage } from "@/types";
+import { mainRecordProps } from "@/types/components/pageutils";
+import { OptionItem } from "@/types/components/pageutils";
 
 const LatestRecords = ({
   type,

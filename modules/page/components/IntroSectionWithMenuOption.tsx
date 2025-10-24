@@ -1,14 +1,6 @@
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { IntroSectionWithMenuOptionProps } from "@/types/components/pageutils";
 import { lazy } from "react";
-import type { OptionItem } from "@/types";
-
-interface IntroSectionWithMenuOptionProps {
-  introTrue?: boolean;
-  introType?: "FEATURED" | "ENTIRE" | "LATEST" | undefined;
-  currentRecordType: string;
-  allOptions: OptionItem[];
-  handleRecordTypeChange: (option: string) => void;
-}
 
 const InjectedOptionMenu = lazy(
   () => import("@/modules/page/components/InjectedOptionMenu")

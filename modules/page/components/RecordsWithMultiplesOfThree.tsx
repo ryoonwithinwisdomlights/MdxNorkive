@@ -1,19 +1,18 @@
 "use client";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils";
 import { GridCard } from "@/modules/common/cards";
+import { OptionItem } from "@/types/components/pageutils";
+import { RecordsWithMultiplesOfThreeProps } from "@/types/components/pageutils";
 import { useMemo, useState } from "react";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import PaginationSimple from "./PaginationSimple";
-import { OptionItem, SerializedPage } from "@/types";
-import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils";
 
-type Props = {
-  type: string;
-  introTrue: boolean;
-  records: SerializedPage[];
-};
-
-const RecordsWithMultiplesOfThree = ({ type, introTrue, records }: Props) => {
+const RecordsWithMultiplesOfThree = ({
+  type,
+  introTrue,
+  records,
+}: RecordsWithMultiplesOfThreeProps) => {
   const pages = records;
   if (!pages) return null;
 

@@ -27,3 +27,14 @@ export interface SiteInfoModel {
   link?: string;
   author?: string;
 }
+
+export type PageParams = Promise<{ [key: string]: string }>;
+
+export type PageSearchParams = Promise<{
+  [key: string]: number | undefined;
+}>;
+
+export type TotalPageParams = {
+  params: PageParams;
+  searchParams: PageSearchParams;
+};

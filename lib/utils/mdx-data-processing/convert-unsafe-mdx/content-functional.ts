@@ -249,7 +249,7 @@ const fixTableBlocks = (content: string): string => {
       // 2단계: 테이블 셀 내부의 HTML 태그들을 안전하게 이스케이프
       sanitizedContent = sanitizedContent.replace(
         /<([^>]+)>/g,
-        (tagMatch, tagContent) => {
+        (tagMatch: string, tagContent: string) => {
           // 허용된 HTML 태그는 그대로 유지
           const tagName = tagContent
             .trim()

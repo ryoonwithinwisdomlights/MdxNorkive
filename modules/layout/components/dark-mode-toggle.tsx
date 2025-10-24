@@ -8,7 +8,6 @@ const ToggleDarkModeButton = () => {
   const [mounted, setMounted] = useState(false);
 
   //Hydration-safemounted 체크로 클라이언트 전용 처리
-
   useEffect(() => {
     setMounted(true);
   }, []);

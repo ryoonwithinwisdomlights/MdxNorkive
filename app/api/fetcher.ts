@@ -20,7 +20,7 @@ import type {
   QueryPageResponse,
 } from "@/types/notion.client.model";
 import type { RecordFrontMatter } from "@/types/mdx.model";
-import type { MenuItem } from "@/types/record.model";
+import type { MenuItem } from "@/types/recorddata.model";
 import type {
   GetBlockResponse,
   ImageBlockObjectResponse,

@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronUpIcon, CornerLeftUp } from "lucide-react";
+import { CornerLeftUp } from "lucide-react";
 
 /**
  * Jump to top of page

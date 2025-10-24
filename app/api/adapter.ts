@@ -5,7 +5,7 @@ import type {
   ModifiedQueryDatabaseResponse,
   ModifiedQueryDatabaseResponseArray,
 } from "@/types/notion.client.model";
-import type { MenuItem, RecordTag } from "@/types/record.model";
+import type { MenuItem, RecordTag } from "@/types/recorddata.model";
 
 //*************  utils ************* */
 import {

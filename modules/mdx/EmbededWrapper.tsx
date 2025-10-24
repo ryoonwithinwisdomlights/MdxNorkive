@@ -1,13 +1,8 @@
+import { WrapperProps } from "@/types/components/common";
+import { assetStyle } from "@/constants/ui.constants";
 import * as React from "react";
 
-interface EmbededWrapperProps {
-  names: string;
-  urls: string;
-}
-
-const assetStyle: React.CSSProperties = {};
-
-export default function EmbededWrapper(props: EmbededWrapperProps) {
+export default function EmbededWrapper(props: WrapperProps) {
   const { names, urls } = props;
 
   if (!urls) return null;

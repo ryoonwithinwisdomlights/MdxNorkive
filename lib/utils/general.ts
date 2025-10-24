@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 //import * as Icons from "@fortawesome/free-solid-svg-icons"; // 모든 아이콘을 가져옴
+import { BLOG } from "@/blog.config";
 import { type ClassValue, clsx } from "clsx";
 import React from "react";
 import { twMerge } from "tailwind-merge";
@@ -396,19 +397,25 @@ export const getLazyComponent = (componentImportFn: Function) =>
     return typeof obj.default === "function" ? obj : obj.default;
   });
 
-export const isObjectNotEmpty = (obj: any): boolean => {
-  if (!obj) {
-    return false;
-  } else {
-    if (typeof obj !== "undefined") {
-      if (Object.keys(obj).length == 0 && obj.constructor === Object) {
-        return false;
-      } else {
-        return true;
-      }
-    }
-  }
-  return false;
+// ❌ Before (14줄의 복잡한 중첩 조건문)
+// export const isObjectNotEmpty = (obj: any): boolean => {
+//   if (!obj) {
+//     return false;
+//   } else {
+//     if (typeof obj !== "undefined") {
+//       if (Object.keys(obj).length == 0 && obj.constructor === Object) {
+//         return false;
+//       } else {
+//         return true;
+//       }
+//     }
+//   }
+//   return false;
+// };
+export const isObjectNotEmpty = (
+  obj: unknown
+): obj is Record<string, unknown> => {
+  return isObject(obj) && Object.keys(obj).length > 0;
 };
 
 export const getUrlParams = (
@@ -459,4 +466,32 @@ export function extractLangId(str: string): string {
     // If there is no match, return an empty string or other value you want to return.
     return str;
   }
+}
+
+export function toBlogNumber(a: string | number) {
+  let tempVal: number;
+  if (typeof a === "string") {
+    tempVal = Number(BLOG.SINCE) as number;
+  } else if (typeof a === "number") {
+    tempVal = BLOG.SINCE as number;
+    return tempVal;
+  }
+}
+
+// Copyright date를 정적으로 계산하여 메모리 누수 방지
+const CURRENT_YEAR = new Date().getFullYear();
+const COPYRIGHT_DATE = (() => {
+  // 한 번만 계산되고 재사용
+  const blogSince = toBlogNumber(BLOG.SINCE);
+  if (Number.isInteger(BLOG.SINCE) && blogSince && blogSince < CURRENT_YEAR) {
+    return BLOG.SINCE + "-" + CURRENT_YEAR;
+  }
+  return CURRENT_YEAR;
+})();
+
+// 정적 상수로 export하여 중복 계산 방지
+export const COPYRIGHT_DATE_STATIC = COPYRIGHT_DATE;
+
+export function getCopyrightDate(a: string | number) {
+  return COPYRIGHT_DATE;
 }

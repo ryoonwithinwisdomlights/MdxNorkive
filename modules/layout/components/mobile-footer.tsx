@@ -1,16 +1,7 @@
 "use client";
 import { BLOG } from "@/blog.config";
+import { COPYRIGHT_DATE_STATIC } from "@/lib/utils";
 import { useLayoutEffect, useState } from "react";
-
-function toBlogNumber(a: string | number) {
-  let tempVal: number;
-  if (typeof a === "string") {
-    tempVal = Number(BLOG.SINCE) as number;
-  } else if (typeof a === "number") {
-    tempVal = BLOG.SINCE as number;
-    return tempVal;
-  }
-}
 
 /**
  * MobileFooterion
@@ -26,21 +17,7 @@ const MobileFooter = () => {
     setTime(new Date());
   }, []);
 
-  let copyrightDate;
-  if (time) {
-    const currentYear = time.getFullYear();
-    const blogSince = toBlogNumber(BLOG.SINCE);
-    copyrightDate = (function () {
-      if (
-        Number.isInteger(BLOG.SINCE) &&
-        blogSince &&
-        blogSince < currentYear
-      ) {
-        return BLOG.SINCE + "-" + currentYear;
-      }
-      return currentYear;
-    })(); // 바로실행함수
-  }
+  const copyrightDate = time ? COPYRIGHT_DATE_STATIC : undefined;
 
   return (
     <div

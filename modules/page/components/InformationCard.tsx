@@ -1,7 +1,7 @@
 "use client";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { ContentCard } from "@/modules/common/cards";
-import { CardInfoDivProps } from "@/types";
+import { CardInfoDivProps } from "@/types/components/cards";
 
 /**
  * Portfolio list text content

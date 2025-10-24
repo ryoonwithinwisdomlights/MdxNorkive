@@ -3,7 +3,7 @@ import { useNav } from "@/lib/context/NavInfoProvider";
 import EntireRecords from "@/modules/page/components/EntireRecords";
 import FeaturedRecords from "@/modules/page/components/FeaturedRecords";
 import LatestRecords from "@/modules/page/components/LatestRecords";
-import { generalIntroPageClass } from "@/types";
+import { generalIntroPageClass } from "@/lib/utils";
 
 const NorkiveIntro = () => {
   const { serializedAllPages } = useNav({ from: "NorkiveIntro" });

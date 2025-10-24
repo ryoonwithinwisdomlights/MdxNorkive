@@ -4,8 +4,8 @@ import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvide
 import { transferDataForCardProps } from "@/lib/utils/records";
 import { useMemo, useState } from "react";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
-import { mainRecordProps, OptionItem } from "@/types";
-
+import { OptionItem } from "@/types/components/pageutils";
+import { mainRecordProps } from "@/types/components/pageutils";
 const FeaturedRecords = ({
   type,
   introTrue,

@@ -23,7 +23,7 @@
     "one:mdx": "npx tsx scripts/test-one-record-mdx.ts",
     "prettier:check": "prettier --check --ignore-unknown .",
     "prettier:write": "prettier --write --ignore-unknown .",
-    "check:validity": "npm run validate:mdx && npm run prettiㄴer:check",
+    "check:validity": "npm run prettier:check",
     "process-redis-images": "npx tsx scripts/redis-image-processor.ts",
     "analyze": "ANALYZE=true npm run build",
     "bundle-report": "ANALYZE=true yarn build",

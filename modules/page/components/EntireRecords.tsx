@@ -13,19 +13,10 @@ import {
   combinedMetaClasses,
   combinedSummaryClasses,
   combinedTitleClasses,
-  LockedSection,
-  OptionItem,
-  SerializedPage,
-  mainRecordProps,
-} from "@/types";
-
-type Props = {
-  type: "BOOKS" | "PROJECTS" | "RECORDS" | "ENGINEERINGS";
-  subType: boolean;
-  introTrue: boolean;
-  records: SerializedPage[];
-};
-
+} from "@/lib/styles/card.styles";
+import { LockedSection, SerializedPage } from "@/types";
+import { OptionItem } from "@/types/components/pageutils";
+import { mainRecordProps } from "@/types/components/pageutils";
 const titleClasses = combinedTitleClasses({
   isCompact: false,
   isFeatured: false,

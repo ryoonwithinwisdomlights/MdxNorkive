@@ -12,6 +12,7 @@ import { RightSidebarItemDrop } from "./RightSidebarItemDrop";
 import { Label } from "@/modules/shared/ui/label";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { AlignRightIcon } from "lucide-react";
+import { CollapseRefType } from "@/types/components/collapse";
 
 const ToggleDarkModeButton = lazy(
   () => import("@/modules/layout/components/dark-mode-toggle")
@@ -19,10 +20,6 @@ const ToggleDarkModeButton = lazy(
 const SwitchLanguage = lazy(
   () => import("@/modules/layout/components/switch-language-dropdown")
 );
-
-interface CollapseRefType {
-  updateCollapseHeight: (params: { height: number; increase: boolean }) => void;
-}
 
 const MobileRightSidebarWrapper = () => {
   const { menuList } = useNav({ from: "LeftSidebar" });

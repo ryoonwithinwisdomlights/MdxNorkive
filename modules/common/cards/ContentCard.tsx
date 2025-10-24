@@ -4,9 +4,9 @@ import TagItemMini from "@/modules/common/tag/TagItemMini";
 import {
   combinedMetaClasses,
   combinedTitleClasses,
-  ContentCardProps,
   combinedSummaryClasses,
-} from "@/types";
+} from "@/lib/styles/card.styles";
+import { ContentCardProps } from "@/types/components/cards";
 import { CalendarIcon, LockIcon, UserPenIcon } from "lucide-react";
 import React, { useCallback, useMemo } from "react";
 import CardBase from "./CardBase";
@@ -75,7 +75,7 @@ const ContentCard = React.memo(
               <div className="flex items-center gap-2">
                 <CalendarIcon className="w-3 h-3" />
                 <span>
-                  {getYearMonthDay(data.date, locale?.LOCALE)}
+                  {getYearMonthDay(data.date, locale?.LOCALE || "en-US")}
                   &nbsp; &nbsp;
                   {getDistanceFromToday(data.date, lang)}
                 </span>

@@ -1,11 +1,7 @@
+import { WrapperProps } from "@/types/components/common";
 import { FileTextIcon } from "lucide-react";
 
-interface FileWrapperProps {
-  names: string;
-  urls: string;
-}
-
-export default function FileWrapper(props: FileWrapperProps) {
+export default function FileWrapper(props: WrapperProps) {
   const { names, urls } = props;
 
   if (!urls) return null;

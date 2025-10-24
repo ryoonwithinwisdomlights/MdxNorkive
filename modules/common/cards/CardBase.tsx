@@ -1,4 +1,5 @@
-import { cardBaseClass, CardBaseProps } from "@/types";
+import { cardBaseClass } from "@/lib/styles/card.styles";
+import { CardBaseProps } from "@/types";
 import React, { useMemo } from "react";
 
 const CardBase = React.memo(

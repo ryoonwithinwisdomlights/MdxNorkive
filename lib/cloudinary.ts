@@ -1,6 +1,6 @@
 import { EXTERNAL_CONFIG } from "@/config/external.config";
 import { CloudinaryUploadResult } from "@/types/cloudinaty.model";
-import { v2 as cloudinary } from "cloudinary";
+import { v2 as cloudinary, UploadApiOptions } from "cloudinary";
 import { FILE_EXTENSIONS, IMAGE_EXTENSIONS } from "@/constants/mdx.constants";
 
 // Cloudinary 설정
@@ -163,9 +163,9 @@ export async function uploadFileToCloudinary(
     const public_id = `${prefix}_${timestamp}_${fileNameHash}`;
 
     // 업로드 옵션 설정
-    const uploadOptions: any = {
+    const uploadOptions: UploadApiOptions = {
       resource_type: isImage ? "image" : "raw",
-      folder: cloudinaryConfig.folder,
+      folder: options.folder || cloudinaryConfig.folder,
       public_id: public_id,
       overwrite: false,
     };

@@ -1,15 +1,14 @@
 "use client";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { paginationString } from "@/lib/utils/records";
+import { PageIndicatorProps } from "@/types/components/pageutils";
 import React from "react";
 
-type Props = {
-  currentPage: number;
-  totalPages: number;
-  setCurrentPage: (page: number) => void;
-};
-
-const PageIndicator = ({ currentPage, totalPages, setCurrentPage }: Props) => {
+const PageIndicator = ({
+  currentPage,
+  totalPages,
+  setCurrentPage,
+}: PageIndicatorProps) => {
   const { locale } = useGeneralSiteSettings();
   const prevPage = () => {
     if (currentPage > 0) {

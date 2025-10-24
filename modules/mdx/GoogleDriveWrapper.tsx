@@ -1,11 +1,6 @@
 import { HardDrive } from "lucide-react";
-
-interface GoogleDriveWrapperProps {
-  names: string;
-  urls: string;
-}
-
-export default function GoogleDriveWrapper(props: GoogleDriveWrapperProps) {
+import { WrapperProps } from "@/types/components/common";
+export default function GoogleDriveWrapper(props: WrapperProps) {
   const { names, urls } = props;
   if (!urls) return null;
   return (

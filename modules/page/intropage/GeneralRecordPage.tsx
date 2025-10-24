@@ -2,13 +2,14 @@
 import NotFound from "@/app/not-found";
 import { recordSource } from "@/lib/source";
 import {
+  generalIntroPageClass,
   isObjectNotEmpty,
   setAllPagesGetSortedGroupedByDate,
 } from "@/lib/utils";
 
 import BookGeneralRecordsBody from "@/modules/page/intropage/body/BookGeneralRecordsBody";
 import GeneralIntro from "@/modules/page/intropage/intro/GeneralIntro";
-import { generalIntroPageClass, SerializedPage } from "@/types";
+import { SerializedPage } from "@/types";
 
 const GeneralRecordPage = () => {
   const pages = recordSource.getPages();

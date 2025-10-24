@@ -1,12 +1,13 @@
 "use client";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { BasicPageDivProps, LockedSection } from "@/types";
+import { LockedSection } from "@/types";
+import { BasicPageDivProps } from "@/types/components/pageutils";
 import { FolderClosedIcon, LockIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 /**
  * Records grouping
-
- * @param {*} param0
+ * @param title - The title of the page
+ * @param recordList - The list of records
  * @returns
  */
 import type { SerializedPage } from "@/types";

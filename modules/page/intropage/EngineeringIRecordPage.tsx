@@ -2,7 +2,8 @@
 import { engineeringSource } from "@/lib/source";
 import EngineeringIntro from "@/modules/page/intropage/intro/EngineeringIntro";
 import RecordsBodyWithTwoOptions from "./body/RecordsBodyWithTwoOptions";
-import { generalIntroPageClass, SerializedPage } from "@/types";
+import { SerializedPage } from "@/types";
+import { generalIntroPageClass } from "@/lib/utils";
 
 const EngineeringIRecordPage = () => {
   const pages = engineeringSource.getPages();

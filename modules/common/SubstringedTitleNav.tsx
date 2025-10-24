@@ -1,8 +1,8 @@
 "use client";
 
 import { substringWithNumberDots } from "@/lib/utils/general";
-import { NavListDivProps } from "@/types";
-import { usePathname, useRouter } from "next/navigation";
+import { NavListDivProps } from "@/types/components/navigation";
+import { useRouter } from "next/navigation";
 
 const SubstringedTitleNav = ({
   record,
@@ -10,7 +10,6 @@ const SubstringedTitleNav = ({
   substr,
   substrNumber,
 }: NavListDivProps) => {
-  const pathname = usePathname();
   const router = useRouter();
 
   return (

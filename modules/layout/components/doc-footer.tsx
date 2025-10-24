@@ -1,28 +1,10 @@
 "use client";
 import { BLOG } from "@/blog.config";
+import { COPYRIGHT_DATE_STATIC } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
-function toBlogNumber(a: string | number) {
-  let tempVal: number;
-  if (typeof a === "string") {
-    tempVal = Number(BLOG.SINCE) as number;
-  } else if (typeof a === "number") {
-    tempVal = BLOG.SINCE as number;
-    return tempVal;
-  }
-}
-
 const DocFooter = () => {
-  const d = new Date();
-  const currentYear = d.getFullYear();
-  const blogSince = toBlogNumber(BLOG.SINCE);
-  const copyrightDate = (function () {
-    if (Number.isInteger(BLOG.SINCE) && blogSince && blogSince < currentYear) {
-      return BLOG.SINCE + "-" + currentYear;
-    }
-    return currentYear;
-  })();
-
+  const copyrightDate = COPYRIGHT_DATE_STATIC;
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {

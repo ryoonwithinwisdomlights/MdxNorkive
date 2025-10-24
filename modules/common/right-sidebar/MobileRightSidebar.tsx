@@ -1,17 +1,7 @@
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { cn } from "@/lib/utils/general";
 import Collapse from "@/modules/shared/Collapse";
-import React from "react";
-
-interface CollapseRefType {
-  updateCollapseHeight: (params: { height: number; increase: boolean }) => void;
-}
-
-interface MobileRightSidebarProps {
-  children: React.ReactNode;
-  className?: string;
-  collapseRef: React.RefObject<CollapseRefType | null>;
-}
+import { MobileRightSidebarProps } from "@/types/components/navigation";
 
 const MobileRightSidebar = ({
   collapseRef,

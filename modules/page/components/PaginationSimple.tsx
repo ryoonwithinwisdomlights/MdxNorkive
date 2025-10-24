@@ -1,5 +1,6 @@
 "use client";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { PaginationSimpleProps } from "@/types/components/pageutils";
 import { ChevronRight } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -10,13 +11,7 @@ import { usePathname, useRouter } from "next/navigation";
  * @returns {JSX.Element}
  * @constructor
  */
-const PaginationSimple = ({
-  pagenum,
-  totalPage,
-}: {
-  pagenum: number;
-  totalPage: number;
-}) => {
+const PaginationSimple = ({ pagenum, totalPage }: PaginationSimpleProps) => {
   const { locale } = useGeneralSiteSettings();
   const router = useRouter();
   const pathname = usePathname();

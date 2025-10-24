@@ -1,14 +1,8 @@
+import { WrapperProps } from "@/types/components/common";
 import { LinkIcon } from "lucide-react";
 import * as React from "react";
 
-interface BookMarkWrapperProps {
-  names: string;
-  urls: string;
-}
-
-const assetStyle: React.CSSProperties = {};
-
-export default function BookMarkWrapper(props: BookMarkWrapperProps) {
+export default function BookMarkWrapper(props: WrapperProps) {
   const { names, urls } = props;
 
   if (!urls || !names) return null;

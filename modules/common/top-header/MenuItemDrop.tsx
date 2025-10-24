@@ -1,12 +1,13 @@
 "use client";
 
 import { MenuItem } from "@/types";
+import { MenuItemDropProps } from "@/types/components/navigation";
 import { ChevronDownIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
-export const MenuItemDrop = ({ menuData }: { menuData: MenuItem }) => {
+export const MenuItemDrop = ({ menuData }: MenuItemDropProps) => {
   if (!menuData) {
     return null;
   }

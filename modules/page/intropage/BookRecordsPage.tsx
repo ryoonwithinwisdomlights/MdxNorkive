@@ -2,12 +2,13 @@
 import NotFound from "@/app/not-found";
 import { bookSource } from "@/lib/source";
 import {
+  generalIntroPageClass,
   isObjectNotEmpty,
   setAllPagesGetSortedGroupedByDate,
 } from "@/lib/utils";
 import BookGeneralRecordsBody from "@/modules/page/intropage/body/BookGeneralRecordsBody";
 import BookIntro from "@/modules/page/intropage/intro/BookIntro";
-import { generalIntroPageClass, SerializedPage } from "@/types";
+import { SerializedPage } from "@/types";
 
 const BookRecordsPage = () => {
   const pages = bookSource.getPages();

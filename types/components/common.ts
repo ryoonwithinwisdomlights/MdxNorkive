@@ -1,3 +1,8 @@
+export interface WrapperProps {
+  names: string;
+  urls: string;
+}
+
 export type LazyImageProps = {
   priority?: boolean;
   id?: string;
@@ -30,18 +35,3 @@ export type WindowSize = {
   width: number | undefined;
   height: number | undefined;
 };
-
-export type OptionItem = {
-  id: number;
-  title: string;
-  option: any;
-  isActive?: boolean; // 현재 선택된지 확인
-};
-
-export interface OptionCarouselProps {
-  allOptions: OptionItem[];
-  handleOptionTypeChange: (option: string) => void;
-  className?: string;
-  currentOption?: string;
-  initString?: string;
-}

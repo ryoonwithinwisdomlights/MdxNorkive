@@ -1,11 +1,5 @@
-import React from "react";
+import { RecordsWrapperProps } from "@/types/components/pageutils";
 import DateSortedRecords from "./DateSortedRecords";
-import type { SerializedPage } from "@/types";
-
-interface RecordsWrapperProps {
-  modAllPages: Record<string, SerializedPage[]>;
-  className?: string;
-}
 
 export const RecordsWrapper = ({
   modAllPages,

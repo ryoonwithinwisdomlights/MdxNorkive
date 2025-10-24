@@ -1,22 +1,15 @@
 "use client";
 import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
-import { OptionItem } from "@/types/utils.model";
+import { InjectedOptionMenuProps } from "@/types/components/pageutils";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { Book, ChevronDownIcon } from "lucide-react";
-
-type Props = {
-  currentRecordType: string;
-  allOptions: OptionItem[];
-  handleRecordTypeChange: (option: string) => void;
-  initString?: string;
-};
 
 const InjectedOptionMenu = ({
   currentRecordType = "",
   allOptions,
   initString,
   handleRecordTypeChange,
-}: Props) => {
+}: InjectedOptionMenuProps) => {
   const { locale } = useGeneralSiteSettings();
   return (
     <Menu>

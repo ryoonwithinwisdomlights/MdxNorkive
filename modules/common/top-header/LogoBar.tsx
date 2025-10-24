@@ -21,7 +21,7 @@ export default function LogoBar() {
           p-2 dark:hover:text-white px-2 hover:rounded-lg "
       >
         <LazyImage
-          src={siteInfo?.icon}
+          src={siteInfo?.icon || "/images/norkive_black.png"}
           width={24}
           height={24}
           alt={BLOG.AUTHOR}

@@ -1,14 +1,10 @@
 import * as React from "react";
 import { LiteYouTubeEmbed } from "../../modules/shared/LiteYouTubeEmbed";
 import { getUrlParams, getYoutubeId } from "@/lib/utils";
+import { WrapperProps } from "@/types/components/common";
+import { assetStyle } from "@/constants/ui.constants";
 
-const assetStyle: React.CSSProperties = {};
-interface YoutubeWrappereProps {
-  names: string;
-  urls: string;
-}
-
-export default function YoutubeWrapper(props: YoutubeWrappereProps) {
+export default function YoutubeWrapper(props: WrapperProps) {
   const { names, urls } = props;
 
   // URL 유효성 검사

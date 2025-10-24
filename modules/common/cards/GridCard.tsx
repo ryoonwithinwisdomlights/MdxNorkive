@@ -8,9 +8,8 @@ import {
   combinedImageClasses,
   combinedImageContainerClasses,
   combinedTitleClasses,
-  GridCardProps,
-} from "@/types";
-
+} from "@/lib/styles/card.styles";
+import { GridCardProps } from "@/types/components/cards";
 import CardBase from "@/modules/common/cards/CardBase";
 import TagItemMini from "@/modules/common/tag/TagItemMini";
 import LazyImage from "@/modules/shared/LazyImage";
