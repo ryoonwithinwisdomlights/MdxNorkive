@@ -15,6 +15,7 @@ import { GeneralSiteSettingsProvider } from "@/lib/context/GeneralSiteSettingsPr
 import { ModalProvider } from "@/lib/context/ModalProvider";
 import { NavInfoProvider } from "@/lib/context/NavInfoProvider";
 import { RootProvider } from "fumadocs-ui/provider";
+import { Providers } from "./providers";
 
 //************* Utils ************* */
 import { getCookie } from "@/lib/utils/cookies";
@@ -120,7 +121,6 @@ export default async function RootLayout({
   const initialLocale = generateLocaleDict(initialLang);
 
   const menuList = await fetchMenuList();
-  // const recordList = await fetchAllRecordList();
   const recordPages = recordSource.getPages();
   const bookPages = bookSource.getPages();
   const engineeringPages = engineeringSource.getPages();
@@ -159,58 +159,62 @@ export default async function RootLayout({
       <body>
         <WebVitals />
         <ProgressBar>
-          <RootProvider
-            search={{
-              SearchDialog: DefaultSearchDialog,
-              options: {
-                defaultTag: "All",
-                api: "/api/search",
-              },
-            }}
-            theme={{ enabled: false }}
-          >
-            <NavInfoProvider
-              // recordList={recordList}
-              serializedAllPages={serializedAllPages}
-              menuList={menuList}
+          <Providers>
+            <RootProvider
+              search={{
+                SearchDialog: DefaultSearchDialog,
+                options: {
+                  defaultTag: "All",
+                  api: "/api/search",
+                },
+              }}
+              theme={{ enabled: false }}
             >
-              <GeneralSiteSettingsProvider
-                initialLang={initialLang}
-                initialLocale={initialLocale}
+              <NavInfoProvider
+                // recordList={recordList}
+                serializedAllPages={serializedAllPages}
+                menuList={menuList}
               >
-                <div
-                  id="norkive-main"
-                  className={` w-screen h-screen justify-center dark:text-neutral-300  pb-16  md:pb-0 `}
+                <GeneralSiteSettingsProvider
+                  initialLang={initialLang}
+                  initialLocale={initialLocale}
                 >
-                  <Suspense
-                    fallback={
-                      <div className="h-16 bg-neutral-100 dark:bg-neutral-800" />
-                    }
+                  <div
+                    id="norkive-main"
+                    className={` w-screen h-screen justify-center dark:text-neutral-300  pb-16  md:pb-0 `}
                   >
-                    <AuxiliaryBlogComponent />
-                  </Suspense>
+                    <Suspense
+                      fallback={
+                        <div className="h-16 bg-neutral-100 dark:bg-neutral-800" />
+                      }
+                    >
+                      <AuxiliaryBlogComponent />
+                    </Suspense>
 
-                  <TopNavigationWrapper />
+                    <TopNavigationWrapper />
 
-                  <div className=" dark:bg-black dark:text-neutral-300 py-10 flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain ">
-                    <Suspense fallback={<LoadingCover />}>{children}</Suspense>
+                    <div className=" dark:bg-black dark:text-neutral-300 py-10 flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain ">
+                      <Suspense fallback={<LoadingCover />}>
+                        {children}
+                      </Suspense>
+                    </div>
+
+                    <Suspense fallback={<div className="h-8 w-8" />}>
+                      <JumpToTopButton />
+                    </Suspense>
+                    <Suspense fallback={<div className="h-8 w-8" />}>
+                      <JumpToBackButton />
+                    </Suspense>
+
+                    <MobileRightSidebarWrapper />
+                    <MobileFooter />
+
+                    <ModalProvider />
                   </div>
-
-                  <Suspense fallback={<div className="h-8 w-8" />}>
-                    <JumpToTopButton />
-                  </Suspense>
-                  <Suspense fallback={<div className="h-8 w-8" />}>
-                    <JumpToBackButton />
-                  </Suspense>
-
-                  <MobileRightSidebarWrapper />
-                  <MobileFooter />
-
-                  <ModalProvider />
-                </div>
-              </GeneralSiteSettingsProvider>
-            </NavInfoProvider>
-          </RootProvider>
+                </GeneralSiteSettingsProvider>
+              </NavInfoProvider>
+            </RootProvider>
+          </Providers>
         </ProgressBar>
       </body>
     </html>

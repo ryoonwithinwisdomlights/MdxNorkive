@@ -1,6 +1,7 @@
 "use client";
 
 import { GlobalNavInfoProps } from "@/types";
+import { useMenuList } from "@/lib/hooks/useData";
 import { createContext, ReactNode, useContext, useMemo } from "react";
 
 const NavInfoContext = createContext<GlobalNavInfoProps | undefined>(undefined);
@@ -19,14 +20,23 @@ export function NavInfoProvider({
   children: ReactNode;
   from?: string;
 } & GlobalNavInfoProps) {
+  // 서버에서 전달받은 menuList가 있으면 사용, 없으면 React Query로 가져오기
+  const { data: clientMenuList = [] } = useMenuList();
+  const menuList =
+    props.menuList && props.menuList.length > 0
+      ? props.menuList
+      : clientMenuList;
+
+  // console.log("menuList:::", menuList);
+
   // value 객체를 useMemo로 최적화하여 props가 변경되지 않으면 리렌더링 방지
   const value = useMemo(
     () => ({
       recordList: props.recordList,
       serializedAllPages: props.serializedAllPages,
-      menuList: props.menuList,
+      menuList: menuList,
     }),
-    [props.recordList, props.serializedAllPages, props.menuList]
+    [props.recordList, props.serializedAllPages, menuList]
   );
 
   return (

@@ -1,31 +1,22 @@
 import { cache } from "react";
 
 //************* Custom adapter ************* */
-import {
-  NotionDataBaseMetaDataAdapter,
-  NotionPageListAdapter,
-} from "@/app/api/adapter";
+import { NotionPageListAdapter } from "@/app/api/adapter";
 
 //*************  clients ************* */
-import { NOTION_DATABASE_ID } from "./clients";
 import { notion } from "@/app/api/clients";
+import { NOTION_DATABASE_ID } from "./clients";
 
 //*************  utils ************* */
 import { getSiteInfo } from "@/lib/utils/site";
 
 //*************  types ************* */
+import type { RecordFrontMatter } from "@/types/mdx.model";
 import type {
-  DataBaseMetaDataResponse,
   ModifiedQueryDatabaseResponseArray,
   QueryPageResponse,
 } from "@/types/notion.client.model";
-import type { RecordFrontMatter } from "@/types/mdx.model";
 import type { MenuItem } from "@/types/recorddata.model";
-import type {
-  GetBlockResponse,
-  ImageBlockObjectResponse,
-  ListBlockChildrenResponse,
-} from "@notionhq/client/build/src/api-endpoints";
 
 export const fetchMenuList = cache(async (): Promise<MenuItem[]> => {
   try {
@@ -55,16 +46,6 @@ export const fetchMenuList = cache(async (): Promise<MenuItem[]> => {
   } catch (error) {
     console.warn("Failed to fetch menu list from Notion API:", error);
     return [];
-  }
-});
-
-export const fetchPageData = cache(async (pageId: string) => {
-  try {
-    const pageData = await notion.pages.retrieve({ page_id: pageId });
-    return pageData;
-  } catch (error) {
-    console.warn(`Failed to fetch page data for pageId ${pageId}:`, error);
-    throw error;
   }
 });
 
@@ -122,84 +103,3 @@ export const fetchAllRecordList = cache(
     }
   }
 );
-
-/**
- * article tag 목록을 조회해오는 함수
- */
-export const fetchRecordTagList = cache(async () => {
-  try {
-    const metaDataResponse = await notion.databases.retrieve({
-      database_id: NOTION_DATABASE_ID,
-    });
-
-    return new NotionDataBaseMetaDataAdapter(
-      metaDataResponse as unknown as DataBaseMetaDataResponse
-    )
-      .convertToTagList()
-      .sort((tag1, tag2) => (tag1.name > tag2.name ? 1 : -1));
-  } catch (error) {
-    console.warn("Failed to fetch record tag list from Notion API:", error);
-    return [];
-  }
-});
-
-/**
- * 해당 아티클 페이지의 모든 block들을 불러오는 함수
- */
-export const fetchAllBlocksInPage = cache(
-  async (blockOrPageId: string): Promise<GetBlockResponse[]> => {
-    try {
-      let hasMore = true;
-      let nextCursor: string | null = null;
-      const blocks: GetBlockResponse[] = [];
-      while (hasMore) {
-        const result: ListBlockChildrenResponse =
-          await notion.blocks.children.list({
-            block_id: blockOrPageId,
-            start_cursor: nextCursor ?? undefined,
-          });
-
-        blocks.push(...result.results);
-        hasMore = result.has_more;
-        nextCursor = result.next_cursor;
-
-        if (hasMore) {
-          console.log("load more blocks in page...");
-        }
-      }
-
-      // nested block(ex - toggle block) 불러오기
-      const childBlocks = await Promise.all(
-        blocks
-          .filter((block) => "has_children" in block && block.has_children)
-          .map(async (block) => {
-            const childBlocks = await fetchAllBlocksInPage(block.id);
-            return childBlocks;
-          })
-      );
-
-      return [...blocks, ...childBlocks.flat()];
-    } catch (error) {
-      console.warn(
-        `Failed to fetch blocks for blockOrPageId ${blockOrPageId}:`,
-        error
-      );
-      throw error;
-    }
-  }
-);
-
-/**
- * 해당 아티클 페이지의 모든 image block들을 불러오는 함수
- */
-export const fetchAllImageBlocksInPage = cache(async (pageId: string) => {
-  try {
-    const allBlocks = await fetchAllBlocksInPage(pageId);
-    return allBlocks.filter(
-      (block) => "type" in block && block.type === "image"
-    ) as ImageBlockObjectResponse[];
-  } catch (error) {
-    console.warn(`Failed to fetch image blocks for pageId ${pageId}:`, error);
-    throw error;
-  }
-});
