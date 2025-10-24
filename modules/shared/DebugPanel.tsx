@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable multiline-ternary */
 import { BLOG } from "@/blog.config";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 import { BugIcon, XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 const DebugPanel = () => {
   const [show, setShow] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const { locale } = useGeneralSiteSettings();
+  const { locale } = useThemeStore();
   const [siteConfig, updateSiteConfig] = useState({});
 
   useEffect(() => {

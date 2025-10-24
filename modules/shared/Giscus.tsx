@@ -1,5 +1,5 @@
 "use client";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 import { useEffect, useRef } from "react";
 
 /**
@@ -10,7 +10,8 @@ import { useEffect, useRef } from "react";
  */
 const GiscusComponent = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const { isDarkMode, lang } = useGeneralSiteSettings();
+
+  const { isDarkMode, lang } = useThemeStore();
   const theme = isDarkMode ? "dark" : "light";
   const giscusLang = lang === "kr-KR" ? "ko" : "en";
   useEffect(() => {

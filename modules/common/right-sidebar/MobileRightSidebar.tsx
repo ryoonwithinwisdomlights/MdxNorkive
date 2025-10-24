@@ -1,4 +1,4 @@
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useUIStore } from "@/lib/stores";
 import { cn } from "@/lib/utils/general";
 import Collapse from "@/modules/shared/Collapse";
 import { MobileRightSidebarProps } from "@/types/components/navigation";
@@ -9,8 +9,7 @@ const MobileRightSidebar = ({
   className,
   ...props
 }: MobileRightSidebarProps) => {
-  const { isMobileLeftSidebarOpen, toggleMobileLeftSidebarOpen } =
-    useGeneralSiteSettings();
+  const { isMobileLeftSidebarOpen, toggleMobileLeftSidebar } = useUIStore();
   const state = isMobileLeftSidebarOpen ? "open" : "closed";
   const openState = isMobileLeftSidebarOpen;
 
@@ -27,7 +26,7 @@ const MobileRightSidebar = ({
           "fixed inset-0 bg-black/50 z-1000 transition-all duration-300 ease-out",
           openState ? "opacity-100" : "opacity-0 pointer-events-none"
         )}
-        onClick={toggleMobileLeftSidebarOpen}
+        onClick={toggleMobileLeftSidebar}
         aria-hidden="true"
       />
 

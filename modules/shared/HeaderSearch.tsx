@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 import { useNav } from "@/lib/context/NavInfoProvider";
 import Fuse from "fuse.js";
 import { debounce } from "lodash-es";
@@ -11,7 +11,7 @@ import SearchResultSkeleton from "@/modules/shared/ui/search-result-skeleton";
 import { SerializedPage } from "@/types";
 
 export default function HeaderSearch() {
-  const { locale } = useGeneralSiteSettings();
+  const { locale } = useThemeStore();
   const { serializedAllPages } = useNav({ from: "header-search" });
   const pages = serializedAllPages;
   const [query, setQuery] = useState("");

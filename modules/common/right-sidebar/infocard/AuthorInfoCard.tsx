@@ -1,14 +1,14 @@
 "use client";
 /* eslint-disable no-unused-vars */
 import { BLOG } from "@/blog.config";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useUIStore } from "@/lib/stores";
 import InlineTocCustomed from "@/modules/common/toc/InlineTocCustomed";
 import LazyImage from "@/modules/shared/LazyImage";
 import SocialButton from "@/modules/shared/SocialButton";
 import Link from "next/link";
 
 const AuthorInfoCard = () => {
-  const { tocContent } = useGeneralSiteSettings();
+  const { tocContent } = useUIStore();
 
   return (
     <div className="w-full  items-center justify-center flex flex-col gap-2">

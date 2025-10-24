@@ -1,8 +1,8 @@
 "use client";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 
 const ProjectIntro = () => {
-  const { lang } = useGeneralSiteSettings();
+  const { lang } = useThemeStore();
   return (
     <div className="flex flex-col w-full items-center">
       <div className="flex flex-row justify-end text-sm  text-neutral-600 font-extralight dark:text-neutral-200 hover:text-neutral-800 pr-3">

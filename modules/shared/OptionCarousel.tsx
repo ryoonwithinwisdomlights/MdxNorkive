@@ -1,7 +1,7 @@
 // components/SubOptionCarousel.tsx
 "use client";
 
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 import { OptionCarouselProps } from "@/types/components/pageutils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -13,7 +13,7 @@ export default function OptionCarousel({
   handleOptionTypeChange,
   className,
 }: OptionCarouselProps) {
-  const { locale } = useGeneralSiteSettings();
+  const { locale } = useThemeStore();
   const containerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);

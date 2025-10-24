@@ -1,22 +1,21 @@
 "use client";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
 import { getYearMonthDay, substringWithNumberDots } from "@/lib/utils";
 import { CalendarIcon, LockIcon, UserPenIcon } from "lucide-react";
 
-import TagItemMini from "@/modules/common/tag/TagItemMini";
-import IntroSectionWithMenuOption from "@/modules/page/components/IntroSectionWithMenuOption";
-import PageIndicator from "@/modules/page/components/PageIndicator";
+import { useThemeStore } from "@/lib/stores";
 import {
   combinedMetaClasses,
   combinedSummaryClasses,
   combinedTitleClasses,
 } from "@/lib/styles/card.styles";
+import TagItemMini from "@/modules/common/tag/TagItemMini";
+import IntroSectionWithMenuOption from "@/modules/page/components/IntroSectionWithMenuOption";
+import PageIndicator from "@/modules/page/components/PageIndicator";
 import { LockedSection, SerializedPage } from "@/types";
-import { OptionItem } from "@/types/components/pageutils";
-import { mainRecordProps } from "@/types/components/pageutils";
+import { mainRecordProps, OptionItem } from "@/types/components/pageutils";
 const titleClasses = combinedTitleClasses({
   isCompact: false,
   isFeatured: false,
@@ -38,7 +37,7 @@ const EntireRecords = ({
   const router = useRouter();
   const CARDS_PER_PAGE = 4;
 
-  const { locale } = useGeneralSiteSettings();
+  const { locale } = useThemeStore();
   const LOCKED = locale.LOCKED as LockedSection;
   const [currentPage, setCurrentPage] = useState(0);
   const [currentRecordType, setCurrentRecordType] = useState("");

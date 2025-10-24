@@ -1,18 +1,17 @@
 "use client";
-import { GridCard, ImageCard } from "@/modules/common/cards";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import {
   getDistanceFromToday,
   getYearMonthDay,
   transferDataForCardProps,
 } from "@/lib/utils";
+import { GridCard, ImageCard } from "@/modules/common/cards";
 
+import { useThemeStore } from "@/lib/stores";
+import { SerializedPage } from "@/types";
+import { mainRecordProps, OptionItem } from "@/types/components/pageutils";
 import { useMemo, useState } from "react";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import PageIndicator from "./PageIndicator";
-import { SerializedPage } from "@/types";
-import { mainRecordProps } from "@/types/components/pageutils";
-import { OptionItem } from "@/types/components/pageutils";
 
 const LatestRecords = ({
   type,
@@ -23,7 +22,7 @@ const LatestRecords = ({
   const pages = records;
   if (!pages) return null;
 
-  const { locale, lang } = useGeneralSiteSettings();
+  const { locale, lang } = useThemeStore();
   const [currentPage, setCurrentPage] = useState(0);
   const [currentRecordType, setCurrentRecordType] = useState("");
 

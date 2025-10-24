@@ -1,4 +1,4 @@
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 import { IntroSectionWithMenuOptionProps } from "@/types/components/pageutils";
 import { lazy } from "react";
 
@@ -13,7 +13,7 @@ const IntroSectionWithMenuOption = ({
   allOptions = [],
   handleRecordTypeChange = () => {},
 }: IntroSectionWithMenuOptionProps) => {
-  const { locale } = useGeneralSiteSettings();
+  const { locale } = useThemeStore();
   const introText =
     introTrue && introType
       ? locale.INTRO[introType]

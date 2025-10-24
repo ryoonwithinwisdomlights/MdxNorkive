@@ -412,9 +412,10 @@ export const getLazyComponent = (componentImportFn: Function) =>
 //   }
 //   return false;
 // };
-export const isObjectNotEmpty = (
-  obj: unknown
-): obj is Record<string, unknown> => {
+export const isObjectNotEmpty = (obj: unknown): boolean => {
+  if (Array.isArray(obj)) {
+    return obj.length > 0;
+  }
   return isObject(obj) && Object.keys(obj).length > 0;
 };
 

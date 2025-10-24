@@ -1,6 +1,6 @@
 "use client";
 import { BLOG } from "@/blog.config";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 import { useCopyButton } from "@/lib/hooks/use-copy-button";
 import { Check, Mail, Share } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -22,7 +22,7 @@ const ShareButtons = ({ data, url }: { data: PageData; url: string }) => {
   const [titleWithSiteInfo, setTitleWithSiteInfo] = useState<string>("");
   const [body, setBody] = useState<string>("");
 
-  const { locale } = useGeneralSiteSettings();
+  const { locale } = useThemeStore();
   const { SHARE, URL_COPIED } = locale.COMMON;
 
   // 클라이언트 사이드에서만 실행

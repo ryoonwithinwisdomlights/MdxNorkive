@@ -1,9 +1,8 @@
 "use client";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 import { LockedSection } from "@/types";
 import { LockedPageProps } from "@/types/components/pageutils";
 import { KeyRoundIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
 /**
@@ -14,7 +13,7 @@ import React, { useEffect, useRef, useState } from "react";
  * @returns
  */
 const LockedPage = ({ validPassword }: LockedPageProps) => {
-  const { locale } = useGeneralSiteSettings();
+  const { locale } = useThemeStore();
   const LOCKED = locale.LOCKED as LockedSection;
   const [tempPassword, setTempPassword] = useState<string>("");
   const submitPassword = () => {

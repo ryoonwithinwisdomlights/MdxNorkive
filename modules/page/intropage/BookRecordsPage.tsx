@@ -15,6 +15,7 @@ const BookRecordsPage = () => {
   if (!pages) NotFound();
 
   const isAble = isObjectNotEmpty(pages);
+
   const modAllPages = setAllPagesGetSortedGroupedByDate(
     pages as unknown as SerializedPage[]
   );

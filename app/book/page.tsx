@@ -1,15 +1,15 @@
 "use client";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useUIStore } from "@/lib/stores";
 import BookRecordsPage from "@/modules/page/intropage/BookRecordsPage";
 import { useSidebar } from "fumadocs-ui/provider";
 import { useEffect } from "react";
 
 export default function Page() {
   const { setCollapsed } = useSidebar();
-  const { handleChangeRightSideInfoBarMode } = useGeneralSiteSettings();
+  const { setRightSideInfoBarMode } = useUIStore();
   useEffect(() => {
     setCollapsed(true);
-    handleChangeRightSideInfoBarMode("info");
-  });
+    setRightSideInfoBarMode("info");
+  }, []); // 의존성 배열을 비워서 한 번만 실행되도록 함
   return <BookRecordsPage />;
 }

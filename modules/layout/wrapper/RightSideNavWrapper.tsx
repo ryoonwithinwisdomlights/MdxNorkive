@@ -1,5 +1,5 @@
 "use client";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useUIStore } from "@/lib/stores";
 import AuthorInfoCard from "@/modules/common/right-sidebar/infocard/AuthorInfoCard";
 import NorKiveInfoCard from "@/modules/common/right-sidebar/infocard/NorKiveInfoCard";
 
@@ -15,7 +15,7 @@ const getInfoCard = (mode: "info" | "author") => {
 };
 
 const RightSideNavWrapper = () => {
-  const { rightSideInfoBarMode } = useGeneralSiteSettings();
+  const { rightSideInfoBarMode } = useUIStore();
 
   return (
     <div

@@ -1,5 +1,5 @@
 "use client"; // 클라이언트 컴포넌트
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useUIStore } from "@/lib/stores";
 import { MenuItem } from "@/types";
 import { RightSidebarItemDropProps } from "@/types/components/navigation";
 import Link from "next/link";
@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 export const RightSidebarItemDrop = ({
   menuData,
 }: RightSidebarItemDropProps) => {
-  const { toggleMobileLeftSidebarOpen } = useGeneralSiteSettings();
+  const { toggleMobileLeftSidebar } = useUIStore();
   const router = useRouter();
   const hasSubMenu =
     menuData?.subMenus?.length && menuData?.subMenus?.length > 0;
@@ -28,7 +28,7 @@ export const RightSidebarItemDrop = ({
         const finalHref = sLink?.type === "SubMenuPages" ? `/${href}` : href;
         router.push(finalHref || "");
       }
-      toggleMobileLeftSidebarOpen();
+      toggleMobileLeftSidebar();
     }
   };
 

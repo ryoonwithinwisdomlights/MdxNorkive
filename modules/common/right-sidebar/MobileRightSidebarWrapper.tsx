@@ -3,7 +3,7 @@ import { useRef, lazy } from "react";
 import Link from "next/link";
 
 import { BLOG } from "@/blog.config";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore, useUIStore } from "@/lib/stores";
 import { useNav } from "@/lib/context/NavInfoProvider";
 
 import MobileRightSidebar from "./MobileRightSidebar";
@@ -23,7 +23,8 @@ const SwitchLanguage = lazy(
 
 const MobileRightSidebarWrapper = () => {
   const { menuList } = useNav({ from: "LeftSidebar" });
-  const { locale, toggleMobileLeftSidebarOpen } = useGeneralSiteSettings();
+  const { locale } = useThemeStore();
+  const { toggleMobileLeftSidebar } = useUIStore();
   const collapseRef = useRef<CollapseRefType>(null);
 
   return (
@@ -45,7 +46,7 @@ const MobileRightSidebarWrapper = () => {
             <GitHubLogoIcon className="w-4 h-4 text-neutral-600 hover:text-neutral-900 dark:hover:text-white dark:text-neutral-100" />
           </Link>
           <div
-            onClick={toggleMobileLeftSidebarOpen}
+            onClick={toggleMobileLeftSidebar}
             className="h-8 w-8 rounded-lg  bg-neutral-200/50  hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700  flex items-center justify-center"
           >
             <AlignRightIcon className="w-4 h-4 text-neutral-600 hover:text-neutral-900 dark:hover:text-white dark:text-neutral-100" />

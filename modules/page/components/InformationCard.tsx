@@ -1,5 +1,5 @@
 "use client";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 import { ContentCard } from "@/modules/common/cards";
 import { CardInfoDivProps } from "@/types/components/cards";
 
@@ -13,7 +13,7 @@ const InformationCard = ({
   showPreview,
   showSummary,
 }: CardInfoDivProps) => {
-  const { locale, lang } = useGeneralSiteSettings();
+  const { locale, lang } = useThemeStore();
 
   return (
     <ContentCard

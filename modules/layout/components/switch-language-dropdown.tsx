@@ -1,4 +1,4 @@
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 import { dictionaries } from "@/lib/utils/lang";
 import { Button } from "@/modules/shared/ui/button";
 import {
@@ -10,7 +10,7 @@ import {
 import { LanguagesIcon } from "lucide-react";
 
 export default function SwitchLanguage() {
-  const { changeLang } = useGeneralSiteSettings();
+  const { changeLang } = useThemeStore();
   const dicList = Object.keys(dictionaries);
 
   return (

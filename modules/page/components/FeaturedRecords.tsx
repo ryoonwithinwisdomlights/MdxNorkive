@@ -1,6 +1,6 @@
 "use client";
 import { ImageCard } from "@/modules/common/cards";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 import { transferDataForCardProps } from "@/lib/utils/records";
 import { useMemo, useState } from "react";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
@@ -21,7 +21,7 @@ const FeaturedRecords = ({
     );
   });
 
-  const { locale, lang } = useGeneralSiteSettings();
+  const { locale, lang } = useThemeStore();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentRecordType, setCurrentRecordType] = useState("");
 

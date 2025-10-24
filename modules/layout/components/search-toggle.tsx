@@ -8,7 +8,7 @@ import {
   type ButtonProps,
   buttonVariants,
 } from "@/modules/shared/ui/DocButton";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 
 interface SearchToggleProps
   extends Omit<ComponentProps<"button">, "color">,
@@ -54,7 +54,7 @@ export function LargeSearchToggle({
   hideIfDisabled?: boolean;
 }) {
   const { enabled, hotKey, setOpenSearch } = useSearchContext();
-  const { locale } = useGeneralSiteSettings();
+  const { locale } = useThemeStore();
   const { text } = useI18n();
   if (hideIfDisabled && !enabled) return null;
 

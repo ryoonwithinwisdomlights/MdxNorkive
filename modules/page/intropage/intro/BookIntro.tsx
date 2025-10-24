@@ -1,8 +1,8 @@
 "use client";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 
 const BookIntro = () => {
-  const { locale } = useGeneralSiteSettings();
+  const { locale } = useThemeStore();
 
   const { BOOK } = locale.INTRO;
 

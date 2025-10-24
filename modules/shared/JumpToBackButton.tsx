@@ -1,6 +1,6 @@
 "use client";
 
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 import { MoveLeftIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -17,7 +17,7 @@ import { useEffect, useState } from "react";
  */
 const JumpToBackButton = () => {
   const router = useRouter();
-  const { locale } = useGeneralSiteSettings();
+  const { locale } = useThemeStore();
   const handleBack = () => {
     router.back();
   };

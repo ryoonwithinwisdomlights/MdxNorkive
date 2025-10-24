@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 import { Switch } from "@headlessui/react";
 import { MoonStarIcon, CloudSunIcon } from "lucide-react";
 
 const ToggleDarkModeButton = () => {
-  const { isDarkMode, handleChangeDarkMode } = useGeneralSiteSettings();
+  const { isDarkMode, toggleDarkMode, isInitialized, initialize } =
+    useThemeStore();
   const [mounted, setMounted] = useState(false);
 
-  //Hydration-safemounted 체크로 클라이언트 전용 처리
+  // 컴포넌트 마운트 시 초기화
   useEffect(() => {
     setMounted(true);
-  }, []);
+    // 이미 초기화되지 않은 경우에만 초기화
+    if (!isInitialized) {
+      initialize();
+    }
+  }, [initialize, isInitialized]);
 
-  if (!mounted) {
+  // 마운트되지 않은 상태에서는 로딩 표시
+  if (!mounted || !isInitialized) {
     return (
       <div className="h-8 w-14 rounded-full bg-neutral-200 animate-pulse" />
     );
@@ -21,7 +27,7 @@ const ToggleDarkModeButton = () => {
   return (
     <Switch
       checked={isDarkMode}
-      onChange={handleChangeDarkMode}
+      onChange={toggleDarkMode}
       className="relative inline-flex h-8 w-14 items-center rounded-sm
        transition-colors duration-300 focus:outline-none bg-neutral-200 dark:bg-neutral-800 
        dark:hover:bg-neutral-700 hover:bg-neutral-300"

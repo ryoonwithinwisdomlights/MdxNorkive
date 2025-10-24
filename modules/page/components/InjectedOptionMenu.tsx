@@ -1,5 +1,5 @@
 "use client";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 import { InjectedOptionMenuProps } from "@/types/components/pageutils";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { Book, ChevronDownIcon } from "lucide-react";
@@ -10,7 +10,7 @@ const InjectedOptionMenu = ({
   initString,
   handleRecordTypeChange,
 }: InjectedOptionMenuProps) => {
-  const { locale } = useGeneralSiteSettings();
+  const { locale } = useThemeStore();
   return (
     <Menu>
       <MenuButton

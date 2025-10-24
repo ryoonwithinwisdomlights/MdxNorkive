@@ -1,5 +1,4 @@
 "use client";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
 import { LockedSection } from "@/types";
 import { BasicPageDivProps } from "@/types/components/pageutils";
 import { FolderClosedIcon, LockIcon } from "lucide-react";
@@ -10,6 +9,7 @@ import { useRouter } from "next/navigation";
  * @param recordList - The list of records
  * @returns
  */
+import { useThemeStore } from "@/lib/stores";
 import type { SerializedPage } from "@/types";
 
 export default function DateSortedRecords({
@@ -17,7 +17,7 @@ export default function DateSortedRecords({
   recordList,
 }: BasicPageDivProps) {
   const router = useRouter();
-  const { locale } = useGeneralSiteSettings();
+  const { locale } = useThemeStore();
   const LOCKED = locale.LOCKED as LockedSection;
   const handleRouter = (page: SerializedPage) => {
     router.push(page.url);

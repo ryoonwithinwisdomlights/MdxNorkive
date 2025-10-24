@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState, lazy } from "react";
 import { useRouter } from "next/navigation";
 import NotFound from "@/app/not-found";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 import { transferDataForCardProps } from "@/lib/utils/records";
 import InformationCard from "@/modules/page/components/InformationCard";
 import NoRecordFound from "@/modules/shared/NoRecordFound";
@@ -29,7 +29,7 @@ const RecordsBodyWithTwoOptions = ({
     );
   });
   const router = useRouter();
-  const { locale } = useGeneralSiteSettings();
+  const { locale } = useThemeStore();
   const [currentPage, setCurrentPage] = useState(0);
   const [currentRecordType, setCurrentRecordType] = useState("");
   const [currentTag, setCurrentTag] = useState(""); // 태그 필터링을 위한 상태 추가

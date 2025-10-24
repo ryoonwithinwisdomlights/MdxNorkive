@@ -4,10 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/modules/shared/ui/button";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 
 export default function NotFound() {
-  const { locale } = useGeneralSiteSettings();
+  const { locale } = useThemeStore();
   return (
     <div className="h-screen flex flex-col items-center justify-center md:px-60 px-20 ">
       <Image

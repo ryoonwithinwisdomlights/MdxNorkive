@@ -1,19 +1,19 @@
 "use client";
-import { ComponentProps } from "react";
-import { ChevronDown } from "lucide-react";
+import { useThemeStore } from "@/lib/stores";
+import { cn } from "@/lib/utils/general";
+import { TOCItemType } from "@/types";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "fumadocs-ui/components/ui/collapsible";
-import { TOCItemType } from "@/types";
-import { cn } from "@/lib/utils/general";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { ChevronDown } from "lucide-react";
+import { ComponentProps } from "react";
 export interface InlineTocProps extends ComponentProps<typeof Collapsible> {
   items: TOCItemType[];
 }
 const InlineTocCustomed = ({ items, ...props }: InlineTocProps) => {
-  const { locale } = useGeneralSiteSettings();
+  const { locale } = useThemeStore();
   return (
     <Collapsible
       {...props}

@@ -1,13 +1,13 @@
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useUIStore } from "@/lib/stores";
 import { BookOpenTextIcon } from "lucide-react";
 /**
  * Mobile article navigation buttons
  */
 export default function MobileLeftNavButton() {
-  const { pageNavVisible, handleLeftNavVisible } = useGeneralSiteSettings();
+  const { pageNavVisible, togglePageNav } = useUIStore();
 
   const switchVisible = () => {
-    handleLeftNavVisible();
+    togglePageNav();
   };
   return (
     <>

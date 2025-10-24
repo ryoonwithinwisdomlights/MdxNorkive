@@ -1,9 +1,11 @@
 "use client";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils";
 import { GridCard } from "@/modules/common/cards";
-import { OptionItem } from "@/types/components/pageutils";
-import { RecordsWithMultiplesOfThreeProps } from "@/types/components/pageutils";
+import {
+  OptionItem,
+  RecordsWithMultiplesOfThreeProps,
+} from "@/types/components/pageutils";
 import { useMemo, useState } from "react";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import PaginationSimple from "./PaginationSimple";
@@ -16,7 +18,7 @@ const RecordsWithMultiplesOfThree = ({
   const pages = records;
   if (!pages) return null;
 
-  const { locale, lang } = useGeneralSiteSettings();
+  const { locale, lang } = useThemeStore();
   const [currentPage, setCurrentPage] = useState(1);
   const [currentRecordType, setCurrentRecordType] = useState("");
 

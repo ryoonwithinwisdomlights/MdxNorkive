@@ -1,8 +1,8 @@
 "use client";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 
 const EngineeringIntro = () => {
-  const { locale } = useGeneralSiteSettings();
+  const { locale } = useThemeStore();
 
   const { ENGINEERING } = locale.INTRO;
 

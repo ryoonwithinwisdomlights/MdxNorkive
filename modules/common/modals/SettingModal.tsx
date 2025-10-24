@@ -1,6 +1,6 @@
 "use client";
 import { lazy } from "react";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore, useSettingsStore } from "@/lib/stores";
 import {
   Dialog,
   DialogContent,
@@ -17,10 +17,11 @@ const SwitchLanguage = lazy(
   () => import("@/modules/layout/components/switch-language-dropdown")
 );
 const SettingModal = () => {
-  const { setting, handleSettings, locale } = useGeneralSiteSettings();
+  const { locale } = useThemeStore();
+  const { setting, toggleSettings } = useSettingsStore();
 
   return (
-    <Dialog open={setting} onOpenChange={handleSettings}>
+    <Dialog open={setting} onOpenChange={toggleSettings}>
       <DialogContent
         aria-describedby={undefined}
         className="max-w-md w-full top-1/4 border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900"

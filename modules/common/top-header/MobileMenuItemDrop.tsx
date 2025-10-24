@@ -1,5 +1,5 @@
 "use client"; // 클라이언트 컴포넌트
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useUIStore } from "@/lib/stores";
 
 import Collapse from "@/modules/shared/Collapse";
 import { MenuItem } from "@/types";
@@ -20,8 +20,7 @@ export const MobileMenuItemDrop = ({
   link,
   onHeightChange,
 }: MobileMenuItemDropProps) => {
-  const { isMobileTopNavOpen, toggleMobileTopNavOpen } =
-    useGeneralSiteSettings();
+  const { isMobileTopNavOpen, toggleMobileTopNav } = useUIStore();
 
   const [show, changeShow] = useState(false);
   const hasSubMenu = link?.subMenus?.length && link?.subMenus?.length > 0;
@@ -35,12 +34,12 @@ export const MobileMenuItemDrop = ({
       const href = sLink?.type === "SubMenuPages" ? sLink?.url : sLink?.slug;
 
       if (sLink?.slug?.includes("http")) {
-        toggleMobileTopNavOpen();
+        toggleMobileTopNav();
         window.open(sLink.slug, "_blank");
       } else {
         // SubMenuPage의 경우 절대 경로로 처리
         const finalHref = sLink?.type === "SubMenuPages" ? `/${href}` : href;
-        toggleMobileTopNavOpen();
+        toggleMobileTopNav();
         router.push(finalHref || "");
       }
     }

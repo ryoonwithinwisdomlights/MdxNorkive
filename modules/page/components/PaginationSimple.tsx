@@ -1,5 +1,5 @@
 "use client";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 import { PaginationSimpleProps } from "@/types/components/pageutils";
 import { ChevronRight } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
@@ -12,7 +12,7 @@ import { usePathname, useRouter } from "next/navigation";
  * @constructor
  */
 const PaginationSimple = ({ pagenum, totalPage }: PaginationSimpleProps) => {
-  const { locale } = useGeneralSiteSettings();
+  const { locale } = useThemeStore();
   const router = useRouter();
   const pathname = usePathname();
   // const param = useSearchParams()

@@ -1,5 +1,5 @@
 "use client";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore, useUIStore } from "@/lib/stores";
 import {
   bookSource,
   engineeringSource,
@@ -52,15 +52,15 @@ export default function CustomedMDXPage({
 
   const { body, toc, lastEditedDate } = page.data;
 
-  const { locale, handleChangeRightSideInfoBarMode, handleSetTocContent } =
-    useGeneralSiteSettings();
+  const { locale } = useThemeStore();
+  const { setRightSideInfoBarMode, setTocContent } = useUIStore();
   const { RECORD } = locale;
   const { setCollapsed } = useSidebar();
 
   useEffect(() => {
     setCollapsed(false);
-    handleSetTocContent(toc);
-    handleChangeRightSideInfoBarMode("author");
+    setTocContent(toc);
+    setRightSideInfoBarMode("author");
   }, []);
 
   const validPassword = (passInput: string) => {

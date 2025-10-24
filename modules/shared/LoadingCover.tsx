@@ -1,10 +1,10 @@
 "use client";
 
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 import { LoaderIcon } from "lucide-react";
 
 export default function LoadingCover() {
-  const { locale } = useGeneralSiteSettings();
+  const { locale } = useThemeStore();
   return (
     <div
       id="cover-loading"

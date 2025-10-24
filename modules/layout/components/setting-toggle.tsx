@@ -1,19 +1,15 @@
 "use client";
 /* eslint-disable multiline-ternary */
 
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useUIStore } from "@/lib/stores";
 import { MenuIcon } from "lucide-react";
 
 const SettingToggle = () => {
-  const {
-    isMobileTopNavOpen,
-    isMobileLeftSidebarOpen,
-    toggleMobileLeftSidebarOpen,
-  } = useGeneralSiteSettings();
+  const { isMobileLeftSidebarOpen, toggleMobileLeftSidebar } = useUIStore();
 
   return (
     <div
-      onClick={toggleMobileLeftSidebarOpen}
+      onClick={toggleMobileLeftSidebar}
       className="cursor-pointer 
     rounded-lg  bg-fd-secondary/50 p-1.5  text-sm
      text-fd-muted-foreground transition-colors hover:bg-fd-accent hover:text-fd-accent-foreground"

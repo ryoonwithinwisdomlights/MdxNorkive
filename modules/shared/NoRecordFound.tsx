@@ -1,8 +1,8 @@
 "use client";
-import { useGeneralSiteSettings } from "@/lib/context/GeneralSiteSettingsProvider";
+import { useThemeStore } from "@/lib/stores";
 
 const NoRecordFound = () => {
-  const { locale } = useGeneralSiteSettings();
+  const { locale } = useThemeStore();
   return (
     <div
       className="text-neutral-800 dark:text-neutral-300 flex flex-col w-full 
