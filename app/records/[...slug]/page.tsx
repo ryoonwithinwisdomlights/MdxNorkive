@@ -1,17 +1,9 @@
-import CustomedMDXPage from "@/modules/page/CustomedMDXPage";
 import { recordSource } from "@/lib/source";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { lazy } from "react";
 
-// function getPath(slug: string[]) {
-//   return slug.join("/");
-// }
-
-// function styleToLevel(style: unknown) {
-//   if (typeof style !== "string") return;
-//   return Number.parseInt(style.split("h")[1]);
-// }
-
+const CustomedMDXPage = lazy(() => import("@/modules/page/CustomedMDXPage"));
 export const dynamic = "force-static";
 
 export default async function Page(props: {

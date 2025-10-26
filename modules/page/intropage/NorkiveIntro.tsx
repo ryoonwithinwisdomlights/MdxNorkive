@@ -1,9 +1,17 @@
 "use client";
+import { lazy } from "react";
 import { useNav } from "@/lib/context/NavInfoProvider";
-import EntireRecords from "@/modules/page/components/EntireRecords";
-import FeaturedRecords from "@/modules/page/components/FeaturedRecords";
-import LatestRecords from "@/modules/page/components/LatestRecords";
 import { generalIntroPageClass } from "@/lib/utils";
+const FeaturedRecords = lazy(
+  () => import("@/modules/page/components/FeaturedRecords")
+);
+const LatestRecords = lazy(
+  () => import("@/modules/page/components/LatestRecords")
+);
+
+const EntireRecords = lazy(
+  () => import("@/modules/page/components/EntireRecords")
+);
 
 const NorkiveIntro = () => {
   const { serializedAllPages } = useNav({ from: "NorkiveIntro" });

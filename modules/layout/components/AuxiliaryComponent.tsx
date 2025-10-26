@@ -1,13 +1,14 @@
 "use client";
+import { lazy, useEffect, useState } from "react";
 import { BLOG } from "@/blog.config";
 import { ANALYTICS_CONFIG } from "@/config/analytics.config";
-import Busuanzi from "@/modules/shared/Busuanzi";
+
 import DebugPanel from "@/modules/shared/DebugPanel";
 import DisableCopy from "@/modules/shared/DisableCopy";
-import GoogleAnalytics from "@/modules/shared/GoogleAnalytics";
-import VConsoleTs from "@/modules/shared/VConsoleTs";
-import { useEffect, useState } from "react";
 
+const GoogleAnalytics = lazy(() => import("@/modules/shared/GoogleAnalytics"));
+const VConsoleTs = lazy(() => import("@/modules/shared/VConsoleTs"));
+const Busuanzi = lazy(() => import("@/modules/shared/Busuanzi"));
 const AuxiliaryBlogComponent = () => {
   const [isMounted, setIsMounted] = useState(false);
 

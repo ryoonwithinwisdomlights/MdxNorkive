@@ -4,14 +4,17 @@ import {
   getYearMonthDay,
   transferDataForCardProps,
 } from "@/lib/utils";
-import { GridCard, ImageCard } from "@/modules/common/cards";
 
 import { useThemeStore } from "@/lib/stores";
-import { SerializedPage } from "@/types";
 import { mainRecordProps, OptionItem } from "@/types/components/pageutils";
-import { useCallback, useMemo, useState } from "react";
+import { lazy, useCallback, useMemo, useState } from "react";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import PageIndicator from "./PageIndicator";
+
+const GridCard = lazy(() => import("@/modules/common/cards/GridCard"));
+
+// modules/common/cards/ImageCard.tsx
+const ImageCard = lazy(() => import("@/modules/common/cards/ImageCard"));
 
 const LatestRecords = ({
   type,

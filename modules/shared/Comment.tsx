@@ -3,9 +3,10 @@
 import { isBrowser } from "@/lib/utils/general";
 import Tabs from "@/modules/shared/ui/Tabs";
 import { usePathname, useSearchParams } from "next/navigation";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { lazy, ReactNode, useEffect, useRef, useState } from "react";
 import LoadingCover from "@/modules/shared/LoadingCover";
-import GiscusComponent from "@/modules/shared/Giscus";
+
+const GiscusComponent = lazy(() => import("@/modules/shared/Giscus"));
 const COMMENT_GISCUS_REPONAME = process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPONAME;
 /**
  * Comment component
@@ -73,12 +74,6 @@ const Comment = ({
       ref={commentRef}
       className={`justify-center items-center text-neutral-800 dark:text-neutral-300 w-full mx-auto ${className}`}
     >
-      {/* Lazy loading of comment area */}
-      {!shouldLoad && (
-        <div className="text-center">
-          <LoadingCover />
-        </div>
-      )}
       {shouldLoad && (
         <Tabs className="">
           {COMMENT_GISCUS_REPONAME && (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy } from "react";
 import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
 import * as CalloutComponents from "fumadocs-ui/components/callout";
 import * as CodeBlockComponents from "fumadocs-ui/components/codeblock";
@@ -12,12 +12,18 @@ import defaultMdxComponents from "fumadocs-ui/mdx";
 import * as icons from "lucide-react";
 import type { MDXComponents } from "mdx/types";
 
-import FileWrapper from "@/modules/mdx/FileWrapper";
-import GoogleDriveWrapper from "@/modules/mdx/GoogleDriveWrapper";
-import YoutubeWrapper from "@/modules/mdx/YoutubeWrapper";
-import EmbededWrapper from "@/modules/mdx/EmbededWrapper";
-import BookMarkWrapper from "@/modules/mdx/BookMarkWrapper";
-
+// import FileWrapper from "@/modules/mdx/FileWrapper";
+// import GoogleDriveWrapper from "@/modules/mdx/GoogleDriveWrapper";
+// import YoutubeWrapper from "@/modules/mdx/YoutubeWrapper";
+// import EmbededWrapper from "@/modules/mdx/EmbededWrapper";
+// import BookMarkWrapper from "@/modules/mdx/BookMarkWrapper";
+const YoutubeWrapper = lazy(() => import("@/modules/mdx/YoutubeWrapper"));
+const EmbededWrapper = lazy(() => import("@/modules/mdx/EmbededWrapper"));
+const FileWrapper = lazy(() => import("@/modules/mdx/FileWrapper"));
+const GoogleDriveWrapper = lazy(
+  () => import("@/modules/mdx/GoogleDriveWrapper")
+);
+const BookMarkWrapper = lazy(() => import("@/modules/mdx/BookMarkWrapper"));
 // 일반 링크를 위한 컴포넌트 (PDF, Google Drive, 외부 링크)
 const CustomLinkComponent = ({
   href,

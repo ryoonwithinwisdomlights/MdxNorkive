@@ -12,7 +12,7 @@ import {
   DocsBody,
   DocsPage,
 } from "@/modules/layout/templates/docs-page-layout";
-import ShareBar from "@/modules/shared/ShareBar";
+
 import { MDXContent } from "@content-collections/mdx/react";
 import { InlineTOC } from "fumadocs-ui/components/inline-toc";
 import { useSidebar } from "fumadocs-ui/provider";
@@ -25,6 +25,7 @@ import TagItemMini from "@/modules/common/tag/TagItemMini";
 import LockedPage from "@/modules/page/components/LockedPage";
 
 const LoadingCover = lazy(() => import("@/modules/shared/LoadingCover"));
+const ShareBar = lazy(() => import("@/modules/shared/ShareBar"));
 
 function getResource(resource: string) {
   if (resource === "engineering") return engineeringSource;

@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils/general";
-import Comment from "@/modules/shared/Comment";
+
 import { buttonVariants } from "@/modules/shared/ui/DocButton";
 import { TOCItemType } from "@/types";
 import type { AnchorProviderProps } from "fumadocs-core/toc";
@@ -20,8 +20,9 @@ import {
   PageTOCTitle,
 } from "fumadocs-ui/layouts/docs/page";
 import { Edit } from "lucide-react";
-import { type ComponentProps, forwardRef, type ReactNode } from "react";
+import { type ComponentProps, forwardRef, lazy, type ReactNode } from "react";
 import { PageRoot } from "./page-root";
+import Comment from "@/modules/shared/Comment";
 
 interface EditOnGitHubOptions
   extends Omit<ComponentProps<"a">, "href" | "children"> {

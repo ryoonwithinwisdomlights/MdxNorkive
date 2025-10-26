@@ -1,8 +1,14 @@
 import * as React from "react";
-import { LiteYouTubeEmbed } from "../../modules/shared/LiteYouTubeEmbed";
+// import { LiteYouTubeEmbed } from "../../modules/shared/LiteYouTubeEmbed";
 import { getUrlParams, getYoutubeId } from "@/lib/utils";
 import { WrapperProps } from "@/types/components/common";
 import { assetStyle } from "@/constants/ui.constants";
+
+const LiteYouTubeEmbed = React.lazy(() =>
+  import("@/modules/shared/LiteYouTubeEmbed").then((module) => ({
+    default: module.LiteYouTubeEmbed,
+  }))
+);
 
 export default function YoutubeWrapper(props: WrapperProps) {
   const { names, urls } = props;

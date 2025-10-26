@@ -1,8 +1,9 @@
-import CustomedMDXPage from "@/modules/page/CustomedMDXPage";
 import { projectSource } from "@/lib/source";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { lazy } from "react";
 
+const CustomedMDXPage = lazy(() => import("@/modules/page/CustomedMDXPage"));
 export const dynamic = "force-static";
 
 export default async function Page(props: {

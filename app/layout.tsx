@@ -31,7 +31,7 @@ import {
 
 //************* Custom components ************* */
 import MobileRightSidebarWrapper from "@/modules/common/right-sidebar/MobileRightSidebarWrapper";
-import DefaultSearchDialog from "@/modules/common/search/search";
+
 import MobileFooter from "@/modules/layout/components/mobile-footer";
 import TopNavigationWrapper from "@/modules/layout/wrapper/TopNavigationWrapper";
 import ProgressBar from "@/modules/shared/ProgressBar";
@@ -45,6 +45,9 @@ const LoadingCover = lazy(() => import("@/modules/shared/LoadingCover"));
 const JumpToTopButton = lazy(() => import("@/modules/shared/JumpToTopButton"));
 const JumpToBackButton = lazy(
   () => import("@/modules/shared/JumpToBackButton")
+);
+const DefaultSearchDialog = lazy(
+  () => import("@/modules/common/search/search")
 );
 
 //************* Fetcher ************* */
@@ -110,6 +113,7 @@ const notoSerif = Noto_Serif({
   display: "swap", // 폰트 로드 전까지 시스템 폰트 표시
   preload: true, // 자동 preload
 });
+
 export default async function RootLayout({
   children,
 }: {
