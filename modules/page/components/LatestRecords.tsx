@@ -9,7 +9,7 @@ import { GridCard, ImageCard } from "@/modules/common/cards";
 import { useThemeStore } from "@/lib/stores";
 import { SerializedPage } from "@/types";
 import { mainRecordProps, OptionItem } from "@/types/components/pageutils";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import PageIndicator from "./PageIndicator";
 
@@ -87,27 +87,30 @@ const LatestRecords = ({
       filteredPages,
       allOptions: allOptions,
     };
-  }, [pages, type, currentRecordType, locale.COMMON.ALL]);
+  }, [pages, currentRecordType, subType, locale.COMMON.ALL]);
 
-  const handleRecordTypeChange = (option: string) => {
+  const handleRecordTypeChange = useCallback((option: string) => {
     setCurrentRecordType(option);
-    setCurrentPage(0); // 페이지 변경 시 첫 페이지로 이동
-  };
-
-  const getCurrentRecordsWithPagination = (
-    records: SerializedPage[],
-    page: number,
-    perPage: number
-  ) => {
-    const startIndex = page * perPage;
-    const endIndex = startIndex + perPage;
-    return records.slice(startIndex, endIndex);
-  };
+    setCurrentPage(0);
+  }, []);
 
   const CARDS_PER_PAGE = 3;
-  const firstArticle = filteredPages[0];
-  const restArticles = filteredPages.slice(1, filteredPages.length);
-  const totalPages = Math.ceil(restArticles.length / CARDS_PER_PAGE);
+  const firstArticle = useMemo(() => filteredPages[0], [filteredPages]);
+  const restArticles = useMemo(
+    () => filteredPages.slice(1, filteredPages.length),
+    [filteredPages]
+  );
+  const totalPages = useMemo(
+    () => Math.ceil(restArticles.length / CARDS_PER_PAGE),
+    [restArticles]
+  );
+
+  // getCurrentRecordsWithPagination 결과를 useMemo로 캐싱
+  const currentRecords = useMemo(() => {
+    const startIndex = currentPage * CARDS_PER_PAGE;
+    const endIndex = startIndex + CARDS_PER_PAGE;
+    return restArticles.slice(startIndex, endIndex);
+  }, [restArticles, currentPage, CARDS_PER_PAGE]);
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 flex flex-col gap-8">
@@ -142,11 +145,7 @@ const LatestRecords = ({
       />
       {/* Grid Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {getCurrentRecordsWithPagination(
-          restArticles,
-          currentPage,
-          CARDS_PER_PAGE
-        ).map((article) => (
+        {currentRecords.map((article) => (
           <GridCard
             key={`${article.data.notionId}`}
             title={article.data.title}

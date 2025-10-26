@@ -2,7 +2,7 @@
 import { ImageCard } from "@/modules/common/cards";
 import { useThemeStore } from "@/lib/stores";
 import { transferDataForCardProps } from "@/lib/utils/records";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import { OptionItem } from "@/types/components/pageutils";
 import { mainRecordProps } from "@/types/components/pageutils";
@@ -98,22 +98,25 @@ const FeaturedRecords = ({
     };
   }, [pages, type, currentRecordType, subType, locale.COMMON.ALL]);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % filteredPages.length);
-  };
+  }, [filteredPages.length]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentIndex(
       (prev) => (prev - 1 + filteredPages.length) % filteredPages.length
     );
-  };
+  }, [filteredPages.length]);
 
-  const handleRecordTypeChange = (option: string) => {
+  const handleRecordTypeChange = useCallback((option: string) => {
     setCurrentRecordType(option);
     setCurrentIndex(0);
-  };
+  }, []);
 
-  const currentPage = filteredPages[currentIndex];
+  const currentPage = useMemo(
+    () => filteredPages[currentIndex],
+    [filteredPages, currentIndex]
+  );
 
   return (
     <section className="w-full max-w-6xl mx-auto md:px-4 py-8 flex flex-col gap-8">

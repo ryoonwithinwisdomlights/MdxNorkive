@@ -6,7 +6,7 @@ import {
   OptionItem,
   RecordsWithMultiplesOfThreeProps,
 } from "@/types/components/pageutils";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import PaginationSimple from "./PaginationSimple";
 
@@ -59,18 +59,22 @@ const RecordsWithMultiplesOfThree = ({
     };
   }, [pages, type, currentRecordType, locale.COMMON.ALL]);
 
-  const handleRecordTypeChange = (option: string) => {
+  const handleRecordTypeChange = useCallback((option: string) => {
     setCurrentRecordType(option);
     setCurrentPage(1); // 페이지 변경 시 첫 페이지로 이동
-  };
+  }, []);
 
-  const getCurrentArticles = () => {
+  const totalPages = useMemo(
+    () => Math.ceil(filteredPages.length / 9),
+    [filteredPages]
+  );
+
+  // getCurrentArticles 결과를 useMemo로 캐싱
+  const currentArticles = useMemo(() => {
     const startIndex = (currentPage - 1) * 9;
     const endIndex = startIndex + 9;
     return filteredPages.slice(startIndex, endIndex);
-  };
-
-  const totalPages = Math.ceil(filteredPages.length / 9);
+  }, [filteredPages, currentPage]);
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 py-8">
@@ -88,7 +92,7 @@ const RecordsWithMultiplesOfThree = ({
         id="norkive-recent-grid"
         className="grid grid-cols-1 md:grid-cols-3 gap-8"
       >
-        {getCurrentArticles().map((article) => (
+        {currentArticles.map((article) => (
           <GridCard
             key={`${article.data.notionId}-${currentPage}`}
             title={article.data.title}

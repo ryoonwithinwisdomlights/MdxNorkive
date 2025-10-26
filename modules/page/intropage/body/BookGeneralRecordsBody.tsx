@@ -1,7 +1,7 @@
 "use client";
 
 import FeaturedRecords from "@/modules/page/components/FeaturedRecords";
-import { RecordsWrapper } from "@/modules/page/components/RecordsWrapper";
+import RecordsWrapper from "@/modules/page/components/RecordsWrapper";
 import NoRecordFound from "@/modules/shared/NoRecordFound";
 import { BookGeneralRecordsBodyProps } from "@/types/components/pageutils";
 
