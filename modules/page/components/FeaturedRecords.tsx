@@ -146,6 +146,7 @@ const FeaturedRecords = ({
           currentIndex={currentIndex}
           totalSlides={filteredPages.length}
           onSlideChange={setCurrentIndex}
+          priority={true}
         />
       )}
     </section>

@@ -102,16 +102,20 @@ export const metadata: Metadata = {
 
 const notoSans = Noto_Sans({
   variable: "--font-sans",
-  subsets: ["latin", "latin-ext"],
-  display: "swap", // 폰트 로드 전까지 시스템 폰트 표시
-  preload: true, // 자동 preload
+  subsets: ["latin"], // latin-ext 제거로 크기 감소
+  display: "swap",
+  preload: true,
+  fallback: ["system-ui", "arial"], // 폴백 폰트 명시
+  adjustFontFallback: false, // 폰트 폴백 최적화
 });
 
 const notoSerif = Noto_Serif({
   variable: "--font-serif",
-  subsets: ["latin", "latin-ext"],
-  display: "swap", // 폰트 로드 전까지 시스템 폰트 표시
-  preload: true, // 자동 preload
+  subsets: ["latin"], // latin-ext 제거로 크기 감소
+  display: "swap",
+  preload: false, // Serif는 덜 중요하므로 preload 비활성화
+  fallback: ["Times New Roman", "serif"],
+  adjustFontFallback: false,
 });
 
 export default async function RootLayout({
@@ -198,9 +202,9 @@ export default async function RootLayout({
                     <TopNavigationWrapper />
 
                     <div className=" dark:bg-black dark:text-neutral-300 py-10 flex flex-col overflow-y-auto h-screen  scrollbar-hide overscroll-contain ">
-                      <Suspense fallback={<LoadingCover />}>
-                        {children}
-                      </Suspense>
+                      {/* <Suspense fallback={<LoadingCover />}> */}
+                      {children}
+                      {/* </Suspense> */}
                     </div>
 
                     <Suspense fallback={<div className="h-8 w-8" />}>

@@ -1,14 +1,17 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, lazy, Suspense } from "react";
 import Link from "next/link";
 import { useThemeStore } from "@/lib/stores";
 import { useNav } from "@/lib/context/NavInfoProvider";
 import Fuse from "fuse.js";
 import { debounce } from "lodash-es";
 import { Search, XIcon } from "lucide-react";
-import SearchResultSkeleton from "@/modules/shared/ui/search-result-skeleton";
 import { SerializedPage } from "@/types";
+
+const SearchResultSkeleton = lazy(
+  () => import("@/modules/shared/ui/search-result-skeleton")
+);
 
 export default function HeaderSearch() {
   const { locale } = useThemeStore();
@@ -125,7 +128,9 @@ export default function HeaderSearch() {
       {/* Results */}
       <div className=" absolute top-9 mt-2 w-full bg-white dark:bg-neutral-900 rounded-md shadow-lg">
         {loading ? (
-          <SearchResultSkeleton />
+          <Suspense fallback={<div className="p-3">Loading...</div>}>
+            <SearchResultSkeleton />
+          </Suspense>
         ) : results.length > 0 ? (
           <ul className="divide-y divide-neutral-200 dark:divide-neutral-700 overflow-y-auto max-h-56">
             {results.map((item, idx) => (

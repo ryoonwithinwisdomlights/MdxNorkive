@@ -22,9 +22,9 @@ import { useEffect, useState, Suspense, lazy } from "react";
 
 import { getMDXComponents } from "@/getMDXComponents";
 import TagItemMini from "@/modules/common/tag/TagItemMini";
-import LockedPage from "@/modules/page/components/LockedPage";
 
 const LoadingCover = lazy(() => import("@/modules/shared/LoadingCover"));
+const LockedPage = lazy(() => import("@/modules/page/components/LockedPage"));
 const ShareBar = lazy(() => import("@/modules/shared/ShareBar"));
 
 function getResource(resource: string) {
@@ -172,7 +172,9 @@ export default function CustomedMDXPage({
               </Suspense>
             </DocsBody>
 
-            <ShareBar data={page.data} url={page.url} />
+            <Suspense fallback={<div className="h-8" />}>
+              <ShareBar data={page.data} url={page.url} />
+            </Suspense>
           </DocsPage>
         </div>
       )}

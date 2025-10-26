@@ -67,6 +67,7 @@ export default function LazyImage({
     onLoad: handleImageLoad,
     loading: "lazy",
     decoding: "async", // 비동기 디코딩으로 메인 스레드 방해 최소화
+    fetchPriority: "high",
   };
 
   if (id) {
@@ -91,9 +92,10 @@ export default function LazyImage({
     imgProps.style = style;
   }
 
-  // priority가 true면 loading="eager"로 변경
+  // priority가 true면 loading="eager"와 fetchPriority="high"로 변경
   if (priority) {
     imgProps.loading = "eager";
+    imgProps.fetchPriority = "high";
   } else {
     imgProps.loading = "lazy";
   }

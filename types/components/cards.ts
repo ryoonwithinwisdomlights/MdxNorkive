@@ -37,6 +37,7 @@ export interface ImageCardProps {
   currentIndex?: number;
   totalSlides?: number;
   onSlideChange?: (index: number) => void;
+  priority?: boolean;
 }
 
 export interface ContentCardProps {

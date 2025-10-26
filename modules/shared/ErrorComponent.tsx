@@ -14,7 +14,7 @@ export default function ErrorComponent() {
         height={300}
         width={300}
         alt="Error"
-        className="dark:hidden"
+        className="dark:hidden w-auto"
         loading="lazy" // 레이지 로딩
       />
       <Image
@@ -22,7 +22,7 @@ export default function ErrorComponent() {
         height={300}
         width={300}
         alt="Error"
-        className="hidden dark:block"
+        className="hidden dark:block w-auto"
         loading="lazy" // 레이지 로딩
       />
       <h1 className="text-xl font-medium mb-6">

@@ -174,7 +174,9 @@ export function DocsLayout({
           className={cn(variables, props.containerProps?.className)}
         >
           {sidebarEnabled && sidebar}
-          <Suspense fallback={<LoadingCover />}>{children}</Suspense>
+          {/* <Suspense fallback={<LoadingCover />}> */}
+          {children}
+          {/* </Suspense> */}
         </LayoutBody>
       </NavProvider>
     </TreeContextProvider>

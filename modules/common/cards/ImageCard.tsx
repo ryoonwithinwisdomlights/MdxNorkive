@@ -13,6 +13,7 @@ import { ImageCardProps } from "@/types/components/cards";
 import CardBase from "@/modules/common/cards/CardBase";
 import ContentCard from "@/modules/common/cards/ContentCard";
 import LazyImage from "@/modules/shared/LazyImage";
+import OptimizedImage from "@/modules/shared/OptimizedImage";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -36,6 +37,7 @@ const ImageCard = React.memo(
         currentIndex = 0,
         totalSlides = 1,
         onSlideChange,
+        priority = false,
         ...props
       },
       ref
@@ -120,12 +122,19 @@ const ImageCard = React.memo(
         if (!data.imageUrl) return null;
 
         return (
-          <LazyImage
+          <OptimizedImage
             alt={data.title}
             src={data.imageUrl}
             className={imageClasses}
             width={isFeatured ? 400 : 300}
             height={isFeatured ? 250 : 200}
+            priority={priority}
+            sizes={
+              isFeatured
+                ? "(max-width: 768px) 100vw, 400px"
+                : "(max-width: 768px) 50vw, 300px"
+            }
+            quality={85}
           />
         );
       }, [

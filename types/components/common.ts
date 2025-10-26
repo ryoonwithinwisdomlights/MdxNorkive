@@ -30,6 +30,7 @@ export type ImgProps = {
   style?: React.CSSProperties;
   loading?: "lazy" | "eager";
   decoding?: "async" | "sync" | "auto";
+  fetchPriority?: "high" | "low" | "auto";
 };
 export type WindowSize = {
   width: number | undefined;
