@@ -444,7 +444,7 @@ SEO:         100/100 🔍
 
 **Ryoon with Wisdom Lights**
 
-- 웹사이트: https://www.ryoonwithwisdomtrees.world/
+
 - 이메일: ryoon.with.wisdomtrees@gmail.com
 - GitHub: [@ryoonwithinwisdomlights](https://github.com/ryoonwithinwisdomlights)
 
