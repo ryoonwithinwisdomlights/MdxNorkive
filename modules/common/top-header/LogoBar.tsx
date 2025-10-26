@@ -25,7 +25,10 @@ export default function LogoBar() {
           width={24}
           height={24}
           alt={BLOG.AUTHOR}
-          className="mr-2  "
+          className="mr-2"
+          priority={true}
+          sizes="24px"
+          quality={90}
         />
         {siteInfo?.title}
         <span className="text-xs flex flex-row  items-end mb-1  ">

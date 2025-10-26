@@ -1,10 +1,13 @@
-import "dotenv/config";
 import { config } from "dotenv";
 import path from "path";
-// Vercel 환경에서는 .env.local 파일을 로드하지 않음
-// 로컬 개발 환경에서만 .env.local 파일을 명시적으로 로드
-if (process.env.NODE_ENV !== "production" && !process.env.VERCEL) {
-  config({ path: path.resolve(process.cwd(), ".env.local") });
+
+// 서버 사이드에서만 dotenv 로드
+if (typeof window === "undefined") {
+  // Vercel 환경에서는 .env.local 파일을 로드하지 않음
+  // 로컬 개발 환경에서만 .env.local 파일을 명시적으로 로드
+  if (process.env.NODE_ENV !== "production" && !process.env.VERCEL) {
+    config({ path: path.resolve(process.cwd(), ".env.local") });
+  }
 }
 export const EXTERNAL_CONFIG = {
   DIR_NAME: "content",

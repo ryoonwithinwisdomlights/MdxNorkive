@@ -13,7 +13,6 @@ import { ImageCardProps } from "@/types/components/cards";
 import CardBase from "@/modules/common/cards/CardBase";
 import ContentCard from "@/modules/common/cards/ContentCard";
 import LazyImage from "@/modules/shared/LazyImage";
-import OptimizedImage from "@/modules/shared/OptimizedImage";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -37,7 +36,7 @@ const ImageCard = React.memo(
         currentIndex = 0,
         totalSlides = 1,
         onSlideChange,
-        priority = false,
+        priority = true,
         ...props
       },
       ref
@@ -121,20 +120,21 @@ const ImageCard = React.memo(
       const imageContent = useMemo(() => {
         if (!data.imageUrl) return null;
 
+        // 반응형 이미지 크기 설정 - LCP 최적화를 위해 더 작게
+        const responsiveSizes = isFeatured
+          ? "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 300px"
+          : "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 250px";
+
         return (
-          <OptimizedImage
+          <LazyImage
             alt={data.title}
             src={data.imageUrl}
             className={imageClasses}
-            width={isFeatured ? 400 : 300}
-            height={isFeatured ? 250 : 200}
+            width={isFeatured ? 300 : 250}
+            height={isFeatured ? 200 : 150}
             priority={priority}
-            sizes={
-              isFeatured
-                ? "(max-width: 768px) 100vw, 400px"
-                : "(max-width: 768px) 50vw, 300px"
-            }
-            quality={85}
+            sizes={responsiveSizes}
+            quality={75}
           />
         );
       }, [

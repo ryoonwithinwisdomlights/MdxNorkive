@@ -28,6 +28,7 @@ const AuthorInfoCard = () => {
           src={"/images/norkive_black.png"}
           className="rounded-full dark:border dark:border-neutral-300"
           width={120}
+          height={120}
           alt={BLOG.AUTHOR}
         />
       </Link>

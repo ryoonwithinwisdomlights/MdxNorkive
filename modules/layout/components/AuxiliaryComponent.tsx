@@ -20,7 +20,7 @@ const AuxiliaryBlogComponent = () => {
     <>
       {BLOG.DEBUG && <DebugPanel />}
       {!BLOG.CAN_COPY && <DisableCopy />}
-      {ANALYTICS_CONFIG.ANALYTICS_BUSUANZI_ENABLE && isMounted && <Busuanzi />}
+      {/* {ANALYTICS_CONFIG.ANALYTICS_BUSUANZI_ENABLE && isMounted && <Busuanzi />} */}
       {/* {ANALYTICS_CONFIG.ANALYTICS_VERCEL && <Analytics />} */}
       {ANALYTICS_CONFIG.ANAYLTICS_GOOGLE_ID && (
         <GoogleAnalytics

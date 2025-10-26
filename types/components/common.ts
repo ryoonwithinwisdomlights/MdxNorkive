@@ -16,6 +16,8 @@ export type LazyImageProps = {
   onLoad?: () => void;
   style?: React.CSSProperties;
   loading?: "lazy" | "eager";
+  sizes?: string;
+  quality?: number;
 };
 export type ImgProps = {
   ref: React.RefObject<HTMLImageElement | null>;
@@ -31,6 +33,7 @@ export type ImgProps = {
   loading?: "lazy" | "eager";
   decoding?: "async" | "sync" | "auto";
   fetchPriority?: "high" | "low" | "auto";
+  sizes?: string;
 };
 export type WindowSize = {
   width: number | undefined;

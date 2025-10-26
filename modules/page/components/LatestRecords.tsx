@@ -137,6 +137,7 @@ const LatestRecords = ({
           locale={locale}
           lang={lang}
           isSlider={false}
+          priority={true}
         />
       )}
 

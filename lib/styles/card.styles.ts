@@ -144,7 +144,6 @@ export const combinedImageContainerClasses = ({
     isLarge && "h-64",
     className
   );
-
 export const combinedImageClasses = ({
   isHorizontal,
   isVertical,
@@ -157,7 +156,7 @@ export const combinedImageClasses = ({
     isHorizontal && "h-56",
     isVertical && "h-48",
     isFeatured && "h-56 w-full",
-    isCompact ? "h-40 " : "h-48",
+    isCompact ? "h-40" : "h-48",
     className
   );
 

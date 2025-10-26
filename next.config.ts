@@ -12,6 +12,50 @@ const baseConfig: NextConfig = {
   output: "standalone",
   staticPageGenerationTimeout: 120,
 
+  // 이미지 최적화 설정
+  images: {
+    formats: ["image/webp", "image/avif"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 60,
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "source.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "gravatar.com",
+      },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "camo.githubusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "github.com",
+      },
+      {
+        protocol: "https",
+        hostname: "github.githubassets.com",
+      },
+    ],
+  },
+
   // React 19 호환성을 위한 설정
   experimental: {
     scrollRestoration: true,
@@ -107,61 +151,6 @@ const baseConfig: NextConfig = {
     }
 
     return config;
-  },
-
-  // 이미지 최적화 설정
-  images: {
-    // Image compression
-    formats: ["image/avif", "image/webp"],
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "gravatar.com",
-      },
-      {
-        protocol: "https",
-        hostname: "avatars.githubusercontent.com",
-      },
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-      {
-        protocol: "https",
-        hostname: "source.unsplash.com",
-      },
-      {
-        protocol: "https",
-        hostname: "p1.qhimg.com",
-      },
-      {
-        protocol: "https",
-        hostname: "ko-fi.com",
-      },
-      { protocol: "https", hostname: "abs.twimg.com" },
-      { protocol: "https", hostname: "pbs.twimg.com" },
-      { protocol: "https", hostname: "s3.us-west-2.amazonaws.com" },
-      {
-        protocol: "https",
-        hostname: "prod-files-secure.s3.us-west-2.amazonaws.com",
-      },
-      {
-        protocol: "https",
-        hostname: "github.githubassets.com",
-      },
-      {
-        protocol: "https",
-        hostname: "github.com",
-      },
-      {
-        protocol: "https",
-        hostname: "res.cloudinary.com",
-      },
-      {
-        protocol: "https",
-        hostname: "camo.githubusercontent.com",
-      },
-    ],
   },
 
   async headers() {

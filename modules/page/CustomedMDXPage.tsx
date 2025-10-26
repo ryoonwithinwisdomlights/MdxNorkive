@@ -128,13 +128,13 @@ export default function CustomedMDXPage({
                       </span>
                     </div>
                   </div>
-                  <div className="flex flex-row gap-2 items-center">
+                  {/* <div className="flex flex-row gap-2 items-center">
                     <span className=" flex flex-row gap-2 items-center text-white text-sm">
                       <Rocket className="w-4 h-4" />
                       <span>{RECORD.VIEW ?? "View"}</span>
                       <span className=" busuanzi_value_page_pv" />
                     </span>
-                  </div>
+                  </div> */}
                 </div>
 
                 <p className="mb-6 text-white/80">{page.data.summary}</p>

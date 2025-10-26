@@ -2,6 +2,7 @@
 
 import { IMG_LAZY_LOAD_PLACEHOLDER } from "@/constants/ui.constants";
 import { ImgProps, LazyImageProps } from "@/types/components/common";
+import { compressImage } from "@/lib/utils/image";
 import React, { useEffect, useRef, useState } from "react";
 
 /**
@@ -21,6 +22,8 @@ export default function LazyImage({
   title,
   onLoad,
   style,
+  sizes,
+  quality = 80,
 }: LazyImageProps) {
   const imageRef = useRef(null);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -59,10 +62,20 @@ export default function LazyImage({
     };
   }, []);
 
+  // 이미지 최적화된 URL 생성
+  const optimizedSrc =
+    compressImage({
+      image: src,
+      width: typeof width === "number" ? width : 800,
+      height: typeof height === "number" ? height : undefined,
+      quality,
+      fmt: "webp",
+    }) || src;
+
   // Dynamically add width, height and className properties only if they are valid values
   const imgProps: ImgProps = {
     ref: imageRef,
-    src: imageLoaded ? src : placeholderSrc,
+    src: imageLoaded ? optimizedSrc : placeholderSrc,
     alt: alt || "",
     onLoad: handleImageLoad,
     loading: "lazy",
@@ -90,6 +103,11 @@ export default function LazyImage({
   }
   if (style) {
     imgProps.style = style;
+  }
+
+  // sizes 속성 추가 (반응형 이미지)
+  if (sizes) {
+    imgProps.sizes = sizes;
   }
 
   // priority가 true면 loading="eager"와 fetchPriority="high"로 변경

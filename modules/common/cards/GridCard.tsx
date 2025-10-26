@@ -98,6 +98,10 @@ const GridCard = React.memo(
                 priority={false}
                 src={imageUrl}
                 className={imageClasses}
+                width={isCompact ? 200 : 300}
+                height={isCompact ? 150 : 200}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 300px"
+                quality={80}
               />
             ) : (
               <div
@@ -124,6 +128,7 @@ const GridCard = React.memo(
         title,
         imageContainerClasses,
         imageClasses,
+        isCompact,
       ]);
 
       const titleContent = useMemo(() => {
