@@ -205,29 +205,52 @@ norkive/
 │   └── submenupages/       # About, Contact
 │
 ├── lib/                     # Utilities & libraries
-│   ├── cache/              # Caching system
+│   ├── cache/              # Caching system (Redis, Memory)
 │   ├── context/            # React contexts
 │   ├── hooks/              # Custom hooks
+│   ├── stores/             # Zustand stores (theme, UI, search, settings)
+│   ├── plugins/            # Browser plugins (busuanzi analytics)
+│   ├── styles/             # Style utilities
 │   ├── utils/              # Helper functions
+│   │   ├── mdx-data-processing/  # MDX transformation pipeline
+│   │   │   ├── convert-unsafe-mdx/  # Link transformation
+│   │   │   ├── cloudinary/        # Image processing
+│   │   │   ├── data-manager.ts    # Content management
+│   │   │   └── mdx-validator.ts   # Validation
+│   │   ├── image.ts        # Image utilities
+│   │   ├── records.ts      # Record processing
+│   │   ├── notion-adaptor-utils.ts  # Notion adapter
+│   │   ├── youtube.ts      # YouTube utilities
+│   │   └── ...
 │   ├── cloudinary.ts       # Cloudinary config
 │   ├── redis.ts            # Redis config
 │   └── source.ts           # Content source
 │
 ├── modules/                 # UI components
 │   ├── common/             # Shared components
-│   │   ├── cards/          # Card components
-│   │   ├── buttons/        # Buttons
+│   │   ├── cards/          # Card components (ImageCard, GridCard)
+│   │   ├── buttons/        # Button components
+│   │   ├── tag/            # Tag components
 │   │   └── ...
 │   ├── layout/             # Layout components
 │   │   ├── Header.tsx
 │   │   ├── Footer.tsx
-│   │   └── Sidebar.tsx
+│   │   ├── Sidebar.tsx
+│   │   ├── templates/      # Layout templates
+│   │   └── navigation/     # Navigation components
 │   ├── mdx/                # MDX components
-│   │   ├── CodeBlock.tsx
-│   │   ├── Callout.tsx
+│   │   ├── YoutubeWrapper.tsx      # YouTube embed
+│   │   ├── FileWrapper.tsx         # File download
+│   │   ├── GoogleDriveWrapper.tsx  # Google Drive
+│   │   ├── EmbededWrapper.tsx      # Generic embed
+│   │   ├── BookMarkWrapper.tsx     # Bookmark
 │   │   └── ...
-│   ├── page/               # Page-specific
-│   └── shared/             # Shared across pages
+│   ├── page/               # Page-specific components
+│   │   ├── components/     # Memoized list components
+│   │   └── intropage/      # Intro page components
+│   └── shared/             # Shared utilities
+│       ├── loading/        # Loading states
+│       └── ...
 │
 ├── scripts/                 # Build scripts
 │   ├── notion-mdx-all-in-one.ts
@@ -294,6 +317,46 @@ export const BLOG = {
   // ...
 };
 ```
+
+### Directory Details
+
+#### `lib/stores/`
+
+Zustand stores for client state management:
+
+- `themeStore.ts` - Theme (light/dark) and locale management
+- `uiStore.ts` - UI state (sidebar, menus, modals)
+- `searchStore.ts` - Search functionality state
+- `settingsStore.ts` - User preferences
+
+#### `lib/utils/mdx-data-processing/`
+
+Advanced MDX transformation pipeline:
+
+- `convert-unsafe-mdx/` - Link transformation (YouTube, files, embeds)
+- `cloudinary/` - Image processing utilities
+- `data-manager.ts` - Content collection management
+- `mdx-validator.ts` - MDX content validation
+
+#### `modules/mdx/`
+
+Custom MDX wrapper components:
+
+- `YoutubeWrapper.tsx` - YouTube video embeds with lazy loading
+- `FileWrapper.tsx` - File download links with icons
+- `GoogleDriveWrapper.tsx` - Google Drive document links
+- `EmbededWrapper.tsx` - Generic iframe embeds (Figma, Maps, etc.)
+- `BookMarkWrapper.tsx` - Rich link previews
+
+#### `modules/page/components/`
+
+Memoized list components for performance:
+
+- `EntireRecords.tsx` - Full records list with filtering
+- `DateSortedRecords.tsx` - Records grouped by date
+- `LatestRecords.tsx` - Recent posts with pagination
+- `FeaturedRecords.tsx` - Featured content carousel
+- `RecordsWithMultiplesOfThree.tsx` - Grid layout
 
 ---
 
