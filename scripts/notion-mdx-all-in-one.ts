@@ -85,12 +85,6 @@ async function main() {
               does_not_equal: "Menu",
             },
           },
-          // {
-          //   property: "type",
-          //   select: {
-          //     does_not_equal: "SubMenuPages",
-          //   },
-          // },
           {
             property: "type",
             select: {
@@ -139,9 +133,7 @@ async function main() {
         `🔄 변경된 페이지: ${id} \n🔍 기존: ${existingTime}, 현재: ${last_edited_time}, 변경됨: ${isChanged}`
       );
     }
-    // else {
-    //   console.log(`✅ 변경 없음: ${id}`);
-    // }
+
     return isChanged;
   });
 
