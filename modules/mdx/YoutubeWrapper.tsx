@@ -1,8 +1,9 @@
 import * as React from "react";
-// import { LiteYouTubeEmbed } from "../../modules/shared/LiteYouTubeEmbed";
-import { getUrlParams, getYoutubeId } from "@/lib/utils";
+
+import { getUrlParams } from "@/lib/utils";
 import { WrapperProps } from "@/types/components/common";
 import { assetStyle } from "@/constants/ui.constants";
+import { getYoutubeId } from "@norkive/youtube-utils";
 
 const LiteYouTubeEmbed = React.lazy(() =>
   import("@/modules/shared/LiteYouTubeEmbed").then((module) => ({

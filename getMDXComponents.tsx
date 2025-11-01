@@ -12,11 +12,6 @@ import defaultMdxComponents from "fumadocs-ui/mdx";
 import * as icons from "lucide-react";
 import type { MDXComponents } from "mdx/types";
 
-// import FileWrapper from "@/modules/mdx/FileWrapper";
-// import GoogleDriveWrapper from "@/modules/mdx/GoogleDriveWrapper";
-// import YoutubeWrapper from "@/modules/mdx/YoutubeWrapper";
-// import EmbededWrapper from "@/modules/mdx/EmbededWrapper";
-// import BookMarkWrapper from "@/modules/mdx/BookMarkWrapper";
 const YoutubeWrapper = lazy(() => import("@/modules/mdx/YoutubeWrapper"));
 const EmbededWrapper = lazy(() => import("@/modules/mdx/EmbededWrapper"));
 const FileWrapper = lazy(() => import("@/modules/mdx/FileWrapper"));
