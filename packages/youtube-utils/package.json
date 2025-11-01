@@ -27,7 +27,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ryoonwithinwisdomlights/norkive.git",
+    "url": "https://github.com/ryoonwithinwisdomlights/MdxNorkive.git",
     "directory": "packages/youtube-utils"
   },
   "publishConfig": {
@@ -43,4 +43,3 @@
     "node": ">=18.0.0"
   }
 }
-
