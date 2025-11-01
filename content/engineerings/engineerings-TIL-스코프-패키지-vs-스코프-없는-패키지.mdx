@@ -1,0 +1,293 @@
+---
+title: '[TIL] 스코프 패키지 vs 스코프 없는 패키지'
+slug: engineerings-TIL-스코프-패키지-vs-스코프-없는-패키지
+summary: ''
+pageCover: >-
+  https://images.unsplash.com/photo-1593062096033-9a26b09da705?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb
+notionId: 29e1eb5c03378015a195dbc08b7d6c70
+password: ''
+type: ENGINEERINGS
+sub_type: TIL
+category: TIL
+tags:
+  - 개발TIL
+  - 기술로그
+favorite: true
+date: '2025-11-01'
+last_edited_time: '2025-11-01T09:41:00.000Z'
+lastEditedDate: 2025-11-01T09:41:00.000Z
+draft: false
+description: ''
+icon: ''
+full: false
+lastModified: '2025-11-01'
+readingTime: 17
+wordCount: 3346
+status: published
+author: ryoonwithinwisdomlights
+version: 1.0.0
+---
+
+# 스코프 패키지 vs 스코프 없는 패키지
+
+
+## 📦 기본 개념
+
+
+### 스코프 패키지
+
+
+```plain text
+@norkive/youtube-utils
+@babel/core
+@types/node
+@tanstack/react-query
+```
+
+
+### 스코프 없는 패키지
+
+
+```plain text
+lodash
+express
+react
+date-fns
+clsx
+```
+
+
+## 🎯 스코프 패키지를 사용하는 이유
+
+
+### 1. 네임스페이스 보호
+
+- ✅ 조직/회사 이름으로 패키지 이름 보호
+- ✅ 다른 사람이 같은 이름 사용 불가
+- ✅ 브랜드 일관성 유지
+
+<strong>예시:</strong>
+
+
+```plain text
+@norkive/youtube-utils  ← 나만 사용 가능
+@norkive/mdx-processor  ← 나만 사용 가능
+@norkive/react-hooks     ← 나만 사용 가능
+```
+
+
+### 2. 여러 패키지 그룹화
+
+- ✅ 관련 패키지들을 논리적으로 그룹화
+- ✅ 패키지 관리 용이
+- ✅ npm에서 한 번에 볼 수 있음
+
+<strong>예시:</strong>
+
+
+```plain text
+@babel/core
+@babel/preset-env
+@babel/preset-react
+```
+
+
+### 3. 조직/팀 협업
+
+- ✅ 팀 멤버들과 패키지 공유
+- ✅ 권한 관리 용이
+- ✅ 비즈니스 계정과 연동
+
+### 4. 전문성 표현
+
+- ✅ 더 전문적으로 보임
+- ✅ 오픈소스 프로젝트의 신뢰도 향상
+- ✅ 기업/조직 이미지
+
+## 📋 스코프 없는 패키지를 사용하는 이유
+
+
+### 1. 간단함
+
+- ✅ 더 짧은 이름
+- ✅ 타이핑이 적음
+- ✅ 조직 생성 불필요
+
+<strong>예시:</strong>
+
+
+```typescript
+import { clsx } from 'clsx';// 간단!import { clsx } from '@shadcn/clsx';// 더 길음
+```
+
+
+### 2. 전통적인 방식
+
+- ✅ npm 초기부터 사용
+- ✅ 널리 알려진 패키지들
+- ✅ 개발자들에게 친숙
+
+<strong>예시:</strong>
+
+
+```plain text
+react, vue, angular, express, lodash
+```
+
+
+### 3. 개인 프로젝트
+
+- ✅ 개인 개발자
+- ✅ 간단한 유틸리티
+- ✅ 조직 없이도 배포 가능
+
+### 4. 이름 충돌 우려 없음
+
+- ✅ 고유한 이름 사용
+- ✅ 단순한 프로젝트
+- ✅ 제한적인 사용
+
+## 📊 실제 사용 사례
+
+
+### 스코프 패키지 사용 예
+
+
+### 1. 대형 오픈소스 프로젝트
+
+
+```plain text
+@babel/*          - Babel 컴파일러
+@typescript/*     - TypeScript 관련
+@angular/*        - Angular 프레임워크
+@vuejs/*          - Vue.js
+```
+
+
+### 2. UI 라이브러리
+
+
+```plain text
+@radix-ui/*       - Radix UI 컴포넌트
+@headlessui/*     - Headless UI
+@shadcn/*         - shadcn/ui
+```
+
+
+### 3. 상태 관리
+
+
+```plain text
+@tanstack/react-query
+@reduxjs/toolkit
+@zustand/store
+```
+
+
+### 4. 회사/조직
+
+
+```plain text
+@google/*         - Google
+@microsoft/*     - Microsoft
+@vercel/*         - Vercel
+```
+
+
+### 스코프 없는 패키지 사용 예
+
+
+### 1. 널리 사용되는 라이브러리
+
+
+```plain text
+lodash           - 유틸리티
+express          - 웹 프레임워크
+axios             - HTTP 클라이언트
+moment            - 날짜 처리
+```
+
+
+### 2. 개인 개발자
+
+
+```plain text
+clsx              - 클래스명 유틸리티
+date-fns          - 날짜 라이브러리
+fuse.js           - 검색 라이브러리
+```
+
+
+### 3. 프레임워크
+
+
+```plain text
+react
+vue
+angular
+next (Next.js는 스코프 없음!)
+```
+
+
+## 🤔 어떤 것을 선택해야 할까?
+
+
+### 스코프 패키지 선택 시기 ✅
+
+1. <strong>여러 패키지를 만들 계획</strong>
+
+    ```plain text
+    @norkive/youtube-utils
+    @norkive/mdx-processor
+    @norkive/react-hooks
+    ```
+
+2. <strong>조직/팀과 협업</strong>
+    - 여러 사람이 관리
+    - 권한 공유 필요
+3. <strong>브랜드 일관성</strong>
+    - 회사/조직 이름 사용
+    - 전문적 이미지
+4. <strong>네임스페이스 보호</strong>
+    - 같은 이름 충돌 방지
+    - 장기적 사용 계획
+
+### 스코프 없는 패키지 선택 시기 ✅
+
+1. <strong>단일 패키지</strong>
+    - 하나의 패키지만 배포
+    - 간단한 유틸리티
+2. <strong>개인 프로젝트</strong>
+    - 개인 개발자
+    - 빠른 배포
+3. <strong>간단함 선호</strong>
+    - 짧은 이름
+    - 타이핑 적음
+4. <strong>이름 충돌 우려 없음</strong>
+    - 고유한 이름
+    - 제한적 사용
+
+## 💡 실제 통계
+
+
+### npm 다운로드 수 기준
+
+
+<strong>스코프 패키지 Top 5:</strong>
+
+1. <code>@types/node</code> - 수억 다운로드
+2. <code>@babel/core</code> - 수억 다운로드
+3. <code>@tanstack/react-query</code> - 수천만 다운로드
+4. <code>@radix-ui/react-dialog</code> - 수천만 다운로드
+5. <code>@types/react</code> - 수억 다운로드
+
+<strong>스코프 없는 패키지 Top 5:</strong>
+
+1. <code>lodash</code> - 수십억 다운로드
+2. <code>express</code> - 수십억 다운로드
+3. <code>react</code> - 수십억 다운로드
+4. <code>axios</code> - 수십억 다운로드
+5. <code>moment</code> - 수십억 다운로드
+
+→ <strong>둘 다 매우 성공적!</strong> 성공은 패키지 이름보다는 품질에 달려있습니다.
+
