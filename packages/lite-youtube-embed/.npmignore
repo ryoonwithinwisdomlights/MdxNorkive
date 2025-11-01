@@ -1,0 +1,11 @@
+node_modules/
+src/
+*.test.tsx
+*.test.ts
+tsconfig.json
+.eslintrc.json
+.vscode/
+.DS_Store
+.git/
+.gitignore
+

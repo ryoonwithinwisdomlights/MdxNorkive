@@ -12,7 +12,7 @@
 > A type-safe knowledge archive platform that converts Notion content to MDX and deploys as a static Next.js 15 blog
 
 🌐 **Live Demo**: https://mdx-norkive.vercel.app/  
-📦 **Repository**: https://github.com/ryoonwithinwisdomlights/norkive
+📦 **Repository**: https://github.com/ryoonwithinwisdomlights/MdxNorkive
 
 ---
 
@@ -58,8 +58,8 @@ Norkive is a modern knowledge management platform that bridges the gap between N
 
 ```bash
 # Clone the repository
-git clone https://github.com/ryoonwithinwisdomlights/norkive.git
-cd norkive
+git clone https://github.com/ryoonwithinwisdomlights/MdxNorkive.git
+cd MdxNorkive
 
 # Install dependencies
 npm install
@@ -447,6 +447,48 @@ This project is licensed under the [MIT License](LICENSE).
 
 - Email: ryoon.with.wisdomtrees@gmail.com
 - GitHub: [@ryoonwithinwisdomlights](https://github.com/ryoonwithinwisdomlights)
+
+---
+
+## 📦 Published npm Packages
+
+This project includes reusable packages published to npm:
+
+### @norkive/youtube-utils
+
+[![npm version](https://img.shields.io/npm/v/@norkive/youtube-utils)](https://www.npmjs.com/package/@norkive/youtube-utils)
+[![npm downloads](https://img.shields.io/npm/dm/@norkive/youtube-utils)](https://www.npmjs.com/package/@norkive/youtube-utils)
+
+Lightweight utility to extract YouTube video IDs from URLs. Zero dependencies, TypeScript support.
+
+```bash
+npm install @norkive/youtube-utils
+```
+
+```typescript
+import { getYoutubeId } from '@norkive/youtube-utils';
+
+const id = getYoutubeId('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+// 'dQw4w9WgXcQ'
+```
+
+**Features:**
+- ✅ Extract YouTube ID from various URL formats
+- ✅ Validate YouTube URLs
+- ✅ Zero Dependencies
+- ✅ TypeScript Support
+- ✅ Small Bundle Size (< 1KB)
+
+📖 [Full Documentation](https://www.npmjs.com/package/@norkive/youtube-utils)
+
+### More Packages Coming Soon
+
+- `@norkive/mdx-safe-processor` - Safe MDX content processor
+- `@norkive/lite-youtube-embed` - Lightweight YouTube embed component
+- `@norkive/mdx-validator` - MDX file validator
+- `@norkive/image-optimizer` - Image optimization utilities
+
+See [packages-guide](./packages-guide/README.md) for more information.
 
 ---
 

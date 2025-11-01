@@ -1,11 +1,11 @@
 {
   "name": "norkive",
   "version": "1.0",
-  "homepage": "https://github.com:ryoonwithinwisdomlights/norkive.git",
+  "homepage": "https://github.com/ryoonwithinwisdomlights/MdxNorkive.git",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ryoonwithinwisdomlights/norkive.git"
+    "url": "https://github.com/ryoonwithinwisdomlights/MdxNorkive.git"
   },
   "author": {
     "name": "ryoon.with.wisdomtrees",
@@ -95,7 +95,7 @@
     "node": ">=20.17.0"
   },
   "bugs": {
-    "url": "https://github.com/ryoonwithinwisdomlights/norkive/issues",
+    "url": "https://github.com/ryoonwithinwisdomlights/MdxNorkive/issues",
     "email": "devseryun@gmail.com"
   }
 }
