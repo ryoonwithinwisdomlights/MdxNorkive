@@ -1,6 +1,6 @@
 // 기존 함수들 (하위 호환성)
-export * from "./document-processor";
-export * from "./image-processor";
+// export * from "./document-processor";
+// export * from "./image-processor";
 
 // 새로운 구조 (의존성 주입)
 export { createMediaProcessor } from "./factory";

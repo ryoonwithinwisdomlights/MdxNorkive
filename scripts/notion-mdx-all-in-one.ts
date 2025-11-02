@@ -21,18 +21,7 @@ import {
   validateAndFixMdxContent,
 } from "@norkive/mdx-safe-processor";
 
-import {
-  createMediaProcessor,
-  type CloudinaryUploader,
-  type CacheManager,
-} from "@norkive/mdx-media-processor";
-import { imageCacheManager } from "@/lib/cache/image_cache_manager";
-import {
-  uploadImageFromUrl,
-  uploadPdfFromUrl,
-  uploadFileFromUrl,
-} from "@/lib/cloudinary";
-
+import { mediaProcessor } from "@/lib/media-processor-factory";
 // 이미지 최적화 기능 추가
 import {
   processMdxImagesToWebP,
@@ -54,41 +43,6 @@ const BASE_OUTPUT_DIR = path.join(process.cwd(), DEV_CONFIG.DIR_NAME);
 
 // ✅ 슬러그 중복 방지용 매니저
 const slugManager = new SlugManager();
-
-// Media Processor 초기화 (패키지 사용)
-const uploader: CloudinaryUploader = {
-  uploadFileFromUrl: async (url: string, fileName: string) => {
-    return await uploadFileFromUrl(url, fileName);
-  },
-  uploadImageFromUrl: async (url: string, fileName: string) => {
-    return await uploadImageFromUrl(url, fileName);
-  },
-  uploadPdfFromUrl: async (url: string, fileName: string) => {
-    return await uploadPdfFromUrl(url, fileName);
-  },
-};
-
-const cache: CacheManager = {
-  getCachedImageUrl: async (originalUrl: string) => {
-    return await imageCacheManager.getCachedImageUrl(originalUrl);
-  },
-  cacheImageUrl: async (
-    originalUrl: string,
-    cachedUrl: string,
-    metadata?: {
-      fileName?: string;
-      size?: number;
-      contentType?: string;
-    }
-  ) => {
-    await imageCacheManager.cacheImageUrl(originalUrl, cachedUrl, metadata);
-  },
-};
-
-const mediaProcessor = createMediaProcessor({
-  uploader,
-  cache,
-});
 
 async function main() {
   // content 디렉토리가 없으면 생성

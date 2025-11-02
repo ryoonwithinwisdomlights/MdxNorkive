@@ -3,7 +3,7 @@ import { config } from "dotenv";
 import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
-import { imageCacheManager } from "@/lib/cache/image_cache_manager";
+import { redisCacheManager } from "@/lib/cache/redis_cache_manager";
 import { EXTERNAL_CONFIG } from "@/config/external.config";
 
 if (process.env.NODE_ENV !== "production" && !process.env.VERCEL) {
@@ -93,7 +93,7 @@ class RedisImageProcessor {
    */
   private async getOrCreateProxyUrl(originalUrl: string): Promise<string> {
     // Redis에서 캐시된 URL 확인
-    const cachedUrl = await imageCacheManager.getCachedImageUrl(originalUrl);
+    const cachedUrl = await redisCacheManager.getCachedImageUrl(originalUrl);
 
     if (cachedUrl) {
       return cachedUrl;
@@ -105,7 +105,7 @@ class RedisImageProcessor {
     )}`;
 
     // Redis에 임시 캐시 정보 저장 (실제 이미지는 프록시 API에서 처리됨)
-    await imageCacheManager.cacheImageUrl(originalUrl, proxyUrl, {
+    await redisCacheManager.cacheImageUrl(originalUrl, proxyUrl, {
       fileName: this.extractFileName(originalUrl),
     });
 
@@ -170,7 +170,7 @@ class RedisImageProcessor {
     console.log(`   - 처리된 이미지: ${imageCount}개`);
 
     // Redis 캐시 통계 출력
-    const stats = await imageCacheManager.getCacheStats();
+    const stats = await redisCacheManager.getCacheStats();
     console.log(`   - Redis 캐시된 이미지: ${stats.totalImages}개`);
     console.log(`   - 만료된 이미지: ${stats.expiredCount}개`);
   }
@@ -207,7 +207,7 @@ class RedisImageProcessor {
    */
   async printCacheStats(): Promise<void> {
     try {
-      const stats = await imageCacheManager.getCacheStats();
+      const stats = await redisCacheManager.getCacheStats();
       console.log(`\n📊 Redis 이미지 캐시 통계:`);
       console.log(`   - 총 이미지: ${stats.totalImages}개`);
       console.log(

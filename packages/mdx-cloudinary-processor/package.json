@@ -1,7 +1,7 @@
 {
-  "name": "@norkive/mdx-media-processor",
+  "name": "@norkive/mdx-cloudinary-processor",
   "version": "1.0.0",
-  "description": "MDX content media processor with dependency injection. Process images and documents from Notion to Cloudinary or any uploader service.",
+  "description": "MDX content media processor with Cloudinary integration. Process images and documents from Notion to Cloudinary.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -31,10 +31,18 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/ryoonwithinwisdomlights/MdxNorkive.git",
-    "directory": "packages/mdx-media-processor"
+    "directory": "packages/mdx-cloudinary-processor"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "peerDependencies": {
+    "cloudinary": "^2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "cloudinary": {
+      "optional": false
+    }
   },
   "dependencies": {},
   "devDependencies": {

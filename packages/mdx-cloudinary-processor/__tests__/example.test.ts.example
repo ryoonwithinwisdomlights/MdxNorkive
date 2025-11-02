@@ -1,0 +1,212 @@
+/**
+ * Example test file for @norkive/mdx-cloudinary-processor
+ * 
+ * This is an example file showing how to test the package.
+ * Copy this file to __tests__/media-processor.test.ts and adjust as needed.
+ * 
+ * Installation:
+ * npm install --save-dev jest @types/jest ts-jest
+ */
+
+import {
+  createMediaProcessor,
+  initializeCloudinary,
+  setDefaultFolder,
+  type CloudinaryUploader,
+  type CacheManager,
+} from "@norkive/mdx-cloudinary-processor";
+
+// Mock Cloudinary
+jest.mock("cloudinary", () => ({
+  v2: {
+    config: jest.fn(),
+    uploader: {
+      upload: jest.fn().mockResolvedValue({
+        secure_url: "https://res.cloudinary.com/test/image/upload/v123/test.jpg",
+        public_id: "test",
+        width: 800,
+        height: 600,
+        format: "jpg",
+        bytes: 12345,
+      }),
+    },
+  },
+}));
+
+// Mock fetch for URL downloads
+global.fetch = jest.fn().mockResolvedValue({
+  ok: true,
+  arrayBuffer: async () => new ArrayBuffer(100),
+});
+
+describe("@norkive/mdx-cloudinary-processor", () => {
+  beforeAll(() => {
+    // Initialize Cloudinary with test credentials
+    initializeCloudinary({
+      cloud_name: "test-cloud",
+      api_key: "test-key",
+      api_secret: "test-secret",
+    });
+    setDefaultFolder("test-uploads");
+  });
+
+  describe("Without Cache", () => {
+    it("should process images without cache", async () => {
+      const mockUploader: CloudinaryUploader = {
+        uploadFileFromUrl: jest.fn().mockResolvedValue({
+          secure_url: "https://cloudinary.com/image.jpg",
+          public_id: "test-image",
+          width: 100,
+          height: 100,
+          format: "jpg",
+          bytes: 1000,
+        }),
+        uploadImageFromUrl: jest.fn().mockResolvedValue({
+          secure_url: "https://cloudinary.com/image.jpg",
+          public_id: "test-image",
+          width: 100,
+          height: 100,
+          format: "jpg",
+          bytes: 1000,
+        }),
+      };
+
+      const processor = createMediaProcessor({
+        uploader: mockUploader,
+        // cache is omitted
+      });
+
+      const content = "![test](https://notion.so/image.jpg)";
+      const result = await processor.processNotionImages(content);
+
+      expect(result).toContain("cloudinary.com");
+      expect(mockUploader.uploadImageFromUrl).toHaveBeenCalled();
+    });
+
+    it("should work even when cache is undefined", async () => {
+      const mockUploader: CloudinaryUploader = {
+        uploadFileFromUrl: jest.fn().mockResolvedValue({
+          secure_url: "https://cloudinary.com/doc.pdf",
+          public_id: "test-doc",
+          width: 0,
+          height: 0,
+          format: "pdf",
+          bytes: 5000,
+        }),
+      };
+
+      const processor = createMediaProcessor({
+        uploader: mockUploader,
+        cache: undefined, // Explicitly undefined
+      });
+
+      const content = "[document.pdf](https://notion.so/file.pdf)";
+      const result = await processor.processDocumentLinks(content);
+
+      expect(result).toContain("cloudinary.com");
+    });
+  });
+
+  describe("With Cache", () => {
+    it("should use cache when provided", async () => {
+      const mockUploader: CloudinaryUploader = {
+        uploadFileFromUrl: jest.fn().mockResolvedValue({
+          secure_url: "https://cloudinary.com/image.jpg",
+          public_id: "test-image",
+          width: 100,
+          height: 100,
+          format: "jpg",
+          bytes: 1000,
+        }),
+      };
+
+      const mockCache: CacheManager = {
+        getCachedImageUrl: jest.fn().mockResolvedValue("https://cached.com/image.jpg"),
+        cacheImageUrl: jest.fn(),
+      };
+
+      const processor = createMediaProcessor({
+        uploader: mockUploader,
+        cache: mockCache,
+      });
+
+      const content = "![test](https://notion.so/image.jpg)";
+      const result = await processor.processNotionImages(content);
+
+      // Should check cache first
+      expect(mockCache.getCachedImageUrl).toHaveBeenCalledWith("https://notion.so/image.jpg");
+      // Should return cached URL
+      expect(result).toContain("cached.com");
+      // Should NOT upload if cache hit
+      expect(mockUploader.uploadFileFromUrl).not.toHaveBeenCalled();
+    });
+
+    it("should upload and cache when cache miss", async () => {
+      const mockUploader: CloudinaryUploader = {
+        uploadFileFromUrl: jest.fn().mockResolvedValue({
+          secure_url: "https://cloudinary.com/new-image.jpg",
+          public_id: "new-image",
+          width: 200,
+          height: 200,
+          format: "jpg",
+          bytes: 2000,
+        }),
+      };
+
+      const mockCache: CacheManager = {
+        getCachedImageUrl: jest.fn().mockResolvedValue(null), // Cache miss
+        cacheImageUrl: jest.fn(),
+      };
+
+      const processor = createMediaProcessor({
+        uploader: mockUploader,
+        cache: mockCache,
+      });
+
+      const content = "![new](https://notion.so/new-image.jpg)";
+      const result = await processor.processNotionImages(content);
+
+      // Should check cache
+      expect(mockCache.getCachedImageUrl).toHaveBeenCalled();
+      // Should upload
+      expect(mockUploader.uploadFileFromUrl).toHaveBeenCalled();
+      // Should save to cache
+      expect(mockCache.cacheImageUrl).toHaveBeenCalled();
+      expect(result).toContain("cloudinary.com");
+    });
+  });
+
+  describe("Edge Cases", () => {
+    it("should handle errors gracefully", async () => {
+      const mockUploader: CloudinaryUploader = {
+        uploadFileFromUrl: jest.fn().mockRejectedValue(new Error("Upload failed")),
+      };
+
+      const processor = createMediaProcessor({
+        uploader: mockUploader,
+      });
+
+      await expect(
+        processor.processNotionImages("![test](https://invalid.url/image.jpg)")
+      ).rejects.toThrow();
+    });
+
+    it("should skip non-Notion URLs", async () => {
+      const mockUploader: CloudinaryUploader = {
+        uploadFileFromUrl: jest.fn(),
+      };
+
+      const processor = createMediaProcessor({
+        uploader: mockUploader,
+      });
+
+      // Regular HTTPS URL should not be processed
+      const content = "![test](https://example.com/image.jpg)";
+      const result = await processor.processNotionImages(content);
+
+      expect(result).toBe(content); // Should remain unchanged
+      expect(mockUploader.uploadFileFromUrl).not.toHaveBeenCalled();
+    });
+  });
+});
+

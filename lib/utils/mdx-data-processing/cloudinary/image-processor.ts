@@ -6,8 +6,8 @@
  * 이 함수들은 하위 호환성을 위해 유지되며, 내부적으로 MediaProcessor를 사용합니다.
  */
 
-import { imageCacheManager } from "@/lib/cache/image_cache_manager";
-import { uploadImageFromUrl } from "@/lib/cloudinary";
+import { redisCacheManager } from "@/lib/cache/redis_cache_manager";
+import { uploadImageFromUrl } from "@norkive/mdx-cloudinary-processor";
 import { createMediaProcessor } from "./factory";
 import type { CacheManager, CloudinaryUploader } from "./types";
 
@@ -30,10 +30,10 @@ function getDefaultProcessor() {
 
     const cache: CacheManager = {
       getCachedImageUrl: async (originalUrl) => {
-        return await imageCacheManager.getCachedImageUrl(originalUrl);
+        return await redisCacheManager.getCachedImageUrl(originalUrl);
       },
       cacheImageUrl: async (originalUrl, cachedUrl, metadata) => {
-        await imageCacheManager.cacheImageUrl(originalUrl, cachedUrl, metadata);
+        await redisCacheManager.cacheImageUrl(originalUrl, cachedUrl, metadata);
       },
     };
 
