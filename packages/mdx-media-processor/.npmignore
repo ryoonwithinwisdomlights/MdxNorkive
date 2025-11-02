@@ -1,0 +1,27 @@
+# 소스 파일
+src/
+tsconfig.json
+
+# 개발 파일
+*.test.ts
+*.spec.ts
+
+# 빌드 도구
+node_modules/
+*.log
+.DS_Store
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 기타
+.env
+.env.local
+

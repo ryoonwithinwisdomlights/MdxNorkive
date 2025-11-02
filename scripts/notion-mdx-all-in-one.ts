@@ -19,17 +19,20 @@ import {
   decodeUrlEncodedLinks,
   processMdxContentWithLoggingFn,
   validateAndFixMdxContent,
-} from "@/lib/utils/mdx-data-processing/convert-unsafe-mdx";
+} from "@norkive/mdx-safe-processor";
 
+// 패키지에서 직접 import
 import {
-  printDocumentStats,
-  printImageStats,
-  processDocumentLinks,
-  processNotionImages,
-  processPageCover,
-  resetDocumentStats,
-  resetImageStats,
-} from "@/lib/utils/mdx-data-processing/cloudinary";
+  createMediaProcessor,
+  type CloudinaryUploader,
+  type CacheManager,
+} from "@norkive/mdx-media-processor";
+import { imageCacheManager } from "@/lib/cache/image_cache_manager";
+import {
+  uploadImageFromUrl,
+  uploadPdfFromUrl,
+  uploadFileFromUrl,
+} from "@/lib/cloudinary";
 
 // 이미지 최적화 기능 추가
 import {
@@ -53,9 +56,40 @@ const BASE_OUTPUT_DIR = path.join(process.cwd(), DEV_CONFIG.DIR_NAME);
 // ✅ 슬러그 중복 방지용 매니저
 const slugManager = new SlugManager();
 
-// 통계 초기화
-resetImageStats();
-resetDocumentStats();
+// Media Processor 초기화 (패키지 사용)
+const uploader: CloudinaryUploader = {
+  uploadFileFromUrl: async (url: string, fileName: string) => {
+    return await uploadFileFromUrl(url, fileName);
+  },
+  uploadImageFromUrl: async (url: string, fileName: string) => {
+    return await uploadImageFromUrl(url, fileName);
+  },
+  uploadPdfFromUrl: async (url: string, fileName: string) => {
+    return await uploadPdfFromUrl(url, fileName);
+  },
+};
+
+const cache: CacheManager = {
+  getCachedImageUrl: async (originalUrl: string) => {
+    return await imageCacheManager.getCachedImageUrl(originalUrl);
+  },
+  cacheImageUrl: async (
+    originalUrl: string,
+    cachedUrl: string,
+    metadata?: {
+      fileName?: string;
+      size?: number;
+      contentType?: string;
+    }
+  ) => {
+    await imageCacheManager.cacheImageUrl(originalUrl, cachedUrl, metadata);
+  },
+};
+
+const mediaProcessor = createMediaProcessor({
+  uploader,
+  cache,
+});
 
 async function main() {
   // content 디렉토리가 없으면 생성
@@ -181,18 +215,22 @@ async function main() {
 
         let enhancedContent = content;
 
-        // 노션 이미지를 Cloudinary URL로 변환
+        // 노션 이미지를 Cloudinary URL로 변환 (패키지 사용)
         console.log(`🖼️ 이미지 처리 시작: ${slug}`);
-        enhancedContent = await processNotionImages(enhancedContent);
+        enhancedContent = await mediaProcessor.processNotionImages(
+          enhancedContent
+        );
 
-        // 문서 링크를 Cloudinary URL로 변환
+        // 문서 링크를 Cloudinary URL로 변환 (패키지 사용)
         console.log(`📄 문서 링크 처리 시작: ${slug}`);
-        enhancedContent = await processDocumentLinks(enhancedContent);
+        enhancedContent = await mediaProcessor.processDocumentLinks(
+          enhancedContent
+        );
 
-        // pageCover 이미지를 Cloudinary URL로 변환
+        // pageCover 이미지를 Cloudinary URL로 변환 (패키지 사용)
         if (pageCover) {
           console.log(`🖼️ pageCover 처리 시작: ${slug}`);
-          pageCover = await processPageCover(pageCover);
+          pageCover = await mediaProcessor.processPageCover(pageCover);
         }
 
         // 🆕 WebP 이미지 최적화 적용
@@ -267,9 +305,9 @@ async function main() {
     }
   }
 
-  // 통계 출력
-  printImageStats();
-  printDocumentStats();
+  // 통계 출력 (패키지 사용)
+  mediaProcessor.printImageStats();
+  mediaProcessor.printDocumentStats();
 
   // 함수형 파이프라인 통계 출력
   console.log("\n📊 함수형 MDX 파이프라인 통계:");

@@ -33,6 +33,10 @@
     "measure:all": "npm run build && npm run measure:bundle"
   },
   "dependencies": {
+    "@norkive/mdx-media-processor": "file:./packages/mdx-media-processor",
+    "@norkive/youtube-utils": "file:./packages/youtube-utils",
+    "@norkive/mdx-safe-processor": "file:./packages/mdx-safe-processor",
+    "@norkive/lite-youtube-embed": "file:./packages/lite-youtube-embed",
     "@bprogress/next": "^3.2.12",
     "@content-collections/core": "^0.10.0",
     "@content-collections/mdx": "^0.2.2",
