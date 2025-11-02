@@ -14,4 +14,4 @@ export {
   MDX_CONSTANTS,
   MDX_CONTENT_PATTERNS,
   MDX_LINK_PATTERNS,
-} from '@norkive/mdx-safe-processor';
+} from "@norkive/mdx-safe-processor";

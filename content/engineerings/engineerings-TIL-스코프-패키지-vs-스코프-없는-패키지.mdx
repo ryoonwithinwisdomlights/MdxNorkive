@@ -14,21 +14,141 @@ tags:
   - 기술로그
 favorite: true
 date: '2025-11-01'
-last_edited_time: '2025-11-01T09:41:00.000Z'
-lastEditedDate: 2025-11-01T09:41:00.000Z
+last_edited_time: '2025-11-01T10:01:00.000Z'
+lastEditedDate: 2025-11-01T10:01:00.000Z
 draft: false
 description: ''
 icon: ''
 full: false
-lastModified: '2025-11-01'
-readingTime: 17
-wordCount: 3346
+lastModified: '2025-11-02'
+readingTime: 27
+wordCount: 5339
 status: published
 author: ryoonwithinwisdomlights
 version: 1.0.0
 ---
 
-# 스코프 패키지 vs 스코프 없는 패키지
+# 1.npm 스코프 패키지 배포 가이드
+
+
+## 🔴 문제: Scope not found
+
+
+스코프 패키지(<code>@norkive/youtube-utils</code>)를 배포하려면 먼저 npm에 스코프를 생성해야 합니다.
+
+
+## ✅ 해결 방법
+
+
+### 방법 1: npm 조직 생성 (권장)
+
+1. <strong>npm 웹사이트에서 조직 생성</strong>
+    - [https://www.npmjs.com/org/create](https://www.npmjs.com/org/create) 접속
+    - 조직 이름: <code>norkive</code> (소문자만 가능)
+    - 조직 유형: Free (공개 패키지)
+2. <strong>조직 생성 후 다시 배포</strong>
+
+    ```bash
+    cd packages/youtube-utils
+    npm publish --access public
+    ```
+
+
+### 방법 2: 스코프 없이 배포 (간단)
+
+
+패키지 이름을 변경하여 스코프 없이 배포:
+
+1. <strong>package.json 수정</strong>
+
+    ```json
+    {
+      "name": "norkive-youtube-utils",// @norkive 제거
+      ...
+    }
+    ```
+
+2. <strong>프로젝트에서 import 경로 변경</strong>
+
+    ```typescript
+    // lib/utils/youtube.tsexport { getYoutubeId, isValidYoutubeUrl, getYoutubeParams } from 'norkive-youtube-utils';
+    ```
+
+3. <strong>npm link 업데이트</strong>
+
+    ```bash
+    npm unlink @norkive/youtube-utils
+    cd packages/youtube-utils
+    npm link
+    cd ../..
+    npm link norkive-youtube-utils
+    ```
+
+4. <strong>배포</strong>
+
+    ```bash
+    cd packages/youtube-utils
+    npm publish --access public
+    ```
+
+
+## 🎯 권장: 방법 1 (조직 생성)
+
+
+스코프를 사용하는 것이 더 전문적이고 깔끔합니다:
+
+- ✅ 여러 패키지를 체계적으로 관리
+- ✅ 네임스페이스 보호
+- ✅ 향후 확장성
+
+## 📝 단계별 가이드
+
+
+### Step 1: npm 조직 생성
+
+1. [https://www.npmjs.com/org/create](https://www.npmjs.com/org/create) 접속
+2. 조직 이름 입력: <code>norkive</code>
+3. 이메일 확인
+4. 조직 생성 완료
+
+### Step 2: 조직 멤버 확인
+
+
+조직이 생성되면 자동으로 소유자가 됩니다.
+
+
+### Step 3: 패키지 배포
+
+
+```bash
+cd packages/youtube-utils
+npm publish --access public
+```
+
+
+### Step 4: 확인
+
+
+배포 후 [https://www.npmjs.com/package/@norkive/youtube-utils](https://www.npmjs.com/package/@norkive/youtube-utils) 에서 확인
+
+
+## ⚠️ 주의사항
+
+1. <strong>조직 이름은 소문자만 가능</strong>
+    - ✅ <code>norkive</code>
+    - ❌ <code>Norkive</code>, <code>Norkive-Utils</code>
+2. <strong>조직 이름은 고유해야 함</strong>
+    - 이미 사용 중인 이름이면 다른 이름 사용
+3. <strong>공개 패키지는 무료</strong>
+    - Free 조직으로 충분
+
+## 🔧 현재 상황
+
+
+현재 에러는 스코프가 없어서 발생한 것입니다. 조직을 만들면 해결됩니다!
+
+
+# 2.스코프 패키지 vs 스코프 없는 패키지
 
 
 ## 📦 기본 개념

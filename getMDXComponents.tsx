@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import React, { lazy, Suspense } from "react";
 import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
 import * as CalloutComponents from "fumadocs-ui/components/callout";
 import * as CodeBlockComponents from "fumadocs-ui/components/codeblock";
@@ -12,13 +12,44 @@ import defaultMdxComponents from "fumadocs-ui/mdx";
 import * as icons from "lucide-react";
 import type { MDXComponents } from "mdx/types";
 
-const YoutubeWrapper = lazy(() => import("@/modules/mdx/YoutubeWrapper"));
-const EmbededWrapper = lazy(() => import("@/modules/mdx/EmbededWrapper"));
-const FileWrapper = lazy(() => import("@/modules/mdx/FileWrapper"));
-const GoogleDriveWrapper = lazy(
+const YoutubeWrapperLazy = lazy(() => import("@/modules/mdx/YoutubeWrapper"));
+const EmbededWrapperLazy = lazy(() => import("@/modules/mdx/EmbededWrapper"));
+const FileWrapperLazy = lazy(() => import("@/modules/mdx/FileWrapper"));
+const GoogleDriveWrapperLazy = lazy(
   () => import("@/modules/mdx/GoogleDriveWrapper")
 );
-const BookMarkWrapper = lazy(() => import("@/modules/mdx/BookMarkWrapper"));
+const BookMarkWrapperLazy = lazy(() => import("@/modules/mdx/BookMarkWrapper"));
+
+// Wrapper components that handle Suspense for lazy-loaded components
+const YoutubeWrapper = (props: any) => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <YoutubeWrapperLazy {...props} />
+  </Suspense>
+);
+
+const EmbededWrapper = (props: any) => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <EmbededWrapperLazy {...props} />
+  </Suspense>
+);
+
+const FileWrapper = (props: any) => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <FileWrapperLazy {...props} />
+  </Suspense>
+);
+
+const GoogleDriveWrapper = (props: any) => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <GoogleDriveWrapperLazy {...props} />
+  </Suspense>
+);
+
+const BookMarkWrapper = (props: any) => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <BookMarkWrapperLazy {...props} />
+  </Suspense>
+);
 // 일반 링크를 위한 컴포넌트 (PDF, Google Drive, 외부 링크)
 const CustomLinkComponent = ({
   href,
@@ -49,8 +80,8 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ...defaultMdxComponents,
     ...TabsComponents,
     ...FilesComponents,
-    Accordion,
-    Accordions,
+    Accordion: (props: any) => <Accordion {...props} />,
+    Accordions: (props: any) => <Accordions {...props} />,
     ...CalloutComponents,
     ...HeadingComponents,
     TypeTable,
@@ -65,5 +96,5 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     GoogleDriveWrapper,
     BookMarkWrapper,
     ...components,
-  };
+  } as MDXComponents;
 }
