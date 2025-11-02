@@ -21,7 +21,6 @@ import {
   validateAndFixMdxContent,
 } from "@norkive/mdx-safe-processor";
 
-// 패키지에서 직접 import
 import {
   createMediaProcessor,
   type CloudinaryUploader,
