@@ -13,7 +13,7 @@ import {
   generateCompleteMdxFile,
   getExistingEndDates,
   SlugManager,
-} from "@/lib/utils/mdx-data-processing";
+} from "@/lib/utils/mdx-data-processing/data-manager";
 
 import {
   decodeUrlEncodedLinks,

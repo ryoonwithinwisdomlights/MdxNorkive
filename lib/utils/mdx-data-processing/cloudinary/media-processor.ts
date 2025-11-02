@@ -1,5 +1,6 @@
 /**
  * Media Processor 클래스
+ *  * @deprecated
  * 의존성 주입을 통한 유연한 미디어 처리
  */
 
@@ -57,7 +58,9 @@ export class MediaProcessor {
 
     // Notion 만료 이미지 URL인지 확인
     if (this.isNotionExpiringImageUrl(pageCover)) {
-      console.log(`🖼️ Notion 만료 pageCover 처리: ${this.extractFileName(pageCover)}`);
+      console.log(
+        `🖼️ Notion 만료 pageCover 처리: ${this.extractFileName(pageCover)}`
+      );
       const cloudinaryUrl = await this.getOrCreateCloudinaryUrl(
         pageCover,
         "pagecover"
@@ -83,9 +86,16 @@ export class MediaProcessor {
       const [fullMatch, alt, imageUrl] = match;
 
       // alt 텍스트에 파일 확장자가 있고, 그 확장자가 이미지이고, URL이 Notion URL인 경우만 처리
-      if (alt && this.isImageFile(alt) && this.isNotionImageOrFileUrl(imageUrl)) {
+      if (
+        alt &&
+        this.isImageFile(alt) &&
+        this.isNotionImageOrFileUrl(imageUrl)
+      ) {
         console.log(`🖼️ 이미지 파일 감지: ${alt}`);
-        const cloudinaryUrl = await this.getOrCreateCloudinaryUrl(imageUrl, "content");
+        const cloudinaryUrl = await this.getOrCreateCloudinaryUrl(
+          imageUrl,
+          "content"
+        );
         const newImageTag = `![${alt}](${cloudinaryUrl})`;
         processedContent = processedContent.replace(fullMatch, newImageTag);
         this.imageStats.processedImagesCount++;
@@ -100,7 +110,10 @@ export class MediaProcessor {
       const [fullMatch, imageUrl] = match;
 
       if (this.isNotionImageOrFileUrl(imageUrl)) {
-        const cloudinaryUrl = await this.getOrCreateCloudinaryUrl(imageUrl, "content");
+        const cloudinaryUrl = await this.getOrCreateCloudinaryUrl(
+          imageUrl,
+          "content"
+        );
         const newImageTag = fullMatch.replace(imageUrl, cloudinaryUrl);
         processedContent = processedContent.replace(fullMatch, newImageTag);
         this.imageStats.processedImagesCount++;
@@ -150,11 +163,15 @@ export class MediaProcessor {
 
             // 캐시에 저장
             if (this.cache) {
-              await this.cache.cacheImageUrl(documentUrl, cloudinaryResult.secure_url, {
-                fileName: fileName,
-                size: cloudinaryResult.bytes,
-                contentType: `application/${cloudinaryResult.format}`,
-              });
+              await this.cache.cacheImageUrl(
+                documentUrl,
+                cloudinaryResult.secure_url,
+                {
+                  fileName: fileName,
+                  size: cloudinaryResult.bytes,
+                  contentType: `application/${cloudinaryResult.format}`,
+                }
+              );
             }
 
             cloudinaryUrl = cloudinaryResult.secure_url;
@@ -199,7 +216,9 @@ export class MediaProcessor {
       }
 
       // 캐시된 URL이 없으면 업로드
-      console.log(`☁️ Cloudinary 업로드 시작: ${this.extractFileName(originalUrl)}`);
+      console.log(
+        `☁️ Cloudinary 업로드 시작: ${this.extractFileName(originalUrl)}`
+      );
       const fileName = this.extractFileName(originalUrl);
       const uploadMethod =
         this.uploader.uploadImageFromUrl || this.uploader.uploadFileFromUrl;
@@ -207,11 +226,15 @@ export class MediaProcessor {
 
       // 캐시에 저장
       if (this.cache) {
-        await this.cache.cacheImageUrl(originalUrl, cloudinaryResult.secure_url, {
-          fileName: fileName,
-          size: cloudinaryResult.bytes,
-          contentType: `image/${cloudinaryResult.format}`,
-        });
+        await this.cache.cacheImageUrl(
+          originalUrl,
+          cloudinaryResult.secure_url,
+          {
+            fileName: fileName,
+            size: cloudinaryResult.bytes,
+            contentType: `image/${cloudinaryResult.format}`,
+          }
+        );
       }
 
       this.imageStats.cloudinaryUploadCount++;
@@ -263,7 +286,9 @@ export class MediaProcessor {
    * Notion 만료 이미지 URL인지 확인
    */
   isNotionExpiringImageUrl(url: string): boolean {
-    return url.startsWith("https://prod-files-secure.s3.us-west-2.amazonaws.com");
+    return url.startsWith(
+      "https://prod-files-secure.s3.us-west-2.amazonaws.com"
+    );
   }
 
   /**
@@ -330,8 +355,12 @@ export class MediaProcessor {
    */
   printImageStats(): void {
     console.log("\n📊 이미지 처리 통계:");
-    console.log(`   - 총 처리된 이미지: ${this.imageStats.processedImagesCount}개`);
-    console.log(`   - Cloudinary 업로드: ${this.imageStats.cloudinaryUploadCount}개`);
+    console.log(
+      `   - 총 처리된 이미지: ${this.imageStats.processedImagesCount}개`
+    );
+    console.log(
+      `   - Cloudinary 업로드: ${this.imageStats.cloudinaryUploadCount}개`
+    );
     console.log(`   - 캐시 히트: ${this.imageStats.cacheHitCount}개`);
     console.log(
       `   - 처리된 pageCover: ${this.imageStats.processedPageCoversCount}개`
@@ -343,10 +372,11 @@ export class MediaProcessor {
    */
   printDocumentStats(): void {
     console.log("\n📄 문서 처리 통계:");
-    console.log(`   - 총 처리된 문서: ${this.documentStats.processedFilesCount}개`);
+    console.log(
+      `   - 총 처리된 문서: ${this.documentStats.processedFilesCount}개`
+    );
     console.log(
       `   - Cloudinary 문서 업로드: ${this.documentStats.cloudinaryFileUploadCount}개`
     );
   }
 }
-

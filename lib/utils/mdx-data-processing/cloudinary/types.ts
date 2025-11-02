@@ -1,6 +1,7 @@
 /**
  * Media Processor 타입 정의
  * 패키지화를 위한 인터페이스 정의
+ *  * @deprecated v2에서 사용하지 않음
  */
 
 import { CloudinaryUploadResult } from "@/types/cloudinaty.model";
@@ -16,7 +17,10 @@ export interface CloudinaryUploader {
    * @param fileName 파일명
    * @returns 업로드 결과
    */
-  uploadFileFromUrl(url: string, fileName: string): Promise<CloudinaryUploadResult>;
+  uploadFileFromUrl(
+    url: string,
+    fileName: string
+  ): Promise<CloudinaryUploadResult>;
 
   /**
    * 이미지 업로드 (호환성을 위한 별도 메서드, 내부적으로 uploadFileFromUrl 사용 가능)
@@ -24,7 +28,10 @@ export interface CloudinaryUploader {
    * @param fileName 파일명
    * @returns 업로드 결과
    */
-  uploadImageFromUrl?(url: string, fileName: string): Promise<CloudinaryUploadResult>;
+  uploadImageFromUrl?(
+    url: string,
+    fileName: string
+  ): Promise<CloudinaryUploadResult>;
 
   /**
    * PDF/문서 업로드 (호환성을 위한 별도 메서드, 내부적으로 uploadFileFromUrl 사용 가능)
@@ -32,7 +39,10 @@ export interface CloudinaryUploader {
    * @param fileName 파일명
    * @returns 업로드 결과
    */
-  uploadPdfFromUrl?(url: string, fileName: string): Promise<CloudinaryUploadResult>;
+  uploadPdfFromUrl?(
+    url: string,
+    fileName: string
+  ): Promise<CloudinaryUploadResult>;
 }
 
 /**
@@ -100,4 +110,3 @@ export interface DocumentProcessorStats {
   processedFilesCount: number;
   cloudinaryFileUploadCount: number;
 }
-

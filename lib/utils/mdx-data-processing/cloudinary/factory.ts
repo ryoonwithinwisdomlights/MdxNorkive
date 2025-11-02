@@ -1,6 +1,7 @@
 /**
  * Media Processor 팩토리 함수
  * 의존성 주입을 통한 프로세서 생성
+ *  * @deprecated
  */
 
 import { MediaProcessor } from "./media-processor";
