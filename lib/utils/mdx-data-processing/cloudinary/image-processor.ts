@@ -1,195 +1,151 @@
 /**
  * Notion 이미지 처리 유틸리티
  * Notion에서 가져온 이미지들을 Cloudinary로 변환하고 캐시 관리
+ *
+ * @deprecated 새로운 코드에서는 MediaProcessor를 직접 사용하세요.
+ * 이 함수들은 하위 호환성을 위해 유지되며, 내부적으로 MediaProcessor를 사용합니다.
  */
 
-import { IMAGE_EXTENSIONS } from "@/constants/mdx.constants";
 import { imageCacheManager } from "@/lib/cache/image_cache_manager";
 import { uploadImageFromUrl } from "@/lib/cloudinary";
+import { createMediaProcessor } from "./factory";
+import type { CacheManager, CloudinaryUploader } from "./types";
 
-// 이미지 처리 통계
+// 기본 프로세서 인스턴스 (싱글톤 패턴)
+let defaultProcessor: ReturnType<typeof createMediaProcessor> | null = null;
+
+/**
+ * 기본 프로세서 초기화 (기존 코드와의 호환성을 위해)
+ */
+function getDefaultProcessor() {
+  if (!defaultProcessor) {
+    const uploader: CloudinaryUploader = {
+      uploadFileFromUrl: async (url, fileName) => {
+        return await uploadImageFromUrl(url, fileName);
+      },
+      uploadImageFromUrl: async (url, fileName) => {
+        return await uploadImageFromUrl(url, fileName);
+      },
+    };
+
+    const cache: CacheManager = {
+      getCachedImageUrl: async (originalUrl) => {
+        return await imageCacheManager.getCachedImageUrl(originalUrl);
+      },
+      cacheImageUrl: async (originalUrl, cachedUrl, metadata) => {
+        await imageCacheManager.cacheImageUrl(originalUrl, cachedUrl, metadata);
+      },
+    };
+
+    defaultProcessor = createMediaProcessor({
+      uploader,
+      cache,
+    });
+  }
+  return defaultProcessor;
+}
+
+// 이미지 처리 통계 (기존 변수와 호환)
 export let processedImagesCount = 0;
 export let cloudinaryUploadCount = 0;
 export let cacheHitCount = 0;
 export let processedPageCoversCount = 0;
 
 /**
+ * 통계 동기화 헬퍼
+ */
+function syncStats() {
+  const processor = getDefaultProcessor();
+  const stats = processor.getImageStats();
+  processedImagesCount = stats.processedImagesCount;
+  cloudinaryUploadCount = stats.cloudinaryUploadCount;
+  cacheHitCount = stats.cacheHitCount;
+  processedPageCoversCount = stats.processedPageCoversCount;
+}
+
+/**
  * 페이지 커버 이미지 처리
+ * @deprecated 새로운 코드에서는 MediaProcessor를 직접 사용하세요
  */
 export async function processPageCover(
   pageCover: string | null
 ): Promise<string | null> {
-  if (!pageCover) return null;
-
-  // Unsplash 이미지 URL인지 확인
-  if (isUnsplashImageUrl(pageCover)) {
-    return pageCover;
-  }
-
-  // Notion 만료 이미지 URL인지 확인
-  if (isNotionExpiringImageUrl(pageCover)) {
-    console.log(`🖼️ Notion 만료 pageCover 처리: ${extractFileName(pageCover)}`);
-    const cloudinaryUrl = await getOrCreateCloudinaryUrl(
-      pageCover,
-      "pagecover"
-    );
-    processedPageCoversCount++;
-    return cloudinaryUrl;
-  }
-
-  // 이미 Cloudinary URL이거나 다른 안전한 URL인 경우 그대로 반환
-  return pageCover;
+  const processor = getDefaultProcessor();
+  const result = await processor.processPageCover(pageCover);
+  syncStats();
+  return result;
 }
 
 /**
  * 노션 이미지 URL을 Cloudinary URL로 변환
+ * @deprecated 새로운 코드에서는 MediaProcessor를 직접 사용하세요
  */
 export async function processNotionImages(content: string): Promise<string> {
-  // 마크다운 이미지 문법 처리: ![alt](url)
-  const markdownImageRegex = /!\[([^\]]*)\]\(([^)]+)\)/g;
-  let processedContent = content;
-
-  const markdownMatches = [...content.matchAll(markdownImageRegex)];
-  for (const match of markdownMatches) {
-    const [fullMatch, alt, imageUrl] = match;
-
-    // alt 텍스트에 파일 확장자가 있고, 그 확장자가 이미지이고, URL이 Notion URL인 경우만 처리
-    if (alt && isImageFile(alt) && isNotionImageOrFileUrl(imageUrl)) {
-      console.log(`🖼️ 이미지 파일 감지: ${alt}`);
-      const cloudinaryUrl = await getOrCreateCloudinaryUrl(imageUrl, "content");
-      const newImageTag = `![${alt}](${cloudinaryUrl})`;
-      processedContent = processedContent.replace(fullMatch, newImageTag);
-      processedImagesCount++;
-    }
-  }
-
-  // HTML img 태그 처리: <img src="url">
-  const htmlImageRegex = /<img[^>]+src=["']([^"']+)["'][^>]*>/g;
-  const htmlMatches = [...processedContent.matchAll(htmlImageRegex)];
-
-  for (const match of htmlMatches) {
-    const [fullMatch, imageUrl] = match;
-
-    if (isNotionImageOrFileUrl(imageUrl)) {
-      const cloudinaryUrl = await getOrCreateCloudinaryUrl(imageUrl, "content");
-      const newImageTag = fullMatch.replace(imageUrl, cloudinaryUrl);
-      processedContent = processedContent.replace(fullMatch, newImageTag);
-      processedImagesCount++;
-    }
-  }
-
-  return processedContent;
+  const processor = getDefaultProcessor();
+  const result = await processor.processNotionImages(content);
+  syncStats();
+  return result;
 }
 
 /**
  * Cloudinary 업로드 및 캐시 관리
+ * @deprecated 새로운 코드에서는 MediaProcessor를 직접 사용하세요
  */
 export async function getOrCreateCloudinaryUrl(
   originalUrl: string,
   type: "content" | "pagecover" = "content"
 ): Promise<string> {
-  try {
-    // Redis에서 캐시된 URL 확인
-    const cachedUrl = await imageCacheManager.getCachedImageUrl(originalUrl);
-
-    if (cachedUrl) {
-      cacheHitCount++;
-      console.log(`🔄 캐시 히트: ${extractFileName(originalUrl)}`);
-      return cachedUrl;
-    }
-
-    // 캐시된 URL이 없으면 Cloudinary에 업로드
-    console.log(`☁️ Cloudinary 업로드 시작: ${extractFileName(originalUrl)}`);
-    const fileName = extractFileName(originalUrl);
-    const cloudinaryResult = await uploadImageFromUrl(originalUrl, fileName);
-
-    // Redis에 캐시 정보 저장
-    await imageCacheManager.cacheImageUrl(
-      originalUrl,
-      cloudinaryResult.secure_url,
-      {
-        fileName: fileName,
-        size: cloudinaryResult.bytes,
-        contentType: `image/${cloudinaryResult.format}`,
-      }
-    );
-
-    cloudinaryUploadCount++;
-    console.log(
-      `✅ Cloudinary 업로드 완료: ${fileName} → ${cloudinaryResult.secure_url}`
-    );
-
-    return cloudinaryResult.secure_url;
-  } catch (error) {
-    console.error(`❌ 이미지 처리 실패: ${originalUrl}`, error);
-    // 실패 시 원본 URL 반환
-    return originalUrl;
-  }
+  // processPageCover를 통해 간접적으로 처리
+  const result = await processPageCover(originalUrl);
+  return result || originalUrl;
 }
 
 /**
  * 파일명 추출
  */
 export function extractFileName(url: string): string {
-  try {
-    const urlObj = new URL(url);
-    const pathname = urlObj.pathname;
-    let fileName = pathname.split("/").pop() || "image.jpg";
-
-    if (fileName.includes("?")) {
-      fileName = fileName.split("?")[0];
-    }
-
-    // 안전한 파일명으로 변환
-    const safeFileName = fileName
-      .replace(/[^a-zA-Z0-9가-힣._-]/g, "_")
-      .replace(/_{2,}/g, "_")
-      .replace(/^_|_$/g, "");
-
-    return safeFileName || `image_${Date.now()}.jpg`;
-  } catch (error) {
-    return `image_${Date.now()}.jpg`;
-  }
+  const processor = getDefaultProcessor();
+  return processor.extractFileName(url);
 }
 
 /**
  * Unsplash 이미지 URL인지 확인
  */
 export function isUnsplashImageUrl(url: string): boolean {
-  return url.startsWith("https://images.unsplash.com");
+  const processor = getDefaultProcessor();
+  return processor.isUnsplashImageUrl(url);
 }
 
 /**
  * Notion 만료 이미지 URL인지 확인
  */
 export function isNotionExpiringImageUrl(url: string): boolean {
-  return url.startsWith("https://prod-files-secure.s3.us-west-2.amazonaws.com");
+  const processor = getDefaultProcessor();
+  return processor.isNotionExpiringImageUrl(url);
 }
 
 /**
  * 노션 이미지 URL인지 확인
  */
 export function isNotionImageOrFileUrl(url: string): boolean {
-  return (
-    url.includes("prod-files-secure.s3.us-west-2.amazonaws.com") ||
-    url.includes("s3.us-west-2.amazonaws.com") ||
-    url.includes("notion.so")
-  );
+  const processor = getDefaultProcessor();
+  return processor.isNotionImageOrFileUrl(url);
 }
 
 /**
  * 파일 확장자가 이미지인지 확인
  */
 export function isImageFile(fileName: string): boolean {
-  return IMAGE_EXTENSIONS.some((ext) =>
-    fileName.toLowerCase().endsWith(`.${ext}`)
-  );
+  const processor = getDefaultProcessor();
+  return processor.isImageFile(fileName);
 }
 
 /**
  * 통계 초기화
  */
 export function resetImageStats(): void {
+  const processor = getDefaultProcessor();
+  processor.resetStats();
   processedImagesCount = 0;
   cloudinaryUploadCount = 0;
   cacheHitCount = 0;
@@ -200,9 +156,6 @@ export function resetImageStats(): void {
  * 이미지 처리 통계 출력
  */
 export function printImageStats(): void {
-  console.log("\n📊 이미지 처리 통계:");
-  console.log(`   - 총 처리된 이미지: ${processedImagesCount}개`);
-  console.log(`   - Cloudinary 업로드: ${cloudinaryUploadCount}개`);
-  console.log(`   - 캐시 히트: ${cacheHitCount}개`);
-  console.log(`   - 처리된 pageCover: ${processedPageCoversCount}개`);
+  const processor = getDefaultProcessor();
+  processor.printImageStats();
 }
