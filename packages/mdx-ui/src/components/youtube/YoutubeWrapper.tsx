@@ -1,21 +1,25 @@
+/**
+ * @norkive/mdx-ui
+ *
+ * YoutubeWrapper component
+ * Migrated from modules/mdx/YoutubeWrapper.tsx
+ */
+
 import * as React from "react";
-
-import { getUrlParams } from "@/lib/utils";
-import { WrapperProps } from "@/types/components/common";
-import { assetStyle } from "@/constants/ui.constants";
-import { getYoutubeId } from "@norkive/youtube-utils";
-
-const LiteYouTubeEmbed = React.lazy(() =>
-  import("@/modules/shared/LiteYouTubeEmbed").then((module) => ({
-    default: module.LiteYouTubeEmbed,
-  }))
-);
+import {
+  getYoutubeId,
+  isValidYoutubeUrl,
+  getYoutubeParams,
+} from "../../utils/youtube";
+import { LiteYouTubeEmbed } from "./LiteYouTubeEmbed";
+import type { WrapperProps } from "../../types/components";
+import { assetStyle } from "../../utils/assetStyle";
 
 export default function YoutubeWrapper(props: WrapperProps) {
-  const { names, urls } = props;
-
+  const { urls } = props;
+  const isValid = isValidYoutubeUrl(urls);
   // URL 유효성 검사
-  if (!urls || urls === "https://www.youtube.com/watch") {
+  if (!isValid) {
     console.warn(`⚠️ YoutubeWrapper: 유효하지 않은 YouTube URL: ${urls}`);
     return (
       <div className="my-4 p-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
@@ -27,7 +31,7 @@ export default function YoutubeWrapper(props: WrapperProps) {
   }
 
   const youtubeVideoId = getYoutubeId(urls);
-  const params = getUrlParams(urls);
+  const params = getYoutubeParams(urls);
 
   if (!youtubeVideoId) {
     console.warn(`⚠️ YoutubeWrapper: YouTube ID를 추출할 수 없습니다: ${urls}`);

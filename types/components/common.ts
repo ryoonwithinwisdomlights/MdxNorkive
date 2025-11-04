@@ -1,8 +1,3 @@
-export interface WrapperProps {
-  names: string;
-  urls: string;
-}
-
 export type LazyImageProps = {
   priority?: boolean;
   id?: string;

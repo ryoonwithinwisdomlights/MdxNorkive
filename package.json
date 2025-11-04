@@ -34,9 +34,8 @@
   },
   "dependencies": {
     "@norkive/mdx-cloudinary-processor": "file:./packages/mdx-cloudinary-processor",
-    "@norkive/youtube-utils": "file:./packages/youtube-utils",
     "@norkive/mdx-safe-processor": "file:./packages/mdx-safe-processor",
-    "@norkive/lite-youtube-embed": "file:./packages/lite-youtube-embed",
+    "@norkive/mdx-ui": "file:./packages/mdx-ui",
     "@bprogress/next": "^3.2.12",
     "@content-collections/core": "^0.10.0",
     "@content-collections/mdx": "^0.2.2",

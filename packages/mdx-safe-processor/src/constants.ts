@@ -9,49 +9,158 @@
  */
 export const ALLOWED_HTML_TAGS = [
   // 기본 구조 태그
-  "h1", "h2", "h3", "h4", "h5", "h6", "p", "span", "div", "br", "hr",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "p",
+  "span",
+  "div",
+  "br",
+  "hr",
 
   // 텍스트 스타일 태그
-  "strong", "b", "em", "i", "u", "s", "del", "ins", "mark", "small", "sub", "sup",
+  "strong",
+  "b",
+  "em",
+  "i",
+  "u",
+  "s",
+  "del",
+  "ins",
+  "mark",
+  "small",
+  "sub",
+  "sup",
 
   // 링크 및 인용 태그
-  "a", "blockquote", "cite",
+  "a",
+  "blockquote",
+  "cite",
 
   // 코드 관련 태그
-  "code", "pre", "kbd", "samp", "var",
+  "code",
+  "pre",
+  "kbd",
+  "samp",
+  "var",
 
   // 리스트 태그
-  "ul", "ol", "li", "dl", "dt", "dd",
+  "ul",
+  "ol",
+  "li",
+  "dl",
+  "dt",
+  "dd",
 
   // 테이블 태그
-  "table", "thead", "tbody", "tfoot", "tr", "td", "th", "caption", "colgroup", "col",
+  "table",
+  "thead",
+  "tbody",
+  "tfoot",
+  "tr",
+  "td",
+  "th",
+  "caption",
+  "colgroup",
+  "col",
 
   // 미디어 태그
-  "img", "video", "audio", "source", "track", "figure", "figcaption",
+  "img",
+  "video",
+  "audio",
+  "source",
+  "track",
+  "figure",
+  "figcaption",
 
   // 폼 태그
-  "form", "input", "textarea", "select", "option", "optgroup", "button", "label", "fieldset", "legend",
+  "form",
+  "input",
+  "textarea",
+  "select",
+  "option",
+  "optgroup",
+  "button",
+  "label",
+  "fieldset",
+  "legend",
 
   // 인터랙티브 태그
-  "details", "summary", "dialog", "menu", "menuitem",
+  "details",
+  "summary",
+  "dialog",
+  "menu",
+  "menuitem",
 
   // 시맨틱 태그
-  "abbr", "acronym", "address", "article", "aside", "footer", "header", "main", "nav", "section",
+  "abbr",
+  "acronym",
+  "address",
+  "article",
+  "aside",
+  "footer",
+  "header",
+  "main",
+  "nav",
+  "section",
 
   // 데이터 태그
-  "time", "data", "meter", "progress",
+  "time",
+  "data",
+  "meter",
+  "progress",
 
   // SVG 태그
-  "svg", "path", "circle", "rect", "line", "polyline", "polygon", "ellipse", "text", "g", "defs", "use",
+  "svg",
+  "path",
+  "circle",
+  "rect",
+  "line",
+  "polyline",
+  "polygon",
+  "ellipse",
+  "text",
+  "g",
+  "defs",
+  "use",
 
   // 수학 태그
-  "math", "mrow", "mi", "mo", "mn", "msup", "msub", "msubsup", "mfrac", "msqrt", "mroot",
+  "math",
+  "mrow",
+  "mi",
+  "mo",
+  "mn",
+  "msup",
+  "msub",
+  "msubsup",
+  "mfrac",
+  "msqrt",
+  "mroot",
 
   // 기타 태그
-  "ruby", "rt", "rp", "bdi", "bdo", "wbr", "nobr", "spacer", "embed", "object", "param", "map", "area",
+  "ruby",
+  "rt",
+  "rp",
+  "bdi",
+  "bdo",
+  "wbr",
+  "nobr",
+  "spacer",
+  "embed",
+  "object",
+  "param",
+  "map",
+  "area",
 
   // 커스텀 컴포넌트
-  "YoutubeWrapper", "EmbededWrapper", "FileWrapper", "GoogleDriveWrapper", "BookMarkWrapper",
+  "YoutubeWrapper",
+  "EmbededWrapper",
+  "FileWrapper",
+  "GoogleDriveWrapper",
+  "BookMarkWrapper",
 ] as const;
 
 /**
@@ -59,24 +168,57 @@ export const ALLOWED_HTML_TAGS = [
  */
 export const ALLOWED_JSX_ATTRIBUTES = [
   // 기본 속성
-  "className", "id", "style",
+  "className",
+  "id",
+  "style",
 
   // 링크 관련 속성
-  "src", "href", "alt", "target", "rel",
+  "src",
+  "href",
+  "alt",
+  "target",
+  "rel",
 
   // 이벤트 핸들러 (제한적 허용)
-  "onClick", "onChange",
+  "onClick",
+  "onChange",
 
   // 폼 관련 속성
-  "value", "type", "placeholder", "disabled", "required", "checked", "selected", "readonly",
-  "maxlength", "minlength", "pattern", "autocomplete", "autofocus", "form", "name",
+  "value",
+  "type",
+  "placeholder",
+  "disabled",
+  "required",
+  "checked",
+  "selected",
+  "readonly",
+  "maxlength",
+  "minlength",
+  "pattern",
+  "autocomplete",
+  "autofocus",
+  "form",
+  "name",
 
   // 추가 폼 속성
-  "size", "step", "min", "max", "multiple", "accept", "capture", "dirname", "list",
-  "novalidate", "spellcheck", "tabindex", "title", "translate",
+  "size",
+  "step",
+  "min",
+  "max",
+  "multiple",
+  "accept",
+  "capture",
+  "dirname",
+  "list",
+  "novalidate",
+  "spellcheck",
+  "tabindex",
+  "title",
+  "translate",
 
   // 접근성 속성 (모두 허용)
-  "data-", "aria-",
+  "data-",
+  "aria-",
 ] as const;
 
 /**
@@ -153,4 +295,3 @@ export const MDX_CONTENT_PATTERNS = {
   // MDX 확장 문법 패턴
   MDX_EXTENSION: /\{:[^}]+\}/g,
 } as const;
-

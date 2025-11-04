@@ -1,12 +1,19 @@
-import { WrapperProps } from "@/types/components/common";
+/**
+ * @norkive/mdx-ui
+ *
+ * FileWrapper component
+ * Migrated from modules/mdx/FileWrapper.tsx
+ */
+
 import { FileTextIcon } from "lucide-react";
+import type { WrapperProps } from "../../types/components";
 
 export default function FileWrapper(props: WrapperProps) {
   const { names, urls } = props;
 
   if (!urls) return null;
   return (
-    <span className="my-4" data-tooltip={"File Open in new tab"}>
+    <span className="my-4 mdx-ui-tooltip" data-tooltip={"File Open in new tab"}>
       <a
         href={urls}
         target="_blank"

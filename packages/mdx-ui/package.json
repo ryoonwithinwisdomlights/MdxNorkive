@@ -1,0 +1,94 @@
+{
+  "name": "@norkive/mdx-ui",
+  "version": "1.0.0",
+  "description": "MDX UI components for rendering content in browsers. Includes YouTube embeds, file links, bookmarks, and more.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./components/youtube": {
+      "types": "./dist/components/youtube/index.d.ts",
+      "import": "./dist/components/youtube/index.mjs",
+      "require": "./dist/components/youtube/index.js"
+    },
+    "./components/file": {
+      "types": "./dist/components/file/index.d.ts",
+      "import": "./dist/components/file/index.mjs",
+      "require": "./dist/components/file/index.js"
+    },
+    "./components/drive": {
+      "types": "./dist/components/drive/index.d.ts",
+      "import": "./dist/components/drive/index.mjs",
+      "require": "./dist/components/drive/index.js"
+    },
+    "./components/bookmark": {
+      "types": "./dist/components/bookmark/index.d.ts",
+      "import": "./dist/components/bookmark/index.mjs",
+      "require": "./dist/components/bookmark/index.js"
+    },
+    "./components/embed": {
+      "types": "./dist/components/embed/index.d.ts",
+      "import": "./dist/components/embed/index.mjs",
+      "require": "./dist/components/embed/index.js"
+    },
+    "./utils/youtube": {
+      "types": "./dist/utils/youtube.d.ts",
+      "import": "./dist/utils/youtube.mjs",
+      "require": "./dist/utils/youtube.js"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --external react --external react-dom && npm run copy:css",
+    "copy:css": "cp src/styles.css dist/styles.css",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --external react --external react-dom --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mdx",
+    "ui",
+    "components",
+    "react",
+    "youtube",
+    "embed",
+    "file",
+    "bookmark",
+    "drive",
+    "typescript"
+  ],
+  "author": "ryoon.with.wisdomtrees@gmail.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryoonwithinwisdomlights/MdxNorkive.git",
+    "directory": "packages/mdx-ui"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "lucide-react": "^0.525.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+

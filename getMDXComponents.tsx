@@ -12,24 +12,40 @@ import defaultMdxComponents from "fumadocs-ui/mdx";
 import * as icons from "lucide-react";
 import type { MDXComponents } from "mdx/types";
 
-const YoutubeWrapperLazy = lazy(() => import("@/modules/mdx/YoutubeWrapper"));
-const EmbededWrapperLazy = lazy(() => import("@/modules/mdx/EmbededWrapper"));
-const FileWrapperLazy = lazy(() => import("@/modules/mdx/FileWrapper"));
-const GoogleDriveWrapperLazy = lazy(
-  () => import("@/modules/mdx/GoogleDriveWrapper")
+const YoutubeWrapperLazy = lazy(() =>
+  import("@norkive/mdx-ui").then((module) => ({
+    default: module.YoutubeWrapper,
+  }))
 );
-const BookMarkWrapperLazy = lazy(() => import("@/modules/mdx/BookMarkWrapper"));
 
-// Wrapper components that handle Suspense for lazy-loaded components
-const YoutubeWrapper = (props: any) => (
-  <Suspense fallback={<div>Loading...</div>}>
-    <YoutubeWrapperLazy {...props} />
-  </Suspense>
+const EmbededWrapperLazy = lazy(() =>
+  import("@norkive/mdx-ui").then((module) => ({
+    default: module.EmbededWrapper,
+  }))
+);
+const FileWrapperLazy = lazy(() =>
+  import("@norkive/mdx-ui").then((module) => ({ default: module.FileWrapper }))
+);
+const GoogleDriveWrapperLazy = lazy(() =>
+  import("@norkive/mdx-ui").then((module) => ({
+    default: module.GoogleDriveWrapper,
+  }))
+);
+const BookMarkWrapperLazy = lazy(() =>
+  import("@norkive/mdx-ui").then((module) => ({
+    default: module.BookMarkWrapper,
+  }))
 );
 
 const EmbededWrapper = (props: any) => (
   <Suspense fallback={<div>Loading...</div>}>
     <EmbededWrapperLazy {...props} />
+  </Suspense>
+);
+// Wrapper components that handle Suspense for lazy-loaded components
+const YoutubeWrapper = (props: any) => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <YoutubeWrapperLazy {...props} />
   </Suspense>
 );
 

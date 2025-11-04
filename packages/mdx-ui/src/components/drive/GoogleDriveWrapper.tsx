@@ -1,10 +1,21 @@
+/**
+ * @norkive/mdx-ui
+ *
+ * GoogleDriveWrapper component
+ * Migrated from modules/mdx/GoogleDriveWrapper.tsx
+ */
+
 import { HardDrive } from "lucide-react";
-import { WrapperProps } from "@/types/components/common";
+import type { WrapperProps } from "../../types/components";
+
 export default function GoogleDriveWrapper(props: WrapperProps) {
   const { names, urls } = props;
   if (!urls) return null;
   return (
-    <span className="my-4" data-tooltip="Google Drive File Open in new tab">
+    <span
+      className="my-4 mdx-ui-tooltip"
+      data-tooltip="Google Drive File Open in new tab"
+    >
       <a
         href={urls}
         target="_blank"

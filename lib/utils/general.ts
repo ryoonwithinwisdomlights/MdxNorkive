@@ -419,24 +419,6 @@ export const isObjectNotEmpty = (obj: unknown): boolean => {
   return isObject(obj) && Object.keys(obj).length > 0;
 };
 
-export const getUrlParams = (
-  url: string
-): Record<string, string> | undefined => {
-  try {
-    const { searchParams } = new URL(url);
-    const result: Record<string, string> = {};
-    for (const [key, value] of searchParams.entries()) {
-      result[key] = value;
-    }
-
-    return result;
-  } catch {
-    // ignore invalid urls
-  }
-
-  return;
-};
-
 /**
  * Intercept the language prefix of page-id
  * The format of notionPageId can be en:xxxxx

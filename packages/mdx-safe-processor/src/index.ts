@@ -469,4 +469,3 @@ export {
   MDX_CONTENT_PATTERNS,
   MDX_LINK_PATTERNS,
 } from "./constants";
-

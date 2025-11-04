@@ -1,6 +1,12 @@
-import { WrapperProps } from "@/types/components/common";
-import { LinkIcon } from "lucide-react";
+/**
+ * @norkive/mdx-ui
+ *
+ * BookMarkWrapper component
+ * Migrated from modules/mdx/BookMarkWrapper.tsx
+ */
 import * as React from "react";
+import { LinkIcon } from "lucide-react";
+import type { WrapperProps } from "../../types/components";
 
 export default function BookMarkWrapper(props: WrapperProps) {
   const { names, urls } = props;
@@ -10,7 +16,7 @@ export default function BookMarkWrapper(props: WrapperProps) {
   // 일반 링크인 경우 링크로 표시
   return (
     <div
-      className="my-4 text-sm 
+      className="my-4 mdx-ui-tooltip text-sm 
         w-full 
           rounded-md text-neutral-600 
           dark:text-neutral-200
