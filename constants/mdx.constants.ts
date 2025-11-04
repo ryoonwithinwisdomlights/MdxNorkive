@@ -19,7 +19,7 @@
  * @version 1.0.0
  * @author AI Assistant & ryoon (ryoon.with.wisdomtrees@gmail.com)
  * @created 2025-08-08
- * @lastModified 2025-08-08
+ * @lastModifiedDate 2025-08-08
  */
 
 export const IMAGE_EXTENSIONS = [

@@ -18,7 +18,7 @@
  * @version 1.0.0
  * @author AI Assistant & ryoon (ryoon.with.wisdomtrees@gmail.com)
  * @created 2025-08-08
- * @lastModified 2025-08-08
+ * @lastModifiedDate 2025-08-08
  */
 
 export type RecordFrontMatter = {
@@ -35,13 +35,11 @@ export type RecordFrontMatter = {
   favorite: boolean;
   publishDate?: number;
   date: string;
-  last_edited_time: string;
-  lastEditedDate: string | Date;
+  lastEditedTime: string | Date;
   draft: boolean;
   description: string;
   icon: string | null;
   full: boolean;
-  lastModified: string;
   readingTime: number;
   wordCount: number;
   status: string;

@@ -3,6 +3,14 @@ import "dotenv/config";
 import fs from "fs/promises";
 import path from "path";
 
+import { DEV_CONFIG } from "@/config/dev.config";
+import { EXTERNAL_CONFIG } from "@/config/external.config";
+import {
+  ModifiedQueryDatabaseResponseArray,
+  QueryPageResponse,
+} from "@/types/notion.client.model";
+import { n2m, notion } from "./clients";
+
 if (process.env.NODE_ENV !== "production" && !process.env.VERCEL) {
   config({ path: path.resolve(process.cwd(), ".env.local") });
 }
@@ -27,14 +35,6 @@ import {
   processMdxImagesToWebP,
   processPageCoverToWebP,
 } from "@/lib/utils/mdx-data-processing/cloudinary/enhanced-image-processor";
-
-import { DEV_CONFIG } from "@/config/dev.config";
-import { EXTERNAL_CONFIG } from "@/config/external.config";
-import {
-  ModifiedQueryDatabaseResponseArray,
-  QueryPageResponse,
-} from "@/types/notion.client.model";
-import { n2m, notion } from "./clients";
 
 // === ✅ 환경변수 및 설정 ===
 
@@ -117,8 +117,9 @@ async function main() {
       console.log(`🆕 새로 추가된 페이지: ${id}`);
     } else if (isChanged) {
       console.log(
-        `🔄 변경된 페이지: ${id} \n🔍 기존: ${existingTime}, 현재: ${last_edited_time}, 변경됨: ${isChanged}`
+        `🔄 변경된 페이지: ${id} , \n🔍 기존: ${existingTime}, 현재: ${last_edited_time}, 변경됨: ${isChanged}`
       );
+      //🔍 기존: Mon Oct 20 2025 20:58:00 GMT+0900 (Korean Standard Time), 현재: 2025-10-20T11:58:00.000Z, 변경됨: true
     }
 
     return isChanged;

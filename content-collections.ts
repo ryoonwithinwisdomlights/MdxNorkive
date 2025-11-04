@@ -31,7 +31,7 @@ const books = defineCollection({
     type: z.string(),
     description: z.string().optional(),
     date: z.coerce.date(),
-    lastEditedDate: z.coerce.date().optional(),
+    lastEditedTime: z.coerce.date().optional(),
     sub_type: z.string().optional(), // ex. "engineering" 배열 또는 문자열 모두 수용할 수 있게 유연하게 처리
     category: z.string().optional(), // ex. "개발", ["개발", "에세이"]
     tags: z.array(z.string()).optional(), // ex. ["Next.js", "SEO"]
@@ -39,7 +39,6 @@ const books = defineCollection({
     favorite: z.boolean().default(false),
     readingTime: z.number().optional(),
     wordCount: z.number().optional(),
-    lastModified: z.string().optional(),
     version: z.string().optional(),
     status: z.string().optional(),
     author: z.string().optional(),
@@ -65,7 +64,7 @@ const projects = defineCollection({
     type: z.string(),
     description: z.string().optional(),
     date: z.coerce.date(),
-    lastEditedDate: z.coerce.date().optional(),
+    lastEditedTime: z.coerce.date().optional(),
     sub_type: z.string().optional(), // ex. "engineering" 배열 또는 문자열 모두 수용할 수 있게 유연하게 처리
     category: z.string().optional(), // ex. "개발", ["개발", "에세이"]
     tags: z.array(z.string()).optional(), // ex. ["Next.js", "SEO"]
@@ -73,7 +72,7 @@ const projects = defineCollection({
     favorite: z.boolean().default(false),
     readingTime: z.number().optional(),
     wordCount: z.number().optional(),
-    lastModified: z.string().optional(),
+
     version: z.string().optional(),
     status: z.string().optional(),
     author: z.string().optional(),
@@ -99,7 +98,7 @@ const engineerings = defineCollection({
     type: z.string(),
     description: z.string().optional(),
     date: z.coerce.date(),
-    lastEditedDate: z.coerce.date().optional(),
+    lastEditedTime: z.coerce.date().optional(),
     sub_type: z.string().optional(), // ex. "engineering" 배열 또는 문자열 모두 수용할 수 있게 유연하게 처리
     category: z.string().optional(), // ex. "개발", ["개발", "에세이"]
     tags: z.array(z.string()).optional(), // ex. ["Next.js", "SEO"]
@@ -107,7 +106,6 @@ const engineerings = defineCollection({
     favorite: z.boolean().default(false),
     readingTime: z.number().optional(),
     wordCount: z.number().optional(),
-    lastModified: z.string().optional(),
     version: z.string().optional(),
     status: z.string().optional(),
     author: z.string().optional(),
@@ -133,7 +131,7 @@ const records = defineCollection({
     type: z.string(),
     description: z.string().optional(),
     date: z.coerce.date(),
-    lastEditedDate: z.coerce.date().optional(),
+    lastEditedTime: z.coerce.date().optional(),
     sub_type: z.string().optional(), // ex. "engineering" 배열 또는 문자열 모두 수용할 수 있게 유연하게 처리
     category: z.string().optional(), // ex. "개발", ["개발", "에세이"]
     tags: z.array(z.string()).optional(), // ex. ["Next.js", "SEO"]
@@ -141,7 +139,6 @@ const records = defineCollection({
     favorite: z.boolean().default(false),
     readingTime: z.number().optional(),
     wordCount: z.number().optional(),
-    lastModified: z.string().optional(),
     version: z.string().optional(),
     status: z.string().optional(),
     author: z.string().optional(),
@@ -167,14 +164,13 @@ const subMenuPages = defineCollection({
     type: z.string(),
     description: z.string().optional(),
     date: z.coerce.date(),
-    lastEditedDate: z.coerce.date().optional(),
+    lastEditedTime: z.coerce.date().optional(),
     sub_type: z.string().optional(), // ex. "engineering" 배열 또는 문자열 모두 수용할 수 있게 유연하게 처리
     category: z.string().optional(), // ex. "개발", ["개발", "에세이"]
     tags: z.array(z.string()).optional(), // ex. ["Next.js", "SEO"]
     favorite: z.boolean().default(false),
     readingTime: z.number().optional(),
     wordCount: z.number().optional(),
-    lastModified: z.string().optional(),
     version: z.string().optional(),
     status: z.string().optional(),
     author: z.string().optional(),

@@ -76,24 +76,29 @@ export function generateRecordFrontMatter(
   const category = props.category?.select?.name ?? "";
   const tags = props.tags?.multi_select?.map((t: any) => t.name) ?? [];
   const date = props.date?.date?.start;
+  console.log("date::", date);
   // last_edited_time 유효성 검사 및 안전한 날짜 생성
-  let lastEditedDate: Date;
+  let lastEditedTime: string;
   if (last_edited_time) {
     const parsedDate = new Date(last_edited_time);
     if (isNaN(parsedDate.getTime())) {
       // last_edited_time이 유효하지 않은 경우 date 사용
-      lastEditedDate = date ? new Date(date) : new Date();
+      lastEditedTime = date
+        ? new Date(date).toISOString()
+        : new Date().toISOString();
     } else {
-      lastEditedDate = parsedDate;
+      lastEditedTime = parsedDate.toISOString();
     }
   } else {
-    lastEditedDate = date ? new Date(date) : new Date();
+    lastEditedTime = date
+      ? new Date(date).toISOString()
+      : new Date().toISOString();
   }
 
   // 최종 유효성 검사
-  if (isNaN(lastEditedDate.getTime())) {
-    lastEditedDate = new Date();
-  }
+  // if (isNaN(lastEditedTime.getTime())) {
+  //   lastEditedTime = new Date();
+  // }
   const summary = props.summary?.rich_text?.[0]?.plain_text?.trim() || "";
   const password = props.password?.rich_text?.[0]?.plain_text?.trim() || "";
   const type = props.type?.select?.name || "RECORDS";
@@ -102,7 +107,6 @@ export function generateRecordFrontMatter(
   // 계산된 메타데이터
   const readingTime = Math.ceil((title.length + enhancedContent.length) / 200);
   const wordCount = title.length + enhancedContent.length;
-  const lastModified = new Date().toISOString().slice(0, 10);
 
   return {
     title,
@@ -117,13 +121,11 @@ export function generateRecordFrontMatter(
     tags,
     favorite,
     date: date ? date.slice(0, 10) : new Date().toISOString().slice(0, 10),
-    last_edited_time: last_edited_time || new Date().toISOString(),
-    lastEditedDate,
+    lastEditedTime,
     draft: false,
     description,
     icon,
     full,
-    lastModified,
     readingTime,
     wordCount,
     status: "published",
@@ -208,9 +210,9 @@ export async function getExistingEndDates(
             );
             const fm = matter(content).data as any;
 
-            if (fm.notionId && fm.last_edited_time) {
+            if (fm.notionId && fm.lastEditedTime) {
               // 기존 MDX 파일의 notionId는 이미 하이픈이 제거된 형태
-              map.set(fm.notionId, fm.last_edited_time);
+              map.set(fm.notionId, fm.lastEditedTime);
             }
           } catch (error) {
             console.warn(`⚠️ 파일 읽기 실패: ${file}`, error);

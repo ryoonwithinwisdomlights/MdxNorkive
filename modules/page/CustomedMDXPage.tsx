@@ -51,7 +51,7 @@ export default function CustomedMDXPage({
 
   const [lock, setLock] = useState(page?.data?.password !== "");
 
-  const { body, toc, lastEditedDate } = page.data;
+  const { body, toc, lastEditedTime } = page.data;
 
   const { locale } = useThemeStore();
   const { setRightSideInfoBarMode, setTocContent } = useUIStore();
@@ -82,7 +82,7 @@ export default function CustomedMDXPage({
         <div className="flex flex-col w-full">
           <DocsPage
             full={page.data.full}
-            lastUpdate={lastEditedDate}
+            lastUpdate={lastEditedTime}
             breadcrumb={{ enabled: false }}
           >
             <div

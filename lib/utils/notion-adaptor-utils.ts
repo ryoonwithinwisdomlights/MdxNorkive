@@ -101,7 +101,9 @@ export function generateRecordItem(
   const publishDate = new Date(
     props?.date?.date?.start || page.created_time
   ).getTime();
-  const lastEditedDate = last_edited_time ? new Date(last_edited_time) : date;
+  const lastEditedTime = last_edited_time
+    ? new Date(last_edited_time).toISOString()
+    : date;
   const summary = props.summary?.rich_text?.[0]?.plain_text?.trim() || "";
   const password = props.password?.rich_text?.[0]?.plain_text?.trim() || "";
   return {
@@ -118,13 +120,11 @@ export function generateRecordItem(
     favorite,
     publishDate,
     date: date.slice(0, 10),
-    last_edited_time,
-    lastEditedDate,
+    lastEditedTime,
     draft: false,
     description,
     icon,
     full: false,
-    lastModified: new Date().toISOString().slice(0, 10),
     readingTime: Math.ceil((title.length + description.length) / 200),
     wordCount: title.length + description.length,
     status: "published",

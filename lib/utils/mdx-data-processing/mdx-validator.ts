@@ -13,12 +13,12 @@
  * @version 1.0.0
  * @author AI Assistant & ryoon (ryoon.with.wisdomtrees@gmail.com)
  * @created 2025-08-08
- * @lastModified 2025-08-08
+ * @lastModifiedDate 2025-08-08
  */
 
 // ===== 핵심 변환 로직 import =====
 
-import { processMdxContentFn } from "./convert-unsafe-mdx/content-functional";
+import { processMdxContentFn } from "@norkive/mdx-safe-processor";
 
 // ===== 타입 및 상수 import =====
 import { MdxDirectoryValidationResult } from "@/types/mdx.model";
@@ -203,4 +203,4 @@ export {
   convertUnsafeTags,
   processMdxContentFn,
   validateAndFixMdxContent,
-} from "./convert-unsafe-mdx/content-functional";
+} from "@norkive/mdx-safe-processor";
