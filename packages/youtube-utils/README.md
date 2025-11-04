@@ -1,9 +1,52 @@
 # @norkive/youtube-utils
 
+> ⚠️ **DEPRECATED**: This package has been merged into [`@norkive/mdx-ui`](https://www.npmjs.com/package/@norkive/mdx-ui). Please migrate to the new package for continued support and updates.
+
 [![npm version](https://badge.fury.io/js/%40norkive%2Fyoutube-utils.svg)](https://badge.fury.io/js/%40norkive%2Fyoutube-utils)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Lightweight utility to extract YouTube video IDs from URLs. Zero dependencies, TypeScript support.
+
+## 🚨 Migration Notice
+
+This package has been **deprecated** and merged into [`@norkive/mdx-ui`](https://www.npmjs.com/package/@norkive/mdx-ui). 
+
+### Quick Migration
+
+**Before:**
+```typescript
+import { getYoutubeId, isValidYoutubeUrl, getYoutubeParams } from '@norkive/youtube-utils';
+```
+
+**After:**
+```typescript
+import { getYoutubeId, isValidYoutubeUrl, getYoutubeParams } from '@norkive/mdx-ui';
+```
+
+### Migration Steps
+
+1. **Install the new package:**
+   ```bash
+   npm install @norkive/mdx-ui
+   ```
+
+2. **Update imports:**
+   ```typescript
+   // Old
+   import { getYoutubeId } from '@norkive/youtube-utils';
+   
+   // New
+   import { getYoutubeId } from '@norkive/mdx-ui';
+   ```
+
+3. **Uninstall the old package:**
+   ```bash
+   npm uninstall @norkive/youtube-utils
+   ```
+
+The API remains **100% compatible** - no code changes needed except the import path!
+
+For more information, see the [migration guide](https://github.com/ryoonwithinwisdomlights/MdxNorkive/blob/main/packages/mdx-ui/README.md#migration-guide).
 
 ## Features
 

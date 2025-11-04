@@ -1,9 +1,56 @@
 # @norkive/lite-youtube-embed
 
+> ⚠️ **DEPRECATED**: This package has been merged into [`@norkive/mdx-ui`](https://www.npmjs.com/package/@norkive/mdx-ui). Please migrate to the new package for continued support and updates.
+
 [![npm version](https://badge.fury.io/js/%40norkive%2Flite-youtube-embed.svg)](https://badge.fury.io/js/%40norkive%2Flite-youtube-embed)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Lightweight YouTube embed component with lazy loading, preconnect optimization, and WebP thumbnails.
+
+## 🚨 Migration Notice
+
+This package has been **deprecated** and merged into [`@norkive/mdx-ui`](https://www.npmjs.com/package/@norkive/mdx-ui). 
+
+### Quick Migration
+
+**Before:**
+```typescript
+import { LiteYouTubeEmbed } from '@norkive/lite-youtube-embed';
+import '@norkive/lite-youtube-embed/dist/styles.css';
+```
+
+**After:**
+```typescript
+import { LiteYouTubeEmbed } from '@norkive/mdx-ui';
+import '@norkive/mdx-ui/styles.css';
+```
+
+### Migration Steps
+
+1. **Install the new package:**
+   ```bash
+   npm install @norkive/mdx-ui
+   ```
+
+2. **Update imports:**
+   ```typescript
+   // Old
+   import { LiteYouTubeEmbed } from '@norkive/lite-youtube-embed';
+   import '@norkive/lite-youtube-embed/dist/styles.css';
+   
+   // New
+   import { LiteYouTubeEmbed } from '@norkive/mdx-ui';
+   import '@norkive/mdx-ui/styles.css';
+   ```
+
+3. **Uninstall the old package:**
+   ```bash
+   npm uninstall @norkive/lite-youtube-embed
+   ```
+
+The component API remains **100% compatible** - no code changes needed except the import path!
+
+For more information, see the [migration guide](https://github.com/ryoonwithinwisdomlights/MdxNorkive/blob/main/packages/mdx-ui/README.md#migration-guide).
 
 ## Features
 

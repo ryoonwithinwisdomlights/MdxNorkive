@@ -40,7 +40,7 @@ import {
 ### YouTube Utilities
 
 ```typescript
-import { getYoutubeId, isValidYoutubeUrl, getYoutubeParams } from "@norkive/mdx-ui/utils/youtube";
+import { getYoutubeId, isValidYoutubeUrl, getYoutubeParams } from "@norkive/mdx-ui";
 
 const videoId = getYoutubeId("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
 // "dQw4w9WgXcQ"
@@ -202,7 +202,7 @@ This package consolidates the following deprecated packages:
 import { getYoutubeId } from "@norkive/youtube-utils";
 
 // After
-import { getYoutubeId } from "@norkive/mdx-ui/utils/youtube";
+import { getYoutubeId } from "@norkive/mdx-ui";
 ```
 
 ### From @norkive/lite-youtube-embed

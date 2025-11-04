@@ -15,36 +15,6 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
-    "./components/youtube": {
-      "types": "./dist/components/youtube/index.d.ts",
-      "import": "./dist/components/youtube/index.mjs",
-      "require": "./dist/components/youtube/index.js"
-    },
-    "./components/file": {
-      "types": "./dist/components/file/index.d.ts",
-      "import": "./dist/components/file/index.mjs",
-      "require": "./dist/components/file/index.js"
-    },
-    "./components/drive": {
-      "types": "./dist/components/drive/index.d.ts",
-      "import": "./dist/components/drive/index.mjs",
-      "require": "./dist/components/drive/index.js"
-    },
-    "./components/bookmark": {
-      "types": "./dist/components/bookmark/index.d.ts",
-      "import": "./dist/components/bookmark/index.mjs",
-      "require": "./dist/components/bookmark/index.js"
-    },
-    "./components/embed": {
-      "types": "./dist/components/embed/index.d.ts",
-      "import": "./dist/components/embed/index.mjs",
-      "require": "./dist/components/embed/index.js"
-    },
-    "./utils/youtube": {
-      "types": "./dist/utils/youtube.d.ts",
-      "import": "./dist/utils/youtube.mjs",
-      "require": "./dist/utils/youtube.js"
-    },
     "./styles.css": "./dist/styles.css"
   },
   "scripts": {
@@ -91,4 +61,3 @@
     "node": ">=18.0.0"
   }
 }
-

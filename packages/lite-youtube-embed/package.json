@@ -1,7 +1,8 @@
 {
   "name": "@norkive/lite-youtube-embed",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Lightweight YouTube embed component with lazy loading, preconnect optimization, and WebP thumbnails",
+  "deprecated": "This package has been merged into @norkive/mdx-ui. Please migrate to @norkive/mdx-ui for continued support.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",

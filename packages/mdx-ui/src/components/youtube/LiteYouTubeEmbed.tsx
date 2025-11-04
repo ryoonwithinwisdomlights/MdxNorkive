@@ -1,6 +1,6 @@
 /**
  * @norkive/mdx-ui
- * 
+ *
  * LiteYouTubeEmbed component
  * Migrated from @norkive/lite-youtube-embed
  */
@@ -202,4 +202,3 @@ export function LiteYouTubeEmbed({
     </>
   );
 }
-

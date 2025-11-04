@@ -1,7 +1,8 @@
 {
   "name": "@norkive/youtube-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Lightweight utility to extract YouTube video IDs from URLs. Zero dependencies, TypeScript support.",
+  "deprecated": "This package has been merged into @norkive/mdx-ui. Please migrate to @norkive/mdx-ui for continued support.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
