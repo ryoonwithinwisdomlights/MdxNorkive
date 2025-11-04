@@ -320,8 +320,7 @@ const processed = processMdxContentFn(decoded);
 
 ## 🔗 Related Packages
 
-- [`@norkive/youtube-utils`](https://www.npmjs.com/package/@norkive/youtube-utils) - YouTube URL utilities
-- [`@norkive/lite-youtube-embed`](https://www.npmjs.com/package/@norkive/lite-youtube-embed) - Lightweight YouTube embed component
+- [`@norkive/mdx-ui`](https://www.npmjs.com/package/@norkive/mdx-ui) - MDX UI components (includes YouTube utilities and embed components)
 
 ## 📝 License
 

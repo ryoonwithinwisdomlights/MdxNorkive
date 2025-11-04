@@ -627,7 +627,7 @@ MIT
 ## 🔗 관련 패키지
 
 - [@norkive/mdx-safe-processor](https://www.npmjs.com/package/@norkive/mdx-safe-processor) - MDX 콘텐츠 정제
-- [@norkive/youtube-utils](https://www.npmjs.com/package/@norkive/youtube-utils) - YouTube URL 유틸리티
+- [@norkive/mdx-ui](https://www.npmjs.com/package/@norkive/mdx-ui) - MDX UI 컴포넌트 (YouTube 유틸리티 포함)
 
 ## 🤝 기여
 

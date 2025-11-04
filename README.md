@@ -454,37 +454,38 @@ This project is licensed under the [MIT License](LICENSE).
 
 This project includes reusable packages published to npm:
 
-### @norkive/youtube-utils
+### @norkive/mdx-ui
 
-[![npm version](https://img.shields.io/npm/v/@norkive/youtube-utils)](https://www.npmjs.com/package/@norkive/youtube-utils)
-[![npm downloads](https://img.shields.io/npm/dm/@norkive/youtube-utils)](https://www.npmjs.com/package/@norkive/youtube-utils)
+[![npm version](https://img.shields.io/npm/v/@norkive/mdx-ui)](https://www.npmjs.com/package/@norkive/mdx-ui)
 
-Lightweight utility to extract YouTube video IDs from URLs. Zero dependencies, TypeScript support.
+MDX UI components for rendering content in browsers. Includes YouTube embeds, file links, bookmarks, Google Drive links, and embedded content.
 
 ```bash
-npm install @norkive/youtube-utils
+npm install @norkive/mdx-ui
 ```
 
 ```typescript
-import { getYoutubeId } from '@norkive/youtube-utils';
+import { getYoutubeId, LiteYouTubeEmbed, YoutubeWrapper } from '@norkive/mdx-ui';
+import '@norkive/mdx-ui/styles.css';
 
 const id = getYoutubeId('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
 // 'dQw4w9WgXcQ'
 ```
 
 **Features:**
-- ✅ Extract YouTube ID from various URL formats
-- ✅ Validate YouTube URLs
-- ✅ Zero Dependencies
+- ✅ YouTube embeds with lazy loading
+- ✅ File, Google Drive, Bookmark wrappers
+- ✅ YouTube URL utilities
 - ✅ TypeScript Support
-- ✅ Small Bundle Size (< 1KB)
+- ✅ Zero dependencies (peer dependencies only)
 
-📖 [Full Documentation](https://www.npmjs.com/package/@norkive/youtube-utils)
+📖 [Full Documentation](https://www.npmjs.com/package/@norkive/mdx-ui)
+
+> **Note**: `@norkive/youtube-utils` and `@norkive/lite-youtube-embed` have been merged into `@norkive/mdx-ui`. See [migration guide](https://github.com/ryoonwithinwisdomlights/MdxNorkive/blob/main/packages/mdx-ui/README.md#migration-guide).
 
 ### More Packages Coming Soon
 
 - `@norkive/mdx-safe-processor` - Safe MDX content processor
-- `@norkive/lite-youtube-embed` - Lightweight YouTube embed component
 - `@norkive/mdx-validator` - MDX file validator
 - `@norkive/image-optimizer` - Image optimization utilities
 

@@ -559,7 +559,7 @@ MIT
 ## 🔗 Related
 
 - [@norkive/mdx-safe-processor](https://www.npmjs.com/package/@norkive/mdx-safe-processor) - MDX content sanitization
-- [@norkive/youtube-utils](https://www.npmjs.com/package/@norkive/youtube-utils) - YouTube URL utilities
+- [@norkive/mdx-ui](https://www.npmjs.com/package/@norkive/mdx-ui) - MDX UI components (includes YouTube utilities)
 
 ## 🤝 Contributing
 
