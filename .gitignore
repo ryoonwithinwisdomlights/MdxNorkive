@@ -65,4 +65,22 @@ package-lock.json
 # .next/처럼 Git에서 제외해야 함
 .content-collections/
 
-/documents-description/*
+# packages (monorepo)
+# 빌드 산출물은 제외하지만 소스 코드는 포함
+packages/*/dist/
+packages/*/build/
+packages/*/node_modules/
+packages/*/npm-debug.log*
+packages/*/yarn-debug.log*
+packages/*/.npm/
+packages/*/.cache/
+packages/*/coverage/
+packages/*/.nyc_output/
+packages/*/test.js
+packages/*/*.test.ts
+
+/development-description/*
+/test-script/*
+
+/lib/backup/*
+/backup/*
