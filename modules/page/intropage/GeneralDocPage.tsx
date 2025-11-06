@@ -1,6 +1,6 @@
 "use client";
 import NotFound from "@/app/not-found";
-import { docsSource } from "@/lib/source";
+import { generalsSource } from "@/lib/source";
 import {
   generalIntroPageClass,
   isObjectNotEmpty,
@@ -12,7 +12,7 @@ import GeneralIntro from "@/modules/page/intropage/intro/GeneralIntro";
 import { SerializedPage } from "@/types";
 
 const GeneralDocPage = () => {
-  const pages = docsSource.getPages();
+  const pages = generalsSource.getPages();
   if (!pages) NotFound();
 
   const isAble = isObjectNotEmpty(pages);
@@ -28,8 +28,8 @@ const GeneralDocPage = () => {
         modAllPages={modAllPages}
         isAble={isAble}
         pages={pages as unknown as SerializedPage[]}
-        type="Docs"
-        subType={true}
+        type="Generals"
+        docType={true}
         introTrue={false}
       />
     </div>

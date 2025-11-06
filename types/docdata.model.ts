@@ -9,7 +9,7 @@ export interface TransferedDataProps {
   title: string;
   summary?: string;
   type?: string;
-  subType?: string;
+  docType?: string;
   date?: string;
   author?: string;
   tags?: string[];

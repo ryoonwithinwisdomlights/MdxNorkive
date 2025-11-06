@@ -1,4 +1,4 @@
-import { archivesSource } from "@/lib/source";
+import { portfoliosSource } from "@/lib/source";
 import { pageOptionsGenerator } from "@/lib/utils";
 import { DocsLayout } from "@/modules/layout/templates/docs-layout";
 import RightSideNavWrapper from "@/modules/layout/wrapper/RightSideNavWrapper";
@@ -9,7 +9,7 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
-  const pageOptions = pageOptionsGenerator(archivesSource);
+  const pageOptions = pageOptionsGenerator(portfoliosSource);
   return (
     <DocsLayout
       {...pageOptions}

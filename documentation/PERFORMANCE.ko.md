@@ -272,7 +272,7 @@ const { filteredPages, allOptions } = useMemo(() => {
   const filtered = pages.filter(/* 복잡한 로직 */);
   const options = Array.from(new Set(/* 고유 값 */));
   return { filteredPages: filtered, allOptions: options };
-}, [pages, currentRecordType, subType]);
+}, [pages, currentRecordType, docType]);
 ```
 
 **캐싱**:

@@ -1,7 +1,7 @@
 "use client";
 import { useThemeStore } from "@/lib/stores";
 
-const EngineeringIntro = () => {
+const TechsIntro = () => {
   const { locale } = useThemeStore();
 
   const { ENGINEERING } = locale.INTRO;
@@ -44,4 +44,4 @@ const EngineeringIntro = () => {
   );
 };
 
-export default EngineeringIntro;
+export default TechsIntro;

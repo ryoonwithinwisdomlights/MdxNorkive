@@ -71,14 +71,19 @@ const items: {
     value: undefined,
   },
   {
-    name: "Docs",
-    value: DOCS_CONFIG.DOCS_TYPE.DOCS,
+    name: "Generals",
+    value: DOCS_CONFIG.DOCS_TYPE.GENERALS,
     description: "Only results about General Docs",
   },
   {
-    name: "Archives",
-    value: DOCS_CONFIG.DOCS_TYPE.ARCHIVES,
-    description: "Only results about Archives",
+    name: "Techs",
+    value: DOCS_CONFIG.DOCS_TYPE.TECHS,
+    description: "Only results about Technical Docs",
+  },
+  {
+    name: "Portfolios",
+    value: DOCS_CONFIG.DOCS_TYPE.PORTFOLIOS,
+    description: "Only results about Portfolios",
   },
   // {
   //   name: "Engineering",

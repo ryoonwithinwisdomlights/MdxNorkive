@@ -1,6 +1,6 @@
 "use client";
 import { useUIStore } from "@/lib/stores";
-import ArchiveDocsPage from "@/modules/page/intropage/ArchiveDocsPage";
+import TechsDocsPage from "@/modules/page/intropage/TechsDocsPage";
 import { useSidebar } from "fumadocs-ui/provider";
 import { useEffect } from "react";
 export default function Page() {
@@ -10,5 +10,5 @@ export default function Page() {
     setCollapsed(true);
     setRightSideInfoBarMode("info");
   }, []); // 의존성 배열을 비워서 한 번만 실행되도록 함
-  return <ArchiveDocsPage />;
+  return <TechsDocsPage />;
 }

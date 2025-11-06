@@ -10,7 +10,7 @@ const GeneralDocsBody = ({
   isAble,
   pages,
   type,
-  subType,
+  docType,
   introTrue,
 }: GeneralDocsBodyProps) => {
   return (
@@ -19,7 +19,7 @@ const GeneralDocsBody = ({
         <div className="flex flex-col gap-16 items-start w-full ">
           <FeatureDocs
             type={type}
-            subType={subType}
+            docType={docType}
             docs={pages}
             introTrue={introTrue}
           />

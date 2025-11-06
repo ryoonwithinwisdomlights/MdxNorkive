@@ -11,7 +11,7 @@ export const ENG_LANG: LocaleDict = {
     },
     LATEST: {
       TITLE: "Latest Docs",
-      DESC: "Displays up to 7 most recent Docs per subtype.",
+      DESC: "Displays up to 7 most recent Docs per docType.",
     },
     ENTIRE: {
       TITLE: "Entire Docs",

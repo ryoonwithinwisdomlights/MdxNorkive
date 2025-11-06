@@ -10,7 +10,7 @@
 // import SubstringedTitleNav from "@/modules/common/SubstringedTitleNav";
 // import NavPostListEmpty from "@/modules/common/NavPostListEmpty";
 
-// const AllTagsCategorySubTypeList = ({
+// const AllTagsCategorydocTypeList = ({
 //   pagenum = 1,
 //   allPages = [],
 //   pageCount,
@@ -57,4 +57,4 @@
 //   );
 // };
 
-// export default AllTagsCategorySubTypeList;
+// export default AllTagsCategorydocTypeList;

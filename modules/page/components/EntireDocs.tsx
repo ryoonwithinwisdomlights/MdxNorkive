@@ -23,13 +23,13 @@ const DocsCard = memo(
     page,
     locale,
     LOCKED,
-    subType,
+    docType,
     onCardClick,
   }: {
     page: SerializedPage;
     locale: any;
     LOCKED: LockedSection;
-    subType: boolean;
+    docType: boolean;
     onCardClick: (page: SerializedPage) => void;
   }) => {
     const metaClasses = useMemo(
@@ -122,7 +122,7 @@ const EntireDocs = ({
   type,
   docs,
   introTrue,
-  subType = false,
+  docType = false,
 }: mainDocsProps) => {
   const pages = docs;
   if (!pages) return null;
@@ -139,7 +139,7 @@ const EntireDocs = ({
     const filtered =
       currentDocType !== ""
         ? pages.filter((page) => {
-            const pageType = subType ? page?.data?.doc_type : page?.data?.type;
+            const pageType = docType ? page?.data?.doc_type : page?.data?.type;
             if (!pageType) return false;
 
             // 대소문자 구분 없이 비교
@@ -161,7 +161,7 @@ const EntireDocs = ({
       )
     );
 
-    const uniqueSubTypeOptions = Array.from(
+    const uniquedocTypeOptions = Array.from(
       new Set(
         filtered
           .map((item) => item?.data?.doc_type)
@@ -182,26 +182,26 @@ const EntireDocs = ({
         option: option,
       })),
     ];
-    const subTypeOptions: OptionItem[] = [
+    const docTypeOptions: OptionItem[] = [
       {
         id: -1,
         title: locale.COMMON.ALL,
         option: "",
       },
-      ...uniqueSubTypeOptions.map((option, index) => ({
+      ...uniquedocTypeOptions.map((option, index) => ({
         id: index,
         title: option,
         option: option,
       })),
     ];
 
-    const allOptions = subType ? subTypeOptions : typeOptions;
+    const allOptions = docType ? docTypeOptions : typeOptions;
     return {
       modAllDocs: modAllDocs,
       filteredPages: filtered,
       allOptions: allOptions,
     };
-  }, [pages, currentDocType, currentPage, subType, locale.COMMON.ALL]);
+  }, [pages, currentDocType, currentPage, docType, locale.COMMON.ALL]);
 
   const TOTAL_PAGES = useMemo(
     () => Math.ceil(filteredPages.length / ENTIRE_DOCS_CARDS_PER_PAGE),
@@ -242,7 +242,7 @@ const EntireDocs = ({
             page={page}
             locale={locale}
             LOCKED={LOCKED}
-            subType={subType}
+            docType={docType}
             onCardClick={handleRouter}
           />
         ))}

@@ -4,11 +4,17 @@ import { TransferedDataProps, SerializedPage, LocaleDict } from "@/types";
 import { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
 import { PageTree } from "fumadocs-core/server";
 import { DOCS_CONFIG } from "@/config/docs.config";
-import { docsSource, archivesSource, submenuPageSource } from "@/lib/source";
+import {
+  generalsSource,
+  portfoliosSource,
+  submenuPageSource,
+  techsSource,
+} from "@/lib/source";
 
 export function getDocsResource(resource: string) {
-  if (resource === DOCS_CONFIG.DOCS_TYPE.DOCS) return docsSource;
-  if (resource === DOCS_CONFIG.DOCS_TYPE.ARCHIVES) return archivesSource;
+  if (resource === DOCS_CONFIG.DOCS_TYPE.GENERALS) return generalsSource;
+  if (resource === DOCS_CONFIG.DOCS_TYPE.TECHS) return techsSource;
+  if (resource === DOCS_CONFIG.DOCS_TYPE.PORTFOLIOS) return portfoliosSource;
   if (resource === DOCS_CONFIG.DOCS_TYPE.SUBMENU_PAGES)
     return submenuPageSource;
   else return null;
@@ -66,7 +72,7 @@ export function getMainRecentDocs(
     id: index,
     date: getYearMonthDay(page.data.date, lang),
     type: page.data.type,
-    subType: page.data.doc_type,
+    docType: page.data.doc_type,
     category: page.data.category,
     distanceFromToday: getDistanceFromToday(page.data.date, lang),
     title: page.data.title,
@@ -113,8 +119,8 @@ export const transferDataForCardProps = (
   return {
     title: safeGet(page, "data.title", "제목 없음"),
     summary: safeGet(page, "data.summary", ""),
-    type: safeGet(page, "data.type", DOCS_CONFIG.DOCS_TYPE.DOCS),
-    subType: safeGet(page, "data.doc_type", ""),
+    type: safeGet(page, "data.type", DOCS_CONFIG.DOCS_TYPE.GENERALS),
+    docType: safeGet(page, "data.doc_type", ""),
     date: safeGet(page, "data.date", ""),
     author: safeGet(page, "data.author", ""),
     tags: safeGet(page, "data.tags", []),

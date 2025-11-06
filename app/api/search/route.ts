@@ -1,4 +1,4 @@
-import { docsSource, archivesSource } from "@/lib/source";
+import { generalsSource, portfoliosSource, techsSource } from "@/lib/source";
 
 import { AdvancedIndex, createSearchAPI } from "fumadocs-core/search/server";
 import { tokenize } from "@/modules/common/search/tokenizer";
@@ -15,10 +15,10 @@ import { tokenize } from "@/modules/common/search/tokenizer";
  */
 export const revalidate = false;
 
-const docsPages = docsSource.getPages();
-const archivesPages = archivesSource.getPages();
-
-const allPages = [...docsPages, ...archivesPages];
+const docsPages = generalsSource.getPages();
+const portfoliosPages = portfoliosSource.getPages();
+const techsPages = techsSource.getPages();
+const allPages = [...docsPages, ...techsPages, ...portfoliosPages];
 
 export const { GET } = createSearchAPI("advanced", {
   indexes: allPages.map(

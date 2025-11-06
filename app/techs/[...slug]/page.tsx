@@ -1,8 +1,8 @@
-import { docsSource } from "@/lib/source";
+import { DOCS_CONFIG } from "@/config/docs.config";
+import { techsSource } from "@/lib/source";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { lazy } from "react";
-import { DOCS_CONFIG } from "@/config/docs.config";
 
 const CustomedMDXPage = lazy(() => import("@/modules/page/CustomedMDXPage"));
 export const dynamic = "force-static";
@@ -11,14 +11,10 @@ export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
 }) {
   const params = await props.params;
-  let slug = params.slug;
-  if (slug) {
-    slug = slug.map((s) => decodeURIComponent(s));
-  }
 
   return (
     <CustomedMDXPage
-      resource={DOCS_CONFIG.DOCS_TYPE.DOCS as string}
+      resource={DOCS_CONFIG.DOCS_TYPE.TECHS as string}
       className="p-4 md:p-0"
       slug={params.slug}
     />
@@ -26,7 +22,7 @@ export default async function Page(props: {
 }
 
 export async function generateStaticParams() {
-  return docsSource.getPages().map((page) => {
+  return techsSource.getPages().map((page) => {
     const modSlug = page.slugs.map((s) => decodeURIComponent(s));
     return {
       slug: modSlug,
@@ -38,7 +34,7 @@ export async function generateMetadata(props: {
   params: Promise<{ slug?: string[] }>;
 }) {
   const params = await props.params;
-  const page = docsSource.getPage(params.slug);
+  const page = techsSource.getPage(params.slug);
   if (!page) notFound();
   return {
     title: page.data.title,

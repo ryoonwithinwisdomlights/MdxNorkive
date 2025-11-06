@@ -2,8 +2,8 @@ import { DocFrontMatter } from "@/types/mdx.model";
 import { SerializedPage } from "@/types/provider.model";
 
 export interface mainDocsProps {
-  type: "Docs" | "Archives" | "";
-  subType: boolean;
+  type: "Generals" | "Portfolios" | "Techs" | "";
+  docType: boolean;
   introTrue: boolean;
   docs: SerializedPage[];
 }
@@ -79,8 +79,8 @@ export interface GeneralDocsBodyProps {
   modAllPages: Record<string, SerializedPage[]>;
   isAble: boolean;
   pages: SerializedPage[];
-  type: "Docs" | "Archives";
-  subType: boolean;
+  type: "Generals" | "Portfolios" | "Techs";
+  docType: boolean;
   introTrue: boolean;
 }
 

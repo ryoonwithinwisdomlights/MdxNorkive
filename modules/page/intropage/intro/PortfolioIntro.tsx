@@ -1,7 +1,7 @@
 "use client";
 import { useThemeStore } from "@/lib/stores";
 
-const ArchivieIntro = () => {
+const PortfolioIntro = () => {
   const { lang } = useThemeStore();
   return (
     <div className="flex flex-col w-full items-center">
@@ -35,4 +35,4 @@ const ArchivieIntro = () => {
   );
 };
 
-export default ArchivieIntro;
+export default PortfolioIntro;

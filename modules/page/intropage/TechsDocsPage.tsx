@@ -1,19 +1,20 @@
 "use client";
-import { archivesSource } from "@/lib/source";
-import ArchivieIntro from "@/modules/page/intropage/intro/ArchivieIntro";
+import { techsSource } from "@/lib/source";
+
 import DocsBodyWithTwoOptions from "./body/DocsBodyWithTwoOptions";
 import { SerializedPage } from "@/types";
 import { generalIntroPageClass } from "@/lib/utils";
+import TechsIntro from "./intro/TechsIntro";
 
-const ArchiveDocsPage = () => {
-  const pages = archivesSource.getPages();
+const TechsDocsPage = () => {
+  const pages = techsSource.getPages();
 
   return (
     <div className={generalIntroPageClass({ className: "" })}>
-      <ArchivieIntro />
+      <TechsIntro />
       <DocsBodyWithTwoOptions docs={pages as unknown as SerializedPage[]} />
     </div>
   );
 };
 
-export default ArchiveDocsPage;
+export default TechsDocsPage;

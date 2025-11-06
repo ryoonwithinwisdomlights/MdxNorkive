@@ -22,7 +22,7 @@ import { getCookie } from "@/lib/utils/cookies";
 import { generateLocaleDict } from "@/lib/utils/lang";
 
 //************* All Docs sources ************* */
-import { docsSource, archivesSource } from "@/lib/source";
+import { generalsSource, portfoliosSource, techsSource } from "@/lib/source";
 
 //************* Custom components ************* */
 import MobileRightSidebarWrapper from "@/modules/common/right-sidebar/MobileRightSidebarWrapper";
@@ -123,12 +123,14 @@ export default async function RootLayout({
   const initialLocale = generateLocaleDict(initialLang);
 
   const menuList = await fetchMenuList();
-  const docsPages = docsSource.getPages();
-  const archivesPages = archivesSource.getPages();
+  const generalsPages = generalsSource.getPages();
+  const portfoliosPages = portfoliosSource.getPages();
+  const techsPages = techsSource.getPages();
 
   const allPages: Page<LoaderConfig["source"]["pageData"]>[] = [
-    ...docsPages,
-    ...archivesPages,
+    ...generalsPages,
+    ...portfoliosPages,
+    ...techsPages,
   ];
 
   // 직렬화 가능한 형태로 변환

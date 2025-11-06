@@ -1,4 +1,5 @@
 "use client";
+import { BLOG } from "@/blog.config";
 import {
   getDistanceFromToday,
   getYearMonthDay,
@@ -10,13 +11,11 @@ import { mainDocsProps, OptionItem } from "@/types/components/pageutils";
 import { lazy, useCallback, useMemo, useState } from "react";
 import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import PageIndicator from "./PageIndicator";
-import { BLOG } from "@/blog.config";
-const GridCard = lazy(() => import("@/modules/common/cards/GridCard"));
 
-// modules/common/cards/ImageCard.tsx
+const GridCard = lazy(() => import("@/modules/common/cards/GridCard"));
 const ImageCard = lazy(() => import("@/modules/common/cards/ImageCard"));
 
-const LatestDocs = ({ type, introTrue, docs, subType }: mainDocsProps) => {
+const LatestDocs = ({ type, introTrue, docs, docType }: mainDocsProps) => {
   const pages = docs;
   if (!pages) return null;
 
@@ -29,7 +28,7 @@ const LatestDocs = ({ type, introTrue, docs, subType }: mainDocsProps) => {
     const filteredPages =
       currentDocType !== ""
         ? pages.filter((page) => {
-            const pageType = subType ? page?.data?.doc_type : page?.data?.type;
+            const pageType = docType ? page?.data?.doc_type : page?.data?.type;
             if (!pageType) return false;
 
             // 대소문자 구분 없이 비교
@@ -45,7 +44,7 @@ const LatestDocs = ({ type, introTrue, docs, subType }: mainDocsProps) => {
           .filter((data): data is string => Boolean(data))
       )
     );
-    const uniqueSubTypeOptions = Array.from(
+    const uniquedocTypeOptions = Array.from(
       new Set(
         filteredPages //서브타입은 필터링된 페이지 기준
           .map((item) => item?.data?.doc_type)
@@ -67,25 +66,25 @@ const LatestDocs = ({ type, introTrue, docs, subType }: mainDocsProps) => {
       })),
     ];
 
-    const subTypeOptions: OptionItem[] = [
+    const docTypeOptions: OptionItem[] = [
       {
         id: -1,
         title: locale.COMMON.ALL,
         option: "",
       },
-      ...uniqueSubTypeOptions.map((option, index) => ({
+      ...uniquedocTypeOptions.map((option, index) => ({
         id: index,
         title: option,
         option: option,
       })),
     ];
 
-    const allOptions = subType ? subTypeOptions : typeOptions;
+    const allOptions = docType ? docTypeOptions : typeOptions;
     return {
       filteredPages,
       allOptions: allOptions,
     };
-  }, [pages, currentDocType, subType, locale.COMMON.ALL]);
+  }, [pages, currentDocType, docType, locale.COMMON.ALL]);
 
   const handleDocTypeChange = useCallback((option: string) => {
     setcurrentDocType(option);
@@ -125,6 +124,7 @@ const LatestDocs = ({ type, introTrue, docs, subType }: mainDocsProps) => {
         <ImageCard
           data={transferDataForCardProps(firstArticle)}
           variant="featured"
+          imageAlt={firstArticle.data.title || ""}
           showMeta={true}
           showTags={true}
           showSummary={true}
@@ -150,7 +150,7 @@ const LatestDocs = ({ type, introTrue, docs, subType }: mainDocsProps) => {
             description={article.data.summary}
             date={getYearMonthDay(article.data.date, locale.LOCALE)}
             type={article.data.type}
-            subType={article.data.doc_type}
+            docType={article.data.doc_type}
             author={article.data.author}
             distanceFromToday={getDistanceFromToday(article.data.date, lang)}
             tags={article.data.tags}

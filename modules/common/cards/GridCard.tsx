@@ -21,7 +21,7 @@ const GridCard = React.memo(
       {
         title,
         type,
-        subType,
+        docType,
         author,
         description,
         date,
@@ -94,7 +94,7 @@ const GridCard = React.memo(
           <div className={imageContainerClasses}>
             {imageUrl ? (
               <LazyImage
-                alt={imageAlt || title}
+                alt={imageAlt || ""}
                 priority={false}
                 src={imageUrl}
                 className={imageClasses}
@@ -136,13 +136,13 @@ const GridCard = React.memo(
           <div className="flex flex-col items-start gap-2">
             {/* 타입 */}
             <span className="text-xs text-neutral-500 dark:text-neutral-400  uppercase tracking-wide">
-              {type} / {subType}
+              {type} / {docType}
             </span>
             {/* 제목 */}
             {title && <h3 className={titleClasses}>{title}</h3>}
           </div>
         );
-      }, [title, type, subType]);
+      }, [title, type, docType]);
 
       const descriptionContent = useMemo(() => {
         if (!showDescription || !description) return null;

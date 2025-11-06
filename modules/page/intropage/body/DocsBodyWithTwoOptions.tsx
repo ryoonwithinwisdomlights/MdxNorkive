@@ -40,7 +40,7 @@ const DocsBodyWithTwoOptions = ({ docs }: { docs: SerializedPage[] }) => {
 
   // useMemo를 사용하여 필터링 로직 최적화
 
-  const { filteredPages, allSubTypeOptions, modAllDocs, allTagOptions } =
+  const { filteredPages, alldocTypeOptions, modAllDocs, allTagOptions } =
     useMemo(() => {
       let filtered = pages;
 
@@ -74,7 +74,7 @@ const DocsBodyWithTwoOptions = ({ docs }: { docs: SerializedPage[] }) => {
       );
 
       // 중복되지 않는 고유한 doc_type 추출
-      const uniqueSubTypeOptions = Array.from(
+      const uniquedocTypeOptions = Array.from(
         new Set(
           pages
             .map((item) => item?.data?.doc_type)
@@ -94,14 +94,14 @@ const DocsBodyWithTwoOptions = ({ docs }: { docs: SerializedPage[] }) => {
       //   console.log("uniqueTagOptions:", uniqueTagOptions);
 
       // "전체" 아이템을 맨 앞에 추가
-      const allSubTypeOptions: OptionItem[] = [
+      const alldocTypeOptions: OptionItem[] = [
         {
           id: -1,
           title: locale.COMMON.ALL,
           option: "",
           isActive: currentDocType === "" ? true : (false as boolean),
         },
-        ...uniqueSubTypeOptions.map((option, index) => ({
+        ...uniquedocTypeOptions.map((option, index) => ({
           id: index,
           title: option,
           option: option,
@@ -125,7 +125,7 @@ const DocsBodyWithTwoOptions = ({ docs }: { docs: SerializedPage[] }) => {
       ];
       return {
         filteredPages: filtered,
-        allSubTypeOptions: allSubTypeOptions,
+        alldocTypeOptions: alldocTypeOptions,
         allTagOptions: allTagOptions,
         modAllDocs,
       };
@@ -155,7 +155,7 @@ const DocsBodyWithTwoOptions = ({ docs }: { docs: SerializedPage[] }) => {
           <div className="w-52 text-right relative flex flex-col justify-end items-end ">
             <InjectedOptionMenu
               currentDocType={currentDocType}
-              allOptions={allSubTypeOptions}
+              allOptions={alldocTypeOptions}
               handleDocTypeChange={handleDocTypeChange}
               initString={locale.COMMON.TYPES}
             />

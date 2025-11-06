@@ -23,6 +23,7 @@ const ImageCard = React.memo(
         data,
         onClick,
         className,
+        imageAlt = "",
         variant = "default",
         showMeta = true,
         showTags = true,
@@ -127,7 +128,7 @@ const ImageCard = React.memo(
 
         return (
           <LazyImage
-            alt={data.title}
+            alt={imageAlt || ""}
             src={data.imageUrl}
             className={imageClasses}
             width={isFeatured ? 300 : 250}

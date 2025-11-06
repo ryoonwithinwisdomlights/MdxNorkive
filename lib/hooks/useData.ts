@@ -17,9 +17,9 @@ async function fetchMenuFromAPI(): Promise<MenuItem[]> {
 }
 
 async function fetchDocsFromAPI(): Promise<DocFrontMatter[]> {
-  const response = await fetch("/api/docs");
+  const response = await fetch("/api/generals");
   if (!response.ok) {
-    throw new Error("Failed to fetch docs");
+    throw new Error("Failed to fetch general docs");
   }
   return response.json();
 }

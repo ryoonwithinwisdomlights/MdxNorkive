@@ -64,13 +64,13 @@ export const fetchAllDocsList = cache(async (): Promise<DocFrontMatter[]> => {
           {
             property: "type",
             select: {
-              is_not_empty: true, // type이 null(비어있지 않음)
+              does_not_equal: "Menu",
             },
           },
           {
             property: "type",
             select: {
-              equals: DOCS_CONFIG.DOCS_TYPE.DOCS as string, // type이 Docs
+              does_not_equal: "SubMenu",
             },
           },
         ],

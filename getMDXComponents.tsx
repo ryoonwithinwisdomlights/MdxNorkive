@@ -12,60 +12,31 @@ import defaultMdxComponents from "fumadocs-ui/mdx";
 import * as icons from "lucide-react";
 import type { MDXComponents } from "mdx/types";
 
-const YoutubeWrapperLazy = lazy(() =>
+const YoutubeWrapper = lazy(() =>
   import("@norkive/mdx-ui").then((module) => ({
     default: module.YoutubeWrapper,
   }))
 );
 
-const EmbededWrapperLazy = lazy(() =>
+const EmbededWrapper = lazy(() =>
   import("@norkive/mdx-ui").then((module) => ({
     default: module.EmbededWrapper,
   }))
 );
-const FileWrapperLazy = lazy(() =>
+const FileWrapper = lazy(() =>
   import("@norkive/mdx-ui").then((module) => ({ default: module.FileWrapper }))
 );
-const GoogleDriveWrapperLazy = lazy(() =>
+const GoogleDriveWrapper = lazy(() =>
   import("@norkive/mdx-ui").then((module) => ({
     default: module.GoogleDriveWrapper,
   }))
 );
-const BookMarkWrapperLazy = lazy(() =>
+const BookMarkWrapper = lazy(() =>
   import("@norkive/mdx-ui").then((module) => ({
     default: module.BookMarkWrapper,
   }))
 );
 
-const EmbededWrapper = (props: any) => (
-  <Suspense fallback={<div>Loading...</div>}>
-    <EmbededWrapperLazy {...props} />
-  </Suspense>
-);
-// Wrapper components that handle Suspense for lazy-loaded components
-const YoutubeWrapper = (props: any) => (
-  <Suspense fallback={<div>Loading...</div>}>
-    <YoutubeWrapperLazy {...props} />
-  </Suspense>
-);
-
-const FileWrapper = (props: any) => (
-  <Suspense fallback={<div>Loading...</div>}>
-    <FileWrapperLazy {...props} />
-  </Suspense>
-);
-
-const GoogleDriveWrapper = (props: any) => (
-  <Suspense fallback={<div>Loading...</div>}>
-    <GoogleDriveWrapperLazy {...props} />
-  </Suspense>
-);
-
-const BookMarkWrapper = (props: any) => (
-  <Suspense fallback={<div>Loading...</div>}>
-    <BookMarkWrapperLazy {...props} />
-  </Suspense>
-);
 // 일반 링크를 위한 컴포넌트 (PDF, Google Drive, 외부 링크)
 const CustomLinkComponent = ({
   href,

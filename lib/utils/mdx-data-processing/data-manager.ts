@@ -101,8 +101,8 @@ export function generateDocFrontMatter(
   // }
   const summary = props.summary?.rich_text?.[0]?.plain_text?.trim() || "";
   const password = props.password?.rich_text?.[0]?.plain_text?.trim() || "";
-  const type = props.type?.select?.name || DOCS_CONFIG.DOCS_TYPE.DOCS;
-  const doc_type = props.doc_type?.select?.name || DOCS_CONFIG.DOCS_TYPE.DOCS;
+  const type = props.type?.select?.name || DOCS_CONFIG.DOCS_TYPE.TECHS;
+  const doc_type = props.doc_type?.select?.name || DOCS_CONFIG.DOCS_TYPE.TECHS;
 
   // 계산된 메타데이터
   const readingTime = Math.ceil((title.length + enhancedContent.length) / 200);

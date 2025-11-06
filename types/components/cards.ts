@@ -29,6 +29,7 @@ export interface ImageCardProps {
   showSummary?: boolean;
   locale?: LocaleDict;
   lang: string;
+  imageAlt?: string;
   // 슬라이더 관련 props
   isSlider?: boolean;
   onPrevious?: () => void;
@@ -57,7 +58,7 @@ export interface ContentCardProps {
 export interface GridCardProps {
   title: string;
   type?: string;
-  subType?: string;
+  docType?: string;
   author?: string;
   description?: string;
   date?: string;

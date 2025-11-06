@@ -11,7 +11,7 @@ const FeatureDocs = ({
   type,
   introTrue,
   docs,
-  subType = false,
+  docType = false,
 }: mainDocsProps): React.ReactElement | null => {
   const pages = docs;
   if (!pages) return null;
@@ -40,7 +40,7 @@ const FeatureDocs = ({
     const filtered =
       currentDocType !== ""
         ? featuredPages.filter((page) => {
-            const pageType = subType ? page?.data?.doc_type : page?.data?.type;
+            const pageType = docType ? page?.data?.doc_type : page?.data?.type;
             if (!pageType) return false;
 
             // 대소문자 구분 없이 비교
@@ -57,7 +57,7 @@ const FeatureDocs = ({
       )
     );
 
-    const uniqueSubTypeOptions = Array.from(
+    const uniquedocTypeOptions = Array.from(
       new Set(
         featuredPages
           .map((item) => item?.data?.doc_type)
@@ -79,26 +79,26 @@ const FeatureDocs = ({
       })),
     ];
 
-    const subTypeOptions: OptionItem[] = [
+    const docTypeOptions: OptionItem[] = [
       {
         id: -1,
         title: locale.COMMON.ALL,
         option: "",
       },
-      ...uniqueSubTypeOptions.map((option, index) => ({
+      ...uniquedocTypeOptions.map((option, index) => ({
         id: index,
         title: option,
         option: option,
       })),
     ];
 
-    const allOptions = subType ? subTypeOptions : typeOptions;
+    const allOptions = docType ? docTypeOptions : typeOptions;
 
     return {
       filteredPages: filtered,
       allOptions: allOptions,
     };
-  }, [pages, type, currentDocType, subType, locale.COMMON.ALL]);
+  }, [pages, type, currentDocType, docType, locale.COMMON.ALL]);
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % filteredPages.length);
@@ -135,6 +135,7 @@ const FeatureDocs = ({
       {currentPage?.data && (
         <ImageCard
           data={transferDataForCardProps(currentPage)}
+          imageAlt={currentPage.data.title || ""}
           variant="horizontal"
           showMeta={true}
           showTags={true}

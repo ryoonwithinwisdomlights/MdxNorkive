@@ -1,19 +1,19 @@
 "use client";
-import { archivesSource } from "@/lib/source";
-import EngineeringIntro from "@/modules/page/intropage/intro/EngineeringIntro";
+import { portfoliosSource } from "@/lib/source";
+import PortfolioIntro from "@/modules/page/intropage/intro/PortfolioIntro";
 import DocsBodyWithTwoOptions from "./body/DocsBodyWithTwoOptions";
 import { SerializedPage } from "@/types";
 import { generalIntroPageClass } from "@/lib/utils";
 
-const EngineeringDocsPage = () => {
-  const pages = archivesSource.getPages();
+const PortfolioDocsPage = () => {
+  const pages = portfoliosSource.getPages();
 
   return (
     <div className={generalIntroPageClass({ className: "" })}>
-      <EngineeringIntro />
+      <PortfolioIntro />
       <DocsBodyWithTwoOptions docs={pages as unknown as SerializedPage[]} />
     </div>
   );
 };
 
-export default EngineeringDocsPage;
+export default PortfolioDocsPage;

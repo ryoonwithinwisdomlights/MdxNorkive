@@ -134,7 +134,7 @@ const ContentCard = React.memo(
               className: "mb-0 text-xs flex-row",
             })}
           >
-            {data.type} / {data.subType}
+            {data.type} / {data.docType}
           </span>
 
           {/* 제목 */}

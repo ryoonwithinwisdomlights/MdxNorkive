@@ -1,20 +1,25 @@
 import {
   allMetas,
-  allDocs,
-  allArchives,
+  allGenerals,
+  allPortfolios,
+  allTechs,
   allSubmenupages,
 } from "content-collections";
 import { loader } from "fumadocs-core/source";
 import { createMDXSource } from "@fumadocs/content-collections";
 
-export const docsSource = loader({
-  baseUrl: "/docs",
-  source: createMDXSource(allDocs, allMetas),
+export const generalsSource = loader({
+  baseUrl: "/generals",
+  source: createMDXSource(allGenerals, allMetas),
 });
 
-export const archivesSource = loader({
-  baseUrl: "/archives",
-  source: createMDXSource(allArchives, allMetas),
+export const techsSource = loader({
+  baseUrl: "/techs",
+  source: createMDXSource(allTechs, allMetas),
+});
+export const portfoliosSource = loader({
+  baseUrl: "/portfolios",
+  source: createMDXSource(allPortfolios, allMetas),
 });
 
 export const submenuPageSource = loader({

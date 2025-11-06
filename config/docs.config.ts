@@ -15,11 +15,12 @@ export const DOCS_CONFIG = {
 
   DOCS_SUBSTR_BASIC_NUMBER: 80,
   DOCS_SUBSTR_NAVBAR_NUMBER: 24,
-  DOCS_ROOT_DIR_NAME: "content",
+  DOCS_ROOT_DIR_NAME: "all-docs",
   DOCS_ROOT_DIR_TEST: "TEST",
   DOCS_TYPE: {
-    DOCS: "docs",
-    ARCHIVES: "archives",
+    GENERALS: "generals",
+    PORTFOLIOS: "portfolios",
+    TECHS: "techs",
     SUBMENU_PAGES: "submenupages",
   },
 };

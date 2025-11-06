@@ -595,7 +595,7 @@ const { filteredPages, allOptions } = useMemo(() => {
   const filtered = pages.filter(/* complex logic */);
   const options = Array.from(new Set(/* unique values */));
   return { filteredPages: filtered, allOptions: options };
-}, [pages, currentRecordType, subType]);
+}, [pages, currentRecordType, docType]);
 ```
 
 **Use Cases**:
