@@ -28,9 +28,7 @@ export default function ErrorComponent() {
       <h1 className="text-xl font-medium mb-6">
         {locale.ERROR.ERROR_OCCURRED}
       </h1>
-      <h2 className="text-xl font-medium mb-6">
-        {locale.ERROR.INVALID_RECORD}
-      </h2>
+      <h2 className="text-xl font-medium mb-6">{locale.ERROR.INVALID_DOC}</h2>
       <Button asChild>
         <Link href={"/"}>{locale.SITE.BACK}</Link>
       </Button>

@@ -46,6 +46,8 @@
     ".content-collections/generated",  
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "backup",
+    "packages/*"
   ]
 }

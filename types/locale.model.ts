@@ -3,9 +3,6 @@
  * 다국어 번역 딕셔너리 타입 정의
  */
 
-// Helper type for nested string records
-type StringRecord<T extends Record<string, string>> = T;
-
 // INTRO section types (exported for convenience)
 export interface IntroFeatured {
   TITLE: string;
@@ -78,11 +75,11 @@ export interface CommonSection extends Record<string, string> {
   DEBUG_CLOSE: string;
   LOADING: string;
   ANNOUNCEMENT: string;
-  NO_RECORD_FOUND: string;
+  NO_DOCS_FOUND: string;
 }
 
 // RECORD section
-export interface RecordSection extends Record<string, string> {
+export interface DocSection extends Record<string, string> {
   LAST_EDITED_TIME: string;
   VIEW: string;
   MINUTE: string;
@@ -120,14 +117,14 @@ export interface SearchSection extends Record<string, string> {
 // ERROR section
 export interface ErrorSection extends Record<string, string> {
   ERROR_OCCURRED: string;
-  INVALID_RECORD: string;
+  INVALID_DOC: string;
 }
 
 // FETCH section
 export interface FetchSection extends Record<string, string> {
   ERROR_OCCURRED: string;
   PAGE_DATA_FAILED: string;
-  INVALID_RECORD: string;
+  INVALID_DOC: string;
 }
 
 // SITE section
@@ -148,7 +145,7 @@ export interface LocaleDict {
   LOADING: string;
   INTRO: IntroSection;
   COMMON: CommonSection;
-  RECORD: RecordSection;
+  DOCS: DocSection;
   LOCKED: LockedSection;
   PAGINATION: PaginationSection;
   SEARCH: SearchSection;

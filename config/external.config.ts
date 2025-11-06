@@ -10,10 +10,8 @@ if (typeof window === "undefined") {
   }
 }
 export const EXTERNAL_CONFIG = {
-  DIR_NAME: "content",
-  DIR_NAME_TEST: "TEST",
   TEST_ID: process.env.TEST_ID || "",
-  TEST_TYPE: process.env.TEST_TYPE || "ENGINEERINGS",
+  TEST_TYPE: process.env.TEST_TYPE || "Docs",
   // Notion 설정
   NOTION_DATABASE_ID: process.env.NOTION_DATABASE_ID,
   NOTION_ACTIVE_USER: process.env.NOTION_ACTIVE_USER || "",

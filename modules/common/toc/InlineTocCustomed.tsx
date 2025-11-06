@@ -24,7 +24,7 @@ const InlineTocCustomed = ({ items, ...props }: InlineTocProps) => {
     >
       <CollapsibleTrigger className="group inline-flex w-full items-center justify-between px-4 py-2.5 font-medium">
         <span className="text-base text-neutral-600 dark:text-neutral-200">
-          {locale.RECORD.TABLE_OF_CONTENTS}
+          {locale.DOCS.TABLE_OF_CONTENTS}
         </span>
         <ChevronDown className="size-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
       </CollapsibleTrigger>

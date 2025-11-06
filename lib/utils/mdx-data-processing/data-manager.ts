@@ -3,13 +3,13 @@
  * 기존 MDX 파일들의 메타데이터 관리 및 중복 처리
  */
 
-import fs from "fs/promises";
-import path from "path";
-import matter from "gray-matter";
-import { RecordFrontMatter } from "@/types/mdx.model";
-import { QueryPageResponse } from "@/types/notion.client.model";
 import { BLOG } from "@/blog.config";
-import { EXTERNAL_CONFIG } from "@/config/external.config";
+import { DOCS_CONFIG } from "@/config/docs.config";
+import { DocFrontMatter } from "@/types/mdx.model";
+import { QueryPageResponse } from "@/types/notion.client.model";
+import fs from "fs/promises";
+import matter from "gray-matter";
+import path from "path";
 
 /**
  * MDX frontmatter 전체를 파싱하여 객체로 반환
@@ -45,23 +45,23 @@ export function extractFrontmatterValue(
 }
 
 /**
- * Notion 페이지 데이터로부터 RecordFrontMatter 메타데이터 생성
+ * Notion 페이지 데이터로부터 DocFrontMatter 메타데이터 생성
  *
  * @param props Notion 페이지 속성
  * @param id Notion 페이지 ID
  * @param last_edited_time 마지막 수정 시간
  * @param pageCover 페이지 커버 이미지 URL
  * @param enhancedContent 처리된 콘텐츠
- * @returns RecordFrontMatter 객체
+ * @returns DocFrontMatter 객체
  */
-export function generateRecordFrontMatter(
+export function generateDocFrontMatter(
   props: QueryPageResponse["properties"],
   slug: string,
   id: string,
   last_edited_time: string,
   pageCover: string | null,
   enhancedContent: string
-): RecordFrontMatter {
+): DocFrontMatter {
   // 기본 메타데이터 추출
   const title =
     props.title?.title
@@ -101,8 +101,8 @@ export function generateRecordFrontMatter(
   // }
   const summary = props.summary?.rich_text?.[0]?.plain_text?.trim() || "";
   const password = props.password?.rich_text?.[0]?.plain_text?.trim() || "";
-  const type = props.type?.select?.name || "RECORDS";
-  const sub_type = props.sub_type?.select?.name || "RECORDS";
+  const type = props.type?.select?.name || DOCS_CONFIG.DOCS_TYPE.DOCS;
+  const doc_type = props.doc_type?.select?.name || DOCS_CONFIG.DOCS_TYPE.DOCS;
 
   // 계산된 메타데이터
   const readingTime = Math.ceil((title.length + enhancedContent.length) / 200);
@@ -116,7 +116,7 @@ export function generateRecordFrontMatter(
     notionId: id,
     password,
     type,
-    sub_type,
+    doc_type,
     category,
     tags,
     favorite,
@@ -142,7 +142,7 @@ export function generateRecordFrontMatter(
  * @returns frontmatter가 포함된 MDX 문자열
  */
 export function stringifyFrontMatter(
-  frontMatter: RecordFrontMatter,
+  frontMatter: DocFrontMatter,
   content: string
 ): string {
   return matter.stringify(content, frontMatter);
@@ -167,7 +167,7 @@ export function generateCompleteMdxFile(
   enhancedContent: string,
   slug: string
 ): string {
-  const frontMatter = generateRecordFrontMatter(
+  const frontMatter = generateDocFrontMatter(
     props,
     slug,
     id,
@@ -186,7 +186,7 @@ export function generateCompleteMdxFile(
  * 기존 MDX 파일의 notionId → endDate 매핑 생성
  */
 export async function getExistingEndDates(
-  baseDir: string = path.join(process.cwd(), EXTERNAL_CONFIG.DIR_NAME)
+  baseDir: string = path.join(process.cwd(), DOCS_CONFIG.DOCS_ROOT_DIR_NAME)
 ): Promise<Map<string, string>> {
   const map = new Map<string, string>();
   console.log("baseDir::", baseDir);

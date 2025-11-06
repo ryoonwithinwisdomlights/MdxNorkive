@@ -1,5 +1,5 @@
-import { RecordFrontMatter } from "@/types/mdx.model";
-import { MenuItem } from "@/types/recorddata.model";
+import { DocFrontMatter } from "@/types/mdx.model";
+import { MenuItem } from "@/types/docdata.model";
 import { CollapseRefType } from "@/types/components/collapse";
 
 export interface MobileRightSidebarProps {
@@ -23,7 +23,7 @@ export interface MobileMenuItemDropProps {
 }
 
 export interface NavListDivProps {
-  record: RecordFrontMatter;
+  doc: DocFrontMatter;
   className?: string;
   substr?: boolean;
   substrNumber?: number;

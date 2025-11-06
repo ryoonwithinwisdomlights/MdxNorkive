@@ -27,7 +27,7 @@ export default function NotFound() {
         loading="lazy" // 레이지 로딩
       />
       <h2 className="text-xl font-medium mb-6">
-        {locale.COMMON.NO_RECORD_FOUND}
+        {locale.COMMON.NO_DOCS_FOUND}
       </h2>
       <Button asChild>
         <Link href={"/"}> Go Back</Link>

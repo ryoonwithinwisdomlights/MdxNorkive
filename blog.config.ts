@@ -1,10 +1,11 @@
-import { RECORD_CONFIG } from "@/config/record.config";
+import { DOCS_CONFIG } from "@/config/docs.config";
 import { FONT_CONFIG } from "@/config/font.config";
 import { CONTACT_CONFIG } from "@/config/contact.config";
 import { IMAGE_CONFIG } from "@/config/image.config";
 import { ANALYTICS_CONFIG } from "@/config/analytics.config";
 import { DEV_CONFIG } from "@/config/dev.config";
 import { SITE_CONFIG } from "@/config/site.config";
+import { EXTERNAL_CONFIG } from "./config/external.config";
 
 export const BLOG = {
   APP_NAME: "Norkive",
@@ -30,7 +31,8 @@ export const BLOG = {
   ...IMAGE_CONFIG,
   ...CONTACT_CONFIG,
   ...FONT_CONFIG,
-  ...RECORD_CONFIG,
+  ...DOCS_CONFIG,
   ...ANALYTICS_CONFIG,
   ...DEV_CONFIG,
+  ...EXTERNAL_CONFIG,
 };

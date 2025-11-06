@@ -123,13 +123,6 @@ const baseConfig: NextConfig = {
               chunks: "all",
               priority: 9,
             },
-            // Font Awesome 분리
-            // fontawesome: {
-            //   test: /[\\/]node_modules[\\/]@fortawesome[\\/]/,
-            //   name: "fontawesome",
-            //   chunks: "all",
-            //   priority: 9,
-            // },
           },
         },
         // Tree shaking 최적화

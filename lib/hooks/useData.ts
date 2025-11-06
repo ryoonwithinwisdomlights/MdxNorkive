@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import type { MenuItem } from "@/types/recorddata.model";
-import type { RecordFrontMatter } from "@/types/mdx.model";
+import type { MenuItem } from "@/types/docdata.model";
+import type { DocFrontMatter } from "@/types/mdx.model";
 
 /**
  * 최소한의 React Query Hook들
@@ -16,10 +16,10 @@ async function fetchMenuFromAPI(): Promise<MenuItem[]> {
   return response.json();
 }
 
-async function fetchRecordsFromAPI(): Promise<RecordFrontMatter[]> {
-  const response = await fetch("/api/records");
+async function fetchDocsFromAPI(): Promise<DocFrontMatter[]> {
+  const response = await fetch("/api/docs");
   if (!response.ok) {
-    throw new Error("Failed to fetch records");
+    throw new Error("Failed to fetch docs");
   }
   return response.json();
 }
@@ -33,11 +33,11 @@ export function useMenuList() {
   });
 }
 
-// 레코드 데이터 Hook
-export function useRecords() {
+// docs 데이터 Hook
+export function useDocsList() {
   return useQuery({
-    queryKey: ["records"],
-    queryFn: fetchRecordsFromAPI,
+    queryKey: ["docs"],
+    queryFn: fetchDocsFromAPI,
     staleTime: 5 * 60 * 1000, // 5분간 fresh 상태 유지
   });
 }
@@ -52,12 +52,12 @@ export function useMenuItem(id: string) {
   };
 }
 
-// 특정 레코드 Hook (필요시)
-export function useRecord(id: string) {
-  const { data: records } = useRecords();
+// 특정 문서 Hook (필요시)
+export function useSingleDoc(id: string) {
+  const { data: docs } = useDocsList();
 
   return {
-    data: records?.find((record) => record.notionId === id),
-    isLoading: !records,
+    data: docs?.find((doc) => doc.notionId === id),
+    isLoading: !docs,
   };
 }

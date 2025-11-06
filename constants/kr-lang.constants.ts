@@ -6,29 +6,29 @@ export const KOR_LANG: LocaleDict = {
   LOADING: "로딩중...",
   INTRO: {
     FEATURED: {
-      TITLE: "주요 레코드",
-      DESC: "favourite으로 체크된 레코드 10개를 가져옵니다.",
+      TITLE: "주요글",
+      DESC: "favourite으로 체크된 문서 10개를 가져옵니다.",
     },
     LATEST: {
-      TITLE: "최근 레코드",
-      DESC: "서브타입별로 가장 최근에 작성된 레코드 7개를 표시합니다.",
+      TITLE: "최근글",
+      DESC: "서브타입별로 가장 최근에 작성된 문서 7개를 표시합니다.",
     },
     ENTIRE: {
-      TITLE: "전체 레코드",
-      DESC: "모든 레코드를 확인해보세요",
+      TITLE: "전체글",
+      DESC: "모든 문서를 확인해보세요",
     },
     READ_MORE: "자세히 보기",
     BOOK: {
-      SUBTITLE_1: "Take a look all the Book Records",
+      SUBTITLE_1: "Take a look all the Book Docs",
       SUBTITLE_2: "based on all the Words and World of sentences.",
-      TITLE: "Book Records.",
+      TITLE: "Book Docs.",
       DESCRIPTION_PREFIX: "언어와 문장들로",
       DESCRIPTION_HIGHLIGHT_1: "이루어진",
       DESCRIPTION_HIGHLIGHT_2: "아카이브.",
       DESCRIPTION_SUFFIX: "connected by small and big words.",
     },
     ENGINEERING: {
-      SUBTITLE: "Browsing all the engineering related records you have learned",
+      SUBTITLE: "Browsing all the engineering related Docs you have learned",
       TITLE: "Software Engineering.",
       DESCRIPTION_PREFIX: "배우고 기록한 좋은",
       DESCRIPTION_HIGHLIGHT_1: "지식, 정보, 앎",
@@ -36,9 +36,9 @@ export const KOR_LANG: LocaleDict = {
       DESCRIPTION_SUFFIX: "에 대한",
     },
     GENERAL: {
-      SUBTITLE_1: "Take a look all the General Records",
+      SUBTITLE_1: "Take a look all the General Docs",
       SUBTITLE_2: "based on all the waves Life has been comming through.",
-      TITLE: "Gerneral Records.",
+      TITLE: "Gerneral Docs.",
       DESCRIPTION_PREFIX: "일상의 작은 조각들로",
       DESCRIPTION_HIGHLIGHT_1: "이루어진",
       DESCRIPTION_HIGHLIGHT_2: "아카이브.",
@@ -60,9 +60,9 @@ export const KOR_LANG: LocaleDict = {
     DEBUG_CLOSE: "닫기",
     LOADING: "로딩중...",
     ANNOUNCEMENT: "공지사항",
-    NO_RECORD_FOUND: "관련 아카이브 레코드가 없습니다.",
+    NO_DOCS_FOUND: "관련 아카이브 문서가 없습니다.",
   },
-  RECORD: {
+  DOCS: {
     LAST_EDITED_TIME: "최종 수정일",
     VIEW: "조회수",
     MINUTE: "분",
@@ -92,12 +92,12 @@ export const KOR_LANG: LocaleDict = {
   },
   ERROR: {
     ERROR_OCCURRED: "문제가 발생했습니다",
-    INVALID_RECORD: "유효하지 않은 레코드입니다.",
+    INVALID_DOC: "유효하지 않은 문서입니다.",
   },
   FETCH: {
     ERROR_OCCURRED: "데이터 파싱 중 오류가 발생했습니다.",
     PAGE_DATA_FAILED: "페이지 데이터 파싱 중 오류가 발생했습니다.",
-    INVALID_RECORD: "유효하지 않은 레코드입니다.",
+    INVALID_DOC: "유효하지 않은 문서입니다.",
   },
   SITE: {
     BACK: "뒤로",

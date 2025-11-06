@@ -27,6 +27,7 @@ import { buttonVariants } from "@/modules/shared/ui/DocButton";
 import { cn } from "@/lib/utils/general";
 import type { SharedProps, TagItem } from "fumadocs-ui/contexts/search";
 import { type ReactNode, useEffect, useState } from "react";
+import { DOCS_CONFIG } from "@/config/docs.config";
 
 export interface DefaultSearchDialogProps extends SharedProps {
   defaultTag?: string;
@@ -70,25 +71,25 @@ const items: {
     value: undefined,
   },
   {
-    name: "General",
-    value: "records",
-    description: "Only results about General",
+    name: "Docs",
+    value: DOCS_CONFIG.DOCS_TYPE.DOCS,
+    description: "Only results about General Docs",
   },
   {
-    name: "Books",
-    value: "books",
-    description: "Only results about Books",
+    name: "Archives",
+    value: DOCS_CONFIG.DOCS_TYPE.ARCHIVES,
+    description: "Only results about Archives",
   },
-  {
-    name: "Engineering",
-    value: "engineerings",
-    description: "Only results about Engineering",
-  },
-  {
-    name: "Projects",
-    value: "projects",
-    description: "Only results about Projects",
-  },
+  // {
+  //   name: "Engineering",
+  //   value: "engineerings",
+  //   description: "Only results about Engineering",
+  // },
+  // {
+  //   name: "Projects",
+  //   value: "projects",
+  //   description: "Only results about Projects",
+  // },
 ];
 
 export default function DefaultSearchDialog({

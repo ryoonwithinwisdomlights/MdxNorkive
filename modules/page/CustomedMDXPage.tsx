@@ -1,12 +1,5 @@
 "use client";
 import { useThemeStore, useUIStore } from "@/lib/stores";
-import {
-  bookSource,
-  engineeringSource,
-  projectSource,
-  recordSource,
-  submenuPageSource,
-} from "@/lib/source";
 import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils/date";
 import {
   DocsBody,
@@ -16,25 +9,17 @@ import {
 import { MDXContent } from "@content-collections/mdx/react";
 import { InlineTOC } from "fumadocs-ui/components/inline-toc";
 import { useSidebar } from "fumadocs-ui/provider";
-import { Book, CalendarIcon, Rocket } from "lucide-react";
+import { Book, CalendarIcon } from "lucide-react";
 import { notFound } from "next/navigation";
-import { useEffect, useState, Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 
 import { getMDXComponents } from "@/getMDXComponents";
+import { getDocsResource } from "@/lib/utils";
 import TagItemMini from "@/modules/common/tag/TagItemMini";
 
 const LoadingCover = lazy(() => import("@/modules/shared/LoadingCover"));
 const LockedPage = lazy(() => import("@/modules/page/components/LockedPage"));
 const ShareBar = lazy(() => import("@/modules/shared/ShareBar"));
-
-function getResource(resource: string) {
-  if (resource === "engineering") return engineeringSource;
-  if (resource === "book") return bookSource;
-  if (resource === "project") return projectSource;
-  if (resource === "record") return recordSource;
-  if (resource === "submenupages") return submenuPageSource;
-  else return null;
-}
 
 export default function CustomedMDXPage({
   className,
@@ -45,7 +30,7 @@ export default function CustomedMDXPage({
   slug: string[] | undefined;
   resource: string;
 }) {
-  const page = getResource(resource)?.getPage(slug);
+  const page = getDocsResource(resource)?.getPage(slug);
 
   if (!page) notFound();
 
@@ -55,7 +40,7 @@ export default function CustomedMDXPage({
 
   const { locale } = useThemeStore();
   const { setRightSideInfoBarMode, setTocContent } = useUIStore();
-  const { RECORD } = locale;
+  const { DOCS } = locale;
   const { setCollapsed } = useSidebar();
 
   useEffect(() => {
@@ -109,7 +94,7 @@ export default function CustomedMDXPage({
 
               <div className="relative z-10 flex flex-col gap-3">
                 <span className="text-xs text-white uppercase tracking-wide">
-                  {page.data.type} / {page.data?.sub_type}
+                  {page.data.type} / {page.data?.doc_type}
                 </span>
                 <h1 className="mb-2 text-3xl font-bold text-white">
                   {page.data.title}
@@ -120,18 +105,18 @@ export default function CustomedMDXPage({
                     <Book className="w-4 h-4" />
                     <div className="flex flex-row gap-2 items-center">
                       <span className="text-white text-sm">
-                        {RECORD.READING_TIME ?? "Reading Time"}
+                        {DOCS.READING_TIME ?? "Reading Time"}
                       </span>
                       -
                       <span className="text-white text-sm">
-                        {page.data.readingTime} {RECORD.MINUTE ?? "min"}
+                        {page.data.readingTime} {DOCS.MINUTE ?? "min"}
                       </span>
                     </div>
                   </div>
                   {/* <div className="flex flex-row gap-2 items-center">
                     <span className=" flex flex-row gap-2 items-center text-white text-sm">
                       <Rocket className="w-4 h-4" />
-                      <span>{RECORD.VIEW ?? "View"}</span>
+                      <span>{DOCS.VIEW ?? "View"}</span>
                       <span className=" busuanzi_value_page_pv" />
                     </span>
                   </div> */}
@@ -161,7 +146,7 @@ export default function CustomedMDXPage({
             {toc.length > 0 && (
               <InlineTOC
                 items={toc}
-                children={RECORD.TABLE_OF_CONTENTS ?? "Table Of Contents"}
+                children={DOCS.TABLE_OF_CONTENTS ?? "Table Of Contents"}
                 className="block md:hidden bg-neutral-100 dark:bg-neutral-800 mb-4"
               />
             )}

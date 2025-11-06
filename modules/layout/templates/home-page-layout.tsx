@@ -1,7 +1,7 @@
 import React from "react";
 import RightSideNavWrapper from "../wrapper/RightSideNavWrapper";
 
-export default function GeneralRecordTypePageWrapper({
+export default function GeneralDocTypePageWrapper({
   children,
 }: {
   children: React.ReactNode;

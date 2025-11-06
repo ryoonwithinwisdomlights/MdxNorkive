@@ -2,7 +2,7 @@ import { notion } from "@/app/api/clients";
 import {
   ModifiedQueryDatabaseResponse,
   QueryPageResponse,
-  RecordFrontMatter,
+  DocFrontMatter,
   MenuItem,
 } from "@/types";
 import { generateUserFriendlySlug } from "@/lib/utils";
@@ -37,9 +37,8 @@ export async function generateMenuItem(
     props?.date?.date?.start || page.created_time
   ).getTime();
   const status = props.status?.select?.name;
-  // const sub_type = props.sub_type?.select?.name || "";
+  // const doc_type = props.doc_type?.select?.name || "";
   const title = props.title?.title?.[0]?.plain_text?.trim() || "Untitled";
-  const icon = props.menuicon?.rich_text?.[0]?.plain_text?.trim() || "";
   const slug = props.slug?.rich_text?.[0]?.plain_text?.trim() || "";
   const subMenus: MenuItem[] =
     childRelations.length > 0
@@ -52,7 +51,6 @@ export async function generateMenuItem(
   if (status === "Published") {
     return {
       id: id,
-      icon: icon,
       type: type,
       slug: slug,
       url: url,
@@ -64,9 +62,9 @@ export async function generateMenuItem(
   }
 }
 
-export function generateRecordItem(
+export function generateDocItem(
   page: ModifiedQueryDatabaseResponse
-): RecordFrontMatter {
+): DocFrontMatter {
   const slugSet = new Set<string>();
 
   const id = page.id.replace(/-/g, "");
@@ -82,9 +80,9 @@ export function generateRecordItem(
   }
   const title = props.title?.title?.[0]?.plain_text?.trim() || "Untitled";
   const type = props.type?.select?.name;
-  const sub_type = props.sub_type?.select?.name || "";
+  const doc_type = props.doc_type?.select?.name || "";
   // 사용자 친화적 슬러그 생성
-  const slug = generateUserFriendlySlug(sub_type, title, slugSet);
+  const slug = generateUserFriendlySlug(doc_type, title, slugSet);
   const description = props.summary?.rich_text?.[0]?.plain_text?.trim() || "";
   let icon: string | null = null;
   if (page.icon) {
@@ -114,7 +112,7 @@ export function generateRecordItem(
     notionId: id,
     password,
     type,
-    sub_type,
+    doc_type,
     category,
     tags,
     favorite,
@@ -130,5 +128,5 @@ export function generateRecordItem(
     status: "published",
     author: "ryoon",
     version: "1.0.0",
-  } as RecordFrontMatter;
+  } as DocFrontMatter;
 }

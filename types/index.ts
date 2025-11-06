@@ -3,7 +3,7 @@ export * from "./locale.model";
 export * from "./mdx.model";
 export * from "./notion.client.model";
 export * from "./provider.model";
-export * from "./recorddata.model";
+export * from "./docdata.model";
 
 // 컴포넌트 타입들
 export * from "./components/common";

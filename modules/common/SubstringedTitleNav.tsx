@@ -5,7 +5,7 @@ import { NavListDivProps } from "@/types/components/navigation";
 import { useRouter } from "next/navigation";
 
 const SubstringedTitleNav = ({
-  record,
+  doc,
   className,
   substr,
   substrNumber,
@@ -14,21 +14,21 @@ const SubstringedTitleNav = ({
 
   return (
     <div
-      key={record.notionId}
+      key={doc.notionId}
       className={`${className} cursor-pointer px-2    hover:dark:text-white 
       }`}
     >
       <div className="flex flex-col w-full select-none">
         <div
           onClick={() => {
-            router.push(record.slug);
-            // handleRouter(record);
+            router.push(doc.slug);
+            // handleRouter(doc);
           }}
         >
-          <span className="text-xs pr-1">{record.icon} </span>
+          <span className="text-xs pr-1">{doc.icon} </span>
           {substr
-            ? substringWithNumberDots(record.title, substrNumber || 0)
-            : record.title}
+            ? substringWithNumberDots(doc.title, substrNumber || 0)
+            : doc.title}
         </div>
       </div>
     </div>

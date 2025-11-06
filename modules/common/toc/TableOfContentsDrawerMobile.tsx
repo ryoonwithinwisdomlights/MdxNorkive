@@ -41,7 +41,7 @@
 //               onClick={handleTOCVisible}
 //               className="px-4 pb-2 flex justify-between items-center border-b font-bold"
 //             >
-//               <span>{locale.RECORD.TABLE_OF_CONTENTS}</span>
+//               <span>{locale.DOCS.TABLE_OF_CONTENTS}</span>
 //               <XIcon className="p-1 cursor-pointer" />
 //             </div>
 //             <div className="dark:text-neutral-400 text-neutral-600 px-3">

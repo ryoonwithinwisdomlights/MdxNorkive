@@ -16,7 +16,7 @@
 //   pageCount,
 // }: PaginationDivProps) => {
 //   const router = useRouter();
-//   const totalPage = Math.ceil(pageCount / BLOG.RECORD_PER_PAGE);
+//   const totalPage = Math.ceil(pageCount / BLOG.DOCS_PER_PAGE);
 //   const { locale, searchKeyword } = useGeneralSiteSettings();
 //   const currentPage = +pagenum;
 
@@ -41,13 +41,13 @@
 //           {locale.PAGINATION.PREV}
 //         </span>
 //       </div>
-//       <div id="records-wrapper ">
-//         {allPages?.map((record: any) => (
+//       <div id="docs-wrapper ">
+//         {allPages?.map((doc: any) => (
 //           <SubstringedTitleNav
-//             key={record.notionId}
-//             record={record}
+//             key={doc.notionId}
+//             doc={doc}
 //             substr={true}
-//             substrNumber={BLOG.RECORD_SUBSTR_BASIC_NUMBER}
+//             substrNumber={BLOG.DOCS_SUBSTR_BASIC_NUMBER}
 //           />
 //         ))}
 //       </div>

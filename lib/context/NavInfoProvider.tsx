@@ -32,11 +32,11 @@ export function NavInfoProvider({
   // value 객체를 useMemo로 최적화하여 props가 변경되지 않으면 리렌더링 방지
   const value = useMemo(
     () => ({
-      recordList: props.recordList,
+      docsList: props.docsList,
       serializedAllPages: props.serializedAllPages,
       menuList: menuList,
     }),
-    [props.recordList, props.serializedAllPages, menuList]
+    [props.docsList, props.serializedAllPages, menuList]
   );
 
   return (

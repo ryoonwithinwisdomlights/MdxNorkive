@@ -7,10 +7,10 @@ import { memo } from "react";
 
 const InjectedOptionMenu = memo(
   ({
-    currentRecordType = "",
+    currentDocType = "",
     allOptions,
     initString,
-    handleRecordTypeChange,
+    handleDocTypeChange,
   }: InjectedOptionMenuProps) => {
     const { locale } = useThemeStore();
     return (
@@ -28,8 +28,8 @@ const InjectedOptionMenu = memo(
      data-hover:dark:bg-neutral-700
      "
         >
-          {currentRecordType !== ""
-            ? currentRecordType
+          {currentDocType !== ""
+            ? currentDocType
             : initString
             ? initString
             : locale.COMMON.ALL}
@@ -42,7 +42,7 @@ const InjectedOptionMenu = memo(
           {allOptions.map((item) => (
             <MenuItem key={item.id}>
               <button
-                onClick={() => handleRecordTypeChange(item.option)}
+                onClick={() => handleDocTypeChange(item.option)}
                 className="group flex w-full items-center gap-2 rounded-lg px-3 
               py-1.5 data-focus:bg-neutral-100 dark:data-focus:bg-neutral-700"
               >

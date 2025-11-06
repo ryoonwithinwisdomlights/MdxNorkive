@@ -2,7 +2,7 @@ import { submenuPageSource } from "@/lib/source";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { lazy } from "react";
-
+import { DOCS_CONFIG } from "@/config/docs.config";
 const CustomedMDXPage = lazy(() => import("@/modules/page/CustomedMDXPage"));
 export const dynamic = "force-static";
 
@@ -15,12 +15,9 @@ export default async function Page(props: {
     slug = slug.map((s) => decodeURIComponent(s));
   }
 
-  // console.log("slug:", slug);
-  // console.log("params.slug:", params.slug);
-  // console.log("===================");
   return (
     <CustomedMDXPage
-      resource={"submenupages"}
+      resource={DOCS_CONFIG.DOCS_TYPE.SUBMENU_PAGES as string}
       className="p-4 md:p-0"
       slug={params.slug}
     />

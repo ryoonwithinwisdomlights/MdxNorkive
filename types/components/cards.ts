@@ -1,5 +1,5 @@
 import { LocaleDict } from "@/types/locale.model";
-import { TransferedDataProps } from "@/types/recorddata.model";
+import { TransferedDataProps } from "@/types/docdata.model";
 
 export type CardInfoDivProps = {
   data: TransferedDataProps;

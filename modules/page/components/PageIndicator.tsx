@@ -1,6 +1,6 @@
 "use client";
 import { useThemeStore } from "@/lib/stores";
-import { paginationString } from "@/lib/utils/records";
+import { paginationString } from "@/lib/utils/docs";
 import { PageIndicatorProps } from "@/types/components/pageutils";
 import { memo, useCallback } from "react";
 

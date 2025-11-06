@@ -3,7 +3,7 @@ import "dotenv/config";
 import fs from "fs/promises";
 import path from "path";
 
-import { DEV_CONFIG } from "@/config/dev.config";
+import { DOCS_CONFIG } from "@/config/docs.config";
 import { EXTERNAL_CONFIG } from "@/config/external.config";
 import {
   ModifiedQueryDatabaseResponseArray,
@@ -15,7 +15,7 @@ if (process.env.NODE_ENV !== "production" && !process.env.VERCEL) {
   config({ path: path.resolve(process.cwd(), ".env.local") });
 }
 
-import { generateUserFriendlySlug } from "@/lib/utils";
+import { generateUserFriendlySlug } from "@/lib/utils/slug";
 
 import {
   generateCompleteMdxFile,
@@ -39,7 +39,10 @@ import {
 // === ✅ 환경변수 및 설정 ===
 
 const DATABASE_ID = EXTERNAL_CONFIG.NOTION_DATABASE_ID!;
-const BASE_OUTPUT_DIR = path.join(process.cwd(), DEV_CONFIG.DIR_NAME);
+const BASE_OUTPUT_DIR = path.join(
+  process.cwd(),
+  DOCS_CONFIG.DOCS_ROOT_DIR_NAME
+);
 
 // ✅ 슬러그 중복 방지용 매니저
 const slugManager = new SlugManager();

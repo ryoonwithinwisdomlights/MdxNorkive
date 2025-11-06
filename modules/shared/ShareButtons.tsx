@@ -17,7 +17,7 @@ import LoadingCover from "./LoadingCover";
 import { PageData } from "fumadocs-core/source";
 
 const ShareButtons = ({ data, url }: { data: PageData; url: string }) => {
-  const services = BLOG.RECORD_SHARE_SERVICE.split(",");
+  const services = BLOG.DOCS_SHARE_SERVICE.split(",");
   const [shareUrl, setShareUrl] = useState<string>("");
   const [titleWithSiteInfo, setTitleWithSiteInfo] = useState<string>("");
   const [body, setBody] = useState<string>("");

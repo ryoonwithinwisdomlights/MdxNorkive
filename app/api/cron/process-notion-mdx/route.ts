@@ -1,5 +1,5 @@
 import { getDataFromCache, setDataToCache } from "@/lib/cache/cache_manager";
-import { imageCacheManager } from "@/lib/cache/image_cache_manager";
+import { redisCacheManager } from "@/lib/cache/redis_cache_manager";
 import RedisImageProcessor from "@/scripts/redis-image-processor";
 import { NextResponse } from "next/server";
 
@@ -97,7 +97,7 @@ export async function GET() {
     await imageProcessor.processAllMdxFiles();
 
     // 4. 캐시 통계 수집
-    const cacheStats = await imageCacheManager.getCacheStats();
+    const cacheStats = await redisCacheManager.getCacheStats();
 
     console.log("🎉 노션 MDX 자동 처리 완료!");
 
@@ -173,13 +173,13 @@ async function processSinglePage(pageId: string): Promise<ProcessResult> {
     const cached = await getDataFromCache(cacheKey);
 
     // 2. 노션에서 최신 데이터 가져오기
-    const recordMap = await getRecordBlockMapWithRetry({
+    const docMap = await getDocBlockMapWithRetry({
       pageId,
       from: "cron-auto-process",
       retryAttempts: 3,
     });
 
-    if (!recordMap) {
+    if (!docMap) {
       return {
         pageId,
         status: "error",
@@ -188,7 +188,7 @@ async function processSinglePage(pageId: string): Promise<ProcessResult> {
     }
 
     // 3. 변경사항 확인
-    const freshTime = extractLastEditedTime(recordMap, pageId);
+    const freshTime = extractLastEditedTime(docMap, pageId);
     const cachedTime = extractLastEditedTime(cached, pageId);
     const hasChanged = !cachedTime || freshTime !== cachedTime;
 
@@ -200,10 +200,10 @@ async function processSinglePage(pageId: string): Promise<ProcessResult> {
     }
 
     // 4. 캐시 업데이트
-    await setDataToCache(cacheKey, recordMap);
+    await setDataToCache(cacheKey, docMap);
 
     // 5. MDX 생성 (기존 스크립트 활용)
-    const mdxGenerated = await generateMdxFromRecordMap(recordMap, pageId);
+    const mdxGenerated = await generateMdxFromdocMap(docMap, pageId);
 
     // 6. 이미지 처리
     const imagesProcessed = await processImagesInMdx(pageId);
@@ -224,10 +224,10 @@ async function processSinglePage(pageId: string): Promise<ProcessResult> {
 }
 
 /**
- * 레코드 맵에서 MDX 생성
+ * Docs 맵에서 MDX 생성
  */
-async function generateMdxFromRecordMap(
-  recordMap: any,
+async function generateMdxFromdocMap(
+  docMap: any,
   pageId: string
 ): Promise<boolean> {
   try {
@@ -262,17 +262,17 @@ async function processImagesInMdx(pageId: string): Promise<number> {
  * 마지막 수정 시간 추출
  */
 function extractLastEditedTime(
-  recordMap: any,
+  docMap: any,
   pageId: string
 ): string | undefined {
-  const block = recordMap?.block?.[pageId]?.value;
+  const block = docMap?.block?.[pageId]?.value;
   return block?.last_edited_time ?? undefined;
 }
 
 /**
  * 노션 데이터 가져오기 (재시도 로직 포함)
  */
-async function getRecordBlockMapWithRetry({
+async function getDocBlockMapWithRetry({
   pageId,
   from,
   retryAttempts = 3,

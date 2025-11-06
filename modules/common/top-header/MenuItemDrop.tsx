@@ -25,7 +25,7 @@ export const MenuItemDrop = ({ menuData }: MenuItemDropProps) => {
       if (data?.slug?.includes("http")) {
         window.open(data.slug, "_blank");
       } else {
-        // SubMenuPage의 경우 절대 경로로 처리
+        // SubMenuPages의 경우 절대 경로로 처리
         const finalHref = data?.type === "SubMenuPages" ? `/${href}` : href;
         router.push(finalHref || "");
       }

@@ -6,7 +6,7 @@ import { KeyRoundIcon } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 
 /**
- * Record verification component
+ * Doc verification component
  * @param {password, validPassword} props
  * @param password correct password
  * @param validPassword(bool) Callback function, verify that the correct callback input parameter is true

@@ -6,29 +6,29 @@ export const ENG_LANG: LocaleDict = {
   LOADING: "Loading...",
   INTRO: {
     FEATURED: {
-      TITLE: "Featured Records",
-      DESC: "Display up to 10 records checked as favorite.",
+      TITLE: "Featured Docs",
+      DESC: "Display up to 10 Docs checked as favorite.",
     },
     LATEST: {
-      TITLE: "Latest Records",
-      DESC: "Displays up to 7 most recent records per subtype.",
+      TITLE: "Latest Docs",
+      DESC: "Displays up to 7 most recent Docs per subtype.",
     },
     ENTIRE: {
-      TITLE: "Entire Records",
-      DESC: "Display all records regardless of type.",
+      TITLE: "Entire Docs",
+      DESC: "Display all Docs regardless of type.",
     },
     READ_MORE: "Read More",
     BOOK: {
-      SUBTITLE_1: "Take a look all the Book Records",
+      SUBTITLE_1: "Take a look all the Book Docs",
       SUBTITLE_2: "based on all the Words and World of sentences.",
-      TITLE: "Book Records.",
+      TITLE: "Book Docs.",
       DESCRIPTION_PREFIX: "",
       DESCRIPTION_HIGHLIGHT_1: "Archive",
       DESCRIPTION_HIGHLIGHT_2: "All Books",
       DESCRIPTION_SUFFIX: "connected by small and big words.",
     },
     ENGINEERING: {
-      SUBTITLE: "Browsing all the engineering related records you have learned",
+      SUBTITLE: "Browsing all the engineering related Docs you have learned",
       TITLE: "Software Engineering.",
       DESCRIPTION_PREFIX: "",
       DESCRIPTION_HIGHLIGHT_1: "An archive",
@@ -37,12 +37,12 @@ export const ENG_LANG: LocaleDict = {
       DESCRIPTION_END: "learned and recorded",
     },
     GENERAL: {
-      SUBTITLE_1: "Take a look all the General Records",
+      SUBTITLE_1: "Take a look all the General Docs",
       SUBTITLE_2: "based on all the waves Life has been comming through.",
-      TITLE: "Gerneral Records.",
+      TITLE: "Gerneral Docs.",
       DESCRIPTION_PREFIX: "",
       DESCRIPTION_HIGHLIGHT_1: "Archive",
-      DESCRIPTION_HIGHLIGHT_2: "All Records",
+      DESCRIPTION_HIGHLIGHT_2: "All Docs",
       DESCRIPTION_SUFFIX: "of",
       DESCRIPTION_END: "connected by small and big waves.",
     },
@@ -54,7 +54,7 @@ export const ENG_LANG: LocaleDict = {
     TYPES: "All Types",
     NO_TAG: "NoTag",
     CATEGORY: "Category",
-    SHARE: "Share Record",
+    SHARE: "Share Docs",
     URL_COPIED: "URL has copied!",
     COPYRIGHT_NOTICE:
       "All articles in this blog, except for special statements, adopt BY-NC-SA agreement. Please indicate the source!",
@@ -62,9 +62,9 @@ export const ENG_LANG: LocaleDict = {
     DEBUG_CLOSE: "Close",
     LOADING: "Loading...",
     ANNOUNCEMENT: "Announcement",
-    NO_RECORD_FOUND: "No relevant archive records found.",
+    NO_DOCS_FOUND: "No relevant archive Docs found.",
   },
-  RECORD: {
+  DOCS: {
     LAST_EDITED_TIME: "Last edited",
     VIEW: "View",
     MINUTE: "min",
@@ -94,12 +94,12 @@ export const ENG_LANG: LocaleDict = {
   },
   ERROR: {
     ERROR_OCCURRED: "Something went wrong",
-    INVALID_RECORD: "Invalid Record",
+    INVALID_DOC: "Invalid Doc",
   },
   FETCH: {
     ERROR_OCCURRED: "Error occurred while parsing data",
     PAGE_DATA_FAILED: "Failed to fetch page data for pageId",
-    INVALID_RECORD: "Invalid Record",
+    INVALID_DOC: "Invalid Doc",
   },
   SITE: {
     BACK: "Back",

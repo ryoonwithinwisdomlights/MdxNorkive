@@ -21,13 +21,8 @@ import { Providers } from "./providers";
 import { getCookie } from "@/lib/utils/cookies";
 import { generateLocaleDict } from "@/lib/utils/lang";
 
-//************* All Record sources ************* */
-import {
-  bookSource,
-  engineeringSource,
-  projectSource,
-  recordSource,
-} from "@/lib/source";
+//************* All Docs sources ************* */
+import { docsSource, archivesSource } from "@/lib/source";
 
 //************* Custom components ************* */
 import MobileRightSidebarWrapper from "@/modules/common/right-sidebar/MobileRightSidebarWrapper";
@@ -41,7 +36,6 @@ import { WebVitals } from "@/modules/shared/WebVitals";
 const AuxiliaryBlogComponent = lazy(
   () => import("@/modules/layout/components/AuxiliaryComponent")
 );
-const LoadingCover = lazy(() => import("@/modules/shared/LoadingCover"));
 const JumpToTopButton = lazy(() => import("@/modules/shared/JumpToTopButton"));
 const JumpToBackButton = lazy(
   () => import("@/modules/shared/JumpToBackButton")
@@ -54,7 +48,7 @@ const DefaultSearchDialog = lazy(
 import { fetchMenuList } from "./api/fetcher";
 
 //*************  types ************* */
-import { RecordFrontMatter } from "@/types/mdx.model";
+import { DocFrontMatter } from "@/types/mdx.model";
 import { LoaderConfig, Page } from "fumadocs-core/source";
 
 export const viewport: Viewport = {
@@ -129,16 +123,12 @@ export default async function RootLayout({
   const initialLocale = generateLocaleDict(initialLang);
 
   const menuList = await fetchMenuList();
-  const recordPages = recordSource.getPages();
-  const bookPages = bookSource.getPages();
-  const engineeringPages = engineeringSource.getPages();
-  const projectPages = projectSource.getPages();
+  const docsPages = docsSource.getPages();
+  const archivesPages = archivesSource.getPages();
 
   const allPages: Page<LoaderConfig["source"]["pageData"]>[] = [
-    ...recordPages,
-    ...bookPages,
-    ...engineeringPages,
-    ...projectPages,
+    ...docsPages,
+    ...archivesPages,
   ];
 
   // 직렬화 가능한 형태로 변환
@@ -154,7 +144,7 @@ export default async function RootLayout({
     path: page.path,
     url: page.url,
     slugs: page.slugs,
-    data: page.data as RecordFrontMatter,
+    data: page.data as DocFrontMatter,
     locale: page.locale,
   }));
 
@@ -179,7 +169,6 @@ export default async function RootLayout({
               theme={{ enabled: false }}
             >
               <NavInfoProvider
-                // recordList={recordList}
                 serializedAllPages={serializedAllPages}
                 menuList={menuList}
               >

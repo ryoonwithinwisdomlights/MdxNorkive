@@ -1,11 +1,11 @@
-import { RecordFrontMatter } from "@/types/mdx.model";
+import { DocFrontMatter } from "@/types/mdx.model";
 import { SerializedPage } from "@/types/provider.model";
 
-export interface mainRecordProps {
-  type: "BOOKS" | "PROJECTS" | "RECORDS" | "ENGINEERINGS" | "";
+export interface mainDocsProps {
+  type: "Docs" | "Archives" | "";
   subType: boolean;
   introTrue: boolean;
-  records: SerializedPage[];
+  docs: SerializedPage[];
 }
 
 export interface PaginationSimpleProps {
@@ -19,13 +19,13 @@ export interface PageIndicatorProps {
   setCurrentPage: (page: number) => void;
 }
 
-export interface RecordsWithMultiplesOfThreeProps {
+export interface DocsWithMultiplesOfThreeProps {
   type: string;
   introTrue: boolean;
-  records: SerializedPage[];
+  docs: SerializedPage[];
 }
 
-export interface RecordsWrapperProps {
+export interface DocsWrapperProps {
   modAllPages: Record<string, SerializedPage[]>;
   className?: string;
 }
@@ -37,27 +37,27 @@ export interface LockedPageProps {
 export interface IntroSectionWithMenuOptionProps {
   introTrue?: boolean;
   introType?: "FEATURED" | "ENTIRE" | "LATEST" | undefined;
-  currentRecordType: string;
+  currentDocType: string;
   allOptions: OptionItem[];
-  handleRecordTypeChange: (option: string) => void;
+  handleDocTypeChange: (option: string) => void;
 }
 
 export interface InjectedOptionMenuProps {
-  currentRecordType: string;
+  currentDocType: string;
   allOptions: OptionItem[];
-  handleRecordTypeChange: (option: string) => void;
+  handleDocTypeChange: (option: string) => void;
   initString?: string;
 }
 
 export interface PaginationDivProps {
   pagenum?: number;
-  allPages?: RecordFrontMatter[];
+  allPages?: DocFrontMatter[];
   pageCount: number;
 }
 
 export interface BasicPageDivProps {
   title: string;
-  recordList: Record<string, SerializedPage[]>;
+  docsList: Record<string, SerializedPage[]>;
 }
 
 export type OptionItem = {
@@ -75,21 +75,21 @@ export interface OptionCarouselProps {
   initString?: string;
 }
 
-export interface BookGeneralRecordsBodyProps {
+export interface GeneralDocsBodyProps {
   modAllPages: Record<string, SerializedPage[]>;
   isAble: boolean;
   pages: SerializedPage[];
-  type: "BOOKS" | "PROJECTS" | "RECORDS" | "ENGINEERINGS";
+  type: "Docs" | "Archives";
   subType: boolean;
   introTrue: boolean;
 }
 
-export interface RecordsBodyWithTwoOptionsProps {
-  records: SerializedPage[];
+export interface DocsBodyWithTwoOptionsProps {
+  docs: SerializedPage[];
   allOptions: OptionItem[];
   handleOptionTypeChange: (option: string) => void;
-  handleRecordTypeChange: (option: string) => void;
-  currentRecordType: string;
+  handleDocTypeChange: (option: string) => void;
+  currentDocType: string;
   currentTag: string;
   setCurrentTag: (tag: string) => void;
   setCurrentPage: (page: number) => void;

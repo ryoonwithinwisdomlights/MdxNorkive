@@ -158,7 +158,7 @@ export default function LayoutNavSearch() {
           </ul>
         ) : query.trim().length > 0 ? (
           <div className="p-3 text-neutral-500 dark:text-neutral-300 ">
-            {locale.COMMON.NO_RECORD_FOUND}
+            {locale.COMMON.NO_DOCS_FOUND}
           </div>
         ) : null}
       </div>

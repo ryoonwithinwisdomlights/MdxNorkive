@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import {
   MenuItem,
-  RecordFrontMatter,
+  DocFrontMatter,
   TOCItemType,
   SiteInfoModel,
   LocaleDict,
@@ -19,7 +19,7 @@ export type SerializedPage = {
   path: string;
   url: string;
   slugs: string[];
-  data: RecordFrontMatter;
+  data: DocFrontMatter;
   locale: string | undefined;
 };
 export interface GeneralSiteSettingsProps {
@@ -52,7 +52,7 @@ export interface GeneralSiteSettingsProps {
 }
 
 export interface GlobalNavInfoProps {
-  recordList?: RecordFrontMatter[];
+  docsList?: DocFrontMatter[];
   serializedAllPages: SerializedPage[];
   menuList: MenuItem[];
 }

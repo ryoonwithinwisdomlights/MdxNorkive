@@ -21,7 +21,7 @@
  * @lastModifiedDate 2025-08-08
  */
 
-export type RecordFrontMatter = {
+export type DocFrontMatter = {
   title: string;
   slug: string;
   summary: string;
@@ -29,7 +29,7 @@ export type RecordFrontMatter = {
   notionId: string;
   password: string;
   type: string;
-  sub_type: string;
+  doc_type: string;
   category: string;
   tags: string[];
   favorite: boolean;

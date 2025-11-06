@@ -9,9 +9,9 @@ const InjectedOptionMenu = lazy(
 const IntroSectionWithMenuOption = ({
   introTrue = true,
   introType,
-  currentRecordType = "",
+  currentDocType = "",
   allOptions = [],
-  handleRecordTypeChange = () => {},
+  handleDocTypeChange = () => {},
 }: IntroSectionWithMenuOptionProps) => {
   const { locale } = useThemeStore();
   const introText =
@@ -39,9 +39,9 @@ const IntroSectionWithMenuOption = ({
         {allOptions.length > 0 && (
           <div className="w-52 text-right relative flex flex-col justify-end items-end">
             <InjectedOptionMenu
-              currentRecordType={currentRecordType}
+              currentDocType={currentDocType}
               allOptions={allOptions}
-              handleRecordTypeChange={handleRecordTypeChange}
+              handleDocTypeChange={handleDocTypeChange}
             />
           </div>
         )}

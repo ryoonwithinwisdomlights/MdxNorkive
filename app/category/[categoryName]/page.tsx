@@ -1,16 +1,16 @@
-import GeneralRecordTypePageWrapper from "@/modules/layout/templates/home-page-layout";
+import GeneralDocTypePageWrapper from "@/modules/layout/templates/home-page-layout";
 import ErrorComponent from "@/modules/shared/ErrorComponent";
 
-import NoRecordFound from "@/modules/shared/NoRecordFound";
+import NoDocFound from "@/modules/shared/NoDocFound";
 import { TotalPageParams } from "@/types";
 
 export async function generateStaticParams() {
-  const records = [
+  const docs = [
     { categoryId: "tailwindcss" },
     { categoryId: "another-category" },
   ];
-  return records.map((record) => ({
-    categoryId: record.categoryId,
+  return docs.map((doc) => ({
+    categoryId: doc.categoryId,
   }));
 }
 
@@ -23,13 +23,13 @@ export default async function Page({ params }: TotalPageParams) {
   }
 
   return (
-    <GeneralRecordTypePageWrapper>
-      {/* <AllRecordsList
+    <GeneralDocTypePageWrapper>
+      {/* <AllDocsList
         pagenum={pagenum !== undefined ? pagenum : 1}
         pageCount={result.pageCount!}
         allPages={result.allPages}
       /> */}
-      <NoRecordFound />
-    </GeneralRecordTypePageWrapper>
+      <NoDocFound />
+    </GeneralDocTypePageWrapper>
   );
 }

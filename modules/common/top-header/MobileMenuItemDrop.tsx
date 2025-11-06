@@ -37,7 +37,7 @@ export const MobileMenuItemDrop = ({
         toggleMobileTopNav();
         window.open(sLink.slug, "_blank");
       } else {
-        // SubMenuPage의 경우 절대 경로로 처리
+        // SubMenuPages의 경우 절대 경로로 처리
         const finalHref = sLink?.type === "SubMenuPages" ? `/${href}` : href;
         toggleMobileTopNav();
         router.push(finalHref || "");

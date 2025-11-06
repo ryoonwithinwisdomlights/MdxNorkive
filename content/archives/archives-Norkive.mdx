@@ -1,0 +1,378 @@
+---
+title: Norkive
+slug: archives-Norkive
+summary: >-
+  A type-safe knowledge archive platform that converts Notion content to MDX and
+  deploys as a static Next.js 15 blog
+pageCover: >-
+  https://res.cloudinary.com/dyrdul1dd/image/upload/v1762420711/norkive-notion-images/png_1762420711009_YmdfaW1hZ2.webp?format=webp&quality=90
+notionId: 2921eb5c0337808f9adcff160d9da846
+password: ''
+type: Archives
+doc_type: Dev
+category: DevProject
+tags:
+  - next.js15
+  - NotionAPI
+  - content-collection
+  - mdx
+favorite: true
+date: '2025-10-20'
+lastEditedTime: '2025-11-06T08:21:00.000Z'
+draft: false
+description: >-
+  A type-safe knowledge archive platform that converts Notion content to MDX and
+  deploys as a static Next.js 15 blog
+icon: ''
+full: false
+readingTime: 51
+wordCount: 10183
+status: published
+author: ryoonwithinwisdomlights
+version: 1.0.0
+---
+
+![Norkive_intro.png](https://res.cloudinary.com/dyrdul1dd/image/upload/v1762420707/norkive-notion-images/png_1762420705519_Tm9ya2l2ZV.webp?format=webp&quality=85)
+
+
+![Norkive_kv.png](https://res.cloudinary.com/dyrdul1dd/image/upload/v1762420708/norkive-notion-images/png_1762420708614_Tm9ya2l2ZV.webp?format=webp&quality=85)
+
+
+# <strong>Norkive</strong>
+
+
+![스크린샷_2025-10-20_오후_8.26.12.png](https://res.cloudinary.com/dyrdul1dd/image/upload/v1762420710/norkive-notion-images/png_1762420709864_RTFfODRfOD.webp?format=webp&quality=85)
+
+> A type-safe knowledge archive platform that converts Notion content to MDX and deploys as a static Next.js 15 blog
+
+🌐 <strong>Live Demo</strong>: [https://mdx-norkive.vercel.app/](https://mdx-norkive.vercel.app/)
+
+
+📦 <strong>Repository</strong>: [https://github.com/ryoonwithinwisdomlights/norkive](https://github.com/ryoonwithinwisdomlights/norkive)
+
+
+## <strong>Overview</strong>
+
+
+---
+
+
+Norkive is a modern knowledge management platform that bridges the gap between Notion's intuitive editing experience and a high-performance static blog. It automatically converts Notion databases into type-safe MDX content, optimizes images through Cloudinary CDN, and deploys as a blazing-fast Next.js application.
+
+
+## <strong>Key Features</strong>
+
+- 🔄 <strong>Automated Pipeline</strong>: Notion → MDX conversion with full metadata preservation
+- 🖼️ <strong>Image Optimization</strong>: Cloudinary integration with 70% size reduction
+- 🎨 <strong>MDX Components</strong>: Rich interactive components with Shiki syntax highlighting
+- 🔍 <strong>Advanced Search</strong>: Command palette (<code>⌘K</code>) with fuzzy search
+- ⚡ <strong>Performance</strong>: Lighthouse 96/100, under 1s initial load
+- 🎯 <strong>Type Safety</strong>: Zod schemas + Content Collections for runtime validation
+- 📱 <strong>Responsive</strong>: Mobile-first design with dark mode support
+
+## <strong>Tech Stack</strong>
+
+- <strong>Framework</strong>: Next.js 15 (App Router), React 19
+- <strong>Language</strong>: TypeScript 5.6 (87.3% of codebase)
+- <strong>Styling</strong>: Tailwind CSS 4.1
+- <strong>Content</strong>: MDX + Content Collections + Fumadocs
+- <strong>Infrastructure</strong>: Vercel, Cloudinary, Upstash Redis
+- <strong>Quality</strong>: ESLint, Prettier, Zod validation
+
+## <strong>Quick Start</strong>
+
+
+---
+
+
+### <strong>Prerequisites</strong>
+
+- Node.js >= 20.17.0
+- npm/pnpm/yarn
+
+### <strong>Installation</strong>
+
+
+```plain text
+# Clone the repository
+git clone https://github.com/ryoonwithinwisdomlights/norkive.git
+cd norkive
+
+# Install dependencies
+npm install
+# or
+pnpm install
+
+# Set up environment variables
+cp .env.example .env.local
+
+# Run development server
+npm run dev
+```
+
+
+Visit [http://localhost:3000](http://localhost:3000/)
+
+
+### <strong>Environment Variables</strong>
+
+
+```plain text
+# Notion API (optional - for MDX conversion)
+NOTION_API_KEY=your_notion_integration_token
+NOTION_DATABASE_ID=your_database_id
+
+# Cloudinary (for image optimization)
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+
+# Upstash Redis (for caching)
+UPSTASH_REDIS_REST_URL=your_redis_url
+UPSTASH_REDIS_REST_TOKEN=your_redis_token
+
+# Site configuration
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
+NEXT_PUBLIC_LANG=kr-KR
+```
+
+
+### <strong>Usage</strong>
+
+
+---
+
+
+### <strong>Adding Content</strong>
+
+
+<strong>Option A: Using Notion (Recommended)</strong>
+
+1. Create content in your Notion database
+2. Run the conversion script:
+
+    ```plain text
+    npx tsx scripts/notion-mdx-all-in-one.ts
+    ```
+
+3. MDX files are automatically generated in <code>content/</code> directory
+
+<strong>Option B: Direct MDX</strong>
+
+
+Create a file in <code>content/records/my-post.mdx</code>:
+
+
+```plain text
+---
+notionId: "unique-id"title: "My Post Title"date: 2025-01-15
+category: "Engineering"tags: ["Next.js", "TypeScript"]
+---
+
+#Your content here
+
+This is a paragraph with **bold** and *italic* text.
+
+\`\`\`typescript
+const example = "code block";
+\`\`\`
+```
+
+
+### <strong>Available Commands</strong>
+
+
+```plain text
+npm run dev              # Start development server
+npm run build            # Production build
+npm start                # Start production server
+npm run lint             # Run ESLint
+npm run validate:mdx     # Validate MDX files
+npm run prettier:write   # Format code
+npm run analyze          # Analyze bundle size
+```
+
+
+## <strong>Documentation</strong>
+
+
+---
+
+- 📐 [<strong>Architecture</strong>](https://github.com/ryoonwithinwisdomlights/MdxNorkive/blob/main/docs/ARCHITECTURE.md) - System design, data flow, and technical decisions
+- 🔄 [<strong>Migration Guide</strong>](https://github.com/ryoonwithinwisdomlights/MdxNorkive/blob/main/docs/MIGRATION.md) - react-notion-x → MDX migration story
+- ⚡ [<strong>Performance</strong>](https://github.com/ryoonwithinwisdomlights/MdxNorkive/blob/main/docs/PERFORMANCE.md) - Optimization strategies and benchmarks
+- 🛠️ [<strong>Development</strong>](https://github.com/ryoonwithinwisdomlights/MdxNorkive/blob/main/docs/DEVELOPMENT.md) - Local setup and development guide
+- 🤝 [<strong>Contributing</strong>](https://github.com/ryoonwithinwisdomlights/MdxNorkive/blob/main/docs/CONTRIBUTING.md) - How to contribute to this project
+
+## <strong>Project Structure</strong>
+
+
+---
+
+
+```plain text
+norkive/
+├── app/                    # Next.js App Router
+│   ├── (home)/            # Home page
+│   ├── api/               # API routes
+│   ├── book/              # Book category
+│   ├── engineering/       # Engineering posts
+│   ├── project/           # Project showcase
+│   └── records/           # Personal records
+├── content/               # MDX content files
+│   ├── books/
+│   ├── engineerings/
+│   ├── projects/
+│   └── records/
+├── lib/                   # Utilities & libraries
+│   ├── cache/            # Caching system
+│   ├── context/          # React contexts
+│   └── utils/            # Helper functions
+├── modules/               # UI components
+│   ├── common/           # Shared components
+│   ├── layout/           # Layout components
+│   └── mdx/              # MDX components
+├── scripts/              # Build & conversion scripts
+└── types/                # TypeScript definitions
+```
+
+
+## <strong>Performance</strong>
+
+
+---
+
+
+### <strong>Lighthouse Scores</strong>
+
+
+```plain text
+Performance:     96/100 ⚡
+Accessibility:   98/100 ♿
+Best Practices: 100/100 ✅
+SEO:            100/100 🔍
+```
+
+
+### <strong>Core Web Vitals</strong>
+
+
+| <strong>Metric</strong> | <strong>Score</strong> | <strong>Target</strong>  | <strong>Status</strong> |
+| ---------- | --------- | ----------- | ---------- |
+| LCP        | 1.2s      | under 2.5s  | ✅          |
+| FID        | 12ms      | under 100ms | ✅          |
+| CLS        | 0.02      | under 0.1   | ✅          |
+
+
+See <FileWrapper names={"PERFORMANCE.md"} urls={"https://github.com/ryoonwithinwisdomlights/MdxNorkive/blob/main/docs/PERFORMANCE.md"} /> for detailed optimization strategies.
+
+
+## <strong>Key Technical Decisions</strong>
+
+
+---
+
+
+### <strong>Why MDX over Direct Notion Rendering?</strong>
+
+- <strong>Performance</strong>: Static generation vs. runtime API calls (60% faster)
+- <strong>SEO</strong>: Complete HTML for crawlers (100% indexing)
+- <strong>Customization</strong>: Full control over React components
+- <strong>Reliability</strong>: No dependency on Notion API availability
+
+See <FileWrapper names={"ARCHITECTURE.md"} urls={"https://github.com/ryoonwithinwisdomlights/MdxNorkive/blob/main/docs/ARCHITECTURE.md"} /> for detailed analysis.
+
+
+### <strong>Why Content Collections + Fumadocs?</strong>
+
+- <strong>Type Safety</strong>: Zod schemas prevent runtime errors
+- <strong>DX</strong>: Auto-completion and type inference
+- <strong>Build-time Validation</strong>: Catch errors before deployment
+
+## <strong>Benchmarks</strong>
+
+
+---
+
+
+### <strong>Migration Results</strong>
+
+
+| <strong>Metric</strong>   | <strong>Before (react-notion-x)</strong> | <strong>After (MDX)</strong> | <strong>Improvement</strong> |
+| ------------ | --------------------------- | --------------- | --------------- |
+| Initial Load | 2.5s                        | 1.0s            | ↓ 60%           |
+| Bundle Size  | 2.3MB                       | 890KB           | ↓ 61%           |
+| Build Time   | 3m+                         | 45s             | ↓ 75%           |
+| Lighthouse   | 60                          | 96              | ↑ 60%           |
+
+
+## <strong>Roadmap</strong>
+
+
+---
+
+
+See [full roadmap](https://github.com/ryoonwithinwisdomlights/MdxNorkive/blob/main/docs/ROADMAP.md) (TBD) for details.
+
+
+## <strong>Contributing</strong>
+
+
+---
+
+
+We welcome contributions! Please see <FileWrapper names={"CONTRIBUTING.md"} urls={"https://github.com/ryoonwithinwisdomlights/MdxNorkive/blob/main/docs/CONTRIBUTING.md"} /> for guidelines.
+
+
+### <strong>Development Setup</strong>
+
+1. Fork the repository
+2. Create a feature branch: <code>git checkout -b feature/my-feature</code>
+3. Make your changes
+4. Run tests: <code>npm run validate:mdx</code>
+5. Commit: <code>git commit -m 'feat: add new feature'</code>
+6. Push: <code>git push origin feature/my-feature</code>
+7. Open a Pull Request
+
+## <strong>License</strong>
+
+
+---
+
+
+This project is licensed under the [MIT License](https://github.com/ryoonwithinwisdomlights/MdxNorkive/blob/main/LICENSE).
+
+
+## <strong>Author</strong>
+
+
+---
+
+
+<strong>Ryoon with Wisdom Lights</strong>
+
+- Email: [ryoon.with.wisdomtrees@gmail.com](mailto:ryoon.with.wisdomtrees@gmail.com)
+- GitHub: [@ryoonwithinwisdomlights](https://github.com/ryoonwithinwisdomlights)
+
+## <strong>Acknowledgments</strong>
+
+
+---
+
+
+Built with these amazing open-source projects:
+
+- [Next.js](https://nextjs.org/) - React framework
+- [Fumadocs](https://fumadocs.vercel.app/) - Documentation system
+- [Radix UI](https://www.radix-ui.com/) - Headless UI components
+- [Tailwind CSS](https://tailwindcss.com/) - CSS framework
+- [Vercel](https://vercel.com/) - Hosting platform
+
+---
+
+
+<strong>⭐ If you find this project helpful, please consider giving it a star!</strong>
+
+
+Made with ❤️ by[ Ryoon with Wisdom Lights](https://github.com/ryoonwithinwisdomlights)
+

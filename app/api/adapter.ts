@@ -1,16 +1,16 @@
 //*************  types ************* */
-import type { RecordFrontMatter } from "@/types/mdx.model";
+import type { DocFrontMatter } from "@/types/mdx.model";
 import type {
   DataBaseMetaDataResponse,
   ModifiedQueryDatabaseResponse,
   ModifiedQueryDatabaseResponseArray,
 } from "@/types/notion.client.model";
-import type { MenuItem, RecordTag } from "@/types/recorddata.model";
+import type { MenuItem, DocTag } from "@/types/docdata.model";
 
 //*************  utils ************* */
 import {
   generateMenuItem,
-  generateRecordItem,
+  generateDocItem,
 } from "@/lib/utils/notion-adaptor-utils";
 
 export class NotionPageAdapter {
@@ -44,8 +44,8 @@ export class NotionPageListAdapter {
     return menus;
   }
 
-  convertToAllRecordList(): RecordFrontMatter[] {
-    return this.pageList.map((item) => generateRecordItem(item));
+  convertToAllDocsList(): DocFrontMatter[] {
+    return this.pageList.map((item) => generateDocItem(item));
   }
 }
 
@@ -56,7 +56,7 @@ export class NotionDataBaseMetaDataAdapter {
     this.metaData = metaData;
   }
 
-  convertToTagList(): RecordTag[] {
+  convertToTagList(): DocTag[] {
     return this.metaData.properties.tags.multi_select.options;
   }
 }

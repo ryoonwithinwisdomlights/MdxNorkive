@@ -1,11 +1,11 @@
-import GeneralRecordTypePageWrapper from "@/modules/layout/templates/home-page-layout";
-import NoRecordFound from "@/modules/shared/NoRecordFound";
+import GeneralDocTypePageWrapper from "@/modules/layout/templates/home-page-layout";
+import NoDocFound from "@/modules/shared/NoDocFound";
 
 export default async function Page() {
   return (
-    <GeneralRecordTypePageWrapper>
+    <GeneralDocTypePageWrapper>
       {/* <CategoryPage /> */}
-      <NoRecordFound />
-    </GeneralRecordTypePageWrapper>
+      <NoDocFound />
+    </GeneralDocTypePageWrapper>
   );
 }

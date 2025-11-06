@@ -3711,7 +3711,7 @@ export type PageIconResponse =
   | FilePageIconResponse
   | CustomEmojiPageIconResponse;
 
-export type RecordMap = Record<
+export type docMap = Record<
   string,
   {
     role: "block" | "page" | "workspace";
@@ -3725,7 +3725,7 @@ export type PageBlockDataProps = {
   type?: string;
   slice?: number;
   retryAttempts?: number;
-  recordMap?: RecordMap;
+  docMap?: docMap;
 };
 
 export type ExternalPageCoverResponse = {
@@ -3810,7 +3810,7 @@ export interface QueryPageResponse
       type: "select";
       select: PartialSelectResponse | null;
     };
-    sub_type: {
+    doc_type: {
       type: "select";
       select: PartialSelectResponse | null;
     };
@@ -3830,11 +3830,6 @@ export interface QueryPageResponse
     favorite: {
       type: "checkbox";
       checkbox: boolean;
-      id: string;
-    };
-    menuicon: {
-      type: "rich_text";
-      rich_text: Array<TextRichTextItemResponse>;
       id: string;
     };
     slug: {
@@ -3965,7 +3960,7 @@ export interface ModifiedQueryPageResponse
       type: "select";
       select: PartialSelectResponse | null;
     };
-    sub_type: {
+    doc_type: {
       type: "select";
       select: PartialSelectResponse | null;
     };
