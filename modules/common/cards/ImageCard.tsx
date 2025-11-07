@@ -142,9 +142,11 @@ const ImageCard = React.memo(
         data.imageUrl,
         data.imageAlt,
         data.title,
+        imageAlt,
         imageContainerClasses,
         imageClasses,
         isFeatured,
+        priority,
       ]);
 
       // 네비게이션 버튼 렌더링을 useMemo로 최적화

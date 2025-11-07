@@ -29,7 +29,7 @@ export interface IntroBook {
   DESCRIPTION_SUFFIX: string;
 }
 
-export interface IntroEngineering {
+export interface IntroTech {
   SUBTITLE: string;
   TITLE: string;
   DESCRIPTION_PREFIX: string;
@@ -39,6 +39,14 @@ export interface IntroEngineering {
   DESCRIPTION_END?: string;
 }
 
+export interface IntroPortfolio {
+  SUBTITLE: string;
+  TITLE: string;
+  DESCRIPTION_PREFIX?: string;
+  DESCRIPTION_HIGHLIGHT_1?: string;
+  DESCRIPTION_HIGHLIGHT_2?: string;
+  DESCRIPTION_SUFFIX?: string;
+}
 export interface IntroGeneral {
   SUBTITLE_1: string;
   SUBTITLE_2: string;
@@ -56,7 +64,8 @@ export interface IntroSection {
   ENTIRE: IntroEntire;
   READ_MORE: string;
   BOOK: IntroBook;
-  ENGINEERING: IntroEngineering;
+  TECH: IntroTech;
+  PORTFOLIO: IntroPortfolio;
   GENERAL: IntroGeneral;
 }
 

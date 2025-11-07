@@ -18,7 +18,7 @@ const NorkiveIntro = () => {
       id="norkive-intro"
       className={generalIntroPageClass({ className: "justify-center mx-auto" })}
     >
-      <FeaturedDocs type="" docType={false} docs={pages} introTrue={true} />
+      <FeaturedDocs type="" docs={pages} introTrue={true} docType={false} />
       <LatestDocs type="" docs={pages} introTrue={true} docType={false} />
       <EntireDocs type="" docs={pages} introTrue={true} docType={false} />
     </div>

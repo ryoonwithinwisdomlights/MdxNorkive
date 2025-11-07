@@ -34,7 +34,7 @@ import { mediaProcessor } from "@/lib/media-processor-factory";
 import {
   processMdxImagesToWebP,
   processPageCoverToWebP,
-} from "@/lib/utils/mdx-data-processing/cloudinary/enhanced-image-processor";
+} from "@/lib/utils/mdx-data-processing/enhanced-image-processor";
 
 // === ✅ 환경변수 및 설정 ===
 
@@ -51,9 +51,13 @@ async function main() {
   // content 디렉토리가 없으면 생성
   try {
     await fs.access(BASE_OUTPUT_DIR);
-    console.log(`📁 'content' 디렉토리가 이미 존재합니다: ${BASE_OUTPUT_DIR}`);
+    console.log(
+      `📁 ${BASE_OUTPUT_DIR}디렉토리가 이미 존재합니다: ${BASE_OUTPUT_DIR}`
+    );
   } catch (error) {
-    console.log(`📁 'content' 디렉토리를 생성합니다: ${BASE_OUTPUT_DIR}`);
+    console.log(
+      `📁 '${BASE_OUTPUT_DIR} 디렉토리를 생성합니다: ${BASE_OUTPUT_DIR}`
+    );
     await fs.mkdir(BASE_OUTPUT_DIR, { recursive: true });
   }
 

@@ -1,6 +1,6 @@
 import { getDistanceFromToday, getYearMonthDay } from "@/lib/utils/date";
 import { cn, substringWithNumberDots } from "@/lib/utils/general";
-import TagItemMini from "@/modules/common/tag/TagItemMini";
+import TagItemMini from "@/modules/shared/TagItemMini";
 import {
   combinedMetaClasses,
   combinedTitleClasses,

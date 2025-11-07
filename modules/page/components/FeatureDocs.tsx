@@ -7,6 +7,7 @@ import IntroSectionWithMenuOption from "./IntroSectionWithMenuOption";
 import { OptionItem } from "@/types/components/pageutils";
 import { mainDocsProps } from "@/types/components/pageutils";
 import { BLOG } from "@/blog.config";
+
 const FeatureDocs = ({
   type,
   introTrue,
@@ -15,12 +16,6 @@ const FeatureDocs = ({
 }: mainDocsProps): React.ReactElement | null => {
   const pages = docs;
   if (!pages) return null;
-
-  pages.sort((a, b) => {
-    return (
-      new Date(b?.data?.date).getTime() - new Date(a?.data?.date).getTime()
-    );
-  });
 
   const { locale, lang } = useThemeStore();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -32,7 +27,8 @@ const FeatureDocs = ({
     const featuredPages = pages
       .filter(
         (page) =>
-          page.data.favorite === true && (type ? page.data.type === type : true)
+          page.data.favorite === true &&
+          (type ? page.data.type.toLowerCase() === type.toLowerCase() : true)
       )
       .slice(0, FEATURED_DOCS_CARDS_PER_PAGE);
 

@@ -3,6 +3,9 @@ export const DEV_CONFIG = {
   BACKGROUND_LIGHT: "#eeeeee", // use hex value, don't forget '#' e.g #fffefc
   BACKGROUND_DARK: "#000000", // use hex value, don't forget '#'
   NODE_ENV: process.env.NODE_ENV || "development",
+  IMG_LAZY_LOAD_PLACEHOLDER:
+    process.env.NEXT_PUBLIC_IMG_LAZY_LOAD_PLACEHOLDER ||
+    "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
   ENABLE_CACHE:
     process.env.ENABLE_CACHE ||
     process.env.npm_lifecycle_event === "build" ||

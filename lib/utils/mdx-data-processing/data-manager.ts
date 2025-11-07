@@ -95,10 +95,6 @@ export function generateDocFrontMatter(
       : new Date().toISOString();
   }
 
-  // 최종 유효성 검사
-  // if (isNaN(lastEditedTime.getTime())) {
-  //   lastEditedTime = new Date();
-  // }
   const summary = props.summary?.rich_text?.[0]?.plain_text?.trim() || "";
   const password = props.password?.rich_text?.[0]?.plain_text?.trim() || "";
   const type = props.type?.select?.name || DOCS_CONFIG.DOCS_TYPE.TECHS;

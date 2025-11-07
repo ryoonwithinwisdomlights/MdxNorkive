@@ -14,24 +14,18 @@ const GeneralDocsBody = ({
   introTrue,
 }: GeneralDocsBodyProps) => {
   return (
-    <>
-      {isAble ? (
-        <div className="flex flex-col gap-16 items-start w-full ">
-          <FeatureDocs
-            type={type}
-            docType={docType}
-            docs={pages}
-            introTrue={introTrue}
-          />
-          <DocsWrapper
-            modAllPages={modAllPages}
-            className="w-full flex flex-col justify-center  items-center gap-10 bg-opacity-30 rounded-lg dark:bg-black dark:bg-opacity-70"
-          />
-        </div>
-      ) : (
-        <NoDocFound />
-      )}
-    </>
+    <div className="flex flex-col gap-16 items-start w-full ">
+      <FeatureDocs
+        type={type}
+        docType={docType}
+        docs={pages}
+        introTrue={introTrue}
+      />
+      <DocsWrapper
+        modAllPages={modAllPages}
+        className="w-full flex flex-col justify-center  items-center gap-10 bg-opacity-30 rounded-lg dark:bg-black dark:bg-opacity-70"
+      />
+    </div>
   );
 };
 

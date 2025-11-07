@@ -1,6 +1,6 @@
 export const DOCS_CONFIG = {
   ENTIRE_DOCS_CARDS_PER_PAGE: 4,
-  FEATURED_DOCS_CARDS_PER_PAGE: 6,
+  FEATURED_DOCS_CARDS_PER_PAGE: 10,
   LATEST_DOCS_CARDS_PER_PAGE: 3,
   DEFAULT_DOCS_CARDS_PER_PAGE: 6,
   TAG_SORT_BY_COUNT: true, // Whether the tags are sorted in descending order by the number of datas, with tags with more datas ranked first.

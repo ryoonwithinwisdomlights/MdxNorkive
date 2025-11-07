@@ -5,10 +5,6 @@ import LogoBar from "@/modules/common/top-header/LogoBar";
 import { SearchToggle } from "@/modules/layout/components/search-toggle";
 import SettingToggle from "@/modules/layout/components/setting-toggle";
 
-// interface NavigationForMobileProps {
-//   collapseRef: React.RefObject<CollapseRefType | null>;
-// }
-
 const NavigationForMobile = () => {
   return (
     <div className="bg-neutral-50 dark:bg-neutral-800">

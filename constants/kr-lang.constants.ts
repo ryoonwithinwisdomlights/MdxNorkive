@@ -27,9 +27,17 @@ export const KOR_LANG: LocaleDict = {
       DESCRIPTION_HIGHLIGHT_2: "아카이브.",
       DESCRIPTION_SUFFIX: "connected by small and big words.",
     },
-    ENGINEERING: {
-      SUBTITLE: "Browsing all the engineering related Docs you have learned",
-      TITLE: "Software Engineering.",
+    PORTFOLIO: {
+      SUBTITLE: "Introducing the trajectory woven into the development work.",
+      TITLE: "Portfolio.",
+      DESCRIPTION_PREFIX: "",
+      DESCRIPTION_HIGHLIGHT_1: "An archive",
+      DESCRIPTION_HIGHLIGHT_2: "All Portfolio",
+      DESCRIPTION_SUFFIX: "connected by small and big portfolio.",
+    },
+    TECH: {
+      SUBTITLE: "Browsing all the tech related Docs you have learned",
+      TITLE: "Tech Docs.",
       DESCRIPTION_PREFIX: "배우고 기록한 좋은",
       DESCRIPTION_HIGHLIGHT_1: "지식, 정보, 앎",
       DESCRIPTION_HIGHLIGHT_2: "아카이브.",

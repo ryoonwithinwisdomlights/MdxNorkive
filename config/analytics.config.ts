@@ -1,5 +1,4 @@
 export const ANALYTICS_CONFIG = {
-  // ----> Site statistics
   ANALYTICS_VERCEL: process.env.NEXT_PUBLIC_ANALYTICS_VERCEL || false,
   ANAYLTICS_GOOGLE_ID: process.env.NEXT_PUBLIC_ANAYLTICS_GOOGLE_ID || false,
   ANALYTICS_BUSUANZI_ENABLE:

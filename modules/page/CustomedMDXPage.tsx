@@ -15,7 +15,7 @@ import { Suspense, lazy, useEffect, useState } from "react";
 
 import { getMDXComponents } from "@/getMDXComponents";
 import { getDocsResource } from "@/lib/utils";
-import TagItemMini from "@/modules/common/tag/TagItemMini";
+import TagItemMini from "@/modules/shared/TagItemMini";
 
 const LoadingCover = lazy(() => import("@/modules/shared/LoadingCover"));
 const LockedPage = lazy(() => import("@/modules/page/components/LockedPage"));

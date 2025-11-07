@@ -19,11 +19,7 @@ const InjectedOptionMenu = lazy(
 const DocsBodyWithTwoOptions = ({ docs }: { docs: SerializedPage[] }) => {
   const pages = docs;
   if (!pages) NotFound();
-  pages.sort((a: SerializedPage, b: SerializedPage) => {
-    return (
-      new Date(b?.data?.date).getTime() - new Date(a?.data?.date).getTime()
-    );
-  });
+
   const router = useRouter();
   const { locale } = useThemeStore();
   const [currentPage, setCurrentPage] = useState(0);

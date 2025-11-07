@@ -18,12 +18,14 @@
 
 // ===== 핵심 변환 로직 import =====
 
-import { processMdxContentFn } from "@norkive/mdx-safe-processor";
+import {
+  MDX_CONSTANTS,
+  processMdxContentFn,
+} from "@norkive/mdx-safe-processor";
 
 // ===== 타입 및 상수 import =====
 import { MdxDirectoryValidationResult } from "@/types/mdx.model";
 
-import { MDX_CONSTANTS } from "@/constants/mdx.constants";
 import { extractFrontmatterValue } from "./data-manager";
 // ===== 검증 전용 함수들 =====
 

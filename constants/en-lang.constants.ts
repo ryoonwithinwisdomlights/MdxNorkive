@@ -27,9 +27,17 @@ export const ENG_LANG: LocaleDict = {
       DESCRIPTION_HIGHLIGHT_2: "All Books",
       DESCRIPTION_SUFFIX: "connected by small and big words.",
     },
-    ENGINEERING: {
-      SUBTITLE: "Browsing all the engineering related Docs you have learned",
-      TITLE: "Software Engineering.",
+    PORTFOLIO: {
+      SUBTITLE: "Introducing the trajectory woven into the development work.",
+      TITLE: "Portfolio",
+      DESCRIPTION_PREFIX: "",
+      DESCRIPTION_HIGHLIGHT_1: "An archive",
+      DESCRIPTION_HIGHLIGHT_2: "All Portfolio",
+      DESCRIPTION_SUFFIX: "connected by small and big portfolio.",
+    },
+    TECH: {
+      SUBTITLE: "Browsing all the tech related Docs you have learned",
+      TITLE: "Tech Docs.",
       DESCRIPTION_PREFIX: "",
       DESCRIPTION_HIGHLIGHT_1: "An archive",
       DESCRIPTION_HIGHLIGHT_2: "knowledge, information, studies",

@@ -134,21 +134,27 @@ export default async function RootLayout({
   ];
 
   // 직렬화 가능한 형태로 변환
-  const serializedAllPages = allPages.map((page) => ({
-    file: {
-      dirname: page.file.dirname,
-      name: page.file.name,
-      ext: page.file.ext,
-      path: page.file.path,
-      flattenedPath: page.file.flattenedPath,
-    },
-    absolutePath: page.absolutePath,
-    path: page.path,
-    url: page.url,
-    slugs: page.slugs,
-    data: page.data as DocFrontMatter,
-    locale: page.locale,
-  }));
+  const serializedAllPages = allPages
+    .map((page) => ({
+      file: {
+        dirname: page.file.dirname,
+        name: page.file.name,
+        ext: page.file.ext,
+        path: page.file.path,
+        flattenedPath: page.file.flattenedPath,
+      },
+      absolutePath: page.absolutePath,
+      path: page.path,
+      url: page.url,
+      slugs: page.slugs,
+      data: page.data as DocFrontMatter,
+      locale: page.locale,
+    }))
+    .sort((a, b) => {
+      return (
+        new Date(b?.data?.date).getTime() - new Date(a?.data?.date).getTime()
+      );
+    });
 
   return (
     <html

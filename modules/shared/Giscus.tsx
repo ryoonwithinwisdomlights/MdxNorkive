@@ -42,7 +42,7 @@ const GiscusComponent = () => {
 
     scriptElem.setAttribute("data-repo", repo);
     scriptElem.setAttribute("data-repo-id", repoId);
-    // scriptElem.setAttribute("data-category", category);
+    scriptElem.setAttribute("data-category", category);
     scriptElem.setAttribute("data-category-id", categoryId);
     scriptElem.setAttribute("data-mapping", mapping);
     scriptElem.setAttribute("data-strict", "0");

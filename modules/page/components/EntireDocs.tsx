@@ -11,12 +11,13 @@ import {
   combinedSummaryClasses,
   combinedTitleClasses,
 } from "@/lib/styles/card.styles";
-import TagItemMini from "@/modules/common/tag/TagItemMini";
+
 import IntroSectionWithMenuOption from "@/modules/page/components/IntroSectionWithMenuOption";
 import PageIndicator from "@/modules/page/components/PageIndicator";
 import { LockedSection, SerializedPage } from "@/types";
 import { mainDocsProps, OptionItem } from "@/types/components/pageutils";
 import { BLOG } from "@/blog.config";
+import TagItemMini from "@/modules/shared/TagItemMini";
 // 메모이제이션된 카드 컴포넌트
 const DocsCard = memo(
   ({

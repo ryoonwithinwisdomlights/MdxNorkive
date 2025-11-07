@@ -1,9 +1,9 @@
 "use client";
 
-import { IMG_LAZY_LOAD_PLACEHOLDER } from "@/constants/ui.constants";
 import { ImgProps, LazyImageProps } from "@/types/components/common";
 import { compressImage } from "@/lib/utils/image";
 import React, { useEffect, useRef, useState } from "react";
+import { DEV_CONFIG } from "@/config/dev.config";
 
 /**
  * Lazy loading of images
@@ -15,7 +15,7 @@ export default function LazyImage({
   id,
   src,
   alt,
-  placeholderSrc = IMG_LAZY_LOAD_PLACEHOLDER,
+  placeholderSrc = DEV_CONFIG.IMG_LAZY_LOAD_PLACEHOLDER,
   className,
   width,
   height,
