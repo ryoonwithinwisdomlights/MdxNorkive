@@ -1,6 +1,6 @@
 "use client";
-import { HTMLAttributes, Suspense, useMemo } from "react";
 import type { ReactNode } from "react";
+import { HTMLAttributes, useMemo } from "react";
 
 //************* Fumadocs core ************* */
 import { HideIfEmpty } from "fumadocs-core/hide-if-empty";
@@ -17,6 +17,7 @@ import {
   SidebarViewport,
 } from "fumadocs-ui/components/layout/sidebar";
 
+import { TreeContextProvider } from "fumadocs-ui/contexts/tree";
 import {
   CollapsibleControl,
   LayoutBody,
@@ -28,7 +29,6 @@ import {
   SidebarLinkItem,
   SidebarOptions,
 } from "fumadocs-ui/layouts/docs/shared";
-import { TreeContextProvider } from "fumadocs-ui/contexts/tree";
 import { BaseLayoutProps, getLinks } from "fumadocs-ui/layouts/shared";
 import { NavProvider } from "fumadocs-ui/provider";
 
@@ -36,11 +36,14 @@ import { NavProvider } from "fumadocs-ui/provider";
 import { SidebarIcon } from "lucide-react";
 
 //************* Custom components ************* */
-import DocFooter from "@/modules/layout/components/doc-footer";
-import LoadingCover from "@/modules/shared/LoadingCover";
-import { buttonVariants } from "@/modules/shared/ui/DocButton";
-import { SearchToggle } from "@/modules/layout/components/search-toggle";
 import { cn } from "@/lib/utils/general";
+import DocFooter from "@/modules/layout/components/doc-footer";
+import {
+  LargeSearchToggle,
+  SearchToggle,
+} from "@/modules/layout/components/search-toggle";
+import { buttonVariants } from "@/modules/shared/ui/DocButton";
+import { getSidebarTabs } from "fumadocs-ui/utils/get-sidebar-tabs";
 
 export interface DocsLayoutProps extends BaseLayoutProps {
   tree: PageTree.Root;
@@ -71,13 +74,22 @@ export function DocsLayout({
   disableThemeSwitch = false,
   themeSwitch = { enabled: !disableThemeSwitch },
   i18n = false,
+
   children,
   ...props
 }: DocsLayoutProps) {
-  const tabs = useMemo(
-    () => getSidebarTabsFromOptions(sidebarTabs, props.tree) ?? [],
-    [sidebarTabs, props.tree]
-  );
+  const tabs = useMemo(() => {
+    if (Array.isArray(sidebarTabs)) {
+      return sidebarTabs;
+    }
+    if (typeof sidebarTabs === "object") {
+      return getSidebarTabs(props.tree, sidebarTabs);
+    }
+    if (sidebarTabs !== false) {
+      return getSidebarTabs(props.tree);
+    }
+    return [];
+  }, [props.tree, sidebarTabs]);
   const links = getLinks(props.links ?? [], props.githubUrl);
 
   const variables = cn(
@@ -120,13 +132,12 @@ export function DocsLayout({
                 </SidebarCollapseTrigger>
               )}
             </div>
-            {/* {searchToggle.enabled !== false &&
+            {searchToggle.enabled !== false &&
               (searchToggle.components?.lg ?? (
                 <LargeSearchToggle hideIfDisabled className="max-md:hidden" />
-              ))} */}
+              ))}
 
             {tabs.length > 0 && <RootToggle options={tabs} />}
-
             {sidebarBanner}
           </SidebarHeader>
         </HideIfEmpty>
@@ -174,9 +185,8 @@ export function DocsLayout({
           className={cn(variables, props.containerProps?.className)}
         >
           {sidebarEnabled && sidebar}
-          {/* <Suspense fallback={<LoadingCover />}> */}
+
           {children}
-          {/* </Suspense> */}
         </LayoutBody>
       </NavProvider>
     </TreeContextProvider>

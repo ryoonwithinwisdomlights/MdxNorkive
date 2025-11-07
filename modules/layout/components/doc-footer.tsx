@@ -18,8 +18,6 @@ const DocFooter = () => {
       className="border-t text-neutral-500 dark:text-neutral-300 w-full 
    text-sm  flex flex-col px-4 py-3 items-center "
     >
-      {/* <hr className="pb-2" /> */}
-
       <div className=" flex flex-row gap-2 justify-center">
         {" "}
         <p className="text-xs font-sans">

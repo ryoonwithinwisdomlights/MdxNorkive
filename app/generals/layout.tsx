@@ -10,12 +10,35 @@ export default async function Layout({
   children: React.ReactNode;
 }) {
   const pageOptions = pageOptionsGenerator(generalsSource);
+  const sidebarTabs = [
+    {
+      title: "Components",
+      description: "Hello World!",
+      // active for `/docs/components` and sub routes like `/docs/components/button`
+      url: "/docs/components",
+      // optionally, you can specify a set of urls which activates the item
+      // urls: new Set(['/docs/test', '/docs/components']),
+    },
+    {
+      title: "Components2",
+      description: "Hello World!",
+      // active for `/docs/components` and sub routes like `/docs/components/button`
+      url: "/docs/components",
+      // optionally, you can specify a set of urls which activates the item
+      // urls: new Set(['/docs/test', '/docs/components']),
+    },
+  ];
   return (
     <DocsLayout
       {...pageOptions}
       searchToggle={{ enabled: false }}
       themeSwitch={{ enabled: false }}
-      sidebar={{ defaultOpenLevel: 0, collapsible: false }}
+      sidebar={{
+        enabled: true,
+        tabs: sidebarTabs,
+        collapsible: false,
+        // banner: <div>Hello World</div>,
+      }}
     >
       <div className={basicDocsClass({ className: "" })}>{children}</div>
       <RightSideNavWrapper />

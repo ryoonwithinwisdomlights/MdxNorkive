@@ -64,10 +64,6 @@ const Comment = ({
     }, 1000);
   }
 
-  if (!children) {
-    return <LoadingCover />;
-  }
-
   return (
     <div
       id="comment"
