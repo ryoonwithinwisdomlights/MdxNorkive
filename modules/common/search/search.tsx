@@ -22,13 +22,16 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "fumadocs-ui/components/ui/popover";
-import { ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { buttonVariants } from "@/modules/shared/ui/DocButton";
 import { cn } from "@/lib/utils/general";
 import type { SharedProps, TagItem } from "fumadocs-ui/contexts/search";
-import { type ReactNode, useEffect, useState } from "react";
+import { type ReactNode, useEffect, useMemo, useState } from "react";
 import { DOCS_CONFIG } from "@/config/docs.config";
-
+import { useRouter } from "next/navigation";
+import { SearchItemType } from "fumadocs-ui/components/dialog/search";
+import { useTreeContext } from "fumadocs-ui/contexts/tree";
+import type { Item, Node } from "fumadocs-core/page-tree";
 export interface DefaultSearchDialogProps extends SharedProps {
   defaultTag?: string;
 
@@ -118,6 +121,57 @@ export default function DefaultSearchDialog({
     setTag(v);
   });
 
+  let full: ReturnType<typeof useTreeContext>["full"] | undefined;
+  try {
+    full = useTreeContext().full;
+  } catch {
+    // Search dialog may be rendered outside <DocsLayout /> (no page tree available).
+    // In that case, we just disable page-tree quick actions.
+    full = undefined;
+  }
+  const router = useRouter();
+  const searchMap = useMemo(() => {
+    if (!full) return new Map<string, Item>();
+    const map = new Map<string, Item>();
+
+    function onNode(node: Node) {
+      if (node.type === "page" && typeof node.name === "string") {
+        map.set(node.name.toLowerCase(), node);
+      } else if (node.type === "folder") {
+        if (node.index) onNode(node.index);
+        for (const item of node.children) onNode(item);
+      }
+    }
+
+    for (const item of full.children) onNode(item);
+    return map;
+  }, [full]);
+
+  const pageTreeAction = useMemo<SearchItemType | undefined>(() => {
+    if (search.length === 0) return;
+
+    const normalized = search.toLowerCase();
+    for (const [k, page] of searchMap) {
+      if (!k.startsWith(normalized)) continue;
+
+      return {
+        id: "quick-action",
+        type: "action",
+        node: (
+          <div className="inline-flex items-center gap-2 text-fd-muted-foreground">
+            <ArrowRight className="size-4" />
+            <p>
+              Jump to{" "}
+              <span className="font-medium text-fd-foreground">
+                {page.name}
+              </span>
+            </p>
+          </div>
+        ),
+        onSelect: () => router.push(page.url),
+      };
+    }
+  }, [router, search, searchMap]);
   return (
     <SearchDialog
       search={search}
@@ -132,7 +186,16 @@ export default function DefaultSearchDialog({
           <SearchDialogInput />
           <SearchDialogClose />
         </SearchDialogHeader>
-        <SearchDialogList items={query.data !== "empty" ? query.data : null} />
+        <SearchDialogList
+          items={
+            query.data !== "empty" || pageTreeAction
+              ? [
+                  ...(pageTreeAction ? [pageTreeAction] : []),
+                  ...(Array.isArray(query.data) ? query.data : []),
+                ]
+              : null
+          }
+        />
         <SearchDialogFooter>
           {/* <SearchTags items={items} tag={tag} setTag={setTag} allowClear={allowClear} /> */}
           <SearchPopover

@@ -1,15 +1,36 @@
 "use client";
 
 import { cn } from "@/lib/utils/general";
-import { RootProps } from "fumadocs-ui/layouts/docs/page";
+import type { TOCItemType } from "@/types";
 import { useSidebar } from "fumadocs-ui/provider";
 import { TOCProvider } from "../components/toc";
+import type { ComponentProps, ReactNode } from "react";
 
-export function PageRoot({ toc, children, ...props }: RootProps) {
-  const { collapsed } = useSidebar();
+type PageRootProps = Omit<ComponentProps<"div">, "children"> & {
+  toc?:
+    | {
+        toc?: TOCItemType[];
+        single?: boolean;
+      }
+    | false;
+  children?: ReactNode;
+};
+
+export function PageRoot({ toc, children, ...props }: PageRootProps) {
+  let collapsed = false;
+  try {
+    collapsed = useSidebar().collapsed;
+  } catch {
+    // When rendered outside <DocsLayout />, fallback to non-collapsed layout.
+  }
+  const anchorProps = typeof toc === "object" && toc !== null ? toc : undefined;
 
   return (
-    <TOCProvider {...toc}>
+    <TOCProvider
+      {...anchorProps}
+      toc={(anchorProps?.toc ?? []) as TOCItemType[]}
+      single={anchorProps?.single}
+    >
       <div
         id="nd-page"
         {...props}

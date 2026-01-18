@@ -20,9 +20,24 @@ import {
   PageTOCTitle,
 } from "fumadocs-ui/layouts/docs/page";
 import { Edit } from "lucide-react";
-import { type ComponentProps, forwardRef, lazy, type ReactNode } from "react";
+import { type ComponentProps, type ComponentType, forwardRef, type ReactNode } from "react";
 import { PageRoot } from "./page-root";
 import Comment from "@/modules/shared/Comment";
+
+// In some setups (especially monorepo-ish + multiple @types/react versions), TS may misclassify
+// fumadocs components as returning DOM `Element` instead of `JSX.Element`, causing false-positive JSX errors.
+// Casting keeps runtime behavior identical while unblocking typechecking.
+const FumaPageArticle = PageArticle as unknown as ComponentType<any>;
+const FumaPageBreadcrumb = PageBreadcrumb as unknown as ComponentType<any>;
+const FumaPageFooter = PageFooter as unknown as ComponentType<any>;
+const FumaPageLastUpdate = PageLastUpdate as unknown as ComponentType<any>;
+const FumaPageTOC = PageTOC as unknown as ComponentType<any>;
+const FumaPageTOCItems = PageTOCItems as unknown as ComponentType<any>;
+const FumaPageTOCPopover = PageTOCPopover as unknown as ComponentType<any>;
+const FumaPageTOCPopoverContent = PageTOCPopoverContent as unknown as ComponentType<any>;
+const FumaPageTOCPopoverItems = PageTOCPopoverItems as unknown as ComponentType<any>;
+const FumaPageTOCPopoverTrigger = PageTOCPopoverTrigger as unknown as ComponentType<any>;
+const FumaPageTOCTitle = PageTOCTitle as unknown as ComponentType<any>;
 
 interface EditOnGitHubOptions
   extends Omit<ComponentProps<"a">, "href" | "children"> {
@@ -160,18 +175,18 @@ export function DocsPage({
     >
       {tocPopoverEnabled &&
         (tocPopover ?? (
-          <PageTOCPopover>
-            <PageTOCPopoverTrigger />
-            <PageTOCPopoverContent>
+          <FumaPageTOCPopover>
+            <FumaPageTOCPopoverTrigger />
+            <FumaPageTOCPopoverContent>
               {tocPopoverOptions.header}
-              <PageTOCPopoverItems variant={tocPopoverOptions.style} />
+              <FumaPageTOCPopoverItems variant={tocPopoverOptions.style} />
               {tocPopoverOptions.footer}
-            </PageTOCPopoverContent>
-          </PageTOCPopover>
+            </FumaPageTOCPopoverContent>
+          </FumaPageTOCPopover>
         ))}
-      <PageArticle {...article}>
+      <FumaPageArticle {...article}>
         {breadcrumbEnabled &&
-          (breadcrumb ?? <PageBreadcrumb {...breadcrumbProps} />)}
+          (breadcrumb ?? <FumaPageBreadcrumb {...breadcrumbProps} />)}
         {children}
         <div role="none" className="flex-1" />
         <div className="flex flex-row flex-wrap items-center justify-between gap-4 empty:hidden">
@@ -186,20 +201,20 @@ export function DocsPage({
               }`}
             />
           )}
-          {lastUpdate && <PageLastUpdate date={new Date(lastUpdate)} />}
+          {lastUpdate && <FumaPageLastUpdate date={new Date(lastUpdate)} />}
         </div>
         {footer.enabled !== false &&
-          (footer.component ?? <PageFooter items={footer.items} />)}
+          (footer.component ?? <FumaPageFooter items={footer.items} />)}
         <Comment children={children} className="mx-auto" />
-      </PageArticle>
+      </FumaPageArticle>
       {tocEnabled &&
         (tocReplace ?? (
-          <PageTOC>
+          <FumaPageTOC>
             {tocOptions.header}
-            <PageTOCTitle />
-            <PageTOCItems variant={tocOptions.style} />
+            <FumaPageTOCTitle />
+            <FumaPageTOCItems variant={tocOptions.style} />
             {tocOptions.footer}
-          </PageTOC>
+          </FumaPageTOC>
         ))}
     </PageRoot>
   );

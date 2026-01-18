@@ -8,7 +8,7 @@ import {
 } from "@/types";
 
 export type SerializedPage = {
-  file: {
+  file?: {
     dirname: string;
     name: string;
     ext: string;

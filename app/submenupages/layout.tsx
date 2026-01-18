@@ -1,24 +1,11 @@
 import { submenuPageSource } from "@/lib/source";
-import { pageOptionsGenerator } from "@/lib/utils";
-import { DocsLayout } from "@/modules/layout/templates/docs-layout";
-import RightSideNavWrapper from "@/modules/layout/wrapper/RightSideNavWrapper";
-import { basicDocsClass } from "@/lib/styles/card.styles";
-
+import DocsLayoutWrapper from "@/modules/layout/templates/docs-layout-wrapper";
 export default async function Layout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const pageOptions = pageOptionsGenerator(submenuPageSource);
   return (
-    <DocsLayout
-      {...pageOptions}
-      searchToggle={{ enabled: false }}
-      themeSwitch={{ enabled: false }}
-      sidebar={{ defaultOpenLevel: 0, collapsible: false, enabled: false }}
-    >
-      <div className={basicDocsClass({ className: "" })}>{children}</div>
-      <RightSideNavWrapper />
-    </DocsLayout>
+    <DocsLayoutWrapper source={submenuPageSource}>{children}</DocsLayoutWrapper>
   );
 }

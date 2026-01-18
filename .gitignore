@@ -51,8 +51,8 @@ yarn-error.log*
 
 
 
-# yarn
-package-lock.json
+# npm lockfile (npm/pnpm 설치 의존성 동기화용)
+# package-lock.json
 # yarn.lock
 
 # performance reports
@@ -70,6 +70,7 @@ package-lock.json
 packages/*/dist/
 packages/*/build/
 packages/*/node_modules/
+packages/*/package-lock.json
 packages/*/npm-debug.log*
 packages/*/yarn-debug.log*
 packages/*/.npm/

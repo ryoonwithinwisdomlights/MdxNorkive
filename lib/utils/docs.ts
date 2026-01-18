@@ -2,7 +2,7 @@ import { BLOG } from "@/blog.config";
 import { formatDateFmt, getDistanceFromToday, getYearMonthDay } from "./date";
 import { TransferedDataProps, SerializedPage, LocaleDict } from "@/types";
 import { DocsLayoutProps } from "fumadocs-ui/layouts/docs";
-import { PageTree } from "fumadocs-core/server";
+
 import { DOCS_CONFIG } from "@/config/docs.config";
 import {
   generalsSource,
@@ -10,6 +10,7 @@ import {
   submenuPageSource,
   techsSource,
 } from "@/lib/source";
+import { Root } from "fumadocs-core/page-tree";
 
 export function getDocsResource(resource: string) {
   if (resource === DOCS_CONFIG.DOCS_TYPE.GENERALS) return generalsSource;
@@ -148,7 +149,7 @@ export const paginationString = (
 };
 
 export const pageOptionsGenerator = <T = unknown>(
-  source: { getPageTree: () => T },
+  source: { getPageTree: () => Root },
   title?: string
 ): DocsLayoutProps => {
   const baseOptions: Partial<DocsLayoutProps> = {
@@ -170,7 +171,7 @@ export const pageOptionsGenerator = <T = unknown>(
 
   return {
     ...baseOptions,
-    tree: source.getPageTree() as PageTree.Root,
+    tree: source.getPageTree() as Root,
     nav: {
       ...baseOptions.nav,
       transparentMode: "none",

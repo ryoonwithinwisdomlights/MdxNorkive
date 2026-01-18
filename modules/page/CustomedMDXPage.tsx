@@ -41,10 +41,15 @@ export default function CustomedMDXPage({
   const { locale } = useThemeStore();
   const { setRightSideInfoBarMode, setTocContent } = useUIStore();
   const { DOCS } = locale;
-  const { setCollapsed } = useSidebar();
+  let setCollapsed: ((collapsed: boolean) => void) | undefined;
+  try {
+    setCollapsed = useSidebar().setCollapsed;
+  } catch {
+    // When rendered outside <DocsLayout />, sidebar context is unavailable.
+  }
 
   useEffect(() => {
-    setCollapsed(false);
+    setCollapsed?.(false);
     setTocContent(toc);
     setRightSideInfoBarMode("author");
   }, []);

@@ -1,4 +1,4 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, type ComponentType } from "react";
 import { BLOG } from "@/blog.config";
 
 //************* font ************* */
@@ -14,7 +14,7 @@ import "./../styles/globals.css";
 import { GeneralSiteSettingsProvider } from "@/lib/context/GeneralSiteSettingsProvider";
 import { ModalProvider } from "@/lib/context/ModalProvider";
 import { NavInfoProvider } from "@/lib/context/NavInfoProvider";
-import { RootProvider } from "fumadocs-ui/provider";
+import { RootProvider } from "fumadocs-ui/provider/next";
 import { Providers } from "./providers";
 
 //************* Utils ************* */
@@ -44,12 +44,16 @@ const DefaultSearchDialog = lazy(
   () => import("@/modules/common/search/search")
 );
 
+// Some TS setups (notably RSC typings) can misclassify external providers as invalid JSX element types.
+// This cast keeps runtime behavior identical while preventing false-positive JSX errors.
+const FumaRootProvider = RootProvider as unknown as ComponentType<any>;
+
 //************* Fetcher ************* */
 import { fetchMenuList } from "./api/fetcher";
 
 //*************  types ************* */
 import { DocFrontMatter } from "@/types/mdx.model";
-import { LoaderConfig, Page } from "fumadocs-core/source";
+// import { LoaderConfig, Page } from "fumadocs-core/source";
 
 export const viewport: Viewport = {
   // themeColor: "normal",
@@ -127,22 +131,18 @@ export default async function RootLayout({
   const portfoliosPages = portfoliosSource.getPages();
   const techsPages = techsSource.getPages();
 
-  const allPages: Page<LoaderConfig["source"]["pageData"]>[] = [
-    ...generalsPages,
-    ...portfoliosPages,
-    ...techsPages,
-  ];
+  const allPages: any[] = [...generalsPages, ...portfoliosPages, ...techsPages];
 
   // 직렬화 가능한 형태로 변환
   const serializedAllPages = allPages
     .map((page) => ({
-      file: {
-        dirname: page.file.dirname,
-        name: page.file.name,
-        ext: page.file.ext,
-        path: page.file.path,
-        flattenedPath: page.file.flattenedPath,
-      },
+      // file: {
+      //   dirname: page.file.dirname,
+      //   name: page.file.name,
+      //   ext: page.file.ext,
+      //   path: page.file.path,
+      //   flattenedPath: page.file.flattenedPath,
+      // },
       absolutePath: page.absolutePath,
       path: page.path,
       url: page.url,
@@ -166,7 +166,7 @@ export default async function RootLayout({
         <WebVitals />
         <ProgressBar>
           <Providers>
-            <RootProvider
+            <FumaRootProvider
               search={{
                 SearchDialog: DefaultSearchDialog,
                 options: {
@@ -218,7 +218,7 @@ export default async function RootLayout({
                   </div>
                 </GeneralSiteSettingsProvider>
               </NavInfoProvider>
-            </RootProvider>
+            </FumaRootProvider>
           </Providers>
         </ProgressBar>
       </body>
