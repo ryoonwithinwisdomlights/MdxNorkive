@@ -1,5 +1,5 @@
 import { BLOG } from "@/blog.config";
-import LazyImage from "@/modules/shared/LazyImage";
+import Image from "next/image";
 
 const NorKiveInfoCard = () => {
   return (
@@ -14,11 +14,15 @@ const NorKiveInfoCard = () => {
           "Browsing all your archives <br />
           written and recored in Notion."
         </div>
-        <LazyImage
-          src={"/images/norkive_black.png"}
-          className=" dark:border ml-2 dark:border-neutral-300"
+        <Image
+          src="/images/norkive_black.jpg"
+          className="dark:border ml-2 dark:border-neutral-300"
           width={180}
+          height={220}
           alt={BLOG.AUTHOR}
+          priority={false}
+          loading="lazy"
+          quality={75}
         />
       </div>
       <div

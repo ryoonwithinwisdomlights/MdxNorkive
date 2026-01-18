@@ -1,17 +1,18 @@
 "use client";
 
-import { ImgProps, LazyImageProps } from "@/types/components/common";
+import { LazyImageProps } from "@/types/components/common";
 import { compressImage } from "@/lib/utils/image";
 import React, { useEffect, useRef, useState } from "react";
 import { DEV_CONFIG } from "@/config/dev.config";
+import Image from "next/image";
 
 /**
- * Lazy loading of images
- * @param {*} param0
- * @returns
+ * Optimized image component with lazy loading support
+ * - priority=true: Uses Next.js Image for optimal LCP performance
+ * - priority=false: Uses IntersectionObserver-based lazy loading
  */
 export default function LazyImage({
-  priority,
+  priority = false,
   id,
   src,
   alt,
@@ -25,13 +26,72 @@ export default function LazyImage({
   sizes,
   quality = 80,
 }: LazyImageProps) {
-  const imageRef = useRef(null);
+  // priority가 true인 경우: Next.js Image 사용 (LCP 최적화)
+  if (priority) {
+    const numWidth = typeof width === "number" ? width : 800;
+    const numHeight = typeof height === "number" ? height : Math.round(numWidth * 0.75);
+
+    return (
+      <Image
+        id={id}
+        src={src}
+        alt={alt || ""}
+        width={numWidth}
+        height={numHeight}
+        className={className}
+        style={style}
+        title={title}
+        priority={true}
+        quality={quality}
+        sizes={sizes || `(max-width: 768px) 100vw, ${numWidth}px`}
+        onLoad={onLoad}
+      />
+    );
+  }
+
+  // priority가 false인 경우: 기존 lazy loading 로직
+  return (
+    <LazyLoadedImage
+      id={id}
+      src={src}
+      alt={alt}
+      placeholderSrc={placeholderSrc}
+      className={className}
+      width={width}
+      height={height}
+      title={title}
+      onLoad={onLoad}
+      style={style}
+      sizes={sizes}
+      quality={quality}
+    />
+  );
+}
+
+/**
+ * Internal component for lazy-loaded images (non-priority)
+ */
+function LazyLoadedImage({
+  id,
+  src,
+  alt,
+  placeholderSrc,
+  className,
+  width,
+  height,
+  title,
+  onLoad,
+  style,
+  sizes,
+  quality = 80,
+}: Omit<LazyImageProps, "priority">) {
+  const imageRef = useRef<HTMLImageElement>(null);
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const handleImageLoad = () => {
     setImageLoaded(true);
     if (typeof onLoad === "function") {
-      onLoad(); // Trigger the passed onLoad callback function
+      onLoad();
     }
   };
 
@@ -46,8 +106,8 @@ export default function LazyImage({
         });
       },
       {
-        rootMargin: "50px", // 50px 전에 미리 로드
-        threshold: 0.1, // 10%가 보이면 시작
+        rootMargin: "50px",
+        threshold: 0.1,
       }
     );
 
@@ -62,7 +122,7 @@ export default function LazyImage({
     };
   }, []);
 
-  // 이미지 최적화된 URL 생성
+  // 이미지 최적화된 URL 생성 (Cloudinary, Unsplash 등 외부 이미지용)
   const optimizedSrc =
     compressImage({
       image: src,
@@ -72,55 +132,21 @@ export default function LazyImage({
       fmt: "webp",
     }) || src;
 
-  // Dynamically add width, height and className properties only if they are valid values
-  const imgProps: ImgProps = {
-    ref: imageRef,
-    src: imageLoaded ? optimizedSrc : placeholderSrc,
-    alt: alt || "",
-    onLoad: handleImageLoad,
-    loading: "lazy",
-    decoding: "async", // 비동기 디코딩으로 메인 스레드 방해 최소화
-    fetchPriority: "high",
-  };
-
-  if (id) {
-    imgProps.id = id;
-  }
-
-  if (title) {
-    imgProps.title = title;
-  }
-
-  if (width && width !== "auto") {
-    imgProps.width = width;
-  }
-
-  if (height && height !== "auto") {
-    imgProps.height = height;
-  }
-  if (className) {
-    imgProps.className = className;
-  }
-  if (style) {
-    imgProps.style = style;
-  }
-
-  // sizes 속성 추가 (반응형 이미지)
-  if (sizes) {
-    imgProps.sizes = sizes;
-  }
-
-  // priority가 true면 loading="eager"와 fetchPriority="high"로 변경
-  if (priority) {
-    imgProps.loading = "eager";
-    imgProps.fetchPriority = "high";
-  } else {
-    imgProps.loading = "lazy";
-  }
-
   return (
-    <>
-      <img {...imgProps} />
-    </>
+    <img
+      ref={imageRef}
+      id={id}
+      src={imageLoaded ? optimizedSrc : placeholderSrc}
+      alt={alt || ""}
+      title={title}
+      width={width && width !== "auto" ? width : undefined}
+      height={height && height !== "auto" ? height : undefined}
+      className={className}
+      style={style}
+      sizes={sizes}
+      onLoad={handleImageLoad}
+      loading="lazy"
+      decoding="async"
+    />
   );
 }

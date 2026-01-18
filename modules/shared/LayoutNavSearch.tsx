@@ -19,9 +19,9 @@ export default function LayoutNavSearch() {
   const [loading, setLoading] = useState(false);
   const groupedArray = pages?.map((page: SerializedPage) => {
     return {
-      id: page.data.notionId,
-      category: page.data.category,
-      title: page.data.title,
+      id: page.data.notionId || "",
+      category: page.data.category || "",
+      title: page.data.title || "",
       url: page.url,
     };
   });

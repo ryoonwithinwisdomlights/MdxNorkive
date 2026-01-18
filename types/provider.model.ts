@@ -7,6 +7,9 @@ import {
   LocaleDict,
 } from "@/types";
 
+// 클라이언트 전송용 최적화된 페이지 타입
+// 필수: url, data (일부 필드)
+// 옵셔널: 서버에서만 사용하는 필드들
 export type SerializedPage = {
   file?: {
     dirname: string;
@@ -15,12 +18,12 @@ export type SerializedPage = {
     path: string;
     flattenedPath: string;
   };
-  absolutePath: string;
-  path: string;
+  absolutePath?: string;
+  path?: string;
   url: string;
-  slugs: string[];
-  data: DocFrontMatter;
-  locale: string | undefined;
+  slugs?: string[];
+  data: Partial<DocFrontMatter>;
+  locale?: string | undefined;
 };
 export interface GeneralSiteSettingsProps {
   onLoading: boolean;

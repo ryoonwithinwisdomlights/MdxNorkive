@@ -93,14 +93,20 @@ const DocsCard = memo(
             {/* 타입 */}
             <div className="flex gap-2 items-center  ">
               <UserPenIcon className="w-3 h-3" />
-              <span>{substringWithNumberDots(page.data.author, 10)}</span>
+              <span>
+                {substringWithNumberDots(page.data.author || "", 10)}
+              </span>
             </div>
             {/* doc_type */}
 
             {/* 날짜 */}
             <div className="flex flex-row items-center gap-1">
               <CalendarIcon className="w-4 h-4" />
-              <span>{getYearMonthDay(page.data.date, locale.LOCALE)}</span>
+              <span>
+                {page.data.date
+                  ? getYearMonthDay(page.data.date, locale.LOCALE)
+                  : ""}
+              </span>
             </div>
           </div>
 

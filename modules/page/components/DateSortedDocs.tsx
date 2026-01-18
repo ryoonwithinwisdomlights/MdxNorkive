@@ -21,7 +21,10 @@ const DocItem = memo(
     onRouter: (page: SerializedPage) => void;
   }) => {
     const formattedDate = useMemo(
-      () => new Date(page.data.date).toISOString().split("T")[0],
+      () =>
+        page.data.date
+          ? new Date(page.data.date).toISOString().split("T")[0]
+          : "",
       [page.data.date]
     );
 

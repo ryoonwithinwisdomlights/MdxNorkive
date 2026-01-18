@@ -28,7 +28,9 @@ const FeatureDocs = ({
       .filter(
         (page) =>
           page.data.favorite === true &&
-          (type ? page.data.type.toLowerCase() === type.toLowerCase() : true)
+          (type
+            ? page.data.type?.toLowerCase() === type.toLowerCase()
+            : true)
       )
       .slice(0, FEATURED_DOCS_CARDS_PER_PAGE);
 

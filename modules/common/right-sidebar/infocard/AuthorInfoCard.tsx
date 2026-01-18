@@ -25,7 +25,7 @@ const AuthorInfoCard = () => {
         className="hover:scale-105 transform duration-200 cursor-pointer flex justify-center"
       >
         <LazyImage
-          src={"/images/norkive_black.png"}
+          src={"/images/norkive_black.jpg"}
           className="rounded-full dark:border dark:border-neutral-300"
           width={120}
           height={120}

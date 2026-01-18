@@ -71,8 +71,29 @@ const baseConfig: NextConfig = {
     // 최적화된 패키지 사용 (Tree shaking 개선)
     inlineCss: true,
     optimizePackageImports: [
+      // UI 라이브러리
       "lucide-react",
       "@radix-ui/react-icons",
+      "@radix-ui/react-dialog",
+      "@radix-ui/react-dropdown-menu",
+      "@radix-ui/react-alert-dialog",
+      "@radix-ui/react-label",
+      "@radix-ui/react-slot",
+      "@radix-ui/react-visually-hidden",
+      // fumadocs
+      "fumadocs-core",
+      "fumadocs-ui",
+      // 유틸리티
+      "date-fns",
+      "lodash-es",
+      "clsx",
+      // 상태 관리 및 데이터 페칭
+      "@tanstack/react-query",
+      "zustand",
+      // 기타
+      "react-share",
+      "sonner",
+      "class-variance-authority",
     ],
   },
 
@@ -94,63 +115,6 @@ const baseConfig: NextConfig = {
       };
     }
 
-    // 프로덕션 환경에서 번들 최적화
-    // if (!dev && !isServer) {
-    //   // 코드 스플리팅 최적화
-    //   config.optimization = {
-    //     ...config.optimization,
-    //     splitChunks: {
-    //       chunks: "all",
-    //       cacheGroups: {
-    //         // 벤더 라이브러리 분리
-    //         vendor: {
-    //           test: /[\\/]node_modules[\\/]/,
-    //           name: "vendors",
-    //           chunks: "all",
-    //           priority: 10,
-    //           enforce: true,
-    //         },
-    //         // 공통 컴포넌트 분리
-    //         common: {
-    //           name: "common",
-    //           minChunks: 2,
-    //           chunks: "all",
-    //           priority: 5,
-    //           reuseExistingChunk: true,
-    //         },
-    //         // MDX 관련 코드 분리
-    //         mdx: {
-    //           test: /[\\/]content[\\/]/,
-    //           name: "mdx-content",
-    //           chunks: "all",
-    //           priority: 8,
-    //         },
-    //         // Radix UI 컴포넌트 분리
-    //         radix: {
-    //           test: /[\\/]node_modules[\\/]@radix-ui[\\/]/,
-    //           name: "radix-ui",
-    //           chunks: "all",
-    //           priority: 9,
-    //         },
-    //       },
-    //     },
-    //     // Tree shaking 최적화
-    //     usedExports: true,
-    //     sideEffects: false,
-    //     // 모듈 연결 최적화
-    //     concatenateModules: true,
-    //     // 최소화 최적화
-    //     minimize: true,
-    //   };
-
-    //   // 번들 크기 경고 설정
-    //   config.performance = {
-    //     ...config.performance,
-    //     maxEntrypointSize: 512000, // 500KB
-    //     maxAssetSize: 512000, // 500KB
-    //     hints: "warning",
-    //   };
-    // }
 
     return config;
   },

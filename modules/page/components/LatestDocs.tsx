@@ -145,17 +145,25 @@ const LatestDocs = ({ type, introTrue, docs, docType }: mainDocsProps) => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {currentDocs.map((article) => (
           <GridCard
-            key={`${article.data.notionId}`}
-            title={article.data.title}
+            key={`${article.data.notionId || article.url}`}
+            title={article.data.title || ""}
             description={article.data.summary}
-            date={getYearMonthDay(article.data.date, locale.LOCALE)}
+            date={
+              article.data.date
+                ? getYearMonthDay(article.data.date, locale.LOCALE)
+                : ""
+            }
             type={article.data.type}
             docType={article.data.doc_type}
             author={article.data.author}
-            distanceFromToday={getDistanceFromToday(article.data.date, lang)}
+            distanceFromToday={
+              article.data.date
+                ? getDistanceFromToday(article.data.date, lang)
+                : ""
+            }
             tags={article.data.tags}
             imageUrl={article.data.pageCover as string | undefined}
-            imageAlt={article.data.title}
+            imageAlt={article.data.title || ""}
             url={article.url}
             variant="compact"
             showImage={true}

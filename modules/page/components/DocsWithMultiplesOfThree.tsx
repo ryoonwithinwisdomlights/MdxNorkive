@@ -94,14 +94,22 @@ const DocsWithMultiplesOfThree = ({
       >
         {currentArticles.map((article) => (
           <GridCard
-            key={`${article.data.notionId}-${currentPage}`}
-            title={article.data.title}
+            key={`${article.data.notionId || article.url}-${currentPage}`}
+            title={article.data.title || ""}
             description={article.data.summary}
-            date={getYearMonthDay(article.data.date, locale.LOCALE)}
-            distanceFromToday={getDistanceFromToday(article.data.date, lang)}
+            date={
+              article.data.date
+                ? getYearMonthDay(article.data.date, locale.LOCALE)
+                : ""
+            }
+            distanceFromToday={
+              article.data.date
+                ? getDistanceFromToday(article.data.date, lang)
+                : ""
+            }
             tags={article.data.tags}
             imageUrl={article.data.pageCover as string | undefined}
-            imageAlt={article.data.title}
+            imageAlt={article.data.title || ""}
             url={article.url}
             variant="default"
             showImage={true}

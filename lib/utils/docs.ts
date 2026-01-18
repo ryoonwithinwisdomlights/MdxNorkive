@@ -33,9 +33,9 @@ export function setPageSortedByDate(obj: SerializedPage[]): SerializedPage[] {
   const docsSortByDate = [...obj];
 
   docsSortByDate.sort((a, b) => {
-    return (
-      new Date(b?.data?.date).getTime() - new Date(a?.data?.date).getTime()
-    );
+    const dateA = a?.data?.date ? new Date(a.data.date).getTime() : 0;
+    const dateB = b?.data?.date ? new Date(b.data.date).getTime() : 0;
+    return dateB - dateA;
   });
   return docsSortByDate;
 }
@@ -46,7 +46,9 @@ export function setPageGroupedByDate(
   const alldocs: Record<string, SerializedPage[]> = {};
 
   array.forEach((doc) => {
-    const date = formatDateFmt(doc.data.date, "yyyy-MM");
+    const date = doc.data.date
+      ? formatDateFmt(doc.data.date, "yyyy-MM")
+      : "unknown";
     if (alldocs[date]) {
       alldocs[date].push(doc);
     } else {
@@ -63,19 +65,21 @@ export function getMainRecentDocs(
 ) {
   const sortedPage = pages
     .sort((a, b) => {
-      return (
-        new Date(b?.data?.date).getTime() - new Date(a?.data?.date).getTime()
-      );
+      const dateA = a?.data?.date ? new Date(a.data.date).getTime() : 0;
+      const dateB = b?.data?.date ? new Date(b.data.date).getTime() : 0;
+      return dateB - dateA;
     })
     .slice(0, sliceNum);
 
   return sortedPage.map((page, index) => ({
     id: index,
-    date: getYearMonthDay(page.data.date, lang),
+    date: page.data.date ? getYearMonthDay(page.data.date, lang) : "",
     type: page.data.type,
     docType: page.data.doc_type,
     category: page.data.category,
-    distanceFromToday: getDistanceFromToday(page.data.date, lang),
+    distanceFromToday: page.data.date
+      ? getDistanceFromToday(page.data.date, lang)
+      : "",
     title: page.data.title,
     pageCover: page.data.pageCover,
     description: page.data.summary?.slice(0, 100) || "",

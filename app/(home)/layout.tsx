@@ -1,5 +1,3 @@
-"use client";
-
 import GeneralDocTypePageWrapper from "@/modules/layout/templates/home-page-layout";
 
 export default function Layout({ children }: { children: React.ReactNode }) {

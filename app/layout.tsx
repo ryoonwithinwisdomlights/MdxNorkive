@@ -87,7 +87,7 @@ export const metadata: Metadata = {
     title: BLOG.TITLE,
     description: BLOG.DESCRIPTION,
     siteName: BLOG.TITLE,
-    images: "/images/norkive_black.png",
+    images: "/images/norkive_black.jpg",
     url: BLOG.LINK,
   },
   category: BLOG.KEYWORDS || "Software Technology", // section Mainly like category Such classification, Facebook Use this to capture link categories,
@@ -121,39 +121,45 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // 서버에서 쿠키로부터 언어 설정 읽기
-  const userLang = await getCookie("lang");
+  // 서버에서 쿠키와 메뉴 데이터를 병렬로 가져오기
+  const [userLang, menuList] = await Promise.all([
+    getCookie("lang"),
+    fetchMenuList(),
+  ]);
+
   const initialLang = userLang || BLOG.LANG;
   const initialLocale = generateLocaleDict(initialLang);
 
-  const menuList = await fetchMenuList();
+  // 페이지 소스들은 동기 함수이므로 병렬화 불필요
   const generalsPages = generalsSource.getPages();
   const portfoliosPages = portfoliosSource.getPages();
   const techsPages = techsSource.getPages();
 
   const allPages: any[] = [...generalsPages, ...portfoliosPages, ...techsPages];
 
-  // 직렬화 가능한 형태로 변환
+  // 직렬화 가능한 형태로 변환 - 클라이언트 전송 데이터 최소화
   const serializedAllPages = allPages
     .map((page) => ({
-      // file: {
-      //   dirname: page.file.dirname,
-      //   name: page.file.name,
-      //   ext: page.file.ext,
-      //   path: page.file.path,
-      //   flattenedPath: page.file.flattenedPath,
-      // },
-      absolutePath: page.absolutePath,
-      path: page.path,
+      // 필수 데이터만 전송 (absolutePath, slugs, locale 제거)
       url: page.url,
-      slugs: page.slugs,
-      data: page.data as DocFrontMatter,
-      locale: page.locale,
+      data: {
+        // frontmatter에서 필요한 필드만 선택
+        title: page.data.title,
+        summary: page.data.summary,
+        pageCover: page.data.pageCover,
+        type: page.data.type,
+        doc_type: page.data.doc_type,
+        date: page.data.date,
+        tags: page.data.tags,
+        category: page.data.category,
+        favorite: page.data.favorite,
+        icon: page.data.icon,
+      } as Partial<DocFrontMatter>,
     }))
     .sort((a, b) => {
-      return (
-        new Date(b?.data?.date).getTime() - new Date(a?.data?.date).getTime()
-      );
+      const dateA = a?.data?.date ? new Date(a.data.date).getTime() : 0;
+      const dateB = b?.data?.date ? new Date(b.data.date).getTime() : 0;
+      return dateB - dateA;
     });
 
   return (
