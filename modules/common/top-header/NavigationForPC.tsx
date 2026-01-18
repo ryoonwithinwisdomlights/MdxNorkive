@@ -2,7 +2,7 @@ import { useNav } from "@/lib/context/NavInfoProvider";
 import { MenuItemDrop } from "@/modules/common/top-header/MenuItemDrop";
 import LogoBar from "@/modules/common/top-header/LogoBar";
 import SettingButton from "@/modules/common/top-header/SettingButton";
-import { LargeSearchToggle } from "../../layout/components/search-toggle";
+import { LargeSearchToggle } from "@/modules/layout/components/search-toggle";
 
 const NavigationForPC = () => {
   const { menuList } = useNav({ from: "TopNavBar" });
@@ -17,7 +17,7 @@ const NavigationForPC = () => {
           hideIfDisabled
           className="hidden md:flex w-[40%]
           hover:text-neutral-800 dark:hover:text-neutral-200
-           bg-gradient-to-br from-white to-neutral-200/50
+           bg-linear-to-br from-white to-neutral-200/50
               dark:from-neutral-900 dark:to-neutral-700/50"
         />
         <div

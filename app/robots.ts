@@ -11,14 +11,18 @@ import { BLOG } from "@/blog.config";
  * 
  * 
  */
-export default function robots(): MetadataRoute.Robots {
-  return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-      disallow: "/private/",
-    },
-    host: BLOG.LINK,
-    sitemap: `${BLOG.LINK}sitemap.xml`,
-  };
-}
+    export default function robots(): MetadataRoute.Robots {
+      const baseUrl = new URL(BLOG.LINK);
+      return {
+        rules: {
+          userAgent: "*",
+          allow: "/",
+          disallow: "/private/",
+        },
+        // Keep host as hostname (no path / trailing slash issues)
+        host: baseUrl.hostname,
+        // Always generate an absolute URL safely
+        sitemap: new URL("/sitemap.xml", baseUrl).toString(),
+      };
+    }
+    

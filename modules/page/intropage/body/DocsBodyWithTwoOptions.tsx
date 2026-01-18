@@ -185,7 +185,7 @@ const DocsBodyWithTwoOptions = ({ docs }: { docs: SerializedPage[] }) => {
                     id="notion-page-card"
                     className={`hover:scale-105 transition-all duration-150 group w-full  flex p-2 justify-between md:flex-row flex-col-reverse ${
                       index % 2 === 1 ? "md:flex-row-reverse" : ""
-                    } overflow-hidden border dark:border-black rounded-lg shadow-md  bg-gradient-to-br from-white to-white dark:from-neutral-900 dark:to-neutral-700 `}
+                    } overflow-hidden border dark:border-black rounded-lg shadow-md  bg-linear-to-br from-white to-white dark:from-neutral-900 dark:to-neutral-700 `}
                   >
                     <InformationCard
                       data={data}

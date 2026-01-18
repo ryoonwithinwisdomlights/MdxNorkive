@@ -1,3 +1,4 @@
+
 # Architecture
 
 This document describes the system architecture, design decisions, and technical implementation of Norkive.

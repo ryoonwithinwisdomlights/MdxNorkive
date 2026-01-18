@@ -105,7 +105,7 @@ const GridCard = React.memo(
               />
             ) : (
               <div
-                className="md:w-full w-40 h-40  bg-gradient-to-br from-neutral-400 to-blue-400 flex items-center justify-center"
+                className="md:w-full w-40 h-40  bg-linear-to-br from-neutral-400 to-blue-400 flex items-center justify-center"
                 style={{
                   backgroundImage: imageUrl ? `url(${imageUrl})` : "none",
                   backgroundSize: "cover",

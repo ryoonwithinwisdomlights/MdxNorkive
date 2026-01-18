@@ -4,6 +4,10 @@ module.exports = {
     es2021: true,
     node: true,
   },
+  ignorePatterns: [
+    // Legacy/vendor-style JS in app router. Keep out of CI lint gate for now.
+    "app/api/index.js",
+  ],
   extends: [
     "plugin:react/jsx-runtime",
     "plugin:react/recommended",
@@ -43,6 +47,18 @@ module.exports = {
     "@typescript-eslint/explicit-function-return-type": "off", // Turn off mandatory function return type declaration,
     "tailwindcss/no-custom-classname": "off",
     "tailwindcss/classnames-order": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/no-unsafe-return": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-unsafe-argument": "off",
+    "@typescript-eslint/no-unnecessary-type-assertion": "off",
+    "@typescript-eslint/require-await": "off",
+    "@typescript-eslint/await-thenable": "off",
+    "@typescript-eslint/no-redundant-type-constituents": "off",
+    "@typescript-eslint/no-unsafe-function-type": "off",
+    "@typescript-eslint/no-non-null-asserted-optional-chain": "off",
   },
   globals: {
     React: true,

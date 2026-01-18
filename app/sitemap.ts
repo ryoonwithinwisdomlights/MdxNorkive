@@ -22,7 +22,7 @@ type ChangeFrequency =
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let allDocsList: DocFrontMatter[] = [];
-
+  const baseUrl = new URL(BLOG.LINK);
   try {
     allDocsList = await fetchAllDocsList();
   } catch (error) {
@@ -33,40 +33,39 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const dailyVariable: ChangeFrequency = "daily";
 
-  const urls = [
+  const urls: MetadataRoute.Sitemap = [
     {
-      url: `${BLOG.LINK}`,
-      lastEditedTime: new Date().toISOString().split("T")[0],
+      url: baseUrl.toString(),
+      lastModified: new Date(),
       changeFrequency: dailyVariable,
       priority: 1,
     },
     {
-      url: `${BLOG.LINK}docs`,
-      lastEditedTime: new Date().toISOString().split("T")[0],
+      url: new URL("/docs", baseUrl).toString(),
+      lastModified: new Date(),
       changeFrequency: dailyVariable,
       priority: 1,
     },
     {
-      url: `${BLOG.LINK}portfolios`,
-      lastEditedTime: new Date().toISOString().split("T")[0],
+      url: new URL("/portfolios", baseUrl).toString(),
+      lastModified: new Date(),
       changeFrequency: dailyVariable,
       priority: 1,
     },
     {
-      url: `${BLOG.LINK}techs`,
-      lastEditedTime: new Date().toISOString().split("T")[0],
+      url: new URL("/techs", baseUrl).toString(),
+      lastModified: new Date(),
       changeFrequency: dailyVariable,
       priority: 1,
     },
   ];
-
   allDocsList.forEach((doc) => {
     const lmd = doc.lastEditedTime
       ? formatDate(doc.date, BLOG.LANG)
       : formatDate(doc.lastEditedTime, BLOG.LANG);
     urls.push({
-      url: `${BLOG.LINK}${doc.type.toLowerCase()}/${doc.notionId}`,
-      lastEditedTime: lmd,
+      url: new URL(`${BLOG.LINK}${doc.type.toLowerCase()}/${doc.notionId}`, baseUrl).toString(),
+      lastModified: lmd,
       changeFrequency: dailyVariable,
       priority: 1,
     });

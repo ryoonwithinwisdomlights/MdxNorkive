@@ -1,6 +1,11 @@
 import { EXTERNAL_CONFIG } from "@/config/external.config";
 import { Redis } from "@upstash/redis";
-
+import { config } from "dotenv";
+import "dotenv/config";
+import path from "path";
+if (process.env.NODE_ENV !== "production" && !process.env.VERCEL) {
+  config({ path: path.resolve(process.cwd(), ".env.local") });
+}
 // Redis 설정 확인
 const redisUrl = EXTERNAL_CONFIG.UPSTASH_REDIS_REST_URL!;
 const redisToken = EXTERNAL_CONFIG.UPSTASH_REDIS_REST_TOKEN!;

@@ -15,8 +15,8 @@ const DocFooter = () => {
 
   return (
     <footer
-      className="border-t text-neutral-500 dark:text-neutral-300 w-full 
-   text-sm  flex flex-col px-4 py-3 items-center "
+      className=" text-neutral-500 dark:text-neutral-300 w-full 
+   text-sm  flex flex-col items-center "
     >
       <div className=" flex flex-row gap-2 justify-center">
         {" "}

@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-//import * as Icons from "@fortawesome/free-solid-svg-icons"; // 모든 아이콘을 가져옴
 import { BLOG } from "@/blog.config";
 import { type ClassValue, clsx } from "clsx";
 import React from "react";
