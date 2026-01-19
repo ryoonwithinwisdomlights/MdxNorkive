@@ -166,6 +166,19 @@ const fixTableBlocks = (content: string): string => {
   });
 };
 
+const normalizeHeadingTitle = (title: string): string => {
+  let normalized = title
+    // Remove strong/bold HTML tags inside headings
+    .replace(/<\/?strong>/gi, "")
+    .replace(/<\/?b>/gi, "")
+    // Remove markdown bold markers inside headings
+    .replace(/\*\*/g, "")
+    .replace(/__/g, "")
+    .trim();
+
+  return normalized;
+};
+
 const fixHeadingBlocks = (content: string): string => {
   // 빈 제목 수정
   content = content.replace(/^#{1,6}\s*$/gm, (match) => {
@@ -177,16 +190,20 @@ const fixHeadingBlocks = (content: string): string => {
   return content.replace(MDX_CONTENT_PATTERNS.HEADING, (match, title) => {
     const level = match.match(/^#{1,6}/)?.[0] || "#";
     const trimmedTitle = title.trim();
+    const normalizedTitle = normalizeHeadingTitle(trimmedTitle);
 
-    if (!trimmedTitle || trimmedTitle === "") {
+    if (!normalizedTitle || normalizedTitle === "") {
       return `${level} ${MDX_CONSTANTS.DEFAULT_HEADING_TEXT}`;
     }
 
-    if (trimmedTitle.length <= 2 && !/^[a-zA-Z가-힣0-9]/.test(trimmedTitle)) {
+    if (
+      normalizedTitle.length <= 2 &&
+      !/^[a-zA-Z가-힣0-9]/.test(normalizedTitle)
+    ) {
       return `${level} ${MDX_CONSTANTS.DEFAULT_HEADING_TEXT}`;
     }
 
-    return match;
+    return `${level} ${normalizedTitle}`;
   });
 };
 

@@ -1,0 +1,376 @@
+---
+title: RyoonGitbookLog
+slug: portfolios-RyoonGitbookLog
+summary: Notion DB를 CMS로 사용하는
+pageCover: >-
+  https://res.cloudinary.com/dyrdul1dd/image/upload/v1768761620/norkive-notion-images/png_1768761618642_YmdfaW1hZ2.webp?format=webp&quality=90
+notionId: 2ec1eb5c0337800091eacffa6249eba8
+password: ''
+type: Portfolios
+doc_type: Dev
+category: DevProject
+tags:
+  - next.js15
+favorite: true
+date: '2026-01-18'
+lastEditedTime: '2026-01-18T17:53:00.000Z'
+draft: false
+description: Notion DB를 CMS로 사용하는
+icon: ''
+full: false
+readingTime: 56
+wordCount: 11191
+status: published
+author: ryoonwithinwisdomlights
+version: 1.0.0
+---
+
+# 📚 RyoonGitbookLog
+
+
+> ⚡ - Notion DB를 CMS로 사용하는 **Next.js 15 (App Router) + TypeScript** 기반 블로그/문서 <u>**통합 스타터 템플릿(starter kit)입니다.**</u>  
+>   
+> - 기술블로그 글 작성, TIL 작성, 일반 글 작성 그리고 <u>**포트폴리오 관리까지 한 곳에서 통합적으로 관리가능해요!**</u>  
+>   
+> - 이 `리포지토리를 클론 또는 fork` + `제공되는 Notion 템플릿 복제` + `환경변수 설정` => <u>**바로 로컬 실행 및 배포가 가능해요 !**</u>
+
+
+![intro_white.png](https://github.com/ryoonwithinwisdomlights/RyoonGitbookLog/raw/main/public/images/intro_white.webp?format=webp&quality=85)
+
+
+![intro_dark.png](https://github.com/ryoonwithinwisdomlights/RyoonGitbookLog/raw/main/public/images/intro_dark.webp?format=webp&quality=85)
+
+
+## 🔖 레퍼런스/영감:
+
+
+> ⚡ - [transitive-bullshit/nextjs-notion-starter-kit](https://github.com/transitive-bullshit/nextjs-notion-starter-kit)  
+>   
+> - [tangly1024/NotionNext - NotionNext](https://github.com/tangly1024/NotionNext)(Next.js 13 Page Router 기반, 전부 Javascript로 작성된)의 Gitbook Theme에서 영감을 받아 출발하였습니다.
+
+
+## 🧩 Notion 템플릿 (복제해서 사용)
+
+- 템플릿: [Notion Blog Template](https://ryoonwithwisdomtrees.notion.site/2ea1eb5c033780349f3fc73c9160c4f6?v=2ea1eb5c03378122a3ba000c8cf252d1)
+
+---
+
+
+## ✨ Features
+
+
+### 🧱 핵심 구조 (스타터/템플릿 특장점)
+
+- <strong>Next.js 15 최신 App Router 기반</strong>
+- <strong>전체 TypeScript 기반</strong>
+- <strong>Notion DB → 페이지 생성/렌더링</strong> (Notion을 CMS로 사용)
+- <strong>설정은</strong> <strong><code>blog.config.ts</code></strong> <strong>+ 환경변수(</strong><strong><code>env.example</code></strong><strong>) 중심</strong>
+- <strong>ISR(페이지 결과 캐시) + on-demand 동적 라우트 운영</strong>: <code>revalidate</code>, <code>dynamicParams</code>, Notion DB 기반 <code>generateStaticParams</code>
+- <strong>관측성(Observability)</strong>: Vercel Analytics/Speed Insights + Sentry(옵션)로 Web Vitals/에러 추적 가능
+- <strong>점진 Strict TypeScript 도입</strong>: <code>tsconfig.strict.json</code> + <code>pnpm typecheck:strict</code>
+
+### 🧭 콘텐츠/네비게이션
+
+- <strong>레코드(포스트) 타입 라우팅</strong>: <code>general</code>, <code>project</code>, <code>engineering</code>, <code>archive</code> 타입 페이지
+- <strong>카테고리/태그 페이지</strong>: <code>/category</code>, <code>/tag</code>
+- <strong>좌측 내비게이션(사이드바) + 모바일 Drawer</strong>
+- <strong>상단 검색(헤더 검색)</strong>: <code>fuse.js</code> 기반 fuzzy search
+- <strong>Table of Contents(스크롤 스파이)</strong>: 페이지 내 목차/현재 섹션 하이라이트
+
+### 📝 렌더링/마크업
+
+- <strong>react-notion-x 기반 Notion 렌더링</strong>
+- <strong>Code highlighting(Prism)</strong> + 테마 스위칭 옵션
+- <strong>수식(KaTeX)</strong>
+- <strong>Mermaid 다이어그램</strong>(CDN 로드)
+- <strong>이미지 최적화/UX</strong>
+    - lazy placeholder
+    - 이미지 확대(zoom) 지원
+
+### 🎛️ UX / 인터랙션
+
+- <strong>다크 모드</strong> (appearance 설정/로컬 저장)
+- <strong>다국어(i18n)</strong>: <code>NEXT_PUBLIC_LANG</code> 기반 locale 초기화 + 언어 전환 UI
+- <strong>페이지 전환 progress bar</strong>
+- <strong>공유(ShareBar/ShareButtons)</strong>: <code>react-share</code> 기반
+- <strong>댓글(Giscus)</strong> 옵션
+
+### 🚀 성능/운영
+
+- <strong>캐시(메모리 기반)</strong>: <code>ENABLE_CACHE</code>로 제어
+- <strong>Redis(Upstash) + Memory fallback</strong>: 프로덕션에서 Redis 사용, 미설정 시 메모리 캐시로 자동 폴백
+- <strong>(Vercel) 크론 기반 캐시 갱신</strong>: <code>/api/cron/update-records</code>
+- <strong>ISR(revalidate) 기반 페이지 결과 캐시</strong>: Notion fetch가 무겁더라도 라우트 결과를 캐시/재검증
+- <strong>에러 모니터링(Sentry)</strong>: <code>app/error.tsx</code>, <code>app/global-error.tsx</code>에서 capture (DSN 없으면 자동 비활성)
+- <strong>번들 분석</strong>: <code>pnpm bundle-report</code> (<code>ANALYZE=true</code>)
+
+---
+
+
+## 🤔 왜 이게 좋은가
+
+- <strong>Notion을 CMS로 쓰면서도 “웹다운” 성능/UX</strong>: <code>react-notion-x</code> 기반 렌더링 + 무거운 블록은 <code>next/dynamic</code>으로 필요할 때만 로드
+- <strong>운영 가능한 캐시 전략</strong>: Redis(Upstash) + Memory fallback + Cron 갱신 + ISR(페이지 결과 캐시)로 “느린 외부 데이터 소스”를 안정적으로 서비스
+- <strong>지표 기반 개선이 가능한 기본값</strong>: Web Vitals/에러를 “나중에 붙이는” 게 아니라, 템플릿 단계에서 관측성(옵션)을 제공
+- <strong>코드베이스 성장에 강함</strong>: <code>typecheck:strict</code>로 점진 strict 도입 루프를 제공해, 기능 확장 시 타입 안정성을 단계적으로 올릴 수 있음
+
+## 🎯 어떤 사람에게 추천?
+
+- Notion을 CMS로 쓰고 싶지만 <strong>성능/SEO/운영을 코드로 통제</strong>하고 싶은 분
+- “블로그 템플릿”을 넘어 <strong>실서비스 운영 감각(캐시·재시도·모니터링·크론)</strong> 이 포함된 스타터가 필요한 분
+- Next.js App Router의 <strong>SSG/ISR/Metadata/Route handlers</strong>를 실제 구조에서 학습/응용하고 싶은 분
+
+---
+
+
+## 📈 Performance & Lighthouse
+
+
+이 템플릿은 Notion 렌더링(<code>react-notion-x</code>)과 App Router 조합에서 성능을 유지하기 위해 아래 전략을 기본값으로 적용합니다:
+
+- <strong>CSS code-splitting</strong>: Notion/Prism/KaTeX 스타일은 record 라우트에서만 로딩
+- <strong>Render-blocking CSS 완화(프로덕션)</strong>: <code>experimental.inlineCss</code>로 CSS 링크 요청을 줄임
+- <strong>애니메이션 CSS 경량화</strong>: <code>animate.css</code> → <code>animate-lite.css</code> (실사용 키프레임만)
+- <strong>모바일 번들 절감</strong>: 우측 패널(<code>RightSlidingDrawer</code>)은 데스크탑에서만 동적 로드
+- <strong>RUM(Web Vitals)</strong>: <code>useReportWebVitals</code>로 Core Web Vitals 수집 + baseline 저장/디버깅
+
+참고: <code>react-notion-x</code> 권장 패턴(heavy component는 <code>next/dynamic</code>으로 지연 로드) — [react-notion-x README](https://github.com/NotionX/react-notion-x/blob/master/readme.md)
+
+
+## 🧪 Lighthouse 측정(무료)
+
+
+정확한 측정을 위해 <strong><code>pnpm dev</code></strong><strong>가 아니라 프로덕션 빌드</strong> 상태에서 실행하세요.
+
+
+이 프로젝트는 <code>output: "standalone"</code> 이므로 <code>pnpm start</code> 대신 아래 방식으로 실행하는 것이 “실서비스 조건”에 가장 가깝습니다.
+
+
+```plain text
+pnpm run build
+PORT=3000 node .next/standalone/server.js
+
+# HTML 리포트 생성 (Desktop)
+npx lighthouse http://localhost:3000 \
+  --preset=desktop \
+  --only-categories=performance,accessibility,best-practices,seo \
+  --output=html \
+  --output-path=./lighthouse-home.html
+```
+
+> Trade-off(한줄): experimental.inlineCss는 CSS 요청을 줄이는 대신 초기 HTML/RSC payload 크기가 약간 늘 수 있습니다.
+
+---
+
+
+## 🏁 Getting Started
+
+
+이 템플릿은 “Notion 템플릿 복제 → env 설정 → 실행”만 하면 바로 동작합니다.
+
+
+### ✅ Prerequisites
+
+- Node.js: <code>>= 22.18.0</code> (see <code>package.json#engines</code>)
+- pnpm: <code>corepack enable</code>
+
+### 🧬 1) Fork/Clone
+
+
+Fork 해서 쓰거나, 그대로 clone 해서 시작할 수 있어요:
+
+
+```plain text
+git clone https://github.com/ryoonwithinwisdomlights/ryoongitbooklog.git
+cd ryoongitbooklog
+```
+
+
+### 📦 2) Install
+
+
+```plain text
+corepack enable
+pnpm install
+```
+
+
+### 🔐 3) Configure environment variables
+
+
+이 프로젝트는 <code>.env.example</code> 대신 <code>env.example</code> 파일을 제공합니다.
+
+
+```plain text
+cp env.example .env.local
+```
+
+
+최소로 필요한 값:
+
+- <strong><code>NOTION_DATABASE_ID</code></strong>: Notion 데이터베이스 페이지 ID(여러 개면 <code>id1,id2</code> 형태로 콤마 구분)
+
+### 🧑‍💻 4) Run (dev)
+
+
+```plain text
+pnpm dev
+```
+
+
+브라우저에서 <code>http://localhost:3000</code> 접속.
+
+
+### 🚢 5) Run (production / standalone 권장)
+
+
+정확한 운영 조건(특히 Lighthouse/성능 측정)을 위해서는 <code>dev</code>가 아니라 프로덕션 빌드로 실행하세요:
+
+
+```plain text
+pnpm run build
+PORT=3000 node .next/standalone/server.js
+```
+
+
+---
+
+
+## 🗂️ Notion setup
+
+1. 위 템플릿을 <strong>Duplicate</strong> 합니다.
+2. 복제한 Notion DB 페이지 URL에서 <strong>페이지 ID</strong>를 추출해 <code>NOTION_DATABASE_ID</code>에 넣습니다.
+    - 보통 32자리 형태의 ID가 들어갑니다.
+3. 로컬 실행 후, 메뉴/카테고리/태그/레코드 페이지가 정상 표시되는지 확인합니다.
+
+---
+
+
+## 🔐 Environment variables
+
+
+전체 목록/기본값은 <code>env.example</code>를 기준으로 합니다.
+
+
+### ⚙️ Configuration (<code>blog.config.ts</code>)
+
+
+<code>blog.config.ts</code>는 이 스타터/템플릿의 <strong>블로그 설정 파일</strong>입니다.
+
+
+대부분의 값은 <code>.env.local</code>의 환경변수(<code>NEXT_PUBLIC_*</code>)로 <strong>오버라이드</strong>할 수 있고, 기본값은 <code>blog.config.ts</code>에 정의되어 있습니다.
+
+
+### 🧾 대표 설정값(어디에 반영되나)
+
+
+| <strong>설정</strong>            | <strong><code>BLOG</code></strong> <strong>키</strong>                     | <strong>환경변수(권장)</strong>                                                 | <strong>블로그에서 바뀌는 곳(대표)</strong>                               |
+| ----------------- | ------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------- |
+| 사이트 이름/메타 타이틀     | <code>APP_NAME</code>, <code>TITLE</code>                  | <code>NEXT_PUBLIC_TITLE</code>                                          | <code>app/layout.tsx</code>의 <code>metadata.title</code> (문서/탭 타이틀)     |
+| 메타 설명             | <code>DESCRIPTION</code>                        | <code>NEXT_PUBLIC_DESCRIPTION</code>                                    | <code>app/layout.tsx</code>의 <code>metadata.description</code> (SEO/공유) |
+| 사이트 URL(절대 경로 기준) | <code>LINK</code>                               | <code>NEXT_PUBLIC_LINK</code>                                           | <code>metadataBase</code>, sitemap/robots 생성, 공유 링크의 base    |
+| 파비콘(favicon)      | <code>BLOG_FAVICON</code>                       | <code>NEXT_PUBLIC_FAVICON</code>                                        | <code>app/layout.tsx</code>의 <code>metadata.icons.icon</code>           |
+| 아바타(프로필/기본 아이콘)   | <code>AVATAR</code>                             | (기본값은 코드에 있음)                                                | Notion 페이지에 아이콘이 없을 때 기본 아이콘/프로필 이미지로 사용          |
+| 홈 배너(기본 커버)       | <code>HOME_BANNER_IMAGE</code>                  | <code>NEXT_PUBLIC_HOME_BANNER_IMAGE</code>                              | Notion 페이지에 cover가 없을 때 기본 커버로 사용                 |
+| 다국어(i18n) 기본 언어   | <code>LANG</code>                               | <code>NEXT_PUBLIC_LANG</code>                                           | locale 초기화 및 UI 문구/언어 전환                          |
+| 테마(라이트/다크)        | <code>APPEARANCE</code>, <code>APPEARANCE_DARK_TIME</code> | <code>NEXT_PUBLIC_APPEARANCE</code>, <code>NEXT_PUBLIC_APPEARANCE_DARK_TIME</code> | 다크모드 기본값/자동 전환 로직                                 |
+
+
+### ⭐ 필수
+
+- <code>NOTION_DATABASE_ID</code>
+
+### 🧩 선택(기능 on/off)
+
+- <code>ENABLE_CACHE</code>: 캐시 사용
+- <code>ANALYZE</code>: 번들 분석(<code>pnpm bundle-report</code>)
+
+### 🌐 다국어(i18n)
+
+- <code>NEXT_PUBLIC_LANG</code>: 기본 언어 (예: <code>kr-KR</code>, <code>en-US</code>)
+
+### 💬 댓글(Giscus)
+
+
+댓글 기능을 켜려면 아래 값을 채우세요.
+
+- <code>NEXT_PUBLIC_COMMENT_GISCUS_REPONAME</code>
+- <code>NEXT_PUBLIC_COMMENT_GISCUS_REPO_ID</code>
+- <code>NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY</code>
+- <code>NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY_ID</code>
+- <code>NEXT_PUBLIC_COMMENT_GISCUS_MAPPING</code> (기본 <code>pathname</code>)
+- <code>NEXT_PUBLIC_COMMENT_GISCUS_REACTIONS_ENABLED</code> (기본 <code>1</code>)
+- <code>NEXT_PUBLIC_COMMENT_GISCUS_EMIT_METADATA</code> (기본 <code>0</code>)
+- <code>NEXT_PUBLIC_COMMENT_GISCUS_INPUT_POSITION</code> (기본 <code>bottom</code>)
+- <code>NEXT_PUBLIC_COMMENT_GISCUS_LANG</code> (기본 <code>ko</code>/<code>en</code>)
+- <code>NEXT_PUBLIC_COMMENT_GISCUS_LOADING</code> (기본 <code>lazy</code>)
+- <code>NEXT_PUBLIC_COMMENT_GISCUS_CROSSORIGIN</code> (기본 <code>anonymous</code>)
+
+---
+
+
+## 🧵 URL paths
+
+- 레코드 타입:
+    - <code>/general/[pageId]</code>
+    - <code>/project/[pageId]</code>
+    - <code>/engineering/[pageId]</code>
+    - <code>/archive/[pageId]</code>
+- 분류:
+    - <code>/category</code>
+    - <code>/tag</code>
+
+---
+
+
+## 🧰 Scripts
+
+- <code>pnpm dev</code>: 로컬 개발 서버
+- <code>pnpm build</code>: 프로덕션 빌드
+- <code>pnpm start</code>: 빌드 후 실행
+- <code>pnpm typecheck</code>: 타입 체크
+- <code>pnpm typecheck:strict</code>: 점진 strict 타입 체크(마이그레이션용)
+- <code>pnpm lint</code>: 린트(현재는 경고 허용 / 에러만 실패)
+- <code>pnpm prettier:check</code>: 포맷 체크
+- <code>pnpm bundle-report</code>: 번들 분석 빌드(<code>ANALYZE=true</code>)
+
+---
+
+
+## ☁️ Deployment (Vercel)
+
+- <code>vercel.json</code>에 크론이 설정되어 있으며, 아래 엔드포인트를 주기적으로 호출합니다:
+    - <code>/api/cron/update-records</code>
+- 크론이 필요 없으면 <code>vercel.json</code>의 <code>crons</code> 설정을 제거하세요.
+
+---
+
+
+## 🧯 CI
+
+
+초기 오픈에서는 GitHub Actions CI를 <strong>비활성화</strong>했습니다.
+
+
+추후 활성화 방법은 <code>docs/ci.md</code>를 참고하세요.
+
+
+---
+
+
+## 🤝 Contributing / Security
+
+- 기여: <code>CONTRIBUTING.md</code>
+- 보안 제보: <code>SECURITY.md</code>
+
+---
+
+
+## 📄 License
+
+
+MIT License. See <code>LICENSE</code>.
+
+
+ Notion DB를 CMS로 사용하는 <strong>Next.js 15 (App Router) + TypeScript</strong> 기반 블로그/문서 스타터 템플릿(starter kit)입니다. <strong>반응형으로 웹과 모바일 둘다 지원합</strong>니다. 고도화 및 유지보수, 버전 업그레이드 진행중입니다.
+

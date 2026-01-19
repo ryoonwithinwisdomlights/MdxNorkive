@@ -243,9 +243,9 @@ const EntireDocs = ({
 
       {/* 전체 게시글 목록 */}
       <div className="grid grid-cols-1 gap-6 ">
-        {modAllDocs.map((page) => (
+        {modAllDocs.map((page, index) => (
           <DocsCard
-            key={page.data.notionId}
+            key={index}
             page={page}
             locale={locale}
             LOCKED={LOCKED}
