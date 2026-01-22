@@ -1,5 +1,5 @@
 {
-  "name": "norkive",
+  "name": "MdxNorkive",
   "version": "1.0.0",
   "description": "Type-safe Notion to MDX knowledge archive starter kit.",
   "keywords": [
@@ -26,10 +26,11 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "rm -rf .next && next build",
+    "build": "rm -rf .next && next build && pnpm run generate:mdx",
+    "build:vercel": "NODE_OPTIONS='--max-old-space-size=4096 --no-warnings' next build",
     "start": "NODE_OPTIONS='--inspect' next build && next start",
     "lint": "next lint",
-    "generate:mdx": "npx tsx scripts/notion-mdx-all-in-one.ts",
+    "generate:mdx": "pnpm exec tsx scripts/notion-mdx-all-in-one.ts",
     "validate:mdx": "npx tsx scripts/validate-mdx-files.ts",
     "prettier:check": "prettier --check --ignore-unknown .",
     "prettier:write": "prettier --write --ignore-unknown .",
@@ -79,7 +80,6 @@
     "memory-cache": "^0.2.0",
     "next": "15.4.10",
     "notion-to-md": "^3.1.1",
-    "npm": "^11.5.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-share": "^5.2.2",
@@ -102,7 +102,8 @@
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.11",
-    "ts-node": "^1.7.1"
+    "ts-node": "^1.7.1",
+    "tsx": "^4.21.0"
   },
   "browserslist": {
     "production": [
