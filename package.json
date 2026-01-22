@@ -14,6 +14,7 @@
   ],
   "homepage": "https://github.com/ryoonwithinwisdomlights/MdxNorkive.git",
   "license": "MIT",
+  "packageManager": "pnpm@10.18.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/ryoonwithinwisdomlights/MdxNorkive.git"
@@ -26,7 +27,6 @@
   "scripts": {
     "dev": "next dev",
     "build": "rm -rf .next && next build",
-    "build:vercel": "NODE_OPTIONS='--max-old-space-size=4096 --no-warnings' next build",
     "start": "NODE_OPTIONS='--inspect' next build && next start",
     "lint": "next lint",
     "generate:mdx": "npx tsx scripts/notion-mdx-all-in-one.ts",
@@ -102,16 +102,8 @@
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.11",
-    "ts-node": "^10.9.2"
+    "ts-node": "^1.7.1"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@tailwindcss/oxide",
-      "esbuild",
-      "sharp"
-    ]
-  },
-  "packageManager": "pnpm@10.18.3",
   "browserslist": {
     "production": [
       "last 2 Chrome versions",
