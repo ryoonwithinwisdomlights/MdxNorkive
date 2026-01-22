@@ -9,7 +9,7 @@ import { EXTERNAL_CONFIG } from "./config/external.config";
 
 export const BLOG = {
   APP_NAME: "Norkive",
-  LANG: process.env.NEXT_PUBLIC_LANG || "kr-KR", // e.g ,'en-US'  see /lib/constants for more.
+  LANG: process.env.NEXT_PUBLIC_LANG || "en-US", // e.g ,'en-US'  see /lib/constants for more.
   SINCE: process.env.NEXT_PUBLIC_SINCE || 2024, // e.g if leave this empty, current year will be used.
 
   APPEARANCE: process.env.NEXT_PUBLIC_APPEARANCE || "light",

@@ -1,6 +1,17 @@
 {
   "name": "norkive",
-  "version": "1.0",
+  "version": "1.0.0",
+  "description": "Type-safe Notion to MDX knowledge archive starter kit.",
+  "keywords": [
+    "notion",
+    "mdx",
+    "nextjs",
+    "starter-kit",
+    "blog",
+    "knowledge-base",
+    "content-collections",
+    "fumadocs"
+  ],
   "homepage": "https://github.com/ryoonwithinwisdomlights/MdxNorkive.git",
   "license": "MIT",
   "repository": {
