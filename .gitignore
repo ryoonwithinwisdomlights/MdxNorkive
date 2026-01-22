@@ -34,7 +34,8 @@ yarn-error.log*
 
 # local env files
 .env
-.env.*
+.env.local
+
 # 위 두 줄로 모든 환경변수 파일을 git에서 제외할 수 있습니다.
 
 # vercel
