@@ -31,17 +31,17 @@
     "start": "NODE_OPTIONS='--inspect' next build && next start",
     "lint": "next lint",
     "generate:mdx": "pnpm exec tsx scripts/notion-mdx-all-in-one.ts",
-    "validate:mdx": "npx tsx scripts/validate-mdx-files.ts",
+    "validate:mdx": "pnpm exec tsx scripts/validate-mdx-files.ts",
+    "process-redis-images": "pnpm exec tsx scripts/redis-image-processor.ts",
+    "measure:bundle": "pnpm exec tsx scripts/measure-performance.ts",
     "prettier:check": "prettier --check --ignore-unknown .",
     "prettier:write": "prettier --write --ignore-unknown .",
     "check:validity": "npm run prettier:check",
     "analyze": "ANALYZE=true npm run build",
     "bundle-report": "ANALYZE=true yarn build",
     "bundle:analyze": "cross-env ANALYZE=true npm run build",
-    "process-redis-images": "npx tsx scripts/redis-image-processor.ts",
-    "measure:bundle": "npx tsx scripts/measure-performance.ts",
     "measure:lighthouse": "bash scripts/measure-lighthouse.sh",
-    "measure:all": "npm run build && npm run measure:bundle"
+    "measure:all": "pnpm run build && pnpm run measure:bundle"
   },
   "dependencies": {
     "@bprogress/next": "^3.2.12",
