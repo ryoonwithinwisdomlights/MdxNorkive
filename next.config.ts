@@ -13,6 +13,12 @@ const baseConfig: NextConfig = {
   },
   output: "standalone",
   staticPageGenerationTimeout: 120,
+  // Workspace/local packages need to be transpiled on Vercel/CI
+  transpilePackages: [
+    "@norkive/mdx-ui",
+    "@norkive/mdx-safe-processor",
+    "@norkive/mdx-cloudinary-processor",
+  ],
 
   // 이미지 최적화 설정
   images: {
